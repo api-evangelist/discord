@@ -1,0 +1,753 @@
+asyncapi: 2.6.0
+info:
+  title: Discord Gateway API
+  version: '10'
+  description: >-
+    The Discord Gateway API provides persistent, stateful WebSocket
+    connections between your client and Discord servers. These connections
+    are used for sending and receiving real-time events your client can use
+    to track and update local state, including message creation, guild
+    updates, presence changes, and voice state updates.
+  contact:
+    name: Discord Support
+    url: https://support-dev.discord.com/hc/en-us
+    email: support@discord.com
+  license:
+    name: MIT
+  externalDocs:
+    description: Discord Gateway Documentation
+    url: https://discord.com/developers/docs/events/gateway
+servers:
+  gateway:
+    url: wss://gateway.discord.gg/?v=10&encoding=json
+    protocol: wss
+    description: Discord Gateway WebSocket server
+channels:
+  /:
+    publish:
+      operationId: sendGatewayMessage
+      summary: Send message to Gateway
+      description: Messages sent from the client to the Discord Gateway
+      message:
+        oneOf:
+          - $ref: '#/components/messages/Identify'
+          - $ref: '#/components/messages/Resume'
+          - $ref: '#/components/messages/Heartbeat'
+          - $ref: '#/components/messages/RequestGuildMembers'
+          - $ref: '#/components/messages/UpdateVoiceState'
+          - $ref: '#/components/messages/UpdatePresence'
+    subscribe:
+      operationId: receiveGatewayEvent
+      summary: Receive events from Gateway
+      description: Events received from the Discord Gateway
+      message:
+        oneOf:
+          - $ref: '#/components/messages/Hello'
+          - $ref: '#/components/messages/HeartbeatAck'
+          - $ref: '#/components/messages/Ready'
+          - $ref: '#/components/messages/Resumed'
+          - $ref: '#/components/messages/Reconnect'
+          - $ref: '#/components/messages/InvalidSession'
+          - $ref: '#/components/messages/ChannelCreate'
+          - $ref: '#/components/messages/ChannelUpdate'
+          - $ref: '#/components/messages/ChannelDelete'
+          - $ref: '#/components/messages/ChannelPinsUpdate'
+          - $ref: '#/components/messages/ThreadCreate'
+          - $ref: '#/components/messages/ThreadUpdate'
+          - $ref: '#/components/messages/ThreadDelete'
+          - $ref: '#/components/messages/ThreadListSync'
+          - $ref: '#/components/messages/GuildCreate'
+          - $ref: '#/components/messages/GuildUpdate'
+          - $ref: '#/components/messages/GuildDelete'
+          - $ref: '#/components/messages/GuildBanAdd'
+          - $ref: '#/components/messages/GuildBanRemove'
+          - $ref: '#/components/messages/GuildEmojisUpdate'
+          - $ref: '#/components/messages/GuildStickersUpdate'
+          - $ref: '#/components/messages/GuildMemberAdd'
+          - $ref: '#/components/messages/GuildMemberRemove'
+          - $ref: '#/components/messages/GuildMemberUpdate'
+          - $ref: '#/components/messages/GuildMembersChunk'
+          - $ref: '#/components/messages/GuildRoleCreate'
+          - $ref: '#/components/messages/GuildRoleUpdate'
+          - $ref: '#/components/messages/GuildRoleDelete'
+          - $ref: '#/components/messages/GuildScheduledEventCreate'
+          - $ref: '#/components/messages/GuildScheduledEventUpdate'
+          - $ref: '#/components/messages/GuildScheduledEventDelete'
+          - $ref: '#/components/messages/InteractionCreate'
+          - $ref: '#/components/messages/InviteCreate'
+          - $ref: '#/components/messages/InviteDelete'
+          - $ref: '#/components/messages/MessageCreate'
+          - $ref: '#/components/messages/MessageUpdate'
+          - $ref: '#/components/messages/MessageDelete'
+          - $ref: '#/components/messages/MessageDeleteBulk'
+          - $ref: '#/components/messages/MessageReactionAdd'
+          - $ref: '#/components/messages/MessageReactionRemove'
+          - $ref: '#/components/messages/MessageReactionRemoveAll'
+          - $ref: '#/components/messages/PresenceUpdate'
+          - $ref: '#/components/messages/TypingStart'
+          - $ref: '#/components/messages/UserUpdate'
+          - $ref: '#/components/messages/VoiceStateUpdate'
+          - $ref: '#/components/messages/VoiceServerUpdate'
+          - $ref: '#/components/messages/WebhooksUpdate'
+components:
+  messages:
+    Identify:
+      name: Identify
+      title: Identify (Opcode 2)
+      summary: Sent to trigger the initial handshake with the gateway
+      payload:
+        type: object
+        required:
+          - op
+          - d
+        properties:
+          op:
+            type: integer
+            const: 2
+          d:
+            type: object
+            required:
+              - token
+              - intents
+              - properties
+            properties:
+              token:
+                type: string
+                description: Authentication token
+              intents:
+                type: integer
+                description: Gateway Intents bitfield
+              properties:
+                type: object
+                properties:
+                  os:
+                    type: string
+                  browser:
+                    type: string
+                  device:
+                    type: string
+              compress:
+                type: boolean
+              large_threshold:
+                type: integer
+                minimum: 50
+                maximum: 250
+              shard:
+                type: array
+                items:
+                  type: integer
+                minItems: 2
+                maxItems: 2
+              presence:
+                type: object
+                properties:
+                  since:
+                    type: integer
+                    nullable: true
+                  activities:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Activity'
+                  status:
+                    type: string
+                    enum:
+                      - online
+                      - dnd
+                      - idle
+                      - invisible
+                      - offline
+                  afk:
+                    type: boolean
+    Resume:
+      name: Resume
+      title: Resume (Opcode 6)
+      summary: Sent to resume a disconnected session
+      payload:
+        type: object
+        required:
+          - op
+          - d
+        properties:
+          op:
+            type: integer
+            const: 6
+          d:
+            type: object
+            required:
+              - token
+              - session_id
+              - seq
+            properties:
+              token:
+                type: string
+              session_id:
+                type: string
+              seq:
+                type: integer
+    Heartbeat:
+      name: Heartbeat
+      title: Heartbeat (Opcode 1)
+      summary: Sent periodically to maintain the connection
+      payload:
+        type: object
+        required:
+          - op
+          - d
+        properties:
+          op:
+            type: integer
+            const: 1
+          d:
+            type: integer
+            nullable: true
+            description: Last sequence number received
+    RequestGuildMembers:
+      name: RequestGuildMembers
+      title: Request Guild Members (Opcode 8)
+      summary: Request guild members for a guild
+      payload:
+        type: object
+        required:
+          - op
+          - d
+        properties:
+          op:
+            type: integer
+            const: 8
+          d:
+            type: object
+            required:
+              - guild_id
+            properties:
+              guild_id:
+                type: string
+              query:
+                type: string
+              limit:
+                type: integer
+              presences:
+                type: boolean
+              user_ids:
+                oneOf:
+                  - type: string
+                  - type: array
+                    items:
+                      type: string
+              nonce:
+                type: string
+    UpdateVoiceState:
+      name: UpdateVoiceState
+      title: Update Voice State (Opcode 4)
+      summary: Sent to join, move, or disconnect from a voice channel
+      payload:
+        type: object
+        required:
+          - op
+          - d
+        properties:
+          op:
+            type: integer
+            const: 4
+          d:
+            type: object
+            required:
+              - guild_id
+              - channel_id
+              - self_mute
+              - self_deaf
+            properties:
+              guild_id:
+                type: string
+              channel_id:
+                type: string
+                nullable: true
+              self_mute:
+                type: boolean
+              self_deaf:
+                type: boolean
+    UpdatePresence:
+      name: UpdatePresence
+      title: Update Presence (Opcode 3)
+      summary: Sent to update the client's presence
+      payload:
+        type: object
+        required:
+          - op
+          - d
+        properties:
+          op:
+            type: integer
+            const: 3
+          d:
+            type: object
+            required:
+              - since
+              - activities
+              - status
+              - afk
+            properties:
+              since:
+                type: integer
+                nullable: true
+              activities:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Activity'
+              status:
+                type: string
+                enum:
+                  - online
+                  - dnd
+                  - idle
+                  - invisible
+                  - offline
+              afk:
+                type: boolean
+    Hello:
+      name: Hello
+      title: Hello (Opcode 10)
+      summary: Received after connecting, contains heartbeat interval
+      payload:
+        type: object
+        properties:
+          op:
+            type: integer
+            const: 10
+          d:
+            type: object
+            properties:
+              heartbeat_interval:
+                type: integer
+                description: Interval in milliseconds to send heartbeats
+    HeartbeatAck:
+      name: HeartbeatAck
+      title: Heartbeat ACK (Opcode 11)
+      summary: Acknowledgment of a heartbeat
+      payload:
+        type: object
+        properties:
+          op:
+            type: integer
+            const: 11
+    Ready:
+      name: Ready
+      title: Ready
+      summary: Dispatched after a successful Identify
+      payload:
+        type: object
+        properties:
+          op:
+            type: integer
+            const: 0
+          t:
+            type: string
+            const: READY
+          s:
+            type: integer
+          d:
+            type: object
+            properties:
+              v:
+                type: integer
+              user:
+                $ref: '#/components/schemas/User'
+              guilds:
+                type: array
+                items:
+                  type: object
+              session_id:
+                type: string
+              resume_gateway_url:
+                type: string
+              shard:
+                type: array
+                items:
+                  type: integer
+              application:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  flags:
+                    type: integer
+    Resumed:
+      name: Resumed
+      title: Resumed
+      summary: Dispatched after a successful Resume
+      payload:
+        type: object
+        properties:
+          op:
+            type: integer
+            const: 0
+          t:
+            type: string
+            const: RESUMED
+          s:
+            type: integer
+    Reconnect:
+      name: Reconnect
+      title: Reconnect (Opcode 7)
+      summary: Server requests the client to reconnect
+      payload:
+        type: object
+        properties:
+          op:
+            type: integer
+            const: 7
+    InvalidSession:
+      name: InvalidSession
+      title: Invalid Session (Opcode 9)
+      summary: Session is invalid, d indicates if resumable
+      payload:
+        type: object
+        properties:
+          op:
+            type: integer
+            const: 9
+          d:
+            type: boolean
+            description: Whether the session is resumable
+    ChannelCreate:
+      name: ChannelCreate
+      title: CHANNEL_CREATE
+      summary: New channel created
+      description: Requires GUILDS intent
+      payload:
+        $ref: '#/components/schemas/DispatchEvent'
+    ChannelUpdate:
+      name: ChannelUpdate
+      title: CHANNEL_UPDATE
+      summary: Channel was updated
+      description: Requires GUILDS intent
+      payload:
+        $ref: '#/components/schemas/DispatchEvent'
+    ChannelDelete:
+      name: ChannelDelete
+      title: CHANNEL_DELETE
+      summary: Channel was deleted
+      description: Requires GUILDS intent
+      payload:
+        $ref: '#/components/schemas/DispatchEvent'
+    ChannelPinsUpdate:
+      name: ChannelPinsUpdate
+      title: CHANNEL_PINS_UPDATE
+      summary: Message was pinned or unpinned
+      description: Requires GUILDS or DIRECT_MESSAGES intent
+      payload:
+        $ref: '#/components/schemas/DispatchEvent'
+    ThreadCreate:
+      name: ThreadCreate
+      title: THREAD_CREATE
+      summary: Thread created or current user added to thread
+      description: Requires GUILDS intent
+      payload:
+        $ref: '#/components/schemas/DispatchEvent'
+    ThreadUpdate:
+      name: ThreadUpdate
+      title: THREAD_UPDATE
+      summary: Thread was updated
+      description: Requires GUILDS intent
+      payload:
+        $ref: '#/components/schemas/DispatchEvent'
+    ThreadDelete:
+      name: ThreadDelete
+      title: THREAD_DELETE
+      summary: Thread was deleted
+      description: Requires GUILDS intent
+      payload:
+        $ref: '#/components/schemas/DispatchEvent'
+    ThreadListSync:
+      name: ThreadListSync
+      title: THREAD_LIST_SYNC
+      summary: Sent when gaining access to a channel with active threads
+      description: Requires GUILDS intent
+      payload:
+        $ref: '#/components/schemas/DispatchEvent'
+    GuildCreate:
+      name: GuildCreate
+      title: GUILD_CREATE
+      summary: Lazy-loaded guild available or user joined a new guild
+      description: Requires GUILDS intent
+      payload:
+        $ref: '#/components/schemas/DispatchEvent'
+    GuildUpdate:
+      name: GuildUpdate
+      title: GUILD_UPDATE
+      summary: Guild was updated
+      description: Requires GUILDS intent
+      payload:
+        $ref: '#/components/schemas/DispatchEvent'
+    GuildDelete:
+      name: GuildDelete
+      title: GUILD_DELETE
+      summary: Guild became unavailable or user left/was removed from guild
+      description: Requires GUILDS intent
+      payload:
+        $ref: '#/components/schemas/DispatchEvent'
+    GuildBanAdd:
+      name: GuildBanAdd
+      title: GUILD_BAN_ADD
+      summary: User was banned from a guild
+      description: Requires GUILD_MODERATION intent
+      payload:
+        $ref: '#/components/schemas/DispatchEvent'
+    GuildBanRemove:
+      name: GuildBanRemove
+      title: GUILD_BAN_REMOVE
+      summary: User was unbanned from a guild
+      description: Requires GUILD_MODERATION intent
+      payload:
+        $ref: '#/components/schemas/DispatchEvent'
+    GuildEmojisUpdate:
+      name: GuildEmojisUpdate
+      title: GUILD_EMOJIS_UPDATE
+      summary: Guild emojis were updated
+      description: Requires GUILD_EMOJIS_AND_STICKERS intent
+      payload:
+        $ref: '#/components/schemas/DispatchEvent'
+    GuildStickersUpdate:
+      name: GuildStickersUpdate
+      title: GUILD_STICKERS_UPDATE
+      summary: Guild stickers were updated
+      description: Requires GUILD_EMOJIS_AND_STICKERS intent
+      payload:
+        $ref: '#/components/schemas/DispatchEvent'
+    GuildMemberAdd:
+      name: GuildMemberAdd
+      title: GUILD_MEMBER_ADD
+      summary: New user joined a guild
+      description: Requires GUILD_MEMBERS privileged intent
+      payload:
+        $ref: '#/components/schemas/DispatchEvent'
+    GuildMemberRemove:
+      name: GuildMemberRemove
+      title: GUILD_MEMBER_REMOVE
+      summary: User was removed from a guild
+      description: Requires GUILD_MEMBERS privileged intent
+      payload:
+        $ref: '#/components/schemas/DispatchEvent'
+    GuildMemberUpdate:
+      name: GuildMemberUpdate
+      title: GUILD_MEMBER_UPDATE
+      summary: Guild member was updated
+      description: Requires GUILD_MEMBERS privileged intent
+      payload:
+        $ref: '#/components/schemas/DispatchEvent'
+    GuildMembersChunk:
+      name: GuildMembersChunk
+      title: GUILD_MEMBERS_CHUNK
+      summary: Response to Request Guild Members
+      payload:
+        $ref: '#/components/schemas/DispatchEvent'
+    GuildRoleCreate:
+      name: GuildRoleCreate
+      title: GUILD_ROLE_CREATE
+      summary: Guild role was created
+      description: Requires GUILDS intent
+      payload:
+        $ref: '#/components/schemas/DispatchEvent'
+    GuildRoleUpdate:
+      name: GuildRoleUpdate
+      title: GUILD_ROLE_UPDATE
+      summary: Guild role was updated
+      description: Requires GUILDS intent
+      payload:
+        $ref: '#/components/schemas/DispatchEvent'
+    GuildRoleDelete:
+      name: GuildRoleDelete
+      title: GUILD_ROLE_DELETE
+      summary: Guild role was deleted
+      description: Requires GUILDS intent
+      payload:
+        $ref: '#/components/schemas/DispatchEvent'
+    GuildScheduledEventCreate:
+      name: GuildScheduledEventCreate
+      title: GUILD_SCHEDULED_EVENT_CREATE
+      summary: Guild scheduled event was created
+      description: Requires GUILD_SCHEDULED_EVENTS intent
+      payload:
+        $ref: '#/components/schemas/DispatchEvent'
+    GuildScheduledEventUpdate:
+      name: GuildScheduledEventUpdate
+      title: GUILD_SCHEDULED_EVENT_UPDATE
+      summary: Guild scheduled event was updated
+      description: Requires GUILD_SCHEDULED_EVENTS intent
+      payload:
+        $ref: '#/components/schemas/DispatchEvent'
+    GuildScheduledEventDelete:
+      name: GuildScheduledEventDelete
+      title: GUILD_SCHEDULED_EVENT_DELETE
+      summary: Guild scheduled event was deleted
+      description: Requires GUILD_SCHEDULED_EVENTS intent
+      payload:
+        $ref: '#/components/schemas/DispatchEvent'
+    InteractionCreate:
+      name: InteractionCreate
+      title: INTERACTION_CREATE
+      summary: User used an interaction
+      payload:
+        $ref: '#/components/schemas/DispatchEvent'
+    InviteCreate:
+      name: InviteCreate
+      title: INVITE_CREATE
+      summary: Invite to a channel was created
+      description: Requires GUILD_INVITES intent
+      payload:
+        $ref: '#/components/schemas/DispatchEvent'
+    InviteDelete:
+      name: InviteDelete
+      title: INVITE_DELETE
+      summary: Invite to a channel was deleted
+      description: Requires GUILD_INVITES intent
+      payload:
+        $ref: '#/components/schemas/DispatchEvent'
+    MessageCreate:
+      name: MessageCreate
+      title: MESSAGE_CREATE
+      summary: Message was created
+      description: Requires GUILD_MESSAGES or DIRECT_MESSAGES intent. MESSAGE_CONTENT privileged intent required for content in guilds.
+      payload:
+        $ref: '#/components/schemas/DispatchEvent'
+    MessageUpdate:
+      name: MessageUpdate
+      title: MESSAGE_UPDATE
+      summary: Message was edited
+      description: Requires GUILD_MESSAGES or DIRECT_MESSAGES intent
+      payload:
+        $ref: '#/components/schemas/DispatchEvent'
+    MessageDelete:
+      name: MessageDelete
+      title: MESSAGE_DELETE
+      summary: Message was deleted
+      description: Requires GUILD_MESSAGES or DIRECT_MESSAGES intent
+      payload:
+        $ref: '#/components/schemas/DispatchEvent'
+    MessageDeleteBulk:
+      name: MessageDeleteBulk
+      title: MESSAGE_DELETE_BULK
+      summary: Multiple messages were deleted at once
+      description: Requires GUILD_MESSAGES intent
+      payload:
+        $ref: '#/components/schemas/DispatchEvent'
+    MessageReactionAdd:
+      name: MessageReactionAdd
+      title: MESSAGE_REACTION_ADD
+      summary: User reacted to a message
+      description: Requires GUILD_MESSAGE_REACTIONS or DIRECT_MESSAGE_REACTIONS intent
+      payload:
+        $ref: '#/components/schemas/DispatchEvent'
+    MessageReactionRemove:
+      name: MessageReactionRemove
+      title: MESSAGE_REACTION_REMOVE
+      summary: User removed a reaction from a message
+      description: Requires GUILD_MESSAGE_REACTIONS or DIRECT_MESSAGE_REACTIONS intent
+      payload:
+        $ref: '#/components/schemas/DispatchEvent'
+    MessageReactionRemoveAll:
+      name: MessageReactionRemoveAll
+      title: MESSAGE_REACTION_REMOVE_ALL
+      summary: All reactions were explicitly removed from a message
+      description: Requires GUILD_MESSAGE_REACTIONS or DIRECT_MESSAGE_REACTIONS intent
+      payload:
+        $ref: '#/components/schemas/DispatchEvent'
+    PresenceUpdate:
+      name: PresenceUpdate
+      title: PRESENCE_UPDATE
+      summary: User's presence or info was updated
+      description: Requires GUILD_PRESENCES privileged intent
+      payload:
+        $ref: '#/components/schemas/DispatchEvent'
+    TypingStart:
+      name: TypingStart
+      title: TYPING_START
+      summary: User started typing in a channel
+      description: Requires GUILD_MESSAGE_TYPING or DIRECT_MESSAGE_TYPING intent
+      payload:
+        $ref: '#/components/schemas/DispatchEvent'
+    UserUpdate:
+      name: UserUpdate
+      title: USER_UPDATE
+      summary: Properties about the current user changed
+      payload:
+        $ref: '#/components/schemas/DispatchEvent'
+    VoiceStateUpdate:
+      name: VoiceStateUpdate
+      title: VOICE_STATE_UPDATE
+      summary: Someone joined, left, or moved a voice channel
+      description: Requires GUILD_VOICE_STATES intent
+      payload:
+        $ref: '#/components/schemas/DispatchEvent'
+    VoiceServerUpdate:
+      name: VoiceServerUpdate
+      title: VOICE_SERVER_UPDATE
+      summary: Guild's voice server was updated
+      payload:
+        $ref: '#/components/schemas/DispatchEvent'
+    WebhooksUpdate:
+      name: WebhooksUpdate
+      title: WEBHOOKS_UPDATE
+      summary: Guild channel webhook was created, updated, or deleted
+      payload:
+        $ref: '#/components/schemas/DispatchEvent'
+  schemas:
+    DispatchEvent:
+      type: object
+      properties:
+        op:
+          type: integer
+          const: 0
+          description: Opcode 0 for Dispatch events
+        s:
+          type: integer
+          description: Sequence number for resuming
+        t:
+          type: string
+          description: Event name
+        d:
+          type: object
+          description: Event data payload
+      required:
+        - op
+        - s
+        - t
+        - d
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        username:
+          type: string
+        discriminator:
+          type: string
+        global_name:
+          type: string
+          nullable: true
+        avatar:
+          type: string
+          nullable: true
+        bot:
+          type: boolean
+        flags:
+          type: integer
+      required:
+        - id
+        - username
+    Activity:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: integer
+          description: 0=Playing, 1=Streaming, 2=Listening, 3=Watching, 4=Custom, 5=Competing
+        url:
+          type: string
+          nullable: true
+        state:
+          type: string
+          nullable: true
+      required:
+        - name
+        - type

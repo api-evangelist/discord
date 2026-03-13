@@ -1,0 +1,3510 @@
+openapi: 3.1.0
+info:
+  title: Discord REST API
+  description: >-
+    The Discord REST API provides programmatic access to Discord resources
+    including users, guilds, channels, messages, emojis, webhooks, and more.
+    It is the primary interface for building bots, integrations, and
+    applications that interact with Discord data through standard HTTP
+    request-response operations.
+  version: '10'
+  contact:
+    name: Discord Support
+    url: https://support-dev.discord.com/hc/en-us
+    email: support@discord.com
+  termsOfService: https://discord.com/developers/docs/policies-and-agreements/developer-terms-of-service
+  license:
+    name: MIT
+    identifier: MIT
+externalDocs:
+  description: Discord Developer Documentation
+  url: https://discord.com/developers/docs/reference
+servers:
+  - url: https://discord.com/api/v10
+    description: Discord API v10
+tags:
+  - name: Guilds
+    description: Operations on guilds (servers)
+  - name: Channels
+    description: Operations on channels
+  - name: Messages
+    description: Operations on messages within channels
+  - name: Users
+    description: Operations on users
+  - name: Members
+    description: Operations on guild members
+  - name: Roles
+    description: Operations on guild roles
+  - name: Emojis
+    description: Operations on guild emojis
+  - name: Stickers
+    description: Operations on stickers
+  - name: Invites
+    description: Operations on invites
+  - name: Webhooks
+    description: Operations on webhooks
+  - name: Stage Instances
+    description: Operations on stage instances
+  - name: Scheduled Events
+    description: Operations on guild scheduled events
+  - name: Auto Moderation
+    description: Operations on auto moderation rules
+  - name: Audit Log
+    description: Operations on guild audit logs
+  - name: Voice
+    description: Voice region operations
+  - name: Gateway
+    description: Gateway connection information
+security:
+  - BotToken: []
+paths:
+  /guilds:
+    post:
+      operationId: createGuild
+      summary: Create guild
+      description: Create a new guild. Returns a guild object on success.
+      tags:
+        - Guilds
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateGuildRequest'
+      responses:
+        '201':
+          description: Guild created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Guild'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /guilds/{guild_id}:
+    get:
+      operationId: getGuild
+      summary: Get guild
+      description: Returns the guild object for the given ID.
+      tags:
+        - Guilds
+      parameters:
+        - $ref: '#/components/parameters/guildId'
+        - name: with_counts
+          in: query
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Guild object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Guild'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    patch:
+      operationId: modifyGuild
+      summary: Modify guild
+      description: Modify a guild's settings. Returns the updated guild object.
+      tags:
+        - Guilds
+      parameters:
+        - $ref: '#/components/parameters/guildId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ModifyGuildRequest'
+      responses:
+        '200':
+          description: Updated guild object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Guild'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    delete:
+      operationId: deleteGuild
+      summary: Delete guild
+      description: Delete a guild permanently. User must be owner.
+      tags:
+        - Guilds
+      parameters:
+        - $ref: '#/components/parameters/guildId'
+      responses:
+        '204':
+          description: Guild deleted successfully
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /guilds/{guild_id}/preview:
+    get:
+      operationId: getGuildPreview
+      summary: Get guild preview
+      description: Returns the guild preview object for the given ID.
+      tags:
+        - Guilds
+      parameters:
+        - $ref: '#/components/parameters/guildId'
+      responses:
+        '200':
+          description: Guild preview object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GuildPreview'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /guilds/{guild_id}/channels:
+    get:
+      operationId: getGuildChannels
+      summary: List guild channels
+      description: Returns a list of guild channel objects.
+      tags:
+        - Channels
+      parameters:
+        - $ref: '#/components/parameters/guildId'
+      responses:
+        '200':
+          description: List of channel objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Channel'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    post:
+      operationId: createGuildChannel
+      summary: Create guild channel
+      description: Create a new channel object for the guild.
+      tags:
+        - Channels
+      parameters:
+        - $ref: '#/components/parameters/guildId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateChannelRequest'
+      responses:
+        '201':
+          description: Channel created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Channel'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /channels/{channel_id}:
+    get:
+      operationId: getChannel
+      summary: Get channel
+      description: Get a channel by ID. Returns a channel object.
+      tags:
+        - Channels
+      parameters:
+        - $ref: '#/components/parameters/channelId'
+      responses:
+        '200':
+          description: Channel object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Channel'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    patch:
+      operationId: modifyChannel
+      summary: Modify channel
+      description: Update a channel's settings. Returns the updated channel object.
+      tags:
+        - Channels
+      parameters:
+        - $ref: '#/components/parameters/channelId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ModifyChannelRequest'
+      responses:
+        '200':
+          description: Updated channel object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Channel'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    delete:
+      operationId: deleteChannel
+      summary: Delete channel
+      description: Delete a channel or close a private message.
+      tags:
+        - Channels
+      parameters:
+        - $ref: '#/components/parameters/channelId'
+      responses:
+        '200':
+          description: Deleted channel object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Channel'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /channels/{channel_id}/messages:
+    get:
+      operationId: getChannelMessages
+      summary: List channel messages
+      description: Returns messages for a channel. Requires READ_MESSAGE_HISTORY.
+      tags:
+        - Messages
+      parameters:
+        - $ref: '#/components/parameters/channelId'
+        - name: around
+          in: query
+          schema:
+            type: string
+        - name: before
+          in: query
+          schema:
+            type: string
+        - name: after
+          in: query
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 50
+      responses:
+        '200':
+          description: List of message objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Message'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    post:
+      operationId: createMessage
+      summary: Create message
+      description: Post a message to a guild text or DM channel.
+      tags:
+        - Messages
+      parameters:
+        - $ref: '#/components/parameters/channelId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateMessageRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CreateMessageRequest'
+      responses:
+        '200':
+          description: Message object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /channels/{channel_id}/messages/{message_id}:
+    get:
+      operationId: getMessage
+      summary: Get message
+      description: Returns a specific message in a channel.
+      tags:
+        - Messages
+      parameters:
+        - $ref: '#/components/parameters/channelId'
+        - $ref: '#/components/parameters/messageId'
+      responses:
+        '200':
+          description: Message object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    patch:
+      operationId: editMessage
+      summary: Edit message
+      description: Edit a previously sent message.
+      tags:
+        - Messages
+      parameters:
+        - $ref: '#/components/parameters/channelId'
+        - $ref: '#/components/parameters/messageId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EditMessageRequest'
+      responses:
+        '200':
+          description: Updated message object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    delete:
+      operationId: deleteMessage
+      summary: Delete message
+      description: Delete a message. Requires MANAGE_MESSAGES for others' messages.
+      tags:
+        - Messages
+      parameters:
+        - $ref: '#/components/parameters/channelId'
+        - $ref: '#/components/parameters/messageId'
+      responses:
+        '204':
+          description: Message deleted
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /channels/{channel_id}/messages/bulk-delete:
+    post:
+      operationId: bulkDeleteMessages
+      summary: Bulk delete messages
+      description: Delete multiple messages in a single request. Requires MANAGE_MESSAGES.
+      tags:
+        - Messages
+      parameters:
+        - $ref: '#/components/parameters/channelId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - messages
+              properties:
+                messages:
+                  type: array
+                  items:
+                    type: string
+                  minItems: 2
+                  maxItems: 100
+      responses:
+        '204':
+          description: Messages deleted
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /channels/{channel_id}/messages/{message_id}/reactions/{emoji_name}/@me:
+    put:
+      operationId: createReaction
+      summary: Create reaction
+      description: Create a reaction for the message.
+      tags:
+        - Messages
+      parameters:
+        - $ref: '#/components/parameters/channelId'
+        - $ref: '#/components/parameters/messageId'
+        - name: emoji_name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Reaction added
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    delete:
+      operationId: deleteOwnReaction
+      summary: Delete own reaction
+      description: Delete a reaction the current user has made.
+      tags:
+        - Messages
+      parameters:
+        - $ref: '#/components/parameters/channelId'
+        - $ref: '#/components/parameters/messageId'
+        - name: emoji_name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Reaction removed
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /channels/{channel_id}/messages/{message_id}/crosspost:
+    post:
+      operationId: crosspostMessage
+      summary: Crosspost message
+      description: Crosspost a message in an Announcement Channel to following channels.
+      tags:
+        - Messages
+      parameters:
+        - $ref: '#/components/parameters/channelId'
+        - $ref: '#/components/parameters/messageId'
+      responses:
+        '200':
+          description: Crossposted message
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /channels/{channel_id}/pins:
+    get:
+      operationId: getPinnedMessages
+      summary: Get pinned messages
+      description: Returns all pinned messages in the channel.
+      tags:
+        - Messages
+      parameters:
+        - $ref: '#/components/parameters/channelId'
+      responses:
+        '200':
+          description: List of pinned message objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Message'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /channels/{channel_id}/pins/{message_id}:
+    put:
+      operationId: pinMessage
+      summary: Pin message
+      description: Pin a message in a channel. Max 50 pins per channel.
+      tags:
+        - Messages
+      parameters:
+        - $ref: '#/components/parameters/channelId'
+        - $ref: '#/components/parameters/messageId'
+      responses:
+        '204':
+          description: Message pinned
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    delete:
+      operationId: unpinMessage
+      summary: Unpin message
+      description: Unpin a message in a channel.
+      tags:
+        - Messages
+      parameters:
+        - $ref: '#/components/parameters/channelId'
+        - $ref: '#/components/parameters/messageId'
+      responses:
+        '204':
+          description: Message unpinned
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /channels/{channel_id}/typing:
+    post:
+      operationId: triggerTypingIndicator
+      summary: Trigger typing indicator
+      description: Post a typing indicator for the specified channel.
+      tags:
+        - Channels
+      parameters:
+        - $ref: '#/components/parameters/channelId'
+      responses:
+        '204':
+          description: Typing indicator triggered
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /channels/{channel_id}/invites:
+    get:
+      operationId: getChannelInvites
+      summary: List channel invites
+      description: Returns a list of invite objects for the channel.
+      tags:
+        - Invites
+      parameters:
+        - $ref: '#/components/parameters/channelId'
+      responses:
+        '200':
+          description: List of invite objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Invite'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    post:
+      operationId: createChannelInvite
+      summary: Create channel invite
+      description: Create a new invite object for the channel.
+      tags:
+        - Invites
+      parameters:
+        - $ref: '#/components/parameters/channelId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateInviteRequest'
+      responses:
+        '200':
+          description: Invite object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invite'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /channels/{channel_id}/threads:
+    post:
+      operationId: startThreadWithoutMessage
+      summary: Start thread without message
+      description: Creates a new thread that is not connected to an existing message.
+      tags:
+        - Channels
+      parameters:
+        - $ref: '#/components/parameters/channelId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StartThreadRequest'
+      responses:
+        '201':
+          description: Thread channel created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Channel'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /channels/{channel_id}/messages/{message_id}/threads:
+    post:
+      operationId: startThreadFromMessage
+      summary: Start thread from message
+      description: Creates a new thread from an existing message.
+      tags:
+        - Channels
+      parameters:
+        - $ref: '#/components/parameters/channelId'
+        - $ref: '#/components/parameters/messageId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StartThreadRequest'
+      responses:
+        '201':
+          description: Thread channel created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Channel'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /channels/{channel_id}/webhooks:
+    get:
+      operationId: getChannelWebhooks
+      summary: List channel webhooks
+      description: Returns a list of channel webhook objects.
+      tags:
+        - Webhooks
+      parameters:
+        - $ref: '#/components/parameters/channelId'
+      responses:
+        '200':
+          description: List of webhook objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Webhook'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    post:
+      operationId: createWebhook
+      summary: Create webhook
+      description: Creates a new webhook for the channel.
+      tags:
+        - Webhooks
+      parameters:
+        - $ref: '#/components/parameters/channelId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+              properties:
+                name:
+                  type: string
+                  minLength: 1
+                  maxLength: 80
+                avatar:
+                  type: string
+                  nullable: true
+      responses:
+        '200':
+          description: Webhook created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /guilds/{guild_id}/members:
+    get:
+      operationId: listGuildMembers
+      summary: List guild members
+      description: Returns a list of guild member objects.
+      tags:
+        - Members
+      parameters:
+        - $ref: '#/components/parameters/guildId'
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 1000
+            default: 1
+        - name: after
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of guild member objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GuildMember'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /guilds/{guild_id}/members/{user_id}:
+    get:
+      operationId: getGuildMember
+      summary: Get guild member
+      description: Returns a guild member object for the specified user.
+      tags:
+        - Members
+      parameters:
+        - $ref: '#/components/parameters/guildId'
+        - $ref: '#/components/parameters/userId'
+      responses:
+        '200':
+          description: Guild member object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GuildMember'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    put:
+      operationId: addGuildMember
+      summary: Add guild member
+      description: Adds a user to the guild using an OAuth2 access token.
+      tags:
+        - Members
+      parameters:
+        - $ref: '#/components/parameters/guildId'
+        - $ref: '#/components/parameters/userId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - access_token
+              properties:
+                access_token:
+                  type: string
+                nick:
+                  type: string
+                roles:
+                  type: array
+                  items:
+                    type: string
+                mute:
+                  type: boolean
+                deaf:
+                  type: boolean
+      responses:
+        '201':
+          description: Member added
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GuildMember'
+        '204':
+          description: Member already exists
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    patch:
+      operationId: modifyGuildMember
+      summary: Modify guild member
+      description: Modify attributes of a guild member.
+      tags:
+        - Members
+      parameters:
+        - $ref: '#/components/parameters/guildId'
+        - $ref: '#/components/parameters/userId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nick:
+                  type: string
+                  nullable: true
+                roles:
+                  type: array
+                  items:
+                    type: string
+                mute:
+                  type: boolean
+                deaf:
+                  type: boolean
+                channel_id:
+                  type: string
+                  nullable: true
+                communication_disabled_until:
+                  type: string
+                  format: date-time
+                  nullable: true
+      responses:
+        '200':
+          description: Updated guild member
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GuildMember'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    delete:
+      operationId: removeGuildMember
+      summary: Remove guild member
+      description: Remove a member from a guild. Requires KICK_MEMBERS.
+      tags:
+        - Members
+      parameters:
+        - $ref: '#/components/parameters/guildId'
+        - $ref: '#/components/parameters/userId'
+      responses:
+        '204':
+          description: Member removed
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /guilds/{guild_id}/members/search:
+    get:
+      operationId: searchGuildMembers
+      summary: Search guild members
+      description: Returns guild members whose username or nickname starts with the query.
+      tags:
+        - Members
+      parameters:
+        - $ref: '#/components/parameters/guildId'
+        - name: query
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 1000
+            default: 1
+      responses:
+        '200':
+          description: List of guild member objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GuildMember'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /guilds/{guild_id}/roles:
+    get:
+      operationId: getGuildRoles
+      summary: List guild roles
+      description: Returns a list of role objects for the guild.
+      tags:
+        - Roles
+      parameters:
+        - $ref: '#/components/parameters/guildId'
+      responses:
+        '200':
+          description: List of role objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Role'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    post:
+      operationId: createGuildRole
+      summary: Create guild role
+      description: Create a new role for the guild.
+      tags:
+        - Roles
+      parameters:
+        - $ref: '#/components/parameters/guildId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRoleRequest'
+      responses:
+        '200':
+          description: Role created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Role'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /guilds/{guild_id}/roles/{role_id}:
+    patch:
+      operationId: modifyGuildRole
+      summary: Modify guild role
+      description: Modify a guild role. Returns the updated role.
+      tags:
+        - Roles
+      parameters:
+        - $ref: '#/components/parameters/guildId'
+        - name: role_id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRoleRequest'
+      responses:
+        '200':
+          description: Updated role
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Role'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    delete:
+      operationId: deleteGuildRole
+      summary: Delete guild role
+      description: Delete a guild role.
+      tags:
+        - Roles
+      parameters:
+        - $ref: '#/components/parameters/guildId'
+        - name: role_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Role deleted
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /guilds/{guild_id}/bans:
+    get:
+      operationId: getGuildBans
+      summary: List guild bans
+      description: Returns a list of ban objects for the guild.
+      tags:
+        - Members
+      parameters:
+        - $ref: '#/components/parameters/guildId'
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            maximum: 1000
+        - name: before
+          in: query
+          schema:
+            type: string
+        - name: after
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of ban objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Ban'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /guilds/{guild_id}/bans/{user_id}:
+    get:
+      operationId: getGuildBan
+      summary: Get guild ban
+      description: Returns a ban object for the given user.
+      tags:
+        - Members
+      parameters:
+        - $ref: '#/components/parameters/guildId'
+        - $ref: '#/components/parameters/userId'
+      responses:
+        '200':
+          description: Ban object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ban'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    put:
+      operationId: createGuildBan
+      summary: Create guild ban
+      description: Create a guild ban and optionally delete previous messages.
+      tags:
+        - Members
+      parameters:
+        - $ref: '#/components/parameters/guildId'
+        - $ref: '#/components/parameters/userId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                delete_message_seconds:
+                  type: integer
+                  minimum: 0
+                  maximum: 604800
+      responses:
+        '204':
+          description: Ban created
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    delete:
+      operationId: removeGuildBan
+      summary: Remove guild ban
+      description: Remove the ban for a user.
+      tags:
+        - Members
+      parameters:
+        - $ref: '#/components/parameters/guildId'
+        - $ref: '#/components/parameters/userId'
+      responses:
+        '204':
+          description: Ban removed
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /guilds/{guild_id}/emojis:
+    get:
+      operationId: listGuildEmojis
+      summary: List guild emojis
+      description: Returns a list of emoji objects for the given guild.
+      tags:
+        - Emojis
+      parameters:
+        - $ref: '#/components/parameters/guildId'
+      responses:
+        '200':
+          description: List of emoji objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Emoji'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    post:
+      operationId: createGuildEmoji
+      summary: Create guild emoji
+      description: Create a new emoji for the guild.
+      tags:
+        - Emojis
+      parameters:
+        - $ref: '#/components/parameters/guildId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+                - image
+              properties:
+                name:
+                  type: string
+                image:
+                  type: string
+                  description: Base64-encoded image data
+                roles:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '201':
+          description: Emoji created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Emoji'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /guilds/{guild_id}/emojis/{emoji_id}:
+    get:
+      operationId: getGuildEmoji
+      summary: Get guild emoji
+      description: Returns an emoji object for the given guild and emoji IDs.
+      tags:
+        - Emojis
+      parameters:
+        - $ref: '#/components/parameters/guildId'
+        - name: emoji_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Emoji object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Emoji'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /guilds/{guild_id}/stickers:
+    get:
+      operationId: listGuildStickers
+      summary: List guild stickers
+      description: Returns an array of sticker objects for the given guild.
+      tags:
+        - Stickers
+      parameters:
+        - $ref: '#/components/parameters/guildId'
+      responses:
+        '200':
+          description: List of sticker objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Sticker'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /guilds/{guild_id}/audit-logs:
+    get:
+      operationId: getGuildAuditLog
+      summary: Get guild audit log
+      description: Returns an audit log object for the guild.
+      tags:
+        - Audit Log
+      parameters:
+        - $ref: '#/components/parameters/guildId'
+        - name: user_id
+          in: query
+          schema:
+            type: string
+        - name: action_type
+          in: query
+          schema:
+            type: integer
+        - name: before
+          in: query
+          schema:
+            type: string
+        - name: after
+          in: query
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 50
+      responses:
+        '200':
+          description: Audit log object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuditLog'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /guilds/{guild_id}/invites:
+    get:
+      operationId: getGuildInvites
+      summary: List guild invites
+      description: Returns a list of invite objects for the guild.
+      tags:
+        - Invites
+      parameters:
+        - $ref: '#/components/parameters/guildId'
+      responses:
+        '200':
+          description: List of invite objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Invite'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /invites/{code}:
+    get:
+      operationId: getInvite
+      summary: Get invite
+      description: Returns an invite object for the given code.
+      tags:
+        - Invites
+      parameters:
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: with_counts
+          in: query
+          schema:
+            type: boolean
+        - name: with_expiration
+          in: query
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Invite object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invite'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    delete:
+      operationId: deleteInvite
+      summary: Delete invite
+      description: Delete an invite. Requires MANAGE_CHANNELS or MANAGE_GUILD.
+      tags:
+        - Invites
+      parameters:
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Deleted invite object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invite'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /guilds/{guild_id}/webhooks:
+    get:
+      operationId: getGuildWebhooks
+      summary: List guild webhooks
+      description: Returns a list of guild webhook objects.
+      tags:
+        - Webhooks
+      parameters:
+        - $ref: '#/components/parameters/guildId'
+      responses:
+        '200':
+          description: List of webhook objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Webhook'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /webhooks/{webhook_id}:
+    get:
+      operationId: getWebhook
+      summary: Get webhook
+      description: Returns the webhook object for the given ID.
+      tags:
+        - Webhooks
+      parameters:
+        - name: webhook_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Webhook object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    patch:
+      operationId: modifyWebhook
+      summary: Modify webhook
+      description: Modify a webhook. Returns the updated webhook object.
+      tags:
+        - Webhooks
+      parameters:
+        - name: webhook_id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                avatar:
+                  type: string
+                  nullable: true
+                channel_id:
+                  type: string
+      responses:
+        '200':
+          description: Updated webhook
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    delete:
+      operationId: deleteWebhook
+      summary: Delete webhook
+      description: Delete a webhook permanently.
+      tags:
+        - Webhooks
+      parameters:
+        - name: webhook_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Webhook deleted
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /webhooks/{webhook_id}/{webhook_token}:
+    post:
+      operationId: executeWebhook
+      summary: Execute webhook
+      description: Execute a webhook by posting a message to its channel.
+      tags:
+        - Webhooks
+      parameters:
+        - name: webhook_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: webhook_token
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: wait
+          in: query
+          schema:
+            type: boolean
+        - name: thread_id
+          in: query
+          schema:
+            type: string
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExecuteWebhookRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ExecuteWebhookRequest'
+      responses:
+        '200':
+          description: Message object (when wait=true)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '204':
+          description: Success (when wait=false)
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /guilds/{guild_id}/scheduled-events:
+    get:
+      operationId: listGuildScheduledEvents
+      summary: List guild scheduled events
+      description: Returns a list of guild scheduled event objects.
+      tags:
+        - Scheduled Events
+      parameters:
+        - $ref: '#/components/parameters/guildId'
+        - name: with_user_count
+          in: query
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: List of scheduled events
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GuildScheduledEvent'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    post:
+      operationId: createGuildScheduledEvent
+      summary: Create guild scheduled event
+      description: Create a guild scheduled event.
+      tags:
+        - Scheduled Events
+      parameters:
+        - $ref: '#/components/parameters/guildId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateScheduledEventRequest'
+      responses:
+        '200':
+          description: Scheduled event created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GuildScheduledEvent'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /guilds/{guild_id}/auto-moderation/rules:
+    get:
+      operationId: listAutoModerationRules
+      summary: List auto moderation rules
+      description: Get a list of all rules currently configured for the guild.
+      tags:
+        - Auto Moderation
+      parameters:
+        - $ref: '#/components/parameters/guildId'
+      responses:
+        '200':
+          description: List of auto moderation rule objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AutoModerationRule'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    post:
+      operationId: createAutoModerationRule
+      summary: Create auto moderation rule
+      description: Create a new rule for the guild.
+      tags:
+        - Auto Moderation
+      parameters:
+        - $ref: '#/components/parameters/guildId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAutoModerationRuleRequest'
+      responses:
+        '200':
+          description: Auto moderation rule created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutoModerationRule'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /stage-instances:
+    post:
+      operationId: createStageInstance
+      summary: Create stage instance
+      description: Creates a new Stage instance.
+      tags:
+        - Stage Instances
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - channel_id
+                - topic
+              properties:
+                channel_id:
+                  type: string
+                topic:
+                  type: string
+                  maxLength: 120
+                privacy_level:
+                  type: integer
+                send_start_notification:
+                  type: boolean
+      responses:
+        '201':
+          description: Stage instance created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StageInstance'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /stage-instances/{channel_id}:
+    get:
+      operationId: getStageInstance
+      summary: Get stage instance
+      description: Gets the stage instance associated with the Stage channel.
+      tags:
+        - Stage Instances
+      parameters:
+        - $ref: '#/components/parameters/channelId'
+      responses:
+        '200':
+          description: Stage instance object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StageInstance'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /users/@me:
+    get:
+      operationId: getCurrentUser
+      summary: Get current user
+      description: Returns the user object of the requestor's account.
+      tags:
+        - Users
+      responses:
+        '200':
+          description: User object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    patch:
+      operationId: modifyCurrentUser
+      summary: Modify current user
+      description: Modify the requestor's user account settings.
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                avatar:
+                  type: string
+                  nullable: true
+      responses:
+        '200':
+          description: Updated user object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /users/{user_id}:
+    get:
+      operationId: getUser
+      summary: Get user
+      description: Returns a user object for a given user ID.
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/components/parameters/userId'
+      responses:
+        '200':
+          description: User object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /users/@me/guilds:
+    get:
+      operationId: getCurrentUserGuilds
+      summary: List current user guilds
+      description: Returns a list of partial guild objects the current user is a member of.
+      tags:
+        - Users
+      parameters:
+        - name: before
+          in: query
+          schema:
+            type: string
+        - name: after
+          in: query
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 200
+            default: 200
+        - name: with_counts
+          in: query
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: List of partial guild objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Guild'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /users/@me/channels:
+    post:
+      operationId: createDM
+      summary: Create DM
+      description: Create a new DM channel with a user.
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - recipient_id
+              properties:
+                recipient_id:
+                  type: string
+      responses:
+        '200':
+          description: DM channel object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Channel'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /users/@me/connections:
+    get:
+      operationId: getCurrentUserConnections
+      summary: List current user connections
+      description: Returns a list of connection objects for the current user.
+      tags:
+        - Users
+      security:
+        - BotToken: []
+        - OAuth2:
+            - connections
+      responses:
+        '200':
+          description: List of connection objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Connection'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /voice/regions:
+    get:
+      operationId: listVoiceRegions
+      summary: List voice regions
+      description: Returns an array of available voice regions.
+      tags:
+        - Voice
+      responses:
+        '200':
+          description: List of voice region objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VoiceRegion'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /gateway:
+    get:
+      operationId: getGateway
+      summary: Get gateway
+      description: Returns an object with a single valid WSS URL for the Gateway.
+      tags:
+        - Gateway
+      security: []
+      responses:
+        '200':
+          description: Gateway URL object
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  url:
+                    type: string
+                    format: uri
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /gateway/bot:
+    get:
+      operationId: getGatewayBot
+      summary: Get gateway bot
+      description: Returns the Gateway URL and recommended shard settings.
+      tags:
+        - Gateway
+      responses:
+        '200':
+          description: Gateway bot object
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  url:
+                    type: string
+                    format: uri
+                  shards:
+                    type: integer
+                  session_start_limit:
+                    type: object
+                    properties:
+                      total:
+                        type: integer
+                      remaining:
+                        type: integer
+                      reset_after:
+                        type: integer
+                      max_concurrency:
+                        type: integer
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /guilds/{guild_id}/prune:
+    get:
+      operationId: getGuildPruneCount
+      summary: Get guild prune count
+      description: Returns number of members that would be removed in a prune operation.
+      tags:
+        - Members
+      parameters:
+        - $ref: '#/components/parameters/guildId'
+        - name: days
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 30
+            default: 7
+        - name: include_roles
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Prune count
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pruned:
+                    type: integer
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    post:
+      operationId: beginGuildPrune
+      summary: Begin guild prune
+      description: Begin a prune operation. Requires KICK_MEMBERS.
+      tags:
+        - Members
+      parameters:
+        - $ref: '#/components/parameters/guildId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                days:
+                  type: integer
+                  minimum: 1
+                  maximum: 30
+                  default: 7
+                compute_prune_count:
+                  type: boolean
+                  default: true
+                include_roles:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: Prune result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pruned:
+                    type: integer
+                    nullable: true
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /guilds/{guild_id}/bulk-ban:
+    post:
+      operationId: bulkGuildBan
+      summary: Bulk guild ban
+      description: Ban up to 200 users from a guild.
+      tags:
+        - Members
+      parameters:
+        - $ref: '#/components/parameters/guildId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - user_ids
+              properties:
+                user_ids:
+                  type: array
+                  items:
+                    type: string
+                  maxItems: 200
+                delete_message_seconds:
+                  type: integer
+                  minimum: 0
+                  maximum: 604800
+      responses:
+        '200':
+          description: Bulk ban result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  banned_users:
+                    type: array
+                    items:
+                      type: string
+                  failed_users:
+                    type: array
+                    items:
+                      type: string
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /applications/{application_id}/entitlements:
+    get:
+      operationId: listEntitlements
+      summary: List entitlements
+      description: Returns all entitlements for a given app, active and expired.
+      tags:
+        - Guilds
+      parameters:
+        - name: application_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: user_id
+          in: query
+          schema:
+            type: string
+        - name: sku_ids
+          in: query
+          schema:
+            type: string
+        - name: before
+          in: query
+          schema:
+            type: string
+        - name: after
+          in: query
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            maximum: 100
+            default: 100
+        - name: guild_id
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of entitlement objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Entitlement'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /sticker-packs:
+    get:
+      operationId: listStickerPacks
+      summary: List sticker packs
+      description: Returns the list of sticker packs available to Nitro subscribers.
+      tags:
+        - Stickers
+      responses:
+        '200':
+          description: List of sticker pack objects
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sticker_packs:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/StickerPack'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /applications/@me:
+    get:
+      operationId: getCurrentApplication
+      summary: Get current application
+      description: Returns the application object associated with the requesting bot user.
+      tags:
+        - Users
+      responses:
+        '200':
+          description: Application object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    patch:
+      operationId: editCurrentApplication
+      summary: Edit current application
+      description: Edit properties of the app associated with the requesting bot user.
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                description:
+                  type: string
+                interactions_endpoint_url:
+                  type: string
+                  format: uri
+                role_connections_verification_url:
+                  type: string
+                  format: uri
+                custom_install_url:
+                  type: string
+                  format: uri
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  maxItems: 5
+                icon:
+                  type: string
+                  nullable: true
+                cover_image:
+                  type: string
+                  nullable: true
+      responses:
+        '200':
+          description: Updated application object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+components:
+  securitySchemes:
+    BotToken:
+      type: http
+      scheme: bearer
+      description: Bot token authentication using the format "Bot {token}"
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://discord.com/oauth2/authorize
+          tokenUrl: https://discord.com/api/v10/oauth2/token
+          scopes:
+            identify: Access user identity
+            email: Access user email
+            connections: Access user connections
+            guilds: Access user guilds
+            guilds.join: Join guilds on behalf of user
+            bot: Bot access
+            messages.read: Read messages
+            applications.commands: Create commands
+  parameters:
+    guildId:
+      name: guild_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the guild (Snowflake)
+    channelId:
+      name: channel_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the channel (Snowflake)
+    messageId:
+      name: message_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the message (Snowflake)
+    userId:
+      name: user_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the user (Snowflake)
+  responses:
+    ClientError:
+      description: Client error response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+              message:
+                type: string
+              errors:
+                type: object
+  schemas:
+    Snowflake:
+      type: string
+      description: Discord unique ID represented as a string
+      pattern: '^[0-9]+$'
+    User:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Snowflake'
+        username:
+          type: string
+        discriminator:
+          type: string
+        global_name:
+          type: string
+          nullable: true
+        avatar:
+          type: string
+          nullable: true
+        bot:
+          type: boolean
+        system:
+          type: boolean
+        mfa_enabled:
+          type: boolean
+        banner:
+          type: string
+          nullable: true
+        accent_color:
+          type: integer
+          nullable: true
+        locale:
+          type: string
+        verified:
+          type: boolean
+        email:
+          type: string
+          nullable: true
+        flags:
+          type: integer
+        premium_type:
+          type: integer
+        public_flags:
+          type: integer
+        avatar_decoration_data:
+          type: object
+          nullable: true
+      required:
+        - id
+        - username
+    Guild:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Snowflake'
+        name:
+          type: string
+        icon:
+          type: string
+          nullable: true
+        icon_hash:
+          type: string
+          nullable: true
+        splash:
+          type: string
+          nullable: true
+        discovery_splash:
+          type: string
+          nullable: true
+        owner:
+          type: boolean
+        owner_id:
+          $ref: '#/components/schemas/Snowflake'
+        permissions:
+          type: string
+        afk_channel_id:
+          $ref: '#/components/schemas/Snowflake'
+        afk_timeout:
+          type: integer
+        verification_level:
+          type: integer
+        default_message_notifications:
+          type: integer
+        explicit_content_filter:
+          type: integer
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'
+        emojis:
+          type: array
+          items:
+            $ref: '#/components/schemas/Emoji'
+        features:
+          type: array
+          items:
+            type: string
+        mfa_level:
+          type: integer
+        system_channel_id:
+          $ref: '#/components/schemas/Snowflake'
+        system_channel_flags:
+          type: integer
+        rules_channel_id:
+          $ref: '#/components/schemas/Snowflake'
+        max_presences:
+          type: integer
+          nullable: true
+        max_members:
+          type: integer
+        vanity_url_code:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        banner:
+          type: string
+          nullable: true
+        premium_tier:
+          type: integer
+        premium_subscription_count:
+          type: integer
+        preferred_locale:
+          type: string
+        public_updates_channel_id:
+          $ref: '#/components/schemas/Snowflake'
+        nsfw_level:
+          type: integer
+        stickers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Sticker'
+        premium_progress_bar_enabled:
+          type: boolean
+        safety_alerts_channel_id:
+          $ref: '#/components/schemas/Snowflake'
+      required:
+        - id
+        - name
+    GuildPreview:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Snowflake'
+        name:
+          type: string
+        icon:
+          type: string
+          nullable: true
+        splash:
+          type: string
+          nullable: true
+        discovery_splash:
+          type: string
+          nullable: true
+        emojis:
+          type: array
+          items:
+            $ref: '#/components/schemas/Emoji'
+        features:
+          type: array
+          items:
+            type: string
+        approximate_member_count:
+          type: integer
+        approximate_presence_count:
+          type: integer
+        description:
+          type: string
+          nullable: true
+        stickers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Sticker'
+    Channel:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Snowflake'
+        type:
+          type: integer
+          description: >-
+            0=GUILD_TEXT, 1=DM, 2=GUILD_VOICE, 3=GROUP_DM, 4=GUILD_CATEGORY,
+            5=GUILD_ANNOUNCEMENT, 10=ANNOUNCEMENT_THREAD, 11=PUBLIC_THREAD,
+            12=PRIVATE_THREAD, 13=GUILD_STAGE_VOICE, 14=GUILD_DIRECTORY,
+            15=GUILD_FORUM, 16=GUILD_MEDIA
+        guild_id:
+          $ref: '#/components/schemas/Snowflake'
+        position:
+          type: integer
+        permission_overwrites:
+          type: array
+          items:
+            $ref: '#/components/schemas/Overwrite'
+        name:
+          type: string
+          nullable: true
+        topic:
+          type: string
+          nullable: true
+        nsfw:
+          type: boolean
+        last_message_id:
+          $ref: '#/components/schemas/Snowflake'
+        bitrate:
+          type: integer
+        user_limit:
+          type: integer
+        rate_limit_per_user:
+          type: integer
+        recipients:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        icon:
+          type: string
+          nullable: true
+        owner_id:
+          $ref: '#/components/schemas/Snowflake'
+        parent_id:
+          $ref: '#/components/schemas/Snowflake'
+        last_pin_timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        rtc_region:
+          type: string
+          nullable: true
+        video_quality_mode:
+          type: integer
+        message_count:
+          type: integer
+        member_count:
+          type: integer
+        thread_metadata:
+          $ref: '#/components/schemas/ThreadMetadata'
+        default_auto_archive_duration:
+          type: integer
+        flags:
+          type: integer
+        total_message_sent:
+          type: integer
+      required:
+        - id
+        - type
+    ThreadMetadata:
+      type: object
+      properties:
+        archived:
+          type: boolean
+        auto_archive_duration:
+          type: integer
+        archive_timestamp:
+          type: string
+          format: date-time
+        locked:
+          type: boolean
+        invitable:
+          type: boolean
+        create_timestamp:
+          type: string
+          format: date-time
+          nullable: true
+    Overwrite:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Snowflake'
+        type:
+          type: integer
+          description: 0=role, 1=member
+        allow:
+          type: string
+        deny:
+          type: string
+    Message:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Snowflake'
+        channel_id:
+          $ref: '#/components/schemas/Snowflake'
+        author:
+          $ref: '#/components/schemas/User'
+        content:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        edited_timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        tts:
+          type: boolean
+        mention_everyone:
+          type: boolean
+        mentions:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        mention_roles:
+          type: array
+          items:
+            type: string
+        attachments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attachment'
+        embeds:
+          type: array
+          items:
+            $ref: '#/components/schemas/Embed'
+        reactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Reaction'
+        pinned:
+          type: boolean
+        webhook_id:
+          $ref: '#/components/schemas/Snowflake'
+        type:
+          type: integer
+        flags:
+          type: integer
+        referenced_message:
+          nullable: true
+        thread:
+          $ref: '#/components/schemas/Channel'
+        components:
+          type: array
+          items:
+            $ref: '#/components/schemas/Component'
+      required:
+        - id
+        - channel_id
+        - author
+        - content
+        - timestamp
+        - tts
+        - mention_everyone
+        - mentions
+        - mention_roles
+        - attachments
+        - embeds
+        - pinned
+        - type
+    Attachment:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Snowflake'
+        filename:
+          type: string
+        description:
+          type: string
+        content_type:
+          type: string
+        size:
+          type: integer
+        url:
+          type: string
+          format: uri
+        proxy_url:
+          type: string
+          format: uri
+        height:
+          type: integer
+          nullable: true
+        width:
+          type: integer
+          nullable: true
+        ephemeral:
+          type: boolean
+      required:
+        - id
+        - filename
+        - size
+        - url
+        - proxy_url
+    Embed:
+      type: object
+      properties:
+        title:
+          type: string
+        type:
+          type: string
+        description:
+          type: string
+        url:
+          type: string
+          format: uri
+        timestamp:
+          type: string
+          format: date-time
+        color:
+          type: integer
+        footer:
+          type: object
+          properties:
+            text:
+              type: string
+            icon_url:
+              type: string
+              format: uri
+        image:
+          type: object
+          properties:
+            url:
+              type: string
+              format: uri
+            height:
+              type: integer
+            width:
+              type: integer
+        thumbnail:
+          type: object
+          properties:
+            url:
+              type: string
+              format: uri
+            height:
+              type: integer
+            width:
+              type: integer
+        author:
+          type: object
+          properties:
+            name:
+              type: string
+            url:
+              type: string
+              format: uri
+            icon_url:
+              type: string
+              format: uri
+        fields:
+          type: array
+          items:
+            type: object
+            required:
+              - name
+              - value
+            properties:
+              name:
+                type: string
+              value:
+                type: string
+              inline:
+                type: boolean
+    Reaction:
+      type: object
+      properties:
+        count:
+          type: integer
+        count_details:
+          type: object
+          properties:
+            burst:
+              type: integer
+            normal:
+              type: integer
+        me:
+          type: boolean
+        me_burst:
+          type: boolean
+        emoji:
+          $ref: '#/components/schemas/Emoji'
+    Component:
+      type: object
+      properties:
+        type:
+          type: integer
+          description: >-
+            1=ActionRow, 2=Button, 3=StringSelect, 4=TextInput,
+            5=UserSelect, 6=RoleSelect, 7=MentionableSelect, 8=ChannelSelect
+        components:
+          type: array
+          items:
+            $ref: '#/components/schemas/Component'
+        style:
+          type: integer
+        label:
+          type: string
+        emoji:
+          $ref: '#/components/schemas/Emoji'
+        custom_id:
+          type: string
+        url:
+          type: string
+          format: uri
+        disabled:
+          type: boolean
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/SelectOption'
+        placeholder:
+          type: string
+        min_values:
+          type: integer
+        max_values:
+          type: integer
+      required:
+        - type
+    SelectOption:
+      type: object
+      properties:
+        label:
+          type: string
+        value:
+          type: string
+        description:
+          type: string
+        emoji:
+          $ref: '#/components/schemas/Emoji'
+        default:
+          type: boolean
+      required:
+        - label
+        - value
+    Emoji:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Snowflake'
+        name:
+          type: string
+          nullable: true
+        roles:
+          type: array
+          items:
+            type: string
+        user:
+          $ref: '#/components/schemas/User'
+        require_colons:
+          type: boolean
+        managed:
+          type: boolean
+        animated:
+          type: boolean
+        available:
+          type: boolean
+    Role:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Snowflake'
+        name:
+          type: string
+        color:
+          type: integer
+        hoist:
+          type: boolean
+        icon:
+          type: string
+          nullable: true
+        unicode_emoji:
+          type: string
+          nullable: true
+        position:
+          type: integer
+        permissions:
+          type: string
+        managed:
+          type: boolean
+        mentionable:
+          type: boolean
+        tags:
+          $ref: '#/components/schemas/RoleTags'
+        flags:
+          type: integer
+      required:
+        - id
+        - name
+        - color
+        - hoist
+        - position
+        - permissions
+        - managed
+        - mentionable
+    RoleTags:
+      type: object
+      properties:
+        bot_id:
+          $ref: '#/components/schemas/Snowflake'
+        integration_id:
+          $ref: '#/components/schemas/Snowflake'
+        premium_subscriber:
+          type: 'null'
+        subscription_listing_id:
+          $ref: '#/components/schemas/Snowflake'
+        available_for_purchase:
+          type: 'null'
+        guild_connections:
+          type: 'null'
+    GuildMember:
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+        nick:
+          type: string
+          nullable: true
+        avatar:
+          type: string
+          nullable: true
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Snowflake'
+        joined_at:
+          type: string
+          format: date-time
+        premium_since:
+          type: string
+          format: date-time
+          nullable: true
+        deaf:
+          type: boolean
+        mute:
+          type: boolean
+        flags:
+          type: integer
+        pending:
+          type: boolean
+        communication_disabled_until:
+          type: string
+          format: date-time
+          nullable: true
+      required:
+        - roles
+        - joined_at
+        - deaf
+        - mute
+    Webhook:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Snowflake'
+        type:
+          type: integer
+          description: 1=Incoming, 2=Channel Follower, 3=Application
+        guild_id:
+          $ref: '#/components/schemas/Snowflake'
+        channel_id:
+          $ref: '#/components/schemas/Snowflake'
+        user:
+          $ref: '#/components/schemas/User'
+        name:
+          type: string
+          nullable: true
+        avatar:
+          type: string
+          nullable: true
+        token:
+          type: string
+        application_id:
+          $ref: '#/components/schemas/Snowflake'
+        url:
+          type: string
+          format: uri
+      required:
+        - id
+        - type
+    Invite:
+      type: object
+      properties:
+        code:
+          type: string
+        guild:
+          $ref: '#/components/schemas/Guild'
+        channel:
+          $ref: '#/components/schemas/Channel'
+        inviter:
+          $ref: '#/components/schemas/User'
+        target_type:
+          type: integer
+        target_user:
+          $ref: '#/components/schemas/User'
+        approximate_presence_count:
+          type: integer
+        approximate_member_count:
+          type: integer
+        expires_at:
+          type: string
+          format: date-time
+          nullable: true
+        uses:
+          type: integer
+        max_uses:
+          type: integer
+        max_age:
+          type: integer
+        temporary:
+          type: boolean
+        created_at:
+          type: string
+          format: date-time
+    Sticker:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Snowflake'
+        pack_id:
+          $ref: '#/components/schemas/Snowflake'
+        name:
+          type: string
+        description:
+          type: string
+          nullable: true
+        tags:
+          type: string
+        type:
+          type: integer
+          description: 1=STANDARD, 2=GUILD
+        format_type:
+          type: integer
+          description: 1=PNG, 2=APNG, 3=LOTTIE, 4=GIF
+        available:
+          type: boolean
+        guild_id:
+          $ref: '#/components/schemas/Snowflake'
+        user:
+          $ref: '#/components/schemas/User'
+        sort_value:
+          type: integer
+      required:
+        - id
+        - name
+        - type
+        - format_type
+    StickerPack:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Snowflake'
+        stickers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Sticker'
+        name:
+          type: string
+        sku_id:
+          $ref: '#/components/schemas/Snowflake'
+        cover_sticker_id:
+          $ref: '#/components/schemas/Snowflake'
+        description:
+          type: string
+        banner_asset_id:
+          $ref: '#/components/schemas/Snowflake'
+    StageInstance:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Snowflake'
+        guild_id:
+          $ref: '#/components/schemas/Snowflake'
+        channel_id:
+          $ref: '#/components/schemas/Snowflake'
+        topic:
+          type: string
+        privacy_level:
+          type: integer
+        discoverable_disabled:
+          type: boolean
+        guild_scheduled_event_id:
+          $ref: '#/components/schemas/Snowflake'
+    GuildScheduledEvent:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Snowflake'
+        guild_id:
+          $ref: '#/components/schemas/Snowflake'
+        channel_id:
+          $ref: '#/components/schemas/Snowflake'
+        creator_id:
+          $ref: '#/components/schemas/Snowflake'
+        name:
+          type: string
+        description:
+          type: string
+          nullable: true
+        scheduled_start_time:
+          type: string
+          format: date-time
+        scheduled_end_time:
+          type: string
+          format: date-time
+          nullable: true
+        privacy_level:
+          type: integer
+        status:
+          type: integer
+          description: 1=SCHEDULED, 2=ACTIVE, 3=COMPLETED, 4=CANCELED
+        entity_type:
+          type: integer
+          description: 1=STAGE_INSTANCE, 2=VOICE, 3=EXTERNAL
+        entity_id:
+          $ref: '#/components/schemas/Snowflake'
+        entity_metadata:
+          type: object
+          nullable: true
+          properties:
+            location:
+              type: string
+        creator:
+          $ref: '#/components/schemas/User'
+        user_count:
+          type: integer
+        image:
+          type: string
+          nullable: true
+      required:
+        - id
+        - guild_id
+        - name
+        - scheduled_start_time
+        - privacy_level
+        - status
+        - entity_type
+    AutoModerationRule:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Snowflake'
+        guild_id:
+          $ref: '#/components/schemas/Snowflake'
+        name:
+          type: string
+        creator_id:
+          $ref: '#/components/schemas/Snowflake'
+        event_type:
+          type: integer
+          description: 1=MESSAGE_SEND
+        trigger_type:
+          type: integer
+          description: 1=KEYWORD, 3=SPAM, 4=KEYWORD_PRESET, 5=MENTION_SPAM
+        trigger_metadata:
+          type: object
+          properties:
+            keyword_filter:
+              type: array
+              items:
+                type: string
+            regex_patterns:
+              type: array
+              items:
+                type: string
+            presets:
+              type: array
+              items:
+                type: integer
+            allow_list:
+              type: array
+              items:
+                type: string
+            mention_total_limit:
+              type: integer
+        actions:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: integer
+              metadata:
+                type: object
+        enabled:
+          type: boolean
+        exempt_roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Snowflake'
+        exempt_channels:
+          type: array
+          items:
+            $ref: '#/components/schemas/Snowflake'
+    AuditLog:
+      type: object
+      properties:
+        application_commands:
+          type: array
+          items:
+            type: object
+        audit_log_entries:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                $ref: '#/components/schemas/Snowflake'
+              target_id:
+                type: string
+                nullable: true
+              user_id:
+                $ref: '#/components/schemas/Snowflake'
+              action_type:
+                type: integer
+              reason:
+                type: string
+        integrations:
+          type: array
+          items:
+            type: object
+        threads:
+          type: array
+          items:
+            $ref: '#/components/schemas/Channel'
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        webhooks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Webhook'
+    Ban:
+      type: object
+      properties:
+        reason:
+          type: string
+          nullable: true
+        user:
+          $ref: '#/components/schemas/User'
+    Connection:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        revoked:
+          type: boolean
+        verified:
+          type: boolean
+        friend_sync:
+          type: boolean
+        show_activity:
+          type: boolean
+        two_way_link:
+          type: boolean
+        visibility:
+          type: integer
+    VoiceRegion:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        optimal:
+          type: boolean
+        deprecated:
+          type: boolean
+        custom:
+          type: boolean
+    Application:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Snowflake'
+        name:
+          type: string
+        icon:
+          type: string
+          nullable: true
+        description:
+          type: string
+        bot_public:
+          type: boolean
+        bot_require_code_grant:
+          type: boolean
+        terms_of_service_url:
+          type: string
+          format: uri
+        privacy_policy_url:
+          type: string
+          format: uri
+        owner:
+          $ref: '#/components/schemas/User'
+        verify_key:
+          type: string
+        team:
+          type: object
+          nullable: true
+        guild_id:
+          $ref: '#/components/schemas/Snowflake'
+        custom_install_url:
+          type: string
+          format: uri
+        tags:
+          type: array
+          items:
+            type: string
+        flags:
+          type: integer
+        interactions_endpoint_url:
+          type: string
+          format: uri
+        role_connections_verification_url:
+          type: string
+          format: uri
+      required:
+        - id
+        - name
+        - description
+        - verify_key
+    Entitlement:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Snowflake'
+        sku_id:
+          $ref: '#/components/schemas/Snowflake'
+        application_id:
+          $ref: '#/components/schemas/Snowflake'
+        user_id:
+          $ref: '#/components/schemas/Snowflake'
+        type:
+          type: integer
+        deleted:
+          type: boolean
+        starts_at:
+          type: string
+          format: date-time
+        ends_at:
+          type: string
+          format: date-time
+        guild_id:
+          $ref: '#/components/schemas/Snowflake'
+    CreateGuildRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          minLength: 2
+          maxLength: 100
+        icon:
+          type: string
+        verification_level:
+          type: integer
+        default_message_notifications:
+          type: integer
+        explicit_content_filter:
+          type: integer
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'
+        channels:
+          type: array
+          items:
+            $ref: '#/components/schemas/Channel'
+        afk_channel_id:
+          $ref: '#/components/schemas/Snowflake'
+        afk_timeout:
+          type: integer
+        system_channel_id:
+          $ref: '#/components/schemas/Snowflake'
+        system_channel_flags:
+          type: integer
+    ModifyGuildRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        verification_level:
+          type: integer
+          nullable: true
+        default_message_notifications:
+          type: integer
+          nullable: true
+        explicit_content_filter:
+          type: integer
+          nullable: true
+        afk_channel_id:
+          $ref: '#/components/schemas/Snowflake'
+        afk_timeout:
+          type: integer
+        icon:
+          type: string
+          nullable: true
+        owner_id:
+          $ref: '#/components/schemas/Snowflake'
+        splash:
+          type: string
+          nullable: true
+        discovery_splash:
+          type: string
+          nullable: true
+        banner:
+          type: string
+          nullable: true
+        system_channel_id:
+          $ref: '#/components/schemas/Snowflake'
+        system_channel_flags:
+          type: integer
+        rules_channel_id:
+          $ref: '#/components/schemas/Snowflake'
+        public_updates_channel_id:
+          $ref: '#/components/schemas/Snowflake'
+        preferred_locale:
+          type: string
+        description:
+          type: string
+          nullable: true
+        premium_progress_bar_enabled:
+          type: boolean
+        safety_alerts_channel_id:
+          $ref: '#/components/schemas/Snowflake'
+    CreateChannelRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 100
+        type:
+          type: integer
+        topic:
+          type: string
+          maxLength: 1024
+        bitrate:
+          type: integer
+        user_limit:
+          type: integer
+        rate_limit_per_user:
+          type: integer
+        position:
+          type: integer
+        permission_overwrites:
+          type: array
+          items:
+            $ref: '#/components/schemas/Overwrite'
+        parent_id:
+          $ref: '#/components/schemas/Snowflake'
+        nsfw:
+          type: boolean
+        rtc_region:
+          type: string
+          nullable: true
+        video_quality_mode:
+          type: integer
+        default_auto_archive_duration:
+          type: integer
+    ModifyChannelRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 100
+        type:
+          type: integer
+        position:
+          type: integer
+          nullable: true
+        topic:
+          type: string
+          nullable: true
+          maxLength: 1024
+        nsfw:
+          type: boolean
+          nullable: true
+        rate_limit_per_user:
+          type: integer
+          nullable: true
+        bitrate:
+          type: integer
+          nullable: true
+        user_limit:
+          type: integer
+          nullable: true
+        permission_overwrites:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/Overwrite'
+        parent_id:
+          $ref: '#/components/schemas/Snowflake'
+        rtc_region:
+          type: string
+          nullable: true
+        video_quality_mode:
+          type: integer
+          nullable: true
+        default_auto_archive_duration:
+          type: integer
+          nullable: true
+    CreateMessageRequest:
+      type: object
+      properties:
+        content:
+          type: string
+          maxLength: 2000
+        nonce:
+          oneOf:
+            - type: string
+            - type: integer
+        tts:
+          type: boolean
+        embeds:
+          type: array
+          items:
+            $ref: '#/components/schemas/Embed'
+          maxItems: 10
+        allowed_mentions:
+          type: object
+          properties:
+            parse:
+              type: array
+              items:
+                type: string
+            roles:
+              type: array
+              items:
+                type: string
+            users:
+              type: array
+              items:
+                type: string
+            replied_user:
+              type: boolean
+        message_reference:
+          type: object
+          properties:
+            message_id:
+              $ref: '#/components/schemas/Snowflake'
+            channel_id:
+              $ref: '#/components/schemas/Snowflake'
+            guild_id:
+              $ref: '#/components/schemas/Snowflake'
+            fail_if_not_exists:
+              type: boolean
+        components:
+          type: array
+          items:
+            $ref: '#/components/schemas/Component'
+        sticker_ids:
+          type: array
+          items:
+            $ref: '#/components/schemas/Snowflake'
+          maxItems: 3
+        flags:
+          type: integer
+    EditMessageRequest:
+      type: object
+      properties:
+        content:
+          type: string
+          nullable: true
+          maxLength: 2000
+        embeds:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/Embed'
+          maxItems: 10
+        flags:
+          type: integer
+          nullable: true
+        allowed_mentions:
+          type: object
+          nullable: true
+        components:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/Component'
+    CreateInviteRequest:
+      type: object
+      properties:
+        max_age:
+          type: integer
+          default: 86400
+        max_uses:
+          type: integer
+          default: 0
+        temporary:
+          type: boolean
+          default: false
+        unique:
+          type: boolean
+          default: false
+        target_type:
+          type: integer
+        target_user_id:
+          $ref: '#/components/schemas/Snowflake'
+        target_application_id:
+          $ref: '#/components/schemas/Snowflake'
+    StartThreadRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 100
+        auto_archive_duration:
+          type: integer
+        type:
+          type: integer
+        invitable:
+          type: boolean
+        rate_limit_per_user:
+          type: integer
+    ExecuteWebhookRequest:
+      type: object
+      properties:
+        content:
+          type: string
+          maxLength: 2000
+        username:
+          type: string
+        avatar_url:
+          type: string
+          format: uri
+        tts:
+          type: boolean
+        embeds:
+          type: array
+          items:
+            $ref: '#/components/schemas/Embed'
+          maxItems: 10
+        allowed_mentions:
+          type: object
+          properties:
+            parse:
+              type: array
+              items:
+                type: string
+            roles:
+              type: array
+              items:
+                type: string
+            users:
+              type: array
+              items:
+                type: string
+        components:
+          type: array
+          items:
+            $ref: '#/components/schemas/Component'
+        flags:
+          type: integer
+        thread_name:
+          type: string
+    CreateRoleRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 100
+        permissions:
+          type: string
+        color:
+          type: integer
+          default: 0
+        hoist:
+          type: boolean
+          default: false
+        icon:
+          type: string
+          nullable: true
+        unicode_emoji:
+          type: string
+          nullable: true
+        mentionable:
+          type: boolean
+          default: false
+    CreateScheduledEventRequest:
+      type: object
+      required:
+        - name
+        - privacy_level
+        - scheduled_start_time
+        - entity_type
+      properties:
+        channel_id:
+          $ref: '#/components/schemas/Snowflake'
+        entity_metadata:
+          type: object
+          properties:
+            location:
+              type: string
+        name:
+          type: string
+        privacy_level:
+          type: integer
+        scheduled_start_time:
+          type: string
+          format: date-time
+        scheduled_end_time:
+          type: string
+          format: date-time
+        description:
+          type: string
+        entity_type:
+          type: integer
+        image:
+          type: string
+    CreateAutoModerationRuleRequest:
+      type: object
+      required:
+        - name
+        - event_type
+        - trigger_type
+        - actions
+      properties:
+        name:
+          type: string
+        event_type:
+          type: integer
+        trigger_type:
+          type: integer
+        trigger_metadata:
+          type: object
+        actions:
+          type: array
+          items:
+            type: object
+            required:
+              - type
+            properties:
+              type:
+                type: integer
+              metadata:
+                type: object
+        enabled:
+          type: boolean
+          default: false
+        exempt_roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Snowflake'
+        exempt_channels:
+          type: array
+          items:
+            $ref: '#/components/schemas/Snowflake'

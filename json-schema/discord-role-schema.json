@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://discord.com/developers/schemas/discord/role.json",
+  "title": "Discord Role",
+  "description": "A role in Discord represents a set of permissions and visual attributes that can be assigned to guild members to control access and display hierarchy.",
+  "type": "object",
+  "required": ["id", "name", "color", "hoist", "position", "permissions", "managed", "mentionable"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Role ID (Snowflake)",
+      "pattern": "^[0-9]+$"
+    },
+    "name": {
+      "type": "string",
+      "description": "Role name",
+      "maxLength": 100
+    },
+    "color": {
+      "type": "integer",
+      "description": "Integer representation of hexadecimal color code"
+    },
+    "hoist": {
+      "type": "boolean",
+      "description": "Whether this role is pinned in the user listing"
+    },
+    "icon": {
+      "type": ["string", "null"],
+      "description": "Role icon hash"
+    },
+    "unicode_emoji": {
+      "type": ["string", "null"],
+      "description": "Role unicode emoji"
+    },
+    "position": {
+      "type": "integer",
+      "description": "Position of this role (higher = more authority)"
+    },
+    "permissions": {
+      "type": "string",
+      "description": "Permission bit set"
+    },
+    "managed": {
+      "type": "boolean",
+      "description": "Whether this role is managed by an integration"
+    },
+    "mentionable": {
+      "type": "boolean",
+      "description": "Whether this role is mentionable"
+    },
+    "tags": {
+      "$ref": "#/$defs/RoleTags"
+    },
+    "flags": {
+      "type": "integer",
+      "description": "Role flags combined as a bitfield"
+    }
+  },
+  "$defs": {
+    "RoleTags": {
+      "type": "object",
+      "description": "Tags indicating special properties of the role",
+      "properties": {
+        "bot_id": {
+          "type": "string",
+          "description": "ID of the bot this role belongs to"
+        },
+        "integration_id": {
+          "type": "string",
+          "description": "ID of the integration this role belongs to"
+        },
+        "premium_subscriber": {
+          "type": "null",
+          "description": "Whether this is the guild's Booster role (present if true)"
+        },
+        "subscription_listing_id": {
+          "type": "string",
+          "description": "ID of this role's subscription SKU and listing"
+        },
+        "available_for_purchase": {
+          "type": "null",
+          "description": "Whether this role is available for purchase (present if true)"
+        },
+        "guild_connections": {
+          "type": "null",
+          "description": "Whether this role is a guild's linked role (present if true)"
+        }
+      }
+    }
+  }
+}

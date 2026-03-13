@@ -1,0 +1,190 @@
+openapi: 3.1.0
+info:
+  title: Discord Webhook Events API
+  description: >-
+    The Discord Webhook Events API provides HTTP-based outgoing webhook
+    events that allow applications to receive notifications for specific
+    events without maintaining a persistent connection. Supported events
+    include APPLICATION_AUTHORIZED, ENTITLEMENT_CREATE, and
+    QUEST_USER_ENROLLMENT. Events are sent as POST requests to the
+    application's configured event webhook URL.
+  version: '10'
+  contact:
+    name: Discord Support
+    url: https://support-dev.discord.com/hc/en-us
+    email: support@discord.com
+  termsOfService: https://discord.com/developers/docs/policies-and-agreements/developer-terms-of-service
+externalDocs:
+  description: Discord Webhook Events Documentation
+  url: https://discord.com/developers/docs/events/webhook-events
+servers:
+  - url: https://your-app.example.com
+    description: Your application webhook endpoint
+tags:
+  - name: Webhook Events
+    description: Incoming webhook events from Discord
+paths:
+  /discord-webhook:
+    post:
+      operationId: receiveWebhookEvent
+      summary: Receive webhook event
+      description: >-
+        Endpoint on your server that receives webhook events from Discord.
+        Discord sends a POST request with the event payload. Your server must
+        respond with a 204 No Content for successful processing. Discord
+        validates the endpoint using Ed25519 signatures.
+      tags:
+        - Webhook Events
+      security: []
+      parameters:
+        - name: X-Signature-Ed25519
+          in: header
+          required: true
+          schema:
+            type: string
+          description: Ed25519 signature for request verification
+        - name: X-Signature-Timestamp
+          in: header
+          required: true
+          schema:
+            type: string
+          description: Timestamp used in signature verification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookEvent'
+      responses:
+        '204':
+          description: Event processed successfully
+        '401':
+          description: Invalid signature
+components:
+  schemas:
+    WebhookEvent:
+      type: object
+      properties:
+        version:
+          type: integer
+          description: Always 1
+        application_id:
+          type: string
+          description: ID of the application receiving the event
+        type:
+          type: integer
+          description: >-
+            0=PING, 1=EVENT
+        event:
+          $ref: '#/components/schemas/WebhookEventBody'
+      required:
+        - version
+        - application_id
+        - type
+    WebhookEventBody:
+      type: object
+      properties:
+        type:
+          type: string
+          description: >-
+            Event type: APPLICATION_AUTHORIZED, ENTITLEMENT_CREATE,
+            QUEST_USER_ENROLLMENT
+          enum:
+            - APPLICATION_AUTHORIZED
+            - ENTITLEMENT_CREATE
+            - QUEST_USER_ENROLLMENT
+        timestamp:
+          type: string
+          format: date-time
+          description: When the event occurred
+        data:
+          oneOf:
+            - $ref: '#/components/schemas/ApplicationAuthorizedData'
+            - $ref: '#/components/schemas/EntitlementCreateData'
+            - $ref: '#/components/schemas/QuestUserEnrollmentData'
+      required:
+        - type
+        - timestamp
+    ApplicationAuthorizedData:
+      type: object
+      description: Data for APPLICATION_AUTHORIZED event
+      properties:
+        integration_type:
+          type: integer
+          description: 0=GUILD_INSTALL, 1=USER_INSTALL
+        user:
+          $ref: '#/components/schemas/User'
+        scopes:
+          type: array
+          items:
+            type: string
+          description: OAuth2 scopes granted
+        guild:
+          $ref: '#/components/schemas/PartialGuild'
+    EntitlementCreateData:
+      type: object
+      description: Data for ENTITLEMENT_CREATE event
+      properties:
+        id:
+          type: string
+        sku_id:
+          type: string
+        application_id:
+          type: string
+        user_id:
+          type: string
+        type:
+          type: integer
+        deleted:
+          type: boolean
+        starts_at:
+          type: string
+          format: date-time
+        ends_at:
+          type: string
+          format: date-time
+        guild_id:
+          type: string
+    QuestUserEnrollmentData:
+      type: object
+      description: Data for QUEST_USER_ENROLLMENT event
+      properties:
+        user_id:
+          type: string
+        quest_id:
+          type: string
+        enrolled_at:
+          type: string
+          format: date-time
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        username:
+          type: string
+        discriminator:
+          type: string
+        global_name:
+          type: string
+          nullable: true
+        avatar:
+          type: string
+          nullable: true
+      required:
+        - id
+        - username
+    PartialGuild:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        icon:
+          type: string
+          nullable: true
+        features:
+          type: array
+          items:
+            type: string

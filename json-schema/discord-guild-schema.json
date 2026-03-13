@@ -1,0 +1,185 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://discord.com/developers/schemas/discord/guild.json",
+  "title": "Discord Guild",
+  "description": "A guild (server) in Discord represents an isolated collection of users and channels, and is often referred to as a server in the UI.",
+  "type": "object",
+  "required": ["id", "name"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Guild ID (Snowflake)",
+      "pattern": "^[0-9]+$"
+    },
+    "name": {
+      "type": "string",
+      "description": "Guild name (2-100 characters)",
+      "minLength": 2,
+      "maxLength": 100
+    },
+    "icon": {
+      "type": ["string", "null"],
+      "description": "Icon hash"
+    },
+    "icon_hash": {
+      "type": ["string", "null"],
+      "description": "Icon hash, returned in template object"
+    },
+    "splash": {
+      "type": ["string", "null"],
+      "description": "Splash hash"
+    },
+    "discovery_splash": {
+      "type": ["string", "null"],
+      "description": "Discovery splash hash"
+    },
+    "owner": {
+      "type": "boolean",
+      "description": "True if the user is the owner of the guild"
+    },
+    "owner_id": {
+      "type": "string",
+      "description": "ID of the guild owner"
+    },
+    "permissions": {
+      "type": "string",
+      "description": "Total permissions for the user in the guild"
+    },
+    "afk_channel_id": {
+      "type": ["string", "null"],
+      "description": "ID of AFK channel"
+    },
+    "afk_timeout": {
+      "type": "integer",
+      "description": "AFK timeout in seconds",
+      "enum": [60, 300, 900, 1800, 3600]
+    },
+    "widget_enabled": {
+      "type": "boolean",
+      "description": "Whether the server widget is enabled"
+    },
+    "widget_channel_id": {
+      "type": ["string", "null"],
+      "description": "Channel ID that the widget generates an invite to"
+    },
+    "verification_level": {
+      "type": "integer",
+      "description": "Verification level required for the guild",
+      "enum": [0, 1, 2, 3, 4]
+    },
+    "default_message_notifications": {
+      "type": "integer",
+      "description": "Default message notification level",
+      "enum": [0, 1]
+    },
+    "explicit_content_filter": {
+      "type": "integer",
+      "description": "Explicit content filter level",
+      "enum": [0, 1, 2]
+    },
+    "roles": {
+      "type": "array",
+      "description": "Roles in the guild",
+      "items": {
+        "$ref": "discord-role-schema.json"
+      }
+    },
+    "emojis": {
+      "type": "array",
+      "description": "Custom guild emojis",
+      "items": {
+        "$ref": "discord-emoji-schema.json"
+      }
+    },
+    "features": {
+      "type": "array",
+      "description": "Enabled guild features",
+      "items": {
+        "type": "string"
+      }
+    },
+    "mfa_level": {
+      "type": "integer",
+      "description": "Required MFA level for the guild",
+      "enum": [0, 1]
+    },
+    "system_channel_id": {
+      "type": ["string", "null"],
+      "description": "System channel ID for system messages"
+    },
+    "system_channel_flags": {
+      "type": "integer",
+      "description": "System channel flags"
+    },
+    "rules_channel_id": {
+      "type": ["string", "null"],
+      "description": "Channel ID for community rules"
+    },
+    "max_presences": {
+      "type": ["integer", "null"],
+      "description": "Maximum number of presences for the guild"
+    },
+    "max_members": {
+      "type": "integer",
+      "description": "Maximum number of members for the guild"
+    },
+    "vanity_url_code": {
+      "type": ["string", "null"],
+      "description": "Vanity URL code for the guild"
+    },
+    "description": {
+      "type": ["string", "null"],
+      "description": "Description of the guild"
+    },
+    "banner": {
+      "type": ["string", "null"],
+      "description": "Banner hash"
+    },
+    "premium_tier": {
+      "type": "integer",
+      "description": "Server boost level",
+      "enum": [0, 1, 2, 3]
+    },
+    "premium_subscription_count": {
+      "type": "integer",
+      "description": "Number of boosts this guild currently has"
+    },
+    "preferred_locale": {
+      "type": "string",
+      "description": "Preferred locale of a community guild"
+    },
+    "public_updates_channel_id": {
+      "type": ["string", "null"],
+      "description": "Channel ID for moderator community updates"
+    },
+    "max_video_channel_users": {
+      "type": "integer",
+      "description": "Maximum users in a video channel"
+    },
+    "max_stage_video_channel_users": {
+      "type": "integer",
+      "description": "Maximum users in a stage video channel"
+    },
+    "approximate_member_count": {
+      "type": "integer",
+      "description": "Approximate number of members in the guild"
+    },
+    "approximate_presence_count": {
+      "type": "integer",
+      "description": "Approximate number of online members"
+    },
+    "nsfw_level": {
+      "type": "integer",
+      "description": "Guild NSFW level",
+      "enum": [0, 1, 2, 3]
+    },
+    "premium_progress_bar_enabled": {
+      "type": "boolean",
+      "description": "Whether the guild has the boost progress bar enabled"
+    },
+    "safety_alerts_channel_id": {
+      "type": ["string", "null"],
+      "description": "Channel ID for safety alerts"
+    }
+  }
+}

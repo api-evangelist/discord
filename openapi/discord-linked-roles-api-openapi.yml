@@ -1,0 +1,229 @@
+openapi: 3.1.0
+info:
+  title: Discord Linked Roles API
+  description: >-
+    The Discord Linked Roles API enables applications to associate
+    third-party metadata with Discord users through role connection
+    metadata. Server admins can use this metadata to configure
+    requirements for linked roles, such as verified accounts or
+    achievement thresholds from external platforms.
+  version: '10'
+  contact:
+    name: Discord Support
+    url: https://support-dev.discord.com/hc/en-us
+    email: support@discord.com
+  termsOfService: https://discord.com/developers/docs/policies-and-agreements/developer-terms-of-service
+externalDocs:
+  description: Discord Linked Roles Documentation
+  url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
+servers:
+  - url: https://discord.com/api/v10
+    description: Discord API v10
+tags:
+  - name: Role Connections
+    description: Manage application role connection metadata
+security:
+  - BotToken: []
+paths:
+  /applications/{application_id}/role-connections/metadata:
+    get:
+      operationId: getApplicationRoleConnectionMetadataRecords
+      summary: List application role connection metadata
+      description: >-
+        Returns a list of application role connection metadata objects for
+        the given application.
+      tags:
+        - Role Connections
+      parameters:
+        - $ref: '#/components/parameters/applicationId'
+      responses:
+        '200':
+          description: List of role connection metadata objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApplicationRoleConnectionMetadata'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    put:
+      operationId: updateApplicationRoleConnectionMetadataRecords
+      summary: Update application role connection metadata
+      description: >-
+        Updates and returns a list of application role connection metadata
+        objects for the given application. An application can have up to 5
+        metadata records.
+      tags:
+        - Role Connections
+      parameters:
+        - $ref: '#/components/parameters/applicationId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ApplicationRoleConnectionMetadata'
+              maxItems: 5
+      responses:
+        '200':
+          description: Updated role connection metadata
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApplicationRoleConnectionMetadata'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /users/@me/applications/{application_id}/role-connection:
+    get:
+      operationId: getUserApplicationRoleConnection
+      summary: Get user application role connection
+      description: >-
+        Returns the application role connection for the user. Requires an
+        OAuth2 access token with role_connections.write scope.
+      tags:
+        - Role Connections
+      security:
+        - BearerToken: []
+      parameters:
+        - $ref: '#/components/parameters/applicationId'
+      responses:
+        '200':
+          description: Application role connection object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationRoleConnection'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    put:
+      operationId: updateUserApplicationRoleConnection
+      summary: Update user application role connection
+      description: >-
+        Updates and returns the application role connection for the user.
+        Requires an OAuth2 access token with role_connections.write scope.
+      tags:
+        - Role Connections
+      security:
+        - BearerToken: []
+      parameters:
+        - $ref: '#/components/parameters/applicationId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateApplicationRoleConnectionRequest'
+      responses:
+        '200':
+          description: Updated application role connection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationRoleConnection'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+components:
+  securitySchemes:
+    BotToken:
+      type: http
+      scheme: bearer
+      description: Bot token authentication
+    BearerToken:
+      type: http
+      scheme: bearer
+      description: OAuth2 bearer token with role_connections.write scope
+  parameters:
+    applicationId:
+      name: application_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the application
+  responses:
+    ClientError:
+      description: Client error response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+              message:
+                type: string
+  schemas:
+    ApplicationRoleConnectionMetadata:
+      type: object
+      properties:
+        type:
+          type: integer
+          description: >-
+            1=INTEGER_LESS_THAN_OR_EQUAL, 2=INTEGER_GREATER_THAN_OR_EQUAL,
+            3=INTEGER_EQUAL, 4=INTEGER_NOT_EQUAL,
+            5=DATETIME_LESS_THAN_OR_EQUAL, 6=DATETIME_GREATER_THAN_OR_EQUAL,
+            7=BOOLEAN_EQUAL, 8=BOOLEAN_NOT_EQUAL
+        key:
+          type: string
+          description: Dictionary key for the metadata field (max 50 chars, a-z, 0-9, _)
+          maxLength: 50
+          pattern: '^[a-z0-9_]+$'
+        name:
+          type: string
+          description: Human-readable name (max 100 chars)
+          maxLength: 100
+        name_localizations:
+          type: object
+          additionalProperties:
+            type: string
+          nullable: true
+        description:
+          type: string
+          description: Human-readable description (max 200 chars)
+          maxLength: 200
+        description_localizations:
+          type: object
+          additionalProperties:
+            type: string
+          nullable: true
+      required:
+        - type
+        - key
+        - name
+        - description
+    ApplicationRoleConnection:
+      type: object
+      properties:
+        platform_name:
+          type: string
+          nullable: true
+          description: Vanity name of the platform (max 50 chars)
+          maxLength: 50
+        platform_username:
+          type: string
+          nullable: true
+          description: Username on the platform (max 100 chars)
+          maxLength: 100
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+          description: Object mapping metadata keys to their string-ified values
+    UpdateApplicationRoleConnectionRequest:
+      type: object
+      properties:
+        platform_name:
+          type: string
+          maxLength: 50
+        platform_username:
+          type: string
+          maxLength: 100
+        metadata:
+          type: object
+          additionalProperties:
+            type: string

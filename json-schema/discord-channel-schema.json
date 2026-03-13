@@ -1,0 +1,194 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://discord.com/developers/schemas/discord/channel.json",
+  "title": "Discord Channel",
+  "description": "A channel in Discord represents a text, voice, category, thread, forum, or other communication medium within a guild or direct message.",
+  "type": "object",
+  "required": ["id", "type"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Channel ID (Snowflake)",
+      "pattern": "^[0-9]+$"
+    },
+    "type": {
+      "type": "integer",
+      "description": "Type of channel",
+      "enum": [0, 1, 2, 3, 4, 5, 10, 11, 12, 13, 14, 15, 16]
+    },
+    "guild_id": {
+      "type": "string",
+      "description": "ID of the guild the channel belongs to"
+    },
+    "position": {
+      "type": "integer",
+      "description": "Sorting position of the channel"
+    },
+    "permission_overwrites": {
+      "type": "array",
+      "description": "Explicit permission overwrites for members and roles",
+      "items": {
+        "$ref": "#/$defs/PermissionOverwrite"
+      }
+    },
+    "name": {
+      "type": ["string", "null"],
+      "description": "Channel name (1-100 characters)",
+      "maxLength": 100
+    },
+    "topic": {
+      "type": ["string", "null"],
+      "description": "Channel topic (0-4096 characters for forum/media, 0-1024 otherwise)",
+      "maxLength": 4096
+    },
+    "nsfw": {
+      "type": "boolean",
+      "description": "Whether the channel is NSFW"
+    },
+    "last_message_id": {
+      "type": ["string", "null"],
+      "description": "ID of the last message sent in this channel"
+    },
+    "bitrate": {
+      "type": "integer",
+      "description": "Bitrate of the voice or stage channel"
+    },
+    "user_limit": {
+      "type": "integer",
+      "description": "User limit of the voice or stage channel"
+    },
+    "rate_limit_per_user": {
+      "type": "integer",
+      "description": "Slowmode rate limit in seconds (0-21600)",
+      "minimum": 0,
+      "maximum": 21600
+    },
+    "recipients": {
+      "type": "array",
+      "description": "Recipients of the DM",
+      "items": {
+        "$ref": "discord-user-schema.json"
+      }
+    },
+    "icon": {
+      "type": ["string", "null"],
+      "description": "Icon hash of the group DM"
+    },
+    "owner_id": {
+      "type": "string",
+      "description": "ID of the creator of the group DM or thread"
+    },
+    "parent_id": {
+      "type": ["string", "null"],
+      "description": "ID of the parent category or channel"
+    },
+    "last_pin_timestamp": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "When the last pinned message was pinned"
+    },
+    "rtc_region": {
+      "type": ["string", "null"],
+      "description": "Voice region ID for the voice channel"
+    },
+    "video_quality_mode": {
+      "type": "integer",
+      "description": "Video quality mode of the voice channel",
+      "enum": [1, 2]
+    },
+    "message_count": {
+      "type": "integer",
+      "description": "Approximate count of messages in a thread"
+    },
+    "member_count": {
+      "type": "integer",
+      "description": "Approximate count of users in a thread"
+    },
+    "thread_metadata": {
+      "$ref": "#/$defs/ThreadMetadata"
+    },
+    "default_auto_archive_duration": {
+      "type": "integer",
+      "description": "Default auto archive duration for new threads",
+      "enum": [60, 1440, 4320, 10080]
+    },
+    "flags": {
+      "type": "integer",
+      "description": "Channel flags combined as a bitfield"
+    },
+    "total_message_sent": {
+      "type": "integer",
+      "description": "Total messages ever sent in a thread"
+    },
+    "default_thread_rate_limit_per_user": {
+      "type": "integer",
+      "description": "Default slowmode for new threads in this channel"
+    },
+    "default_sort_order": {
+      "type": ["integer", "null"],
+      "description": "Default sort order for forum/media channels"
+    },
+    "default_forum_layout": {
+      "type": "integer",
+      "description": "Default layout for forum channels"
+    }
+  },
+  "$defs": {
+    "PermissionOverwrite": {
+      "type": "object",
+      "description": "A permission overwrite for a role or member",
+      "required": ["id", "type", "allow", "deny"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Role or user ID"
+        },
+        "type": {
+          "type": "integer",
+          "description": "0 for role, 1 for member",
+          "enum": [0, 1]
+        },
+        "allow": {
+          "type": "string",
+          "description": "Permission bit set for allowed permissions"
+        },
+        "deny": {
+          "type": "string",
+          "description": "Permission bit set for denied permissions"
+        }
+      }
+    },
+    "ThreadMetadata": {
+      "type": "object",
+      "description": "Metadata for a thread channel",
+      "properties": {
+        "archived": {
+          "type": "boolean",
+          "description": "Whether the thread is archived"
+        },
+        "auto_archive_duration": {
+          "type": "integer",
+          "description": "Duration in minutes to auto-archive after inactivity"
+        },
+        "archive_timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the thread's archive status was last changed"
+        },
+        "locked": {
+          "type": "boolean",
+          "description": "Whether the thread is locked"
+        },
+        "invitable": {
+          "type": "boolean",
+          "description": "Whether non-moderators can add users to the thread"
+        },
+        "create_timestamp": {
+          "type": ["string", "null"],
+          "format": "date-time",
+          "description": "Timestamp when the thread was created"
+        }
+      }
+    }
+  }
+}

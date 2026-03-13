@@ -1,0 +1,294 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "discord": "https://discord.com/developers/schemas/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+
+    "Guild": {
+      "@id": "discord:Guild",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "icon": "schema:image",
+        "ownerId": "discord:ownerId",
+        "memberCount": {
+          "@id": "discord:memberCount",
+          "@type": "xsd:integer"
+        },
+        "premiumTier": {
+          "@id": "discord:premiumTier",
+          "@type": "xsd:integer"
+        },
+        "verificationLevel": {
+          "@id": "discord:verificationLevel",
+          "@type": "xsd:integer"
+        },
+        "preferredLocale": "discord:preferredLocale",
+        "features": "discord:features"
+      }
+    },
+
+    "Channel": {
+      "@id": "discord:Channel",
+      "@context": {
+        "name": "schema:name",
+        "topic": "schema:description",
+        "type": {
+          "@id": "discord:channelType",
+          "@type": "xsd:integer"
+        },
+        "position": {
+          "@id": "discord:position",
+          "@type": "xsd:integer"
+        },
+        "nsfw": {
+          "@id": "discord:nsfw",
+          "@type": "xsd:boolean"
+        },
+        "rateLimitPerUser": {
+          "@id": "discord:rateLimitPerUser",
+          "@type": "xsd:integer"
+        },
+        "parentId": "discord:parentId"
+      }
+    },
+
+    "User": {
+      "@id": "discord:User",
+      "@context": {
+        "username": "schema:name",
+        "globalName": "schema:alternateName",
+        "avatar": "schema:image",
+        "email": "schema:email",
+        "bot": {
+          "@id": "discord:bot",
+          "@type": "xsd:boolean"
+        },
+        "verified": {
+          "@id": "discord:verified",
+          "@type": "xsd:boolean"
+        },
+        "locale": "discord:locale",
+        "premiumType": {
+          "@id": "discord:premiumType",
+          "@type": "xsd:integer"
+        }
+      }
+    },
+
+    "Message": {
+      "@id": "discord:Message",
+      "@context": {
+        "content": "schema:text",
+        "author": {
+          "@id": "schema:author",
+          "@type": "@id"
+        },
+        "timestamp": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "editedTimestamp": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        },
+        "pinned": {
+          "@id": "discord:pinned",
+          "@type": "xsd:boolean"
+        },
+        "tts": {
+          "@id": "discord:tts",
+          "@type": "xsd:boolean"
+        },
+        "mentionEveryone": {
+          "@id": "discord:mentionEveryone",
+          "@type": "xsd:boolean"
+        }
+      }
+    },
+
+    "Role": {
+      "@id": "discord:Role",
+      "@context": {
+        "name": "schema:name",
+        "color": {
+          "@id": "discord:color",
+          "@type": "xsd:integer"
+        },
+        "position": {
+          "@id": "discord:position",
+          "@type": "xsd:integer"
+        },
+        "permissions": "discord:permissions",
+        "hoist": {
+          "@id": "discord:hoist",
+          "@type": "xsd:boolean"
+        },
+        "managed": {
+          "@id": "discord:managed",
+          "@type": "xsd:boolean"
+        },
+        "mentionable": {
+          "@id": "discord:mentionable",
+          "@type": "xsd:boolean"
+        }
+      }
+    },
+
+    "Emoji": {
+      "@id": "discord:Emoji",
+      "@context": {
+        "name": "schema:name",
+        "animated": {
+          "@id": "discord:animated",
+          "@type": "xsd:boolean"
+        },
+        "available": {
+          "@id": "discord:available",
+          "@type": "xsd:boolean"
+        },
+        "managed": {
+          "@id": "discord:managed",
+          "@type": "xsd:boolean"
+        }
+      }
+    },
+
+    "Webhook": {
+      "@id": "discord:Webhook",
+      "@context": {
+        "name": "schema:name",
+        "avatar": "schema:image",
+        "type": {
+          "@id": "discord:webhookType",
+          "@type": "xsd:integer"
+        },
+        "url": {
+          "@id": "schema:url",
+          "@type": "@id"
+        },
+        "token": "discord:token"
+      }
+    },
+
+    "GuildMember": {
+      "@id": "discord:GuildMember",
+      "@context": {
+        "nick": "schema:alternateName",
+        "joinedAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "premiumSince": {
+          "@id": "discord:premiumSince",
+          "@type": "xsd:dateTime"
+        },
+        "deaf": {
+          "@id": "discord:deaf",
+          "@type": "xsd:boolean"
+        },
+        "mute": {
+          "@id": "discord:mute",
+          "@type": "xsd:boolean"
+        },
+        "pending": {
+          "@id": "discord:pending",
+          "@type": "xsd:boolean"
+        }
+      }
+    },
+
+    "Invite": {
+      "@id": "discord:Invite",
+      "@context": {
+        "code": "discord:inviteCode",
+        "maxAge": {
+          "@id": "discord:maxAge",
+          "@type": "xsd:integer"
+        },
+        "maxUses": {
+          "@id": "discord:maxUses",
+          "@type": "xsd:integer"
+        },
+        "uses": {
+          "@id": "discord:uses",
+          "@type": "xsd:integer"
+        },
+        "temporary": {
+          "@id": "discord:temporary",
+          "@type": "xsd:boolean"
+        },
+        "expiresAt": {
+          "@id": "schema:expires",
+          "@type": "xsd:dateTime"
+        },
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "ApplicationCommand": {
+      "@id": "discord:ApplicationCommand",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "type": {
+          "@id": "discord:commandType",
+          "@type": "xsd:integer"
+        },
+        "nsfw": {
+          "@id": "discord:nsfw",
+          "@type": "xsd:boolean"
+        }
+      }
+    },
+
+    "Sticker": {
+      "@id": "discord:Sticker",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "type": {
+          "@id": "discord:stickerType",
+          "@type": "xsd:integer"
+        },
+        "formatType": {
+          "@id": "discord:formatType",
+          "@type": "xsd:integer"
+        },
+        "available": {
+          "@id": "discord:available",
+          "@type": "xsd:boolean"
+        }
+      }
+    },
+
+    "GuildScheduledEvent": {
+      "@id": "discord:GuildScheduledEvent",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "scheduledStartTime": {
+          "@id": "schema:startDate",
+          "@type": "xsd:dateTime"
+        },
+        "scheduledEndTime": {
+          "@id": "schema:endDate",
+          "@type": "xsd:dateTime"
+        },
+        "status": {
+          "@id": "discord:eventStatus",
+          "@type": "xsd:integer"
+        },
+        "entityType": {
+          "@id": "discord:entityType",
+          "@type": "xsd:integer"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://discord.com/developers/schemas/discord/emoji.json",
+  "title": "Discord Emoji",
+  "description": "An emoji in Discord, either a custom guild emoji or a standard Unicode emoji used in messages, reactions, and components.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": ["string", "null"],
+      "description": "Emoji ID (null for standard Unicode emojis)",
+      "pattern": "^[0-9]+$"
+    },
+    "name": {
+      "type": ["string", "null"],
+      "description": "Emoji name (can be null for reaction emoji objects)"
+    },
+    "roles": {
+      "type": "array",
+      "description": "Roles allowed to use this emoji",
+      "items": {
+        "type": "string"
+      }
+    },
+    "user": {
+      "$ref": "discord-user-schema.json",
+      "description": "User that created this emoji"
+    },
+    "require_colons": {
+      "type": "boolean",
+      "description": "Whether this emoji must be wrapped in colons"
+    },
+    "managed": {
+      "type": "boolean",
+      "description": "Whether this emoji is managed by an integration"
+    },
+    "animated": {
+      "type": "boolean",
+      "description": "Whether this emoji is animated"
+    },
+    "available": {
+      "type": "boolean",
+      "description": "Whether this emoji can be used (may be false due to server boost loss)"
+    }
+  }
+}

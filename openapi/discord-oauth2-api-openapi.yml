@@ -1,0 +1,490 @@
+openapi: 3.1.0
+info:
+  title: Discord OAuth2 API
+  description: >-
+    The Discord OAuth2 API enables application developers to build
+    applications that utilize authentication and data from the Discord API.
+    Discord supports the authorization code grant, the implicit grant,
+    client credentials, and specialized flows for bots and webhooks, allowing
+    third-party applications to access Discord user data with proper consent.
+  version: '10'
+  contact:
+    name: Discord Support
+    url: https://support-dev.discord.com/hc/en-us
+    email: support@discord.com
+  termsOfService: https://discord.com/developers/docs/policies-and-agreements/developer-terms-of-service
+externalDocs:
+  description: Discord OAuth2 Documentation
+  url: https://discord.com/developers/docs/topics/oauth2
+servers:
+  - url: https://discord.com/api/v10
+    description: Discord API v10
+tags:
+  - name: OAuth2
+    description: OAuth2 token and authorization operations
+  - name: User Identity
+    description: Retrieve current user information via OAuth2
+paths:
+  /oauth2/authorize:
+    get:
+      operationId: authorize
+      summary: Authorize
+      description: >-
+        Redirect the user to this URL to begin the OAuth2 authorization flow.
+        This is a browser-based endpoint, not a REST API call.
+      tags:
+        - OAuth2
+      security: []
+      parameters:
+        - name: response_type
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - code
+              - token
+          description: OAuth2 grant type (code or token)
+        - name: client_id
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Your application's client ID
+        - name: scope
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Space-delimited list of OAuth2 scopes
+        - name: state
+          in: query
+          schema:
+            type: string
+          description: Unique string for CSRF protection
+        - name: redirect_uri
+          in: query
+          schema:
+            type: string
+            format: uri
+          description: Registered redirect URI
+        - name: prompt
+          in: query
+          schema:
+            type: string
+            enum:
+              - consent
+              - none
+          description: Controls the authorization prompt behavior
+      responses:
+        '302':
+          description: Redirect to Discord authorization page
+  /oauth2/token:
+    post:
+      operationId: getToken
+      summary: Get access token
+      description: Exchange an authorization code for an access token.
+      tags:
+        - OAuth2
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - grant_type
+                - code
+                - redirect_uri
+              properties:
+                grant_type:
+                  type: string
+                  enum:
+                    - authorization_code
+                    - refresh_token
+                    - client_credentials
+                code:
+                  type: string
+                  description: Authorization code received from the authorize redirect
+                redirect_uri:
+                  type: string
+                  format: uri
+                  description: Same redirect_uri used in the authorize request
+                client_id:
+                  type: string
+                  description: Application client ID
+                client_secret:
+                  type: string
+                  description: Application client secret
+                refresh_token:
+                  type: string
+                  description: Refresh token (for refresh_token grant)
+                scope:
+                  type: string
+                  description: Space-delimited scopes (for client_credentials grant)
+      responses:
+        '200':
+          description: Access token response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessTokenResponse'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /oauth2/token/revoke:
+    post:
+      operationId: revokeToken
+      summary: Revoke access token
+      description: Revoke an access token or refresh token.
+      tags:
+        - OAuth2
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - token
+              properties:
+                token:
+                  type: string
+                  description: The access or refresh token to revoke
+                token_type_hint:
+                  type: string
+                  enum:
+                    - access_token
+                    - refresh_token
+                client_id:
+                  type: string
+                client_secret:
+                  type: string
+      responses:
+        '200':
+          description: Token revoked
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /oauth2/@me:
+    get:
+      operationId: getCurrentAuthorizationInformation
+      summary: Get current authorization information
+      description: >-
+        Returns info about the current authorization including the user,
+        application, scopes, and expiration.
+      tags:
+        - User Identity
+      security:
+        - BearerToken: []
+      responses:
+        '200':
+          description: Current authorization information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorizationInformation'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /oauth2/keys:
+    get:
+      operationId: getOAuth2Keys
+      summary: Get OAuth2 keys
+      description: Returns the list of public keys used for token verification.
+      tags:
+        - OAuth2
+      security: []
+      responses:
+        '200':
+          description: JWKS key set
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  keys:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        kty:
+                          type: string
+                        use:
+                          type: string
+                        kid:
+                          type: string
+                        n:
+                          type: string
+                        e:
+                          type: string
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /oauth2/applications/@me:
+    get:
+      operationId: getMyOAuth2Application
+      summary: Get current application
+      description: Returns the bot's application object.
+      tags:
+        - User Identity
+      security:
+        - BotToken: []
+      responses:
+        '200':
+          description: Application object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /users/@me:
+    get:
+      operationId: getCurrentUser
+      summary: Get current user
+      description: Returns the user object of the current OAuth2 authorized user.
+      tags:
+        - User Identity
+      security:
+        - BearerToken: []
+      responses:
+        '200':
+          description: User object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /users/@me/guilds:
+    get:
+      operationId: getCurrentUserGuilds
+      summary: List current user guilds
+      description: Returns a list of partial guild objects the current user is a member of.
+      tags:
+        - User Identity
+      security:
+        - BearerToken: []
+      parameters:
+        - name: before
+          in: query
+          schema:
+            type: string
+        - name: after
+          in: query
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 200
+            default: 200
+      responses:
+        '200':
+          description: List of partial guild objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PartialGuild'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /users/@me/connections:
+    get:
+      operationId: getCurrentUserConnections
+      summary: List current user connections
+      description: Returns a list of connection objects for the user.
+      tags:
+        - User Identity
+      security:
+        - BearerToken: []
+      responses:
+        '200':
+          description: List of connection objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Connection'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+components:
+  securitySchemes:
+    BearerToken:
+      type: http
+      scheme: bearer
+      description: OAuth2 bearer token
+    BotToken:
+      type: http
+      scheme: bearer
+      description: Bot token authentication
+  responses:
+    ClientError:
+      description: Client error response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              error_description:
+                type: string
+  schemas:
+    AccessTokenResponse:
+      type: object
+      properties:
+        access_token:
+          type: string
+          description: The access token
+        token_type:
+          type: string
+          description: Always "Bearer"
+        expires_in:
+          type: integer
+          description: Token lifetime in seconds
+        refresh_token:
+          type: string
+          description: Refresh token for obtaining new access tokens
+        scope:
+          type: string
+          description: Space-delimited list of granted scopes
+        guild:
+          $ref: '#/components/schemas/PartialGuild'
+        webhook:
+          type: object
+          properties:
+            id:
+              type: string
+            token:
+              type: string
+            channel_id:
+              type: string
+            name:
+              type: string
+              nullable: true
+      required:
+        - access_token
+        - token_type
+        - expires_in
+        - scope
+    AuthorizationInformation:
+      type: object
+      properties:
+        application:
+          $ref: '#/components/schemas/Application'
+        scopes:
+          type: array
+          items:
+            type: string
+        expires:
+          type: string
+          format: date-time
+        user:
+          $ref: '#/components/schemas/User'
+      required:
+        - application
+        - scopes
+        - expires
+    Application:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        icon:
+          type: string
+          nullable: true
+        description:
+          type: string
+        bot_public:
+          type: boolean
+        bot_require_code_grant:
+          type: boolean
+        verify_key:
+          type: string
+        flags:
+          type: integer
+      required:
+        - id
+        - name
+        - description
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        username:
+          type: string
+        discriminator:
+          type: string
+        global_name:
+          type: string
+          nullable: true
+        avatar:
+          type: string
+          nullable: true
+        bot:
+          type: boolean
+        mfa_enabled:
+          type: boolean
+        locale:
+          type: string
+        verified:
+          type: boolean
+        email:
+          type: string
+          nullable: true
+        flags:
+          type: integer
+        premium_type:
+          type: integer
+        public_flags:
+          type: integer
+      required:
+        - id
+        - username
+    PartialGuild:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        icon:
+          type: string
+          nullable: true
+        owner:
+          type: boolean
+        permissions:
+          type: string
+        features:
+          type: array
+          items:
+            type: string
+    Connection:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        revoked:
+          type: boolean
+        verified:
+          type: boolean
+        friend_sync:
+          type: boolean
+        show_activity:
+          type: boolean
+        two_way_link:
+          type: boolean
+        visibility:
+          type: integer
+          description: 0=None, 1=Everyone

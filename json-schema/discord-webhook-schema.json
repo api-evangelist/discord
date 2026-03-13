@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://discord.com/developers/schemas/discord/webhook.json",
+  "title": "Discord Webhook",
+  "description": "A webhook in Discord provides a way to post messages to channels without requiring a bot user or authentication, supporting incoming, channel follower, and application webhook types.",
+  "type": "object",
+  "required": ["id", "type"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Webhook ID (Snowflake)",
+      "pattern": "^[0-9]+$"
+    },
+    "type": {
+      "type": "integer",
+      "description": "Type of webhook: 1=Incoming, 2=Channel Follower, 3=Application",
+      "enum": [1, 2, 3]
+    },
+    "guild_id": {
+      "type": ["string", "null"],
+      "description": "Guild ID this webhook is for"
+    },
+    "channel_id": {
+      "type": ["string", "null"],
+      "description": "Channel ID this webhook is for"
+    },
+    "user": {
+      "$ref": "discord-user-schema.json",
+      "description": "User that created this webhook"
+    },
+    "name": {
+      "type": ["string", "null"],
+      "description": "Default name of the webhook"
+    },
+    "avatar": {
+      "type": ["string", "null"],
+      "description": "Default user avatar hash of the webhook"
+    },
+    "token": {
+      "type": "string",
+      "description": "Secure token of the webhook (Incoming type only)"
+    },
+    "application_id": {
+      "type": ["string", "null"],
+      "description": "Bot/OAuth2 application that created this webhook"
+    },
+    "source_guild": {
+      "type": "object",
+      "description": "Guild of the channel that this webhook is following (Channel Follower only)",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "icon": { "type": ["string", "null"] }
+      }
+    },
+    "source_channel": {
+      "type": "object",
+      "description": "Channel that this webhook is following (Channel Follower only)",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" }
+      }
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL used for executing the webhook"
+    }
+  }
+}

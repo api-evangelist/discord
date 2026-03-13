@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://discord.com/developers/schemas/discord/user.json",
+  "title": "Discord User",
+  "description": "A user in Discord represents a person or bot account with a unique identity, username, avatar, and various account properties.",
+  "type": "object",
+  "required": ["id", "username"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "User ID (Snowflake)",
+      "pattern": "^[0-9]+$"
+    },
+    "username": {
+      "type": "string",
+      "description": "The user's username, not unique across the platform"
+    },
+    "discriminator": {
+      "type": "string",
+      "description": "The user's Discord tag (legacy, 0 for migrated users)"
+    },
+    "global_name": {
+      "type": ["string", "null"],
+      "description": "The user's display name"
+    },
+    "avatar": {
+      "type": ["string", "null"],
+      "description": "The user's avatar hash"
+    },
+    "bot": {
+      "type": "boolean",
+      "description": "Whether the user belongs to an OAuth2 application"
+    },
+    "system": {
+      "type": "boolean",
+      "description": "Whether the user is an official Discord System user"
+    },
+    "mfa_enabled": {
+      "type": "boolean",
+      "description": "Whether the user has two factor enabled"
+    },
+    "banner": {
+      "type": ["string", "null"],
+      "description": "The user's banner hash"
+    },
+    "accent_color": {
+      "type": ["integer", "null"],
+      "description": "The user's banner color as an integer"
+    },
+    "locale": {
+      "type": "string",
+      "description": "The user's chosen language option"
+    },
+    "verified": {
+      "type": "boolean",
+      "description": "Whether the email on this account has been verified"
+    },
+    "email": {
+      "type": ["string", "null"],
+      "format": "email",
+      "description": "The user's email"
+    },
+    "flags": {
+      "type": "integer",
+      "description": "The flags on a user's account"
+    },
+    "premium_type": {
+      "type": "integer",
+      "description": "The type of Nitro subscription",
+      "enum": [0, 1, 2, 3]
+    },
+    "public_flags": {
+      "type": "integer",
+      "description": "The public flags on a user's account"
+    },
+    "avatar_decoration_data": {
+      "type": ["object", "null"],
+      "description": "Data for the user's avatar decoration",
+      "properties": {
+        "asset": {
+          "type": "string"
+        },
+        "sku_id": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

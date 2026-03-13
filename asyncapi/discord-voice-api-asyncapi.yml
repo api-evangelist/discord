@@ -1,0 +1,305 @@
+asyncapi: 2.6.0
+info:
+  title: Discord Voice API
+  version: '10'
+  description: >-
+    The Discord Voice API provides the protocol for establishing and managing
+    voice connections between clients and Discord voice servers. It handles
+    UDP-based voice data transmission, encryption with XSalsa20-Poly1305,
+    and supports features like speaking indicators and voice state updates.
+    The voice connection lifecycle begins via the main Gateway with Opcode 4
+    (Update Voice State) and continues with a dedicated voice WebSocket.
+  contact:
+    name: Discord Support
+    url: https://support-dev.discord.com/hc/en-us
+    email: support@discord.com
+  license:
+    name: MIT
+  externalDocs:
+    description: Discord Voice Connections Documentation
+    url: https://discord.com/developers/docs/topics/voice-connections
+servers:
+  voice:
+    url: wss://{voice_server_hostname}/?v=8
+    protocol: wss
+    description: Discord Voice WebSocket server (endpoint provided via VOICE_SERVER_UPDATE)
+    variables:
+      voice_server_hostname:
+        description: Voice server hostname from VOICE_SERVER_UPDATE event
+channels:
+  /:
+    publish:
+      operationId: sendVoiceMessage
+      summary: Send message to voice server
+      description: Messages sent from the client to the Discord voice server
+      message:
+        oneOf:
+          - $ref: '#/components/messages/VoiceIdentify'
+          - $ref: '#/components/messages/SelectProtocol'
+          - $ref: '#/components/messages/VoiceHeartbeat'
+          - $ref: '#/components/messages/Speaking'
+          - $ref: '#/components/messages/VoiceResume'
+    subscribe:
+      operationId: receiveVoiceEvent
+      summary: Receive events from voice server
+      description: Events received from the Discord voice server
+      message:
+        oneOf:
+          - $ref: '#/components/messages/VoiceReady'
+          - $ref: '#/components/messages/SessionDescription'
+          - $ref: '#/components/messages/VoiceHeartbeatAck'
+          - $ref: '#/components/messages/VoiceHello'
+          - $ref: '#/components/messages/VoiceResumed'
+          - $ref: '#/components/messages/ClientDisconnect'
+components:
+  messages:
+    VoiceIdentify:
+      name: VoiceIdentify
+      title: Voice Identify (Opcode 0)
+      summary: Begin a voice WebSocket connection
+      payload:
+        type: object
+        required:
+          - op
+          - d
+        properties:
+          op:
+            type: integer
+            const: 0
+          d:
+            type: object
+            required:
+              - server_id
+              - user_id
+              - session_id
+              - token
+            properties:
+              server_id:
+                type: string
+                description: Guild ID or channel ID for DM calls
+              user_id:
+                type: string
+              session_id:
+                type: string
+                description: Session ID from the main Gateway READY event
+              token:
+                type: string
+                description: Voice token from VOICE_SERVER_UPDATE
+    SelectProtocol:
+      name: SelectProtocol
+      title: Select Protocol (Opcode 1)
+      summary: Select the voice protocol and provide connection details
+      payload:
+        type: object
+        required:
+          - op
+          - d
+        properties:
+          op:
+            type: integer
+            const: 1
+          d:
+            type: object
+            required:
+              - protocol
+              - data
+            properties:
+              protocol:
+                type: string
+                enum:
+                  - udp
+              data:
+                type: object
+                required:
+                  - address
+                  - port
+                  - mode
+                properties:
+                  address:
+                    type: string
+                    description: External IP discovered via IP Discovery
+                  port:
+                    type: integer
+                    description: External port discovered via IP Discovery
+                  mode:
+                    type: string
+                    description: Encryption mode
+                    enum:
+                      - aead_aes256_gcm_rtpsize
+                      - aead_xchacha20_poly1305_rtpsize
+                      - xsalsa20_poly1305_lite
+                      - xsalsa20_poly1305_suffix
+                      - xsalsa20_poly1305
+    VoiceHeartbeat:
+      name: VoiceHeartbeat
+      title: Voice Heartbeat (Opcode 3)
+      summary: Sent periodically to maintain the voice connection
+      payload:
+        type: object
+        required:
+          - op
+          - d
+        properties:
+          op:
+            type: integer
+            const: 3
+          d:
+            type: integer
+            description: Nonce value (timestamp)
+    Speaking:
+      name: Speaking
+      title: Speaking (Opcode 5)
+      summary: Indicate speaking status
+      payload:
+        type: object
+        required:
+          - op
+          - d
+        properties:
+          op:
+            type: integer
+            const: 5
+          d:
+            type: object
+            required:
+              - speaking
+              - delay
+              - ssrc
+            properties:
+              speaking:
+                type: integer
+                description: >-
+                  Bitfield: 1=Microphone, 2=Soundshare, 4=Priority
+              delay:
+                type: integer
+              ssrc:
+                type: integer
+                description: Synchronization Source identifier
+    VoiceResume:
+      name: VoiceResume
+      title: Voice Resume (Opcode 7)
+      summary: Resume a voice connection
+      payload:
+        type: object
+        required:
+          - op
+          - d
+        properties:
+          op:
+            type: integer
+            const: 7
+          d:
+            type: object
+            required:
+              - server_id
+              - session_id
+              - token
+            properties:
+              server_id:
+                type: string
+              session_id:
+                type: string
+              token:
+                type: string
+    VoiceReady:
+      name: VoiceReady
+      title: Voice Ready (Opcode 2)
+      summary: Voice server is ready, provides connection information
+      payload:
+        type: object
+        properties:
+          op:
+            type: integer
+            const: 2
+          d:
+            type: object
+            properties:
+              ssrc:
+                type: integer
+                description: SSRC for this connection
+              ip:
+                type: string
+                description: Voice server IP
+              port:
+                type: integer
+                description: Voice server UDP port
+              modes:
+                type: array
+                items:
+                  type: string
+                description: Available encryption modes
+    SessionDescription:
+      name: SessionDescription
+      title: Session Description (Opcode 4)
+      summary: Voice session description with encryption details
+      payload:
+        type: object
+        properties:
+          op:
+            type: integer
+            const: 4
+          d:
+            type: object
+            properties:
+              mode:
+                type: string
+                description: Selected encryption mode
+              secret_key:
+                type: array
+                items:
+                  type: integer
+                description: 32-byte secret key for encryption
+    VoiceHeartbeatAck:
+      name: VoiceHeartbeatAck
+      title: Voice Heartbeat ACK (Opcode 6)
+      summary: Acknowledgment of a voice heartbeat
+      payload:
+        type: object
+        properties:
+          op:
+            type: integer
+            const: 6
+          d:
+            type: integer
+            description: Nonce echoed back
+    VoiceHello:
+      name: VoiceHello
+      title: Voice Hello (Opcode 8)
+      summary: Received after connecting, contains heartbeat interval
+      payload:
+        type: object
+        properties:
+          op:
+            type: integer
+            const: 8
+          d:
+            type: object
+            properties:
+              heartbeat_interval:
+                type: number
+                description: Heartbeat interval in milliseconds
+    VoiceResumed:
+      name: VoiceResumed
+      title: Voice Resumed (Opcode 9)
+      summary: Voice connection successfully resumed
+      payload:
+        type: object
+        properties:
+          op:
+            type: integer
+            const: 9
+    ClientDisconnect:
+      name: ClientDisconnect
+      title: Client Disconnect (Opcode 13)
+      summary: A user disconnected from the voice channel
+      payload:
+        type: object
+        properties:
+          op:
+            type: integer
+            const: 13
+          d:
+            type: object
+            properties:
+              user_id:
+                type: string
