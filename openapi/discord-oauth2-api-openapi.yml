@@ -28,7 +28,7 @@ paths:
   /oauth2/authorize:
     get:
       operationId: authorize
-      summary: Authorize
+      summary: Discord Authorize
       description: >-
         Redirect the user to this URL to begin the OAuth2 authorization flow.
         This is a browser-based endpoint, not a REST API call.
@@ -82,7 +82,7 @@ paths:
   /oauth2/token:
     post:
       operationId: getToken
-      summary: Get access token
+      summary: Discord Get access token
       description: Exchange an authorization code for an access token.
       tags:
         - OAuth2
@@ -135,7 +135,7 @@ paths:
   /oauth2/token/revoke:
     post:
       operationId: revokeToken
-      summary: Revoke access token
+      summary: Discord Revoke access token
       description: Revoke an access token or refresh token.
       tags:
         - OAuth2
@@ -169,7 +169,7 @@ paths:
   /oauth2/@me:
     get:
       operationId: getCurrentAuthorizationInformation
-      summary: Get current authorization information
+      summary: Discord Get current authorization information
       description: >-
         Returns info about the current authorization including the user,
         application, scopes, and expiration.
@@ -189,7 +189,7 @@ paths:
   /oauth2/keys:
     get:
       operationId: getOAuth2Keys
-      summary: Get OAuth2 keys
+      summary: Discord Get OAuth2 keys
       description: Returns the list of public keys used for token verification.
       tags:
         - OAuth2
@@ -222,7 +222,7 @@ paths:
   /oauth2/applications/@me:
     get:
       operationId: getMyOAuth2Application
-      summary: Get current application
+      summary: Discord Get current application
       description: Returns the bot's application object.
       tags:
         - User Identity
@@ -240,7 +240,7 @@ paths:
   /users/@me:
     get:
       operationId: getCurrentUser
-      summary: Get current user
+      summary: Discord Get current user
       description: Returns the user object of the current OAuth2 authorized user.
       tags:
         - User Identity
@@ -258,7 +258,7 @@ paths:
   /users/@me/guilds:
     get:
       operationId: getCurrentUserGuilds
-      summary: List current user guilds
+      summary: Discord List current user guilds
       description: Returns a list of partial guild objects the current user is a member of.
       tags:
         - User Identity
@@ -294,7 +294,7 @@ paths:
   /users/@me/connections:
     get:
       operationId: getCurrentUserConnections
-      summary: List current user connections
+      summary: Discord List current user connections
       description: Returns a list of connection objects for the user.
       tags:
         - User Identity

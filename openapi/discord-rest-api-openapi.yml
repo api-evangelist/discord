@@ -61,7 +61,7 @@ paths:
   /guilds:
     post:
       operationId: createGuild
-      summary: Create guild
+      summary: Discord Create guild
       description: Create a new guild. Returns a guild object on success.
       tags:
         - Guilds
@@ -83,7 +83,7 @@ paths:
   /guilds/{guild_id}:
     get:
       operationId: getGuild
-      summary: Get guild
+      summary: Discord Get guild
       description: Returns the guild object for the given ID.
       tags:
         - Guilds
@@ -104,7 +104,7 @@ paths:
           $ref: '#/components/responses/ClientError'
     patch:
       operationId: modifyGuild
-      summary: Modify guild
+      summary: Discord Modify guild
       description: Modify a guild's settings. Returns the updated guild object.
       tags:
         - Guilds
@@ -127,7 +127,7 @@ paths:
           $ref: '#/components/responses/ClientError'
     delete:
       operationId: deleteGuild
-      summary: Delete guild
+      summary: Discord Delete guild
       description: Delete a guild permanently. User must be owner.
       tags:
         - Guilds
@@ -141,7 +141,7 @@ paths:
   /guilds/{guild_id}/preview:
     get:
       operationId: getGuildPreview
-      summary: Get guild preview
+      summary: Discord Get guild preview
       description: Returns the guild preview object for the given ID.
       tags:
         - Guilds
@@ -159,7 +159,7 @@ paths:
   /guilds/{guild_id}/channels:
     get:
       operationId: getGuildChannels
-      summary: List guild channels
+      summary: Discord List guild channels
       description: Returns a list of guild channel objects.
       tags:
         - Channels
@@ -178,7 +178,7 @@ paths:
           $ref: '#/components/responses/ClientError'
     post:
       operationId: createGuildChannel
-      summary: Create guild channel
+      summary: Discord Create guild channel
       description: Create a new channel object for the guild.
       tags:
         - Channels
@@ -202,7 +202,7 @@ paths:
   /channels/{channel_id}:
     get:
       operationId: getChannel
-      summary: Get channel
+      summary: Discord Get channel
       description: Get a channel by ID. Returns a channel object.
       tags:
         - Channels
@@ -219,7 +219,7 @@ paths:
           $ref: '#/components/responses/ClientError'
     patch:
       operationId: modifyChannel
-      summary: Modify channel
+      summary: Discord Modify channel
       description: Update a channel's settings. Returns the updated channel object.
       tags:
         - Channels
@@ -242,7 +242,7 @@ paths:
           $ref: '#/components/responses/ClientError'
     delete:
       operationId: deleteChannel
-      summary: Delete channel
+      summary: Discord Delete channel
       description: Delete a channel or close a private message.
       tags:
         - Channels
@@ -260,7 +260,7 @@ paths:
   /channels/{channel_id}/messages:
     get:
       operationId: getChannelMessages
-      summary: List channel messages
+      summary: Discord List channel messages
       description: Returns messages for a channel. Requires READ_MESSAGE_HISTORY.
       tags:
         - Messages
@@ -298,7 +298,7 @@ paths:
           $ref: '#/components/responses/ClientError'
     post:
       operationId: createMessage
-      summary: Create message
+      summary: Discord Create message
       description: Post a message to a guild text or DM channel.
       tags:
         - Messages
@@ -325,7 +325,7 @@ paths:
   /channels/{channel_id}/messages/{message_id}:
     get:
       operationId: getMessage
-      summary: Get message
+      summary: Discord Get message
       description: Returns a specific message in a channel.
       tags:
         - Messages
@@ -343,7 +343,7 @@ paths:
           $ref: '#/components/responses/ClientError'
     patch:
       operationId: editMessage
-      summary: Edit message
+      summary: Discord Edit message
       description: Edit a previously sent message.
       tags:
         - Messages
@@ -367,7 +367,7 @@ paths:
           $ref: '#/components/responses/ClientError'
     delete:
       operationId: deleteMessage
-      summary: Delete message
+      summary: Discord Delete message
       description: Delete a message. Requires MANAGE_MESSAGES for others' messages.
       tags:
         - Messages
@@ -382,7 +382,7 @@ paths:
   /channels/{channel_id}/messages/bulk-delete:
     post:
       operationId: bulkDeleteMessages
-      summary: Bulk delete messages
+      summary: Discord Bulk delete messages
       description: Delete multiple messages in a single request. Requires MANAGE_MESSAGES.
       tags:
         - Messages
@@ -411,7 +411,7 @@ paths:
   /channels/{channel_id}/messages/{message_id}/reactions/{emoji_name}/@me:
     put:
       operationId: createReaction
-      summary: Create reaction
+      summary: Discord Create reaction
       description: Create a reaction for the message.
       tags:
         - Messages
@@ -430,7 +430,7 @@ paths:
           $ref: '#/components/responses/ClientError'
     delete:
       operationId: deleteOwnReaction
-      summary: Delete own reaction
+      summary: Discord Delete own reaction
       description: Delete a reaction the current user has made.
       tags:
         - Messages
@@ -450,7 +450,7 @@ paths:
   /channels/{channel_id}/messages/{message_id}/crosspost:
     post:
       operationId: crosspostMessage
-      summary: Crosspost message
+      summary: Discord Crosspost message
       description: Crosspost a message in an Announcement Channel to following channels.
       tags:
         - Messages
@@ -469,7 +469,7 @@ paths:
   /channels/{channel_id}/pins:
     get:
       operationId: getPinnedMessages
-      summary: Get pinned messages
+      summary: Discord Get pinned messages
       description: Returns all pinned messages in the channel.
       tags:
         - Messages
@@ -489,7 +489,7 @@ paths:
   /channels/{channel_id}/pins/{message_id}:
     put:
       operationId: pinMessage
-      summary: Pin message
+      summary: Discord Pin message
       description: Pin a message in a channel. Max 50 pins per channel.
       tags:
         - Messages
@@ -503,7 +503,7 @@ paths:
           $ref: '#/components/responses/ClientError'
     delete:
       operationId: unpinMessage
-      summary: Unpin message
+      summary: Discord Unpin message
       description: Unpin a message in a channel.
       tags:
         - Messages
@@ -518,7 +518,7 @@ paths:
   /channels/{channel_id}/typing:
     post:
       operationId: triggerTypingIndicator
-      summary: Trigger typing indicator
+      summary: Discord Trigger typing indicator
       description: Post a typing indicator for the specified channel.
       tags:
         - Channels
@@ -532,7 +532,7 @@ paths:
   /channels/{channel_id}/invites:
     get:
       operationId: getChannelInvites
-      summary: List channel invites
+      summary: Discord List channel invites
       description: Returns a list of invite objects for the channel.
       tags:
         - Invites
@@ -551,7 +551,7 @@ paths:
           $ref: '#/components/responses/ClientError'
     post:
       operationId: createChannelInvite
-      summary: Create channel invite
+      summary: Discord Create channel invite
       description: Create a new invite object for the channel.
       tags:
         - Invites
@@ -574,7 +574,7 @@ paths:
   /channels/{channel_id}/threads:
     post:
       operationId: startThreadWithoutMessage
-      summary: Start thread without message
+      summary: Discord Start thread without message
       description: Creates a new thread that is not connected to an existing message.
       tags:
         - Channels
@@ -598,7 +598,7 @@ paths:
   /channels/{channel_id}/messages/{message_id}/threads:
     post:
       operationId: startThreadFromMessage
-      summary: Start thread from message
+      summary: Discord Start thread from message
       description: Creates a new thread from an existing message.
       tags:
         - Channels
@@ -623,7 +623,7 @@ paths:
   /channels/{channel_id}/webhooks:
     get:
       operationId: getChannelWebhooks
-      summary: List channel webhooks
+      summary: Discord List channel webhooks
       description: Returns a list of channel webhook objects.
       tags:
         - Webhooks
@@ -642,7 +642,7 @@ paths:
           $ref: '#/components/responses/ClientError'
     post:
       operationId: createWebhook
-      summary: Create webhook
+      summary: Discord Create webhook
       description: Creates a new webhook for the channel.
       tags:
         - Webhooks
@@ -676,7 +676,7 @@ paths:
   /guilds/{guild_id}/members:
     get:
       operationId: listGuildMembers
-      summary: List guild members
+      summary: Discord List guild members
       description: Returns a list of guild member objects.
       tags:
         - Members
@@ -707,7 +707,7 @@ paths:
   /guilds/{guild_id}/members/{user_id}:
     get:
       operationId: getGuildMember
-      summary: Get guild member
+      summary: Discord Get guild member
       description: Returns a guild member object for the specified user.
       tags:
         - Members
@@ -725,7 +725,7 @@ paths:
           $ref: '#/components/responses/ClientError'
     put:
       operationId: addGuildMember
-      summary: Add guild member
+      summary: Discord Add guild member
       description: Adds a user to the guild using an OAuth2 access token.
       tags:
         - Members
@@ -766,7 +766,7 @@ paths:
           $ref: '#/components/responses/ClientError'
     patch:
       operationId: modifyGuildMember
-      summary: Modify guild member
+      summary: Discord Modify guild member
       description: Modify attributes of a guild member.
       tags:
         - Members
@@ -809,7 +809,7 @@ paths:
           $ref: '#/components/responses/ClientError'
     delete:
       operationId: removeGuildMember
-      summary: Remove guild member
+      summary: Discord Remove guild member
       description: Remove a member from a guild. Requires KICK_MEMBERS.
       tags:
         - Members
@@ -824,7 +824,7 @@ paths:
   /guilds/{guild_id}/members/search:
     get:
       operationId: searchGuildMembers
-      summary: Search guild members
+      summary: Discord Search guild members
       description: Returns guild members whose username or nickname starts with the query.
       tags:
         - Members
@@ -856,7 +856,7 @@ paths:
   /guilds/{guild_id}/roles:
     get:
       operationId: getGuildRoles
-      summary: List guild roles
+      summary: Discord List guild roles
       description: Returns a list of role objects for the guild.
       tags:
         - Roles
@@ -875,7 +875,7 @@ paths:
           $ref: '#/components/responses/ClientError'
     post:
       operationId: createGuildRole
-      summary: Create guild role
+      summary: Discord Create guild role
       description: Create a new role for the guild.
       tags:
         - Roles
@@ -898,7 +898,7 @@ paths:
   /guilds/{guild_id}/roles/{role_id}:
     patch:
       operationId: modifyGuildRole
-      summary: Modify guild role
+      summary: Discord Modify guild role
       description: Modify a guild role. Returns the updated role.
       tags:
         - Roles
@@ -926,7 +926,7 @@ paths:
           $ref: '#/components/responses/ClientError'
     delete:
       operationId: deleteGuildRole
-      summary: Delete guild role
+      summary: Discord Delete guild role
       description: Delete a guild role.
       tags:
         - Roles
@@ -945,7 +945,7 @@ paths:
   /guilds/{guild_id}/bans:
     get:
       operationId: getGuildBans
-      summary: List guild bans
+      summary: Discord List guild bans
       description: Returns a list of ban objects for the guild.
       tags:
         - Members
@@ -978,7 +978,7 @@ paths:
   /guilds/{guild_id}/bans/{user_id}:
     get:
       operationId: getGuildBan
-      summary: Get guild ban
+      summary: Discord Get guild ban
       description: Returns a ban object for the given user.
       tags:
         - Members
@@ -996,7 +996,7 @@ paths:
           $ref: '#/components/responses/ClientError'
     put:
       operationId: createGuildBan
-      summary: Create guild ban
+      summary: Discord Create guild ban
       description: Create a guild ban and optionally delete previous messages.
       tags:
         - Members
@@ -1020,7 +1020,7 @@ paths:
           $ref: '#/components/responses/ClientError'
     delete:
       operationId: removeGuildBan
-      summary: Remove guild ban
+      summary: Discord Remove guild ban
       description: Remove the ban for a user.
       tags:
         - Members
@@ -1035,7 +1035,7 @@ paths:
   /guilds/{guild_id}/emojis:
     get:
       operationId: listGuildEmojis
-      summary: List guild emojis
+      summary: Discord List guild emojis
       description: Returns a list of emoji objects for the given guild.
       tags:
         - Emojis
@@ -1054,7 +1054,7 @@ paths:
           $ref: '#/components/responses/ClientError'
     post:
       operationId: createGuildEmoji
-      summary: Create guild emoji
+      summary: Discord Create guild emoji
       description: Create a new emoji for the guild.
       tags:
         - Emojis
@@ -1091,7 +1091,7 @@ paths:
   /guilds/{guild_id}/emojis/{emoji_id}:
     get:
       operationId: getGuildEmoji
-      summary: Get guild emoji
+      summary: Discord Get guild emoji
       description: Returns an emoji object for the given guild and emoji IDs.
       tags:
         - Emojis
@@ -1114,7 +1114,7 @@ paths:
   /guilds/{guild_id}/stickers:
     get:
       operationId: listGuildStickers
-      summary: List guild stickers
+      summary: Discord List guild stickers
       description: Returns an array of sticker objects for the given guild.
       tags:
         - Stickers
@@ -1134,7 +1134,7 @@ paths:
   /guilds/{guild_id}/audit-logs:
     get:
       operationId: getGuildAuditLog
-      summary: Get guild audit log
+      summary: Discord Get guild audit log
       description: Returns an audit log object for the guild.
       tags:
         - Audit Log
@@ -1175,7 +1175,7 @@ paths:
   /guilds/{guild_id}/invites:
     get:
       operationId: getGuildInvites
-      summary: List guild invites
+      summary: Discord List guild invites
       description: Returns a list of invite objects for the guild.
       tags:
         - Invites
@@ -1195,7 +1195,7 @@ paths:
   /invites/{code}:
     get:
       operationId: getInvite
-      summary: Get invite
+      summary: Discord Get invite
       description: Returns an invite object for the given code.
       tags:
         - Invites
@@ -1224,7 +1224,7 @@ paths:
           $ref: '#/components/responses/ClientError'
     delete:
       operationId: deleteInvite
-      summary: Delete invite
+      summary: Discord Delete invite
       description: Delete an invite. Requires MANAGE_CHANNELS or MANAGE_GUILD.
       tags:
         - Invites
@@ -1246,7 +1246,7 @@ paths:
   /guilds/{guild_id}/webhooks:
     get:
       operationId: getGuildWebhooks
-      summary: List guild webhooks
+      summary: Discord List guild webhooks
       description: Returns a list of guild webhook objects.
       tags:
         - Webhooks
@@ -1266,7 +1266,7 @@ paths:
   /webhooks/{webhook_id}:
     get:
       operationId: getWebhook
-      summary: Get webhook
+      summary: Discord Get webhook
       description: Returns the webhook object for the given ID.
       tags:
         - Webhooks
@@ -1287,7 +1287,7 @@ paths:
           $ref: '#/components/responses/ClientError'
     patch:
       operationId: modifyWebhook
-      summary: Modify webhook
+      summary: Discord Modify webhook
       description: Modify a webhook. Returns the updated webhook object.
       tags:
         - Webhooks
@@ -1322,7 +1322,7 @@ paths:
           $ref: '#/components/responses/ClientError'
     delete:
       operationId: deleteWebhook
-      summary: Delete webhook
+      summary: Discord Delete webhook
       description: Delete a webhook permanently.
       tags:
         - Webhooks
@@ -1340,7 +1340,7 @@ paths:
   /webhooks/{webhook_id}/{webhook_token}:
     post:
       operationId: executeWebhook
-      summary: Execute webhook
+      summary: Discord Execute webhook
       description: Execute a webhook by posting a message to its channel.
       tags:
         - Webhooks
@@ -1387,7 +1387,7 @@ paths:
   /guilds/{guild_id}/scheduled-events:
     get:
       operationId: listGuildScheduledEvents
-      summary: List guild scheduled events
+      summary: Discord List guild scheduled events
       description: Returns a list of guild scheduled event objects.
       tags:
         - Scheduled Events
@@ -1410,7 +1410,7 @@ paths:
           $ref: '#/components/responses/ClientError'
     post:
       operationId: createGuildScheduledEvent
-      summary: Create guild scheduled event
+      summary: Discord Create guild scheduled event
       description: Create a guild scheduled event.
       tags:
         - Scheduled Events
@@ -1434,7 +1434,7 @@ paths:
   /guilds/{guild_id}/auto-moderation/rules:
     get:
       operationId: listAutoModerationRules
-      summary: List auto moderation rules
+      summary: Discord List auto moderation rules
       description: Get a list of all rules currently configured for the guild.
       tags:
         - Auto Moderation
@@ -1453,7 +1453,7 @@ paths:
           $ref: '#/components/responses/ClientError'
     post:
       operationId: createAutoModerationRule
-      summary: Create auto moderation rule
+      summary: Discord Create auto moderation rule
       description: Create a new rule for the guild.
       tags:
         - Auto Moderation
@@ -1477,7 +1477,7 @@ paths:
   /stage-instances:
     post:
       operationId: createStageInstance
-      summary: Create stage instance
+      summary: Discord Create stage instance
       description: Creates a new Stage instance.
       tags:
         - Stage Instances
@@ -1512,7 +1512,7 @@ paths:
   /stage-instances/{channel_id}:
     get:
       operationId: getStageInstance
-      summary: Get stage instance
+      summary: Discord Get stage instance
       description: Gets the stage instance associated with the Stage channel.
       tags:
         - Stage Instances
@@ -1530,7 +1530,7 @@ paths:
   /users/@me:
     get:
       operationId: getCurrentUser
-      summary: Get current user
+      summary: Discord Get current user
       description: Returns the user object of the requestor's account.
       tags:
         - Users
@@ -1545,7 +1545,7 @@ paths:
           $ref: '#/components/responses/ClientError'
     patch:
       operationId: modifyCurrentUser
-      summary: Modify current user
+      summary: Discord Modify current user
       description: Modify the requestor's user account settings.
       tags:
         - Users
@@ -1573,7 +1573,7 @@ paths:
   /users/{user_id}:
     get:
       operationId: getUser
-      summary: Get user
+      summary: Discord Get user
       description: Returns a user object for a given user ID.
       tags:
         - Users
@@ -1591,7 +1591,7 @@ paths:
   /users/@me/guilds:
     get:
       operationId: getCurrentUserGuilds
-      summary: List current user guilds
+      summary: Discord List current user guilds
       description: Returns a list of partial guild objects the current user is a member of.
       tags:
         - Users
@@ -1629,7 +1629,7 @@ paths:
   /users/@me/channels:
     post:
       operationId: createDM
-      summary: Create DM
+      summary: Discord Create DM
       description: Create a new DM channel with a user.
       tags:
         - Users
@@ -1656,7 +1656,7 @@ paths:
   /users/@me/connections:
     get:
       operationId: getCurrentUserConnections
-      summary: List current user connections
+      summary: Discord List current user connections
       description: Returns a list of connection objects for the current user.
       tags:
         - Users
@@ -1678,7 +1678,7 @@ paths:
   /voice/regions:
     get:
       operationId: listVoiceRegions
-      summary: List voice regions
+      summary: Discord List voice regions
       description: Returns an array of available voice regions.
       tags:
         - Voice
@@ -1696,7 +1696,7 @@ paths:
   /gateway:
     get:
       operationId: getGateway
-      summary: Get gateway
+      summary: Discord Get gateway
       description: Returns an object with a single valid WSS URL for the Gateway.
       tags:
         - Gateway
@@ -1717,7 +1717,7 @@ paths:
   /gateway/bot:
     get:
       operationId: getGatewayBot
-      summary: Get gateway bot
+      summary: Discord Get gateway bot
       description: Returns the Gateway URL and recommended shard settings.
       tags:
         - Gateway
@@ -1750,7 +1750,7 @@ paths:
   /guilds/{guild_id}/prune:
     get:
       operationId: getGuildPruneCount
-      summary: Get guild prune count
+      summary: Discord Get guild prune count
       description: Returns number of members that would be removed in a prune operation.
       tags:
         - Members
@@ -1781,7 +1781,7 @@ paths:
           $ref: '#/components/responses/ClientError'
     post:
       operationId: beginGuildPrune
-      summary: Begin guild prune
+      summary: Discord Begin guild prune
       description: Begin a prune operation. Requires KICK_MEMBERS.
       tags:
         - Members
@@ -1821,7 +1821,7 @@ paths:
   /guilds/{guild_id}/bulk-ban:
     post:
       operationId: bulkGuildBan
-      summary: Bulk guild ban
+      summary: Discord Bulk guild ban
       description: Ban up to 200 users from a guild.
       tags:
         - Members
@@ -1866,7 +1866,7 @@ paths:
   /applications/{application_id}/entitlements:
     get:
       operationId: listEntitlements
-      summary: List entitlements
+      summary: Discord List entitlements
       description: Returns all entitlements for a given app, active and expired.
       tags:
         - Guilds
@@ -1916,7 +1916,7 @@ paths:
   /sticker-packs:
     get:
       operationId: listStickerPacks
-      summary: List sticker packs
+      summary: Discord List sticker packs
       description: Returns the list of sticker packs available to Nitro subscribers.
       tags:
         - Stickers
@@ -1937,7 +1937,7 @@ paths:
   /applications/@me:
     get:
       operationId: getCurrentApplication
-      summary: Get current application
+      summary: Discord Get current application
       description: Returns the application object associated with the requesting bot user.
       tags:
         - Users
@@ -1952,7 +1952,7 @@ paths:
           $ref: '#/components/responses/ClientError'
     patch:
       operationId: editCurrentApplication
-      summary: Edit current application
+      summary: Discord Edit current application
       description: Edit properties of the app associated with the requesting bot user.
       tags:
         - Users

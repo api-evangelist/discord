@@ -29,7 +29,7 @@ paths:
   /applications/{application_id}/commands:
     get:
       operationId: getGlobalApplicationCommands
-      summary: List global application commands
+      summary: Discord List global application commands
       description: Fetch all of the global commands for your application.
       tags:
         - Application Commands
@@ -52,7 +52,7 @@ paths:
           $ref: '#/components/responses/ClientError'
     post:
       operationId: createGlobalApplicationCommand
-      summary: Create global application command
+      summary: Discord Create global application command
       description: >-
         Create a new global command. Returns 201 if a command with the same
         name does not already exist, or a 200 if it does.
@@ -83,7 +83,7 @@ paths:
           $ref: '#/components/responses/ClientError'
     put:
       operationId: bulkOverwriteGlobalApplicationCommands
-      summary: Bulk overwrite global application commands
+      summary: Discord Bulk overwrite global application commands
       description: >-
         Overwrites all existing global commands. Commands not in the payload
         will be deleted.
@@ -113,7 +113,7 @@ paths:
   /applications/{application_id}/commands/{command_id}:
     get:
       operationId: getGlobalApplicationCommand
-      summary: Get global application command
+      summary: Discord Get global application command
       description: Fetch a global command for your application.
       tags:
         - Application Commands
@@ -131,7 +131,7 @@ paths:
           $ref: '#/components/responses/ClientError'
     patch:
       operationId: editGlobalApplicationCommand
-      summary: Edit global application command
+      summary: Discord Edit global application command
       description: Edit a global command. Returns the updated command object.
       tags:
         - Application Commands
@@ -155,7 +155,7 @@ paths:
           $ref: '#/components/responses/ClientError'
     delete:
       operationId: deleteGlobalApplicationCommand
-      summary: Delete global application command
+      summary: Discord Delete global application command
       description: Deletes a global command.
       tags:
         - Application Commands
@@ -170,7 +170,7 @@ paths:
   /applications/{application_id}/guilds/{guild_id}/commands:
     get:
       operationId: getGuildApplicationCommands
-      summary: List guild application commands
+      summary: Discord List guild application commands
       description: Fetch all of the guild commands for your application for a specific guild.
       tags:
         - Application Commands
@@ -194,7 +194,7 @@ paths:
           $ref: '#/components/responses/ClientError'
     post:
       operationId: createGuildApplicationCommand
-      summary: Create guild application command
+      summary: Discord Create guild application command
       description: Create a new guild command.
       tags:
         - Application Commands
@@ -224,7 +224,7 @@ paths:
           $ref: '#/components/responses/ClientError'
     put:
       operationId: bulkOverwriteGuildApplicationCommands
-      summary: Bulk overwrite guild application commands
+      summary: Discord Bulk overwrite guild application commands
       description: Overwrites all existing guild commands for your application.
       tags:
         - Application Commands
@@ -253,7 +253,7 @@ paths:
   /applications/{application_id}/guilds/{guild_id}/commands/{command_id}:
     get:
       operationId: getGuildApplicationCommand
-      summary: Get guild application command
+      summary: Discord Get guild application command
       description: Fetch a guild command for your application.
       tags:
         - Application Commands
@@ -272,7 +272,7 @@ paths:
           $ref: '#/components/responses/ClientError'
     patch:
       operationId: editGuildApplicationCommand
-      summary: Edit guild application command
+      summary: Discord Edit guild application command
       description: Edit a guild command.
       tags:
         - Application Commands
@@ -297,7 +297,7 @@ paths:
           $ref: '#/components/responses/ClientError'
     delete:
       operationId: deleteGuildApplicationCommand
-      summary: Delete guild application command
+      summary: Discord Delete guild application command
       description: Delete a guild command.
       tags:
         - Application Commands
@@ -313,7 +313,7 @@ paths:
   /applications/{application_id}/guilds/{guild_id}/commands/permissions:
     get:
       operationId: getGuildApplicationCommandPermissions
-      summary: List guild application command permissions
+      summary: Discord List guild application command permissions
       description: Fetches permissions for all commands in a guild.
       tags:
         - Application Commands
@@ -334,7 +334,7 @@ paths:
   /applications/{application_id}/guilds/{guild_id}/commands/{command_id}/permissions:
     get:
       operationId: getApplicationCommandPermissions
-      summary: Get application command permissions
+      summary: Discord Get application command permissions
       description: Fetches permissions for a specific command in a guild.
       tags:
         - Application Commands
@@ -353,7 +353,7 @@ paths:
           $ref: '#/components/responses/ClientError'
     put:
       operationId: editApplicationCommandPermissions
-      summary: Edit application command permissions
+      summary: Discord Edit application command permissions
       description: >-
         Edits command permissions for a specific command in a guild. Requires
         Bearer token with applications.commands.permissions.update scope.
@@ -388,7 +388,7 @@ paths:
   /interactions/{interaction_id}/{interaction_token}/callback:
     post:
       operationId: createInteractionResponse
-      summary: Create interaction response
+      summary: Discord Create interaction response
       description: >-
         Create a response to an interaction from the gateway or webhook.
         Takes an interaction response object.
@@ -426,7 +426,7 @@ paths:
   /webhooks/{application_id}/{interaction_token}/messages/@original:
     get:
       operationId: getOriginalInteractionResponse
-      summary: Get original interaction response
+      summary: Discord Get original interaction response
       description: Returns the initial Interaction response.
       tags:
         - Interaction Responses
@@ -449,7 +449,7 @@ paths:
           $ref: '#/components/responses/ClientError'
     patch:
       operationId: editOriginalInteractionResponse
-      summary: Edit original interaction response
+      summary: Discord Edit original interaction response
       description: Edits the initial Interaction response.
       tags:
         - Interaction Responses
@@ -478,7 +478,7 @@ paths:
           $ref: '#/components/responses/ClientError'
     delete:
       operationId: deleteOriginalInteractionResponse
-      summary: Delete original interaction response
+      summary: Discord Delete original interaction response
       description: Deletes the initial Interaction response.
       tags:
         - Interaction Responses
@@ -498,7 +498,7 @@ paths:
   /webhooks/{application_id}/{interaction_token}:
     post:
       operationId: createFollowupMessage
-      summary: Create followup message
+      summary: Discord Create followup message
       description: Create a followup message for an Interaction.
       tags:
         - Interaction Responses
@@ -528,7 +528,7 @@ paths:
   /webhooks/{application_id}/{interaction_token}/messages/{message_id}:
     get:
       operationId: getFollowupMessage
-      summary: Get followup message
+      summary: Discord Get followup message
       description: Returns a followup message for an Interaction.
       tags:
         - Interaction Responses
@@ -556,7 +556,7 @@ paths:
           $ref: '#/components/responses/ClientError'
     patch:
       operationId: editFollowupMessage
-      summary: Edit followup message
+      summary: Discord Edit followup message
       description: Edits a followup message for an Interaction.
       tags:
         - Interaction Responses
@@ -590,7 +590,7 @@ paths:
           $ref: '#/components/responses/ClientError'
     delete:
       operationId: deleteFollowupMessage
-      summary: Delete followup message
+      summary: Discord Delete followup message
       description: Deletes a followup message for an Interaction.
       tags:
         - Interaction Responses

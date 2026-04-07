@@ -28,7 +28,7 @@ paths:
   /applications/{application_id}/role-connections/metadata:
     get:
       operationId: getApplicationRoleConnectionMetadataRecords
-      summary: List application role connection metadata
+      summary: Discord List application role connection metadata
       description: >-
         Returns a list of application role connection metadata objects for
         the given application.
@@ -49,7 +49,7 @@ paths:
           $ref: '#/components/responses/ClientError'
     put:
       operationId: updateApplicationRoleConnectionMetadataRecords
-      summary: Update application role connection metadata
+      summary: Discord Update application role connection metadata
       description: >-
         Updates and returns a list of application role connection metadata
         objects for the given application. An application can have up to 5
@@ -81,7 +81,7 @@ paths:
   /users/@me/applications/{application_id}/role-connection:
     get:
       operationId: getUserApplicationRoleConnection
-      summary: Get user application role connection
+      summary: Discord Get user application role connection
       description: >-
         Returns the application role connection for the user. Requires an
         OAuth2 access token with role_connections.write scope.
@@ -102,7 +102,7 @@ paths:
           $ref: '#/components/responses/ClientError'
     put:
       operationId: updateUserApplicationRoleConnection
-      summary: Update user application role connection
+      summary: Discord Update user application role connection
       description: >-
         Updates and returns the application role connection for the user.
         Requires an OAuth2 access token with role_connections.write scope.
