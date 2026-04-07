@@ -23,38 +23,38 @@ servers:
   - url: https://discord.com/api/v10
     description: Discord API v10
 tags:
-  - name: Guilds
-    description: Operations on guilds (servers)
-  - name: Channels
-    description: Operations on channels
-  - name: Messages
-    description: Operations on messages within channels
-  - name: Users
-    description: Operations on users
-  - name: Members
-    description: Operations on guild members
-  - name: Roles
-    description: Operations on guild roles
-  - name: Emojis
-    description: Operations on guild emojis
-  - name: Stickers
-    description: Operations on stickers
-  - name: Invites
-    description: Operations on invites
-  - name: Webhooks
-    description: Operations on webhooks
-  - name: Stage Instances
-    description: Operations on stage instances
-  - name: Scheduled Events
-    description: Operations on guild scheduled events
-  - name: Auto Moderation
-    description: Operations on auto moderation rules
   - name: Audit Log
     description: Operations on guild audit logs
-  - name: Voice
-    description: Voice region operations
+  - name: Auto Moderation
+    description: Operations on auto moderation rules
+  - name: Channels
+    description: Operations on channels
+  - name: Emojis
+    description: Operations on guild emojis
   - name: Gateway
     description: Gateway connection information
+  - name: Guilds
+    description: Operations on guilds (servers)
+  - name: Invites
+    description: Operations on invites
+  - name: Members
+    description: Operations on guild members
+  - name: Messages
+    description: Operations on messages within channels
+  - name: Roles
+    description: Operations on guild roles
+  - name: Scheduled Events
+    description: Operations on guild scheduled events
+  - name: Stage Instances
+    description: Operations on stage instances
+  - name: Stickers
+    description: Operations on stickers
+  - name: Users
+    description: Operations on users
+  - name: Voice
+    description: Voice region operations
+  - name: Webhooks
+    description: Operations on webhooks
 security:
   - BotToken: []
 paths:

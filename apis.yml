@@ -10,13 +10,13 @@ position: Consumer
 access: 3rd-Party
 image: https://discord.com/assets/fc0b01fe10a0b8c602fb0106d8189d9b.png
 tags:
-  - Messaging
-  - Voice
-  - Video
   - Chat
-  - Gaming
-  - Social
   - Communication
+  - Gaming
+  - Messaging
+  - Social
+  - Video
+  - Voice
 created: '2024-04-14'
 modified: '2026-03-16'
 specificationVersion: '0.18'
@@ -32,12 +32,12 @@ apis:
     humanURL: https://discord.com/developers/docs/reference
     baseURL: https://discord.com/api/v10
     tags:
-      - Messaging
-      - Guilds
       - Channels
+      - Guilds
+      - Messaging
+      - REST
       - Users
       - Webhooks
-      - REST
     properties:
       - type: Documentation
         url: https://discord.com/developers/docs/reference
@@ -59,10 +59,10 @@ apis:
       updates, presence changes, and voice state updates.
     humanURL: https://discord.com/developers/docs/events/gateway
     tags:
-      - WebSocket
-      - Real-Time
       - Events
       - Gateway
+      - Real-Time
+      - WebSocket
     properties:
       - type: Documentation
         url: https://discord.com/developers/docs/events/gateway
@@ -83,10 +83,10 @@ apis:
       allowing bots to build rich, interactive user experiences within Discord.
     humanURL: https://discord.com/developers/docs/interactions/overview
     tags:
-      - Interactions
-      - Slash Commands
       - Components
+      - Interactions
       - Modals
+      - Slash Commands
     properties:
       - type: Documentation
         url: https://discord.com/developers/docs/interactions/overview
@@ -110,9 +110,9 @@ apis:
       third-party applications to access Discord user data with proper consent.
     humanURL: https://discord.com/developers/docs/topics/oauth2
     tags:
-      - OAuth2
       - Authentication
       - Authorization
+      - OAuth2
     properties:
       - type: Documentation
         url: https://discord.com/developers/docs/topics/oauth2
@@ -132,9 +132,9 @@ apis:
       QUEST_USER_ENROLLMENT.
     humanURL: https://discord.com/developers/docs/events/webhook-events
     tags:
-      - Webhooks
       - Events
       - Notifications
+      - Webhooks
     properties:
       - type: Documentation
         url: https://discord.com/developers/docs/events/webhook-events
@@ -153,10 +153,10 @@ apis:
       that can run in voice channels, text channels, or DMs.
     humanURL: https://discord.com/developers/docs/developer-tools/embedded-app-sdk
     tags:
-      - SDK
       - Activities
-      - Games
       - Embedded
+      - Games
+      - SDK
     properties:
       - type: Documentation
         url: https://discord.com/developers/docs/developer-tools/embedded-app-sdk
@@ -175,10 +175,10 @@ apis:
       and supports features like speaking indicators and voice state updates.
     humanURL: https://discord.com/developers/docs/topics/voice-connections
     tags:
+      - Real-Time
+      - UDP
       - Voice
       - WebSocket
-      - UDP
-      - Real-Time
     properties:
       - type: Documentation
         url: https://discord.com/developers/docs/topics/voice-connections
@@ -198,10 +198,10 @@ apis:
       achievement thresholds from external platforms.
     humanURL: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
     tags:
-      - Roles
-      - Verification
       - Metadata
       - OAuth2
+      - Roles
+      - Verification
     properties:
       - type: Documentation
         url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
@@ -221,10 +221,10 @@ apis:
       connected social experiences powered by Discord.
     humanURL: https://discord.com/developers/docs/discord-social-sdk/overview
     tags:
-      - SDK
-      - Social
       - Gaming
       - Rich Presence
+      - SDK
+      - Social
       - Voice
     properties:
       - type: Documentation
