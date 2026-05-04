@@ -1,0 +1,137 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Discord
+providerId: discord
+created: '2026-05-04'
+modified: '2026-05-04'
+reconciled: true
+tags:
+  - Communities
+  - Voice Chat
+  - Gaming
+description: Discord Nitro consumer subscription tiers; Discord API access is free for developers.
+sources:
+  - https://discord.com/pricing
+  - https://discord.com/nitro
+plans:
+  - id: discord-free
+    name: Free
+    type: freemium
+    description: Free Discord with 25 MB upload.
+    entries:
+      - label: Per user
+        name: seat
+        type: subscription
+        metric: user
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: true
+      - label: Upload size
+        name: upload
+        type: quota
+        metric: MB
+        limit: 25
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: Voice/video/text channels
+      - name: Up to 200 servers
+      - name: Free use
+  - id: discord-nitro-basic
+    name: Nitro Basic
+    type: paid
+    description: $2.99/month or $29.99/year.
+    entries:
+      - label: Monthly
+        name: monthly
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '2.99'
+        userMultiplied: false
+      - label: Annual
+        name: annual
+        type: subscription
+        metric: year
+        limit: -1
+        timeFrame: year
+        geo: global
+        unit: 1
+        price: '29.99'
+        userMultiplied: false
+      - label: Upload size
+        name: upload
+        type: quota
+        metric: MB
+        limit: 50
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: 50 MB upload
+      - name: Custom emoji
+      - name: Profile customization
+      - name: No server boost discount
+  - id: discord-nitro
+    name: Nitro
+    type: paid
+    description: $9.99/month or $99.99/year. 500 MB upload + 2 server boosts.
+    entries:
+      - label: Monthly
+        name: monthly
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '9.99'
+        userMultiplied: false
+      - label: Annual
+        name: annual
+        type: subscription
+        metric: year
+        limit: -1
+        timeFrame: year
+        geo: global
+        unit: 1
+        price: '99.99'
+        userMultiplied: false
+      - label: Upload size
+        name: upload
+        type: quota
+        metric: MB
+        limit: 500
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: Included server boosts
+        name: boosts
+        type: quota
+        metric: boost
+        limit: 2
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: 500 MB upload
+      - name: 2 included server boosts
+      - name: 30% off additional boosts ($3.49)
+      - name: HD streaming
+      - name: Custom video backgrounds

@@ -1,0 +1,51 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Discord
+providerId: discord
+created: '2026-05-04'
+modified: '2026-05-04'
+reconciled: true
+tags:
+  - Rate Limiting
+  - Bot API
+description: Discord REST API uses per-route, per-bot rate limits with global cap.
+sources:
+  - https://discord.com/pricing
+  - https://discord.com/nitro
+  - https://discord.com/developers/docs/topics/rate-limits
+headers:
+  limit: X-RateLimit-Limit
+  remaining: X-RateLimit-Remaining
+  reset: X-RateLimit-Reset
+  resetAfter: X-RateLimit-Reset-After
+  bucket: X-RateLimit-Bucket
+  global: X-RateLimit-Global
+responseCodes:
+  throttled: 429
+limits:
+  - name: Global
+    scope: bot
+    metric: requests_per_second
+    limit: 50
+    timeFrame: second
+  - name: Webhook execute
+    scope: webhook
+    metric: requests_per_2s
+    limit: 5
+    timeFrame: 2 seconds
+  - name: Invalid requests
+    scope: ip
+    metric: invalid_per_10min
+    limit: 10000
+    timeFrame: 10 minutes
+  - name: Identify (gateway)
+    scope: bot
+    metric: identifies_per_5s
+    limit: 1
+    timeFrame: 5 seconds
+  - name: Identify daily
+    scope: bot
+    metric: identifies_per_day
+    limit: 1000
+    timeFrame: day

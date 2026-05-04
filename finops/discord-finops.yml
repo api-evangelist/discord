@@ -1,0 +1,55 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Discord
+providerId: discord
+created: '2026-05-04'
+modified: '2026-05-04'
+reconciled: true
+tags:
+  - FinOps
+  - FOCUS
+  - Communities
+description: FOCUS-aligned FinOps for Discord.
+sources:
+  - https://discord.com/pricing
+  - https://discord.com/nitro
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Discord
+serviceCategory: Communities
+billingModel:
+  pricingCategory: Consumer Subscription
+  billingFrequency: Monthly
+  billingCurrency: USD
+focusColumns:
+  ServiceName: Discord
+  ServiceCategory: Communities
+  ProviderName: Discord
+  PublisherName: Discord
+  BillingCurrency: USD
+meters:
+  - name: nitro_subscriptions
+    unit: sub-month
+    aggregation: max
+    dimensions:
+      - tier
+  - name: server_boosts
+    unit: boost-month
+    aggregation: max
+  - name: bot_api_requests
+    unit: request
+    aggregation: sum
+principles:
+  - name: Visibility
+    description: Track Discord consumption monthly via admin/billing exports.
+  - name: Allocation
+    description: Tag seats/usage to teams or cost centers for chargeback.
+  - name: Optimization
+    description: Right-size tier and seat count quarterly; reclaim inactive seats.
+  - name: Accountability
+    description: Set spend alerts and renew at observed active utilization.
