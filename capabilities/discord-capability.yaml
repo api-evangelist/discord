@@ -1,0 +1,883 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Discord Interactions API
+  description: The Discord Interactions API enables applications to create and respond to application commands (slash commands),
+    message components, and modals. It supports both Gateway-based and webhook-based interaction handling, allowing bots to
+    build rich, interactive user experiences within Discord.
+  tags:
+  - Discord
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: discord
+    baseUri: https://discord.com/api/v10
+    description: Discord Interactions API HTTP API.
+    authentication:
+      type: bearer
+      token: '{{DISCORD_TOKEN}}'
+    resources:
+    - name: applications-application-id-commands
+      path: /applications/{application_id}/commands
+      operations:
+      - name: getglobalapplicationcommands
+        method: GET
+        description: Discord List global application commands
+        inputParameters:
+        - name: with_localizations
+          in: query
+          type: boolean
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createglobalapplicationcommand
+        method: POST
+        description: Discord Create global application command
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: bulkoverwriteglobalapplicationcommands
+        method: PUT
+        description: Discord Bulk overwrite global application commands
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-application-id-commands-command-id
+      path: /applications/{application_id}/commands/{command_id}
+      operations:
+      - name: getglobalapplicationcommand
+        method: GET
+        description: Discord Get global application command
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: editglobalapplicationcommand
+        method: PATCH
+        description: Discord Edit global application command
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleteglobalapplicationcommand
+        method: DELETE
+        description: Discord Delete global application command
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-application-id-guilds-guild-id-comm
+      path: /applications/{application_id}/guilds/{guild_id}/commands
+      operations:
+      - name: getguildapplicationcommands
+        method: GET
+        description: Discord List guild application commands
+        inputParameters:
+        - name: with_localizations
+          in: query
+          type: boolean
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createguildapplicationcommand
+        method: POST
+        description: Discord Create guild application command
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: bulkoverwriteguildapplicationcommands
+        method: PUT
+        description: Discord Bulk overwrite guild application commands
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-application-id-guilds-guild-id-comm
+      path: /applications/{application_id}/guilds/{guild_id}/commands/{command_id}
+      operations:
+      - name: getguildapplicationcommand
+        method: GET
+        description: Discord Get guild application command
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: editguildapplicationcommand
+        method: PATCH
+        description: Discord Edit guild application command
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleteguildapplicationcommand
+        method: DELETE
+        description: Discord Delete guild application command
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-application-id-guilds-guild-id-comm
+      path: /applications/{application_id}/guilds/{guild_id}/commands/permissions
+      operations:
+      - name: getguildapplicationcommandpermissions
+        method: GET
+        description: Discord List guild application command permissions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-application-id-guilds-guild-id-comm
+      path: /applications/{application_id}/guilds/{guild_id}/commands/{command_id}/permissions
+      operations:
+      - name: getapplicationcommandpermissions
+        method: GET
+        description: Discord Get application command permissions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: editapplicationcommandpermissions
+        method: PUT
+        description: Discord Edit application command permissions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: interactions-interaction-id-interaction-token-ca
+      path: /interactions/{interaction_id}/{interaction_token}/callback
+      operations:
+      - name: createinteractionresponse
+        method: POST
+        description: Discord Create interaction response
+        inputParameters:
+        - name: interaction_id
+          in: path
+          type: string
+          required: true
+        - name: interaction_token
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: webhooks-application-id-interaction-token-messag
+      path: /webhooks/{application_id}/{interaction_token}/messages/@original
+      operations:
+      - name: getoriginalinteractionresponse
+        method: GET
+        description: Discord Get original interaction response
+        inputParameters:
+        - name: interaction_token
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: editoriginalinteractionresponse
+        method: PATCH
+        description: Discord Edit original interaction response
+        inputParameters:
+        - name: interaction_token
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleteoriginalinteractionresponse
+        method: DELETE
+        description: Discord Delete original interaction response
+        inputParameters:
+        - name: interaction_token
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: webhooks-application-id-interaction-token
+      path: /webhooks/{application_id}/{interaction_token}
+      operations:
+      - name: createfollowupmessage
+        method: POST
+        description: Discord Create followup message
+        inputParameters:
+        - name: interaction_token
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: webhooks-application-id-interaction-token-messag
+      path: /webhooks/{application_id}/{interaction_token}/messages/{message_id}
+      operations:
+      - name: getfollowupmessage
+        method: GET
+        description: Discord Get followup message
+        inputParameters:
+        - name: interaction_token
+          in: path
+          type: string
+          required: true
+        - name: message_id
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: editfollowupmessage
+        method: PATCH
+        description: Discord Edit followup message
+        inputParameters:
+        - name: interaction_token
+          in: path
+          type: string
+          required: true
+        - name: message_id
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deletefollowupmessage
+        method: DELETE
+        description: Discord Delete followup message
+        inputParameters:
+        - name: interaction_token
+          in: path
+          type: string
+          required: true
+        - name: message_id
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: discord-rest
+    description: REST adapter for Discord Interactions API.
+    resources:
+    - path: /applications/{application_id}/commands
+      name: getglobalapplicationcommands
+      operations:
+      - method: GET
+        name: getglobalapplicationcommands
+        description: Discord List global application commands
+        call: discord.getglobalapplicationcommands
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/{application_id}/commands
+      name: createglobalapplicationcommand
+      operations:
+      - method: POST
+        name: createglobalapplicationcommand
+        description: Discord Create global application command
+        call: discord.createglobalapplicationcommand
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/{application_id}/commands
+      name: bulkoverwriteglobalapplicationcommands
+      operations:
+      - method: PUT
+        name: bulkoverwriteglobalapplicationcommands
+        description: Discord Bulk overwrite global application commands
+        call: discord.bulkoverwriteglobalapplicationcommands
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/{application_id}/commands/{command_id}
+      name: getglobalapplicationcommand
+      operations:
+      - method: GET
+        name: getglobalapplicationcommand
+        description: Discord Get global application command
+        call: discord.getglobalapplicationcommand
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/{application_id}/commands/{command_id}
+      name: editglobalapplicationcommand
+      operations:
+      - method: PATCH
+        name: editglobalapplicationcommand
+        description: Discord Edit global application command
+        call: discord.editglobalapplicationcommand
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/{application_id}/commands/{command_id}
+      name: deleteglobalapplicationcommand
+      operations:
+      - method: DELETE
+        name: deleteglobalapplicationcommand
+        description: Discord Delete global application command
+        call: discord.deleteglobalapplicationcommand
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/{application_id}/guilds/{guild_id}/commands
+      name: getguildapplicationcommands
+      operations:
+      - method: GET
+        name: getguildapplicationcommands
+        description: Discord List guild application commands
+        call: discord.getguildapplicationcommands
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/{application_id}/guilds/{guild_id}/commands
+      name: createguildapplicationcommand
+      operations:
+      - method: POST
+        name: createguildapplicationcommand
+        description: Discord Create guild application command
+        call: discord.createguildapplicationcommand
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/{application_id}/guilds/{guild_id}/commands
+      name: bulkoverwriteguildapplicationcommands
+      operations:
+      - method: PUT
+        name: bulkoverwriteguildapplicationcommands
+        description: Discord Bulk overwrite guild application commands
+        call: discord.bulkoverwriteguildapplicationcommands
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/{application_id}/guilds/{guild_id}/commands/{command_id}
+      name: getguildapplicationcommand
+      operations:
+      - method: GET
+        name: getguildapplicationcommand
+        description: Discord Get guild application command
+        call: discord.getguildapplicationcommand
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/{application_id}/guilds/{guild_id}/commands/{command_id}
+      name: editguildapplicationcommand
+      operations:
+      - method: PATCH
+        name: editguildapplicationcommand
+        description: Discord Edit guild application command
+        call: discord.editguildapplicationcommand
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/{application_id}/guilds/{guild_id}/commands/{command_id}
+      name: deleteguildapplicationcommand
+      operations:
+      - method: DELETE
+        name: deleteguildapplicationcommand
+        description: Discord Delete guild application command
+        call: discord.deleteguildapplicationcommand
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/{application_id}/guilds/{guild_id}/commands/permissions
+      name: getguildapplicationcommandpermissions
+      operations:
+      - method: GET
+        name: getguildapplicationcommandpermissions
+        description: Discord List guild application command permissions
+        call: discord.getguildapplicationcommandpermissions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/{application_id}/guilds/{guild_id}/commands/{command_id}/permissions
+      name: getapplicationcommandpermissions
+      operations:
+      - method: GET
+        name: getapplicationcommandpermissions
+        description: Discord Get application command permissions
+        call: discord.getapplicationcommandpermissions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/{application_id}/guilds/{guild_id}/commands/{command_id}/permissions
+      name: editapplicationcommandpermissions
+      operations:
+      - method: PUT
+        name: editapplicationcommandpermissions
+        description: Discord Edit application command permissions
+        call: discord.editapplicationcommandpermissions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /interactions/{interaction_id}/{interaction_token}/callback
+      name: createinteractionresponse
+      operations:
+      - method: POST
+        name: createinteractionresponse
+        description: Discord Create interaction response
+        call: discord.createinteractionresponse
+        with:
+          interaction_id: rest.interaction_id
+          interaction_token: rest.interaction_token
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /webhooks/{application_id}/{interaction_token}/messages/@original
+      name: getoriginalinteractionresponse
+      operations:
+      - method: GET
+        name: getoriginalinteractionresponse
+        description: Discord Get original interaction response
+        call: discord.getoriginalinteractionresponse
+        with:
+          interaction_token: rest.interaction_token
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /webhooks/{application_id}/{interaction_token}/messages/@original
+      name: editoriginalinteractionresponse
+      operations:
+      - method: PATCH
+        name: editoriginalinteractionresponse
+        description: Discord Edit original interaction response
+        call: discord.editoriginalinteractionresponse
+        with:
+          interaction_token: rest.interaction_token
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /webhooks/{application_id}/{interaction_token}/messages/@original
+      name: deleteoriginalinteractionresponse
+      operations:
+      - method: DELETE
+        name: deleteoriginalinteractionresponse
+        description: Discord Delete original interaction response
+        call: discord.deleteoriginalinteractionresponse
+        with:
+          interaction_token: rest.interaction_token
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /webhooks/{application_id}/{interaction_token}
+      name: createfollowupmessage
+      operations:
+      - method: POST
+        name: createfollowupmessage
+        description: Discord Create followup message
+        call: discord.createfollowupmessage
+        with:
+          interaction_token: rest.interaction_token
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /webhooks/{application_id}/{interaction_token}/messages/{message_id}
+      name: getfollowupmessage
+      operations:
+      - method: GET
+        name: getfollowupmessage
+        description: Discord Get followup message
+        call: discord.getfollowupmessage
+        with:
+          interaction_token: rest.interaction_token
+          message_id: rest.message_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /webhooks/{application_id}/{interaction_token}/messages/{message_id}
+      name: editfollowupmessage
+      operations:
+      - method: PATCH
+        name: editfollowupmessage
+        description: Discord Edit followup message
+        call: discord.editfollowupmessage
+        with:
+          interaction_token: rest.interaction_token
+          message_id: rest.message_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /webhooks/{application_id}/{interaction_token}/messages/{message_id}
+      name: deletefollowupmessage
+      operations:
+      - method: DELETE
+        name: deletefollowupmessage
+        description: Discord Delete followup message
+        call: discord.deletefollowupmessage
+        with:
+          interaction_token: rest.interaction_token
+          message_id: rest.message_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: discord-mcp
+    transport: http
+    description: MCP adapter for Discord Interactions API for AI agent use.
+    tools:
+    - name: getglobalapplicationcommands
+      description: Discord List global application commands
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: discord.getglobalapplicationcommands
+      with:
+        with_localizations: tools.with_localizations
+      inputParameters:
+      - name: with_localizations
+        type: boolean
+        description: with_localizations
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createglobalapplicationcommand
+      description: Discord Create global application command
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: discord.createglobalapplicationcommand
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bulkoverwriteglobalapplicationcommands
+      description: Discord Bulk overwrite global application commands
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: discord.bulkoverwriteglobalapplicationcommands
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getglobalapplicationcommand
+      description: Discord Get global application command
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: discord.getglobalapplicationcommand
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: editglobalapplicationcommand
+      description: Discord Edit global application command
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: discord.editglobalapplicationcommand
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deleteglobalapplicationcommand
+      description: Discord Delete global application command
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: discord.deleteglobalapplicationcommand
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getguildapplicationcommands
+      description: Discord List guild application commands
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: discord.getguildapplicationcommands
+      with:
+        with_localizations: tools.with_localizations
+      inputParameters:
+      - name: with_localizations
+        type: boolean
+        description: with_localizations
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createguildapplicationcommand
+      description: Discord Create guild application command
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: discord.createguildapplicationcommand
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bulkoverwriteguildapplicationcommands
+      description: Discord Bulk overwrite guild application commands
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: discord.bulkoverwriteguildapplicationcommands
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getguildapplicationcommand
+      description: Discord Get guild application command
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: discord.getguildapplicationcommand
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: editguildapplicationcommand
+      description: Discord Edit guild application command
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: discord.editguildapplicationcommand
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deleteguildapplicationcommand
+      description: Discord Delete guild application command
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: discord.deleteguildapplicationcommand
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getguildapplicationcommandpermissions
+      description: Discord List guild application command permissions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: discord.getguildapplicationcommandpermissions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getapplicationcommandpermissions
+      description: Discord Get application command permissions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: discord.getapplicationcommandpermissions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: editapplicationcommandpermissions
+      description: Discord Edit application command permissions
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: discord.editapplicationcommandpermissions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createinteractionresponse
+      description: Discord Create interaction response
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: discord.createinteractionresponse
+      with:
+        interaction_id: tools.interaction_id
+        interaction_token: tools.interaction_token
+      inputParameters:
+      - name: interaction_id
+        type: string
+        description: interaction_id
+        required: true
+      - name: interaction_token
+        type: string
+        description: interaction_token
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getoriginalinteractionresponse
+      description: Discord Get original interaction response
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: discord.getoriginalinteractionresponse
+      with:
+        interaction_token: tools.interaction_token
+      inputParameters:
+      - name: interaction_token
+        type: string
+        description: interaction_token
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: editoriginalinteractionresponse
+      description: Discord Edit original interaction response
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: discord.editoriginalinteractionresponse
+      with:
+        interaction_token: tools.interaction_token
+      inputParameters:
+      - name: interaction_token
+        type: string
+        description: interaction_token
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deleteoriginalinteractionresponse
+      description: Discord Delete original interaction response
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: discord.deleteoriginalinteractionresponse
+      with:
+        interaction_token: tools.interaction_token
+      inputParameters:
+      - name: interaction_token
+        type: string
+        description: interaction_token
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createfollowupmessage
+      description: Discord Create followup message
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: discord.createfollowupmessage
+      with:
+        interaction_token: tools.interaction_token
+      inputParameters:
+      - name: interaction_token
+        type: string
+        description: interaction_token
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getfollowupmessage
+      description: Discord Get followup message
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: discord.getfollowupmessage
+      with:
+        interaction_token: tools.interaction_token
+        message_id: tools.message_id
+      inputParameters:
+      - name: interaction_token
+        type: string
+        description: interaction_token
+        required: true
+      - name: message_id
+        type: string
+        description: message_id
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: editfollowupmessage
+      description: Discord Edit followup message
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: discord.editfollowupmessage
+      with:
+        interaction_token: tools.interaction_token
+        message_id: tools.message_id
+      inputParameters:
+      - name: interaction_token
+        type: string
+        description: interaction_token
+        required: true
+      - name: message_id
+        type: string
+        description: message_id
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deletefollowupmessage
+      description: Discord Delete followup message
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: discord.deletefollowupmessage
+      with:
+        interaction_token: tools.interaction_token
+        message_id: tools.message_id
+      inputParameters:
+      - name: interaction_token
+        type: string
+        description: interaction_token
+        required: true
+      - name: message_id
+        type: string
+        description: message_id
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+binds:
+- namespace: env
+  keys:
+    DISCORD_TOKEN: DISCORD_TOKEN
