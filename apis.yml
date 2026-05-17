@@ -225,9 +225,9 @@ common:
   - url: https://discord.com/developers/applications
     type: Portal
   - url: https://discord.com/terms
-    type: Terms of Service
+    type: TermsOfService
   - url: https://discord.com/privacy
-    type: Privacy Policy
+    type: PrivacyPolicy
   - url: https://discord.com/developers/docs/policies-and-agreements/developer-terms-of-service
     type: Developer Terms
   - url: https://discord.com/guidelines
@@ -243,7 +243,7 @@ common:
   - url: https://discord.com/developers/docs/change-log
     type: ChangeLog
   - url: https://discordstatus.com/
-    type: Status
+    type: StatusPage
   - url: https://support-dev.discord.com/hc/en-us
     type: Support
   - url: https://github.com/discord
@@ -289,7 +289,7 @@ common:
   - url: https://discord.com/developers/docs/tutorials/hosting-on-cloudflare-workers
     type: Tutorials
   - url: https://stackoverflow.com/questions/tagged/discord
-    type: Stack Overflow
+    type: StackOverflow
   - url: https://www.youtube.com/@Discord
     type: YouTube
   - url: https://discord.com/safety
@@ -311,7 +311,7 @@ common:
   - url: json-schema/discord-webhook-schema.json
     type: JSONSchema
   - url: json-ld/discord-context.jsonld
-    type: JSON-LD
+    type: JSONLD
   - type: Features
     data:
       - Free Discord with 25 MB upload limit and unlimited servers
