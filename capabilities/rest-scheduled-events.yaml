@@ -1,0 +1,113 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Discord REST API — Scheduled Events
+  description: 'Discord REST API — Scheduled Events. 2 operations. Lead operation: Discord List guild scheduled events. Self-contained
+    Naftiko capability covering one Discord business surface.'
+  tags:
+  - Discord
+  - Scheduled Events
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    DISCORD_API_KEY: DISCORD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-scheduled-events
+    baseUri: https://discord.com/api/v10
+    description: Discord REST API — Scheduled Events business capability. Self-contained, no shared references.
+    resources:
+    - name: guilds-guild_id-scheduled-events
+      path: /guilds/{guild_id}/scheduled-events
+      operations:
+      - name: listguildscheduledevents
+        method: GET
+        description: Discord List guild scheduled events
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: with_user_count
+          in: query
+          type: boolean
+      - name: createguildscheduledevent
+        method: POST
+        description: Discord Create guild scheduled event
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.DISCORD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: rest-scheduled-events-rest
+    port: 8080
+    description: REST adapter for Discord REST API — Scheduled Events. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/guilds/{guild-id}/scheduled-events
+      name: guilds-guild-id-scheduled-events
+      description: REST surface for guilds-guild_id-scheduled-events.
+      operations:
+      - method: GET
+        name: listguildscheduledevents
+        description: Discord List guild scheduled events
+        call: rest-scheduled-events.listguildscheduledevents
+        with:
+          with_user_count: rest.with_user_count
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createguildscheduledevent
+        description: Discord Create guild scheduled event
+        call: rest-scheduled-events.createguildscheduledevent
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-scheduled-events-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Discord REST API — Scheduled Events. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: discord-list-guild-scheduled-events
+      description: Discord List guild scheduled events
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-scheduled-events.listguildscheduledevents
+      with:
+        with_user_count: tools.with_user_count
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-create-guild-scheduled-event
+      description: Discord Create guild scheduled event
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rest-scheduled-events.createguildscheduledevent
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,458 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Discord REST API — Messages
+  description: 'Discord REST API — Messages. 12 operations. Lead operation: Discord List channel messages. Self-contained
+    Naftiko capability covering one Discord business surface.'
+  tags:
+  - Discord
+  - Messages
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    DISCORD_API_KEY: DISCORD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-messages
+    baseUri: https://discord.com/api/v10
+    description: Discord REST API — Messages business capability. Self-contained, no shared references.
+    resources:
+    - name: channels-channel_id-messages
+      path: /channels/{channel_id}/messages
+      operations:
+      - name: getchannelmessages
+        method: GET
+        description: Discord List channel messages
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: around
+          in: query
+          type: string
+        - name: before
+          in: query
+          type: string
+        - name: after
+          in: query
+          type: string
+        - name: limit
+          in: query
+          type: integer
+      - name: createmessage
+        method: POST
+        description: Discord Create message
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: channels-channel_id-messages-bulk-delete
+      path: /channels/{channel_id}/messages/bulk-delete
+      operations:
+      - name: bulkdeletemessages
+        method: POST
+        description: Discord Bulk delete messages
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: channels-channel_id-messages-message_id
+      path: /channels/{channel_id}/messages/{message_id}
+      operations:
+      - name: getmessage
+        method: GET
+        description: Discord Get message
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: editmessage
+        method: PATCH
+        description: Discord Edit message
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletemessage
+        method: DELETE
+        description: Discord Delete message
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: channels-channel_id-messages-message_id-crosspost
+      path: /channels/{channel_id}/messages/{message_id}/crosspost
+      operations:
+      - name: crosspostmessage
+        method: POST
+        description: Discord Crosspost message
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: channels-channel_id-messages-message_id-reactions-emoji_name-@me
+      path: /channels/{channel_id}/messages/{message_id}/reactions/{emoji_name}/@me
+      operations:
+      - name: createreaction
+        method: PUT
+        description: Discord Create reaction
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: emoji_name
+          in: path
+          type: string
+          required: true
+      - name: deleteownreaction
+        method: DELETE
+        description: Discord Delete own reaction
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: emoji_name
+          in: path
+          type: string
+          required: true
+    - name: channels-channel_id-pins
+      path: /channels/{channel_id}/pins
+      operations:
+      - name: getpinnedmessages
+        method: GET
+        description: Discord Get pinned messages
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: channels-channel_id-pins-message_id
+      path: /channels/{channel_id}/pins/{message_id}
+      operations:
+      - name: pinmessage
+        method: PUT
+        description: Discord Pin message
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: unpinmessage
+        method: DELETE
+        description: Discord Unpin message
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.DISCORD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: rest-messages-rest
+    port: 8080
+    description: REST adapter for Discord REST API — Messages. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/channels/{channel-id}/messages
+      name: channels-channel-id-messages
+      description: REST surface for channels-channel_id-messages.
+      operations:
+      - method: GET
+        name: getchannelmessages
+        description: Discord List channel messages
+        call: rest-messages.getchannelmessages
+        with:
+          around: rest.around
+          before: rest.before
+          after: rest.after
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createmessage
+        description: Discord Create message
+        call: rest-messages.createmessage
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/channels/{channel-id}/messages/bulk-delete
+      name: channels-channel-id-messages-bulk-delete
+      description: REST surface for channels-channel_id-messages-bulk-delete.
+      operations:
+      - method: POST
+        name: bulkdeletemessages
+        description: Discord Bulk delete messages
+        call: rest-messages.bulkdeletemessages
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/channels/{channel-id}/messages/{message-id}
+      name: channels-channel-id-messages-message-id
+      description: REST surface for channels-channel_id-messages-message_id.
+      operations:
+      - method: GET
+        name: getmessage
+        description: Discord Get message
+        call: rest-messages.getmessage
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: editmessage
+        description: Discord Edit message
+        call: rest-messages.editmessage
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletemessage
+        description: Discord Delete message
+        call: rest-messages.deletemessage
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/channels/{channel-id}/messages/{message-id}/crosspost
+      name: channels-channel-id-messages-message-id-crosspost
+      description: REST surface for channels-channel_id-messages-message_id-crosspost.
+      operations:
+      - method: POST
+        name: crosspostmessage
+        description: Discord Crosspost message
+        call: rest-messages.crosspostmessage
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/channels/{channel-id}/messages/{message-id}/reactions/{emoji-name}/me
+      name: channels-channel-id-messages-message-id-reactions-emoji-name-me
+      description: REST surface for channels-channel_id-messages-message_id-reactions-emoji_name-@me.
+      operations:
+      - method: PUT
+        name: createreaction
+        description: Discord Create reaction
+        call: rest-messages.createreaction
+        with:
+          emoji_name: rest.emoji_name
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteownreaction
+        description: Discord Delete own reaction
+        call: rest-messages.deleteownreaction
+        with:
+          emoji_name: rest.emoji_name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/channels/{channel-id}/pins
+      name: channels-channel-id-pins
+      description: REST surface for channels-channel_id-pins.
+      operations:
+      - method: GET
+        name: getpinnedmessages
+        description: Discord Get pinned messages
+        call: rest-messages.getpinnedmessages
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/channels/{channel-id}/pins/{message-id}
+      name: channels-channel-id-pins-message-id
+      description: REST surface for channels-channel_id-pins-message_id.
+      operations:
+      - method: PUT
+        name: pinmessage
+        description: Discord Pin message
+        call: rest-messages.pinmessage
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: unpinmessage
+        description: Discord Unpin message
+        call: rest-messages.unpinmessage
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-messages-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Discord REST API — Messages. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: discord-list-channel-messages
+      description: Discord List channel messages
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-messages.getchannelmessages
+      with:
+        around: tools.around
+        before: tools.before
+        after: tools.after
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-create-message
+      description: Discord Create message
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rest-messages.createmessage
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-bulk-delete-messages
+      description: Discord Bulk delete messages
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rest-messages.bulkdeletemessages
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-get-message
+      description: Discord Get message
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-messages.getmessage
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-edit-message
+      description: Discord Edit message
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: rest-messages.editmessage
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-delete-message
+      description: Discord Delete message
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: rest-messages.deletemessage
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-crosspost-message
+      description: Discord Crosspost message
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rest-messages.crosspostmessage
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-create-reaction
+      description: Discord Create reaction
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: rest-messages.createreaction
+      with:
+        emoji_name: tools.emoji_name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-delete-own-reaction
+      description: Discord Delete own reaction
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: rest-messages.deleteownreaction
+      with:
+        emoji_name: tools.emoji_name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-get-pinned-messages
+      description: Discord Get pinned messages
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-messages.getpinnedmessages
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-pin-message
+      description: Discord Pin message
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: rest-messages.pinmessage
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-unpin-message
+      description: Discord Unpin message
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: rest-messages.unpinmessage
+      outputParameters:
+      - type: object
+        mapping: $.

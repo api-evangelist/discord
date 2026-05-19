@@ -1,0 +1,313 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Discord REST API — Channels
+  description: 'Discord REST API — Channels. 8 operations. Lead operation: Discord Get channel. Self-contained Naftiko capability
+    covering one Discord business surface.'
+  tags:
+  - Discord
+  - Channels
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    DISCORD_API_KEY: DISCORD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-channels
+    baseUri: https://discord.com/api/v10
+    description: Discord REST API — Channels business capability. Self-contained, no shared references.
+    resources:
+    - name: channels-channel_id
+      path: /channels/{channel_id}
+      operations:
+      - name: getchannel
+        method: GET
+        description: Discord Get channel
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: modifychannel
+        method: PATCH
+        description: Discord Modify channel
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletechannel
+        method: DELETE
+        description: Discord Delete channel
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: channels-channel_id-messages-message_id-threads
+      path: /channels/{channel_id}/messages/{message_id}/threads
+      operations:
+      - name: startthreadfrommessage
+        method: POST
+        description: Discord Start thread from message
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: channels-channel_id-threads
+      path: /channels/{channel_id}/threads
+      operations:
+      - name: startthreadwithoutmessage
+        method: POST
+        description: Discord Start thread without message
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: channels-channel_id-typing
+      path: /channels/{channel_id}/typing
+      operations:
+      - name: triggertypingindicator
+        method: POST
+        description: Discord Trigger typing indicator
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: guilds-guild_id-channels
+      path: /guilds/{guild_id}/channels
+      operations:
+      - name: getguildchannels
+        method: GET
+        description: Discord List guild channels
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createguildchannel
+        method: POST
+        description: Discord Create guild channel
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.DISCORD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: rest-channels-rest
+    port: 8080
+    description: REST adapter for Discord REST API — Channels. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/channels/{channel-id}
+      name: channels-channel-id
+      description: REST surface for channels-channel_id.
+      operations:
+      - method: GET
+        name: getchannel
+        description: Discord Get channel
+        call: rest-channels.getchannel
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: modifychannel
+        description: Discord Modify channel
+        call: rest-channels.modifychannel
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletechannel
+        description: Discord Delete channel
+        call: rest-channels.deletechannel
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/channels/{channel-id}/messages/{message-id}/threads
+      name: channels-channel-id-messages-message-id-threads
+      description: REST surface for channels-channel_id-messages-message_id-threads.
+      operations:
+      - method: POST
+        name: startthreadfrommessage
+        description: Discord Start thread from message
+        call: rest-channels.startthreadfrommessage
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/channels/{channel-id}/threads
+      name: channels-channel-id-threads
+      description: REST surface for channels-channel_id-threads.
+      operations:
+      - method: POST
+        name: startthreadwithoutmessage
+        description: Discord Start thread without message
+        call: rest-channels.startthreadwithoutmessage
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/channels/{channel-id}/typing
+      name: channels-channel-id-typing
+      description: REST surface for channels-channel_id-typing.
+      operations:
+      - method: POST
+        name: triggertypingindicator
+        description: Discord Trigger typing indicator
+        call: rest-channels.triggertypingindicator
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/guilds/{guild-id}/channels
+      name: guilds-guild-id-channels
+      description: REST surface for guilds-guild_id-channels.
+      operations:
+      - method: GET
+        name: getguildchannels
+        description: Discord List guild channels
+        call: rest-channels.getguildchannels
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createguildchannel
+        description: Discord Create guild channel
+        call: rest-channels.createguildchannel
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-channels-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Discord REST API — Channels. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: discord-get-channel
+      description: Discord Get channel
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-channels.getchannel
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-modify-channel
+      description: Discord Modify channel
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: rest-channels.modifychannel
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-delete-channel
+      description: Discord Delete channel
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: rest-channels.deletechannel
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-start-thread-message
+      description: Discord Start thread from message
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rest-channels.startthreadfrommessage
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-start-thread-without-message
+      description: Discord Start thread without message
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rest-channels.startthreadwithoutmessage
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-trigger-typing-indicator
+      description: Discord Trigger typing indicator
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rest-channels.triggertypingindicator
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-list-guild-channels
+      description: Discord List guild channels
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-channels.getguildchannels
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-create-guild-channel
+      description: Discord Create guild channel
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rest-channels.createguildchannel
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

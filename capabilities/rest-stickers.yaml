@@ -1,0 +1,102 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Discord REST API — Stickers
+  description: 'Discord REST API — Stickers. 2 operations. Lead operation: Discord List guild stickers. Self-contained Naftiko
+    capability covering one Discord business surface.'
+  tags:
+  - Discord
+  - Stickers
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    DISCORD_API_KEY: DISCORD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-stickers
+    baseUri: https://discord.com/api/v10
+    description: Discord REST API — Stickers business capability. Self-contained, no shared references.
+    resources:
+    - name: guilds-guild_id-stickers
+      path: /guilds/{guild_id}/stickers
+      operations:
+      - name: listguildstickers
+        method: GET
+        description: Discord List guild stickers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: sticker-packs
+      path: /sticker-packs
+      operations:
+      - name: liststickerpacks
+        method: GET
+        description: Discord List sticker packs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.DISCORD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: rest-stickers-rest
+    port: 8080
+    description: REST adapter for Discord REST API — Stickers. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/guilds/{guild-id}/stickers
+      name: guilds-guild-id-stickers
+      description: REST surface for guilds-guild_id-stickers.
+      operations:
+      - method: GET
+        name: listguildstickers
+        description: Discord List guild stickers
+        call: rest-stickers.listguildstickers
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/sticker-packs
+      name: sticker-packs
+      description: REST surface for sticker-packs.
+      operations:
+      - method: GET
+        name: liststickerpacks
+        description: Discord List sticker packs
+        call: rest-stickers.liststickerpacks
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-stickers-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Discord REST API — Stickers. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: discord-list-guild-stickers
+      description: Discord List guild stickers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-stickers.listguildstickers
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-list-sticker-packs
+      description: Discord List sticker packs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-stickers.liststickerpacks
+      outputParameters:
+      - type: object
+        mapping: $.

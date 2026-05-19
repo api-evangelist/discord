@@ -1,0 +1,333 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Discord REST API — Users
+  description: 'Discord REST API — Users. 8 operations. Lead operation: Discord Get current application. Self-contained Naftiko
+    capability covering one Discord business surface.'
+  tags:
+  - Discord
+  - Users
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    DISCORD_API_KEY: DISCORD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-users
+    baseUri: https://discord.com/api/v10
+    description: Discord REST API — Users business capability. Self-contained, no shared references.
+    resources:
+    - name: applications-@me
+      path: /applications/@me
+      operations:
+      - name: getcurrentapplication
+        method: GET
+        description: Discord Get current application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: editcurrentapplication
+        method: PATCH
+        description: Discord Edit current application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: users-@me
+      path: /users/@me
+      operations:
+      - name: getcurrentuser
+        method: GET
+        description: Discord Get current user
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: modifycurrentuser
+        method: PATCH
+        description: Discord Modify current user
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: users-@me-channels
+      path: /users/@me/channels
+      operations:
+      - name: createdm
+        method: POST
+        description: Discord Create DM
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: users-@me-connections
+      path: /users/@me/connections
+      operations:
+      - name: getcurrentuserconnections
+        method: GET
+        description: Discord List current user connections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: users-@me-guilds
+      path: /users/@me/guilds
+      operations:
+      - name: getcurrentuserguilds
+        method: GET
+        description: Discord List current user guilds
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: before
+          in: query
+          type: string
+        - name: after
+          in: query
+          type: string
+        - name: limit
+          in: query
+          type: integer
+        - name: with_counts
+          in: query
+          type: boolean
+    - name: users-user_id
+      path: /users/{user_id}
+      operations:
+      - name: getuser
+        method: GET
+        description: Discord Get user
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.DISCORD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: rest-users-rest
+    port: 8080
+    description: REST adapter for Discord REST API — Users. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/applications/me
+      name: applications-me
+      description: REST surface for applications-@me.
+      operations:
+      - method: GET
+        name: getcurrentapplication
+        description: Discord Get current application
+        call: rest-users.getcurrentapplication
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: editcurrentapplication
+        description: Discord Edit current application
+        call: rest-users.editcurrentapplication
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/users/me
+      name: users-me
+      description: REST surface for users-@me.
+      operations:
+      - method: GET
+        name: getcurrentuser
+        description: Discord Get current user
+        call: rest-users.getcurrentuser
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: modifycurrentuser
+        description: Discord Modify current user
+        call: rest-users.modifycurrentuser
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/users/me/channels
+      name: users-me-channels
+      description: REST surface for users-@me-channels.
+      operations:
+      - method: POST
+        name: createdm
+        description: Discord Create DM
+        call: rest-users.createdm
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/users/me/connections
+      name: users-me-connections
+      description: REST surface for users-@me-connections.
+      operations:
+      - method: GET
+        name: getcurrentuserconnections
+        description: Discord List current user connections
+        call: rest-users.getcurrentuserconnections
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/users/me/guilds
+      name: users-me-guilds
+      description: REST surface for users-@me-guilds.
+      operations:
+      - method: GET
+        name: getcurrentuserguilds
+        description: Discord List current user guilds
+        call: rest-users.getcurrentuserguilds
+        with:
+          before: rest.before
+          after: rest.after
+          limit: rest.limit
+          with_counts: rest.with_counts
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/users/{user-id}
+      name: users-user-id
+      description: REST surface for users-user_id.
+      operations:
+      - method: GET
+        name: getuser
+        description: Discord Get user
+        call: rest-users.getuser
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-users-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Discord REST API — Users. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: discord-get-current-application
+      description: Discord Get current application
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-users.getcurrentapplication
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-edit-current-application
+      description: Discord Edit current application
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: rest-users.editcurrentapplication
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-get-current-user
+      description: Discord Get current user
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-users.getcurrentuser
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-modify-current-user
+      description: Discord Modify current user
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: rest-users.modifycurrentuser
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-create-dm
+      description: Discord Create DM
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rest-users.createdm
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-list-current-user-connections
+      description: Discord List current user connections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-users.getcurrentuserconnections
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-list-current-user-guilds
+      description: Discord List current user guilds
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-users.getcurrentuserguilds
+      with:
+        before: tools.before
+        after: tools.after
+        limit: tools.limit
+        with_counts: tools.with_counts
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-get-user
+      description: Discord Get user
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-users.getuser
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,283 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Discord REST API — Guilds
+  description: 'Discord REST API — Guilds. 6 operations. Lead operation: Discord List entitlements. Self-contained Naftiko
+    capability covering one Discord business surface.'
+  tags:
+  - Discord
+  - Guilds
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    DISCORD_API_KEY: DISCORD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-guilds
+    baseUri: https://discord.com/api/v10
+    description: Discord REST API — Guilds business capability. Self-contained, no shared references.
+    resources:
+    - name: applications-application_id-entitlements
+      path: /applications/{application_id}/entitlements
+      operations:
+      - name: listentitlements
+        method: GET
+        description: Discord List entitlements
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: application_id
+          in: path
+          type: string
+          required: true
+        - name: user_id
+          in: query
+          type: string
+        - name: sku_ids
+          in: query
+          type: string
+        - name: before
+          in: query
+          type: string
+        - name: after
+          in: query
+          type: string
+        - name: limit
+          in: query
+          type: integer
+        - name: guild_id
+          in: query
+          type: string
+    - name: guilds
+      path: /guilds
+      operations:
+      - name: createguild
+        method: POST
+        description: Discord Create guild
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: guilds-guild_id
+      path: /guilds/{guild_id}
+      operations:
+      - name: getguild
+        method: GET
+        description: Discord Get guild
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: with_counts
+          in: query
+          type: boolean
+      - name: modifyguild
+        method: PATCH
+        description: Discord Modify guild
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteguild
+        method: DELETE
+        description: Discord Delete guild
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: guilds-guild_id-preview
+      path: /guilds/{guild_id}/preview
+      operations:
+      - name: getguildpreview
+        method: GET
+        description: Discord Get guild preview
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.DISCORD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: rest-guilds-rest
+    port: 8080
+    description: REST adapter for Discord REST API — Guilds. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/applications/{application-id}/entitlements
+      name: applications-application-id-entitlements
+      description: REST surface for applications-application_id-entitlements.
+      operations:
+      - method: GET
+        name: listentitlements
+        description: Discord List entitlements
+        call: rest-guilds.listentitlements
+        with:
+          application_id: rest.application_id
+          user_id: rest.user_id
+          sku_ids: rest.sku_ids
+          before: rest.before
+          after: rest.after
+          limit: rest.limit
+          guild_id: rest.guild_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/guilds
+      name: guilds
+      description: REST surface for guilds.
+      operations:
+      - method: POST
+        name: createguild
+        description: Discord Create guild
+        call: rest-guilds.createguild
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/guilds/{guild-id}
+      name: guilds-guild-id
+      description: REST surface for guilds-guild_id.
+      operations:
+      - method: GET
+        name: getguild
+        description: Discord Get guild
+        call: rest-guilds.getguild
+        with:
+          with_counts: rest.with_counts
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: modifyguild
+        description: Discord Modify guild
+        call: rest-guilds.modifyguild
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteguild
+        description: Discord Delete guild
+        call: rest-guilds.deleteguild
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/guilds/{guild-id}/preview
+      name: guilds-guild-id-preview
+      description: REST surface for guilds-guild_id-preview.
+      operations:
+      - method: GET
+        name: getguildpreview
+        description: Discord Get guild preview
+        call: rest-guilds.getguildpreview
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-guilds-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Discord REST API — Guilds. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: discord-list-entitlements
+      description: Discord List entitlements
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-guilds.listentitlements
+      with:
+        application_id: tools.application_id
+        user_id: tools.user_id
+        sku_ids: tools.sku_ids
+        before: tools.before
+        after: tools.after
+        limit: tools.limit
+        guild_id: tools.guild_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-create-guild
+      description: Discord Create guild
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rest-guilds.createguild
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-get-guild
+      description: Discord Get guild
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-guilds.getguild
+      with:
+        with_counts: tools.with_counts
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-modify-guild
+      description: Discord Modify guild
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: rest-guilds.modifyguild
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-delete-guild
+      description: Discord Delete guild
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: rest-guilds.deleteguild
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-get-guild-preview
+      description: Discord Get guild preview
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-guilds.getguildpreview
+      outputParameters:
+      - type: object
+        mapping: $.

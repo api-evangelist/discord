@@ -1,0 +1,942 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Discord HTTP API (Preview) — Applications
+  description: 'Discord HTTP API (Preview) — Applications. 26 operations. Lead operation: Applications. Self-contained Naftiko
+    capability covering one Discord business surface.'
+  tags:
+  - Discord
+  - Applications
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    DISCORD_API_KEY: DISCORD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: discord-applications
+    baseUri: https://discord.com/api/v10
+    description: Discord HTTP API (Preview) — Applications business capability. Self-contained, no shared references.
+    resources:
+    - name: applications-@me
+      path: /applications/@me
+      operations:
+      - name: getmyapplication
+        method: GET
+        description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatemyapplication
+        method: PATCH
+        description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: applications-application_id
+      path: /applications/{application_id}
+      operations:
+      - name: getapplication
+        method: GET
+        description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateapplication
+        method: PATCH
+        description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: applications-application_id-commands
+      path: /applications/{application_id}/commands
+      operations:
+      - name: listapplicationcommands
+        method: GET
+        description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: with_localizations
+          in: query
+          type: boolean
+      - name: bulksetapplicationcommands
+        method: PUT
+        description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: createapplicationcommand
+        method: POST
+        description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: applications-application_id-commands-command_id
+      path: /applications/{application_id}/commands/{command_id}
+      operations:
+      - name: getapplicationcommand
+        method: GET
+        description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleteapplicationcommand
+        method: DELETE
+        description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateapplicationcommand
+        method: PATCH
+        description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: applications-application_id-entitlements
+      path: /applications/{application_id}/entitlements
+      operations:
+      - name: getentitlements
+        method: GET
+        description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: user_id
+          in: query
+          type: string
+        - name: sku_ids
+          in: query
+          type: string
+          required: true
+        - name: guild_id
+          in: query
+          type: string
+        - name: before
+          in: query
+          type: string
+        - name: after
+          in: query
+          type: string
+        - name: limit
+          in: query
+          type: integer
+        - name: exclude_ended
+          in: query
+          type: boolean
+        - name: only_active
+          in: query
+          type: boolean
+      - name: createentitlement
+        method: POST
+        description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: applications-application_id-entitlements-entitlement_id
+      path: /applications/{application_id}/entitlements/{entitlement_id}
+      operations:
+      - name: getentitlement
+        method: GET
+        description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleteentitlement
+        method: DELETE
+        description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-application_id-entitlements-entitlement_id-consume
+      path: /applications/{application_id}/entitlements/{entitlement_id}/consume
+      operations:
+      - name: consumeentitlement
+        method: POST
+        description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-application_id-guilds-guild_id-commands
+      path: /applications/{application_id}/guilds/{guild_id}/commands
+      operations:
+      - name: listguildapplicationcommands
+        method: GET
+        description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: with_localizations
+          in: query
+          type: boolean
+      - name: bulksetguildapplicationcommands
+        method: PUT
+        description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: createguildapplicationcommand
+        method: POST
+        description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: applications-application_id-guilds-guild_id-commands-permissions
+      path: /applications/{application_id}/guilds/{guild_id}/commands/permissions
+      operations:
+      - name: listguildapplicationcommandpermissions
+        method: GET
+        description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-application_id-guilds-guild_id-commands-command_id
+      path: /applications/{application_id}/guilds/{guild_id}/commands/{command_id}
+      operations:
+      - name: getguildapplicationcommand
+        method: GET
+        description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleteguildapplicationcommand
+        method: DELETE
+        description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateguildapplicationcommand
+        method: PATCH
+        description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: applications-application_id-guilds-guild_id-commands-command_id-permissions
+      path: /applications/{application_id}/guilds/{guild_id}/commands/{command_id}/permissions
+      operations:
+      - name: getguildapplicationcommandpermissions
+        method: GET
+        description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: setguildapplicationcommandpermissions
+        method: PUT
+        description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: applications-application_id-role-connections-metadata
+      path: /applications/{application_id}/role-connections/metadata
+      operations:
+      - name: getapplicationroleconnectionsmetadata
+        method: GET
+        description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateapplicationroleconnectionsmetadata
+        method: PUT
+        description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.DISCORD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: discord-applications-rest
+    port: 8080
+    description: REST adapter for Discord HTTP API (Preview) — Applications. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/applications/me
+      name: applications-me
+      description: REST surface for applications-@me.
+      operations:
+      - method: GET
+        name: getmyapplication
+        description: getmyapplication
+        call: discord-applications.getmyapplication
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updatemyapplication
+        description: updatemyapplication
+        call: discord-applications.updatemyapplication
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{application-id}
+      name: applications-application-id
+      description: REST surface for applications-application_id.
+      operations:
+      - method: GET
+        name: getapplication
+        description: getapplication
+        call: discord-applications.getapplication
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updateapplication
+        description: updateapplication
+        call: discord-applications.updateapplication
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{application-id}/commands
+      name: applications-application-id-commands
+      description: REST surface for applications-application_id-commands.
+      operations:
+      - method: GET
+        name: listapplicationcommands
+        description: listapplicationcommands
+        call: discord-applications.listapplicationcommands
+        with:
+          with_localizations: rest.with_localizations
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: bulksetapplicationcommands
+        description: bulksetapplicationcommands
+        call: discord-applications.bulksetapplicationcommands
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createapplicationcommand
+        description: createapplicationcommand
+        call: discord-applications.createapplicationcommand
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{application-id}/commands/{command-id}
+      name: applications-application-id-commands-command-id
+      description: REST surface for applications-application_id-commands-command_id.
+      operations:
+      - method: GET
+        name: getapplicationcommand
+        description: getapplicationcommand
+        call: discord-applications.getapplicationcommand
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteapplicationcommand
+        description: deleteapplicationcommand
+        call: discord-applications.deleteapplicationcommand
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updateapplicationcommand
+        description: updateapplicationcommand
+        call: discord-applications.updateapplicationcommand
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{application-id}/entitlements
+      name: applications-application-id-entitlements
+      description: REST surface for applications-application_id-entitlements.
+      operations:
+      - method: GET
+        name: getentitlements
+        description: getentitlements
+        call: discord-applications.getentitlements
+        with:
+          user_id: rest.user_id
+          sku_ids: rest.sku_ids
+          guild_id: rest.guild_id
+          before: rest.before
+          after: rest.after
+          limit: rest.limit
+          exclude_ended: rest.exclude_ended
+          only_active: rest.only_active
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createentitlement
+        description: createentitlement
+        call: discord-applications.createentitlement
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{application-id}/entitlements/{entitlement-id}
+      name: applications-application-id-entitlements-entitlement-id
+      description: REST surface for applications-application_id-entitlements-entitlement_id.
+      operations:
+      - method: GET
+        name: getentitlement
+        description: getentitlement
+        call: discord-applications.getentitlement
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteentitlement
+        description: deleteentitlement
+        call: discord-applications.deleteentitlement
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{application-id}/entitlements/{entitlement-id}/consume
+      name: applications-application-id-entitlements-entitlement-id-consume
+      description: REST surface for applications-application_id-entitlements-entitlement_id-consume.
+      operations:
+      - method: POST
+        name: consumeentitlement
+        description: consumeentitlement
+        call: discord-applications.consumeentitlement
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{application-id}/guilds/{guild-id}/commands
+      name: applications-application-id-guilds-guild-id-commands
+      description: REST surface for applications-application_id-guilds-guild_id-commands.
+      operations:
+      - method: GET
+        name: listguildapplicationcommands
+        description: listguildapplicationcommands
+        call: discord-applications.listguildapplicationcommands
+        with:
+          with_localizations: rest.with_localizations
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: bulksetguildapplicationcommands
+        description: bulksetguildapplicationcommands
+        call: discord-applications.bulksetguildapplicationcommands
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createguildapplicationcommand
+        description: createguildapplicationcommand
+        call: discord-applications.createguildapplicationcommand
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{application-id}/guilds/{guild-id}/commands/permissions
+      name: applications-application-id-guilds-guild-id-commands-permissions
+      description: REST surface for applications-application_id-guilds-guild_id-commands-permissions.
+      operations:
+      - method: GET
+        name: listguildapplicationcommandpermissions
+        description: listguildapplicationcommandpermissions
+        call: discord-applications.listguildapplicationcommandpermissions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{application-id}/guilds/{guild-id}/commands/{command-id}
+      name: applications-application-id-guilds-guild-id-commands-command-id
+      description: REST surface for applications-application_id-guilds-guild_id-commands-command_id.
+      operations:
+      - method: GET
+        name: getguildapplicationcommand
+        description: getguildapplicationcommand
+        call: discord-applications.getguildapplicationcommand
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteguildapplicationcommand
+        description: deleteguildapplicationcommand
+        call: discord-applications.deleteguildapplicationcommand
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updateguildapplicationcommand
+        description: updateguildapplicationcommand
+        call: discord-applications.updateguildapplicationcommand
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{application-id}/guilds/{guild-id}/commands/{command-id}/permissions
+      name: applications-application-id-guilds-guild-id-commands-command-id-permissions
+      description: REST surface for applications-application_id-guilds-guild_id-commands-command_id-permissions.
+      operations:
+      - method: GET
+        name: getguildapplicationcommandpermissions
+        description: getguildapplicationcommandpermissions
+        call: discord-applications.getguildapplicationcommandpermissions
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: setguildapplicationcommandpermissions
+        description: setguildapplicationcommandpermissions
+        call: discord-applications.setguildapplicationcommandpermissions
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{application-id}/role-connections/metadata
+      name: applications-application-id-role-connections-metadata
+      description: REST surface for applications-application_id-role-connections-metadata.
+      operations:
+      - method: GET
+        name: getapplicationroleconnectionsmetadata
+        description: getapplicationroleconnectionsmetadata
+        call: discord-applications.getapplicationroleconnectionsmetadata
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateapplicationroleconnectionsmetadata
+        description: updateapplicationroleconnectionsmetadata
+        call: discord-applications.updateapplicationroleconnectionsmetadata
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: discord-applications-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Discord HTTP API (Preview) — Applications. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: getmyapplication
+      description: getmyapplication
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: discord-applications.getmyapplication
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updatemyapplication
+      description: updatemyapplication
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: discord-applications.updatemyapplication
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getapplication
+      description: getapplication
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: discord-applications.getapplication
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updateapplication
+      description: updateapplication
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: discord-applications.updateapplication
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listapplicationcommands
+      description: listapplicationcommands
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: discord-applications.listapplicationcommands
+      with:
+        with_localizations: tools.with_localizations
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bulksetapplicationcommands
+      description: bulksetapplicationcommands
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: discord-applications.bulksetapplicationcommands
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createapplicationcommand
+      description: createapplicationcommand
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: discord-applications.createapplicationcommand
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getapplicationcommand
+      description: getapplicationcommand
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: discord-applications.getapplicationcommand
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deleteapplicationcommand
+      description: deleteapplicationcommand
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: discord-applications.deleteapplicationcommand
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updateapplicationcommand
+      description: updateapplicationcommand
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: discord-applications.updateapplicationcommand
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getentitlements
+      description: getentitlements
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: discord-applications.getentitlements
+      with:
+        user_id: tools.user_id
+        sku_ids: tools.sku_ids
+        guild_id: tools.guild_id
+        before: tools.before
+        after: tools.after
+        limit: tools.limit
+        exclude_ended: tools.exclude_ended
+        only_active: tools.only_active
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createentitlement
+      description: createentitlement
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: discord-applications.createentitlement
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getentitlement
+      description: getentitlement
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: discord-applications.getentitlement
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deleteentitlement
+      description: deleteentitlement
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: discord-applications.deleteentitlement
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: consumeentitlement
+      description: consumeentitlement
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: discord-applications.consumeentitlement
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listguildapplicationcommands
+      description: listguildapplicationcommands
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: discord-applications.listguildapplicationcommands
+      with:
+        with_localizations: tools.with_localizations
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bulksetguildapplicationcommands
+      description: bulksetguildapplicationcommands
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: discord-applications.bulksetguildapplicationcommands
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createguildapplicationcommand
+      description: createguildapplicationcommand
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: discord-applications.createguildapplicationcommand
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listguildapplicationcommandpermissions
+      description: listguildapplicationcommandpermissions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: discord-applications.listguildapplicationcommandpermissions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getguildapplicationcommand
+      description: getguildapplicationcommand
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: discord-applications.getguildapplicationcommand
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deleteguildapplicationcommand
+      description: deleteguildapplicationcommand
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: discord-applications.deleteguildapplicationcommand
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updateguildapplicationcommand
+      description: updateguildapplicationcommand
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: discord-applications.updateguildapplicationcommand
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getguildapplicationcommandpermissions
+      description: getguildapplicationcommandpermissions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: discord-applications.getguildapplicationcommandpermissions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: setguildapplicationcommandpermissions
+      description: setguildapplicationcommandpermissions
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: discord-applications.setguildapplicationcommandpermissions
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getapplicationroleconnectionsmetadata
+      description: getapplicationroleconnectionsmetadata
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: discord-applications.getapplicationroleconnectionsmetadata
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updateapplicationroleconnectionsmetadata
+      description: updateapplicationroleconnectionsmetadata
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: discord-applications.updateapplicationroleconnectionsmetadata
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

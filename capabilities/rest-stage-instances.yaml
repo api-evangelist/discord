@@ -1,0 +1,112 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Discord REST API — Stage Instances
+  description: 'Discord REST API — Stage Instances. 2 operations. Lead operation: Discord Create stage instance. Self-contained
+    Naftiko capability covering one Discord business surface.'
+  tags:
+  - Discord
+  - Stage Instances
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    DISCORD_API_KEY: DISCORD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-stage-instances
+    baseUri: https://discord.com/api/v10
+    description: Discord REST API — Stage Instances business capability. Self-contained, no shared references.
+    resources:
+    - name: stage-instances
+      path: /stage-instances
+      operations:
+      - name: createstageinstance
+        method: POST
+        description: Discord Create stage instance
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: stage-instances-channel_id
+      path: /stage-instances/{channel_id}
+      operations:
+      - name: getstageinstance
+        method: GET
+        description: Discord Get stage instance
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.DISCORD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: rest-stage-instances-rest
+    port: 8080
+    description: REST adapter for Discord REST API — Stage Instances. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/stage-instances
+      name: stage-instances
+      description: REST surface for stage-instances.
+      operations:
+      - method: POST
+        name: createstageinstance
+        description: Discord Create stage instance
+        call: rest-stage-instances.createstageinstance
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/stage-instances/{channel-id}
+      name: stage-instances-channel-id
+      description: REST surface for stage-instances-channel_id.
+      operations:
+      - method: GET
+        name: getstageinstance
+        description: Discord Get stage instance
+        call: rest-stage-instances.getstageinstance
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-stage-instances-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Discord REST API — Stage Instances. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: discord-create-stage-instance
+      description: Discord Create stage instance
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rest-stage-instances.createstageinstance
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-get-stage-instance
+      description: Discord Get stage instance
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-stage-instances.getstageinstance
+      outputParameters:
+      - type: object
+        mapping: $.

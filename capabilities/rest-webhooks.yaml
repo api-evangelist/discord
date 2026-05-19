@@ -1,0 +1,317 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Discord REST API — Webhooks
+  description: 'Discord REST API — Webhooks. 7 operations. Lead operation: Discord List channel webhooks. Self-contained Naftiko
+    capability covering one Discord business surface.'
+  tags:
+  - Discord
+  - Webhooks
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    DISCORD_API_KEY: DISCORD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-webhooks
+    baseUri: https://discord.com/api/v10
+    description: Discord REST API — Webhooks business capability. Self-contained, no shared references.
+    resources:
+    - name: channels-channel_id-webhooks
+      path: /channels/{channel_id}/webhooks
+      operations:
+      - name: getchannelwebhooks
+        method: GET
+        description: Discord List channel webhooks
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createwebhook
+        method: POST
+        description: Discord Create webhook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: guilds-guild_id-webhooks
+      path: /guilds/{guild_id}/webhooks
+      operations:
+      - name: getguildwebhooks
+        method: GET
+        description: Discord List guild webhooks
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: webhooks-webhook_id
+      path: /webhooks/{webhook_id}
+      operations:
+      - name: getwebhook
+        method: GET
+        description: Discord Get webhook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: webhook_id
+          in: path
+          type: string
+          required: true
+      - name: modifywebhook
+        method: PATCH
+        description: Discord Modify webhook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: webhook_id
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletewebhook
+        method: DELETE
+        description: Discord Delete webhook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: webhook_id
+          in: path
+          type: string
+          required: true
+    - name: webhooks-webhook_id-webhook_token
+      path: /webhooks/{webhook_id}/{webhook_token}
+      operations:
+      - name: executewebhook
+        method: POST
+        description: Discord Execute webhook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: webhook_id
+          in: path
+          type: string
+          required: true
+        - name: webhook_token
+          in: path
+          type: string
+          required: true
+        - name: wait
+          in: query
+          type: boolean
+        - name: thread_id
+          in: query
+          type: string
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.DISCORD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: rest-webhooks-rest
+    port: 8080
+    description: REST adapter for Discord REST API — Webhooks. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/channels/{channel-id}/webhooks
+      name: channels-channel-id-webhooks
+      description: REST surface for channels-channel_id-webhooks.
+      operations:
+      - method: GET
+        name: getchannelwebhooks
+        description: Discord List channel webhooks
+        call: rest-webhooks.getchannelwebhooks
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createwebhook
+        description: Discord Create webhook
+        call: rest-webhooks.createwebhook
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/guilds/{guild-id}/webhooks
+      name: guilds-guild-id-webhooks
+      description: REST surface for guilds-guild_id-webhooks.
+      operations:
+      - method: GET
+        name: getguildwebhooks
+        description: Discord List guild webhooks
+        call: rest-webhooks.getguildwebhooks
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/webhooks/{webhook-id}
+      name: webhooks-webhook-id
+      description: REST surface for webhooks-webhook_id.
+      operations:
+      - method: GET
+        name: getwebhook
+        description: Discord Get webhook
+        call: rest-webhooks.getwebhook
+        with:
+          webhook_id: rest.webhook_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: modifywebhook
+        description: Discord Modify webhook
+        call: rest-webhooks.modifywebhook
+        with:
+          webhook_id: rest.webhook_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletewebhook
+        description: Discord Delete webhook
+        call: rest-webhooks.deletewebhook
+        with:
+          webhook_id: rest.webhook_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/webhooks/{webhook-id}/{webhook-token}
+      name: webhooks-webhook-id-webhook-token
+      description: REST surface for webhooks-webhook_id-webhook_token.
+      operations:
+      - method: POST
+        name: executewebhook
+        description: Discord Execute webhook
+        call: rest-webhooks.executewebhook
+        with:
+          webhook_id: rest.webhook_id
+          webhook_token: rest.webhook_token
+          wait: rest.wait
+          thread_id: rest.thread_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-webhooks-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Discord REST API — Webhooks. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: discord-list-channel-webhooks
+      description: Discord List channel webhooks
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-webhooks.getchannelwebhooks
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-create-webhook
+      description: Discord Create webhook
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rest-webhooks.createwebhook
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-list-guild-webhooks
+      description: Discord List guild webhooks
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-webhooks.getguildwebhooks
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-get-webhook
+      description: Discord Get webhook
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-webhooks.getwebhook
+      with:
+        webhook_id: tools.webhook_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-modify-webhook
+      description: Discord Modify webhook
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: rest-webhooks.modifywebhook
+      with:
+        webhook_id: tools.webhook_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-delete-webhook
+      description: Discord Delete webhook
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: rest-webhooks.deletewebhook
+      with:
+        webhook_id: tools.webhook_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-execute-webhook
+      description: Discord Execute webhook
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rest-webhooks.executewebhook
+      with:
+        webhook_id: tools.webhook_id
+        webhook_token: tools.webhook_token
+        wait: tools.wait
+        thread_id: tools.thread_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

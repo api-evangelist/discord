@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Discord HTTP API (Preview) — Interactions
+  description: 'Discord HTTP API (Preview) — Interactions. 1 operations. Lead operation: Interactions. Self-contained Naftiko
+    capability covering one Discord business surface.'
+  tags:
+  - Discord
+  - Interactions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    DISCORD_API_KEY: DISCORD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: discord-interactions
+    baseUri: https://discord.com/api/v10
+    description: Discord HTTP API (Preview) — Interactions business capability. Self-contained, no shared references.
+    resources:
+    - name: interactions-interaction_id-interaction_token-callback
+      path: /interactions/{interaction_id}/{interaction_token}/callback
+      operations:
+      - name: createinteractionresponse
+        method: POST
+        description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.DISCORD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: discord-interactions-rest
+    port: 8080
+    description: REST adapter for Discord HTTP API (Preview) — Interactions. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/interactions/{interaction-id}/{interaction-token}/callback
+      name: interactions-interaction-id-interaction-token-callback
+      description: REST surface for interactions-interaction_id-interaction_token-callback.
+      operations:
+      - method: POST
+        name: createinteractionresponse
+        description: createinteractionresponse
+        call: discord-interactions.createinteractionresponse
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: discord-interactions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Discord HTTP API (Preview) — Interactions. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: createinteractionresponse
+      description: createinteractionresponse
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: discord-interactions.createinteractionresponse
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

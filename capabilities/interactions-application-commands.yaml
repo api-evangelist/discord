@@ -1,0 +1,541 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Discord Interactions API — Application Commands
+  description: 'Discord Interactions API — Application Commands. 15 operations. Lead operation: Discord List global application
+    commands. Self-contained Naftiko capability covering one Discord business surface.'
+  tags:
+  - Discord
+  - Application Commands
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    DISCORD_API_KEY: DISCORD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: interactions-application-commands
+    baseUri: https://discord.com/api/v10
+    description: Discord Interactions API — Application Commands business capability. Self-contained, no shared references.
+    resources:
+    - name: applications-application_id-commands
+      path: /applications/{application_id}/commands
+      operations:
+      - name: getglobalapplicationcommands
+        method: GET
+        description: Discord List global application commands
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: with_localizations
+          in: query
+          type: boolean
+      - name: createglobalapplicationcommand
+        method: POST
+        description: Discord Create global application command
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: bulkoverwriteglobalapplicationcommands
+        method: PUT
+        description: Discord Bulk overwrite global application commands
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: applications-application_id-commands-command_id
+      path: /applications/{application_id}/commands/{command_id}
+      operations:
+      - name: getglobalapplicationcommand
+        method: GET
+        description: Discord Get global application command
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: editglobalapplicationcommand
+        method: PATCH
+        description: Discord Edit global application command
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteglobalapplicationcommand
+        method: DELETE
+        description: Discord Delete global application command
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-application_id-guilds-guild_id-commands
+      path: /applications/{application_id}/guilds/{guild_id}/commands
+      operations:
+      - name: getguildapplicationcommands
+        method: GET
+        description: Discord List guild application commands
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: with_localizations
+          in: query
+          type: boolean
+      - name: createguildapplicationcommand
+        method: POST
+        description: Discord Create guild application command
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: bulkoverwriteguildapplicationcommands
+        method: PUT
+        description: Discord Bulk overwrite guild application commands
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: applications-application_id-guilds-guild_id-commands-permissions
+      path: /applications/{application_id}/guilds/{guild_id}/commands/permissions
+      operations:
+      - name: getguildapplicationcommandpermissions
+        method: GET
+        description: Discord List guild application command permissions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-application_id-guilds-guild_id-commands-command_id
+      path: /applications/{application_id}/guilds/{guild_id}/commands/{command_id}
+      operations:
+      - name: getguildapplicationcommand
+        method: GET
+        description: Discord Get guild application command
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: editguildapplicationcommand
+        method: PATCH
+        description: Discord Edit guild application command
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteguildapplicationcommand
+        method: DELETE
+        description: Discord Delete guild application command
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-application_id-guilds-guild_id-commands-command_id-permissions
+      path: /applications/{application_id}/guilds/{guild_id}/commands/{command_id}/permissions
+      operations:
+      - name: getapplicationcommandpermissions
+        method: GET
+        description: Discord Get application command permissions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: editapplicationcommandpermissions
+        method: PUT
+        description: Discord Edit application command permissions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.DISCORD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: interactions-application-commands-rest
+    port: 8080
+    description: REST adapter for Discord Interactions API — Application Commands. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/applications/{application-id}/commands
+      name: applications-application-id-commands
+      description: REST surface for applications-application_id-commands.
+      operations:
+      - method: GET
+        name: getglobalapplicationcommands
+        description: Discord List global application commands
+        call: interactions-application-commands.getglobalapplicationcommands
+        with:
+          with_localizations: rest.with_localizations
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createglobalapplicationcommand
+        description: Discord Create global application command
+        call: interactions-application-commands.createglobalapplicationcommand
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: bulkoverwriteglobalapplicationcommands
+        description: Discord Bulk overwrite global application commands
+        call: interactions-application-commands.bulkoverwriteglobalapplicationcommands
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{application-id}/commands/{command-id}
+      name: applications-application-id-commands-command-id
+      description: REST surface for applications-application_id-commands-command_id.
+      operations:
+      - method: GET
+        name: getglobalapplicationcommand
+        description: Discord Get global application command
+        call: interactions-application-commands.getglobalapplicationcommand
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: editglobalapplicationcommand
+        description: Discord Edit global application command
+        call: interactions-application-commands.editglobalapplicationcommand
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteglobalapplicationcommand
+        description: Discord Delete global application command
+        call: interactions-application-commands.deleteglobalapplicationcommand
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{application-id}/guilds/{guild-id}/commands
+      name: applications-application-id-guilds-guild-id-commands
+      description: REST surface for applications-application_id-guilds-guild_id-commands.
+      operations:
+      - method: GET
+        name: getguildapplicationcommands
+        description: Discord List guild application commands
+        call: interactions-application-commands.getguildapplicationcommands
+        with:
+          with_localizations: rest.with_localizations
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createguildapplicationcommand
+        description: Discord Create guild application command
+        call: interactions-application-commands.createguildapplicationcommand
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: bulkoverwriteguildapplicationcommands
+        description: Discord Bulk overwrite guild application commands
+        call: interactions-application-commands.bulkoverwriteguildapplicationcommands
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{application-id}/guilds/{guild-id}/commands/permissions
+      name: applications-application-id-guilds-guild-id-commands-permissions
+      description: REST surface for applications-application_id-guilds-guild_id-commands-permissions.
+      operations:
+      - method: GET
+        name: getguildapplicationcommandpermissions
+        description: Discord List guild application command permissions
+        call: interactions-application-commands.getguildapplicationcommandpermissions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{application-id}/guilds/{guild-id}/commands/{command-id}
+      name: applications-application-id-guilds-guild-id-commands-command-id
+      description: REST surface for applications-application_id-guilds-guild_id-commands-command_id.
+      operations:
+      - method: GET
+        name: getguildapplicationcommand
+        description: Discord Get guild application command
+        call: interactions-application-commands.getguildapplicationcommand
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: editguildapplicationcommand
+        description: Discord Edit guild application command
+        call: interactions-application-commands.editguildapplicationcommand
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteguildapplicationcommand
+        description: Discord Delete guild application command
+        call: interactions-application-commands.deleteguildapplicationcommand
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{application-id}/guilds/{guild-id}/commands/{command-id}/permissions
+      name: applications-application-id-guilds-guild-id-commands-command-id-permissions
+      description: REST surface for applications-application_id-guilds-guild_id-commands-command_id-permissions.
+      operations:
+      - method: GET
+        name: getapplicationcommandpermissions
+        description: Discord Get application command permissions
+        call: interactions-application-commands.getapplicationcommandpermissions
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: editapplicationcommandpermissions
+        description: Discord Edit application command permissions
+        call: interactions-application-commands.editapplicationcommandpermissions
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: interactions-application-commands-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Discord Interactions API — Application Commands. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: discord-list-global-application-commands
+      description: Discord List global application commands
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: interactions-application-commands.getglobalapplicationcommands
+      with:
+        with_localizations: tools.with_localizations
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-create-global-application-command
+      description: Discord Create global application command
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: interactions-application-commands.createglobalapplicationcommand
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-bulk-overwrite-global-application
+      description: Discord Bulk overwrite global application commands
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: interactions-application-commands.bulkoverwriteglobalapplicationcommands
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-get-global-application-command
+      description: Discord Get global application command
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: interactions-application-commands.getglobalapplicationcommand
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-edit-global-application-command
+      description: Discord Edit global application command
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: interactions-application-commands.editglobalapplicationcommand
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-delete-global-application-command
+      description: Discord Delete global application command
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: interactions-application-commands.deleteglobalapplicationcommand
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-list-guild-application-commands
+      description: Discord List guild application commands
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: interactions-application-commands.getguildapplicationcommands
+      with:
+        with_localizations: tools.with_localizations
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-create-guild-application-command
+      description: Discord Create guild application command
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: interactions-application-commands.createguildapplicationcommand
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-bulk-overwrite-guild-application
+      description: Discord Bulk overwrite guild application commands
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: interactions-application-commands.bulkoverwriteguildapplicationcommands
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-list-guild-application-command
+      description: Discord List guild application command permissions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: interactions-application-commands.getguildapplicationcommandpermissions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-get-guild-application-command
+      description: Discord Get guild application command
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: interactions-application-commands.getguildapplicationcommand
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-edit-guild-application-command
+      description: Discord Edit guild application command
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: interactions-application-commands.editguildapplicationcommand
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-delete-guild-application-command
+      description: Discord Delete guild application command
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: interactions-application-commands.deleteguildapplicationcommand
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-get-application-command-permissions
+      description: Discord Get application command permissions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: interactions-application-commands.getapplicationcommandpermissions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-edit-application-command-permissions
+      description: Discord Edit application command permissions
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: interactions-application-commands.editapplicationcommandpermissions
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

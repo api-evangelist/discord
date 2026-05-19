@@ -1,0 +1,70 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Discord HTTP API (Preview) — Stickers
+  description: 'Discord HTTP API (Preview) — Stickers. 1 operations. Lead operation: Stickers. Self-contained Naftiko capability
+    covering one Discord business surface.'
+  tags:
+  - Discord
+  - Stickers
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    DISCORD_API_KEY: DISCORD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: discord-stickers
+    baseUri: https://discord.com/api/v10
+    description: Discord HTTP API (Preview) — Stickers business capability. Self-contained, no shared references.
+    resources:
+    - name: stickers-sticker_id
+      path: /stickers/{sticker_id}
+      operations:
+      - name: getsticker
+        method: GET
+        description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.DISCORD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: discord-stickers-rest
+    port: 8080
+    description: REST adapter for Discord HTTP API (Preview) — Stickers. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/stickers/{sticker-id}
+      name: stickers-sticker-id
+      description: REST surface for stickers-sticker_id.
+      operations:
+      - method: GET
+        name: getsticker
+        description: getsticker
+        call: discord-stickers.getsticker
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: discord-stickers-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Discord HTTP API (Preview) — Stickers. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: getsticker
+      description: getsticker
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: discord-stickers.getsticker
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,222 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Discord REST API — Invites
+  description: 'Discord REST API — Invites. 5 operations. Lead operation: Discord List channel invites. Self-contained Naftiko
+    capability covering one Discord business surface.'
+  tags:
+  - Discord
+  - Invites
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    DISCORD_API_KEY: DISCORD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-invites
+    baseUri: https://discord.com/api/v10
+    description: Discord REST API — Invites business capability. Self-contained, no shared references.
+    resources:
+    - name: channels-channel_id-invites
+      path: /channels/{channel_id}/invites
+      operations:
+      - name: getchannelinvites
+        method: GET
+        description: Discord List channel invites
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createchannelinvite
+        method: POST
+        description: Discord Create channel invite
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: guilds-guild_id-invites
+      path: /guilds/{guild_id}/invites
+      operations:
+      - name: getguildinvites
+        method: GET
+        description: Discord List guild invites
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: invites-code
+      path: /invites/{code}
+      operations:
+      - name: getinvite
+        method: GET
+        description: Discord Get invite
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: code
+          in: path
+          type: string
+          required: true
+        - name: with_counts
+          in: query
+          type: boolean
+        - name: with_expiration
+          in: query
+          type: boolean
+      - name: deleteinvite
+        method: DELETE
+        description: Discord Delete invite
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: code
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.DISCORD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: rest-invites-rest
+    port: 8080
+    description: REST adapter for Discord REST API — Invites. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/channels/{channel-id}/invites
+      name: channels-channel-id-invites
+      description: REST surface for channels-channel_id-invites.
+      operations:
+      - method: GET
+        name: getchannelinvites
+        description: Discord List channel invites
+        call: rest-invites.getchannelinvites
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createchannelinvite
+        description: Discord Create channel invite
+        call: rest-invites.createchannelinvite
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/guilds/{guild-id}/invites
+      name: guilds-guild-id-invites
+      description: REST surface for guilds-guild_id-invites.
+      operations:
+      - method: GET
+        name: getguildinvites
+        description: Discord List guild invites
+        call: rest-invites.getguildinvites
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/invites/{code}
+      name: invites-code
+      description: REST surface for invites-code.
+      operations:
+      - method: GET
+        name: getinvite
+        description: Discord Get invite
+        call: rest-invites.getinvite
+        with:
+          code: rest.code
+          with_counts: rest.with_counts
+          with_expiration: rest.with_expiration
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteinvite
+        description: Discord Delete invite
+        call: rest-invites.deleteinvite
+        with:
+          code: rest.code
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-invites-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Discord REST API — Invites. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: discord-list-channel-invites
+      description: Discord List channel invites
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-invites.getchannelinvites
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-create-channel-invite
+      description: Discord Create channel invite
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rest-invites.createchannelinvite
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-list-guild-invites
+      description: Discord List guild invites
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-invites.getguildinvites
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-get-invite
+      description: Discord Get invite
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-invites.getinvite
+      with:
+        code: tools.code
+        with_counts: tools.with_counts
+        with_expiration: tools.with_expiration
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-delete-invite
+      description: Discord Delete invite
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: rest-invites.deleteinvite
+      with:
+        code: tools.code
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,91 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Discord Webhook Events API — Webhook Events
+  description: 'Discord Webhook Events API — Webhook Events. 1 operations. Lead operation: Discord Receive webhook event.
+    Self-contained Naftiko capability covering one Discord business surface.'
+  tags:
+  - Discord
+  - Webhook Events
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    DISCORD_API_KEY: DISCORD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: webhook-events-webhook-events
+    baseUri: https://your-app.example.com
+    description: Discord Webhook Events API — Webhook Events business capability. Self-contained, no shared references.
+    resources:
+    - name: discord-webhook
+      path: /discord-webhook
+      operations:
+      - name: receivewebhookevent
+        method: POST
+        description: Discord Receive webhook event
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Signature-Ed25519
+          in: header
+          type: string
+          description: Ed25519 signature for request verification
+          required: true
+        - name: X-Signature-Timestamp
+          in: header
+          type: string
+          description: Timestamp used in signature verification
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: rest
+    namespace: webhook-events-webhook-events-rest
+    port: 8080
+    description: REST adapter for Discord Webhook Events API — Webhook Events. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/discord-webhook
+      name: discord-webhook
+      description: REST surface for discord-webhook.
+      operations:
+      - method: POST
+        name: receivewebhookevent
+        description: Discord Receive webhook event
+        call: webhook-events-webhook-events.receivewebhookevent
+        with:
+          X-Signature-Ed25519: rest.X-Signature-Ed25519
+          X-Signature-Timestamp: rest.X-Signature-Timestamp
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: webhook-events-webhook-events-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Discord Webhook Events API — Webhook Events. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: discord-receive-webhook-event
+      description: Discord Receive webhook event
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: webhook-events-webhook-events.receivewebhookevent
+      with:
+        X-Signature-Ed25519: tools.X-Signature-Ed25519
+        X-Signature-Timestamp: tools.X-Signature-Timestamp
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

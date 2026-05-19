@@ -1,0 +1,70 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Discord REST API — Voice
+  description: 'Discord REST API — Voice. 1 operations. Lead operation: Discord List voice regions. Self-contained Naftiko
+    capability covering one Discord business surface.'
+  tags:
+  - Discord
+  - Voice
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    DISCORD_API_KEY: DISCORD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-voice
+    baseUri: https://discord.com/api/v10
+    description: Discord REST API — Voice business capability. Self-contained, no shared references.
+    resources:
+    - name: voice-regions
+      path: /voice/regions
+      operations:
+      - name: listvoiceregions
+        method: GET
+        description: Discord List voice regions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.DISCORD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: rest-voice-rest
+    port: 8080
+    description: REST adapter for Discord REST API — Voice. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/voice/regions
+      name: voice-regions
+      description: REST surface for voice-regions.
+      operations:
+      - method: GET
+        name: listvoiceregions
+        description: Discord List voice regions
+        call: rest-voice.listvoiceregions
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-voice-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Discord REST API — Voice. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: discord-list-voice-regions
+      description: Discord List voice regions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-voice.listvoiceregions
+      outputParameters:
+      - type: object
+        mapping: $.

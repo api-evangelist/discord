@@ -1,0 +1,146 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Discord REST API — Emojis
+  description: 'Discord REST API — Emojis. 3 operations. Lead operation: Discord List guild emojis. Self-contained Naftiko
+    capability covering one Discord business surface.'
+  tags:
+  - Discord
+  - Emojis
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    DISCORD_API_KEY: DISCORD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-emojis
+    baseUri: https://discord.com/api/v10
+    description: Discord REST API — Emojis business capability. Self-contained, no shared references.
+    resources:
+    - name: guilds-guild_id-emojis
+      path: /guilds/{guild_id}/emojis
+      operations:
+      - name: listguildemojis
+        method: GET
+        description: Discord List guild emojis
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createguildemoji
+        method: POST
+        description: Discord Create guild emoji
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: guilds-guild_id-emojis-emoji_id
+      path: /guilds/{guild_id}/emojis/{emoji_id}
+      operations:
+      - name: getguildemoji
+        method: GET
+        description: Discord Get guild emoji
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: emoji_id
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.DISCORD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: rest-emojis-rest
+    port: 8080
+    description: REST adapter for Discord REST API — Emojis. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/guilds/{guild-id}/emojis
+      name: guilds-guild-id-emojis
+      description: REST surface for guilds-guild_id-emojis.
+      operations:
+      - method: GET
+        name: listguildemojis
+        description: Discord List guild emojis
+        call: rest-emojis.listguildemojis
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createguildemoji
+        description: Discord Create guild emoji
+        call: rest-emojis.createguildemoji
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/guilds/{guild-id}/emojis/{emoji-id}
+      name: guilds-guild-id-emojis-emoji-id
+      description: REST surface for guilds-guild_id-emojis-emoji_id.
+      operations:
+      - method: GET
+        name: getguildemoji
+        description: Discord Get guild emoji
+        call: rest-emojis.getguildemoji
+        with:
+          emoji_id: rest.emoji_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-emojis-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Discord REST API — Emojis. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: discord-list-guild-emojis
+      description: Discord List guild emojis
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-emojis.listguildemojis
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-create-guild-emoji
+      description: Discord Create guild emoji
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rest-emojis.createguildemoji
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-get-guild-emoji
+      description: Discord Get guild emoji
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-emojis.getguildemoji
+      with:
+        emoji_id: tools.emoji_id
+      outputParameters:
+      - type: object
+        mapping: $.

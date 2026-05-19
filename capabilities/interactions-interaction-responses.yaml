@@ -1,0 +1,390 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Discord Interactions API — Interaction Responses
+  description: 'Discord Interactions API — Interaction Responses. 8 operations. Lead operation: Discord Create interaction
+    response. Self-contained Naftiko capability covering one Discord business surface.'
+  tags:
+  - Discord
+  - Interaction Responses
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    DISCORD_API_KEY: DISCORD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: interactions-interaction-responses
+    baseUri: https://discord.com/api/v10
+    description: Discord Interactions API — Interaction Responses business capability. Self-contained, no shared references.
+    resources:
+    - name: interactions-interaction_id-interaction_token-callback
+      path: /interactions/{interaction_id}/{interaction_token}/callback
+      operations:
+      - name: createinteractionresponse
+        method: POST
+        description: Discord Create interaction response
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: interaction_id
+          in: path
+          type: string
+          required: true
+        - name: interaction_token
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: webhooks-application_id-interaction_token
+      path: /webhooks/{application_id}/{interaction_token}
+      operations:
+      - name: createfollowupmessage
+        method: POST
+        description: Discord Create followup message
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: interaction_token
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: webhooks-application_id-interaction_token-messages-@original
+      path: /webhooks/{application_id}/{interaction_token}/messages/@original
+      operations:
+      - name: getoriginalinteractionresponse
+        method: GET
+        description: Discord Get original interaction response
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: interaction_token
+          in: path
+          type: string
+          required: true
+      - name: editoriginalinteractionresponse
+        method: PATCH
+        description: Discord Edit original interaction response
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: interaction_token
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteoriginalinteractionresponse
+        method: DELETE
+        description: Discord Delete original interaction response
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: interaction_token
+          in: path
+          type: string
+          required: true
+    - name: webhooks-application_id-interaction_token-messages-message_id
+      path: /webhooks/{application_id}/{interaction_token}/messages/{message_id}
+      operations:
+      - name: getfollowupmessage
+        method: GET
+        description: Discord Get followup message
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: interaction_token
+          in: path
+          type: string
+          required: true
+        - name: message_id
+          in: path
+          type: string
+          required: true
+      - name: editfollowupmessage
+        method: PATCH
+        description: Discord Edit followup message
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: interaction_token
+          in: path
+          type: string
+          required: true
+        - name: message_id
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletefollowupmessage
+        method: DELETE
+        description: Discord Delete followup message
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: interaction_token
+          in: path
+          type: string
+          required: true
+        - name: message_id
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.DISCORD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: interactions-interaction-responses-rest
+    port: 8080
+    description: REST adapter for Discord Interactions API — Interaction Responses. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/interactions/{interaction-id}/{interaction-token}/callback
+      name: interactions-interaction-id-interaction-token-callback
+      description: REST surface for interactions-interaction_id-interaction_token-callback.
+      operations:
+      - method: POST
+        name: createinteractionresponse
+        description: Discord Create interaction response
+        call: interactions-interaction-responses.createinteractionresponse
+        with:
+          interaction_id: rest.interaction_id
+          interaction_token: rest.interaction_token
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/webhooks/{application-id}/{interaction-token}
+      name: webhooks-application-id-interaction-token
+      description: REST surface for webhooks-application_id-interaction_token.
+      operations:
+      - method: POST
+        name: createfollowupmessage
+        description: Discord Create followup message
+        call: interactions-interaction-responses.createfollowupmessage
+        with:
+          interaction_token: rest.interaction_token
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/webhooks/{application-id}/{interaction-token}/messages/original
+      name: webhooks-application-id-interaction-token-messages-original
+      description: REST surface for webhooks-application_id-interaction_token-messages-@original.
+      operations:
+      - method: GET
+        name: getoriginalinteractionresponse
+        description: Discord Get original interaction response
+        call: interactions-interaction-responses.getoriginalinteractionresponse
+        with:
+          interaction_token: rest.interaction_token
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: editoriginalinteractionresponse
+        description: Discord Edit original interaction response
+        call: interactions-interaction-responses.editoriginalinteractionresponse
+        with:
+          interaction_token: rest.interaction_token
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteoriginalinteractionresponse
+        description: Discord Delete original interaction response
+        call: interactions-interaction-responses.deleteoriginalinteractionresponse
+        with:
+          interaction_token: rest.interaction_token
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/webhooks/{application-id}/{interaction-token}/messages/{message-id}
+      name: webhooks-application-id-interaction-token-messages-message-id
+      description: REST surface for webhooks-application_id-interaction_token-messages-message_id.
+      operations:
+      - method: GET
+        name: getfollowupmessage
+        description: Discord Get followup message
+        call: interactions-interaction-responses.getfollowupmessage
+        with:
+          interaction_token: rest.interaction_token
+          message_id: rest.message_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: editfollowupmessage
+        description: Discord Edit followup message
+        call: interactions-interaction-responses.editfollowupmessage
+        with:
+          interaction_token: rest.interaction_token
+          message_id: rest.message_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletefollowupmessage
+        description: Discord Delete followup message
+        call: interactions-interaction-responses.deletefollowupmessage
+        with:
+          interaction_token: rest.interaction_token
+          message_id: rest.message_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: interactions-interaction-responses-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Discord Interactions API — Interaction Responses. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: discord-create-interaction-response
+      description: Discord Create interaction response
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: interactions-interaction-responses.createinteractionresponse
+      with:
+        interaction_id: tools.interaction_id
+        interaction_token: tools.interaction_token
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-create-followup-message
+      description: Discord Create followup message
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: interactions-interaction-responses.createfollowupmessage
+      with:
+        interaction_token: tools.interaction_token
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-get-original-interaction-response
+      description: Discord Get original interaction response
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: interactions-interaction-responses.getoriginalinteractionresponse
+      with:
+        interaction_token: tools.interaction_token
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-edit-original-interaction-response
+      description: Discord Edit original interaction response
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: interactions-interaction-responses.editoriginalinteractionresponse
+      with:
+        interaction_token: tools.interaction_token
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-delete-original-interaction-response
+      description: Discord Delete original interaction response
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: interactions-interaction-responses.deleteoriginalinteractionresponse
+      with:
+        interaction_token: tools.interaction_token
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-get-followup-message
+      description: Discord Get followup message
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: interactions-interaction-responses.getfollowupmessage
+      with:
+        interaction_token: tools.interaction_token
+        message_id: tools.message_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-edit-followup-message
+      description: Discord Edit followup message
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: interactions-interaction-responses.editfollowupmessage
+      with:
+        interaction_token: tools.interaction_token
+        message_id: tools.message_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: discord-delete-followup-message
+      description: Discord Delete followup message
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: interactions-interaction-responses.deletefollowupmessage
+      with:
+        interaction_token: tools.interaction_token
+        message_id: tools.message_id
+      outputParameters:
+      - type: object
+        mapping: $.
