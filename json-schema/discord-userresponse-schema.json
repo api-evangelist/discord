@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UserResponse",
+  "title": "UserResponse",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "username": {
+      "type": "string"
+    },
+    "avatar": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "discriminator": {
+      "type": "string"
+    },
+    "public_flags": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "flags": {
+      "$ref": "#/components/schemas/Int53Type"
+    },
+    "bot": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "system": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "banner": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "accent_color": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "global_name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "username",
+    "discriminator",
+    "public_flags",
+    "flags"
+  ]
+}

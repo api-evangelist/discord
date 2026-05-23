@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MessageReactionResponse",
+  "title": "MessageReactionResponse",
+  "type": "object",
+  "properties": {
+    "emoji": {
+      "$ref": "#/components/schemas/MessageReactionEmojiResponse"
+    },
+    "count": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "count_details": {
+      "$ref": "#/components/schemas/MessageReactionCountDetailsResponse"
+    },
+    "burst_colors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "me_burst": {
+      "type": "boolean"
+    },
+    "me": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "emoji",
+    "count",
+    "count_details",
+    "burst_colors",
+    "me_burst",
+    "me"
+  ]
+}

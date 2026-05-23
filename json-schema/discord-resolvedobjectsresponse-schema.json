@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ResolvedObjectsResponse",
+  "title": "ResolvedObjectsResponse",
+  "type": "object",
+  "properties": {
+    "users": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/components/schemas/UserResponse"
+      }
+    },
+    "members": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/components/schemas/GuildMemberResponse"
+      }
+    },
+    "channels": {
+      "type": "object",
+      "additionalProperties": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/GuildChannelResponse"
+          },
+          {
+            "$ref": "#/components/schemas/PrivateChannelResponse"
+          },
+          {
+            "$ref": "#/components/schemas/PrivateGroupChannelResponse"
+          },
+          {
+            "$ref": "#/components/schemas/ThreadResponse"
+          }
+        ]
+      }
+    },
+    "roles": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/components/schemas/GuildRoleResponse"
+      }
+    }
+  },
+  "required": [
+    "users",
+    "members",
+    "channels",
+    "roles"
+  ]
+}

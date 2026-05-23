@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConnectedAccountGuildResponse",
+  "title": "ConnectedAccountGuildResponse",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "name": {
+      "type": "string"
+    },
+    "icon": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "name"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApplicationCommandOptionStringChoiceResponse",
+  "title": "ApplicationCommandOptionStringChoiceResponse",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "name_localized": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "name_localizations": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "value": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "name",
+    "value"
+  ]
+}

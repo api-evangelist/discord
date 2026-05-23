@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TeamResponse",
+  "title": "TeamResponse",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "icon": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "name": {
+      "type": "string"
+    },
+    "owner_user_id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "members": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/TeamMemberResponse"
+      }
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "owner_user_id",
+    "members"
+  ]
+}

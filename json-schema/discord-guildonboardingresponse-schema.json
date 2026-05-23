@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GuildOnboardingResponse",
+  "title": "GuildOnboardingResponse",
+  "type": "object",
+  "properties": {
+    "guild_id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "prompts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/OnboardingPromptResponse"
+      }
+    },
+    "default_channel_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/SnowflakeType"
+      },
+      "uniqueItems": true
+    },
+    "enabled": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "guild_id",
+    "prompts",
+    "default_channel_ids",
+    "enabled"
+  ]
+}

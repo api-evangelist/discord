@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApplicationCommand",
+  "title": "ApplicationCommand",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Snowflake"
+    },
+    "type": {
+      "type": "integer",
+      "description": "1=CHAT_INPUT, 2=USER, 3=MESSAGE"
+    },
+    "application_id": {
+      "$ref": "#/components/schemas/Snowflake"
+    },
+    "guild_id": {
+      "$ref": "#/components/schemas/Snowflake"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 32
+    },
+    "name_localizations": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "nullable": true
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "description_localizations": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "nullable": true
+    },
+    "options": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ApplicationCommandOption"
+      },
+      "maxItems": 25
+    },
+    "default_member_permissions": {
+      "type": "string",
+      "nullable": true
+    },
+    "dm_permission": {
+      "type": "boolean"
+    },
+    "default_permission": {
+      "type": "boolean",
+      "deprecated": true
+    },
+    "nsfw": {
+      "type": "boolean"
+    },
+    "version": {
+      "$ref": "#/components/schemas/Snowflake"
+    }
+  },
+  "required": [
+    "id",
+    "application_id",
+    "name",
+    "description"
+  ]
+}

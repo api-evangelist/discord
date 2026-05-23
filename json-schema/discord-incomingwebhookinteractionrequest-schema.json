@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/IncomingWebhookInteractionRequest",
+  "title": "IncomingWebhookInteractionRequest",
+  "type": "object",
+  "properties": {
+    "content": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 2000
+    },
+    "embeds": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/components/schemas/RichEmbed"
+      },
+      "maxItems": 10
+    },
+    "allowed_mentions": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/MessageAllowedMentionsRequest"
+        }
+      ]
+    },
+    "components": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/components/schemas/ActionRow"
+      },
+      "maxItems": 5
+    },
+    "attachments": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/components/schemas/MessageAttachmentRequest"
+      },
+      "maxItems": 10
+    },
+    "tts": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "flags": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    }
+  }
+}

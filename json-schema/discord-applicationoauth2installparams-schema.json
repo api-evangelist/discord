@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApplicationOAuth2InstallParams",
+  "title": "ApplicationOAuth2InstallParams",
+  "type": "object",
+  "properties": {
+    "scopes": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string",
+        "enum": [
+          "applications.commands",
+          "bot"
+        ],
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/OAuth2Scopes"
+          }
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "permissions": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 2251799813685247
+    }
+  }
+}

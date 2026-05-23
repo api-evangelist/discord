@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MessageAllowedMentionsRequest",
+  "title": "MessageAllowedMentionsRequest",
+  "type": "object",
+  "properties": {
+    "parse": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "oneOf": [
+          {
+            "type": "null"
+          },
+          {
+            "$ref": "#/components/schemas/AllowedMentionTypes"
+          }
+        ]
+      },
+      "maxItems": 1521,
+      "uniqueItems": true
+    },
+    "users": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "oneOf": [
+          {
+            "type": "null"
+          },
+          {
+            "$ref": "#/components/schemas/SnowflakeType"
+          }
+        ]
+      },
+      "maxItems": 100,
+      "uniqueItems": true
+    },
+    "roles": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "oneOf": [
+          {
+            "type": "null"
+          },
+          {
+            "$ref": "#/components/schemas/SnowflakeType"
+          }
+        ]
+      },
+      "maxItems": 100,
+      "uniqueItems": true
+    },
+    "replied_user": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WidgetChannel",
+  "title": "WidgetChannel",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "name": {
+      "type": "string"
+    },
+    "position": {
+      "type": "integer",
+      "format": "int32"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "position"
+  ]
+}

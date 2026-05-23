@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RoleTags",
+  "title": "RoleTags",
+  "type": "object",
+  "properties": {
+    "bot_id": {
+      "$ref": "#/components/schemas/Snowflake"
+    },
+    "integration_id": {
+      "$ref": "#/components/schemas/Snowflake"
+    },
+    "premium_subscriber": {
+      "type": "null"
+    },
+    "subscription_listing_id": {
+      "$ref": "#/components/schemas/Snowflake"
+    },
+    "available_for_purchase": {
+      "type": "null"
+    },
+    "guild_connections": {
+      "type": "null"
+    }
+  }
+}

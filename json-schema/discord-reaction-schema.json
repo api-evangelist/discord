@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Reaction",
+  "title": "Reaction",
+  "type": "object",
+  "properties": {
+    "count": {
+      "type": "integer"
+    },
+    "count_details": {
+      "type": "object",
+      "properties": {
+        "burst": {
+          "type": "integer"
+        },
+        "normal": {
+          "type": "integer"
+        }
+      }
+    },
+    "me": {
+      "type": "boolean"
+    },
+    "me_burst": {
+      "type": "boolean"
+    },
+    "emoji": {
+      "$ref": "#/components/schemas/Emoji"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApplicationCommandType",
+  "title": "ApplicationCommandType",
+  "type": "integer",
+  "oneOf": [
+    {
+      "title": "CHAT",
+      "description": "Slash commands; a text-based command that shows up when a user types /",
+      "const": 1
+    },
+    {
+      "title": "USER",
+      "description": "A UI-based command that shows up when you right click or tap on a user",
+      "const": 2
+    },
+    {
+      "title": "MESSAGE",
+      "description": "A UI-based command that shows up when you right click or tap on a message",
+      "const": 3
+    }
+  ],
+  "format": "int32"
+}

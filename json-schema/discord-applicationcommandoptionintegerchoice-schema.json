@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApplicationCommandOptionIntegerChoice",
+  "title": "ApplicationCommandOptionIntegerChoice",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "name_localizations": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 100
+      },
+      "maxProperties": 34
+    },
+    "value": {
+      "$ref": "#/components/schemas/Int53Type"
+    }
+  },
+  "required": [
+    "name",
+    "value"
+  ]
+}

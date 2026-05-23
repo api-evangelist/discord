@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TeamMemberResponse",
+  "title": "TeamMemberResponse",
+  "type": "object",
+  "properties": {
+    "user": {
+      "$ref": "#/components/schemas/UserResponse"
+    },
+    "team_id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "membership_state": {
+      "$ref": "#/components/schemas/TeamMembershipStates"
+    }
+  },
+  "required": [
+    "user",
+    "team_id",
+    "membership_state"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MentionSpamTriggerMetadataResponse",
+  "title": "MentionSpamTriggerMetadataResponse",
+  "type": "object",
+  "properties": {
+    "mention_total_limit": {
+      "type": "integer",
+      "format": "int32"
+    }
+  },
+  "required": [
+    "mention_total_limit"
+  ]
+}

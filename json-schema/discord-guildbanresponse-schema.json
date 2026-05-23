@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GuildBanResponse",
+  "title": "GuildBanResponse",
+  "type": "object",
+  "properties": {
+    "user": {
+      "$ref": "#/components/schemas/UserResponse"
+    },
+    "reason": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "user"
+  ]
+}

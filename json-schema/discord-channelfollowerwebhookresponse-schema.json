@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ChannelFollowerWebhookResponse",
+  "title": "ChannelFollowerWebhookResponse",
+  "type": "object",
+  "properties": {
+    "application_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "avatar": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "channel_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "guild_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "name": {
+      "type": "string"
+    },
+    "type": {
+      "type": "integer",
+      "enum": [
+        2
+      ],
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/WebhookTypes"
+        }
+      ],
+      "format": "int32"
+    },
+    "user": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/UserResponse"
+        }
+      ]
+    },
+    "source_guild": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/WebhookSourceGuildResponse"
+        }
+      ]
+    },
+    "source_channel": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/WebhookSourceChannelResponse"
+        }
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "type"
+  ]
+}

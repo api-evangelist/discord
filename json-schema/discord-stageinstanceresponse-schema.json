@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/StageInstanceResponse",
+  "title": "StageInstanceResponse",
+  "type": "object",
+  "properties": {
+    "guild_id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "channel_id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "topic": {
+      "type": "string"
+    },
+    "privacy_level": {
+      "$ref": "#/components/schemas/StageInstancesPrivacyLevels"
+    },
+    "id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "discoverable_disabled": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "guild_scheduled_event_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    }
+  },
+  "required": [
+    "guild_id",
+    "channel_id",
+    "topic",
+    "privacy_level",
+    "id"
+  ]
+}

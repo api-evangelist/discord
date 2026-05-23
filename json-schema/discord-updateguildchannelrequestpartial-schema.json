@@ -1,0 +1,184 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpdateGuildChannelRequestPartial",
+  "title": "UpdateGuildChannelRequestPartial",
+  "type": "object",
+  "properties": {
+    "type": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "integer",
+          "enum": [
+            0,
+            2,
+            4,
+            5,
+            13,
+            14,
+            15
+          ],
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/ChannelTypes"
+            }
+          ],
+          "format": "int32"
+        }
+      ]
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "position": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0,
+      "format": "int32"
+    },
+    "topic": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 0,
+      "maxLength": 4096
+    },
+    "bitrate": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 8000,
+      "format": "int32"
+    },
+    "user_limit": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0,
+      "format": "int32"
+    },
+    "nsfw": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "rate_limit_per_user": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 21600
+    },
+    "parent_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "permission_overwrites": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/components/schemas/ChannelPermissionOverwriteRequest"
+      },
+      "maxItems": 100
+    },
+    "rtc_region": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "video_quality_mode": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/VideoQualityModes"
+        }
+      ]
+    },
+    "default_auto_archive_duration": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/ThreadAutoArchiveDuration"
+        }
+      ]
+    },
+    "default_reaction_emoji": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/UpdateDefaultReactionEmojiRequest"
+        }
+      ]
+    },
+    "default_thread_rate_limit_per_user": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 21600
+    },
+    "default_sort_order": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/ThreadSortOrder"
+        }
+      ]
+    },
+    "default_forum_layout": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/ForumLayout"
+        }
+      ]
+    },
+    "flags": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "available_tags": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/components/schemas/UpdateThreadTagRequest"
+      },
+      "maxItems": 20
+    }
+  }
+}

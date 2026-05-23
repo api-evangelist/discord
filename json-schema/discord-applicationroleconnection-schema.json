@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApplicationRoleConnection",
+  "title": "ApplicationRoleConnection",
+  "type": "object",
+  "properties": {
+    "platform_name": {
+      "type": "string",
+      "nullable": true,
+      "description": "Vanity name of the platform (max 50 chars)",
+      "maxLength": 50
+    },
+    "platform_username": {
+      "type": "string",
+      "nullable": true,
+      "description": "Username on the platform (max 100 chars)",
+      "maxLength": 100
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Object mapping metadata keys to their string-ified values"
+    }
+  }
+}

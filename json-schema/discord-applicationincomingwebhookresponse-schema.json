@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApplicationIncomingWebhookResponse",
+  "title": "ApplicationIncomingWebhookResponse",
+  "type": "object",
+  "properties": {
+    "application_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "avatar": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "channel_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "guild_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "name": {
+      "type": "string"
+    },
+    "type": {
+      "type": "integer",
+      "enum": [
+        3
+      ],
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/WebhookTypes"
+        }
+      ],
+      "format": "int32"
+    },
+    "user": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/UserResponse"
+        }
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "type"
+  ]
+}

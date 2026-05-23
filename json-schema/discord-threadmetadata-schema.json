@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ThreadMetadata",
+  "title": "ThreadMetadata",
+  "type": "object",
+  "properties": {
+    "archived": {
+      "type": "boolean"
+    },
+    "auto_archive_duration": {
+      "type": "integer"
+    },
+    "archive_timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "locked": {
+      "type": "boolean"
+    },
+    "invitable": {
+      "type": "boolean"
+    },
+    "create_timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "nullable": true
+    }
+  }
+}

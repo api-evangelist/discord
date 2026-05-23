@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpdateThreadRequestPartial",
+  "title": "UpdateThreadRequestPartial",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 0,
+      "maxLength": 100
+    },
+    "archived": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "locked": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "invitable": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "auto_archive_duration": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/ThreadAutoArchiveDuration"
+        }
+      ]
+    },
+    "rate_limit_per_user": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 21600
+    },
+    "flags": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "applied_tags": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/components/schemas/SnowflakeType"
+      },
+      "maxItems": 5
+    },
+    "bitrate": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 8000,
+      "format": "int32"
+    },
+    "user_limit": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 99
+    },
+    "rtc_region": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "video_quality_mode": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/VideoQualityModes"
+        }
+      ]
+    }
+  }
+}

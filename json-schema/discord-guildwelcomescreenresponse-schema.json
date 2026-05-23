@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GuildWelcomeScreenResponse",
+  "title": "GuildWelcomeScreenResponse",
+  "type": "object",
+  "properties": {
+    "description": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "welcome_channels": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/GuildWelcomeScreenChannelResponse"
+      }
+    }
+  },
+  "required": [
+    "welcome_channels"
+  ]
+}

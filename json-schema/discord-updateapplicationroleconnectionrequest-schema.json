@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpdateApplicationRoleConnectionRequest",
+  "title": "UpdateApplicationRoleConnectionRequest",
+  "type": "object",
+  "properties": {
+    "platform_name": {
+      "type": "string",
+      "maxLength": 50
+    },
+    "platform_username": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  }
+}

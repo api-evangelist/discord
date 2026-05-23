@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/VoiceScheduledEventResponse",
+  "title": "VoiceScheduledEventResponse",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "guild_id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "channel_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "creator_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "creator": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/UserResponse"
+        }
+      ]
+    },
+    "image": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "scheduled_start_time": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "scheduled_end_time": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "status": {
+      "$ref": "#/components/schemas/GuildScheduledEventStatuses"
+    },
+    "entity_type": {
+      "type": "integer",
+      "enum": [
+        2
+      ],
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/GuildScheduledEventEntityTypes"
+        }
+      ],
+      "format": "int32"
+    },
+    "entity_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "user_count": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "privacy_level": {
+      "$ref": "#/components/schemas/GuildScheduledEventPrivacyLevels"
+    },
+    "user_rsvp": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/ScheduledEventUserResponse"
+        }
+      ]
+    },
+    "entity_metadata": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/EntityMetadataVoiceResponse"
+        }
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "guild_id",
+    "name",
+    "scheduled_start_time",
+    "status",
+    "entity_type",
+    "privacy_level"
+  ]
+}

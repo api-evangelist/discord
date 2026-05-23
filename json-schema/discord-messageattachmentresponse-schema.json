@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MessageAttachmentResponse",
+  "title": "MessageAttachmentResponse",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "filename": {
+      "type": "string"
+    },
+    "size": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "proxy_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "width": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "height": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "duration_secs": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "format": "double"
+    },
+    "waveform": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "description": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "content_type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "ephemeral": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "title": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "application": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/ApplicationResponse"
+        }
+      ]
+    },
+    "clip_created_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "clip_participants": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/components/schemas/UserResponse"
+      }
+    }
+  },
+  "required": [
+    "id",
+    "filename",
+    "size",
+    "url",
+    "proxy_url"
+  ]
+}

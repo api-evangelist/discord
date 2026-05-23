@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GuildRoleResponse",
+  "title": "GuildRoleResponse",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "permissions": {
+      "type": "string"
+    },
+    "position": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "color": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "hoist": {
+      "type": "boolean"
+    },
+    "managed": {
+      "type": "boolean"
+    },
+    "mentionable": {
+      "type": "boolean"
+    },
+    "icon": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "unicode_emoji": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "tags": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/GuildRoleTagsResponse"
+        }
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "permissions",
+    "position",
+    "color",
+    "hoist",
+    "managed",
+    "mentionable"
+  ]
+}

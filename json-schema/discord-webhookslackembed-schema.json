@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WebhookSlackEmbed",
+  "title": "WebhookSlackEmbed",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 152133
+    },
+    "title_link": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 2048,
+      "format": "uri"
+    },
+    "text": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 152133
+    },
+    "color": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 7,
+      "pattern": "^#(([0-9a-fA-F]{2}){3}|([0-9a-fA-F]){3})$"
+    },
+    "ts": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "pretext": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 152133
+    },
+    "footer": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 152133
+    },
+    "footer_icon": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 2048,
+      "format": "uri"
+    },
+    "author_name": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 152133
+    },
+    "author_link": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 2048,
+      "format": "uri"
+    },
+    "author_icon": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 2048,
+      "format": "uri"
+    },
+    "image_url": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 2048,
+      "format": "uri"
+    },
+    "thumb_url": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 2048,
+      "format": "uri"
+    },
+    "fields": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/components/schemas/WebhookSlackEmbedField"
+      },
+      "maxItems": 1521
+    }
+  }
+}

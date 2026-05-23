@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FlagToChannelActionMetadataResponse",
+  "title": "FlagToChannelActionMetadataResponse",
+  "type": "object",
+  "properties": {
+    "channel_id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    }
+  },
+  "required": [
+    "channel_id"
+  ]
+}

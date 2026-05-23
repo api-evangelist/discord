@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GatewayBotResponse",
+  "title": "GatewayBotResponse",
+  "type": "object",
+  "properties": {
+    "url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "session_start_limit": {
+      "$ref": "#/components/schemas/GatewayBotSessionStartLimitResponse"
+    },
+    "shards": {
+      "type": "integer",
+      "format": "int32"
+    }
+  },
+  "required": [
+    "url",
+    "session_start_limit",
+    "shards"
+  ]
+}

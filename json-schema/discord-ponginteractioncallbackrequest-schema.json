@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PongInteractionCallbackRequest",
+  "title": "PongInteractionCallbackRequest",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "integer",
+      "enum": [
+        1
+      ],
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/InteractionCallbackTypes"
+        }
+      ],
+      "format": "int32"
+    }
+  },
+  "required": [
+    "type"
+  ]
+}

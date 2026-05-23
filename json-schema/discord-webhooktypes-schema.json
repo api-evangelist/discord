@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WebhookTypes",
+  "title": "WebhookTypes",
+  "type": "integer",
+  "oneOf": [
+    {
+      "title": "GUILD_INCOMING",
+      "description": "Incoming Webhooks can post messages to channels with a generated token",
+      "const": 1
+    },
+    {
+      "title": "CHANNEL_FOLLOWER",
+      "description": "Channel Follower Webhooks are internal webhooks used with Channel Following to post new messages into channels",
+      "const": 2
+    },
+    {
+      "title": "APPLICATION_INCOMING",
+      "description": "Application webhooks are webhooks used with Interactions",
+      "const": 3
+    }
+  ],
+  "format": "int32"
+}

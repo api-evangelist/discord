@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Invite",
+  "title": "Invite",
+  "type": "object",
+  "properties": {
+    "code": {
+      "type": "string"
+    },
+    "guild": {
+      "$ref": "#/components/schemas/Guild"
+    },
+    "channel": {
+      "$ref": "#/components/schemas/Channel"
+    },
+    "inviter": {
+      "$ref": "#/components/schemas/User"
+    },
+    "target_type": {
+      "type": "integer"
+    },
+    "target_user": {
+      "$ref": "#/components/schemas/User"
+    },
+    "approximate_presence_count": {
+      "type": "integer"
+    },
+    "approximate_member_count": {
+      "type": "integer"
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time",
+      "nullable": true
+    },
+    "uses": {
+      "type": "integer"
+    },
+    "max_uses": {
+      "type": "integer"
+    },
+    "max_age": {
+      "type": "integer"
+    },
+    "temporary": {
+      "type": "boolean"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

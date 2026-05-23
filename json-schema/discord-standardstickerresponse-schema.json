@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/StandardStickerResponse",
+  "title": "StandardStickerResponse",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "name": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "string"
+    },
+    "type": {
+      "type": "integer",
+      "enum": [
+        1
+      ],
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/StickerTypes"
+        }
+      ],
+      "format": "int32"
+    },
+    "format_type": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/StickerFormatTypes"
+        }
+      ]
+    },
+    "description": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "pack_id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "sort_value": {
+      "type": "integer",
+      "format": "int32"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "tags",
+    "type",
+    "pack_id",
+    "sort_value"
+  ]
+}

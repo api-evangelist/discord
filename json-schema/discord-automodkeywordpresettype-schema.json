@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AutomodKeywordPresetType",
+  "title": "AutomodKeywordPresetType",
+  "type": "integer",
+  "oneOf": [
+    {
+      "title": "PROFANITY",
+      "description": "Words and phrases that may be considered profanity",
+      "const": 1
+    },
+    {
+      "title": "SEXUAL_CONTENT",
+      "description": "Words and phrases that may be considered as sexual content",
+      "const": 2
+    },
+    {
+      "title": "SLURS",
+      "description": "Words and phrases that may be considered slurs and hate speech",
+      "const": 3
+    }
+  ],
+  "format": "int32"
+}

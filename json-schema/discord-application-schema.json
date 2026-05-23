@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Application",
+  "title": "Application",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "icon": {
+      "type": "string",
+      "nullable": true
+    },
+    "description": {
+      "type": "string"
+    },
+    "bot_public": {
+      "type": "boolean"
+    },
+    "bot_require_code_grant": {
+      "type": "boolean"
+    },
+    "verify_key": {
+      "type": "string"
+    },
+    "flags": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "description"
+  ]
+}

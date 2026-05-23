@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ChannelPermissionOverwriteResponse",
+  "title": "ChannelPermissionOverwriteResponse",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "type": {
+      "$ref": "#/components/schemas/ChannelPermissionOverwrites"
+    },
+    "allow": {
+      "type": "string"
+    },
+    "deny": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "type",
+    "allow",
+    "deny"
+  ]
+}

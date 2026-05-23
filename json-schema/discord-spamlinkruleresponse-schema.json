@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SpamLinkRuleResponse",
+  "title": "SpamLinkRuleResponse",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "guild_id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "creator_id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "name": {
+      "type": "string"
+    },
+    "event_type": {
+      "$ref": "#/components/schemas/AutomodEventType"
+    },
+    "actions": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/BlockMessageActionResponse"
+          },
+          {
+            "$ref": "#/components/schemas/FlagToChannelActionResponse"
+          },
+          {
+            "$ref": "#/components/schemas/QuarantineUserActionResponse"
+          },
+          {
+            "$ref": "#/components/schemas/UserCommunicationDisabledActionResponse"
+          }
+        ]
+      }
+    },
+    "trigger_type": {
+      "type": "integer",
+      "enum": [
+        2
+      ],
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/AutomodTriggerType"
+        }
+      ],
+      "format": "int32"
+    },
+    "enabled": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "exempt_roles": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/components/schemas/SnowflakeType"
+      },
+      "uniqueItems": true
+    },
+    "exempt_channels": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/components/schemas/SnowflakeType"
+      },
+      "uniqueItems": true
+    },
+    "trigger_metadata": {
+      "$ref": "#/components/schemas/SpamLinkTriggerMetadataResponse"
+    }
+  },
+  "required": [
+    "id",
+    "guild_id",
+    "creator_id",
+    "name",
+    "event_type",
+    "actions",
+    "trigger_type",
+    "trigger_metadata"
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ExternalConnectionIntegrationResponse",
+  "title": "ExternalConnectionIntegrationResponse",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "twitch",
+        "youtube"
+      ],
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/IntegrationTypes"
+        }
+      ]
+    },
+    "name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "account": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/AccountResponse"
+        }
+      ]
+    },
+    "enabled": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "id": {
+      "type": "string"
+    },
+    "user": {
+      "$ref": "#/components/schemas/UserResponse"
+    },
+    "revoked": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "expire_behavior": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/IntegrationExpireBehaviorTypes"
+        }
+      ]
+    },
+    "expire_grace_period": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/IntegrationExpireGracePeriodTypes"
+        }
+      ]
+    },
+    "subscriber_count": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "synced_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "role_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "syncing": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "enable_emoticons": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "id",
+    "user"
+  ]
+}

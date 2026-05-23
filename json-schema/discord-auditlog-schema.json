@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AuditLog",
+  "title": "AuditLog",
+  "type": "object",
+  "properties": {
+    "application_commands": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "audit_log_entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/Snowflake"
+          },
+          "target_id": {
+            "type": "string",
+            "nullable": true
+          },
+          "user_id": {
+            "$ref": "#/components/schemas/Snowflake"
+          },
+          "action_type": {
+            "type": "integer"
+          },
+          "reason": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "integrations": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "threads": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Channel"
+      }
+    },
+    "users": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/User"
+      }
+    },
+    "webhooks": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Webhook"
+      }
+    }
+  }
+}

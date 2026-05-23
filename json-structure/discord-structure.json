@@ -1,0 +1,4977 @@
+{
+  "provider": "Discord",
+  "providerId": "discord",
+  "kind": "json-structure",
+  "description": "Structural overview of the Discord API surface; extracted from openapi/.",
+  "schemaCount": 377,
+  "operationCount": 183,
+  "schemas": [
+    {
+      "name": "AccountResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "id"
+      ]
+    },
+    {
+      "name": "ActionRow",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "type",
+        "components"
+      ]
+    },
+    {
+      "name": "AfkTimeouts",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "AllowedMentionTypes",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ApplicationCommandAttachmentOption",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "type",
+        "name",
+        "description"
+      ]
+    },
+    {
+      "name": "ApplicationCommandAttachmentOptionResponse",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "type",
+        "name",
+        "description"
+      ]
+    },
+    {
+      "name": "ApplicationCommandAutocompleteCallbackRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "type",
+        "data"
+      ]
+    },
+    {
+      "name": "ApplicationCommandBooleanOption",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "type",
+        "name",
+        "description"
+      ]
+    },
+    {
+      "name": "ApplicationCommandBooleanOptionResponse",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "type",
+        "name",
+        "description"
+      ]
+    },
+    {
+      "name": "ApplicationCommandChannelOption",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "type",
+        "name",
+        "description"
+      ]
+    },
+    {
+      "name": "ApplicationCommandChannelOptionResponse",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "type",
+        "name",
+        "description"
+      ]
+    },
+    {
+      "name": "ApplicationCommandCreateRequest",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "ApplicationCommandIntegerOption",
+      "type": "object",
+      "propertyCount": 10,
+      "required": [
+        "type",
+        "name",
+        "description"
+      ]
+    },
+    {
+      "name": "ApplicationCommandIntegerOptionResponse",
+      "type": "object",
+      "propertyCount": 12,
+      "required": [
+        "type",
+        "name",
+        "description"
+      ]
+    },
+    {
+      "name": "ApplicationCommandMentionableOption",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "type",
+        "name",
+        "description"
+      ]
+    },
+    {
+      "name": "ApplicationCommandMentionableOptionResponse",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "type",
+        "name",
+        "description"
+      ]
+    },
+    {
+      "name": "ApplicationCommandNumberOption",
+      "type": "object",
+      "propertyCount": 10,
+      "required": [
+        "type",
+        "name",
+        "description"
+      ]
+    },
+    {
+      "name": "ApplicationCommandNumberOptionResponse",
+      "type": "object",
+      "propertyCount": 12,
+      "required": [
+        "type",
+        "name",
+        "description"
+      ]
+    },
+    {
+      "name": "ApplicationCommandOptionIntegerChoice",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "name",
+        "value"
+      ]
+    },
+    {
+      "name": "ApplicationCommandOptionIntegerChoiceResponse",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "name",
+        "value"
+      ]
+    },
+    {
+      "name": "ApplicationCommandOptionNumberChoice",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "name",
+        "value"
+      ]
+    },
+    {
+      "name": "ApplicationCommandOptionNumberChoiceResponse",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "name",
+        "value"
+      ]
+    },
+    {
+      "name": "ApplicationCommandOptionStringChoice",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "name",
+        "value"
+      ]
+    },
+    {
+      "name": "ApplicationCommandOptionStringChoiceResponse",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "name",
+        "value"
+      ]
+    },
+    {
+      "name": "ApplicationCommandOptionType",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ApplicationCommandPatchRequestPartial",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "ApplicationCommandPermission",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "id",
+        "type",
+        "permission"
+      ]
+    },
+    {
+      "name": "ApplicationCommandPermissionType",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ApplicationCommandResponse",
+      "type": "object",
+      "propertyCount": 15,
+      "required": [
+        "id",
+        "application_id",
+        "version",
+        "type",
+        "name",
+        "description"
+      ]
+    },
+    {
+      "name": "ApplicationCommandRoleOption",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "type",
+        "name",
+        "description"
+      ]
+    },
+    {
+      "name": "ApplicationCommandRoleOptionResponse",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "type",
+        "name",
+        "description"
+      ]
+    },
+    {
+      "name": "ApplicationCommandStringOption",
+      "type": "object",
+      "propertyCount": 10,
+      "required": [
+        "type",
+        "name",
+        "description"
+      ]
+    },
+    {
+      "name": "ApplicationCommandStringOptionResponse",
+      "type": "object",
+      "propertyCount": 12,
+      "required": [
+        "type",
+        "name",
+        "description"
+      ]
+    },
+    {
+      "name": "ApplicationCommandSubcommandGroupOption",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "type",
+        "name",
+        "description"
+      ]
+    },
+    {
+      "name": "ApplicationCommandSubcommandGroupOptionResponse",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "type",
+        "name",
+        "description"
+      ]
+    },
+    {
+      "name": "ApplicationCommandSubcommandOption",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "type",
+        "name",
+        "description"
+      ]
+    },
+    {
+      "name": "ApplicationCommandSubcommandOptionResponse",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "type",
+        "name",
+        "description"
+      ]
+    },
+    {
+      "name": "ApplicationCommandType",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ApplicationCommandUpdateRequest",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "ApplicationCommandUserOption",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "type",
+        "name",
+        "description"
+      ]
+    },
+    {
+      "name": "ApplicationCommandUserOptionResponse",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "type",
+        "name",
+        "description"
+      ]
+    },
+    {
+      "name": "ApplicationFormPartial",
+      "type": "object",
+      "propertyCount": 12,
+      "required": []
+    },
+    {
+      "name": "ApplicationIncomingWebhookResponse",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "id",
+        "name",
+        "type"
+      ]
+    },
+    {
+      "name": "ApplicationOAuth2InstallParams",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "ApplicationOAuth2InstallParamsResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "scopes",
+        "permissions"
+      ]
+    },
+    {
+      "name": "ApplicationResponse",
+      "type": "object",
+      "propertyCount": 21,
+      "required": [
+        "id",
+        "name",
+        "description",
+        "verify_key",
+        "flags"
+      ]
+    },
+    {
+      "name": "ApplicationRoleConnectionsMetadataItemRequest",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "type",
+        "key",
+        "name",
+        "description"
+      ]
+    },
+    {
+      "name": "ApplicationRoleConnectionsMetadataItemResponse",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "type",
+        "key",
+        "name",
+        "description"
+      ]
+    },
+    {
+      "name": "ApplicationTypes",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ApplicationUserRoleConnectionResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "AuditLogActionTypes",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "AuditLogEntryResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "id",
+        "action_type"
+      ]
+    },
+    {
+      "name": "AuditLogObjectChangeResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "AutomodActionType",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "AutomodEventType",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "AutomodKeywordPresetType",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "AutomodTriggerType",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "AvailableLocalesEnum",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "BaseCreateMessageCreateRequest",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "BasicApplicationResponse",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "id",
+        "name",
+        "description"
+      ]
+    },
+    {
+      "name": "BasicMessageResponse",
+      "type": "object",
+      "propertyCount": 32,
+      "required": [
+        "type",
+        "channel_id",
+        "content",
+        "attachments",
+        "embeds",
+        "timestamp",
+        "flags",
+        "components",
+        "id",
+        "author",
+        "mentions",
+        "mention_roles",
+        "pinned",
+        "mention_everyone",
+        "tts"
+      ]
+    },
+    {
+      "name": "BlockMessageAction",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "type"
+      ]
+    },
+    {
+      "name": "BlockMessageActionMetadata",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "BlockMessageActionMetadataResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "BlockMessageActionResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "type",
+        "metadata"
+      ]
+    },
+    {
+      "name": "BotAccountPatchRequest",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "username"
+      ]
+    },
+    {
+      "name": "BulkBanUsersResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "banned_users",
+        "failed_users"
+      ]
+    },
+    {
+      "name": "Button",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "type",
+        "style"
+      ]
+    },
+    {
+      "name": "ButtonStyleTypes",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ChannelFollowerResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "channel_id",
+        "webhook_id"
+      ]
+    },
+    {
+      "name": "ChannelFollowerWebhookResponse",
+      "type": "object",
+      "propertyCount": 10,
+      "required": [
+        "id",
+        "name",
+        "type"
+      ]
+    },
+    {
+      "name": "ChannelPermissionOverwriteRequest",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "id"
+      ]
+    },
+    {
+      "name": "ChannelPermissionOverwriteResponse",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "id",
+        "type",
+        "allow",
+        "deny"
+      ]
+    },
+    {
+      "name": "ChannelPermissionOverwrites",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ChannelSelect",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "type",
+        "custom_id"
+      ]
+    },
+    {
+      "name": "ChannelSelectDefaultValue",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "type",
+        "id"
+      ]
+    },
+    {
+      "name": "ChannelTypes",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "CommandPermissionResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "id",
+        "type",
+        "permission"
+      ]
+    },
+    {
+      "name": "CommandPermissionsResponse",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "id",
+        "application_id",
+        "guild_id",
+        "permissions"
+      ]
+    },
+    {
+      "name": "ConnectedAccountGuildResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "id",
+        "name"
+      ]
+    },
+    {
+      "name": "ConnectedAccountIntegrationResponse",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "id",
+        "type",
+        "account",
+        "guild"
+      ]
+    },
+    {
+      "name": "ConnectedAccountProviders",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ConnectedAccountResponse",
+      "type": "object",
+      "propertyCount": 10,
+      "required": [
+        "id",
+        "type",
+        "friend_sync",
+        "show_activity",
+        "two_way_link",
+        "verified",
+        "visibility"
+      ]
+    },
+    {
+      "name": "ConnectedAccountVisibility",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "CreateEntitlementRequestData",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "sku_id",
+        "owner_id",
+        "owner_type"
+      ]
+    },
+    {
+      "name": "CreateForumThreadRequest",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "name",
+        "message"
+      ]
+    },
+    {
+      "name": "CreateGroupDMInviteRequest",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "CreateGuildChannelRequest",
+      "type": "object",
+      "propertyCount": 18,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "CreateGuildInviteRequest",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "CreateGuildRequestChannelItem",
+      "type": "object",
+      "propertyCount": 19,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "CreateGuildRequestRoleItem",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "id"
+      ]
+    },
+    {
+      "name": "CreateMessageInteractionCallbackRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "type"
+      ]
+    },
+    {
+      "name": "CreateOrUpdateThreadTagRequest",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "CreatePrivateChannelRequest",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "CreateTextThreadWithMessageRequest",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "CreateTextThreadWithoutMessageRequest",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "CreatedThreadResponse",
+      "type": "object",
+      "propertyCount": 21,
+      "required": [
+        "id",
+        "type",
+        "flags",
+        "guild_id",
+        "name",
+        "owner_id",
+        "message_count",
+        "member_count",
+        "total_message_sent"
+      ]
+    },
+    {
+      "name": "DefaultKeywordListTriggerMetadata",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "DefaultKeywordListTriggerMetadataResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "allow_list",
+        "presets"
+      ]
+    },
+    {
+      "name": "DefaultKeywordListUpsertRequest",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "name",
+        "event_type",
+        "trigger_type",
+        "trigger_metadata"
+      ]
+    },
+    {
+      "name": "DefaultKeywordListUpsertRequestPartial",
+      "type": "object",
+      "propertyCount": 8,
+      "required": []
+    },
+    {
+      "name": "DefaultKeywordRuleResponse",
+      "type": "object",
+      "propertyCount": 11,
+      "required": [
+        "id",
+        "guild_id",
+        "creator_id",
+        "name",
+        "event_type",
+        "actions",
+        "trigger_type",
+        "trigger_metadata"
+      ]
+    },
+    {
+      "name": "DefaultReactionEmojiResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "DiscordIntegrationResponse",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "type",
+        "id",
+        "application",
+        "scopes"
+      ]
+    },
+    {
+      "name": "Emoji",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "EmojiResponse",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "id",
+        "name",
+        "roles",
+        "require_colons",
+        "managed",
+        "animated",
+        "available"
+      ]
+    },
+    {
+      "name": "EntitlementOwnerTypes",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "EntitlementResponse",
+      "type": "object",
+      "propertyCount": 12,
+      "required": [
+        "id",
+        "sku_id",
+        "application_id",
+        "user_id",
+        "deleted",
+        "type"
+      ]
+    },
+    {
+      "name": "EntitlementTenantFulfillmentStatusResponse",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "EntitlementTypes",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "EntityMetadataExternal",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "location"
+      ]
+    },
+    {
+      "name": "EntityMetadataExternalResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "location"
+      ]
+    },
+    {
+      "name": "EntityMetadataStageInstance",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "EntityMetadataStageInstanceResponse",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "EntityMetadataVoice",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "EntityMetadataVoiceResponse",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ExternalConnectionIntegrationResponse",
+      "type": "object",
+      "propertyCount": 14,
+      "required": [
+        "type",
+        "id",
+        "user"
+      ]
+    },
+    {
+      "name": "ExternalScheduledEventCreateRequest",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "name",
+        "scheduled_start_time",
+        "privacy_level",
+        "entity_type",
+        "entity_metadata"
+      ]
+    },
+    {
+      "name": "ExternalScheduledEventPatchRequestPartial",
+      "type": "object",
+      "propertyCount": 10,
+      "required": []
+    },
+    {
+      "name": "ExternalScheduledEventResponse",
+      "type": "object",
+      "propertyCount": 17,
+      "required": [
+        "id",
+        "guild_id",
+        "name",
+        "scheduled_start_time",
+        "status",
+        "entity_type",
+        "privacy_level",
+        "entity_metadata"
+      ]
+    },
+    {
+      "name": "FlagToChannelAction",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "type",
+        "metadata"
+      ]
+    },
+    {
+      "name": "FlagToChannelActionMetadata",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "channel_id"
+      ]
+    },
+    {
+      "name": "FlagToChannelActionMetadataResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "channel_id"
+      ]
+    },
+    {
+      "name": "FlagToChannelActionResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "type",
+        "metadata"
+      ]
+    },
+    {
+      "name": "ForumLayout",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ForumTagResponse",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "id",
+        "name",
+        "moderated"
+      ]
+    },
+    {
+      "name": "FriendInviteResponse",
+      "type": "object",
+      "propertyCount": 12,
+      "required": [
+        "code"
+      ]
+    },
+    {
+      "name": "GatewayBotResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "url",
+        "session_start_limit",
+        "shards"
+      ]
+    },
+    {
+      "name": "GatewayBotSessionStartLimitResponse",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "max_concurrency",
+        "remaining",
+        "reset_after",
+        "total"
+      ]
+    },
+    {
+      "name": "GatewayResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "url"
+      ]
+    },
+    {
+      "name": "GithubAuthor",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "GithubCheckApp",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "GithubCheckPullRequest",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "number"
+      ]
+    },
+    {
+      "name": "GithubCheckRun",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "name",
+        "html_url",
+        "check_suite"
+      ]
+    },
+    {
+      "name": "GithubCheckRunOutput",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "GithubCheckSuite",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "head_sha",
+        "app"
+      ]
+    },
+    {
+      "name": "GithubComment",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "id",
+        "html_url",
+        "user",
+        "body"
+      ]
+    },
+    {
+      "name": "GithubCommit",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "id",
+        "url",
+        "message",
+        "author"
+      ]
+    },
+    {
+      "name": "GithubDiscussion",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "title",
+        "number",
+        "html_url",
+        "user"
+      ]
+    },
+    {
+      "name": "GithubIssue",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "id",
+        "number",
+        "html_url",
+        "user",
+        "title"
+      ]
+    },
+    {
+      "name": "GithubRelease",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "id",
+        "tag_name",
+        "html_url",
+        "author"
+      ]
+    },
+    {
+      "name": "GithubRepository",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "id",
+        "html_url",
+        "name",
+        "full_name"
+      ]
+    },
+    {
+      "name": "GithubReview",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "user",
+        "html_url",
+        "state"
+      ]
+    },
+    {
+      "name": "GithubUser",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "id",
+        "login",
+        "html_url",
+        "avatar_url"
+      ]
+    },
+    {
+      "name": "GithubWebhook",
+      "type": "object",
+      "propertyCount": 20,
+      "required": [
+        "sender"
+      ]
+    },
+    {
+      "name": "GroupDMInviteResponse",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "code"
+      ]
+    },
+    {
+      "name": "GuildAuditLogResponse",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "audit_log_entries",
+        "users",
+        "integrations",
+        "webhooks",
+        "guild_scheduled_events",
+        "threads",
+        "application_commands",
+        "auto_moderation_rules"
+      ]
+    },
+    {
+      "name": "GuildBanResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "user"
+      ]
+    },
+    {
+      "name": "GuildChannelResponse",
+      "type": "object",
+      "propertyCount": 24,
+      "required": [
+        "id",
+        "type",
+        "flags",
+        "guild_id",
+        "name",
+        "position"
+      ]
+    },
+    {
+      "name": "GuildCreateRequest",
+      "type": "object",
+      "propertyCount": 14,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "GuildExplicitContentFilterTypes",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GuildFeatures",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GuildHomeSettingsResponse",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "guild_id",
+        "enabled"
+      ]
+    },
+    {
+      "name": "GuildIncomingWebhookResponse",
+      "type": "object",
+      "propertyCount": 10,
+      "required": [
+        "id",
+        "name",
+        "type"
+      ]
+    },
+    {
+      "name": "GuildInviteResponse",
+      "type": "object",
+      "propertyCount": 21,
+      "required": [
+        "code"
+      ]
+    },
+    {
+      "name": "GuildMFALevel",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GuildMFALevelResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "level"
+      ]
+    },
+    {
+      "name": "GuildMemberResponse",
+      "type": "object",
+      "propertyCount": 12,
+      "required": [
+        "flags",
+        "joined_at",
+        "pending",
+        "roles",
+        "user",
+        "mute",
+        "deaf"
+      ]
+    },
+    {
+      "name": "GuildNSFWContentLevel",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GuildOnboardingMode",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GuildOnboardingResponse",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "guild_id",
+        "prompts",
+        "default_channel_ids",
+        "enabled"
+      ]
+    },
+    {
+      "name": "GuildPatchRequestPartial",
+      "type": "object",
+      "propertyCount": 22,
+      "required": []
+    },
+    {
+      "name": "GuildPreviewResponse",
+      "type": "object",
+      "propertyCount": 12,
+      "required": [
+        "id",
+        "name",
+        "features",
+        "approximate_member_count",
+        "approximate_presence_count",
+        "emojis",
+        "stickers"
+      ]
+    },
+    {
+      "name": "GuildProductPurchaseResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "listing_id",
+        "product_name"
+      ]
+    },
+    {
+      "name": "GuildPruneResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "GuildResponse",
+      "type": "object",
+      "propertyCount": 39,
+      "required": [
+        "id",
+        "name",
+        "features",
+        "owner_id",
+        "region",
+        "afk_timeout",
+        "system_channel_flags",
+        "widget_enabled",
+        "verification_level",
+        "roles",
+        "default_message_notifications",
+        "mfa_level",
+        "explicit_content_filter",
+        "premium_tier",
+        "premium_subscription_count",
+        "preferred_locale",
+        "premium_progress_bar_enabled",
+        "nsfw",
+        "nsfw_level",
+        "emojis",
+        "stickers"
+      ]
+    },
+    {
+      "name": "GuildRoleResponse",
+      "type": "object",
+      "propertyCount": 12,
+      "required": [
+        "id",
+        "name",
+        "permissions",
+        "position",
+        "color",
+        "hoist",
+        "managed",
+        "mentionable"
+      ]
+    },
+    {
+      "name": "GuildRoleTagsResponse",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "GuildScheduledEventEntityTypes",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GuildScheduledEventPrivacyLevels",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GuildScheduledEventStatuses",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GuildStickerResponse",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "id",
+        "name",
+        "tags",
+        "type",
+        "available",
+        "guild_id"
+      ]
+    },
+    {
+      "name": "GuildSubscriptionIntegrationResponse",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "type",
+        "id"
+      ]
+    },
+    {
+      "name": "GuildTemplateChannelResponse",
+      "type": "object",
+      "propertyCount": 20,
+      "required": [
+        "type",
+        "bitrate",
+        "user_limit",
+        "nsfw",
+        "rate_limit_per_user",
+        "permission_overwrites",
+        "template"
+      ]
+    },
+    {
+      "name": "GuildTemplateChannelTags",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "GuildTemplateResponse",
+      "type": "object",
+      "propertyCount": 11,
+      "required": [
+        "code",
+        "name",
+        "usage_count",
+        "creator_id",
+        "created_at",
+        "updated_at",
+        "source_guild_id",
+        "serialized_source_guild"
+      ]
+    },
+    {
+      "name": "GuildTemplateRoleResponse",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "id",
+        "name",
+        "permissions",
+        "color",
+        "hoist",
+        "mentionable"
+      ]
+    },
+    {
+      "name": "GuildTemplateSnapshotResponse",
+      "type": "object",
+      "propertyCount": 13,
+      "required": [
+        "name",
+        "verification_level",
+        "default_message_notifications",
+        "explicit_content_filter",
+        "preferred_locale",
+        "afk_timeout",
+        "system_channel_flags",
+        "roles",
+        "channels"
+      ]
+    },
+    {
+      "name": "GuildWelcomeChannel",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "channel_id",
+        "description"
+      ]
+    },
+    {
+      "name": "GuildWelcomeScreenChannelResponse",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "channel_id",
+        "description"
+      ]
+    },
+    {
+      "name": "GuildWelcomeScreenResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "welcome_channels"
+      ]
+    },
+    {
+      "name": "GuildWithCountsResponse",
+      "type": "object",
+      "propertyCount": 41,
+      "required": [
+        "id",
+        "name",
+        "features",
+        "owner_id",
+        "region",
+        "afk_timeout",
+        "system_channel_flags",
+        "widget_enabled",
+        "verification_level",
+        "roles",
+        "default_message_notifications",
+        "mfa_level",
+        "explicit_content_filter",
+        "premium_tier",
+        "premium_subscription_count",
+        "preferred_locale",
+        "premium_progress_bar_enabled",
+        "nsfw",
+        "nsfw_level",
+        "emojis",
+        "stickers"
+      ]
+    },
+    {
+      "name": "IconEmojiResponse",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "IncomingWebhookInteractionRequest",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "IncomingWebhookRequestPartial",
+      "type": "object",
+      "propertyCount": 11,
+      "required": []
+    },
+    {
+      "name": "IncomingWebhookUpdateForInteractionCallbackRequestPartial",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "IncomingWebhookUpdateRequestPartial",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "InputText",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "type",
+        "custom_id",
+        "style",
+        "label"
+      ]
+    },
+    {
+      "name": "Int53Type",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "IntegrationApplicationResponse",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "id",
+        "name",
+        "description"
+      ]
+    },
+    {
+      "name": "IntegrationExpireBehaviorTypes",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "IntegrationExpireGracePeriodTypes",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "IntegrationTypes",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "InteractionApplicationCommandAutocompleteCallbackIntegerData",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "InteractionApplicationCommandAutocompleteCallbackNumberData",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "InteractionApplicationCommandAutocompleteCallbackStringData",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "InteractionCallbackTypes",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "InteractionTypes",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "InviteApplicationResponse",
+      "type": "object",
+      "propertyCount": 21,
+      "required": [
+        "id",
+        "name",
+        "description",
+        "verify_key",
+        "flags"
+      ]
+    },
+    {
+      "name": "InviteChannelRecipientResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "username"
+      ]
+    },
+    {
+      "name": "InviteChannelResponse",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "id",
+        "type"
+      ]
+    },
+    {
+      "name": "InviteGuildResponse",
+      "type": "object",
+      "propertyCount": 12,
+      "required": [
+        "id",
+        "name",
+        "features"
+      ]
+    },
+    {
+      "name": "InviteStageInstanceResponse",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "topic"
+      ]
+    },
+    {
+      "name": "InviteTargetTypes",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "InviteTypes",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "KeywordRuleResponse",
+      "type": "object",
+      "propertyCount": 11,
+      "required": [
+        "id",
+        "guild_id",
+        "creator_id",
+        "name",
+        "event_type",
+        "actions",
+        "trigger_type",
+        "trigger_metadata"
+      ]
+    },
+    {
+      "name": "KeywordTriggerMetadata",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "KeywordTriggerMetadataResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "keyword_filter",
+        "regex_patterns",
+        "allow_list"
+      ]
+    },
+    {
+      "name": "KeywordUpsertRequest",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "name",
+        "event_type",
+        "trigger_type"
+      ]
+    },
+    {
+      "name": "KeywordUpsertRequestPartial",
+      "type": "object",
+      "propertyCount": 8,
+      "required": []
+    },
+    {
+      "name": "MLSpamRuleResponse",
+      "type": "object",
+      "propertyCount": 11,
+      "required": [
+        "id",
+        "guild_id",
+        "creator_id",
+        "name",
+        "event_type",
+        "actions",
+        "trigger_type",
+        "trigger_metadata"
+      ]
+    },
+    {
+      "name": "MLSpamTriggerMetadata",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "MLSpamTriggerMetadataResponse",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "MLSpamUpsertRequest",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "name",
+        "event_type",
+        "trigger_type"
+      ]
+    },
+    {
+      "name": "MLSpamUpsertRequestPartial",
+      "type": "object",
+      "propertyCount": 8,
+      "required": []
+    },
+    {
+      "name": "MentionSpamRuleResponse",
+      "type": "object",
+      "propertyCount": 11,
+      "required": [
+        "id",
+        "guild_id",
+        "creator_id",
+        "name",
+        "event_type",
+        "actions",
+        "trigger_type",
+        "trigger_metadata"
+      ]
+    },
+    {
+      "name": "MentionSpamTriggerMetadata",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "mention_total_limit"
+      ]
+    },
+    {
+      "name": "MentionSpamTriggerMetadataResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "mention_total_limit"
+      ]
+    },
+    {
+      "name": "MentionSpamUpsertRequest",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "name",
+        "event_type",
+        "trigger_type"
+      ]
+    },
+    {
+      "name": "MentionSpamUpsertRequestPartial",
+      "type": "object",
+      "propertyCount": 8,
+      "required": []
+    },
+    {
+      "name": "MentionableSelect",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "type",
+        "custom_id"
+      ]
+    },
+    {
+      "name": "MessageActivityResponse",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "MessageAllowedMentionsRequest",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "MessageAttachmentRequest",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "id"
+      ]
+    },
+    {
+      "name": "MessageAttachmentResponse",
+      "type": "object",
+      "propertyCount": 16,
+      "required": [
+        "id",
+        "filename",
+        "size",
+        "url",
+        "proxy_url"
+      ]
+    },
+    {
+      "name": "MessageCallResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "participants"
+      ]
+    },
+    {
+      "name": "MessageComponentActionRowResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "type",
+        "id"
+      ]
+    },
+    {
+      "name": "MessageComponentButtonResponse",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "type",
+        "id",
+        "style"
+      ]
+    },
+    {
+      "name": "MessageComponentChannelSelectResponse",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "type",
+        "id",
+        "custom_id"
+      ]
+    },
+    {
+      "name": "MessageComponentEmojiResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "MessageComponentInputTextResponse",
+      "type": "object",
+      "propertyCount": 10,
+      "required": [
+        "type",
+        "id",
+        "custom_id",
+        "style"
+      ]
+    },
+    {
+      "name": "MessageComponentMentionableSelectResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "type",
+        "id",
+        "custom_id"
+      ]
+    },
+    {
+      "name": "MessageComponentRoleSelectResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "type",
+        "id",
+        "custom_id"
+      ]
+    },
+    {
+      "name": "MessageComponentStringSelectResponse",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "type",
+        "id",
+        "custom_id"
+      ]
+    },
+    {
+      "name": "MessageComponentTypes",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "MessageComponentUserSelectResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "type",
+        "id",
+        "custom_id"
+      ]
+    },
+    {
+      "name": "MessageCreateRequest",
+      "type": "object",
+      "propertyCount": 10,
+      "required": []
+    },
+    {
+      "name": "MessageEditRequestPartial",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "MessageEmbedAuthorResponse",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "MessageEmbedFieldResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "name",
+        "value",
+        "inline"
+      ]
+    },
+    {
+      "name": "MessageEmbedFooterResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "text"
+      ]
+    },
+    {
+      "name": "MessageEmbedImageResponse",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "MessageEmbedProviderResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "MessageEmbedResponse",
+      "type": "object",
+      "propertyCount": 13,
+      "required": [
+        "type"
+      ]
+    },
+    {
+      "name": "MessageEmbedVideoResponse",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "MessageInteractionResponse",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "id",
+        "type",
+        "name"
+      ]
+    },
+    {
+      "name": "MessageMentionChannelResponse",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "id",
+        "name",
+        "type",
+        "guild_id"
+      ]
+    },
+    {
+      "name": "MessageReactionCountDetailsResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "burst",
+        "normal"
+      ]
+    },
+    {
+      "name": "MessageReactionEmojiResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "MessageReactionResponse",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "emoji",
+        "count",
+        "count_details",
+        "burst_colors",
+        "me_burst",
+        "me"
+      ]
+    },
+    {
+      "name": "MessageReferenceRequest",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "message_id"
+      ]
+    },
+    {
+      "name": "MessageReferenceResponse",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "channel_id"
+      ]
+    },
+    {
+      "name": "MessageReferenceType",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "MessageResponse",
+      "type": "object",
+      "propertyCount": 34,
+      "required": [
+        "type",
+        "channel_id",
+        "content",
+        "attachments",
+        "embeds",
+        "timestamp",
+        "flags",
+        "components",
+        "id",
+        "author",
+        "mentions",
+        "mention_roles",
+        "pinned",
+        "mention_everyone",
+        "tts"
+      ]
+    },
+    {
+      "name": "MessageRoleSubscriptionDataResponse",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "role_subscription_listing_id",
+        "tier_name",
+        "total_months_subscribed",
+        "is_renewal"
+      ]
+    },
+    {
+      "name": "MessageStickerItemResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "id",
+        "name",
+        "format_type"
+      ]
+    },
+    {
+      "name": "MessageType",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "MetadataItemTypes",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ModalInteractionCallbackData",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "custom_id",
+        "title",
+        "components"
+      ]
+    },
+    {
+      "name": "ModalInteractionCallbackRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "type",
+        "data"
+      ]
+    },
+    {
+      "name": "MyGuildResponse",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "id",
+        "name",
+        "owner",
+        "permissions",
+        "features"
+      ]
+    },
+    {
+      "name": "NewMemberActionResponse",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "channel_id",
+        "action_type",
+        "title",
+        "description"
+      ]
+    },
+    {
+      "name": "NewMemberActionType",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "OAuth2GetAuthorizationResponse",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "application",
+        "expires",
+        "scopes"
+      ]
+    },
+    {
+      "name": "OAuth2GetKeys",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "keys"
+      ]
+    },
+    {
+      "name": "OAuth2Key",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "kty",
+        "use",
+        "kid",
+        "n",
+        "e",
+        "alg"
+      ]
+    },
+    {
+      "name": "OAuth2Scopes",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "OnboardingPromptOptionRequest",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "title"
+      ]
+    },
+    {
+      "name": "OnboardingPromptOptionResponse",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "id",
+        "title",
+        "description",
+        "emoji",
+        "role_ids",
+        "channel_ids"
+      ]
+    },
+    {
+      "name": "OnboardingPromptResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "id",
+        "title",
+        "options",
+        "single_select",
+        "required",
+        "in_onboarding",
+        "type"
+      ]
+    },
+    {
+      "name": "OnboardingPromptType",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "PartialDiscordIntegrationResponse",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "id",
+        "type",
+        "application_id"
+      ]
+    },
+    {
+      "name": "PartialExternalConnectionIntegrationResponse",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "id",
+        "type"
+      ]
+    },
+    {
+      "name": "PartialGuildSubscriptionIntegrationResponse",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "id",
+        "type"
+      ]
+    },
+    {
+      "name": "PongInteractionCallbackRequest",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "type"
+      ]
+    },
+    {
+      "name": "PremiumGuildTiers",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "PremiumTypes",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "PrivateApplicationResponse",
+      "type": "object",
+      "propertyCount": 27,
+      "required": [
+        "id",
+        "name",
+        "description",
+        "verify_key",
+        "flags",
+        "redirect_uris",
+        "owner"
+      ]
+    },
+    {
+      "name": "PrivateChannelRequestPartial",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "PrivateChannelResponse",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "id",
+        "type",
+        "flags",
+        "recipients"
+      ]
+    },
+    {
+      "name": "PrivateGroupChannelResponse",
+      "type": "object",
+      "propertyCount": 11,
+      "required": [
+        "id",
+        "type",
+        "flags",
+        "recipients"
+      ]
+    },
+    {
+      "name": "PrivateGuildMemberResponse",
+      "type": "object",
+      "propertyCount": 13,
+      "required": [
+        "flags",
+        "joined_at",
+        "pending",
+        "roles",
+        "user",
+        "mute",
+        "deaf"
+      ]
+    },
+    {
+      "name": "PurchaseNotificationResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "type"
+      ]
+    },
+    {
+      "name": "PurchaseType",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "QuarantineUserAction",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "type"
+      ]
+    },
+    {
+      "name": "QuarantineUserActionMetadata",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "QuarantineUserActionMetadataResponse",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "QuarantineUserActionResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "type",
+        "metadata"
+      ]
+    },
+    {
+      "name": "ResolvedObjectsResponse",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "users",
+        "members",
+        "channels",
+        "roles"
+      ]
+    },
+    {
+      "name": "ResourceChannelResponse",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "channel_id",
+        "title",
+        "description"
+      ]
+    },
+    {
+      "name": "RichEmbed",
+      "type": "object",
+      "propertyCount": 13,
+      "required": []
+    },
+    {
+      "name": "RichEmbedAuthor",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "RichEmbedField",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "name",
+        "value"
+      ]
+    },
+    {
+      "name": "RichEmbedFooter",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "RichEmbedImage",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "RichEmbedProvider",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "RichEmbedThumbnail",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "RichEmbedVideo",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "RoleSelect",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "type",
+        "custom_id"
+      ]
+    },
+    {
+      "name": "RoleSelectDefaultValue",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "type",
+        "id"
+      ]
+    },
+    {
+      "name": "ScheduledEventResponse",
+      "type": "object",
+      "propertyCount": 16,
+      "required": [
+        "id",
+        "guild_id",
+        "name",
+        "scheduled_start_time",
+        "status",
+        "entity_type",
+        "privacy_level"
+      ]
+    },
+    {
+      "name": "ScheduledEventUserResponse",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "guild_scheduled_event_id",
+        "user_id"
+      ]
+    },
+    {
+      "name": "SelectOption",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "label",
+        "value"
+      ]
+    },
+    {
+      "name": "SelectOptionResponse",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "label",
+        "value"
+      ]
+    },
+    {
+      "name": "SettingsEmojiResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "SlackWebhook",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "SnowflakeSelectDefaultValueTypes",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "SnowflakeType",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "SpamLinkRuleResponse",
+      "type": "object",
+      "propertyCount": 11,
+      "required": [
+        "id",
+        "guild_id",
+        "creator_id",
+        "name",
+        "event_type",
+        "actions",
+        "trigger_type",
+        "trigger_metadata"
+      ]
+    },
+    {
+      "name": "SpamLinkTriggerMetadataResponse",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "StageInstanceResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "guild_id",
+        "channel_id",
+        "topic",
+        "privacy_level",
+        "id"
+      ]
+    },
+    {
+      "name": "StageInstancesPrivacyLevels",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "StageScheduledEventCreateRequest",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "name",
+        "scheduled_start_time",
+        "privacy_level",
+        "entity_type"
+      ]
+    },
+    {
+      "name": "StageScheduledEventPatchRequestPartial",
+      "type": "object",
+      "propertyCount": 10,
+      "required": []
+    },
+    {
+      "name": "StageScheduledEventResponse",
+      "type": "object",
+      "propertyCount": 17,
+      "required": [
+        "id",
+        "guild_id",
+        "name",
+        "scheduled_start_time",
+        "status",
+        "entity_type",
+        "privacy_level"
+      ]
+    },
+    {
+      "name": "StandardStickerResponse",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "id",
+        "name",
+        "tags",
+        "type",
+        "pack_id",
+        "sort_value"
+      ]
+    },
+    {
+      "name": "StickerFormatTypes",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "StickerPackCollectionResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "sticker_packs"
+      ]
+    },
+    {
+      "name": "StickerPackResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "id",
+        "sku_id",
+        "name",
+        "stickers"
+      ]
+    },
+    {
+      "name": "StickerTypes",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "StringSelect",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "type",
+        "custom_id",
+        "options"
+      ]
+    },
+    {
+      "name": "TeamMemberResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "user",
+        "team_id",
+        "membership_state"
+      ]
+    },
+    {
+      "name": "TeamMembershipStates",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "TeamResponse",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "id",
+        "name",
+        "owner_user_id",
+        "members"
+      ]
+    },
+    {
+      "name": "TextStyleTypes",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ThreadAutoArchiveDuration",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ThreadMemberResponse",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "id",
+        "user_id",
+        "join_timestamp",
+        "flags"
+      ]
+    },
+    {
+      "name": "ThreadMetadataResponse",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "archived",
+        "auto_archive_duration",
+        "locked"
+      ]
+    },
+    {
+      "name": "ThreadResponse",
+      "type": "object",
+      "propertyCount": 21,
+      "required": [
+        "id",
+        "type",
+        "flags",
+        "guild_id",
+        "name",
+        "owner_id",
+        "message_count",
+        "member_count",
+        "total_message_sent"
+      ]
+    },
+    {
+      "name": "ThreadSortOrder",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ThreadsResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "threads",
+        "members"
+      ]
+    },
+    {
+      "name": "TypingIndicatorResponse",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "UInt32Type",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "UpdateDefaultReactionEmojiRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "UpdateGuildChannelRequestPartial",
+      "type": "object",
+      "propertyCount": 19,
+      "required": []
+    },
+    {
+      "name": "UpdateGuildOnboardingRequest",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "UpdateMessageInteractionCallbackRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "type"
+      ]
+    },
+    {
+      "name": "UpdateOnboardingPromptRequest",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "title",
+        "options",
+        "id"
+      ]
+    },
+    {
+      "name": "UpdateThreadRequestPartial",
+      "type": "object",
+      "propertyCount": 12,
+      "required": []
+    },
+    {
+      "name": "UpdateThreadTagRequest",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "UserAvatarDecorationResponse",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "UserCommunicationDisabledAction",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "type",
+        "metadata"
+      ]
+    },
+    {
+      "name": "UserCommunicationDisabledActionMetadata",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "UserCommunicationDisabledActionMetadataResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "duration_seconds"
+      ]
+    },
+    {
+      "name": "UserCommunicationDisabledActionResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "type",
+        "metadata"
+      ]
+    },
+    {
+      "name": "UserGuildOnboardingResponse",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "guild_id",
+        "prompts",
+        "default_channel_ids",
+        "enabled"
+      ]
+    },
+    {
+      "name": "UserNotificationSettings",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "UserPIIResponse",
+      "type": "object",
+      "propertyCount": 16,
+      "required": [
+        "id",
+        "username",
+        "discriminator",
+        "public_flags",
+        "flags",
+        "mfa_enabled",
+        "locale"
+      ]
+    },
+    {
+      "name": "UserResponse",
+      "type": "object",
+      "propertyCount": 11,
+      "required": [
+        "id",
+        "username",
+        "discriminator",
+        "public_flags",
+        "flags"
+      ]
+    },
+    {
+      "name": "UserSelect",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "type",
+        "custom_id"
+      ]
+    },
+    {
+      "name": "UserSelectDefaultValue",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "type",
+        "id"
+      ]
+    },
+    {
+      "name": "VanityURLErrorResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "message",
+        "code"
+      ]
+    },
+    {
+      "name": "VanityURLResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "uses"
+      ]
+    },
+    {
+      "name": "VerificationLevels",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "VideoQualityModes",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "VoiceRegionResponse",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "id",
+        "name",
+        "custom",
+        "deprecated",
+        "optimal"
+      ]
+    },
+    {
+      "name": "VoiceScheduledEventCreateRequest",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "name",
+        "scheduled_start_time",
+        "privacy_level",
+        "entity_type"
+      ]
+    },
+    {
+      "name": "VoiceScheduledEventPatchRequestPartial",
+      "type": "object",
+      "propertyCount": 10,
+      "required": []
+    },
+    {
+      "name": "VoiceScheduledEventResponse",
+      "type": "object",
+      "propertyCount": 17,
+      "required": [
+        "id",
+        "guild_id",
+        "name",
+        "scheduled_start_time",
+        "status",
+        "entity_type",
+        "privacy_level"
+      ]
+    },
+    {
+      "name": "WebhookSlackEmbed",
+      "type": "object",
+      "propertyCount": 14,
+      "required": []
+    },
+    {
+      "name": "WebhookSlackEmbedField",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "WebhookSourceChannelResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "id",
+        "name"
+      ]
+    },
+    {
+      "name": "WebhookSourceGuildResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "id",
+        "name"
+      ]
+    },
+    {
+      "name": "WebhookTypes",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "WelcomeMessageResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "author_ids",
+        "message"
+      ]
+    },
+    {
+      "name": "WelcomeScreenPatchRequestPartial",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "WidgetActivity",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "WidgetChannel",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "id",
+        "name",
+        "position"
+      ]
+    },
+    {
+      "name": "WidgetImageStyles",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "WidgetMember",
+      "type": "object",
+      "propertyCount": 13,
+      "required": [
+        "id",
+        "username",
+        "discriminator",
+        "status",
+        "avatar_url"
+      ]
+    },
+    {
+      "name": "WidgetResponse",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "id",
+        "name",
+        "channels",
+        "members",
+        "presence_count"
+      ]
+    },
+    {
+      "name": "WidgetSettingsResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "enabled"
+      ]
+    },
+    {
+      "name": "WidgetUserDiscriminator",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "Error",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "code",
+        "message"
+      ]
+    },
+    {
+      "name": "InnerErrors",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "_errors"
+      ]
+    },
+    {
+      "name": "ErrorDetails",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ErrorResponse",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/oauth2/applications/@me",
+      "operationId": "get_my_oauth2_application",
+      "summary": null,
+      "tags": [
+        "Oauth2"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/users/@me/connections",
+      "operationId": "list_my_connections",
+      "summary": null,
+      "tags": [
+        "Users"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/users/@me/channels",
+      "operationId": "create_dm",
+      "summary": null,
+      "tags": [
+        "Users"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/users/@me/guilds",
+      "operationId": "list_my_guilds",
+      "summary": null,
+      "tags": [
+        "Users"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/@me",
+      "operationId": "get_my_application",
+      "summary": null,
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/applications/@me",
+      "operationId": "update_my_application",
+      "summary": null,
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/gateway/bot",
+      "operationId": "get_bot_gateway",
+      "summary": null,
+      "tags": [
+        "Gateway"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/oauth2/keys",
+      "operationId": "get_public_keys",
+      "summary": null,
+      "tags": [
+        "Oauth2"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/oauth2/@me",
+      "operationId": "get_my_oauth2_authorization",
+      "summary": null,
+      "tags": [
+        "Oauth2"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/voice/regions",
+      "operationId": "list_voice_regions",
+      "summary": null,
+      "tags": [
+        "Voice"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/users/@me",
+      "operationId": "get_my_user",
+      "summary": null,
+      "tags": [
+        "Users"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/users/@me",
+      "operationId": "update_my_user",
+      "summary": null,
+      "tags": [
+        "Users"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/stage-instances",
+      "operationId": "create_stage_instance",
+      "summary": null,
+      "tags": [
+        "Stage Instances"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sticker-packs",
+      "operationId": "list_sticker_packs",
+      "summary": null,
+      "tags": [
+        "Sticker Packs"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/gateway",
+      "operationId": "get_gateway",
+      "summary": null,
+      "tags": [
+        "Gateway"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/guilds",
+      "operationId": "create_guild",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/channels/{channel_id}/users/@me/threads/archived/private",
+      "operationId": "list_my_private_archived_threads",
+      "summary": null,
+      "tags": [
+        "Channels"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/{application_id}/guilds/{guild_id}/commands/permissions",
+      "operationId": "list_guild_application_command_permissions",
+      "summary": null,
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/{application_id}/guilds/{guild_id}/commands/{command_id}/permissions",
+      "operationId": "get_guild_application_command_permissions",
+      "summary": null,
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/applications/{application_id}/guilds/{guild_id}/commands/{command_id}/permissions",
+      "operationId": "set_guild_application_command_permissions",
+      "summary": null,
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/channels/{channel_id}/messages/{message_id}/reactions/{emoji_name}/@me",
+      "operationId": "add_my_message_reaction",
+      "summary": null,
+      "tags": [
+        "Channels"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/channels/{channel_id}/messages/{message_id}/reactions/{emoji_name}/@me",
+      "operationId": "delete_my_message_reaction",
+      "summary": null,
+      "tags": [
+        "Channels"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/channels/{channel_id}/threads/archived/private",
+      "operationId": "list_private_archived_threads",
+      "summary": null,
+      "tags": [
+        "Channels"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/channels/{channel_id}/threads/archived/public",
+      "operationId": "list_public_archived_threads",
+      "summary": null,
+      "tags": [
+        "Channels"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/users/@me/applications/{application_id}/role-connection",
+      "operationId": "get_application_user_role_connection",
+      "summary": null,
+      "tags": [
+        "Users"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/users/@me/applications/{application_id}/role-connection",
+      "operationId": "update_application_user_role_connection",
+      "summary": null,
+      "tags": [
+        "Users"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/users/@me/guilds/{guild_id}/member",
+      "operationId": "get_my_guild_member",
+      "summary": null,
+      "tags": [
+        "Users"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/{application_id}/role-connections/metadata",
+      "operationId": "get_application_role_connections_metadata",
+      "summary": null,
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/applications/{application_id}/role-connections/metadata",
+      "operationId": "update_application_role_connections_metadata",
+      "summary": null,
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/applications/{application_id}/entitlements/{entitlement_id}/consume",
+      "operationId": "consume_entitlement",
+      "summary": null,
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/{application_id}/guilds/{guild_id}/commands/{command_id}",
+      "operationId": "get_guild_application_command",
+      "summary": null,
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/applications/{application_id}/guilds/{guild_id}/commands/{command_id}",
+      "operationId": "delete_guild_application_command",
+      "summary": null,
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/applications/{application_id}/guilds/{guild_id}/commands/{command_id}",
+      "operationId": "update_guild_application_command",
+      "summary": null,
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/{application_id}/guilds/{guild_id}/commands",
+      "operationId": "list_guild_application_commands",
+      "summary": null,
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/applications/{application_id}/guilds/{guild_id}/commands",
+      "operationId": "create_guild_application_command",
+      "summary": null,
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/applications/{application_id}/guilds/{guild_id}/commands",
+      "operationId": "bulk_set_guild_application_commands",
+      "summary": null,
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/channels/{channel_id}/thread-members/@me",
+      "operationId": "join_thread",
+      "summary": null,
+      "tags": [
+        "Channels"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/channels/{channel_id}/thread-members/@me",
+      "operationId": "leave_thread",
+      "summary": null,
+      "tags": [
+        "Channels"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/channels/{channel_id}/messages/bulk-delete",
+      "operationId": "bulk_delete_messages",
+      "summary": null,
+      "tags": [
+        "Channels"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/channels/{channel_id}/messages/{message_id}/reactions/{emoji_name}/{user_id}",
+      "operationId": "delete_user_message_reaction",
+      "summary": null,
+      "tags": [
+        "Channels"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/channels/{channel_id}/messages/{message_id}/reactions/{emoji_name}",
+      "operationId": "list_message_reactions_by_emoji",
+      "summary": null,
+      "tags": [
+        "Channels"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/channels/{channel_id}/messages/{message_id}/reactions/{emoji_name}",
+      "operationId": "delete_all_message_reactions_by_emoji",
+      "summary": null,
+      "tags": [
+        "Channels"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/channels/{channel_id}/messages/{message_id}/reactions",
+      "operationId": "delete_all_message_reactions",
+      "summary": null,
+      "tags": [
+        "Channels"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/channels/{channel_id}/messages/{message_id}/crosspost",
+      "operationId": "crosspost_message",
+      "summary": null,
+      "tags": [
+        "Channels"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/channels/{channel_id}/messages/{message_id}/threads",
+      "operationId": "create_thread_from_message",
+      "summary": null,
+      "tags": [
+        "Channels"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/webhooks/{webhook_id}/{webhook_token}/messages/@original",
+      "operationId": "get_original_webhook_message",
+      "summary": null,
+      "tags": [
+        "Webhooks"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/webhooks/{webhook_id}/{webhook_token}/messages/@original",
+      "operationId": "delete_original_webhook_message",
+      "summary": null,
+      "tags": [
+        "Webhooks"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/webhooks/{webhook_id}/{webhook_token}/messages/@original",
+      "operationId": "update_original_webhook_message",
+      "summary": null,
+      "tags": [
+        "Webhooks"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/guilds/{guild_id}/scheduled-events/{guild_scheduled_event_id}/users",
+      "operationId": "list_guild_scheduled_event_users",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/guilds/{guild_id}/auto-moderation/rules/{rule_id}",
+      "operationId": "get_auto_moderation_rule",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/guilds/{guild_id}/auto-moderation/rules/{rule_id}",
+      "operationId": "delete_auto_moderation_rule",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/guilds/{guild_id}/auto-moderation/rules/{rule_id}",
+      "operationId": "update_auto_moderation_rule",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/guilds/{guild_id}/auto-moderation/rules",
+      "operationId": "list_auto_moderation_rules",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/guilds/{guild_id}/auto-moderation/rules",
+      "operationId": "create_auto_moderation_rule",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/guilds/{guild_id}/voice-states/@me",
+      "operationId": "update_self_voice_state",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/guilds/{guild_id}/members/search",
+      "operationId": "search_guild_members",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/guilds/{guild_id}/threads/active",
+      "operationId": "get_active_guild_threads",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/guilds/{guild_id}/members/@me",
+      "operationId": "update_my_guild_member",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/guilds/{guild_id}/members/{user_id}/roles/{role_id}",
+      "operationId": "add_guild_member_role",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/guilds/{guild_id}/members/{user_id}/roles/{role_id}",
+      "operationId": "delete_guild_member_role",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/users/@me/guilds/{guild_id}",
+      "operationId": "leave_guild",
+      "summary": null,
+      "tags": [
+        "Users"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/{application_id}/entitlements/{entitlement_id}",
+      "operationId": "get_entitlement",
+      "summary": null,
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/applications/{application_id}/entitlements/{entitlement_id}",
+      "operationId": "delete_entitlement",
+      "summary": null,
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/{application_id}/entitlements",
+      "operationId": "get_entitlements",
+      "summary": null,
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/applications/{application_id}/entitlements",
+      "operationId": "create_entitlement",
+      "summary": null,
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/{application_id}/commands/{command_id}",
+      "operationId": "get_application_command",
+      "summary": null,
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/applications/{application_id}/commands/{command_id}",
+      "operationId": "delete_application_command",
+      "summary": null,
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/applications/{application_id}/commands/{command_id}",
+      "operationId": "update_application_command",
+      "summary": null,
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/{application_id}/commands",
+      "operationId": "list_application_commands",
+      "summary": null,
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/applications/{application_id}/commands",
+      "operationId": "create_application_command",
+      "summary": null,
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/applications/{application_id}/commands",
+      "operationId": "bulk_set_application_commands",
+      "summary": null,
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/interactions/{interaction_id}/{interaction_token}/callback",
+      "operationId": "create_interaction_response",
+      "summary": null,
+      "tags": [
+        "Interactions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/channels/{channel_id}/thread-members/{user_id}",
+      "operationId": "get_thread_member",
+      "summary": null,
+      "tags": [
+        "Channels"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/channels/{channel_id}/thread-members/{user_id}",
+      "operationId": "add_thread_member",
+      "summary": null,
+      "tags": [
+        "Channels"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/channels/{channel_id}/thread-members/{user_id}",
+      "operationId": "delete_thread_member",
+      "summary": null,
+      "tags": [
+        "Channels"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/channels/{channel_id}/thread-members",
+      "operationId": "list_thread_members",
+      "summary": null,
+      "tags": [
+        "Channels"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/channels/{channel_id}/permissions/{overwrite_id}",
+      "operationId": "set_channel_permission_overwrite",
+      "summary": null,
+      "tags": [
+        "Channels"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/channels/{channel_id}/permissions/{overwrite_id}",
+      "operationId": "delete_channel_permission_overwrite",
+      "summary": null,
+      "tags": [
+        "Channels"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/channels/{channel_id}/recipients/{user_id}",
+      "operationId": "add_group_dm_user",
+      "summary": null,
+      "tags": [
+        "Channels"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/channels/{channel_id}/recipients/{user_id}",
+      "operationId": "delete_group_dm_user",
+      "summary": null,
+      "tags": [
+        "Channels"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/channels/{channel_id}/followers",
+      "operationId": "follow_channel",
+      "summary": null,
+      "tags": [
+        "Channels"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/channels/{channel_id}/messages/{message_id}",
+      "operationId": "get_message",
+      "summary": null,
+      "tags": [
+        "Channels"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/channels/{channel_id}/messages/{message_id}",
+      "operationId": "delete_message",
+      "summary": null,
+      "tags": [
+        "Channels"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/channels/{channel_id}/messages/{message_id}",
+      "operationId": "update_message",
+      "summary": null,
+      "tags": [
+        "Channels"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/channels/{channel_id}/messages",
+      "operationId": "list_messages",
+      "summary": null,
+      "tags": [
+        "Channels"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/channels/{channel_id}/messages",
+      "operationId": "create_message",
+      "summary": null,
+      "tags": [
+        "Channels"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/channels/{channel_id}/webhooks",
+      "operationId": "list_channel_webhooks",
+      "summary": null,
+      "tags": [
+        "Channels"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/channels/{channel_id}/webhooks",
+      "operationId": "create_webhook",
+      "summary": null,
+      "tags": [
+        "Channels"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/channels/{channel_id}/invites",
+      "operationId": "list_channel_invites",
+      "summary": null,
+      "tags": [
+        "Channels"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/channels/{channel_id}/invites",
+      "operationId": "create_channel_invite",
+      "summary": null,
+      "tags": [
+        "Channels"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/channels/{channel_id}/threads",
+      "operationId": "create_thread",
+      "summary": null,
+      "tags": [
+        "Channels"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/channels/{channel_id}/typing",
+      "operationId": "trigger_typing_indicator",
+      "summary": null,
+      "tags": [
+        "Channels"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/channels/{channel_id}/pins/{message_id}",
+      "operationId": "pin_message",
+      "summary": null,
+      "tags": [
+        "Channels"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/channels/{channel_id}/pins/{message_id}",
+      "operationId": "unpin_message",
+      "summary": null,
+      "tags": [
+        "Channels"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/channels/{channel_id}/pins",
+      "operationId": "list_pinned_messages",
+      "summary": null,
+      "tags": [
+        "Channels"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/webhooks/{webhook_id}/{webhook_token}/messages/{message_id}",
+      "operationId": "get_webhook_message",
+      "summary": null,
+      "tags": [
+        "Webhooks"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/webhooks/{webhook_id}/{webhook_token}/messages/{message_id}",
+      "operationId": "delete_webhook_message",
+      "summary": null,
+      "tags": [
+        "Webhooks"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/webhooks/{webhook_id}/{webhook_token}/messages/{message_id}",
+      "operationId": "update_webhook_message",
+      "summary": null,
+      "tags": [
+        "Webhooks"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/webhooks/{webhook_id}/{webhook_token}/github",
+      "operationId": "execute_github_compatible_webhook",
+      "summary": null,
+      "tags": [
+        "Webhooks"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/webhooks/{webhook_id}/{webhook_token}/slack",
+      "operationId": "execute_slack_compatible_webhook",
+      "summary": null,
+      "tags": [
+        "Webhooks"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/guilds/templates/{code}",
+      "operationId": "get_guild_template",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/guilds/templates/{code}",
+      "operationId": "create_guild_from_template",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/guilds/{guild_id}/new-member-welcome",
+      "operationId": "get_guild_new_member_welcome",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/guilds/{guild_id}/scheduled-events/{guild_scheduled_event_id}",
+      "operationId": "get_guild_scheduled_event",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/guilds/{guild_id}/scheduled-events/{guild_scheduled_event_id}",
+      "operationId": "delete_guild_scheduled_event",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/guilds/{guild_id}/scheduled-events/{guild_scheduled_event_id}",
+      "operationId": "update_guild_scheduled_event",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/guilds/{guild_id}/scheduled-events",
+      "operationId": "list_guild_scheduled_events",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/guilds/{guild_id}/scheduled-events",
+      "operationId": "create_guild_scheduled_event",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/guilds/{guild_id}/welcome-screen",
+      "operationId": "get_guild_welcome_screen",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/guilds/{guild_id}/welcome-screen",
+      "operationId": "update_guild_welcome_screen",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/guilds/{guild_id}/voice-states/{user_id}",
+      "operationId": "update_voice_state",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/guilds/{guild_id}/integrations/{integration_id}",
+      "operationId": "delete_guild_integration",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/guilds/{guild_id}/integrations",
+      "operationId": "list_guild_integrations",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/guilds/{guild_id}/widget.json",
+      "operationId": "get_guild_widget",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/guilds/{guild_id}/onboarding",
+      "operationId": "get_guilds_onboarding",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/guilds/{guild_id}/onboarding",
+      "operationId": "put_guilds_onboarding",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/guilds/{guild_id}/vanity-url",
+      "operationId": "get_guild_vanity_url",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/guilds/{guild_id}/audit-logs",
+      "operationId": "list_guild_audit_log_entries",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/guilds/{guild_id}/widget.png",
+      "operationId": "get_guild_widget_png",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/guilds/{guild_id}/templates/{code}",
+      "operationId": "sync_guild_template",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/guilds/{guild_id}/templates/{code}",
+      "operationId": "delete_guild_template",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/guilds/{guild_id}/templates/{code}",
+      "operationId": "update_guild_template",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/guilds/{guild_id}/templates",
+      "operationId": "list_guild_templates",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/guilds/{guild_id}/templates",
+      "operationId": "create_guild_template",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/guilds/{guild_id}/stickers/{sticker_id}",
+      "operationId": "get_guild_sticker",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/guilds/{guild_id}/stickers/{sticker_id}",
+      "operationId": "delete_guild_sticker",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/guilds/{guild_id}/stickers/{sticker_id}",
+      "operationId": "update_guild_sticker",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/guilds/{guild_id}/bulk-ban",
+      "operationId": "bulk_ban_users_from_guild",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/guilds/{guild_id}/stickers",
+      "operationId": "list_guild_stickers",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/guilds/{guild_id}/stickers",
+      "operationId": "create_guild_sticker",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/guilds/{guild_id}/webhooks",
+      "operationId": "get_guild_webhooks",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/guilds/{guild_id}/channels",
+      "operationId": "list_guild_channels",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/guilds/{guild_id}/channels",
+      "operationId": "create_guild_channel",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/guilds/{guild_id}/channels",
+      "operationId": "bulk_update_guild_channels",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/guilds/{guild_id}/members/{user_id}",
+      "operationId": "get_guild_member",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/guilds/{guild_id}/members/{user_id}",
+      "operationId": "add_guild_member",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/guilds/{guild_id}/members/{user_id}",
+      "operationId": "delete_guild_member",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/guilds/{guild_id}/members/{user_id}",
+      "operationId": "update_guild_member",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/guilds/{guild_id}/members",
+      "operationId": "list_guild_members",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/guilds/{guild_id}/preview",
+      "operationId": "get_guild_preview",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/guilds/{guild_id}/invites",
+      "operationId": "list_guild_invites",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/guilds/{guild_id}/regions",
+      "operationId": "list_guild_voice_regions",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/guilds/{guild_id}/emojis/{emoji_id}",
+      "operationId": "get_guild_emoji",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/guilds/{guild_id}/emojis/{emoji_id}",
+      "operationId": "delete_guild_emoji",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/guilds/{guild_id}/emojis/{emoji_id}",
+      "operationId": "update_guild_emoji",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/guilds/{guild_id}/emojis",
+      "operationId": "list_guild_emojis",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/guilds/{guild_id}/emojis",
+      "operationId": "create_guild_emoji",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/guilds/{guild_id}/widget",
+      "operationId": "get_guild_widget_settings",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/guilds/{guild_id}/widget",
+      "operationId": "update_guild_widget_settings",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/guilds/{guild_id}/roles/{role_id}",
+      "operationId": "delete_guild_role",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/guilds/{guild_id}/roles/{role_id}",
+      "operationId": "update_guild_role",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/guilds/{guild_id}/roles",
+      "operationId": "list_guild_roles",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/guilds/{guild_id}/roles",
+      "operationId": "create_guild_role",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/guilds/{guild_id}/roles",
+      "operationId": "bulk_update_guild_roles",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/guilds/{guild_id}/prune",
+      "operationId": "preview_prune_guild",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/guilds/{guild_id}/prune",
+      "operationId": "prune_guild",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/guilds/{guild_id}/bans/{user_id}",
+      "operationId": "get_guild_ban",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/guilds/{guild_id}/bans/{user_id}",
+      "operationId": "ban_user_from_guild",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/guilds/{guild_id}/bans/{user_id}",
+      "operationId": "unban_user_from_guild",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/guilds/{guild_id}/bans",
+      "operationId": "list_guild_bans",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/guilds/{guild_id}/mfa",
+      "operationId": "set_guild_mfa_level",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/stage-instances/{channel_id}",
+      "operationId": "get_stage_instance",
+      "summary": null,
+      "tags": [
+        "Stage Instances"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/stage-instances/{channel_id}",
+      "operationId": "delete_stage_instance",
+      "summary": null,
+      "tags": [
+        "Stage Instances"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/stage-instances/{channel_id}",
+      "operationId": "update_stage_instance",
+      "summary": null,
+      "tags": [
+        "Stage Instances"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/{application_id}",
+      "operationId": "get_application",
+      "summary": null,
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/applications/{application_id}",
+      "operationId": "update_application",
+      "summary": null,
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/webhooks/{webhook_id}/{webhook_token}",
+      "operationId": "get_webhook_by_token",
+      "summary": null,
+      "tags": [
+        "Webhooks"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/webhooks/{webhook_id}/{webhook_token}",
+      "operationId": "execute_webhook",
+      "summary": null,
+      "tags": [
+        "Webhooks"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/webhooks/{webhook_id}/{webhook_token}",
+      "operationId": "delete_webhook_by_token",
+      "summary": null,
+      "tags": [
+        "Webhooks"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/webhooks/{webhook_id}/{webhook_token}",
+      "operationId": "update_webhook_by_token",
+      "summary": null,
+      "tags": [
+        "Webhooks"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/stickers/{sticker_id}",
+      "operationId": "get_sticker",
+      "summary": null,
+      "tags": [
+        "Stickers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/webhooks/{webhook_id}",
+      "operationId": "get_webhook",
+      "summary": null,
+      "tags": [
+        "Webhooks"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/webhooks/{webhook_id}",
+      "operationId": "delete_webhook",
+      "summary": null,
+      "tags": [
+        "Webhooks"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/webhooks/{webhook_id}",
+      "operationId": "update_webhook",
+      "summary": null,
+      "tags": [
+        "Webhooks"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/channels/{channel_id}",
+      "operationId": "get_channel",
+      "summary": null,
+      "tags": [
+        "Channels"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/channels/{channel_id}",
+      "operationId": "delete_channel",
+      "summary": null,
+      "tags": [
+        "Channels"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/channels/{channel_id}",
+      "operationId": "update_channel",
+      "summary": null,
+      "tags": [
+        "Channels"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/invites/{code}",
+      "operationId": "invite_resolve",
+      "summary": null,
+      "tags": [
+        "Invites"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/invites/{code}",
+      "operationId": "invite_revoke",
+      "summary": null,
+      "tags": [
+        "Invites"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/guilds/{guild_id}",
+      "operationId": "get_guild",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/guilds/{guild_id}",
+      "operationId": "delete_guild",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/guilds/{guild_id}",
+      "operationId": "update_guild",
+      "summary": null,
+      "tags": [
+        "Guilds"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/users/{user_id}",
+      "operationId": "get_user",
+      "summary": null,
+      "tags": [
+        "Users"
+      ]
+    }
+  ]
+}

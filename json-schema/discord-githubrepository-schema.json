@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GithubRepository",
+  "title": "GithubRepository",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "html_url": {
+      "type": "string",
+      "maxLength": 2048,
+      "format": "uri"
+    },
+    "name": {
+      "type": "string",
+      "maxLength": 152133
+    },
+    "full_name": {
+      "type": "string",
+      "maxLength": 152133
+    }
+  },
+  "required": [
+    "id",
+    "html_url",
+    "name",
+    "full_name"
+  ]
+}

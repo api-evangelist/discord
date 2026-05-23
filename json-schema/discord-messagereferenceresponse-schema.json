@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MessageReferenceResponse",
+  "title": "MessageReferenceResponse",
+  "type": "object",
+  "properties": {
+    "type": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/MessageReferenceType"
+        }
+      ]
+    },
+    "channel_id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "message_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "guild_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    }
+  },
+  "required": [
+    "channel_id"
+  ]
+}

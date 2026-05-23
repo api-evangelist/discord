@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GatewayBotSessionStartLimitResponse",
+  "title": "GatewayBotSessionStartLimitResponse",
+  "type": "object",
+  "properties": {
+    "max_concurrency": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "remaining": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "reset_after": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "total": {
+      "type": "integer",
+      "format": "int32"
+    }
+  },
+  "required": [
+    "max_concurrency",
+    "remaining",
+    "reset_after",
+    "total"
+  ]
+}

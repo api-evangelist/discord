@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PartialExternalConnectionIntegrationResponse",
+  "title": "PartialExternalConnectionIntegrationResponse",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "twitch",
+        "youtube"
+      ],
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/IntegrationTypes"
+        }
+      ]
+    },
+    "name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "account": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/AccountResponse"
+        }
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "type"
+  ]
+}

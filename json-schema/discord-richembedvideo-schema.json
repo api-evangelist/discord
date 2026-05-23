@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RichEmbedVideo",
+  "title": "RichEmbedVideo",
+  "type": "object",
+  "properties": {
+    "url": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 2048,
+      "format": "uri"
+    },
+    "width": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "height": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "placeholder": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 64
+    },
+    "placeholder_version": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 2147483647
+    }
+  }
+}

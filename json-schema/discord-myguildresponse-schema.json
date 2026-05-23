@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MyGuildResponse",
+  "title": "MyGuildResponse",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "name": {
+      "type": "string"
+    },
+    "icon": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "owner": {
+      "type": "boolean"
+    },
+    "permissions": {
+      "type": "string"
+    },
+    "features": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/GuildFeatures"
+      },
+      "uniqueItems": true
+    },
+    "approximate_member_count": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "approximate_presence_count": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "owner",
+    "permissions",
+    "features"
+  ]
+}

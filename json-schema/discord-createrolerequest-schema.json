@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateRoleRequest",
+  "title": "CreateRoleRequest",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "permissions": {
+      "type": "string"
+    },
+    "color": {
+      "type": "integer",
+      "default": 0
+    },
+    "hoist": {
+      "type": "boolean",
+      "default": false
+    },
+    "icon": {
+      "type": "string",
+      "nullable": true
+    },
+    "unicode_emoji": {
+      "type": "string",
+      "nullable": true
+    },
+    "mentionable": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

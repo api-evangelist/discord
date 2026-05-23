@@ -1,0 +1,297 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AuditLogActionTypes",
+  "title": "AuditLogActionTypes",
+  "type": "integer",
+  "oneOf": [
+    {
+      "title": "GUILD_UPDATE",
+      "const": 1
+    },
+    {
+      "title": "CHANNEL_CREATE",
+      "const": 10
+    },
+    {
+      "title": "CHANNEL_UPDATE",
+      "const": 11
+    },
+    {
+      "title": "CHANNEL_DELETE",
+      "const": 12
+    },
+    {
+      "title": "CHANNEL_OVERWRITE_CREATE",
+      "const": 13
+    },
+    {
+      "title": "CHANNEL_OVERWRITE_UPDATE",
+      "const": 14
+    },
+    {
+      "title": "CHANNEL_OVERWRITE_DELETE",
+      "const": 15
+    },
+    {
+      "title": "MEMBER_KICK",
+      "const": 20
+    },
+    {
+      "title": "MEMBER_PRUNE",
+      "const": 21
+    },
+    {
+      "title": "MEMBER_BAN_ADD",
+      "const": 22
+    },
+    {
+      "title": "MEMBER_BAN_REMOVE",
+      "const": 23
+    },
+    {
+      "title": "MEMBER_UPDATE",
+      "const": 24
+    },
+    {
+      "title": "MEMBER_ROLE_UPDATE",
+      "const": 25
+    },
+    {
+      "title": "MEMBER_MOVE",
+      "const": 26
+    },
+    {
+      "title": "MEMBER_DISCONNECT",
+      "const": 27
+    },
+    {
+      "title": "BOT_ADD",
+      "const": 28
+    },
+    {
+      "title": "ROLE_CREATE",
+      "const": 30
+    },
+    {
+      "title": "ROLE_UPDATE",
+      "const": 31
+    },
+    {
+      "title": "ROLE_DELETE",
+      "const": 32
+    },
+    {
+      "title": "INVITE_CREATE",
+      "const": 40
+    },
+    {
+      "title": "INVITE_UPDATE",
+      "const": 41
+    },
+    {
+      "title": "INVITE_DELETE",
+      "const": 42
+    },
+    {
+      "title": "WEBHOOK_CREATE",
+      "const": 50
+    },
+    {
+      "title": "WEBHOOK_UPDATE",
+      "const": 51
+    },
+    {
+      "title": "WEBHOOK_DELETE",
+      "const": 52
+    },
+    {
+      "title": "EMOJI_CREATE",
+      "const": 60
+    },
+    {
+      "title": "EMOJI_UPDATE",
+      "const": 61
+    },
+    {
+      "title": "EMOJI_DELETE",
+      "const": 62
+    },
+    {
+      "title": "MESSAGE_DELETE",
+      "const": 72
+    },
+    {
+      "title": "MESSAGE_BULK_DELETE",
+      "const": 73
+    },
+    {
+      "title": "MESSAGE_PIN",
+      "const": 74
+    },
+    {
+      "title": "MESSAGE_UNPIN",
+      "const": 75
+    },
+    {
+      "title": "INTEGRATION_CREATE",
+      "const": 80
+    },
+    {
+      "title": "INTEGRATION_UPDATE",
+      "const": 81
+    },
+    {
+      "title": "INTEGRATION_DELETE",
+      "const": 82
+    },
+    {
+      "title": "STAGE_INSTANCE_CREATE",
+      "const": 83
+    },
+    {
+      "title": "STAGE_INSTANCE_UPDATE",
+      "const": 84
+    },
+    {
+      "title": "STAGE_INSTANCE_DELETE",
+      "const": 85
+    },
+    {
+      "title": "STICKER_CREATE",
+      "const": 90
+    },
+    {
+      "title": "STICKER_UPDATE",
+      "const": 91
+    },
+    {
+      "title": "STICKER_DELETE",
+      "const": 92
+    },
+    {
+      "title": "GUILD_SCHEDULED_EVENT_CREATE",
+      "const": 100
+    },
+    {
+      "title": "GUILD_SCHEDULED_EVENT_UPDATE",
+      "const": 101
+    },
+    {
+      "title": "GUILD_SCHEDULED_EVENT_DELETE",
+      "const": 102
+    },
+    {
+      "title": "THREAD_CREATE",
+      "const": 110
+    },
+    {
+      "title": "THREAD_UPDATE",
+      "const": 111
+    },
+    {
+      "title": "THREAD_DELETE",
+      "const": 112
+    },
+    {
+      "title": "APPLICATION_COMMAND_PERMISSION_UPDATE",
+      "const": 121
+    },
+    {
+      "title": "SOUNDBOARD_SOUND_CREATE",
+      "const": 130
+    },
+    {
+      "title": "SOUNDBOARD_SOUND_UPDATE",
+      "const": 131
+    },
+    {
+      "title": "SOUNDBOARD_SOUND_DELETE",
+      "const": 132
+    },
+    {
+      "title": "AUTO_MODERATION_RULE_CREATE",
+      "const": 140
+    },
+    {
+      "title": "AUTO_MODERATION_RULE_UPDATE",
+      "const": 141
+    },
+    {
+      "title": "AUTO_MODERATION_RULE_DELETE",
+      "const": 142
+    },
+    {
+      "title": "AUTO_MODERATION_BLOCK_MESSAGE",
+      "const": 143
+    },
+    {
+      "title": "AUTO_MODERATION_FLAG_TO_CHANNEL",
+      "const": 144
+    },
+    {
+      "title": "AUTO_MODERATION_USER_COMM_DISABLED",
+      "const": 145
+    },
+    {
+      "title": "AUTO_MODERATION_QUARANTINE_USER",
+      "const": 146
+    },
+    {
+      "title": "CREATOR_MONETIZATION_REQUEST_CREATED",
+      "const": 150
+    },
+    {
+      "title": "CREATOR_MONETIZATION_TERMS_ACCEPTED",
+      "const": 151
+    },
+    {
+      "title": "ONBOARDING_PROMPT_CREATE",
+      "const": 163
+    },
+    {
+      "title": "ONBOARDING_PROMPT_UPDATE",
+      "const": 164
+    },
+    {
+      "title": "ONBOARDING_PROMPT_DELETE",
+      "const": 165
+    },
+    {
+      "title": "ONBOARDING_CREATE",
+      "const": 166
+    },
+    {
+      "title": "ONBOARDING_UPDATE",
+      "const": 167
+    },
+    {
+      "title": "GUILD_HOME_FEATURE_ITEM",
+      "const": 171
+    },
+    {
+      "title": "GUILD_HOME_REMOVE_ITEM",
+      "const": 172
+    },
+    {
+      "title": "HARMFUL_LINKS_BLOCKED_MESSAGE",
+      "const": 180
+    },
+    {
+      "title": "HOME_SETTINGS_CREATE",
+      "const": 190
+    },
+    {
+      "title": "HOME_SETTINGS_UPDATE",
+      "const": 191
+    },
+    {
+      "title": "VOICE_CHANNEL_STATUS_CREATE",
+      "const": 192
+    },
+    {
+      "title": "VOICE_CHANNEL_STATUS_DELETE",
+      "const": 193
+    }
+  ],
+  "format": "int32"
+}

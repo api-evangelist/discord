@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/KeywordTriggerMetadata",
+  "title": "KeywordTriggerMetadata",
+  "type": "object",
+  "properties": {
+    "keyword_filter": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 60
+      },
+      "maxItems": 1000
+    },
+    "regex_patterns": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 260
+      },
+      "maxItems": 10
+    },
+    "allow_list": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 60
+      },
+      "maxItems": 100
+    }
+  }
+}

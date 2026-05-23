@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Component",
+  "title": "Component",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "integer",
+      "description": "1=ActionRow, 2=Button, 3=StringSelect, 4=TextInput, 5=UserSelect, 6=RoleSelect, 7=MentionableSelect, 8=ChannelSelect"
+    },
+    "components": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Component"
+      }
+    },
+    "style": {
+      "type": "integer"
+    },
+    "label": {
+      "type": "string"
+    },
+    "emoji": {
+      "$ref": "#/components/schemas/Emoji"
+    },
+    "custom_id": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "disabled": {
+      "type": "boolean"
+    },
+    "options": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/SelectOption"
+      }
+    },
+    "placeholder": {
+      "type": "string"
+    },
+    "min_values": {
+      "type": "integer"
+    },
+    "max_values": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "type"
+  ]
+}

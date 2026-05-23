@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MessageReactionCountDetailsResponse",
+  "title": "MessageReactionCountDetailsResponse",
+  "type": "object",
+  "properties": {
+    "burst": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "normal": {
+      "type": "integer",
+      "format": "int32"
+    }
+  },
+  "required": [
+    "burst",
+    "normal"
+  ]
+}

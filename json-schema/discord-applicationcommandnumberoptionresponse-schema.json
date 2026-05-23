@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApplicationCommandNumberOptionResponse",
+  "title": "ApplicationCommandNumberOptionResponse",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "integer",
+      "enum": [
+        10
+      ],
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ApplicationCommandOptionType"
+        }
+      ],
+      "format": "int32"
+    },
+    "name": {
+      "type": "string"
+    },
+    "name_localized": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "name_localizations": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "description": {
+      "type": "string"
+    },
+    "description_localized": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "description_localizations": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "required": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "autocomplete": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "choices": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/components/schemas/ApplicationCommandOptionNumberChoiceResponse"
+      }
+    },
+    "min_value": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "format": "double"
+    },
+    "max_value": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "format": "double"
+    }
+  },
+  "required": [
+    "type",
+    "name",
+    "description"
+  ]
+}

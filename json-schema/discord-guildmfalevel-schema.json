@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GuildMFALevel",
+  "title": "GuildMFALevel",
+  "type": "integer",
+  "oneOf": [
+    {
+      "title": "NONE",
+      "description": "Guild has no MFA/2FA requirement for moderation actions",
+      "const": 0
+    },
+    {
+      "title": "ELEVATED",
+      "description": "Guild has a 2FA requirement for moderation actions",
+      "const": 1
+    }
+  ],
+  "format": "int32"
+}

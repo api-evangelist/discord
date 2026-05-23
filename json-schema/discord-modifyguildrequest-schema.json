@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ModifyGuildRequest",
+  "title": "ModifyGuildRequest",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "verification_level": {
+      "type": "integer",
+      "nullable": true
+    },
+    "default_message_notifications": {
+      "type": "integer",
+      "nullable": true
+    },
+    "explicit_content_filter": {
+      "type": "integer",
+      "nullable": true
+    },
+    "afk_channel_id": {
+      "$ref": "#/components/schemas/Snowflake"
+    },
+    "afk_timeout": {
+      "type": "integer"
+    },
+    "icon": {
+      "type": "string",
+      "nullable": true
+    },
+    "owner_id": {
+      "$ref": "#/components/schemas/Snowflake"
+    },
+    "splash": {
+      "type": "string",
+      "nullable": true
+    },
+    "discovery_splash": {
+      "type": "string",
+      "nullable": true
+    },
+    "banner": {
+      "type": "string",
+      "nullable": true
+    },
+    "system_channel_id": {
+      "$ref": "#/components/schemas/Snowflake"
+    },
+    "system_channel_flags": {
+      "type": "integer"
+    },
+    "rules_channel_id": {
+      "$ref": "#/components/schemas/Snowflake"
+    },
+    "public_updates_channel_id": {
+      "$ref": "#/components/schemas/Snowflake"
+    },
+    "preferred_locale": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string",
+      "nullable": true
+    },
+    "premium_progress_bar_enabled": {
+      "type": "boolean"
+    },
+    "safety_alerts_channel_id": {
+      "$ref": "#/components/schemas/Snowflake"
+    }
+  }
+}

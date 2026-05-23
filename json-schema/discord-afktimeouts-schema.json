@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AfkTimeouts",
+  "title": "AfkTimeouts",
+  "type": "integer",
+  "oneOf": [
+    {
+      "title": "ONE_MINUTE",
+      "const": 60
+    },
+    {
+      "title": "FIVE_MINUTES",
+      "const": 300
+    },
+    {
+      "title": "FIFTEEN_MINUTES",
+      "const": 900
+    },
+    {
+      "title": "THIRTY_MINUTES",
+      "const": 1800
+    },
+    {
+      "title": "ONE_HOUR",
+      "const": 3600
+    }
+  ],
+  "format": "int32"
+}

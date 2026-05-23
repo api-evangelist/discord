@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MessageMentionChannelResponse",
+  "title": "MessageMentionChannelResponse",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "name": {
+      "type": "string"
+    },
+    "type": {
+      "$ref": "#/components/schemas/ChannelTypes"
+    },
+    "guild_id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "type",
+    "guild_id"
+  ]
+}

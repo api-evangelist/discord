@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GuildCreateRequest",
+  "title": "GuildCreateRequest",
+  "type": "object",
+  "properties": {
+    "description": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 0,
+      "maxLength": 120
+    },
+    "name": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 100
+    },
+    "region": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "icon": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "contentEncoding": "base64"
+    },
+    "verification_level": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/VerificationLevels"
+        }
+      ]
+    },
+    "default_message_notifications": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/UserNotificationSettings"
+        }
+      ]
+    },
+    "explicit_content_filter": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/GuildExplicitContentFilterTypes"
+        }
+      ]
+    },
+    "preferred_locale": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/AvailableLocalesEnum"
+        }
+      ]
+    },
+    "afk_timeout": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/AfkTimeouts"
+        }
+      ]
+    },
+    "roles": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/components/schemas/CreateGuildRequestRoleItem"
+      },
+      "maxItems": 1521
+    },
+    "channels": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/components/schemas/CreateGuildRequestChannelItem"
+      },
+      "maxItems": 1521
+    },
+    "afk_channel_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "system_channel_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "system_channel_flags": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

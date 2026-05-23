@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AutomodActionType",
+  "title": "AutomodActionType",
+  "type": "integer",
+  "oneOf": [
+    {
+      "title": "BLOCK_MESSAGE",
+      "description": "Block a user's message and prevent it from being posted. A custom explanation can be specified and shown to members whenever their message is blocked",
+      "const": 1
+    },
+    {
+      "title": "FLAG_TO_CHANNEL",
+      "description": "Send a system message to a channel in order to log the user message that triggered the rule",
+      "const": 2
+    },
+    {
+      "title": "USER_COMMUNICATION_DISABLED",
+      "description": "Temporarily disable a user's ability to communicate in the server (timeout)",
+      "const": 3
+    },
+    {
+      "title": "QUARANTINE_USER",
+      "description": "Prevent a user from interacting in the server",
+      "const": 4
+    }
+  ],
+  "format": "int32"
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GuildOnboardingMode",
+  "title": "GuildOnboardingMode",
+  "type": "integer",
+  "oneOf": [
+    {
+      "title": "ONBOARDING_DEFAULT",
+      "description": "Only Default Channels considered in constraints",
+      "const": 0
+    },
+    {
+      "title": "ONBOARDING_ADVANCED",
+      "description": "Default Channels and Onboarding Prompts considered in constraints",
+      "const": 1
+    }
+  ],
+  "format": "int32"
+}

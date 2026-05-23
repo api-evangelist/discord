@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateGuildInviteRequest",
+  "title": "CreateGuildInviteRequest",
+  "type": "object",
+  "properties": {
+    "max_age": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 604800
+    },
+    "temporary": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "max_uses": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 100
+    },
+    "unique": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "target_user_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "target_application_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "target_type": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "integer",
+          "enum": [
+            1,
+            2
+          ],
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/InviteTargetTypes"
+            }
+          ],
+          "format": "int32"
+        }
+      ]
+    }
+  }
+}

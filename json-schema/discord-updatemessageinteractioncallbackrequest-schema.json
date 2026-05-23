@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpdateMessageInteractionCallbackRequest",
+  "title": "UpdateMessageInteractionCallbackRequest",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "integer",
+      "enum": [
+        6,
+        7
+      ],
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/InteractionCallbackTypes"
+        }
+      ],
+      "format": "int32"
+    },
+    "data": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/IncomingWebhookUpdateForInteractionCallbackRequestPartial"
+        }
+      ]
+    }
+  },
+  "required": [
+    "type"
+  ]
+}

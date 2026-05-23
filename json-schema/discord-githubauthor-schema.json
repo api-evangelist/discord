@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GithubAuthor",
+  "title": "GithubAuthor",
+  "type": "object",
+  "properties": {
+    "username": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 152133
+    },
+    "name": {
+      "type": "string",
+      "maxLength": 152133
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

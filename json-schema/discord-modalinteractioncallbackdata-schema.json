@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ModalInteractionCallbackData",
+  "title": "ModalInteractionCallbackData",
+  "type": "object",
+  "properties": {
+    "custom_id": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "title": {
+      "type": "string",
+      "maxLength": 45
+    },
+    "components": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/ActionRow"
+          },
+          {
+            "$ref": "#/components/schemas/InputText"
+          }
+        ]
+      },
+      "minItems": 1,
+      "maxItems": 5
+    }
+  },
+  "required": [
+    "custom_id",
+    "title",
+    "components"
+  ]
+}

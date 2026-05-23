@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GithubUser",
+  "title": "GithubUser",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "login": {
+      "type": "string",
+      "maxLength": 152133
+    },
+    "html_url": {
+      "type": "string",
+      "maxLength": 2048,
+      "format": "uri"
+    },
+    "avatar_url": {
+      "type": "string",
+      "maxLength": 2048,
+      "format": "uri"
+    }
+  },
+  "required": [
+    "id",
+    "login",
+    "html_url",
+    "avatar_url"
+  ]
+}

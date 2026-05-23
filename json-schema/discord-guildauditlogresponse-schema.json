@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GuildAuditLogResponse",
+  "title": "GuildAuditLogResponse",
+  "type": "object",
+  "properties": {
+    "audit_log_entries": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/AuditLogEntryResponse"
+      }
+    },
+    "users": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/UserResponse"
+      }
+    },
+    "integrations": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/PartialDiscordIntegrationResponse"
+          },
+          {
+            "$ref": "#/components/schemas/PartialExternalConnectionIntegrationResponse"
+          },
+          {
+            "$ref": "#/components/schemas/PartialGuildSubscriptionIntegrationResponse"
+          }
+        ]
+      }
+    },
+    "webhooks": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/ApplicationIncomingWebhookResponse"
+          },
+          {
+            "$ref": "#/components/schemas/ChannelFollowerWebhookResponse"
+          },
+          {
+            "$ref": "#/components/schemas/GuildIncomingWebhookResponse"
+          }
+        ]
+      }
+    },
+    "guild_scheduled_events": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/ExternalScheduledEventResponse"
+          },
+          {
+            "$ref": "#/components/schemas/StageScheduledEventResponse"
+          },
+          {
+            "$ref": "#/components/schemas/VoiceScheduledEventResponse"
+          }
+        ]
+      }
+    },
+    "threads": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ThreadResponse"
+      }
+    },
+    "application_commands": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ApplicationCommandResponse"
+      }
+    },
+    "auto_moderation_rules": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/DefaultKeywordRuleResponse"
+          },
+          {
+            "$ref": "#/components/schemas/KeywordRuleResponse"
+          },
+          {
+            "$ref": "#/components/schemas/MLSpamRuleResponse"
+          },
+          {
+            "$ref": "#/components/schemas/MentionSpamRuleResponse"
+          },
+          {
+            "$ref": "#/components/schemas/SpamLinkRuleResponse"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "audit_log_entries",
+    "users",
+    "integrations",
+    "webhooks",
+    "guild_scheduled_events",
+    "threads",
+    "application_commands",
+    "auto_moderation_rules"
+  ]
+}

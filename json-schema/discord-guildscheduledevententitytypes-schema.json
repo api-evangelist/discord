@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GuildScheduledEventEntityTypes",
+  "title": "GuildScheduledEventEntityTypes",
+  "type": "integer",
+  "oneOf": [
+    {
+      "title": "NONE",
+      "const": 0
+    },
+    {
+      "title": "STAGE_INSTANCE",
+      "const": 1
+    },
+    {
+      "title": "VOICE",
+      "const": 2
+    },
+    {
+      "title": "EXTERNAL",
+      "const": 3
+    }
+  ],
+  "format": "int32"
+}

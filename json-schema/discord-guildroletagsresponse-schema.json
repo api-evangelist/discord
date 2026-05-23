@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GuildRoleTagsResponse",
+  "title": "GuildRoleTagsResponse",
+  "type": "object",
+  "properties": {
+    "premium_subscriber": {
+      "type": "null"
+    },
+    "bot_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "integration_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "subscription_listing_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "available_for_purchase": {
+      "type": "null"
+    },
+    "guild_connections": {
+      "type": "null"
+    }
+  }
+}

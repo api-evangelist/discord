@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ThreadMemberResponse",
+  "title": "ThreadMemberResponse",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "user_id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "join_timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "flags": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "member": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/GuildMemberResponse"
+        }
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "user_id",
+    "join_timestamp",
+    "flags"
+  ]
+}

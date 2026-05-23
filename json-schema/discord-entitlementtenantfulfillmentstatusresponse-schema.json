@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EntitlementTenantFulfillmentStatusResponse",
+  "title": "EntitlementTenantFulfillmentStatusResponse",
+  "type": "integer",
+  "oneOf": [
+    {
+      "title": "UNKNOWN",
+      "const": 0
+    },
+    {
+      "title": "FULFILLMENT_NOT_NEEDED",
+      "const": 1
+    },
+    {
+      "title": "FULFILLMENT_NEEDED",
+      "const": 2
+    },
+    {
+      "title": "FULFILLED",
+      "const": 3
+    },
+    {
+      "title": "FULFILLMENT_FAILED",
+      "const": 4
+    },
+    {
+      "title": "UNFULFILLMENT_NEEDED",
+      "const": 5
+    },
+    {
+      "title": "UNFULFILLED",
+      "const": 6
+    },
+    {
+      "title": "UNFULFILLMENT_FAILED",
+      "const": 7
+    }
+  ],
+  "format": "int32"
+}

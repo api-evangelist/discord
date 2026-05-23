@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateForumThreadRequest",
+  "title": "CreateForumThreadRequest",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "auto_archive_duration": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/ThreadAutoArchiveDuration"
+        }
+      ]
+    },
+    "rate_limit_per_user": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 21600
+    },
+    "applied_tags": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/components/schemas/SnowflakeType"
+      },
+      "maxItems": 5
+    },
+    "message": {
+      "$ref": "#/components/schemas/BaseCreateMessageCreateRequest"
+    }
+  },
+  "required": [
+    "name",
+    "message"
+  ]
+}

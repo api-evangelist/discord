@@ -1,0 +1,263 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GuildWithCountsResponse",
+  "title": "GuildWithCountsResponse",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "name": {
+      "type": "string"
+    },
+    "icon": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "description": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "home_header": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "splash": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "discovery_splash": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "features": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/GuildFeatures"
+      },
+      "uniqueItems": true
+    },
+    "banner": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "owner_id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "application_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "region": {
+      "type": "string"
+    },
+    "afk_channel_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "afk_timeout": {
+      "$ref": "#/components/schemas/AfkTimeouts"
+    },
+    "system_channel_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "system_channel_flags": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "widget_enabled": {
+      "type": "boolean"
+    },
+    "widget_channel_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "verification_level": {
+      "$ref": "#/components/schemas/VerificationLevels"
+    },
+    "roles": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/GuildRoleResponse"
+      }
+    },
+    "default_message_notifications": {
+      "$ref": "#/components/schemas/UserNotificationSettings"
+    },
+    "mfa_level": {
+      "$ref": "#/components/schemas/GuildMFALevel"
+    },
+    "explicit_content_filter": {
+      "$ref": "#/components/schemas/GuildExplicitContentFilterTypes"
+    },
+    "max_presences": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "max_members": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "max_stage_video_channel_users": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "max_video_channel_users": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "vanity_url_code": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "premium_tier": {
+      "$ref": "#/components/schemas/PremiumGuildTiers"
+    },
+    "premium_subscription_count": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "preferred_locale": {
+      "$ref": "#/components/schemas/AvailableLocalesEnum"
+    },
+    "rules_channel_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "safety_alerts_channel_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "public_updates_channel_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "premium_progress_bar_enabled": {
+      "type": "boolean"
+    },
+    "nsfw": {
+      "type": "boolean"
+    },
+    "nsfw_level": {
+      "$ref": "#/components/schemas/GuildNSFWContentLevel"
+    },
+    "emojis": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/EmojiResponse"
+      }
+    },
+    "stickers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/GuildStickerResponse"
+      }
+    },
+    "approximate_member_count": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "approximate_presence_count": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "features",
+    "owner_id",
+    "region",
+    "afk_timeout",
+    "system_channel_flags",
+    "widget_enabled",
+    "verification_level",
+    "roles",
+    "default_message_notifications",
+    "mfa_level",
+    "explicit_content_filter",
+    "premium_tier",
+    "premium_subscription_count",
+    "preferred_locale",
+    "premium_progress_bar_enabled",
+    "nsfw",
+    "nsfw_level",
+    "emojis",
+    "stickers"
+  ]
+}

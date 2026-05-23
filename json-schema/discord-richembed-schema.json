@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RichEmbed",
+  "title": "RichEmbed",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 152133
+    },
+    "url": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 2048,
+      "format": "uri"
+    },
+    "title": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 256
+    },
+    "color": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 16777215
+    },
+    "timestamp": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "description": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 4096
+    },
+    "author": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/RichEmbedAuthor"
+        }
+      ]
+    },
+    "image": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/RichEmbedImage"
+        }
+      ]
+    },
+    "thumbnail": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/RichEmbedThumbnail"
+        }
+      ]
+    },
+    "footer": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/RichEmbedFooter"
+        }
+      ]
+    },
+    "fields": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/components/schemas/RichEmbedField"
+      },
+      "maxItems": 25
+    },
+    "provider": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/RichEmbedProvider"
+        }
+      ]
+    },
+    "video": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/RichEmbedVideo"
+        }
+      ]
+    }
+  }
+}

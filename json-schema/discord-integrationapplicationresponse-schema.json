@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/IntegrationApplicationResponse",
+  "title": "IntegrationApplicationResponse",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "name": {
+      "type": "string"
+    },
+    "icon": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "description": {
+      "type": "string"
+    },
+    "type": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/ApplicationTypes"
+        }
+      ]
+    },
+    "cover_image": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "primary_sku_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "bot": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/UserResponse"
+        }
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "description"
+  ]
+}

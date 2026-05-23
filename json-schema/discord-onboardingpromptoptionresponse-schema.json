@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OnboardingPromptOptionResponse",
+  "title": "OnboardingPromptOptionResponse",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "emoji": {
+      "$ref": "#/components/schemas/SettingsEmojiResponse"
+    },
+    "role_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/SnowflakeType"
+      },
+      "uniqueItems": true
+    },
+    "channel_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/SnowflakeType"
+      },
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "id",
+    "title",
+    "description",
+    "emoji",
+    "role_ids",
+    "channel_ids"
+  ]
+}

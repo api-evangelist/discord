@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateEntitlementRequestData",
+  "title": "CreateEntitlementRequestData",
+  "type": "object",
+  "properties": {
+    "sku_id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "owner_id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "owner_type": {
+      "$ref": "#/components/schemas/EntitlementOwnerTypes"
+    }
+  },
+  "required": [
+    "sku_id",
+    "owner_id",
+    "owner_type"
+  ]
+}

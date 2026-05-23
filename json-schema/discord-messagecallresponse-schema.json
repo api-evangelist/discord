@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MessageCallResponse",
+  "title": "MessageCallResponse",
+  "type": "object",
+  "properties": {
+    "ended_timestamp": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "participants": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/SnowflakeType"
+      },
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "participants"
+  ]
+}

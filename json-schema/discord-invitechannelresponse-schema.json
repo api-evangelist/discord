@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/InviteChannelResponse",
+  "title": "InviteChannelResponse",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "type": {
+      "$ref": "#/components/schemas/ChannelTypes"
+    },
+    "name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "icon": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "recipients": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/components/schemas/InviteChannelRecipientResponse"
+      }
+    }
+  },
+  "required": [
+    "id",
+    "type"
+  ]
+}

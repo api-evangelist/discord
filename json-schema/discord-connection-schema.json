@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Connection",
+  "title": "Connection",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "revoked": {
+      "type": "boolean"
+    },
+    "verified": {
+      "type": "boolean"
+    },
+    "friend_sync": {
+      "type": "boolean"
+    },
+    "show_activity": {
+      "type": "boolean"
+    },
+    "two_way_link": {
+      "type": "boolean"
+    },
+    "visibility": {
+      "type": "integer",
+      "description": "0=None, 1=Everyone"
+    }
+  }
+}

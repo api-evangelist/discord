@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CommandPermissionResponse",
+  "title": "CommandPermissionResponse",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "type": {
+      "$ref": "#/components/schemas/ApplicationCommandPermissionType"
+    },
+    "permission": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "id",
+    "type",
+    "permission"
+  ]
+}

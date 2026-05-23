@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Sticker",
+  "title": "Sticker",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Snowflake"
+    },
+    "pack_id": {
+      "$ref": "#/components/schemas/Snowflake"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string",
+      "nullable": true
+    },
+    "tags": {
+      "type": "string"
+    },
+    "type": {
+      "type": "integer",
+      "description": "1=STANDARD, 2=GUILD"
+    },
+    "format_type": {
+      "type": "integer",
+      "description": "1=PNG, 2=APNG, 3=LOTTIE, 4=GIF"
+    },
+    "available": {
+      "type": "boolean"
+    },
+    "guild_id": {
+      "$ref": "#/components/schemas/Snowflake"
+    },
+    "user": {
+      "$ref": "#/components/schemas/User"
+    },
+    "sort_value": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "type",
+    "format_type"
+  ]
+}

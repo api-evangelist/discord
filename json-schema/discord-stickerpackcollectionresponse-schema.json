@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/StickerPackCollectionResponse",
+  "title": "StickerPackCollectionResponse",
+  "type": "object",
+  "properties": {
+    "sticker_packs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/StickerPackResponse"
+      }
+    }
+  },
+  "required": [
+    "sticker_packs"
+  ]
+}

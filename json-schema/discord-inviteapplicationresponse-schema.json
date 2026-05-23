@@ -1,0 +1,161 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/InviteApplicationResponse",
+  "title": "InviteApplicationResponse",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "name": {
+      "type": "string"
+    },
+    "icon": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "description": {
+      "type": "string"
+    },
+    "type": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/ApplicationTypes"
+        }
+      ]
+    },
+    "cover_image": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "primary_sku_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "bot": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/UserResponse"
+        }
+      ]
+    },
+    "slug": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "guild_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "rpc_origins": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": [
+          "string",
+          "null"
+        ]
+      }
+    },
+    "bot_public": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "bot_require_code_grant": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "terms_of_service_url": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uri"
+    },
+    "privacy_policy_url": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uri"
+    },
+    "custom_install_url": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uri"
+    },
+    "install_params": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/ApplicationOAuth2InstallParamsResponse"
+        }
+      ]
+    },
+    "verify_key": {
+      "type": "string"
+    },
+    "flags": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "max_participants": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "tags": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "description",
+    "verify_key",
+    "flags"
+  ]
+}

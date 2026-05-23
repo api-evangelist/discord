@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GuildApplicationCommandPermissions",
+  "title": "GuildApplicationCommandPermissions",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Snowflake"
+    },
+    "application_id": {
+      "$ref": "#/components/schemas/Snowflake"
+    },
+    "guild_id": {
+      "$ref": "#/components/schemas/Snowflake"
+    },
+    "permissions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ApplicationCommandPermission"
+      }
+    }
+  },
+  "required": [
+    "id",
+    "application_id",
+    "guild_id",
+    "permissions"
+  ]
+}

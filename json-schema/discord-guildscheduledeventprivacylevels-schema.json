@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GuildScheduledEventPrivacyLevels",
+  "title": "GuildScheduledEventPrivacyLevels",
+  "type": "integer",
+  "oneOf": [
+    {
+      "title": "GUILD_ONLY",
+      "description": "the scheduled event is only accessible to guild members",
+      "const": 2
+    }
+  ],
+  "format": "int32"
+}

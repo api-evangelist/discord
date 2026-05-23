@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApplicationCommandNumberOption",
+  "title": "ApplicationCommandNumberOption",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "integer",
+      "enum": [
+        10
+      ],
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ApplicationCommandOptionType"
+        }
+      ],
+      "format": "int32"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 32
+    },
+    "name_localizations": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 32
+      },
+      "maxProperties": 34
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "description_localizations": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 100
+      },
+      "maxProperties": 34
+    },
+    "required": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "autocomplete": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "choices": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/components/schemas/ApplicationCommandOptionNumberChoice"
+      },
+      "maxItems": 25
+    },
+    "min_value": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "format": "double"
+    },
+    "max_value": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "format": "double"
+    }
+  },
+  "required": [
+    "type",
+    "name",
+    "description"
+  ]
+}

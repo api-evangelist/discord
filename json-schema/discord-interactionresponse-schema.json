@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/InteractionResponse",
+  "title": "InteractionResponse",
+  "type": "object",
+  "required": [
+    "type"
+  ],
+  "properties": {
+    "type": {
+      "type": "integer",
+      "description": "1=PONG, 4=CHANNEL_MESSAGE_WITH_SOURCE, 5=DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE, 6=DEFERRED_UPDATE_MESSAGE, 7=UPDATE_MESSAGE, 8=APPLICATION_COMMAND_AUTOCOMPLETE_RESULT, 9=MODAL, 10=PREMIUM_REQUIRED"
+    },
+    "data": {
+      "$ref": "#/components/schemas/InteractionCallbackData"
+    }
+  }
+}

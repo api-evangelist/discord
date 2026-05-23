@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MessageComponentButtonResponse",
+  "title": "MessageComponentButtonResponse",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "integer",
+      "enum": [
+        2
+      ],
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/MessageComponentTypes"
+        }
+      ],
+      "format": "int32"
+    },
+    "id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "custom_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "style": {
+      "$ref": "#/components/schemas/ButtonStyleTypes"
+    },
+    "label": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "disabled": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "emoji": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/MessageComponentEmojiResponse"
+        }
+      ]
+    },
+    "url": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 2048,
+      "format": "uri"
+    }
+  },
+  "required": [
+    "type",
+    "id",
+    "style"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PremiumGuildTiers",
+  "title": "PremiumGuildTiers",
+  "type": "integer",
+  "oneOf": [
+    {
+      "title": "NONE",
+      "description": "Guild has not unlocked any Server Boost perks",
+      "const": 0
+    },
+    {
+      "title": "TIER_1",
+      "description": "Guild has unlocked Server Boost level 1 perks",
+      "const": 1
+    },
+    {
+      "title": "TIER_2",
+      "description": "Guild has unlocked Server Boost level 2 perks",
+      "const": 2
+    },
+    {
+      "title": "TIER_3",
+      "description": "Guild has unlocked Server Boost level 3 perks",
+      "const": 3
+    }
+  ],
+  "format": "int32"
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ErrorResponse",
+  "title": "ErrorResponse",
+  "type": "object",
+  "description": "Errors object returned by the Discord API",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/Error"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "errors": {
+          "$ref": "#/components/schemas/ErrorDetails"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PrivateGroupChannelResponse",
+  "title": "PrivateGroupChannelResponse",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "type": {
+      "type": "integer",
+      "enum": [
+        3
+      ],
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ChannelTypes"
+        }
+      ],
+      "format": "int32"
+    },
+    "last_message_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "flags": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "last_pin_timestamp": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "recipients": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/UserResponse"
+      }
+    },
+    "name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "icon": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "owner_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "managed": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "application_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "type",
+    "flags",
+    "recipients"
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateAutoModerationRuleRequest",
+  "title": "CreateAutoModerationRuleRequest",
+  "type": "object",
+  "required": [
+    "name",
+    "event_type",
+    "trigger_type",
+    "actions"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "event_type": {
+      "type": "integer"
+    },
+    "trigger_type": {
+      "type": "integer"
+    },
+    "trigger_metadata": {
+      "type": "object"
+    },
+    "actions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "type"
+        ],
+        "properties": {
+          "type": {
+            "type": "integer"
+          },
+          "metadata": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "enabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "exempt_roles": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Snowflake"
+      }
+    },
+    "exempt_channels": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Snowflake"
+      }
+    }
+  }
+}

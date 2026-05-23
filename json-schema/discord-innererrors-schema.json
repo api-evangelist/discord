@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/InnerErrors",
+  "title": "InnerErrors",
+  "type": "object",
+  "properties": {
+    "_errors": {
+      "type": "array",
+      "description": "The list of errors for this field",
+      "items": {
+        "$ref": "#/components/schemas/Error"
+      }
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "_errors"
+  ]
+}

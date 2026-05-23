@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApplicationCommandPermission",
+  "title": "ApplicationCommandPermission",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Snowflake"
+    },
+    "type": {
+      "type": "integer",
+      "description": "1=ROLE, 2=USER, 3=CHANNEL"
+    },
+    "permission": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "id",
+    "type",
+    "permission"
+  ]
+}

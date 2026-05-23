@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GuildScheduledEvent",
+  "title": "GuildScheduledEvent",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Snowflake"
+    },
+    "guild_id": {
+      "$ref": "#/components/schemas/Snowflake"
+    },
+    "channel_id": {
+      "$ref": "#/components/schemas/Snowflake"
+    },
+    "creator_id": {
+      "$ref": "#/components/schemas/Snowflake"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string",
+      "nullable": true
+    },
+    "scheduled_start_time": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "scheduled_end_time": {
+      "type": "string",
+      "format": "date-time",
+      "nullable": true
+    },
+    "privacy_level": {
+      "type": "integer"
+    },
+    "status": {
+      "type": "integer",
+      "description": "1=SCHEDULED, 2=ACTIVE, 3=COMPLETED, 4=CANCELED"
+    },
+    "entity_type": {
+      "type": "integer",
+      "description": "1=STAGE_INSTANCE, 2=VOICE, 3=EXTERNAL"
+    },
+    "entity_id": {
+      "$ref": "#/components/schemas/Snowflake"
+    },
+    "entity_metadata": {
+      "type": "object",
+      "nullable": true,
+      "properties": {
+        "location": {
+          "type": "string"
+        }
+      }
+    },
+    "creator": {
+      "$ref": "#/components/schemas/User"
+    },
+    "user_count": {
+      "type": "integer"
+    },
+    "image": {
+      "type": "string",
+      "nullable": true
+    }
+  },
+  "required": [
+    "id",
+    "guild_id",
+    "name",
+    "scheduled_start_time",
+    "privacy_level",
+    "status",
+    "entity_type"
+  ]
+}

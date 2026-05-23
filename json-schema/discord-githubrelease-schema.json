@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GithubRelease",
+  "title": "GithubRelease",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "tag_name": {
+      "type": "string",
+      "maxLength": 152133
+    },
+    "html_url": {
+      "type": "string",
+      "maxLength": 2048,
+      "format": "uri"
+    },
+    "author": {
+      "$ref": "#/components/schemas/GithubUser"
+    }
+  },
+  "required": [
+    "id",
+    "tag_name",
+    "html_url",
+    "author"
+  ]
+}

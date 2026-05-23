@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EditMessageRequest",
+  "title": "EditMessageRequest",
+  "type": "object",
+  "properties": {
+    "content": {
+      "type": "string",
+      "nullable": true,
+      "maxLength": 2000
+    },
+    "embeds": {
+      "type": "array",
+      "nullable": true,
+      "items": {
+        "$ref": "#/components/schemas/Embed"
+      },
+      "maxItems": 10
+    },
+    "components": {
+      "type": "array",
+      "nullable": true,
+      "items": {
+        "type": "object"
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/StageInstancesPrivacyLevels",
+  "title": "StageInstancesPrivacyLevels",
+  "type": "integer",
+  "oneOf": [
+    {
+      "title": "PUBLIC",
+      "description": "The Stage instance is visible publicly. (deprecated)",
+      "const": 1
+    },
+    {
+      "title": "GUILD_ONLY",
+      "description": "The Stage instance is visible publicly. (deprecated)",
+      "const": 2
+    }
+  ],
+  "format": "int32"
+}

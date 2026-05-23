@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FriendInviteResponse",
+  "title": "FriendInviteResponse",
+  "type": "object",
+  "properties": {
+    "type": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "integer",
+          "enum": [
+            2
+          ],
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/InviteTypes"
+            }
+          ],
+          "format": "int32"
+        }
+      ]
+    },
+    "code": {
+      "type": "string"
+    },
+    "inviter": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/UserResponse"
+        }
+      ]
+    },
+    "max_age": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "created_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "expires_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "friends_count": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "channel": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/InviteChannelResponse"
+        }
+      ]
+    },
+    "is_contact": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "uses": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "max_uses": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "flags": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    }
+  },
+  "required": [
+    "code"
+  ]
+}

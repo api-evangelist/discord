@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WelcomeMessageResponse",
+  "title": "WelcomeMessageResponse",
+  "type": "object",
+  "properties": {
+    "author_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/SnowflakeType"
+      }
+    },
+    "message": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "author_ids",
+    "message"
+  ]
+}

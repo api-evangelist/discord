@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConnectedAccountProviders",
+  "title": "ConnectedAccountProviders",
+  "type": "string",
+  "oneOf": [
+    {
+      "title": "BATTLENET",
+      "const": "battlenet"
+    },
+    {
+      "title": "BUNGIE",
+      "const": "bungie"
+    },
+    {
+      "title": "EBAY",
+      "const": "ebay"
+    },
+    {
+      "title": "EPIC_GAMES",
+      "const": "epicgames"
+    },
+    {
+      "title": "FACEBOOK",
+      "const": "facebook"
+    },
+    {
+      "title": "GITHUB",
+      "const": "github"
+    },
+    {
+      "title": "INSTAGRAM",
+      "const": "instagram"
+    },
+    {
+      "title": "LEAGUE_OF_LEGENDS",
+      "const": "leagueoflegends"
+    },
+    {
+      "title": "PAYPAL",
+      "const": "paypal"
+    },
+    {
+      "title": "PLAYSTATION",
+      "const": "playstation"
+    },
+    {
+      "title": "REDDIT",
+      "const": "reddit"
+    },
+    {
+      "title": "RIOT_GAMES",
+      "const": "riotgames"
+    },
+    {
+      "title": "ROBLOX",
+      "const": "roblox"
+    },
+    {
+      "title": "SKYPE",
+      "const": "skype"
+    },
+    {
+      "title": "SPOTIFY",
+      "const": "spotify"
+    },
+    {
+      "title": "STEAM",
+      "const": "steam"
+    },
+    {
+      "title": "TIKTOK",
+      "const": "tiktok"
+    },
+    {
+      "title": "TWITCH",
+      "const": "twitch"
+    },
+    {
+      "title": "TWITTER",
+      "const": "twitter"
+    },
+    {
+      "title": "XBOX",
+      "const": "xbox"
+    },
+    {
+      "title": "YOUTUBE",
+      "const": "youtube"
+    },
+    {
+      "title": "DOMAIN",
+      "const": "domain"
+    }
+  ]
+}

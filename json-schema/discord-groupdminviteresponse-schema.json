@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GroupDMInviteResponse",
+  "title": "GroupDMInviteResponse",
+  "type": "object",
+  "properties": {
+    "type": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "integer",
+          "enum": [
+            1
+          ],
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/InviteTypes"
+            }
+          ],
+          "format": "int32"
+        }
+      ]
+    },
+    "code": {
+      "type": "string"
+    },
+    "inviter": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/UserResponse"
+        }
+      ]
+    },
+    "max_age": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "created_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "expires_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "channel": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/InviteChannelResponse"
+        }
+      ]
+    },
+    "approximate_member_count": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    }
+  },
+  "required": [
+    "code"
+  ]
+}

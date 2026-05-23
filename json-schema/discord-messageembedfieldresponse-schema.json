@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MessageEmbedFieldResponse",
+  "title": "MessageEmbedFieldResponse",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "value": {
+      "type": "string"
+    },
+    "inline": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "name",
+    "value",
+    "inline"
+  ]
+}

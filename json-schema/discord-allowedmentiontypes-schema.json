@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AllowedMentionTypes",
+  "title": "AllowedMentionTypes",
+  "type": "string",
+  "oneOf": [
+    {
+      "title": "USERS",
+      "description": "Controls role mentions",
+      "const": "users"
+    },
+    {
+      "title": "ROLES",
+      "description": "Controls user mentions",
+      "const": "roles"
+    },
+    {
+      "title": "EVERYONE",
+      "description": "Controls @everyone and @here mentions",
+      "const": "everyone"
+    }
+  ]
+}

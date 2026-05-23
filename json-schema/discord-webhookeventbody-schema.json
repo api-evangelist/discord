@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WebhookEventBody",
+  "title": "WebhookEventBody",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "description": "Event type: APPLICATION_AUTHORIZED, ENTITLEMENT_CREATE, QUEST_USER_ENROLLMENT",
+      "enum": [
+        "APPLICATION_AUTHORIZED",
+        "ENTITLEMENT_CREATE",
+        "QUEST_USER_ENROLLMENT"
+      ]
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the event occurred"
+    },
+    "data": {
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/ApplicationAuthorizedData"
+        },
+        {
+          "$ref": "#/components/schemas/EntitlementCreateData"
+        },
+        {
+          "$ref": "#/components/schemas/QuestUserEnrollmentData"
+        }
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "timestamp"
+  ]
+}

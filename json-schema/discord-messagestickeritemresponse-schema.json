@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MessageStickerItemResponse",
+  "title": "MessageStickerItemResponse",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "name": {
+      "type": "string"
+    },
+    "format_type": {
+      "$ref": "#/components/schemas/StickerFormatTypes"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "format_type"
+  ]
+}

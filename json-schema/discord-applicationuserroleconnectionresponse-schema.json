@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApplicationUserRoleConnectionResponse",
+  "title": "ApplicationUserRoleConnectionResponse",
+  "type": "object",
+  "properties": {
+    "platform_name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "platform_username": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "metadata": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  }
+}

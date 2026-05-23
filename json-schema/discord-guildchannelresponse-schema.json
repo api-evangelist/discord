@@ -1,0 +1,198 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GuildChannelResponse",
+  "title": "GuildChannelResponse",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "type": {
+      "type": "integer",
+      "enum": [
+        0,
+        2,
+        4,
+        5,
+        13,
+        14,
+        15
+      ],
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ChannelTypes"
+        }
+      ],
+      "format": "int32"
+    },
+    "last_message_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "flags": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "last_pin_timestamp": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "guild_id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "name": {
+      "type": "string"
+    },
+    "parent_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "rate_limit_per_user": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "bitrate": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "user_limit": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "rtc_region": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "video_quality_mode": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/VideoQualityModes"
+        }
+      ]
+    },
+    "permissions": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "topic": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "default_auto_archive_duration": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/ThreadAutoArchiveDuration"
+        }
+      ]
+    },
+    "default_thread_rate_limit_per_user": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "position": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "permission_overwrites": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/components/schemas/ChannelPermissionOverwriteResponse"
+      }
+    },
+    "nsfw": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "available_tags": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/components/schemas/ForumTagResponse"
+      }
+    },
+    "default_reaction_emoji": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/DefaultReactionEmojiResponse"
+        }
+      ]
+    },
+    "default_sort_order": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/ThreadSortOrder"
+        }
+      ]
+    },
+    "default_forum_layout": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/ForumLayout"
+        }
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "type",
+    "flags",
+    "guild_id",
+    "name",
+    "position"
+  ]
+}

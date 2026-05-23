@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/VanityURLResponse",
+  "title": "VanityURLResponse",
+  "type": "object",
+  "properties": {
+    "code": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "uses": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "error": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/VanityURLErrorResponse"
+        }
+      ]
+    }
+  },
+  "required": [
+    "uses"
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateScheduledEventRequest",
+  "title": "CreateScheduledEventRequest",
+  "type": "object",
+  "required": [
+    "name",
+    "privacy_level",
+    "scheduled_start_time",
+    "entity_type"
+  ],
+  "properties": {
+    "channel_id": {
+      "$ref": "#/components/schemas/Snowflake"
+    },
+    "entity_metadata": {
+      "type": "object",
+      "properties": {
+        "location": {
+          "type": "string"
+        }
+      }
+    },
+    "name": {
+      "type": "string"
+    },
+    "privacy_level": {
+      "type": "integer"
+    },
+    "scheduled_start_time": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "scheduled_end_time": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "description": {
+      "type": "string"
+    },
+    "entity_type": {
+      "type": "integer"
+    },
+    "image": {
+      "type": "string"
+    }
+  }
+}

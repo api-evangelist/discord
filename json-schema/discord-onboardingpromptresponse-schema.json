@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OnboardingPromptResponse",
+  "title": "OnboardingPromptResponse",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "title": {
+      "type": "string"
+    },
+    "options": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/OnboardingPromptOptionResponse"
+      }
+    },
+    "single_select": {
+      "type": "boolean"
+    },
+    "required": {
+      "type": "boolean"
+    },
+    "in_onboarding": {
+      "type": "boolean"
+    },
+    "type": {
+      "$ref": "#/components/schemas/OnboardingPromptType"
+    }
+  },
+  "required": [
+    "id",
+    "title",
+    "options",
+    "single_select",
+    "required",
+    "in_onboarding",
+    "type"
+  ]
+}

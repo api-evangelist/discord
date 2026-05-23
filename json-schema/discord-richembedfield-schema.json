@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RichEmbedField",
+  "title": "RichEmbedField",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "maxLength": 256
+    },
+    "value": {
+      "type": "string",
+      "maxLength": 1024
+    },
+    "inline": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "name",
+    "value"
+  ]
+}

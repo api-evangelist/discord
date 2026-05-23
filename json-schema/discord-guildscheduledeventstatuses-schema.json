@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GuildScheduledEventStatuses",
+  "title": "GuildScheduledEventStatuses",
+  "type": "integer",
+  "oneOf": [
+    {
+      "title": "SCHEDULED",
+      "const": 1
+    },
+    {
+      "title": "ACTIVE",
+      "const": 2
+    },
+    {
+      "title": "COMPLETED",
+      "const": 3
+    },
+    {
+      "title": "CANCELED",
+      "const": 4
+    }
+  ],
+  "format": "int32"
+}

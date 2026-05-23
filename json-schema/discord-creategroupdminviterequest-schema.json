@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateGroupDMInviteRequest",
+  "title": "CreateGroupDMInviteRequest",
+  "type": "object",
+  "properties": {
+    "max_age": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 1,
+      "maximum": 604800
+    }
+  }
+}

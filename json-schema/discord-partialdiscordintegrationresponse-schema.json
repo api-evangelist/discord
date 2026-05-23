@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PartialDiscordIntegrationResponse",
+  "title": "PartialDiscordIntegrationResponse",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "discord"
+      ],
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/IntegrationTypes"
+        }
+      ]
+    },
+    "name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "account": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/AccountResponse"
+        }
+      ]
+    },
+    "application_id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    }
+  },
+  "required": [
+    "id",
+    "type",
+    "application_id"
+  ]
+}

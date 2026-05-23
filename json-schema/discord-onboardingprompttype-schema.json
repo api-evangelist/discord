@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OnboardingPromptType",
+  "title": "OnboardingPromptType",
+  "type": "integer",
+  "oneOf": [
+    {
+      "title": "MULTIPLE_CHOICE",
+      "description": "Multiple choice options",
+      "const": 0
+    },
+    {
+      "title": "DROPDOWN",
+      "description": "Many options shown as a dropdown",
+      "const": 1
+    }
+  ],
+  "format": "int32"
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/VideoQualityModes",
+  "title": "VideoQualityModes",
+  "type": "integer",
+  "oneOf": [
+    {
+      "title": "AUTO",
+      "description": "Discord chooses the quality for optimal performance",
+      "const": 1
+    },
+    {
+      "title": "FULL",
+      "description": "720p",
+      "const": 2
+    }
+  ],
+  "format": "int32"
+}

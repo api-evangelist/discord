@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GuildProductPurchaseResponse",
+  "title": "GuildProductPurchaseResponse",
+  "type": "object",
+  "properties": {
+    "listing_id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "product_name": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "listing_id",
+    "product_name"
+  ]
+}

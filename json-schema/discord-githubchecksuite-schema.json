@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GithubCheckSuite",
+  "title": "GithubCheckSuite",
+  "type": "object",
+  "properties": {
+    "conclusion": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 152133
+    },
+    "head_branch": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 152133
+    },
+    "head_sha": {
+      "type": "string",
+      "maxLength": 152133
+    },
+    "pull_requests": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/components/schemas/GithubCheckPullRequest"
+      },
+      "maxItems": 1521
+    },
+    "app": {
+      "$ref": "#/components/schemas/GithubCheckApp"
+    }
+  },
+  "required": [
+    "head_sha",
+    "app"
+  ]
+}

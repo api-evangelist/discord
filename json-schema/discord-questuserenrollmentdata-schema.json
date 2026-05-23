@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/QuestUserEnrollmentData",
+  "title": "QuestUserEnrollmentData",
+  "type": "object",
+  "description": "Data for QUEST_USER_ENROLLMENT event",
+  "properties": {
+    "user_id": {
+      "type": "string"
+    },
+    "quest_id": {
+      "type": "string"
+    },
+    "enrolled_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

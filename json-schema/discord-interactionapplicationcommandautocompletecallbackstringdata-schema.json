@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/InteractionApplicationCommandAutocompleteCallbackStringData",
+  "title": "InteractionApplicationCommandAutocompleteCallbackStringData",
+  "type": "object",
+  "properties": {
+    "choices": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "oneOf": [
+          {
+            "type": "null"
+          },
+          {
+            "$ref": "#/components/schemas/ApplicationCommandOptionStringChoice"
+          }
+        ]
+      },
+      "maxItems": 25
+    }
+  }
+}

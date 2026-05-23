@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EntitlementTypes",
+  "title": "EntitlementTypes",
+  "type": "integer",
+  "oneOf": [
+    {
+      "title": "APPLICATION_SUBSCRIPTION",
+      "const": 8
+    },
+    {
+      "title": "QUEST_REWARD",
+      "const": 10
+    }
+  ],
+  "format": "int32"
+}

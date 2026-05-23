@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GithubCheckRun",
+  "title": "GithubCheckRun",
+  "type": "object",
+  "properties": {
+    "conclusion": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 152133
+    },
+    "name": {
+      "type": "string",
+      "maxLength": 152133
+    },
+    "html_url": {
+      "type": "string",
+      "maxLength": 2048,
+      "format": "uri"
+    },
+    "check_suite": {
+      "$ref": "#/components/schemas/GithubCheckSuite"
+    },
+    "details_url": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 2048,
+      "format": "uri"
+    },
+    "output": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/GithubCheckRunOutput"
+        }
+      ]
+    },
+    "pull_requests": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/components/schemas/GithubCheckPullRequest"
+      },
+      "maxItems": 1521
+    }
+  },
+  "required": [
+    "name",
+    "html_url",
+    "check_suite"
+  ]
+}

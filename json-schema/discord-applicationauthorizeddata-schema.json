@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApplicationAuthorizedData",
+  "title": "ApplicationAuthorizedData",
+  "type": "object",
+  "description": "Data for APPLICATION_AUTHORIZED event",
+  "properties": {
+    "integration_type": {
+      "type": "integer",
+      "description": "0=GUILD_INSTALL, 1=USER_INSTALL"
+    },
+    "user": {
+      "$ref": "#/components/schemas/User"
+    },
+    "scopes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "OAuth2 scopes granted"
+    },
+    "guild": {
+      "$ref": "#/components/schemas/PartialGuild"
+    }
+  }
+}

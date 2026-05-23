@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/StickerPack",
+  "title": "StickerPack",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Snowflake"
+    },
+    "stickers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Sticker"
+      }
+    },
+    "name": {
+      "type": "string"
+    },
+    "sku_id": {
+      "$ref": "#/components/schemas/Snowflake"
+    },
+    "cover_sticker_id": {
+      "$ref": "#/components/schemas/Snowflake"
+    },
+    "description": {
+      "type": "string"
+    },
+    "banner_asset_id": {
+      "$ref": "#/components/schemas/Snowflake"
+    }
+  }
+}

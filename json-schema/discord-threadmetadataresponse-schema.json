@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ThreadMetadataResponse",
+  "title": "ThreadMetadataResponse",
+  "type": "object",
+  "properties": {
+    "archived": {
+      "type": "boolean"
+    },
+    "archive_timestamp": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "auto_archive_duration": {
+      "$ref": "#/components/schemas/ThreadAutoArchiveDuration"
+    },
+    "locked": {
+      "type": "boolean"
+    },
+    "create_timestamp": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "invitable": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "archived",
+    "auto_archive_duration",
+    "locked"
+  ]
+}

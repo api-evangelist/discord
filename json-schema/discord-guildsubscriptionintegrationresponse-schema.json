@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GuildSubscriptionIntegrationResponse",
+  "title": "GuildSubscriptionIntegrationResponse",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "guild_subscription"
+      ],
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/IntegrationTypes"
+        }
+      ]
+    },
+    "name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "account": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/AccountResponse"
+        }
+      ]
+    },
+    "enabled": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    }
+  },
+  "required": [
+    "type",
+    "id"
+  ]
+}

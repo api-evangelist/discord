@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GuildTemplateSnapshotResponse",
+  "title": "GuildTemplateSnapshotResponse",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "region": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "verification_level": {
+      "$ref": "#/components/schemas/VerificationLevels"
+    },
+    "default_message_notifications": {
+      "$ref": "#/components/schemas/UserNotificationSettings"
+    },
+    "explicit_content_filter": {
+      "$ref": "#/components/schemas/GuildExplicitContentFilterTypes"
+    },
+    "preferred_locale": {
+      "$ref": "#/components/schemas/AvailableLocalesEnum"
+    },
+    "afk_channel_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "afk_timeout": {
+      "$ref": "#/components/schemas/AfkTimeouts"
+    },
+    "system_channel_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "system_channel_flags": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "roles": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/GuildTemplateRoleResponse"
+      }
+    },
+    "channels": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/GuildTemplateChannelResponse"
+      }
+    }
+  },
+  "required": [
+    "name",
+    "verification_level",
+    "default_message_notifications",
+    "explicit_content_filter",
+    "preferred_locale",
+    "afk_timeout",
+    "system_channel_flags",
+    "roles",
+    "channels"
+  ]
+}

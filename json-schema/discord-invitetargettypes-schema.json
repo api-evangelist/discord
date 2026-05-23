@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/InviteTargetTypes",
+  "title": "InviteTargetTypes",
+  "type": "integer",
+  "oneOf": [
+    {
+      "title": "STREAM",
+      "const": 1
+    },
+    {
+      "title": "EMBEDDED_APPLICATION",
+      "const": 2
+    },
+    {
+      "title": "ROLE_SUBSCRIPTIONS_PURCHASE",
+      "const": 3
+    }
+  ],
+  "format": "int32"
+}

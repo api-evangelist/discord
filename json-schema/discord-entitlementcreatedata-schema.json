@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EntitlementCreateData",
+  "title": "EntitlementCreateData",
+  "type": "object",
+  "description": "Data for ENTITLEMENT_CREATE event",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "sku_id": {
+      "type": "string"
+    },
+    "application_id": {
+      "type": "string"
+    },
+    "user_id": {
+      "type": "string"
+    },
+    "type": {
+      "type": "integer"
+    },
+    "deleted": {
+      "type": "boolean"
+    },
+    "starts_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "ends_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "guild_id": {
+      "type": "string"
+    }
+  }
+}

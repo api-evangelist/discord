@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GuildHomeSettingsResponse",
+  "title": "GuildHomeSettingsResponse",
+  "type": "object",
+  "properties": {
+    "guild_id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "welcome_message": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/WelcomeMessageResponse"
+        }
+      ]
+    },
+    "new_member_actions": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "oneOf": [
+          {
+            "type": "null"
+          },
+          {
+            "$ref": "#/components/schemas/NewMemberActionResponse"
+          }
+        ]
+      }
+    },
+    "resource_channels": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "oneOf": [
+          {
+            "type": "null"
+          },
+          {
+            "$ref": "#/components/schemas/ResourceChannelResponse"
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "guild_id",
+    "enabled"
+  ]
+}

@@ -1,0 +1,189 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GithubWebhook",
+  "title": "GithubWebhook",
+  "type": "object",
+  "properties": {
+    "action": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 152133
+    },
+    "ref": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 152133
+    },
+    "ref_type": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 152133
+    },
+    "comment": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/GithubComment"
+        }
+      ]
+    },
+    "issue": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/GithubIssue"
+        }
+      ]
+    },
+    "pull_request": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/GithubIssue"
+        }
+      ]
+    },
+    "repository": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/GithubRepository"
+        }
+      ]
+    },
+    "forkee": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/GithubRepository"
+        }
+      ]
+    },
+    "sender": {
+      "$ref": "#/components/schemas/GithubUser"
+    },
+    "member": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/GithubUser"
+        }
+      ]
+    },
+    "release": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/GithubRelease"
+        }
+      ]
+    },
+    "head_commit": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/GithubCommit"
+        }
+      ]
+    },
+    "commits": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/components/schemas/GithubCommit"
+      },
+      "maxItems": 1521
+    },
+    "forced": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "compare": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 2048,
+      "format": "uri"
+    },
+    "review": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/GithubReview"
+        }
+      ]
+    },
+    "check_run": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/GithubCheckRun"
+        }
+      ]
+    },
+    "check_suite": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/GithubCheckSuite"
+        }
+      ]
+    },
+    "discussion": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/GithubDiscussion"
+        }
+      ]
+    },
+    "answer": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/GithubComment"
+        }
+      ]
+    }
+  },
+  "required": [
+    "sender"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/InteractionTypes",
+  "title": "InteractionTypes",
+  "type": "integer",
+  "oneOf": [
+    {
+      "title": "PING",
+      "description": "Sent by Discord to validate your application's interaction handler",
+      "const": 1
+    },
+    {
+      "title": "APPLICATION_COMMAND",
+      "description": "Sent when a user uses an application command",
+      "const": 2
+    },
+    {
+      "title": "MESSAGE_COMPONENT",
+      "description": "Sent when a user interacts with a message component previously sent by your application",
+      "const": 3
+    },
+    {
+      "title": "APPLICATION_COMMAND_AUTOCOMPLETE",
+      "description": "Sent when a user is filling in an autocomplete option in a chat command",
+      "const": 4
+    },
+    {
+      "title": "MODAL_SUBMIT",
+      "description": "Sent when a user submits a modal previously sent by your application",
+      "const": 5
+    }
+  ],
+  "format": "int32"
+}

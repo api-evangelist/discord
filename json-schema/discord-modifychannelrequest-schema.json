@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ModifyChannelRequest",
+  "title": "ModifyChannelRequest",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "type": {
+      "type": "integer"
+    },
+    "position": {
+      "type": "integer",
+      "nullable": true
+    },
+    "topic": {
+      "type": "string",
+      "nullable": true,
+      "maxLength": 1024
+    },
+    "nsfw": {
+      "type": "boolean",
+      "nullable": true
+    },
+    "rate_limit_per_user": {
+      "type": "integer",
+      "nullable": true
+    },
+    "bitrate": {
+      "type": "integer",
+      "nullable": true
+    },
+    "user_limit": {
+      "type": "integer",
+      "nullable": true
+    },
+    "permission_overwrites": {
+      "type": "array",
+      "nullable": true,
+      "items": {
+        "$ref": "#/components/schemas/Overwrite"
+      }
+    },
+    "parent_id": {
+      "$ref": "#/components/schemas/Snowflake"
+    },
+    "rtc_region": {
+      "type": "string",
+      "nullable": true
+    },
+    "video_quality_mode": {
+      "type": "integer",
+      "nullable": true
+    },
+    "default_auto_archive_duration": {
+      "type": "integer",
+      "nullable": true
+    }
+  }
+}

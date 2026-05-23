@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AuditLogObjectChangeResponse",
+  "title": "AuditLogObjectChangeResponse",
+  "type": "object",
+  "properties": {
+    "key": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "new_value": {},
+    "old_value": {}
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApplicationCommandOptionIntegerChoiceResponse",
+  "title": "ApplicationCommandOptionIntegerChoiceResponse",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "name_localized": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "name_localizations": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "value": {
+      "$ref": "#/components/schemas/Int53Type"
+    }
+  },
+  "required": [
+    "name",
+    "value"
+  ]
+}

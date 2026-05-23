@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GuildStickerResponse",
+  "title": "GuildStickerResponse",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "name": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "string"
+    },
+    "type": {
+      "type": "integer",
+      "enum": [
+        2
+      ],
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/StickerTypes"
+        }
+      ],
+      "format": "int32"
+    },
+    "format_type": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/StickerFormatTypes"
+        }
+      ]
+    },
+    "description": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "available": {
+      "type": "boolean"
+    },
+    "guild_id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "user": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/UserResponse"
+        }
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "tags",
+    "type",
+    "available",
+    "guild_id"
+  ]
+}

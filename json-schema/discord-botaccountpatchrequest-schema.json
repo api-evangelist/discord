@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BotAccountPatchRequest",
+  "title": "BotAccountPatchRequest",
+  "type": "object",
+  "properties": {
+    "username": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 32
+    },
+    "avatar": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "contentEncoding": "base64"
+    },
+    "banner": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "contentEncoding": "base64"
+    }
+  },
+  "required": [
+    "username"
+  ]
+}

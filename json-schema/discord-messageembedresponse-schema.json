@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MessageEmbedResponse",
+  "title": "MessageEmbedResponse",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string"
+    },
+    "url": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uri"
+    },
+    "title": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "description": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "color": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "timestamp": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "fields": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/components/schemas/MessageEmbedFieldResponse"
+      }
+    },
+    "author": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/MessageEmbedAuthorResponse"
+        }
+      ]
+    },
+    "provider": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/MessageEmbedProviderResponse"
+        }
+      ]
+    },
+    "image": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/MessageEmbedImageResponse"
+        }
+      ]
+    },
+    "thumbnail": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/MessageEmbedImageResponse"
+        }
+      ]
+    },
+    "video": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/MessageEmbedVideoResponse"
+        }
+      ]
+    },
+    "footer": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/MessageEmbedFooterResponse"
+        }
+      ]
+    }
+  },
+  "required": [
+    "type"
+  ]
+}

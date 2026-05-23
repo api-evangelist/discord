@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreatePrivateChannelRequest",
+  "title": "CreatePrivateChannelRequest",
+  "type": "object",
+  "properties": {
+    "recipient_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "access_tokens": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string",
+        "maxLength": 152133
+      },
+      "maxItems": 1521,
+      "uniqueItems": true
+    },
+    "nicks": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "maxLength": 152133
+      },
+      "maxProperties": 1521
+    }
+  }
+}

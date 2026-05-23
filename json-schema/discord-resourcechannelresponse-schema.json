@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ResourceChannelResponse",
+  "title": "ResourceChannelResponse",
+  "type": "object",
+  "properties": {
+    "channel_id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "title": {
+      "type": "string"
+    },
+    "emoji": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SettingsEmojiResponse"
+        }
+      ]
+    },
+    "icon": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "description": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "channel_id",
+    "title",
+    "description"
+  ]
+}

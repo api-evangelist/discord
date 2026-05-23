@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GithubComment",
+  "title": "GithubComment",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "html_url": {
+      "type": "string",
+      "maxLength": 2048,
+      "format": "uri"
+    },
+    "user": {
+      "$ref": "#/components/schemas/GithubUser"
+    },
+    "commit_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 152133
+    },
+    "body": {
+      "type": "string",
+      "maxLength": 152133
+    }
+  },
+  "required": [
+    "id",
+    "html_url",
+    "user",
+    "body"
+  ]
+}

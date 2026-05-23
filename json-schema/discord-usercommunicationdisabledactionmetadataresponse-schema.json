@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UserCommunicationDisabledActionMetadataResponse",
+  "title": "UserCommunicationDisabledActionMetadataResponse",
+  "type": "object",
+  "properties": {
+    "duration_seconds": {
+      "type": "integer",
+      "format": "int32"
+    }
+  },
+  "required": [
+    "duration_seconds"
+  ]
+}

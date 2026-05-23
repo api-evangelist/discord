@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ChannelSelectDefaultValue",
+  "title": "ChannelSelectDefaultValue",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "channel"
+      ],
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/SnowflakeSelectDefaultValueTypes"
+        }
+      ]
+    },
+    "id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    }
+  },
+  "required": [
+    "type",
+    "id"
+  ]
+}

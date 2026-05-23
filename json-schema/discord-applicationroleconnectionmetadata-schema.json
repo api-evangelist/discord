@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApplicationRoleConnectionMetadata",
+  "title": "ApplicationRoleConnectionMetadata",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "integer",
+      "description": "1=INTEGER_LESS_THAN_OR_EQUAL, 2=INTEGER_GREATER_THAN_OR_EQUAL, 3=INTEGER_EQUAL, 4=INTEGER_NOT_EQUAL, 5=DATETIME_LESS_THAN_OR_EQUAL, 6=DATETIME_GREATER_THAN_OR_EQUAL, 7=BOOLEAN_EQUAL, 8=BOOLEAN_NOT_EQUAL"
+    },
+    "key": {
+      "type": "string",
+      "description": "Dictionary key for the metadata field (max 50 chars, a-z, 0-9, _)",
+      "maxLength": 50,
+      "pattern": "^[a-z0-9_]+$"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable name (max 100 chars)",
+      "maxLength": 100
+    },
+    "name_localizations": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "nullable": true
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable description (max 200 chars)",
+      "maxLength": 200
+    },
+    "description_localizations": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "nullable": true
+    }
+  },
+  "required": [
+    "type",
+    "key",
+    "name",
+    "description"
+  ]
+}

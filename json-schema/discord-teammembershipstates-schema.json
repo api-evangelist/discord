@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TeamMembershipStates",
+  "title": "TeamMembershipStates",
+  "type": "integer",
+  "oneOf": [
+    {
+      "title": "INVITED",
+      "description": "User has been invited to the team.",
+      "const": 1
+    },
+    {
+      "title": "ACCEPTED",
+      "description": "User has accepted the team invitation.",
+      "const": 2
+    }
+  ],
+  "format": "int32"
+}

@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateGuildRequestRoleItem",
+  "title": "CreateGuildRequestRoleItem",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "name": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 100
+    },
+    "permissions": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "color": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 16777215
+    },
+    "hoist": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "mentionable": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "unicode_emoji": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 100
+    }
+  },
+  "required": [
+    "id"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DefaultKeywordListTriggerMetadata",
+  "title": "DefaultKeywordListTriggerMetadata",
+  "type": "object",
+  "properties": {
+    "allow_list": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 60
+      },
+      "maxItems": 1000
+    },
+    "presets": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/components/schemas/AutomodKeywordPresetType"
+      },
+      "uniqueItems": true
+    }
+  }
+}

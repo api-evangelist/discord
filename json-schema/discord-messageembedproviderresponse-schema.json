@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MessageEmbedProviderResponse",
+  "title": "MessageEmbedProviderResponse",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "url": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uri"
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

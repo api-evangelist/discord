@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GuildTemplateChannelTags",
+  "title": "GuildTemplateChannelTags",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "emoji_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "emoji_name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "moderated": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

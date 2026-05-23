@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GithubReview",
+  "title": "GithubReview",
+  "type": "object",
+  "properties": {
+    "user": {
+      "$ref": "#/components/schemas/GithubUser"
+    },
+    "body": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 152133
+    },
+    "html_url": {
+      "type": "string",
+      "maxLength": 2048,
+      "format": "uri"
+    },
+    "state": {
+      "type": "string",
+      "maxLength": 152133
+    }
+  },
+  "required": [
+    "user",
+    "html_url",
+    "state"
+  ]
+}

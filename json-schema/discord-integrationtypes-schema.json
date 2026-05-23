@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/IntegrationTypes",
+  "title": "IntegrationTypes",
+  "type": "string",
+  "oneOf": [
+    {
+      "title": "DISCORD",
+      "const": "discord"
+    },
+    {
+      "title": "TWITCH",
+      "const": "twitch"
+    },
+    {
+      "title": "YOUTUBE",
+      "const": "youtube"
+    },
+    {
+      "title": "GUILD_SUBSCRIPTION",
+      "const": "guild_subscription"
+    }
+  ]
+}

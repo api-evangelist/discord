@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/InviteGuildResponse",
+  "title": "InviteGuildResponse",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "name": {
+      "type": "string"
+    },
+    "splash": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "banner": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "description": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "icon": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "features": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/GuildFeatures"
+      },
+      "uniqueItems": true
+    },
+    "verification_level": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/VerificationLevels"
+        }
+      ]
+    },
+    "vanity_url_code": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "nsfw_level": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/GuildNSFWContentLevel"
+        }
+      ]
+    },
+    "nsfw": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "premium_subscription_count": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "features"
+  ]
+}

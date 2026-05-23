@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GuildTemplateResponse",
+  "title": "GuildTemplateResponse",
+  "type": "object",
+  "properties": {
+    "code": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "usage_count": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "creator_id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "creator": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/UserResponse"
+        }
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "source_guild_id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "serialized_source_guild": {
+      "$ref": "#/components/schemas/GuildTemplateSnapshotResponse"
+    },
+    "is_dirty": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "code",
+    "name",
+    "usage_count",
+    "creator_id",
+    "created_at",
+    "updated_at",
+    "source_guild_id",
+    "serialized_source_guild"
+  ]
+}

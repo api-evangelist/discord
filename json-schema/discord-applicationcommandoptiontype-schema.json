@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApplicationCommandOptionType",
+  "title": "ApplicationCommandOptionType",
+  "type": "integer",
+  "oneOf": [
+    {
+      "title": "SUB_COMMAND",
+      "description": "A sub-action within a command or group",
+      "const": 1
+    },
+    {
+      "title": "SUB_COMMAND_GROUP",
+      "description": "A group of subcommands",
+      "const": 2
+    },
+    {
+      "title": "STRING",
+      "description": "A string option",
+      "const": 3
+    },
+    {
+      "title": "INTEGER",
+      "description": "An integer option. Any integer between -2^53 and 2^53 is a valid value",
+      "const": 4
+    },
+    {
+      "title": "BOOLEAN",
+      "description": "A boolean option",
+      "const": 5
+    },
+    {
+      "title": "USER",
+      "description": "A snowflake option that represents a User",
+      "const": 6
+    },
+    {
+      "title": "CHANNEL",
+      "description": "A snowflake option that represents a Channel. Includes all channel types and categories",
+      "const": 7
+    },
+    {
+      "title": "ROLE",
+      "description": "A snowflake option that represents a Role",
+      "const": 8
+    },
+    {
+      "title": "MENTIONABLE",
+      "description": "A snowflake option that represents anything you can mention",
+      "const": 9
+    },
+    {
+      "title": "NUMBER",
+      "description": "A number option. Any double between -2^53 and 2^53 is a valid value",
+      "const": 10
+    },
+    {
+      "title": "ATTACHMENT",
+      "description": "An attachment option",
+      "const": 11
+    }
+  ],
+  "format": "int32"
+}

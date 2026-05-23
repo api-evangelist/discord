@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GuildExplicitContentFilterTypes",
+  "title": "GuildExplicitContentFilterTypes",
+  "type": "integer",
+  "oneOf": [
+    {
+      "title": "DISABLED",
+      "description": "media content will not be scanned",
+      "const": 0
+    },
+    {
+      "title": "MEMBERS_WITHOUT_ROLES",
+      "description": "media content sent by members without roles will be scanned",
+      "const": 1
+    },
+    {
+      "title": "ALL_MEMBERS",
+      "description": "media content sent by all members will be scanned",
+      "const": 2
+    }
+  ],
+  "format": "int32"
+}

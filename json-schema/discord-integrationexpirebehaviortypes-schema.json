@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/IntegrationExpireBehaviorTypes",
+  "title": "IntegrationExpireBehaviorTypes",
+  "type": "integer",
+  "oneOf": [
+    {
+      "title": "REMOVE_ROLE",
+      "description": "Remove role",
+      "const": 0
+    },
+    {
+      "title": "KICK",
+      "description": "Kick",
+      "const": 1
+    }
+  ],
+  "format": "int32"
+}

@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConnectedAccountResponse",
+  "title": "ConnectedAccountResponse",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "type": {
+      "$ref": "#/components/schemas/ConnectedAccountProviders"
+    },
+    "friend_sync": {
+      "type": "boolean"
+    },
+    "integrations": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/components/schemas/ConnectedAccountIntegrationResponse"
+      }
+    },
+    "show_activity": {
+      "type": "boolean"
+    },
+    "two_way_link": {
+      "type": "boolean"
+    },
+    "verified": {
+      "type": "boolean"
+    },
+    "visibility": {
+      "$ref": "#/components/schemas/ConnectedAccountVisibility"
+    },
+    "revoked": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "type",
+    "friend_sync",
+    "show_activity",
+    "two_way_link",
+    "verified",
+    "visibility"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EntityMetadataExternal",
+  "title": "EntityMetadataExternal",
+  "type": "object",
+  "properties": {
+    "location": {
+      "type": "string",
+      "maxLength": 100
+    }
+  },
+  "required": [
+    "location"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CommandPermissionsResponse",
+  "title": "CommandPermissionsResponse",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "application_id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "guild_id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "permissions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/CommandPermissionResponse"
+      }
+    }
+  },
+  "required": [
+    "id",
+    "application_id",
+    "guild_id",
+    "permissions"
+  ]
+}

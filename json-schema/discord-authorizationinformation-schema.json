@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AuthorizationInformation",
+  "title": "AuthorizationInformation",
+  "type": "object",
+  "properties": {
+    "application": {
+      "$ref": "#/components/schemas/Application"
+    },
+    "scopes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "expires": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "user": {
+      "$ref": "#/components/schemas/User"
+    }
+  },
+  "required": [
+    "application",
+    "scopes",
+    "expires"
+  ]
+}

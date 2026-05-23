@@ -1,0 +1,191 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GuildInviteResponse",
+  "title": "GuildInviteResponse",
+  "type": "object",
+  "properties": {
+    "type": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "integer",
+          "enum": [
+            0
+          ],
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/InviteTypes"
+            }
+          ],
+          "format": "int32"
+        }
+      ]
+    },
+    "code": {
+      "type": "string"
+    },
+    "inviter": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/UserResponse"
+        }
+      ]
+    },
+    "max_age": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "created_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "expires_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "is_contact": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "flags": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "guild": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/InviteGuildResponse"
+        }
+      ]
+    },
+    "guild_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "channel": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/InviteChannelResponse"
+        }
+      ]
+    },
+    "stage_instance": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/InviteStageInstanceResponse"
+        }
+      ]
+    },
+    "target_type": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/InviteTargetTypes"
+        }
+      ]
+    },
+    "target_user": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/UserResponse"
+        }
+      ]
+    },
+    "target_application": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/InviteApplicationResponse"
+        }
+      ]
+    },
+    "guild_scheduled_event": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/ScheduledEventResponse"
+        }
+      ]
+    },
+    "uses": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "max_uses": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "temporary": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "approximate_member_count": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "approximate_presence_count": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    }
+  },
+  "required": [
+    "code"
+  ]
+}

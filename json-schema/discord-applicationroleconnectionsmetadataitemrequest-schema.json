@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApplicationRoleConnectionsMetadataItemRequest",
+  "title": "ApplicationRoleConnectionsMetadataItemRequest",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/MetadataItemTypes"
+    },
+    "key": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 50
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "name_localizations": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "minLength": 1,
+        "maxLength": 100
+      },
+      "maxProperties": 1521
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "description_localizations": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "minLength": 1,
+        "maxLength": 200
+      },
+      "maxProperties": 1521
+    }
+  },
+  "required": [
+    "type",
+    "key",
+    "name",
+    "description"
+  ]
+}

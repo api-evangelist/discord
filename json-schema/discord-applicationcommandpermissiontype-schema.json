@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApplicationCommandPermissionType",
+  "title": "ApplicationCommandPermissionType",
+  "type": "integer",
+  "oneOf": [
+    {
+      "title": "ROLE",
+      "description": "This permission is for a role.",
+      "const": 1
+    },
+    {
+      "title": "USER",
+      "description": "This permission is for a user.",
+      "const": 2
+    },
+    {
+      "title": "CHANNEL",
+      "description": "This permission is for a channel.",
+      "const": 3
+    }
+  ],
+  "format": "int32"
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MessageEmbedFooterResponse",
+  "title": "MessageEmbedFooterResponse",
+  "type": "object",
+  "properties": {
+    "text": {
+      "type": "string"
+    },
+    "icon_url": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "proxy_icon_url": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uri"
+    }
+  },
+  "required": [
+    "text"
+  ]
+}

@@ -1,0 +1,184 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MessageType",
+  "title": "MessageType",
+  "type": "integer",
+  "oneOf": [
+    {
+      "title": "DEFAULT",
+      "description": "",
+      "const": 0
+    },
+    {
+      "title": "RECIPIENT_ADD",
+      "description": "",
+      "const": 1
+    },
+    {
+      "title": "RECIPIENT_REMOVE",
+      "description": "",
+      "const": 2
+    },
+    {
+      "title": "CALL",
+      "description": "",
+      "const": 3
+    },
+    {
+      "title": "CHANNEL_NAME_CHANGE",
+      "description": "",
+      "const": 4
+    },
+    {
+      "title": "CHANNEL_ICON_CHANGE",
+      "description": "",
+      "const": 5
+    },
+    {
+      "title": "CHANNEL_PINNED_MESSAGE",
+      "description": "",
+      "const": 6
+    },
+    {
+      "title": "USER_JOIN",
+      "description": "",
+      "const": 7
+    },
+    {
+      "title": "GUILD_BOOST",
+      "description": "",
+      "const": 8
+    },
+    {
+      "title": "GUILD_BOOST_TIER_1",
+      "description": "",
+      "const": 9
+    },
+    {
+      "title": "GUILD_BOOST_TIER_2",
+      "description": "",
+      "const": 10
+    },
+    {
+      "title": "GUILD_BOOST_TIER_3",
+      "description": "",
+      "const": 11
+    },
+    {
+      "title": "CHANNEL_FOLLOW_ADD",
+      "description": "",
+      "const": 12
+    },
+    {
+      "title": "GUILD_DISCOVERY_DISQUALIFIED",
+      "description": "",
+      "const": 14
+    },
+    {
+      "title": "GUILD_DISCOVERY_REQUALIFIED",
+      "description": "",
+      "const": 15
+    },
+    {
+      "title": "GUILD_DISCOVERY_GRACE_PERIOD_INITIAL_WARNING",
+      "description": "",
+      "const": 16
+    },
+    {
+      "title": "GUILD_DISCOVERY_GRACE_PERIOD_FINAL_WARNING",
+      "description": "",
+      "const": 17
+    },
+    {
+      "title": "THREAD_CREATED",
+      "description": "",
+      "const": 18
+    },
+    {
+      "title": "REPLY",
+      "description": "",
+      "const": 19
+    },
+    {
+      "title": "CHAT_INPUT_COMMAND",
+      "description": "",
+      "const": 20
+    },
+    {
+      "title": "THREAD_STARTER_MESSAGE",
+      "description": "",
+      "const": 21
+    },
+    {
+      "title": "GUILD_INVITE_REMINDER",
+      "description": "",
+      "const": 22
+    },
+    {
+      "title": "CONTEXT_MENU_COMMAND",
+      "description": "",
+      "const": 23
+    },
+    {
+      "title": "AUTO_MODERATION_ACTION",
+      "description": "",
+      "const": 24
+    },
+    {
+      "title": "ROLE_SUBSCRIPTION_PURCHASE",
+      "description": "",
+      "const": 25
+    },
+    {
+      "title": "INTERACTION_PREMIUM_UPSELL",
+      "description": "",
+      "const": 26
+    },
+    {
+      "title": "STAGE_START",
+      "description": "",
+      "const": 27
+    },
+    {
+      "title": "STAGE_END",
+      "description": "",
+      "const": 28
+    },
+    {
+      "title": "STAGE_SPEAKER",
+      "description": "",
+      "const": 29
+    },
+    {
+      "title": "STAGE_TOPIC",
+      "description": "",
+      "const": 31
+    },
+    {
+      "title": "GUILD_APPLICATION_PREMIUM_SUBSCRIPTION",
+      "description": "",
+      "const": 32
+    },
+    {
+      "title": "GUILD_INCIDENT_ALERT_MODE_ENABLED",
+      "description": "",
+      "const": 36
+    },
+    {
+      "title": "GUILD_INCIDENT_ALERT_MODE_DISABLED",
+      "description": "",
+      "const": 37
+    },
+    {
+      "title": "GUILD_INCIDENT_REPORT_RAID",
+      "description": "",
+      "const": 38
+    },
+    {
+      "title": "GUILD_INCIDENT_REPORT_FALSE_ALARM",
+      "description": "",
+      "const": 39
+    }
+  ],
+  "format": "int32"
+}

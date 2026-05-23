@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/InteractionCallbackData",
+  "title": "InteractionCallbackData",
+  "type": "object",
+  "properties": {
+    "tts": {
+      "type": "boolean"
+    },
+    "content": {
+      "type": "string",
+      "maxLength": 2000
+    },
+    "embeds": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Embed"
+      },
+      "maxItems": 10
+    },
+    "allowed_mentions": {
+      "type": "object",
+      "properties": {
+        "parse": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "users": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "replied_user": {
+          "type": "boolean"
+        }
+      }
+    },
+    "flags": {
+      "type": "integer",
+      "description": "Set to 64 for ephemeral messages"
+    },
+    "components": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "choices": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ApplicationCommandOptionChoice"
+      },
+      "description": "Used for autocomplete responses"
+    },
+    "custom_id": {
+      "type": "string",
+      "description": "Used for modal responses"
+    },
+    "title": {
+      "type": "string",
+      "description": "Used for modal responses"
+    }
+  }
+}

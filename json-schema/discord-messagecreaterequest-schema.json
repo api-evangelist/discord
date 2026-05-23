@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MessageCreateRequest",
+  "title": "MessageCreateRequest",
+  "type": "object",
+  "properties": {
+    "content": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 4000
+    },
+    "embeds": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/components/schemas/RichEmbed"
+      },
+      "maxItems": 10
+    },
+    "allowed_mentions": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/MessageAllowedMentionsRequest"
+        }
+      ]
+    },
+    "sticker_ids": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/components/schemas/SnowflakeType"
+      },
+      "maxItems": 3
+    },
+    "components": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/components/schemas/ActionRow"
+      },
+      "maxItems": 5
+    },
+    "flags": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "attachments": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/components/schemas/MessageAttachmentRequest"
+      },
+      "maxItems": 10
+    },
+    "message_reference": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/MessageReferenceRequest"
+        }
+      ]
+    },
+    "nonce": {
+      "oneOf": [
+        {
+          "type": "integer",
+          "minimum": -9223372036854776000,
+          "maximum": 9223372036854776000,
+          "format": "int64"
+        },
+        {
+          "type": "string",
+          "maxLength": 25,
+          "format": "nonce"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "tts": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    }
+  }
+}

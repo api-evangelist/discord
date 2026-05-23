@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BaseCreateMessageCreateRequest",
+  "title": "BaseCreateMessageCreateRequest",
+  "type": "object",
+  "properties": {
+    "content": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 4000
+    },
+    "embeds": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/components/schemas/RichEmbed"
+      },
+      "maxItems": 10
+    },
+    "allowed_mentions": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/MessageAllowedMentionsRequest"
+        }
+      ]
+    },
+    "sticker_ids": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/components/schemas/SnowflakeType"
+      },
+      "maxItems": 3
+    },
+    "components": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/components/schemas/ActionRow"
+      },
+      "maxItems": 5
+    },
+    "flags": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "attachments": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/components/schemas/MessageAttachmentRequest"
+      },
+      "maxItems": 10
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EditApplicationCommandRequest",
+  "title": "EditApplicationCommandRequest",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 32
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "options": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ApplicationCommandOption"
+      },
+      "maxItems": 25
+    },
+    "default_member_permissions": {
+      "type": "string",
+      "nullable": true
+    },
+    "dm_permission": {
+      "type": "boolean"
+    },
+    "nsfw": {
+      "type": "boolean"
+    }
+  }
+}

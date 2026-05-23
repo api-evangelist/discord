@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GuildPreview",
+  "title": "GuildPreview",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Snowflake"
+    },
+    "name": {
+      "type": "string"
+    },
+    "icon": {
+      "type": "string",
+      "nullable": true
+    },
+    "splash": {
+      "type": "string",
+      "nullable": true
+    },
+    "discovery_splash": {
+      "type": "string",
+      "nullable": true
+    },
+    "emojis": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Emoji"
+      }
+    },
+    "features": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "approximate_member_count": {
+      "type": "integer"
+    },
+    "approximate_presence_count": {
+      "type": "integer"
+    },
+    "description": {
+      "type": "string",
+      "nullable": true
+    },
+    "stickers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Sticker"
+      }
+    }
+  }
+}

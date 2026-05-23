@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MetadataItemTypes",
+  "title": "MetadataItemTypes",
+  "type": "integer",
+  "oneOf": [
+    {
+      "title": "INTEGER_LESS_THAN_EQUAL",
+      "description": "the metadata value (integer) is less than or equal to the guild's configured value (integer)",
+      "const": 1
+    },
+    {
+      "title": "INTEGER_GREATER_THAN_EQUAL",
+      "description": "the metadata value (integer) is greater than or equal to the guild's configured value (integer)",
+      "const": 2
+    },
+    {
+      "title": "INTEGER_EQUAL",
+      "description": "the metadata value (integer) is equal to the guild's configured value (integer)",
+      "const": 3
+    },
+    {
+      "title": "INTEGER_NOT_EQUAL",
+      "description": "the metadata value (integer) is not equal to the guild's configured value (integer)",
+      "const": 4
+    },
+    {
+      "title": "DATETIME_LESS_THAN_EQUAL",
+      "description": "the metadata value (ISO8601 string) is less than or equal to the guild's configured value (integer; days before current date)",
+      "const": 5
+    },
+    {
+      "title": "DATETIME_GREATER_THAN_EQUAL",
+      "description": "the metadata value (ISO8601 string) is greater than or equal to the guild's configured value (integer; days before current date)",
+      "const": 6
+    },
+    {
+      "title": "BOOLEAN_EQUAL",
+      "description": "the metadata value (integer) is equal to the guild's configured value (integer; 1)",
+      "const": 7
+    },
+    {
+      "title": "BOOLEAN_NOT_EQUAL",
+      "description": "the metadata value (integer) is not equal to the guild's configured value (integer; 1)",
+      "const": 8
+    }
+  ],
+  "format": "int32"
+}

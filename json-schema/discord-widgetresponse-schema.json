@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WidgetResponse",
+  "title": "WidgetResponse",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "name": {
+      "type": "string"
+    },
+    "instant_invite": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "channels": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/WidgetChannel"
+      }
+    },
+    "members": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/WidgetMember"
+      }
+    },
+    "presence_count": {
+      "type": "integer",
+      "format": "int32"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "channels",
+    "members",
+    "presence_count"
+  ]
+}

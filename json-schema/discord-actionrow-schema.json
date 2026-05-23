@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ActionRow",
+  "title": "ActionRow",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "integer",
+      "enum": [
+        1
+      ],
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/MessageComponentTypes"
+        }
+      ],
+      "format": "int32"
+    },
+    "components": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/Button"
+          },
+          {
+            "$ref": "#/components/schemas/ChannelSelect"
+          },
+          {
+            "$ref": "#/components/schemas/InputText"
+          },
+          {
+            "$ref": "#/components/schemas/MentionableSelect"
+          },
+          {
+            "$ref": "#/components/schemas/RoleSelect"
+          },
+          {
+            "$ref": "#/components/schemas/StringSelect"
+          },
+          {
+            "$ref": "#/components/schemas/UserSelect"
+          }
+        ]
+      },
+      "minItems": 1,
+      "maxItems": 5
+    }
+  },
+  "required": [
+    "type",
+    "components"
+  ]
+}

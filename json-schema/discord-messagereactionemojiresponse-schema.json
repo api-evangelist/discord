@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MessageReactionEmojiResponse",
+  "title": "MessageReactionEmojiResponse",
+  "type": "object",
+  "properties": {
+    "id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "animated": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    }
+  }
+}

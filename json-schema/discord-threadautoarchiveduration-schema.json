@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ThreadAutoArchiveDuration",
+  "title": "ThreadAutoArchiveDuration",
+  "type": "integer",
+  "oneOf": [
+    {
+      "title": "ONE_HOUR",
+      "description": "One hour",
+      "const": 60
+    },
+    {
+      "title": "ONE_DAY",
+      "description": "One day",
+      "const": 1440
+    },
+    {
+      "title": "THREE_DAY",
+      "description": "Three days",
+      "const": 4320
+    },
+    {
+      "title": "SEVEN_DAY",
+      "description": "Seven days",
+      "const": 10080
+    }
+  ],
+  "format": "int32"
+}

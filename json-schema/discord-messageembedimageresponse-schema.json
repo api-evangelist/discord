@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MessageEmbedImageResponse",
+  "title": "MessageEmbedImageResponse",
+  "type": "object",
+  "properties": {
+    "url": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "proxy_url": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uri"
+    },
+    "width": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/UInt32Type"
+        }
+      ]
+    },
+    "height": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/UInt32Type"
+        }
+      ]
+    },
+    "placeholder": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "placeholder_version": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/UInt32Type"
+        }
+      ]
+    }
+  }
+}

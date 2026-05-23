@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EmojiResponse",
+  "title": "EmojiResponse",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "name": {
+      "type": "string"
+    },
+    "user": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/UserResponse"
+        }
+      ]
+    },
+    "roles": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/SnowflakeType"
+      }
+    },
+    "require_colons": {
+      "type": "boolean"
+    },
+    "managed": {
+      "type": "boolean"
+    },
+    "animated": {
+      "type": "boolean"
+    },
+    "available": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "roles",
+    "require_colons",
+    "managed",
+    "animated",
+    "available"
+  ]
+}

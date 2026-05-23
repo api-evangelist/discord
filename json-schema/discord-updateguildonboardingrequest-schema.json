@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpdateGuildOnboardingRequest",
+  "title": "UpdateGuildOnboardingRequest",
+  "type": "object",
+  "properties": {
+    "prompts": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/components/schemas/UpdateOnboardingPromptRequest"
+      },
+      "maxItems": 15
+    },
+    "enabled": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "default_channel_ids": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/components/schemas/SnowflakeType"
+      },
+      "maxItems": 500,
+      "uniqueItems": true
+    },
+    "mode": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/GuildOnboardingMode"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ThreadsResponse",
+  "title": "ThreadsResponse",
+  "type": "object",
+  "properties": {
+    "threads": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ThreadResponse"
+      }
+    },
+    "members": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ThreadMemberResponse"
+      }
+    },
+    "has_more": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "threads",
+    "members"
+  ]
+}

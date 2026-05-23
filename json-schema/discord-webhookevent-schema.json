@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WebhookEvent",
+  "title": "WebhookEvent",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "integer",
+      "description": "Always 1"
+    },
+    "application_id": {
+      "type": "string",
+      "description": "ID of the application receiving the event"
+    },
+    "type": {
+      "type": "integer",
+      "description": "0=PING, 1=EVENT"
+    },
+    "event": {
+      "$ref": "#/components/schemas/WebhookEventBody"
+    }
+  },
+  "required": [
+    "version",
+    "application_id",
+    "type"
+  ]
+}

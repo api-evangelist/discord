@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MessageComponentActionRowResponse",
+  "title": "MessageComponentActionRowResponse",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "integer",
+      "enum": [
+        1
+      ],
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/MessageComponentTypes"
+        }
+      ],
+      "format": "int32"
+    },
+    "id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "components": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/MessageComponentButtonResponse"
+          },
+          {
+            "$ref": "#/components/schemas/MessageComponentChannelSelectResponse"
+          },
+          {
+            "$ref": "#/components/schemas/MessageComponentInputTextResponse"
+          },
+          {
+            "$ref": "#/components/schemas/MessageComponentMentionableSelectResponse"
+          },
+          {
+            "$ref": "#/components/schemas/MessageComponentRoleSelectResponse"
+          },
+          {
+            "$ref": "#/components/schemas/MessageComponentStringSelectResponse"
+          },
+          {
+            "$ref": "#/components/schemas/MessageComponentUserSelectResponse"
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "type",
+    "id"
+  ]
+}

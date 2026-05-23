@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GuildWelcomeScreenChannelResponse",
+  "title": "GuildWelcomeScreenChannelResponse",
+  "type": "object",
+  "properties": {
+    "channel_id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "description": {
+      "type": "string"
+    },
+    "emoji_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "emoji_name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "channel_id",
+    "description"
+  ]
+}

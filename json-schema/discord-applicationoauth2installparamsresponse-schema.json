@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApplicationOAuth2InstallParamsResponse",
+  "title": "ApplicationOAuth2InstallParamsResponse",
+  "type": "object",
+  "properties": {
+    "scopes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "applications.commands",
+          "bot"
+        ],
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/OAuth2Scopes"
+          }
+        ]
+      },
+      "uniqueItems": true
+    },
+    "permissions": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "scopes",
+    "permissions"
+  ]
+}

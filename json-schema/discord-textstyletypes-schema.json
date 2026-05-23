@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TextStyleTypes",
+  "title": "TextStyleTypes",
+  "type": "integer",
+  "oneOf": [
+    {
+      "title": "SHORT",
+      "description": "Single-line input",
+      "const": 1
+    },
+    {
+      "title": "PARAGRAPH",
+      "description": "Multi-line input",
+      "const": 2
+    }
+  ],
+  "format": "int32"
+}

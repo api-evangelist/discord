@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WidgetMember",
+  "title": "WidgetMember",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "username": {
+      "type": "string"
+    },
+    "discriminator": {
+      "$ref": "#/components/schemas/WidgetUserDiscriminator"
+    },
+    "avatar": {
+      "type": "null"
+    },
+    "status": {
+      "type": "string"
+    },
+    "avatar_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "activity": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/WidgetActivity"
+        }
+      ]
+    },
+    "deaf": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "mute": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "self_deaf": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "self_mute": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "suppress": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "channel_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "username",
+    "discriminator",
+    "status",
+    "avatar_url"
+  ]
+}

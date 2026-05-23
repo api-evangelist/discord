@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AutoModerationRule",
+  "title": "AutoModerationRule",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Snowflake"
+    },
+    "guild_id": {
+      "$ref": "#/components/schemas/Snowflake"
+    },
+    "name": {
+      "type": "string"
+    },
+    "creator_id": {
+      "$ref": "#/components/schemas/Snowflake"
+    },
+    "event_type": {
+      "type": "integer",
+      "description": "1=MESSAGE_SEND"
+    },
+    "trigger_type": {
+      "type": "integer",
+      "description": "1=KEYWORD, 3=SPAM, 4=KEYWORD_PRESET, 5=MENTION_SPAM"
+    },
+    "trigger_metadata": {
+      "type": "object",
+      "properties": {
+        "keyword_filter": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "regex_patterns": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "presets": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "allow_list": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "mention_total_limit": {
+          "type": "integer"
+        }
+      }
+    },
+    "actions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "integer"
+          },
+          "metadata": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "exempt_roles": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Snowflake"
+      }
+    },
+    "exempt_channels": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Snowflake"
+      }
+    }
+  }
+}

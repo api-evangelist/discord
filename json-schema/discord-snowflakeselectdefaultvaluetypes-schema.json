@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SnowflakeSelectDefaultValueTypes",
+  "title": "SnowflakeSelectDefaultValueTypes",
+  "type": "string",
+  "oneOf": [
+    {
+      "title": "USER",
+      "const": "user"
+    },
+    {
+      "title": "ROLE",
+      "const": "role"
+    },
+    {
+      "title": "CHANNEL",
+      "const": "channel"
+    }
+  ]
+}

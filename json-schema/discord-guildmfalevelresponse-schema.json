@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GuildMFALevelResponse",
+  "title": "GuildMFALevelResponse",
+  "type": "object",
+  "properties": {
+    "level": {
+      "$ref": "#/components/schemas/GuildMFALevel"
+    }
+  },
+  "required": [
+    "level"
+  ]
+}

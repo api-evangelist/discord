@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MentionSpamTriggerMetadata",
+  "title": "MentionSpamTriggerMetadata",
+  "type": "object",
+  "properties": {
+    "mention_total_limit": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 50
+    },
+    "mention_raid_protection_enabled": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "mention_total_limit"
+  ]
+}

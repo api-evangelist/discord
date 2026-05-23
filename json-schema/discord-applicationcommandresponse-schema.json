@@ -1,0 +1,135 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApplicationCommandResponse",
+  "title": "ApplicationCommandResponse",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "application_id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "version": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "default_member_permissions": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "type": {
+      "$ref": "#/components/schemas/ApplicationCommandType"
+    },
+    "name": {
+      "type": "string"
+    },
+    "name_localized": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "name_localizations": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "description": {
+      "type": "string"
+    },
+    "description_localized": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "description_localizations": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "guild_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "dm_permission": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "options": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/ApplicationCommandAttachmentOptionResponse"
+          },
+          {
+            "$ref": "#/components/schemas/ApplicationCommandBooleanOptionResponse"
+          },
+          {
+            "$ref": "#/components/schemas/ApplicationCommandChannelOptionResponse"
+          },
+          {
+            "$ref": "#/components/schemas/ApplicationCommandIntegerOptionResponse"
+          },
+          {
+            "$ref": "#/components/schemas/ApplicationCommandMentionableOptionResponse"
+          },
+          {
+            "$ref": "#/components/schemas/ApplicationCommandNumberOptionResponse"
+          },
+          {
+            "$ref": "#/components/schemas/ApplicationCommandRoleOptionResponse"
+          },
+          {
+            "$ref": "#/components/schemas/ApplicationCommandStringOptionResponse"
+          },
+          {
+            "$ref": "#/components/schemas/ApplicationCommandSubcommandGroupOptionResponse"
+          },
+          {
+            "$ref": "#/components/schemas/ApplicationCommandSubcommandOptionResponse"
+          },
+          {
+            "$ref": "#/components/schemas/ApplicationCommandUserOptionResponse"
+          }
+        ]
+      }
+    },
+    "nsfw": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "application_id",
+    "version",
+    "type",
+    "name",
+    "description"
+  ]
+}

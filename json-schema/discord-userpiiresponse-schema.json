@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UserPIIResponse",
+  "title": "UserPIIResponse",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "username": {
+      "type": "string"
+    },
+    "avatar": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "discriminator": {
+      "type": "string"
+    },
+    "public_flags": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "flags": {
+      "$ref": "#/components/schemas/Int53Type"
+    },
+    "bot": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "system": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "banner": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "accent_color": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "global_name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "mfa_enabled": {
+      "type": "boolean"
+    },
+    "locale": {
+      "$ref": "#/components/schemas/AvailableLocalesEnum"
+    },
+    "premium_type": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/PremiumTypes"
+        }
+      ]
+    },
+    "email": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "verified": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "username",
+    "discriminator",
+    "public_flags",
+    "flags",
+    "mfa_enabled",
+    "locale"
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/KeywordUpsertRequestPartial",
+  "title": "KeywordUpsertRequestPartial",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "event_type": {
+      "$ref": "#/components/schemas/AutomodEventType"
+    },
+    "actions": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/BlockMessageAction"
+          },
+          {
+            "$ref": "#/components/schemas/FlagToChannelAction"
+          },
+          {
+            "$ref": "#/components/schemas/QuarantineUserAction"
+          },
+          {
+            "$ref": "#/components/schemas/UserCommunicationDisabledAction"
+          }
+        ]
+      },
+      "minItems": 1,
+      "maxItems": 5
+    },
+    "enabled": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "exempt_roles": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/components/schemas/SnowflakeType"
+      },
+      "maxItems": 20,
+      "uniqueItems": true
+    },
+    "exempt_channels": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/components/schemas/SnowflakeType"
+      },
+      "maxItems": 50,
+      "uniqueItems": true
+    },
+    "trigger_type": {
+      "type": "integer",
+      "enum": [
+        1
+      ],
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/AutomodTriggerType"
+        }
+      ],
+      "format": "int32"
+    },
+    "trigger_metadata": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/KeywordTriggerMetadata"
+        }
+      ]
+    }
+  }
+}

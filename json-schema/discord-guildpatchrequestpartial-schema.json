@@ -1,0 +1,192 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GuildPatchRequestPartial",
+  "title": "GuildPatchRequestPartial",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 100
+    },
+    "description": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 0,
+      "maxLength": 120
+    },
+    "region": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "icon": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "contentEncoding": "base64"
+    },
+    "verification_level": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/VerificationLevels"
+        }
+      ]
+    },
+    "default_message_notifications": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/UserNotificationSettings"
+        }
+      ]
+    },
+    "explicit_content_filter": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/GuildExplicitContentFilterTypes"
+        }
+      ]
+    },
+    "preferred_locale": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/AvailableLocalesEnum"
+        }
+      ]
+    },
+    "afk_timeout": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/AfkTimeouts"
+        }
+      ]
+    },
+    "afk_channel_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "system_channel_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "owner_id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "splash": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "contentEncoding": "base64"
+    },
+    "banner": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "contentEncoding": "base64"
+    },
+    "system_channel_flags": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "features": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "maxLength": 152133
+      },
+      "maxItems": 1521,
+      "uniqueItems": true
+    },
+    "discovery_splash": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "contentEncoding": "base64"
+    },
+    "home_header": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "contentEncoding": "base64"
+    },
+    "rules_channel_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "safety_alerts_channel_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "public_updates_channel_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "premium_progress_bar_enabled": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    }
+  }
+}

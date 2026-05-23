@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConnectedAccountVisibility",
+  "title": "ConnectedAccountVisibility",
+  "type": "integer",
+  "oneOf": [
+    {
+      "title": "NONE",
+      "const": 0
+    },
+    {
+      "title": "EVERYONE",
+      "const": 1
+    }
+  ],
+  "format": "int32"
+}

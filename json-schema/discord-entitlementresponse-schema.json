@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EntitlementResponse",
+  "title": "EntitlementResponse",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "sku_id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "application_id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "user_id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "guild_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "deleted": {
+      "type": "boolean"
+    },
+    "starts_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "ends_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "type": {
+      "$ref": "#/components/schemas/EntitlementTypes"
+    },
+    "fulfilled_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "fulfillment_status": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/EntitlementTenantFulfillmentStatusResponse"
+        }
+      ]
+    },
+    "consumed": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "sku_id",
+    "application_id",
+    "user_id",
+    "deleted",
+    "type"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OAuth2GetKeys",
+  "title": "OAuth2GetKeys",
+  "type": "object",
+  "properties": {
+    "keys": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/OAuth2Key"
+      }
+    }
+  },
+  "required": [
+    "keys"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/StageInstance",
+  "title": "StageInstance",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Snowflake"
+    },
+    "guild_id": {
+      "$ref": "#/components/schemas/Snowflake"
+    },
+    "channel_id": {
+      "$ref": "#/components/schemas/Snowflake"
+    },
+    "topic": {
+      "type": "string"
+    },
+    "privacy_level": {
+      "type": "integer"
+    },
+    "discoverable_disabled": {
+      "type": "boolean"
+    },
+    "guild_scheduled_event_id": {
+      "$ref": "#/components/schemas/Snowflake"
+    }
+  }
+}

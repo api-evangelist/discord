@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UserNotificationSettings",
+  "title": "UserNotificationSettings",
+  "type": "integer",
+  "oneOf": [
+    {
+      "title": "ALL_MESSAGES",
+      "description": "members will receive notifications for all messages by default",
+      "const": 0
+    },
+    {
+      "title": "ONLY_MENTIONS",
+      "description": "members will receive notifications only for messages that @mention them by default",
+      "const": 1
+    }
+  ],
+  "format": "int32"
+}

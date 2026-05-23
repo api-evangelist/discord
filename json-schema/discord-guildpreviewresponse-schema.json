@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GuildPreviewResponse",
+  "title": "GuildPreviewResponse",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "name": {
+      "type": "string"
+    },
+    "icon": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "description": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "home_header": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "splash": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "discovery_splash": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "features": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/GuildFeatures"
+      },
+      "uniqueItems": true
+    },
+    "approximate_member_count": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "approximate_presence_count": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "emojis": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/EmojiResponse"
+      }
+    },
+    "stickers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/GuildStickerResponse"
+      }
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "features",
+    "approximate_member_count",
+    "approximate_presence_count",
+    "emojis",
+    "stickers"
+  ]
+}

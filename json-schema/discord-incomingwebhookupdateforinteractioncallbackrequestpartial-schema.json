@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/IncomingWebhookUpdateForInteractionCallbackRequestPartial",
+  "title": "IncomingWebhookUpdateForInteractionCallbackRequestPartial",
+  "type": "object",
+  "properties": {
+    "content": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 2000
+    },
+    "embeds": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/components/schemas/RichEmbed"
+      },
+      "maxItems": 10
+    },
+    "allowed_mentions": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/MessageAllowedMentionsRequest"
+        }
+      ]
+    },
+    "components": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/components/schemas/ActionRow"
+      },
+      "maxItems": 5
+    },
+    "attachments": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/components/schemas/MessageAttachmentRequest"
+      },
+      "maxItems": 10
+    },
+    "flags": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    }
+  }
+}

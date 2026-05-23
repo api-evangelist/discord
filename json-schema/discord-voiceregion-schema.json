@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/VoiceRegion",
+  "title": "VoiceRegion",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "optimal": {
+      "type": "boolean"
+    },
+    "deprecated": {
+      "type": "boolean"
+    },
+    "custom": {
+      "type": "boolean"
+    }
+  }
+}

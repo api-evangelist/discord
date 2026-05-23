@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GithubCommit",
+  "title": "GithubCommit",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "maxLength": 152133
+    },
+    "url": {
+      "type": "string",
+      "maxLength": 2048,
+      "format": "uri"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 152133
+    },
+    "author": {
+      "$ref": "#/components/schemas/GithubAuthor"
+    }
+  },
+  "required": [
+    "id",
+    "url",
+    "message",
+    "author"
+  ]
+}

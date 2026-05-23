@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApplicationCommandOption",
+  "title": "ApplicationCommandOption",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "integer",
+      "description": "1=SUB_COMMAND, 2=SUB_COMMAND_GROUP, 3=STRING, 4=INTEGER, 5=BOOLEAN, 6=USER, 7=CHANNEL, 8=ROLE, 9=MENTIONABLE, 10=NUMBER, 11=ATTACHMENT"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 32
+    },
+    "name_localizations": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "nullable": true
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "description_localizations": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "nullable": true
+    },
+    "required": {
+      "type": "boolean"
+    },
+    "choices": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ApplicationCommandOptionChoice"
+      },
+      "maxItems": 25
+    },
+    "options": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ApplicationCommandOption"
+      },
+      "maxItems": 25
+    },
+    "channel_types": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      }
+    },
+    "min_value": {
+      "type": "number"
+    },
+    "max_value": {
+      "type": "number"
+    },
+    "min_length": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 6000
+    },
+    "max_length": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 6000
+    },
+    "autocomplete": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "type",
+    "name",
+    "description"
+  ]
+}

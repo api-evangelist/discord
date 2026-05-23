@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AccessTokenResponse",
+  "title": "AccessTokenResponse",
+  "type": "object",
+  "properties": {
+    "access_token": {
+      "type": "string",
+      "description": "The access token"
+    },
+    "token_type": {
+      "type": "string",
+      "description": "Always \"Bearer\""
+    },
+    "expires_in": {
+      "type": "integer",
+      "description": "Token lifetime in seconds"
+    },
+    "refresh_token": {
+      "type": "string",
+      "description": "Refresh token for obtaining new access tokens"
+    },
+    "scope": {
+      "type": "string",
+      "description": "Space-delimited list of granted scopes"
+    },
+    "guild": {
+      "$ref": "#/components/schemas/PartialGuild"
+    },
+    "webhook": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        },
+        "channel_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string",
+          "nullable": true
+        }
+      }
+    }
+  },
+  "required": [
+    "access_token",
+    "token_type",
+    "expires_in",
+    "scope"
+  ]
+}

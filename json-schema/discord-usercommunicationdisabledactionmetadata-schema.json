@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UserCommunicationDisabledActionMetadata",
+  "title": "UserCommunicationDisabledActionMetadata",
+  "type": "object",
+  "properties": {
+    "duration_seconds": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 2419200
+    }
+  }
+}

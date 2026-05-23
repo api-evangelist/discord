@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApplicationRoleConnectionsMetadataItemResponse",
+  "title": "ApplicationRoleConnectionsMetadataItemResponse",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/MetadataItemTypes"
+    },
+    "key": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "name_localizations": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "description": {
+      "type": "string"
+    },
+    "description_localizations": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "type",
+    "key",
+    "name",
+    "description"
+  ]
+}

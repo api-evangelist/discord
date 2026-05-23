@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ScheduledEventUserResponse",
+  "title": "ScheduledEventUserResponse",
+  "type": "object",
+  "properties": {
+    "guild_scheduled_event_id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "user_id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "user": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/UserResponse"
+        }
+      ]
+    },
+    "member": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/GuildMemberResponse"
+        }
+      ]
+    }
+  },
+  "required": [
+    "guild_scheduled_event_id",
+    "user_id"
+  ]
+}

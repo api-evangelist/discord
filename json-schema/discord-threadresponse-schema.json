@@ -1,0 +1,160 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ThreadResponse",
+  "title": "ThreadResponse",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "type": {
+      "type": "integer",
+      "enum": [
+        10,
+        11,
+        12
+      ],
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ChannelTypes"
+        }
+      ],
+      "format": "int32"
+    },
+    "last_message_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "flags": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "last_pin_timestamp": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "guild_id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "name": {
+      "type": "string"
+    },
+    "parent_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "rate_limit_per_user": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "bitrate": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "user_limit": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "rtc_region": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "video_quality_mode": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/VideoQualityModes"
+        }
+      ]
+    },
+    "permissions": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "owner_id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "thread_metadata": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/ThreadMetadataResponse"
+        }
+      ]
+    },
+    "message_count": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "member_count": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "total_message_sent": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "applied_tags": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/components/schemas/SnowflakeType"
+      }
+    },
+    "member": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/ThreadMemberResponse"
+        }
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "type",
+    "flags",
+    "guild_id",
+    "name",
+    "owner_id",
+    "message_count",
+    "member_count",
+    "total_message_sent"
+  ]
+}

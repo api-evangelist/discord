@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FlagToChannelAction",
+  "title": "FlagToChannelAction",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "integer",
+      "enum": [
+        2
+      ],
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/AutomodActionType"
+        }
+      ],
+      "format": "int32"
+    },
+    "metadata": {
+      "$ref": "#/components/schemas/FlagToChannelActionMetadata"
+    }
+  },
+  "required": [
+    "type",
+    "metadata"
+  ]
+}

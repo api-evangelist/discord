@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/NewMemberActionResponse",
+  "title": "NewMemberActionResponse",
+  "type": "object",
+  "properties": {
+    "channel_id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "action_type": {
+      "$ref": "#/components/schemas/NewMemberActionType"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "emoji": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SettingsEmojiResponse"
+        }
+      ]
+    },
+    "icon": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "channel_id",
+    "action_type",
+    "title",
+    "description"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Overwrite",
+  "title": "Overwrite",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Snowflake"
+    },
+    "type": {
+      "type": "integer",
+      "description": "0=role, 1=member"
+    },
+    "allow": {
+      "type": "string"
+    },
+    "deny": {
+      "type": "string"
+    }
+  }
+}

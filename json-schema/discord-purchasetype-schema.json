@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PurchaseType",
+  "title": "PurchaseType",
+  "type": "integer",
+  "oneOf": [
+    {
+      "title": "GUILD_PRODUCT",
+      "const": 0
+    }
+  ],
+  "format": "int32"
+}

@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Entitlement",
+  "title": "Entitlement",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Snowflake"
+    },
+    "sku_id": {
+      "$ref": "#/components/schemas/Snowflake"
+    },
+    "application_id": {
+      "$ref": "#/components/schemas/Snowflake"
+    },
+    "user_id": {
+      "$ref": "#/components/schemas/Snowflake"
+    },
+    "type": {
+      "type": "integer"
+    },
+    "deleted": {
+      "type": "boolean"
+    },
+    "starts_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "ends_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "guild_id": {
+      "$ref": "#/components/schemas/Snowflake"
+    }
+  }
+}

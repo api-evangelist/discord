@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateInviteRequest",
+  "title": "CreateInviteRequest",
+  "type": "object",
+  "properties": {
+    "max_age": {
+      "type": "integer",
+      "default": 86400
+    },
+    "max_uses": {
+      "type": "integer",
+      "default": 0
+    },
+    "temporary": {
+      "type": "boolean",
+      "default": false
+    },
+    "unique": {
+      "type": "boolean",
+      "default": false
+    },
+    "target_type": {
+      "type": "integer"
+    },
+    "target_user_id": {
+      "$ref": "#/components/schemas/Snowflake"
+    },
+    "target_application_id": {
+      "$ref": "#/components/schemas/Snowflake"
+    }
+  }
+}

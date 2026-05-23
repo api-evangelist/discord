@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpdateOnboardingPromptRequest",
+  "title": "UpdateOnboardingPromptRequest",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "options": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/OnboardingPromptOptionRequest"
+      },
+      "minItems": 1,
+      "maxItems": 50
+    },
+    "single_select": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "required": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "in_onboarding": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "type": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/OnboardingPromptType"
+        }
+      ]
+    },
+    "id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    }
+  },
+  "required": [
+    "title",
+    "options",
+    "id"
+  ]
+}

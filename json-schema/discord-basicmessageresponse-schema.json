@@ -1,0 +1,296 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BasicMessageResponse",
+  "title": "BasicMessageResponse",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/MessageType"
+    },
+    "channel_id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "content": {
+      "type": "string"
+    },
+    "attachments": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/MessageAttachmentResponse"
+      }
+    },
+    "embeds": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/MessageEmbedResponse"
+      }
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "edited_timestamp": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "flags": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "components": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/MessageComponentActionRowResponse"
+          },
+          {
+            "$ref": "#/components/schemas/MessageComponentButtonResponse"
+          },
+          {
+            "$ref": "#/components/schemas/MessageComponentChannelSelectResponse"
+          },
+          {
+            "$ref": "#/components/schemas/MessageComponentInputTextResponse"
+          },
+          {
+            "$ref": "#/components/schemas/MessageComponentMentionableSelectResponse"
+          },
+          {
+            "$ref": "#/components/schemas/MessageComponentRoleSelectResponse"
+          },
+          {
+            "$ref": "#/components/schemas/MessageComponentStringSelectResponse"
+          },
+          {
+            "$ref": "#/components/schemas/MessageComponentUserSelectResponse"
+          }
+        ]
+      }
+    },
+    "resolved": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/ResolvedObjectsResponse"
+        }
+      ]
+    },
+    "id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "author": {
+      "$ref": "#/components/schemas/UserResponse"
+    },
+    "mentions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/UserResponse"
+      }
+    },
+    "mention_roles": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/SnowflakeType"
+      },
+      "uniqueItems": true
+    },
+    "pinned": {
+      "type": "boolean"
+    },
+    "mention_everyone": {
+      "type": "boolean"
+    },
+    "tts": {
+      "type": "boolean"
+    },
+    "call": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/MessageCallResponse"
+        }
+      ]
+    },
+    "activity": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/MessageActivityResponse"
+        }
+      ]
+    },
+    "application": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/BasicApplicationResponse"
+        }
+      ]
+    },
+    "application_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "interaction": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/MessageInteractionResponse"
+        }
+      ]
+    },
+    "nonce": {
+      "oneOf": [
+        {
+          "type": "integer",
+          "minimum": -9223372036854776000,
+          "maximum": 9223372036854776000,
+          "format": "int64"
+        },
+        {
+          "type": "string",
+          "maxLength": 25,
+          "format": "nonce"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "webhook_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "message_reference": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/MessageReferenceResponse"
+        }
+      ]
+    },
+    "thread": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/ThreadResponse"
+        }
+      ]
+    },
+    "mention_channels": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "oneOf": [
+          {
+            "type": "null"
+          },
+          {
+            "$ref": "#/components/schemas/MessageMentionChannelResponse"
+          }
+        ]
+      }
+    },
+    "stickers": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/GuildStickerResponse"
+          },
+          {
+            "$ref": "#/components/schemas/StandardStickerResponse"
+          }
+        ]
+      }
+    },
+    "sticker_items": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/components/schemas/MessageStickerItemResponse"
+      }
+    },
+    "role_subscription_data": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/MessageRoleSubscriptionDataResponse"
+        }
+      ]
+    },
+    "purchase_notification": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/PurchaseNotificationResponse"
+        }
+      ]
+    },
+    "position": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    }
+  },
+  "required": [
+    "type",
+    "channel_id",
+    "content",
+    "attachments",
+    "embeds",
+    "timestamp",
+    "flags",
+    "components",
+    "id",
+    "author",
+    "mentions",
+    "mention_roles",
+    "pinned",
+    "mention_everyone",
+    "tts"
+  ]
+}

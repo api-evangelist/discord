@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/InteractionCallbackResponse",
+  "title": "InteractionCallbackResponse",
+  "type": "object",
+  "properties": {
+    "interaction": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/components/schemas/Snowflake"
+        },
+        "type": {
+          "type": "integer"
+        },
+        "activity_instance_id": {
+          "type": "string"
+        },
+        "response_message_id": {
+          "$ref": "#/components/schemas/Snowflake"
+        },
+        "response_message_loading": {
+          "type": "boolean"
+        },
+        "response_message_ephemeral": {
+          "type": "boolean"
+        }
+      }
+    },
+    "resource": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "integer"
+        },
+        "message": {
+          "$ref": "#/components/schemas/Message"
+        }
+      }
+    }
+  }
+}

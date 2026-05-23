@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Attachment",
+  "title": "Attachment",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Snowflake"
+    },
+    "filename": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "content_type": {
+      "type": "string"
+    },
+    "size": {
+      "type": "integer"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "proxy_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "height": {
+      "type": "integer",
+      "nullable": true
+    },
+    "width": {
+      "type": "integer",
+      "nullable": true
+    },
+    "ephemeral": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "id",
+    "filename",
+    "size",
+    "url",
+    "proxy_url"
+  ]
+}

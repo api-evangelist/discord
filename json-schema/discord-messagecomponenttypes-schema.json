@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MessageComponentTypes",
+  "title": "MessageComponentTypes",
+  "type": "integer",
+  "oneOf": [
+    {
+      "title": "ACTION_ROW",
+      "description": "Container for other components",
+      "const": 1
+    },
+    {
+      "title": "BUTTON",
+      "description": "Button object",
+      "const": 2
+    },
+    {
+      "title": "STRING_SELECT",
+      "description": "Select menu for picking from defined text options",
+      "const": 3
+    },
+    {
+      "title": "INPUT_TEXT",
+      "description": "Text input object",
+      "const": 4
+    },
+    {
+      "title": "USER_SELECT",
+      "description": "Select menu for users",
+      "const": 5
+    },
+    {
+      "title": "ROLE_SELECT",
+      "description": "Select menu for roles",
+      "const": 6
+    },
+    {
+      "title": "MENTIONABLE_SELECT",
+      "description": "Select menu for mentionables (users and roles)",
+      "const": 7
+    },
+    {
+      "title": "CHANNEL_SELECT",
+      "description": "Select menu for channels",
+      "const": 8
+    }
+  ],
+  "format": "int32"
+}

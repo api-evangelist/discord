@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AutomodEventType",
+  "title": "AutomodEventType",
+  "type": "integer",
+  "oneOf": [
+    {
+      "title": "MESSAGE_SEND",
+      "description": "A user submitted a message to a channel",
+      "const": 1
+    },
+    {
+      "title": "GUILD_MEMBER_JOIN_OR_UPDATE",
+      "description": "A user is attempting to join the server or a member's properties were updated.",
+      "const": 2
+    }
+  ],
+  "format": "int32"
+}

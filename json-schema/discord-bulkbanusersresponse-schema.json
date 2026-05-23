@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BulkBanUsersResponse",
+  "title": "BulkBanUsersResponse",
+  "type": "object",
+  "properties": {
+    "banned_users": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/SnowflakeType"
+      }
+    },
+    "failed_users": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/SnowflakeType"
+      }
+    }
+  },
+  "required": [
+    "banned_users",
+    "failed_users"
+  ]
+}

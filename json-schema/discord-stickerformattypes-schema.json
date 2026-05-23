@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/StickerFormatTypes",
+  "title": "StickerFormatTypes",
+  "type": "integer",
+  "oneOf": [
+    {
+      "title": "PNG",
+      "const": 1
+    },
+    {
+      "title": "APNG",
+      "const": 2
+    },
+    {
+      "title": "LOTTIE",
+      "const": 3
+    },
+    {
+      "title": "GIF",
+      "const": 4
+    }
+  ],
+  "format": "int32"
+}

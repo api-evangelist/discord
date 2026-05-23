@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Ban",
+  "title": "Ban",
+  "type": "object",
+  "properties": {
+    "reason": {
+      "type": "string",
+      "nullable": true
+    },
+    "user": {
+      "$ref": "#/components/schemas/User"
+    }
+  }
+}

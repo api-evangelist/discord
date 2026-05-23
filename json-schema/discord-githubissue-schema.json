@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GithubIssue",
+  "title": "GithubIssue",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "number": {
+      "type": "integer"
+    },
+    "html_url": {
+      "type": "string",
+      "maxLength": 2048,
+      "format": "uri"
+    },
+    "user": {
+      "$ref": "#/components/schemas/GithubUser"
+    },
+    "title": {
+      "type": "string",
+      "maxLength": 152133
+    },
+    "body": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 152133
+    },
+    "pull_request": {}
+  },
+  "required": [
+    "id",
+    "number",
+    "html_url",
+    "user",
+    "title"
+  ]
+}

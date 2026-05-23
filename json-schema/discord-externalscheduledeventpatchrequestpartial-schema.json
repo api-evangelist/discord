@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ExternalScheduledEventPatchRequestPartial",
+  "title": "ExternalScheduledEventPatchRequestPartial",
+  "type": "object",
+  "properties": {
+    "status": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/GuildScheduledEventStatuses"
+        }
+      ]
+    },
+    "name": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "description": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 1000
+    },
+    "image": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "contentEncoding": "base64"
+    },
+    "scheduled_start_time": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "scheduled_end_time": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "entity_type": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "integer",
+          "enum": [
+            3
+          ],
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/GuildScheduledEventEntityTypes"
+            }
+          ],
+          "format": "int32"
+        }
+      ]
+    },
+    "privacy_level": {
+      "$ref": "#/components/schemas/GuildScheduledEventPrivacyLevels"
+    },
+    "channel_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "entity_metadata": {
+      "$ref": "#/components/schemas/EntityMetadataExternal"
+    }
+  }
+}

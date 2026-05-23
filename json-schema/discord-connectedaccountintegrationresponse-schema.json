@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConnectedAccountIntegrationResponse",
+  "title": "ConnectedAccountIntegrationResponse",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "type": {
+      "$ref": "#/components/schemas/IntegrationTypes"
+    },
+    "account": {
+      "$ref": "#/components/schemas/AccountResponse"
+    },
+    "guild": {
+      "$ref": "#/components/schemas/ConnectedAccountGuildResponse"
+    }
+  },
+  "required": [
+    "id",
+    "type",
+    "account",
+    "guild"
+  ]
+}

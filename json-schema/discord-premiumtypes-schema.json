@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PremiumTypes",
+  "title": "PremiumTypes",
+  "type": "integer",
+  "oneOf": [
+    {
+      "title": "NONE",
+      "description": "None",
+      "const": 0
+    },
+    {
+      "title": "TIER_1",
+      "description": "Nitro Classic",
+      "const": 1
+    },
+    {
+      "title": "TIER_2",
+      "description": "Nitro Standard",
+      "const": 2
+    },
+    {
+      "title": "TIER_0",
+      "description": "Nitro Basic",
+      "const": 3
+    }
+  ],
+  "format": "int32"
+}

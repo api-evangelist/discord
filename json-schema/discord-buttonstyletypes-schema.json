@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ButtonStyleTypes",
+  "title": "ButtonStyleTypes",
+  "type": "integer",
+  "oneOf": [
+    {
+      "title": "PRIMARY",
+      "const": 1
+    },
+    {
+      "title": "SECONDARY",
+      "const": 2
+    },
+    {
+      "title": "SUCCESS",
+      "const": 3
+    },
+    {
+      "title": "DANGER",
+      "const": 4
+    },
+    {
+      "title": "LINK",
+      "const": 5
+    },
+    {
+      "title": "PREMIUM",
+      "const": 6
+    }
+  ],
+  "format": "int32"
+}

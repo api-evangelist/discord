@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ThreadSortOrder",
+  "title": "ThreadSortOrder",
+  "type": "integer",
+  "oneOf": [
+    {
+      "title": "LATEST_ACTIVITY",
+      "description": "Sort forum posts by activity",
+      "const": 0
+    },
+    {
+      "title": "CREATION_DATE",
+      "description": "Sort forum posts by creation time (from most recent to oldest)",
+      "const": 1
+    }
+  ],
+  "format": "int32"
+}

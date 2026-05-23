@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/InteractionApplicationCommandAutocompleteCallbackIntegerData",
+  "title": "InteractionApplicationCommandAutocompleteCallbackIntegerData",
+  "type": "object",
+  "properties": {
+    "choices": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "oneOf": [
+          {
+            "type": "null"
+          },
+          {
+            "$ref": "#/components/schemas/ApplicationCommandOptionIntegerChoice"
+          }
+        ]
+      },
+      "maxItems": 25
+    }
+  }
+}

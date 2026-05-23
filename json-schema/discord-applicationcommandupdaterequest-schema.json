@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApplicationCommandUpdateRequest",
+  "title": "ApplicationCommandUpdateRequest",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 32
+    },
+    "name_localizations": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 32
+      },
+      "maxProperties": 34
+    },
+    "description": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 100
+    },
+    "description_localizations": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 100
+      },
+      "maxProperties": 34
+    },
+    "options": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/ApplicationCommandAttachmentOption"
+          },
+          {
+            "$ref": "#/components/schemas/ApplicationCommandBooleanOption"
+          },
+          {
+            "$ref": "#/components/schemas/ApplicationCommandChannelOption"
+          },
+          {
+            "$ref": "#/components/schemas/ApplicationCommandIntegerOption"
+          },
+          {
+            "$ref": "#/components/schemas/ApplicationCommandMentionableOption"
+          },
+          {
+            "$ref": "#/components/schemas/ApplicationCommandNumberOption"
+          },
+          {
+            "$ref": "#/components/schemas/ApplicationCommandRoleOption"
+          },
+          {
+            "$ref": "#/components/schemas/ApplicationCommandStringOption"
+          },
+          {
+            "$ref": "#/components/schemas/ApplicationCommandSubcommandGroupOption"
+          },
+          {
+            "$ref": "#/components/schemas/ApplicationCommandSubcommandOption"
+          },
+          {
+            "$ref": "#/components/schemas/ApplicationCommandUserOption"
+          }
+        ]
+      },
+      "maxItems": 25
+    },
+    "default_member_permissions": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 2251799813685247
+    },
+    "dm_permission": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "type": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/ApplicationCommandType"
+        }
+      ]
+    },
+    "id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

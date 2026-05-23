@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApplicationFormPartial",
+  "title": "ApplicationFormPartial",
+  "type": "object",
+  "properties": {
+    "description": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "default": {
+          "type": "string",
+          "maxLength": 400
+        },
+        "localizations": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": {
+            "type": "string",
+            "maxLength": 400
+          }
+        }
+      },
+      "required": [
+        "default"
+      ]
+    },
+    "icon": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "contentEncoding": "base64"
+    },
+    "cover_image": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "contentEncoding": "base64"
+    },
+    "team_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/SnowflakeType"
+        }
+      ]
+    },
+    "flags": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "interactions_endpoint_url": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 2048,
+      "format": "uri"
+    },
+    "max_participants": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": -1,
+      "format": "int32"
+    },
+    "type": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/ApplicationTypes"
+        }
+      ]
+    },
+    "tags": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string",
+        "maxLength": 20
+      },
+      "maxItems": 5,
+      "uniqueItems": true
+    },
+    "custom_install_url": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 2048,
+      "format": "uri"
+    },
+    "install_params": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/components/schemas/ApplicationOAuth2InstallParams"
+        }
+      ]
+    },
+    "role_connections_verification_url": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 2048,
+      "format": "uri"
+    }
+  }
+}

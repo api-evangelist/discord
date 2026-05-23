@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MessageRoleSubscriptionDataResponse",
+  "title": "MessageRoleSubscriptionDataResponse",
+  "type": "object",
+  "properties": {
+    "role_subscription_listing_id": {
+      "$ref": "#/components/schemas/SnowflakeType"
+    },
+    "tier_name": {
+      "type": "string"
+    },
+    "total_months_subscribed": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "is_renewal": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "role_subscription_listing_id",
+    "tier_name",
+    "total_months_subscribed",
+    "is_renewal"
+  ]
+}

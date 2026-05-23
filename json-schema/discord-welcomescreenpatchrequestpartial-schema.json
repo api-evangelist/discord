@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WelcomeScreenPatchRequestPartial",
+  "title": "WelcomeScreenPatchRequestPartial",
+  "type": "object",
+  "properties": {
+    "description": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 140
+    },
+    "welcome_channels": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/components/schemas/GuildWelcomeChannel"
+      },
+      "maxItems": 5
+    },
+    "enabled": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    }
+  }
+}

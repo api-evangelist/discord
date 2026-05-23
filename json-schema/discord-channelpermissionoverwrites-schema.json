@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ChannelPermissionOverwrites",
+  "title": "ChannelPermissionOverwrites",
+  "type": "integer",
+  "oneOf": [
+    {
+      "title": "ROLE",
+      "const": 0
+    },
+    {
+      "title": "MEMBER",
+      "const": 1
+    }
+  ],
+  "format": "int32"
+}

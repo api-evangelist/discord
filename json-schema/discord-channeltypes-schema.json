@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ChannelTypes",
+  "title": "ChannelTypes",
+  "type": "integer",
+  "oneOf": [
+    {
+      "title": "DM",
+      "description": "A direct message between users",
+      "const": 1
+    },
+    {
+      "title": "GROUP_DM",
+      "description": "A direct message between multiple users",
+      "const": 3
+    },
+    {
+      "title": "GUILD_TEXT",
+      "description": "A text channel within a server",
+      "const": 0
+    },
+    {
+      "title": "GUILD_VOICE",
+      "description": "A voice channel within a server",
+      "const": 2
+    },
+    {
+      "title": "GUILD_CATEGORY",
+      "description": "An organizational category that contains up to 50 channels",
+      "const": 4
+    },
+    {
+      "title": "GUILD_ANNOUNCEMENT",
+      "description": "A channel that users can follow and crosspost into their own server (formerly news channels)",
+      "const": 5
+    },
+    {
+      "title": "ANNOUNCEMENT_THREAD",
+      "description": "A temporary sub-channel within a GUILD_ANNOUNCEMENT channel",
+      "const": 10
+    },
+    {
+      "title": "PUBLIC_THREAD",
+      "description": "A temporary sub-channel within a GUILD_TEXT or GUILD_THREADS_ONLY channel type set",
+      "const": 11
+    },
+    {
+      "title": "PRIVATE_THREAD",
+      "description": "A temporary sub-channel within a GUILD_TEXT channel that is only viewable by those invited and those with the MANAGE_THREADS permission",
+      "const": 12
+    },
+    {
+      "title": "GUILD_STAGE_VOICE",
+      "description": "A voice channel for hosting events with an audience",
+      "const": 13
+    },
+    {
+      "title": "GUILD_DIRECTORY",
+      "description": "The channel in a hub containing the listed servers",
+      "const": 14
+    },
+    {
+      "title": "GUILD_FORUM",
+      "description": "Channel that can only contain threads",
+      "const": 15
+    }
+  ],
+  "format": "int32"
+}

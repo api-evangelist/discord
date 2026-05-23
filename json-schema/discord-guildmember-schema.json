@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GuildMember",
+  "title": "GuildMember",
+  "type": "object",
+  "properties": {
+    "user": {
+      "$ref": "#/components/schemas/User"
+    },
+    "nick": {
+      "type": "string",
+      "nullable": true
+    },
+    "avatar": {
+      "type": "string",
+      "nullable": true
+    },
+    "roles": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Snowflake"
+      }
+    },
+    "joined_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "premium_since": {
+      "type": "string",
+      "format": "date-time",
+      "nullable": true
+    },
+    "deaf": {
+      "type": "boolean"
+    },
+    "mute": {
+      "type": "boolean"
+    },
+    "flags": {
+      "type": "integer"
+    },
+    "pending": {
+      "type": "boolean"
+    },
+    "communication_disabled_until": {
+      "type": "string",
+      "format": "date-time",
+      "nullable": true
+    }
+  },
+  "required": [
+    "roles",
+    "joined_at",
+    "deaf",
+    "mute"
+  ]
+}
