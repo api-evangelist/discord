@@ -2,12 +2,20 @@
   "repo": "discord",
   "feeds": [
     {
+      "source": "https://discord.com/blog/rss.xml",
+      "feed_url": "https://discord.com/blog/rss.xml",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
       "source": "https://discord.com/blog",
       "feed_url": "https://discord.com/blog/rss.xml",
-      "title": "Discord Blog",
-      "saved": 44
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
     }
   ],
-  "post_count": 57,
-  "fetched": "2026-05-17T20:20:35Z"
+  "post_count": 60,
+  "fetched": "2026-06-01T23:35:02Z"
 }
