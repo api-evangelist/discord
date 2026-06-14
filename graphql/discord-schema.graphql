@@ -1,0 +1,1860 @@
+# Conceptual GraphQL schema for Discord
+# Derived from the Discord REST API object model (discord.com/developers/docs/reference)
+# Discord does not expose a native GraphQL endpoint; this schema models the REST types.
+
+scalar ISO8601DateTime
+scalar Snowflake
+scalar JSONObject
+scalar URL
+
+# ─── Enums ────────────────────────────────────────────────────────────────────
+
+enum ChannelType {
+  GUILD_TEXT
+  DM
+  GUILD_VOICE
+  GROUP_DM
+  GUILD_CATEGORY
+  GUILD_ANNOUNCEMENT
+  ANNOUNCEMENT_THREAD
+  PUBLIC_THREAD
+  PRIVATE_THREAD
+  GUILD_STAGE_VOICE
+  GUILD_DIRECTORY
+  GUILD_FORUM
+  GUILD_MEDIA
+}
+
+enum MessageType {
+  DEFAULT
+  RECIPIENT_ADD
+  RECIPIENT_REMOVE
+  CALL
+  CHANNEL_NAME_CHANGE
+  CHANNEL_ICON_CHANGE
+  CHANNEL_PINNED_MESSAGE
+  USER_JOIN
+  GUILD_BOOST
+  GUILD_BOOST_TIER_1
+  GUILD_BOOST_TIER_2
+  GUILD_BOOST_TIER_3
+  CHANNEL_FOLLOW_ADD
+  GUILD_DISCOVERY_DISQUALIFIED
+  GUILD_DISCOVERY_REQUALIFIED
+  GUILD_DISCOVERY_GRACE_PERIOD_INITIAL_WARNING
+  GUILD_DISCOVERY_GRACE_PERIOD_FINAL_WARNING
+  THREAD_CREATED
+  REPLY
+  CHAT_INPUT_COMMAND
+  THREAD_STARTER_MESSAGE
+  GUILD_INVITE_REMINDER
+  CONTEXT_MENU_COMMAND
+  AUTO_MODERATION_ACTION
+  ROLE_SUBSCRIPTION_PURCHASE
+  INTERACTION_PREMIUM_UPSELL
+  STAGE_START
+  STAGE_END
+  STAGE_SPEAKER
+  STAGE_TOPIC
+  GUILD_APPLICATION_PREMIUM_SUBSCRIPTION
+}
+
+enum InteractionType {
+  PING
+  APPLICATION_COMMAND
+  MESSAGE_COMPONENT
+  APPLICATION_COMMAND_AUTOCOMPLETE
+  MODAL_SUBMIT
+}
+
+enum ApplicationCommandType {
+  CHAT_INPUT
+  USER
+  MESSAGE
+}
+
+enum ApplicationCommandOptionType {
+  SUB_COMMAND
+  SUB_COMMAND_GROUP
+  STRING
+  INTEGER
+  BOOLEAN
+  USER
+  CHANNEL
+  ROLE
+  MENTIONABLE
+  NUMBER
+  ATTACHMENT
+}
+
+enum ComponentType {
+  ACTION_ROW
+  BUTTON
+  STRING_SELECT
+  TEXT_INPUT
+  USER_SELECT
+  ROLE_SELECT
+  MENTIONABLE_SELECT
+  CHANNEL_SELECT
+}
+
+enum ButtonStyle {
+  PRIMARY
+  SECONDARY
+  SUCCESS
+  DANGER
+  LINK
+  PREMIUM
+}
+
+enum TextInputStyle {
+  SHORT
+  PARAGRAPH
+}
+
+enum VerificationLevel {
+  NONE
+  LOW
+  MEDIUM
+  HIGH
+  VERY_HIGH
+}
+
+enum ExplicitContentFilterLevel {
+  DISABLED
+  MEMBERS_WITHOUT_ROLES
+  ALL_MEMBERS
+}
+
+enum MFALevel {
+  NONE
+  ELEVATED
+}
+
+enum PremiumTier {
+  NONE
+  TIER_1
+  TIER_2
+  TIER_3
+}
+
+enum NSFWLevel {
+  DEFAULT
+  EXPLICIT
+  SAFE
+  AGE_RESTRICTED
+}
+
+enum GuildScheduledEventStatus {
+  SCHEDULED
+  ACTIVE
+  COMPLETED
+  CANCELED
+}
+
+enum GuildScheduledEventEntityType {
+  STAGE_INSTANCE
+  VOICE
+  EXTERNAL
+}
+
+enum AutoModerationEventType {
+  MESSAGE_SEND
+  MEMBER_UPDATE
+}
+
+enum AutoModerationTriggerType {
+  KEYWORD
+  SPAM
+  KEYWORD_PRESET
+  MENTION_SPAM
+  MEMBER_PROFILE
+}
+
+enum AutoModerationActionType {
+  BLOCK_MESSAGE
+  SEND_ALERT_MESSAGE
+  TIMEOUT
+  BLOCK_MEMBER_INTERACTION
+}
+
+enum VideoQualityMode {
+  AUTO
+  FULL
+}
+
+enum SortOrderType {
+  LATEST_ACTIVITY
+  CREATION_DATE
+}
+
+enum ForumLayoutType {
+  NOT_SET
+  LIST_VIEW
+  GALLERY_VIEW
+}
+
+enum ActivityType {
+  PLAYING
+  STREAMING
+  LISTENING
+  WATCHING
+  CUSTOM
+  COMPETING
+}
+
+enum StatusType {
+  ONLINE
+  DND
+  IDLE
+  INVISIBLE
+  OFFLINE
+}
+
+enum WebhookType {
+  INCOMING
+  CHANNEL_FOLLOWER
+  APPLICATION
+}
+
+enum InviteTargetType {
+  STREAM
+  EMBEDDED_APPLICATION
+}
+
+enum StageInstancePrivacyLevel {
+  PUBLIC
+  GUILD_ONLY
+}
+
+enum StickerType {
+  STANDARD
+  GUILD
+}
+
+enum StickerFormatType {
+  PNG
+  APNG
+  LOTTIE
+  GIF
+}
+
+enum TeamMemberRole {
+  OWNER
+  ADMIN
+  DEVELOPER
+  READ_ONLY
+}
+
+enum EntitlementType {
+  PURCHASE
+  PREMIUM_SUBSCRIPTION
+  DEVELOPER_GIFT
+  TEST_MODE_PURCHASE
+  FREE_PURCHASE
+  USER_GIFT
+  PREMIUM_PURCHASE
+  APPLICATION_SUBSCRIPTION
+}
+
+# ─── Core Objects ─────────────────────────────────────────────────────────────
+
+type User {
+  id: Snowflake!
+  username: String!
+  discriminator: String!
+  globalName: String
+  avatar: String
+  bot: Boolean
+  system: Boolean
+  mfaEnabled: Boolean
+  banner: String
+  accentColor: Int
+  locale: String
+  verified: Boolean
+  email: String
+  flags: Int
+  premiumType: Int
+  publicFlags: Int
+  avatarDecoration: String
+  avatarDecorationData: AvatarDecorationData
+}
+
+type AvatarDecorationData {
+  asset: String!
+  skuId: Snowflake
+}
+
+type Guild {
+  id: Snowflake!
+  name: String!
+  icon: String
+  iconHash: String
+  splash: String
+  discoverySplash: String
+  owner: Boolean
+  ownerId: Snowflake!
+  permissions: String
+  afkChannelId: Snowflake
+  afkTimeout: Int!
+  widgetEnabled: Boolean
+  widgetChannelId: Snowflake
+  verificationLevel: VerificationLevel!
+  defaultMessageNotifications: Int!
+  explicitContentFilter: ExplicitContentFilterLevel!
+  roles: [Role!]!
+  emojis: [Emoji!]!
+  features: [String!]!
+  mfaLevel: MFALevel!
+  applicationId: Snowflake
+  systemChannelId: Snowflake
+  systemChannelFlags: Int!
+  rulesChannelId: Snowflake
+  maxPresences: Int
+  maxMembers: Int
+  vanityUrlCode: String
+  description: String
+  banner: String
+  premiumTier: PremiumTier!
+  premiumSubscriptionCount: Int
+  preferredLocale: String!
+  publicUpdatesChannelId: Snowflake
+  maxVideoChannelUsers: Int
+  maxStageVideoChannelUsers: Int
+  approximateMemberCount: Int
+  approximatePresenceCount: Int
+  welcomeScreen: WelcomeScreen
+  nsfwLevel: NSFWLevel!
+  stickers: [Sticker!]
+  premiumProgressBarEnabled: Boolean!
+  safetyAlertsChannelId: Snowflake
+  channels: [Channel!]
+  threads: [Channel!]
+  presences: [PresenceUpdate!]
+  voiceStates: [VoiceState!]
+  members: [Member!]
+  scheduledEvents: [GuildScheduledEvent!]
+  autoModerationRules: [AutoModerationRule!]
+}
+
+type WelcomeScreen {
+  description: String
+  welcomeChannels: [WelcomeScreenChannel!]!
+}
+
+type WelcomeScreenChannel {
+  channelId: Snowflake!
+  description: String!
+  emojiId: Snowflake
+  emojiName: String
+}
+
+type Channel {
+  id: Snowflake!
+  type: ChannelType!
+  guildId: Snowflake
+  position: Int
+  permissionOverwrites: [Overwrite!]
+  name: String
+  topic: String
+  nsfw: Boolean
+  lastMessageId: Snowflake
+  bitrate: Int
+  userLimit: Int
+  rateLimitPerUser: Int
+  recipients: [User!]
+  icon: String
+  ownerId: Snowflake
+  applicationId: Snowflake
+  managed: Boolean
+  parentId: Snowflake
+  lastPinTimestamp: ISO8601DateTime
+  rtcRegion: String
+  videoQualityMode: VideoQualityMode
+  messageCount: Int
+  memberCount: Int
+  threadMetadata: ThreadMetadata
+  member: ThreadMember
+  defaultAutoArchiveDuration: Int
+  permissions: String
+  flags: Int
+  totalMessageSent: Int
+  availableTags: [ForumTag!]
+  appliedTags: [Snowflake!]
+  defaultReactionEmoji: DefaultReaction
+  defaultThreadRateLimitPerUser: Int
+  defaultSortOrder: SortOrderType
+  defaultForumLayout: ForumLayoutType
+}
+
+type Overwrite {
+  id: Snowflake!
+  type: Int!
+  allow: String!
+  deny: String!
+}
+
+type ThreadMetadata {
+  archived: Boolean!
+  autoArchiveDuration: Int!
+  archiveTimestamp: ISO8601DateTime!
+  locked: Boolean!
+  invitable: Boolean
+  createTimestamp: ISO8601DateTime
+}
+
+type ThreadMember {
+  id: Snowflake
+  userId: Snowflake
+  joinTimestamp: ISO8601DateTime!
+  flags: Int!
+  member: Member
+}
+
+type ForumTag {
+  id: Snowflake!
+  name: String!
+  moderated: Boolean!
+  emojiId: Snowflake
+  emojiName: String
+}
+
+type DefaultReaction {
+  emojiId: Snowflake
+  emojiName: String
+}
+
+type Message {
+  id: Snowflake!
+  channelId: Snowflake!
+  author: User!
+  content: String!
+  timestamp: ISO8601DateTime!
+  editedTimestamp: ISO8601DateTime
+  tts: Boolean!
+  mentionEveryone: Boolean!
+  mentions: [User!]!
+  mentionRoles: [Snowflake!]!
+  mentionChannels: [ChannelMention!]
+  attachments: [Attachment!]!
+  embeds: [Embed!]!
+  reactions: [Reaction!]
+  nonce: String
+  pinned: Boolean!
+  webhookId: Snowflake
+  type: MessageType!
+  activity: MessageActivity
+  application: Application
+  applicationId: Snowflake
+  messageReference: MessageReference
+  flags: Int
+  referencedMessage: Message
+  interaction: MessageInteraction
+  thread: Channel
+  components: [Component!]
+  stickerItems: [StickerItem!]
+  stickers: [Sticker!]
+  position: Int
+  roleSubscriptionData: RoleSubscriptionData
+  resolved: ResolvedData
+}
+
+type ChannelMention {
+  id: Snowflake!
+  guildId: Snowflake!
+  type: ChannelType!
+  name: String!
+}
+
+type Attachment {
+  id: Snowflake!
+  filename: String!
+  description: String
+  contentType: String
+  size: Int!
+  url: URL!
+  proxyUrl: URL!
+  height: Int
+  width: Int
+  ephemeral: Boolean
+  durationSecs: Float
+  waveform: String
+  flags: Int
+}
+
+type Embed {
+  title: String
+  type: String
+  description: String
+  url: URL
+  timestamp: ISO8601DateTime
+  color: Int
+  footer: EmbedFooter
+  image: EmbedMedia
+  thumbnail: EmbedMedia
+  video: EmbedMedia
+  provider: EmbedProvider
+  author: EmbedAuthor
+  fields: [EmbedField!]
+}
+
+type EmbedFooter {
+  text: String!
+  iconUrl: URL
+  proxyIconUrl: URL
+}
+
+type EmbedMedia {
+  url: URL
+  proxyUrl: URL
+  height: Int
+  width: Int
+}
+
+type EmbedProvider {
+  name: String
+  url: URL
+}
+
+type EmbedAuthor {
+  name: String!
+  url: URL
+  iconUrl: URL
+  proxyIconUrl: URL
+}
+
+type EmbedField {
+  name: String!
+  value: String!
+  inline: Boolean
+}
+
+type Reaction {
+  count: Int!
+  countDetails: ReactionCountDetails!
+  me: Boolean!
+  meBurst: Boolean!
+  emoji: Emoji!
+  burstColors: [String!]!
+}
+
+type ReactionCountDetails {
+  burst: Int!
+  normal: Int!
+}
+
+type MessageActivity {
+  type: Int!
+  partyId: String
+}
+
+type MessageReference {
+  messageId: Snowflake
+  channelId: Snowflake
+  guildId: Snowflake
+  failIfNotExists: Boolean
+}
+
+type MessageInteraction {
+  id: Snowflake!
+  type: InteractionType!
+  name: String!
+  user: User!
+  member: Member
+}
+
+type RoleSubscriptionData {
+  roleSubscriptionListingId: Snowflake!
+  tierName: String!
+  totalMonthsSubscribed: Int!
+  isRenewal: Boolean!
+}
+
+type Role {
+  id: Snowflake!
+  name: String!
+  color: Int!
+  hoist: Boolean!
+  icon: String
+  unicodeEmoji: String
+  position: Int!
+  permissions: String!
+  managed: Boolean!
+  mentionable: Boolean!
+  tags: RoleTags
+  flags: Int!
+}
+
+type RoleTags {
+  botId: Snowflake
+  integrationId: Snowflake
+  premiumSubscriber: Boolean
+  subscriptionListingId: Snowflake
+  availableForPurchase: Boolean
+  guildConnections: Boolean
+}
+
+type Member {
+  user: User
+  nick: String
+  avatar: String
+  roles: [Snowflake!]!
+  joinedAt: ISO8601DateTime!
+  premiumSince: ISO8601DateTime
+  deaf: Boolean!
+  mute: Boolean!
+  flags: Int!
+  pending: Boolean
+  permissions: String
+  communicationDisabledUntil: ISO8601DateTime
+  avatarDecorationData: AvatarDecorationData
+}
+
+type Emoji {
+  id: Snowflake
+  name: String
+  roles: [Snowflake!]
+  user: User
+  requireColons: Boolean
+  managed: Boolean
+  animated: Boolean
+  available: Boolean
+}
+
+type Sticker {
+  id: Snowflake!
+  packId: Snowflake
+  name: String!
+  description: String
+  tags: String!
+  asset: String
+  type: StickerType!
+  formatType: StickerFormatType!
+  available: Boolean
+  guildId: Snowflake
+  user: User
+  sortValue: Int
+}
+
+type StickerItem {
+  id: Snowflake!
+  name: String!
+  formatType: StickerFormatType!
+}
+
+type Webhook {
+  id: Snowflake!
+  type: WebhookType!
+  guildId: Snowflake
+  channelId: Snowflake
+  user: User
+  name: String
+  avatar: String
+  token: String
+  applicationId: Snowflake
+  sourceGuild: Guild
+  sourceChannel: Channel
+  url: URL
+}
+
+type Invite {
+  type: Int!
+  code: String!
+  guild: Guild
+  channel: Channel
+  inviter: User
+  targetType: InviteTargetType
+  targetUser: User
+  targetApplication: Application
+  approximatePresenceCount: Int
+  approximateMemberCount: Int
+  expiresAt: ISO8601DateTime
+  guildScheduledEvent: GuildScheduledEvent
+}
+
+type InviteMetadata {
+  uses: Int!
+  maxUses: Int!
+  maxAge: Int!
+  temporary: Boolean!
+  createdAt: ISO8601DateTime!
+}
+
+type VoiceState {
+  guildId: Snowflake
+  channelId: Snowflake
+  userId: Snowflake!
+  member: Member
+  sessionId: String!
+  deaf: Boolean!
+  mute: Boolean!
+  selfDeaf: Boolean!
+  selfMute: Boolean!
+  selfStream: Boolean
+  selfVideo: Boolean!
+  suppress: Boolean!
+  requestToSpeakTimestamp: ISO8601DateTime
+}
+
+type PresenceUpdate {
+  user: User!
+  guildId: Snowflake!
+  status: StatusType!
+  activities: [Activity!]!
+  clientStatus: ClientStatus!
+}
+
+type ClientStatus {
+  desktop: StatusType
+  mobile: StatusType
+  web: StatusType
+}
+
+type Activity {
+  name: String!
+  type: ActivityType!
+  url: URL
+  createdAt: Int!
+  timestamps: ActivityTimestamps
+  applicationId: Snowflake
+  details: String
+  state: String
+  emoji: Emoji
+  party: ActivityParty
+  assets: ActivityAssets
+  secrets: ActivitySecrets
+  instance: Boolean
+  flags: Int
+  buttons: [ActivityButton!]
+}
+
+type ActivityTimestamps {
+  start: Int
+  end: Int
+}
+
+type ActivityParty {
+  id: String
+  size: [Int!]
+}
+
+type ActivityAssets {
+  largeImage: String
+  largeText: String
+  smallImage: String
+  smallText: String
+}
+
+type ActivitySecrets {
+  join: String
+  spectate: String
+  match: String
+}
+
+type ActivityButton {
+  label: String!
+  url: URL!
+}
+
+type Interaction {
+  id: Snowflake!
+  applicationId: Snowflake!
+  type: InteractionType!
+  data: InteractionData
+  guild: Guild
+  guildId: Snowflake
+  channel: Channel
+  channelId: Snowflake
+  member: Member
+  user: User
+  token: String!
+  version: Int!
+  message: Message
+  appPermissions: String
+  locale: String
+  guildLocale: String
+  entitlements: [Entitlement!]!
+  authorizingIntegrationOwners: JSONObject!
+  context: Int
+}
+
+type InteractionData {
+  id: Snowflake
+  name: String
+  type: ApplicationCommandType
+  resolved: ResolvedData
+  options: [ApplicationCommandInteractionDataOption!]
+  guildId: Snowflake
+  targetId: Snowflake
+  customId: String
+  componentType: ComponentType
+  values: [String!]
+  components: [Component!]
+}
+
+type ResolvedData {
+  users: JSONObject
+  members: JSONObject
+  roles: JSONObject
+  channels: JSONObject
+  messages: JSONObject
+  attachments: JSONObject
+}
+
+type ApplicationCommandInteractionDataOption {
+  name: String!
+  type: ApplicationCommandOptionType!
+  value: String
+  options: [ApplicationCommandInteractionDataOption!]
+  focused: Boolean
+}
+
+type ApplicationCommand {
+  id: Snowflake!
+  type: ApplicationCommandType!
+  applicationId: Snowflake!
+  guildId: Snowflake
+  name: String!
+  nameLocalizations: JSONObject
+  description: String!
+  descriptionLocalizations: JSONObject
+  options: [ApplicationCommandOption!]
+  defaultMemberPermissions: String
+  dmPermission: Boolean
+  defaultPermission: Boolean
+  nsfw: Boolean
+  integrationTypes: [Int!]
+  contexts: [Int!]
+  version: Snowflake!
+}
+
+type ApplicationCommandOption {
+  type: ApplicationCommandOptionType!
+  name: String!
+  nameLocalizations: JSONObject
+  description: String!
+  descriptionLocalizations: JSONObject
+  required: Boolean
+  choices: [ApplicationCommandOptionChoice!]
+  options: [ApplicationCommandOption!]
+  channelTypes: [ChannelType!]
+  minValue: Float
+  maxValue: Float
+  minLength: Int
+  maxLength: Int
+  autocomplete: Boolean
+}
+
+type ApplicationCommandOptionChoice {
+  name: String!
+  nameLocalizations: JSONObject
+  value: String!
+}
+
+interface Component {
+  type: ComponentType!
+}
+
+type ActionRow implements Component {
+  type: ComponentType!
+  components: [Component!]!
+}
+
+type Button implements Component {
+  type: ComponentType!
+  style: ButtonStyle!
+  label: String
+  emoji: Emoji
+  customId: String
+  skuId: Snowflake
+  url: URL
+  disabled: Boolean
+}
+
+type SelectMenu implements Component {
+  type: ComponentType!
+  customId: String!
+  options: [SelectOption!]
+  channelTypes: [ChannelType!]
+  placeholder: String
+  defaultValues: [SelectDefaultValue!]
+  minValues: Int
+  maxValues: Int
+  disabled: Boolean
+}
+
+type SelectOption {
+  label: String!
+  value: String!
+  description: String
+  emoji: Emoji
+  default: Boolean
+}
+
+type SelectDefaultValue {
+  id: Snowflake!
+  type: String!
+}
+
+type TextInput implements Component {
+  type: ComponentType!
+  customId: String!
+  style: TextInputStyle!
+  label: String!
+  minLength: Int
+  maxLength: Int
+  required: Boolean
+  value: String
+  placeholder: String
+}
+
+type Application {
+  id: Snowflake!
+  name: String!
+  icon: String
+  description: String!
+  rpcOrigins: [URL!]
+  botPublic: Boolean!
+  botRequireCodeGrant: Boolean!
+  bot: User
+  termsOfServiceUrl: URL
+  privacyPolicyUrl: URL
+  owner: User
+  verifyKey: String!
+  team: Team
+  guildId: Snowflake
+  guild: Guild
+  primarySkuId: Snowflake
+  slug: String
+  coverImage: String
+  flags: Int
+  approximateGuildCount: Int
+  redirectUris: [URL!]
+  interactionsEndpointUrl: URL
+  roleConnectionsVerificationUrl: URL
+  tags: [String!]
+  installParams: InstallParams
+  integrationTypesConfig: JSONObject
+  customInstallUrl: URL
+}
+
+type InstallParams {
+  scopes: [String!]!
+  permissions: String!
+}
+
+type Team {
+  icon: String
+  id: Snowflake!
+  members: [TeamMember!]!
+  name: String!
+  ownerUserId: Snowflake!
+}
+
+type TeamMember {
+  membershipState: Int!
+  teamId: Snowflake!
+  user: User!
+  role: TeamMemberRole!
+}
+
+type GuildScheduledEvent {
+  id: Snowflake!
+  guildId: Snowflake!
+  channelId: Snowflake
+  creatorId: Snowflake
+  name: String!
+  description: String
+  scheduledStartTime: ISO8601DateTime!
+  scheduledEndTime: ISO8601DateTime
+  privacyLevel: Int!
+  status: GuildScheduledEventStatus!
+  entityType: GuildScheduledEventEntityType!
+  entityId: Snowflake
+  entityMetadata: GuildScheduledEventEntityMetadata
+  creator: User
+  userCount: Int
+  image: String
+  recurrenceRule: GuildScheduledEventRecurrenceRule
+}
+
+type GuildScheduledEventEntityMetadata {
+  location: String
+}
+
+type GuildScheduledEventRecurrenceRule {
+  start: ISO8601DateTime!
+  end: ISO8601DateTime
+  frequency: Int!
+  interval: Int!
+  byWeekday: [Int!]
+  byNWeekday: [JSONObject!]
+  byMonth: [Int!]
+  byMonthDay: [Int!]
+  byYearDay: [Int!]
+  count: Int
+}
+
+type AutoModerationRule {
+  id: Snowflake!
+  guildId: Snowflake!
+  name: String!
+  creatorId: Snowflake!
+  eventType: AutoModerationEventType!
+  triggerType: AutoModerationTriggerType!
+  triggerMetadata: AutoModerationTriggerMetadata!
+  actions: [AutoModerationAction!]!
+  enabled: Boolean!
+  exemptRoles: [Snowflake!]!
+  exemptChannels: [Snowflake!]!
+}
+
+type AutoModerationTriggerMetadata {
+  keywordFilter: [String!]
+  regexPatterns: [String!]
+  presets: [Int!]
+  allowList: [String!]
+  mentionTotalLimit: Int
+  mentionRaidProtectionEnabled: Boolean
+}
+
+type AutoModerationAction {
+  type: AutoModerationActionType!
+  metadata: AutoModerationActionMetadata
+}
+
+type AutoModerationActionMetadata {
+  channelId: Snowflake
+  durationSeconds: Int
+  customMessage: String
+}
+
+type StageInstance {
+  id: Snowflake!
+  guildId: Snowflake!
+  channelId: Snowflake!
+  topic: String!
+  privacyLevel: StageInstancePrivacyLevel!
+  discoverableDisabled: Boolean!
+  guildScheduledEventId: Snowflake
+}
+
+type Entitlement {
+  id: Snowflake!
+  skuId: Snowflake!
+  applicationId: Snowflake!
+  userId: Snowflake
+  type: EntitlementType!
+  deleted: Boolean!
+  startsAt: ISO8601DateTime
+  endsAt: ISO8601DateTime
+  guildId: Snowflake
+  consumed: Boolean
+}
+
+type SKU {
+  id: Snowflake!
+  type: Int!
+  applicationId: Snowflake!
+  name: String!
+  slug: String!
+  flags: Int!
+}
+
+type RoleConnectionMetadata {
+  type: Int!
+  key: String!
+  name: String!
+  nameLocalizations: JSONObject
+  description: String!
+  descriptionLocalizations: JSONObject
+}
+
+# ─── Root Operations ───────────────────────────────────────────────────────────
+
+type Query {
+  # Users
+  currentUser: User!
+  user(id: Snowflake!): User
+
+  # Guilds
+  guild(id: Snowflake!): Guild
+  currentUserGuilds(before: Snowflake, after: Snowflake, limit: Int, withCounts: Boolean): [Guild!]!
+
+  # Channels
+  channel(id: Snowflake!): Channel
+  guildChannels(guildId: Snowflake!): [Channel!]!
+  guildActiveThreads(guildId: Snowflake!): ThreadListResult!
+  channelThreadsArchived(channelId: Snowflake!, type: String!, before: ISO8601DateTime, limit: Int): ThreadListResult!
+
+  # Messages
+  messages(channelId: Snowflake!, around: Snowflake, before: Snowflake, after: Snowflake, limit: Int): [Message!]!
+  message(channelId: Snowflake!, messageId: Snowflake!): Message
+  pinnedMessages(channelId: Snowflake!): [Message!]!
+
+  # Roles
+  guildRoles(guildId: Snowflake!): [Role!]!
+  guildRole(guildId: Snowflake!, roleId: Snowflake!): Role
+
+  # Members
+  guildMember(guildId: Snowflake!, userId: Snowflake!): Member
+  guildMembers(guildId: Snowflake!, limit: Int, after: Snowflake): [Member!]!
+  searchGuildMembers(guildId: Snowflake!, query: String!, limit: Int): [Member!]!
+
+  # Emojis
+  guildEmojis(guildId: Snowflake!): [Emoji!]!
+  guildEmoji(guildId: Snowflake!, emojiId: Snowflake!): Emoji
+
+  # Stickers
+  sticker(id: Snowflake!): Sticker
+  guildStickers(guildId: Snowflake!): [Sticker!]!
+
+  # Webhooks
+  channelWebhooks(channelId: Snowflake!): [Webhook!]!
+  guildWebhooks(guildId: Snowflake!): [Webhook!]!
+  webhook(id: Snowflake!): Webhook
+
+  # Invites
+  invite(code: String!, withCounts: Boolean, withExpiration: Boolean, guildScheduledEventId: Snowflake): Invite
+  channelInvites(channelId: Snowflake!): [Invite!]!
+  guildInvites(guildId: Snowflake!): [Invite!]!
+
+  # Voice
+  voiceRegions: [VoiceRegion!]!
+  guildVoiceRegions(guildId: Snowflake!): [VoiceRegion!]!
+
+  # Stage instances
+  stageInstance(channelId: Snowflake!): StageInstance
+
+  # Scheduled events
+  guildScheduledEvents(guildId: Snowflake!, withUserCount: Boolean): [GuildScheduledEvent!]!
+  guildScheduledEvent(guildId: Snowflake!, eventId: Snowflake!, withUserCount: Boolean): GuildScheduledEvent
+  guildScheduledEventUsers(guildId: Snowflake!, eventId: Snowflake!, limit: Int, withMember: Boolean, before: Snowflake, after: Snowflake): [GuildScheduledEventUser!]!
+
+  # Auto moderation
+  autoModerationRules(guildId: Snowflake!): [AutoModerationRule!]!
+  autoModerationRule(guildId: Snowflake!, ruleId: Snowflake!): AutoModerationRule
+
+  # Application commands
+  globalApplicationCommands(applicationId: Snowflake!, withLocalizations: Boolean): [ApplicationCommand!]!
+  globalApplicationCommand(applicationId: Snowflake!, commandId: Snowflake!): ApplicationCommand
+  guildApplicationCommands(applicationId: Snowflake!, guildId: Snowflake!, withLocalizations: Boolean): [ApplicationCommand!]!
+
+  # Application
+  currentApplication: Application!
+
+  # Entitlements
+  entitlements(applicationId: Snowflake!, userId: Snowflake, skuIds: [Snowflake!], before: Snowflake, after: Snowflake, limit: Int, guildId: Snowflake, excludeEnded: Boolean): [Entitlement!]!
+
+  # SKUs
+  skus(applicationId: Snowflake!): [SKU!]!
+
+  # Role connection metadata
+  applicationRoleConnectionMetadata(applicationId: Snowflake!): [RoleConnectionMetadata!]!
+}
+
+type Mutation {
+  # Messages
+  createMessage(channelId: Snowflake!, input: CreateMessageInput!): Message!
+  editMessage(channelId: Snowflake!, messageId: Snowflake!, input: EditMessageInput!): Message!
+  deleteMessage(channelId: Snowflake!, messageId: Snowflake!): Boolean!
+  bulkDeleteMessages(channelId: Snowflake!, messageIds: [Snowflake!]!): Boolean!
+  crosspostMessage(channelId: Snowflake!, messageId: Snowflake!): Message!
+  pinMessage(channelId: Snowflake!, messageId: Snowflake!): Boolean!
+  unpinMessage(channelId: Snowflake!, messageId: Snowflake!): Boolean!
+
+  # Reactions
+  createReaction(channelId: Snowflake!, messageId: Snowflake!, emoji: String!): Boolean!
+  deleteOwnReaction(channelId: Snowflake!, messageId: Snowflake!, emoji: String!): Boolean!
+  deleteUserReaction(channelId: Snowflake!, messageId: Snowflake!, emoji: String!, userId: Snowflake!): Boolean!
+  deleteAllReactions(channelId: Snowflake!, messageId: Snowflake!): Boolean!
+
+  # Channels
+  createGuildChannel(guildId: Snowflake!, input: CreateChannelInput!): Channel!
+  modifyChannel(channelId: Snowflake!, input: ModifyChannelInput!): Channel!
+  deleteChannel(channelId: Snowflake!): Channel!
+  modifyGuildChannelPositions(guildId: Snowflake!, positions: [ChannelPositionInput!]!): Boolean!
+  startThread(channelId: Snowflake!, input: StartThreadInput!): Channel!
+  joinThread(channelId: Snowflake!): Boolean!
+  addThreadMember(channelId: Snowflake!, userId: Snowflake!): Boolean!
+  leaveThread(channelId: Snowflake!): Boolean!
+  removeThreadMember(channelId: Snowflake!, userId: Snowflake!): Boolean!
+
+  # Guilds
+  createGuild(input: CreateGuildInput!): Guild!
+  modifyGuild(guildId: Snowflake!, input: ModifyGuildInput!): Guild!
+  deleteGuild(guildId: Snowflake!): Boolean!
+  leaveGuild(guildId: Snowflake!): Boolean!
+
+  # Roles
+  createGuildRole(guildId: Snowflake!, input: CreateRoleInput!): Role!
+  modifyGuildRole(guildId: Snowflake!, roleId: Snowflake!, input: ModifyRoleInput!): Role!
+  deleteGuildRole(guildId: Snowflake!, roleId: Snowflake!): Boolean!
+
+  # Members
+  addGuildMember(guildId: Snowflake!, userId: Snowflake!, input: AddGuildMemberInput!): Member
+  modifyGuildMember(guildId: Snowflake!, userId: Snowflake!, input: ModifyGuildMemberInput!): Member!
+  removeGuildMember(guildId: Snowflake!, userId: Snowflake!): Boolean!
+  modifyCurrentMember(guildId: Snowflake!, input: ModifyCurrentMemberInput!): Member!
+  addGuildMemberRole(guildId: Snowflake!, userId: Snowflake!, roleId: Snowflake!): Boolean!
+  removeGuildMemberRole(guildId: Snowflake!, userId: Snowflake!, roleId: Snowflake!): Boolean!
+
+  # Bans
+  createGuildBan(guildId: Snowflake!, userId: Snowflake!, deleteMessageSeconds: Int): Boolean!
+  removeGuildBan(guildId: Snowflake!, userId: Snowflake!): Boolean!
+  bulkGuildBan(guildId: Snowflake!, userIds: [Snowflake!]!, deleteMessageSeconds: Int): BulkBanResult!
+
+  # Emojis
+  createGuildEmoji(guildId: Snowflake!, input: CreateEmojiInput!): Emoji!
+  modifyGuildEmoji(guildId: Snowflake!, emojiId: Snowflake!, input: ModifyEmojiInput!): Emoji!
+  deleteGuildEmoji(guildId: Snowflake!, emojiId: Snowflake!): Boolean!
+
+  # Stickers
+  createGuildSticker(guildId: Snowflake!, input: CreateStickerInput!): Sticker!
+  modifyGuildSticker(guildId: Snowflake!, stickerId: Snowflake!, input: ModifyStickerInput!): Sticker!
+  deleteGuildSticker(guildId: Snowflake!, stickerId: Snowflake!): Boolean!
+
+  # Webhooks
+  createWebhook(channelId: Snowflake!, input: CreateWebhookInput!): Webhook!
+  modifyWebhook(webhookId: Snowflake!, input: ModifyWebhookInput!): Webhook!
+  deleteWebhook(webhookId: Snowflake!): Boolean!
+  executeWebhook(webhookId: Snowflake!, token: String!, input: ExecuteWebhookInput!): Message
+
+  # Invites
+  createChannelInvite(channelId: Snowflake!, input: CreateInviteInput!): Invite!
+  deleteInvite(code: String!): Invite!
+
+  # Application commands
+  createGlobalApplicationCommand(applicationId: Snowflake!, input: ApplicationCommandInput!): ApplicationCommand!
+  editGlobalApplicationCommand(applicationId: Snowflake!, commandId: Snowflake!, input: ApplicationCommandInput!): ApplicationCommand!
+  deleteGlobalApplicationCommand(applicationId: Snowflake!, commandId: Snowflake!): Boolean!
+  bulkOverwriteGlobalApplicationCommands(applicationId: Snowflake!, commands: [ApplicationCommandInput!]!): [ApplicationCommand!]!
+  createGuildApplicationCommand(applicationId: Snowflake!, guildId: Snowflake!, input: ApplicationCommandInput!): ApplicationCommand!
+  editGuildApplicationCommand(applicationId: Snowflake!, guildId: Snowflake!, commandId: Snowflake!, input: ApplicationCommandInput!): ApplicationCommand!
+  deleteGuildApplicationCommand(applicationId: Snowflake!, guildId: Snowflake!, commandId: Snowflake!): Boolean!
+
+  # Interaction responses
+  createInteractionResponse(interactionId: Snowflake!, interactionToken: String!, input: InteractionResponseInput!): Boolean!
+  editOriginalInteractionResponse(applicationId: Snowflake!, interactionToken: String!, input: EditMessageInput!): Message!
+  deleteOriginalInteractionResponse(applicationId: Snowflake!, interactionToken: String!): Boolean!
+
+  # Stage instances
+  createStageInstance(input: CreateStageInstanceInput!): StageInstance!
+  modifyStageInstance(channelId: Snowflake!, input: ModifyStageInstanceInput!): StageInstance!
+  deleteStageInstance(channelId: Snowflake!): Boolean!
+
+  # Scheduled events
+  createGuildScheduledEvent(guildId: Snowflake!, input: CreateScheduledEventInput!): GuildScheduledEvent!
+  modifyGuildScheduledEvent(guildId: Snowflake!, eventId: Snowflake!, input: ModifyScheduledEventInput!): GuildScheduledEvent!
+  deleteGuildScheduledEvent(guildId: Snowflake!, eventId: Snowflake!): Boolean!
+
+  # Auto moderation
+  createAutoModerationRule(guildId: Snowflake!, input: AutoModerationRuleInput!): AutoModerationRule!
+  modifyAutoModerationRule(guildId: Snowflake!, ruleId: Snowflake!, input: AutoModerationRuleInput!): AutoModerationRule!
+  deleteAutoModerationRule(guildId: Snowflake!, ruleId: Snowflake!): Boolean!
+
+  # Current user
+  modifyCurrentUser(input: ModifyCurrentUserInput!): User!
+
+  # Entitlements
+  consumeEntitlement(applicationId: Snowflake!, entitlementId: Snowflake!): Boolean!
+  createTestEntitlement(applicationId: Snowflake!, input: CreateTestEntitlementInput!): Entitlement!
+  deleteTestEntitlement(applicationId: Snowflake!, entitlementId: Snowflake!): Boolean!
+}
+
+type Subscription {
+  # Gateway real-time events (conceptual; Discord uses WebSocket Gateway)
+  messageCreated(channelId: Snowflake): Message!
+  messageUpdated(channelId: Snowflake): Message!
+  messageDeleted(channelId: Snowflake): MessageDeleteEvent!
+  reactionAdded(channelId: Snowflake): ReactionEvent!
+  reactionRemoved(channelId: Snowflake): ReactionEvent!
+  typingStarted(channelId: Snowflake): TypingStartEvent!
+  presenceUpdated(guildId: Snowflake): PresenceUpdate!
+  voiceStateUpdated(guildId: Snowflake): VoiceState!
+  guildMemberAdded(guildId: Snowflake!): Member!
+  guildMemberRemoved(guildId: Snowflake!): GuildMemberRemoveEvent!
+  guildMemberUpdated(guildId: Snowflake!): Member!
+  interactionCreated: Interaction!
+  guildScheduledEventCreated(guildId: Snowflake): GuildScheduledEvent!
+  guildScheduledEventUpdated(guildId: Snowflake): GuildScheduledEvent!
+  autoModerationActionExecuted(guildId: Snowflake!): AutoModerationActionExecution!
+}
+
+# ─── Auxiliary Types ───────────────────────────────────────────────────────────
+
+type ThreadListResult {
+  threads: [Channel!]!
+  members: [ThreadMember!]!
+  hasMore: Boolean!
+}
+
+type VoiceRegion {
+  id: String!
+  name: String!
+  optimal: Boolean!
+  deprecated: Boolean!
+  custom: Boolean!
+}
+
+type GuildScheduledEventUser {
+  guildScheduledEventId: Snowflake!
+  user: User!
+  member: Member
+}
+
+type BulkBanResult {
+  bannedUsers: [Snowflake!]!
+  failedUsers: [Snowflake!]!
+}
+
+type MessageDeleteEvent {
+  id: Snowflake!
+  channelId: Snowflake!
+  guildId: Snowflake
+}
+
+type ReactionEvent {
+  userId: Snowflake!
+  channelId: Snowflake!
+  messageId: Snowflake!
+  guildId: Snowflake
+  member: Member
+  emoji: Emoji!
+  messageAuthorId: Snowflake
+  burst: Boolean!
+  burstColors: [String!]
+  type: Int!
+}
+
+type TypingStartEvent {
+  channelId: Snowflake!
+  guildId: Snowflake
+  userId: Snowflake!
+  timestamp: Int!
+  member: Member
+}
+
+type GuildMemberRemoveEvent {
+  guildId: Snowflake!
+  user: User!
+}
+
+type AutoModerationActionExecution {
+  guildId: Snowflake!
+  action: AutoModerationAction!
+  ruleId: Snowflake!
+  ruleTriggerType: AutoModerationTriggerType!
+  userId: Snowflake!
+  channelId: Snowflake
+  messageId: Snowflake
+  alertSystemMessageId: Snowflake
+  content: String!
+  matchedKeyword: String
+  matchedContent: String
+}
+
+# ─── Input Types ──────────────────────────────────────────────────────────────
+
+input CreateMessageInput {
+  content: String
+  nonce: String
+  tts: Boolean
+  embeds: [EmbedInput!]
+  allowedMentions: AllowedMentionsInput
+  messageReference: MessageReferenceInput
+  components: [ComponentInput!]
+  stickerIds: [Snowflake!]
+  flags: Int
+  enforceNonce: Boolean
+  poll: PollInput
+}
+
+input EditMessageInput {
+  content: String
+  embeds: [EmbedInput!]
+  flags: Int
+  allowedMentions: AllowedMentionsInput
+  components: [ComponentInput!]
+  attachments: [AttachmentInput!]
+}
+
+input EmbedInput {
+  title: String
+  description: String
+  url: URL
+  timestamp: ISO8601DateTime
+  color: Int
+  footer: EmbedFooterInput
+  image: EmbedMediaInput
+  thumbnail: EmbedMediaInput
+  author: EmbedAuthorInput
+  fields: [EmbedFieldInput!]
+}
+
+input EmbedFooterInput {
+  text: String!
+  iconUrl: URL
+}
+
+input EmbedMediaInput {
+  url: URL!
+}
+
+input EmbedAuthorInput {
+  name: String!
+  url: URL
+  iconUrl: URL
+}
+
+input EmbedFieldInput {
+  name: String!
+  value: String!
+  inline: Boolean
+}
+
+input AllowedMentionsInput {
+  parse: [String!]
+  roles: [Snowflake!]
+  users: [Snowflake!]
+  repliedUser: Boolean
+}
+
+input MessageReferenceInput {
+  messageId: Snowflake
+  channelId: Snowflake
+  guildId: Snowflake
+  failIfNotExists: Boolean
+}
+
+input ComponentInput {
+  type: ComponentType!
+  style: ButtonStyle
+  label: String
+  emoji: EmojiInput
+  customId: String
+  url: URL
+  disabled: Boolean
+  options: [SelectOptionInput!]
+  placeholder: String
+  minValues: Int
+  maxValues: Int
+  components: [ComponentInput!]
+  value: String
+  required: Boolean
+  minLength: Int
+  maxLength: Int
+}
+
+input EmojiInput {
+  id: Snowflake
+  name: String
+  animated: Boolean
+}
+
+input SelectOptionInput {
+  label: String!
+  value: String!
+  description: String
+  emoji: EmojiInput
+  default: Boolean
+}
+
+input AttachmentInput {
+  id: Snowflake!
+  filename: String
+  description: String
+}
+
+input PollInput {
+  question: PollMediaInput!
+  answers: [PollAnswerInput!]!
+  duration: Int!
+  allowMultiselect: Boolean!
+  layoutType: Int
+}
+
+input PollMediaInput {
+  text: String
+  emoji: EmojiInput
+}
+
+input PollAnswerInput {
+  pollMedia: PollMediaInput!
+}
+
+input CreateChannelInput {
+  name: String!
+  type: ChannelType
+  topic: String
+  bitrate: Int
+  userLimit: Int
+  rateLimitPerUser: Int
+  position: Int
+  permissionOverwrites: [OverwriteInput!]
+  parentId: Snowflake
+  nsfw: Boolean
+  rtcRegion: String
+  videoQualityMode: VideoQualityMode
+  defaultAutoArchiveDuration: Int
+  defaultReactionEmoji: DefaultReactionInput
+  availableTags: [ForumTagInput!]
+  defaultSortOrder: SortOrderType
+  defaultForumLayout: ForumLayoutType
+  defaultThreadRateLimitPerUser: Int
+}
+
+input ModifyChannelInput {
+  name: String
+  type: ChannelType
+  topic: String
+  bitrate: Int
+  userLimit: Int
+  rateLimitPerUser: Int
+  position: Int
+  permissionOverwrites: [OverwriteInput!]
+  parentId: Snowflake
+  nsfw: Boolean
+  rtcRegion: String
+  videoQualityMode: VideoQualityMode
+  defaultAutoArchiveDuration: Int
+  defaultReactionEmoji: DefaultReactionInput
+  availableTags: [ForumTagInput!]
+  defaultSortOrder: SortOrderType
+  defaultForumLayout: ForumLayoutType
+  defaultThreadRateLimitPerUser: Int
+  archived: Boolean
+  autoArchiveDuration: Int
+  locked: Boolean
+  invitable: Boolean
+  appliedTags: [Snowflake!]
+  flags: Int
+}
+
+input OverwriteInput {
+  id: Snowflake!
+  type: Int!
+  allow: String!
+  deny: String!
+}
+
+input DefaultReactionInput {
+  emojiId: Snowflake
+  emojiName: String
+}
+
+input ForumTagInput {
+  id: Snowflake
+  name: String!
+  moderated: Boolean
+  emojiId: Snowflake
+  emojiName: String
+}
+
+input ChannelPositionInput {
+  id: Snowflake!
+  position: Int
+  lockPermissions: Boolean
+  parentId: Snowflake
+}
+
+input StartThreadInput {
+  name: String!
+  autoArchiveDuration: Int
+  rateLimitPerUser: Int
+  message: CreateMessageInput
+  appliedTags: [Snowflake!]
+}
+
+input CreateGuildInput {
+  name: String!
+  icon: String
+  verificationLevel: VerificationLevel
+  defaultMessageNotifications: Int
+  explicitContentFilter: ExplicitContentFilterLevel
+  roles: [CreateRoleInput!]
+  channels: [CreateChannelInput!]
+  afkChannelId: Snowflake
+  afkTimeout: Int
+  systemChannelId: Snowflake
+  systemChannelFlags: Int
+}
+
+input ModifyGuildInput {
+  name: String
+  verificationLevel: VerificationLevel
+  defaultMessageNotifications: Int
+  explicitContentFilter: ExplicitContentFilterLevel
+  afkChannelId: Snowflake
+  afkTimeout: Int
+  icon: String
+  ownerId: Snowflake
+  splash: String
+  discoverySplash: String
+  banner: String
+  systemChannelId: Snowflake
+  systemChannelFlags: Int
+  rulesChannelId: Snowflake
+  publicUpdatesChannelId: Snowflake
+  preferredLocale: String
+  features: [String!]
+  description: String
+  premiumProgressBarEnabled: Boolean
+  safetyAlertsChannelId: Snowflake
+}
+
+input CreateRoleInput {
+  name: String
+  permissions: String
+  color: Int
+  hoist: Boolean
+  icon: String
+  unicodeEmoji: String
+  mentionable: Boolean
+}
+
+input ModifyRoleInput {
+  name: String
+  permissions: String
+  color: Int
+  hoist: Boolean
+  icon: String
+  unicodeEmoji: String
+  mentionable: Boolean
+}
+
+input AddGuildMemberInput {
+  accessToken: String!
+  nick: String
+  roles: [Snowflake!]
+  mute: Boolean
+  deaf: Boolean
+}
+
+input ModifyGuildMemberInput {
+  nick: String
+  roles: [Snowflake!]
+  mute: Boolean
+  deaf: Boolean
+  channelId: Snowflake
+  communicationDisabledUntil: ISO8601DateTime
+  flags: Int
+}
+
+input ModifyCurrentMemberInput {
+  nick: String
+}
+
+input CreateEmojiInput {
+  name: String!
+  image: String!
+  roles: [Snowflake!]
+}
+
+input ModifyEmojiInput {
+  name: String
+  roles: [Snowflake!]
+}
+
+input CreateStickerInput {
+  name: String!
+  description: String!
+  tags: String!
+  file: String!
+}
+
+input ModifyStickerInput {
+  name: String
+  description: String
+  tags: String
+}
+
+input CreateWebhookInput {
+  name: String!
+  avatar: String
+}
+
+input ModifyWebhookInput {
+  name: String
+  avatar: String
+  channelId: Snowflake
+}
+
+input ExecuteWebhookInput {
+  content: String
+  username: String
+  avatarUrl: URL
+  tts: Boolean
+  embeds: [EmbedInput!]
+  allowedMentions: AllowedMentionsInput
+  components: [ComponentInput!]
+  flags: Int
+  threadName: String
+  appliedTags: [Snowflake!]
+  poll: PollInput
+}
+
+input CreateInviteInput {
+  maxAge: Int
+  maxUses: Int
+  temporary: Boolean
+  unique: Boolean
+  targetType: InviteTargetType
+  targetUserId: Snowflake
+  targetApplicationId: Snowflake
+}
+
+input ApplicationCommandInput {
+  name: String!
+  nameLocalizations: JSONObject
+  description: String
+  descriptionLocalizations: JSONObject
+  options: [ApplicationCommandOptionInput!]
+  defaultMemberPermissions: String
+  dmPermission: Boolean
+  defaultPermission: Boolean
+  type: ApplicationCommandType
+  nsfw: Boolean
+  integrationTypes: [Int!]
+  contexts: [Int!]
+}
+
+input ApplicationCommandOptionInput {
+  type: ApplicationCommandOptionType!
+  name: String!
+  nameLocalizations: JSONObject
+  description: String!
+  descriptionLocalizations: JSONObject
+  required: Boolean
+  choices: [ApplicationCommandOptionChoiceInput!]
+  options: [ApplicationCommandOptionInput!]
+  channelTypes: [ChannelType!]
+  minValue: Float
+  maxValue: Float
+  minLength: Int
+  maxLength: Int
+  autocomplete: Boolean
+}
+
+input ApplicationCommandOptionChoiceInput {
+  name: String!
+  nameLocalizations: JSONObject
+  value: String!
+}
+
+input InteractionResponseInput {
+  type: Int!
+  data: InteractionCallbackDataInput
+}
+
+input InteractionCallbackDataInput {
+  tts: Boolean
+  content: String
+  embeds: [EmbedInput!]
+  allowedMentions: AllowedMentionsInput
+  flags: Int
+  components: [ComponentInput!]
+  attachments: [AttachmentInput!]
+  poll: PollInput
+  choices: [ApplicationCommandOptionChoiceInput!]
+  customId: String
+  title: String
+}
+
+input CreateStageInstanceInput {
+  channelId: Snowflake!
+  topic: String!
+  privacyLevel: StageInstancePrivacyLevel
+  sendStartNotification: Boolean
+  guildScheduledEventId: Snowflake
+}
+
+input ModifyStageInstanceInput {
+  topic: String
+  privacyLevel: StageInstancePrivacyLevel
+}
+
+input CreateScheduledEventInput {
+  channelId: Snowflake
+  entityMetadata: GuildScheduledEventEntityMetadataInput
+  name: String!
+  privacyLevel: Int!
+  scheduledStartTime: ISO8601DateTime!
+  scheduledEndTime: ISO8601DateTime
+  description: String
+  entityType: GuildScheduledEventEntityType!
+  image: String
+  recurrenceRule: GuildScheduledEventRecurrenceRuleInput
+}
+
+input ModifyScheduledEventInput {
+  channelId: Snowflake
+  entityMetadata: GuildScheduledEventEntityMetadataInput
+  name: String
+  privacyLevel: Int
+  scheduledStartTime: ISO8601DateTime
+  scheduledEndTime: ISO8601DateTime
+  description: String
+  status: GuildScheduledEventStatus
+  entityType: GuildScheduledEventEntityType
+  image: String
+  recurrenceRule: GuildScheduledEventRecurrenceRuleInput
+}
+
+input GuildScheduledEventEntityMetadataInput {
+  location: String
+}
+
+input GuildScheduledEventRecurrenceRuleInput {
+  start: ISO8601DateTime!
+  end: ISO8601DateTime
+  frequency: Int!
+  interval: Int!
+  byWeekday: [Int!]
+  byMonth: [Int!]
+  byMonthDay: [Int!]
+  count: Int
+}
+
+input AutoModerationRuleInput {
+  name: String
+  eventType: AutoModerationEventType
+  triggerType: AutoModerationTriggerType
+  triggerMetadata: AutoModerationTriggerMetadataInput
+  actions: [AutoModerationActionInput!]
+  enabled: Boolean
+  exemptRoles: [Snowflake!]
+  exemptChannels: [Snowflake!]
+}
+
+input AutoModerationTriggerMetadataInput {
+  keywordFilter: [String!]
+  regexPatterns: [String!]
+  presets: [Int!]
+  allowList: [String!]
+  mentionTotalLimit: Int
+  mentionRaidProtectionEnabled: Boolean
+}
+
+input AutoModerationActionInput {
+  type: AutoModerationActionType!
+  metadata: AutoModerationActionMetadataInput
+}
+
+input AutoModerationActionMetadataInput {
+  channelId: Snowflake
+  durationSeconds: Int
+  customMessage: String
+}
+
+input ModifyCurrentUserInput {
+  username: String
+  avatar: String
+  banner: String
+}
+
+input CreateTestEntitlementInput {
+  skuId: Snowflake!
+  ownerId: Snowflake!
+  ownerType: Int!
+}
