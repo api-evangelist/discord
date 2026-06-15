@@ -1,0 +1,190 @@
+{
+  "item": [
+    {
+      "id": "fcd648c9-339a-4678-8d95-663cc801898d",
+      "name": "Webhook Events",
+      "description": {
+        "content": "Incoming webhook events from Discord",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a9b38b84-8312-4abf-b682-243d5eb40062",
+          "name": "Discord Receive webhook event",
+          "request": {
+            "name": "Discord Receive webhook event",
+            "description": {
+              "content": "Endpoint on your server that receives webhook events from Discord. Discord sends a POST request with the event payload. Your server must respond with a 204 No Content for successful processing. Discord validates the endpoint using Ed25519 signatures.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "discord-webhook"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Ed25519 signature for request verification",
+                "key": "X-Signature-Ed25519",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) Timestamp used in signature verification",
+                "key": "X-Signature-Timestamp",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"version\": \"<integer>\",\n  \"application_id\": \"<string>\",\n  \"type\": \"<integer>\",\n  \"event\": {\n    \"type\": \"<string>\",\n    \"timestamp\": \"<dateTime>\",\n    \"data\": {\n      \"integration_type\": \"<integer>\",\n      \"user\": {\n        \"id\": \"<string>\",\n        \"username\": \"<string>\",\n        \"discriminator\": \"<string>\",\n        \"global_name\": \"<string>\",\n        \"avatar\": \"<string>\"\n      },\n      \"scopes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"guild\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"icon\": \"<string>\",\n        \"features\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "14c1d34b-73f8-481d-be2e-708fc8c98516",
+              "name": "Event processed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "discord-webhook"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Ed25519 signature for request verification",
+                    "key": "X-Signature-Ed25519",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Timestamp used in signature verification",
+                    "key": "X-Signature-Timestamp",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"version\": \"<integer>\",\n  \"application_id\": \"<string>\",\n  \"type\": \"<integer>\",\n  \"event\": {\n    \"type\": \"APPLICATION_AUTHORIZED\",\n    \"timestamp\": \"1968-12-26T02:32:18.291Z\",\n    \"data\": {\n      \"integration_type\": 1279,\n      \"user\": {\n        \"id\": \"string\",\n        \"username\": \"string\",\n        \"discriminator\": \"string\",\n        \"global_name\": \"string\",\n        \"avatar\": \"string\"\n      },\n      \"scopes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"guild\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"icon\": \"string\",\n        \"features\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "736bfa56-0458-4edd-a92f-d6aeffee01b8",
+              "name": "Invalid signature",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "discord-webhook"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Ed25519 signature for request verification",
+                    "key": "X-Signature-Ed25519",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Timestamp used in signature verification",
+                    "key": "X-Signature-Timestamp",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"version\": \"<integer>\",\n  \"application_id\": \"<string>\",\n  \"type\": \"<integer>\",\n  \"event\": {\n    \"type\": \"APPLICATION_AUTHORIZED\",\n    \"timestamp\": \"1968-12-26T02:32:18.291Z\",\n    \"data\": {\n      \"integration_type\": 1279,\n      \"user\": {\n        \"id\": \"string\",\n        \"username\": \"string\",\n        \"discriminator\": \"string\",\n        \"global_name\": \"string\",\n        \"avatar\": \"string\"\n      },\n      \"scopes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"guild\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"icon\": \"string\",\n        \"features\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://your-app.example.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a76d32e9-dd93-4f93-8fa1-59e5fe44095e",
+    "name": "Discord Webhook Events API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Discord Webhook Events API provides HTTP-based outgoing webhook events that allow applications to receive notifications for specific events without maintaining a persistent connection. Supported events include APPLICATION_AUTHORIZED, ENTITLEMENT_CREATE, and QUEST_USER_ENROLLMENT. Events are sent as POST requests to the application's configured event webhook URL.\n\nContact Support:\n Name: Discord Support\n Email: support@discord.com",
+      "type": "text/plain"
+    }
+  }
+}

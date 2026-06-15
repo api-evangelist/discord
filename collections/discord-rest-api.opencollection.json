@@ -1,0 +1,1925 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Discord REST API",
+    "version": "10"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Guilds",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Discord Create guild",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://discord.com/api/v10/guilds",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new guild. Returns a guild object on success."
+        },
+        {
+          "info": {
+            "name": "Discord Get guild",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/guilds/:guild_id",
+            "params": [
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the guild (Snowflake)"
+              },
+              {
+                "name": "with_counts",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the guild object for the given ID."
+        },
+        {
+          "info": {
+            "name": "Discord Modify guild",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://discord.com/api/v10/guilds/:guild_id",
+            "params": [
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the guild (Snowflake)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modify a guild's settings. Returns the updated guild object."
+        },
+        {
+          "info": {
+            "name": "Discord Delete guild",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://discord.com/api/v10/guilds/:guild_id",
+            "params": [
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the guild (Snowflake)"
+              }
+            ]
+          },
+          "docs": "Delete a guild permanently. User must be owner."
+        },
+        {
+          "info": {
+            "name": "Discord Get guild preview",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/guilds/:guild_id/preview",
+            "params": [
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the guild (Snowflake)"
+              }
+            ]
+          },
+          "docs": "Returns the guild preview object for the given ID."
+        },
+        {
+          "info": {
+            "name": "Discord List entitlements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/applications/:application_id/entitlements",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sku_ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns all entitlements for a given app, active and expired."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Channels",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Discord List guild channels",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/guilds/:guild_id/channels",
+            "params": [
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the guild (Snowflake)"
+              }
+            ]
+          },
+          "docs": "Returns a list of guild channel objects."
+        },
+        {
+          "info": {
+            "name": "Discord Create guild channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://discord.com/api/v10/guilds/:guild_id/channels",
+            "params": [
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the guild (Snowflake)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new channel object for the guild."
+        },
+        {
+          "info": {
+            "name": "Discord Get channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/channels/:channel_id",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the channel (Snowflake)"
+              }
+            ]
+          },
+          "docs": "Get a channel by ID. Returns a channel object."
+        },
+        {
+          "info": {
+            "name": "Discord Modify channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://discord.com/api/v10/channels/:channel_id",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the channel (Snowflake)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a channel's settings. Returns the updated channel object."
+        },
+        {
+          "info": {
+            "name": "Discord Delete channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://discord.com/api/v10/channels/:channel_id",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the channel (Snowflake)"
+              }
+            ]
+          },
+          "docs": "Delete a channel or close a private message."
+        },
+        {
+          "info": {
+            "name": "Discord Trigger typing indicator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://discord.com/api/v10/channels/:channel_id/typing",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the channel (Snowflake)"
+              }
+            ]
+          },
+          "docs": "Post a typing indicator for the specified channel."
+        },
+        {
+          "info": {
+            "name": "Discord Start thread without message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://discord.com/api/v10/channels/:channel_id/threads",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the channel (Snowflake)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new thread that is not connected to an existing message."
+        },
+        {
+          "info": {
+            "name": "Discord Start thread from message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://discord.com/api/v10/channels/:channel_id/messages/:message_id/threads",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the channel (Snowflake)"
+              },
+              {
+                "name": "message_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the message (Snowflake)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new thread from an existing message."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Messages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Discord List channel messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/channels/:channel_id/messages",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the channel (Snowflake)"
+              },
+              {
+                "name": "around",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns messages for a channel. Requires READ_MESSAGE_HISTORY."
+        },
+        {
+          "info": {
+            "name": "Discord Create message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://discord.com/api/v10/channels/:channel_id/messages",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the channel (Snowflake)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Post a message to a guild text or DM channel."
+        },
+        {
+          "info": {
+            "name": "Discord Get message",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/channels/:channel_id/messages/:message_id",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the channel (Snowflake)"
+              },
+              {
+                "name": "message_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the message (Snowflake)"
+              }
+            ]
+          },
+          "docs": "Returns a specific message in a channel."
+        },
+        {
+          "info": {
+            "name": "Discord Edit message",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://discord.com/api/v10/channels/:channel_id/messages/:message_id",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the channel (Snowflake)"
+              },
+              {
+                "name": "message_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the message (Snowflake)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Edit a previously sent message."
+        },
+        {
+          "info": {
+            "name": "Discord Delete message",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://discord.com/api/v10/channels/:channel_id/messages/:message_id",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the channel (Snowflake)"
+              },
+              {
+                "name": "message_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the message (Snowflake)"
+              }
+            ]
+          },
+          "docs": "Delete a message. Requires MANAGE_MESSAGES for others' messages."
+        },
+        {
+          "info": {
+            "name": "Discord Bulk delete messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://discord.com/api/v10/channels/:channel_id/messages/bulk-delete",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the channel (Snowflake)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete multiple messages in a single request. Requires MANAGE_MESSAGES."
+        },
+        {
+          "info": {
+            "name": "Discord Create reaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://discord.com/api/v10/channels/:channel_id/messages/:message_id/reactions/:emoji_name/@me",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the channel (Snowflake)"
+              },
+              {
+                "name": "message_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the message (Snowflake)"
+              },
+              {
+                "name": "emoji_name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Create a reaction for the message."
+        },
+        {
+          "info": {
+            "name": "Discord Delete own reaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://discord.com/api/v10/channels/:channel_id/messages/:message_id/reactions/:emoji_name/@me",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the channel (Snowflake)"
+              },
+              {
+                "name": "message_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the message (Snowflake)"
+              },
+              {
+                "name": "emoji_name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a reaction the current user has made."
+        },
+        {
+          "info": {
+            "name": "Discord Crosspost message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://discord.com/api/v10/channels/:channel_id/messages/:message_id/crosspost",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the channel (Snowflake)"
+              },
+              {
+                "name": "message_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the message (Snowflake)"
+              }
+            ]
+          },
+          "docs": "Crosspost a message in an Announcement Channel to following channels."
+        },
+        {
+          "info": {
+            "name": "Discord Get pinned messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/channels/:channel_id/pins",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the channel (Snowflake)"
+              }
+            ]
+          },
+          "docs": "Returns all pinned messages in the channel."
+        },
+        {
+          "info": {
+            "name": "Discord Pin message",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://discord.com/api/v10/channels/:channel_id/pins/:message_id",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the channel (Snowflake)"
+              },
+              {
+                "name": "message_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the message (Snowflake)"
+              }
+            ]
+          },
+          "docs": "Pin a message in a channel. Max 50 pins per channel."
+        },
+        {
+          "info": {
+            "name": "Discord Unpin message",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://discord.com/api/v10/channels/:channel_id/pins/:message_id",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the channel (Snowflake)"
+              },
+              {
+                "name": "message_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the message (Snowflake)"
+              }
+            ]
+          },
+          "docs": "Unpin a message in a channel."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Invites",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Discord List channel invites",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/channels/:channel_id/invites",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the channel (Snowflake)"
+              }
+            ]
+          },
+          "docs": "Returns a list of invite objects for the channel."
+        },
+        {
+          "info": {
+            "name": "Discord Create channel invite",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://discord.com/api/v10/channels/:channel_id/invites",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the channel (Snowflake)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new invite object for the channel."
+        },
+        {
+          "info": {
+            "name": "Discord List guild invites",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/guilds/:guild_id/invites",
+            "params": [
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the guild (Snowflake)"
+              }
+            ]
+          },
+          "docs": "Returns a list of invite objects for the guild."
+        },
+        {
+          "info": {
+            "name": "Discord Get invite",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/invites/:code",
+            "params": [
+              {
+                "name": "code",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "with_counts",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "with_expiration",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns an invite object for the given code."
+        },
+        {
+          "info": {
+            "name": "Discord Delete invite",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://discord.com/api/v10/invites/:code",
+            "params": [
+              {
+                "name": "code",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete an invite. Requires MANAGE_CHANNELS or MANAGE_GUILD."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Discord List channel webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/channels/:channel_id/webhooks",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the channel (Snowflake)"
+              }
+            ]
+          },
+          "docs": "Returns a list of channel webhook objects."
+        },
+        {
+          "info": {
+            "name": "Discord Create webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://discord.com/api/v10/channels/:channel_id/webhooks",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the channel (Snowflake)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new webhook for the channel."
+        },
+        {
+          "info": {
+            "name": "Discord List guild webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/guilds/:guild_id/webhooks",
+            "params": [
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the guild (Snowflake)"
+              }
+            ]
+          },
+          "docs": "Returns a list of guild webhook objects."
+        },
+        {
+          "info": {
+            "name": "Discord Get webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/webhooks/:webhook_id",
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the webhook object for the given ID."
+        },
+        {
+          "info": {
+            "name": "Discord Modify webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://discord.com/api/v10/webhooks/:webhook_id",
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modify a webhook. Returns the updated webhook object."
+        },
+        {
+          "info": {
+            "name": "Discord Delete webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://discord.com/api/v10/webhooks/:webhook_id",
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a webhook permanently."
+        },
+        {
+          "info": {
+            "name": "Discord Execute webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://discord.com/api/v10/webhooks/:webhook_id/:webhook_token",
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "webhook_token",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "wait",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "thread_id",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Execute a webhook by posting a message to its channel."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Members",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Discord List guild members",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/guilds/:guild_id/members",
+            "params": [
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the guild (Snowflake)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of guild member objects."
+        },
+        {
+          "info": {
+            "name": "Discord Get guild member",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/guilds/:guild_id/members/:user_id",
+            "params": [
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the guild (Snowflake)"
+              },
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the user (Snowflake)"
+              }
+            ]
+          },
+          "docs": "Returns a guild member object for the specified user."
+        },
+        {
+          "info": {
+            "name": "Discord Add guild member",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://discord.com/api/v10/guilds/:guild_id/members/:user_id",
+            "params": [
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the guild (Snowflake)"
+              },
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the user (Snowflake)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a user to the guild using an OAuth2 access token."
+        },
+        {
+          "info": {
+            "name": "Discord Modify guild member",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://discord.com/api/v10/guilds/:guild_id/members/:user_id",
+            "params": [
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the guild (Snowflake)"
+              },
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the user (Snowflake)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modify attributes of a guild member."
+        },
+        {
+          "info": {
+            "name": "Discord Remove guild member",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://discord.com/api/v10/guilds/:guild_id/members/:user_id",
+            "params": [
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the guild (Snowflake)"
+              },
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the user (Snowflake)"
+              }
+            ]
+          },
+          "docs": "Remove a member from a guild. Requires KICK_MEMBERS."
+        },
+        {
+          "info": {
+            "name": "Discord Search guild members",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/guilds/:guild_id/members/search",
+            "params": [
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the guild (Snowflake)"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns guild members whose username or nickname starts with the query."
+        },
+        {
+          "info": {
+            "name": "Discord List guild bans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/guilds/:guild_id/bans",
+            "params": [
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the guild (Snowflake)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of ban objects for the guild."
+        },
+        {
+          "info": {
+            "name": "Discord Get guild ban",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/guilds/:guild_id/bans/:user_id",
+            "params": [
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the guild (Snowflake)"
+              },
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the user (Snowflake)"
+              }
+            ]
+          },
+          "docs": "Returns a ban object for the given user."
+        },
+        {
+          "info": {
+            "name": "Discord Create guild ban",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://discord.com/api/v10/guilds/:guild_id/bans/:user_id",
+            "params": [
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the guild (Snowflake)"
+              },
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the user (Snowflake)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a guild ban and optionally delete previous messages."
+        },
+        {
+          "info": {
+            "name": "Discord Remove guild ban",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://discord.com/api/v10/guilds/:guild_id/bans/:user_id",
+            "params": [
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the guild (Snowflake)"
+              },
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the user (Snowflake)"
+              }
+            ]
+          },
+          "docs": "Remove the ban for a user."
+        },
+        {
+          "info": {
+            "name": "Discord Get guild prune count",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/guilds/:guild_id/prune",
+            "params": [
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the guild (Snowflake)"
+              },
+              {
+                "name": "days",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_roles",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns number of members that would be removed in a prune operation."
+        },
+        {
+          "info": {
+            "name": "Discord Begin guild prune",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://discord.com/api/v10/guilds/:guild_id/prune",
+            "params": [
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the guild (Snowflake)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Begin a prune operation. Requires KICK_MEMBERS."
+        },
+        {
+          "info": {
+            "name": "Discord Bulk guild ban",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://discord.com/api/v10/guilds/:guild_id/bulk-ban",
+            "params": [
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the guild (Snowflake)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Ban up to 200 users from a guild."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Roles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Discord List guild roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/guilds/:guild_id/roles",
+            "params": [
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the guild (Snowflake)"
+              }
+            ]
+          },
+          "docs": "Returns a list of role objects for the guild."
+        },
+        {
+          "info": {
+            "name": "Discord Create guild role",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://discord.com/api/v10/guilds/:guild_id/roles",
+            "params": [
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the guild (Snowflake)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new role for the guild."
+        },
+        {
+          "info": {
+            "name": "Discord Modify guild role",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://discord.com/api/v10/guilds/:guild_id/roles/:role_id",
+            "params": [
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the guild (Snowflake)"
+              },
+              {
+                "name": "role_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modify a guild role. Returns the updated role."
+        },
+        {
+          "info": {
+            "name": "Discord Delete guild role",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://discord.com/api/v10/guilds/:guild_id/roles/:role_id",
+            "params": [
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the guild (Snowflake)"
+              },
+              {
+                "name": "role_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a guild role."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Emojis",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Discord List guild emojis",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/guilds/:guild_id/emojis",
+            "params": [
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the guild (Snowflake)"
+              }
+            ]
+          },
+          "docs": "Returns a list of emoji objects for the given guild."
+        },
+        {
+          "info": {
+            "name": "Discord Create guild emoji",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://discord.com/api/v10/guilds/:guild_id/emojis",
+            "params": [
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the guild (Snowflake)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new emoji for the guild."
+        },
+        {
+          "info": {
+            "name": "Discord Get guild emoji",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/guilds/:guild_id/emojis/:emoji_id",
+            "params": [
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the guild (Snowflake)"
+              },
+              {
+                "name": "emoji_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns an emoji object for the given guild and emoji IDs."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Stickers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Discord List guild stickers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/guilds/:guild_id/stickers",
+            "params": [
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the guild (Snowflake)"
+              }
+            ]
+          },
+          "docs": "Returns an array of sticker objects for the given guild."
+        },
+        {
+          "info": {
+            "name": "Discord List sticker packs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/sticker-packs"
+          },
+          "docs": "Returns the list of sticker packs available to Nitro subscribers."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Audit Log",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Discord Get guild audit log",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/guilds/:guild_id/audit-logs",
+            "params": [
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the guild (Snowflake)"
+              },
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "action_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns an audit log object for the guild."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Scheduled Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Discord List guild scheduled events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/guilds/:guild_id/scheduled-events",
+            "params": [
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the guild (Snowflake)"
+              },
+              {
+                "name": "with_user_count",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of guild scheduled event objects."
+        },
+        {
+          "info": {
+            "name": "Discord Create guild scheduled event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://discord.com/api/v10/guilds/:guild_id/scheduled-events",
+            "params": [
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the guild (Snowflake)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a guild scheduled event."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Auto Moderation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Discord List auto moderation rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/guilds/:guild_id/auto-moderation/rules",
+            "params": [
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the guild (Snowflake)"
+              }
+            ]
+          },
+          "docs": "Get a list of all rules currently configured for the guild."
+        },
+        {
+          "info": {
+            "name": "Discord Create auto moderation rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://discord.com/api/v10/guilds/:guild_id/auto-moderation/rules",
+            "params": [
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the guild (Snowflake)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new rule for the guild."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Stage Instances",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Discord Create stage instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://discord.com/api/v10/stage-instances",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Stage instance."
+        },
+        {
+          "info": {
+            "name": "Discord Get stage instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/stage-instances/:channel_id",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the channel (Snowflake)"
+              }
+            ]
+          },
+          "docs": "Gets the stage instance associated with the Stage channel."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Discord Get current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/users/@me"
+          },
+          "docs": "Returns the user object of the requestor's account."
+        },
+        {
+          "info": {
+            "name": "Discord Modify current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://discord.com/api/v10/users/@me",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modify the requestor's user account settings."
+        },
+        {
+          "info": {
+            "name": "Discord Get user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/users/:user_id",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the user (Snowflake)"
+              }
+            ]
+          },
+          "docs": "Returns a user object for a given user ID."
+        },
+        {
+          "info": {
+            "name": "Discord List current user guilds",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/users/@me/guilds",
+            "params": [
+              {
+                "name": "before",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "with_counts",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of partial guild objects the current user is a member of."
+        },
+        {
+          "info": {
+            "name": "Discord Create DM",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://discord.com/api/v10/users/@me/channels",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new DM channel with a user."
+        },
+        {
+          "info": {
+            "name": "Discord List current user connections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/users/@me/connections",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns a list of connection objects for the current user."
+        },
+        {
+          "info": {
+            "name": "Discord Get current application",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/applications/@me"
+          },
+          "docs": "Returns the application object associated with the requesting bot user."
+        },
+        {
+          "info": {
+            "name": "Discord Edit current application",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://discord.com/api/v10/applications/@me",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Edit properties of the app associated with the requesting bot user."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Voice",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Discord List voice regions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/voice/regions"
+          },
+          "docs": "Returns an array of available voice regions."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Gateway",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Discord Get gateway",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/gateway"
+          },
+          "docs": "Returns an object with a single valid WSS URL for the Gateway."
+        },
+        {
+          "info": {
+            "name": "Discord Get gateway bot",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/gateway/bot"
+          },
+          "docs": "Returns the Gateway URL and recommended shard settings."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

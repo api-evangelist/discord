@@ -1,0 +1,116 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Discord Linked Roles API",
+    "version": "10"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Role Connections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Discord List application role connection metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/applications/:application_id/role-connections/metadata",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the application"
+              }
+            ]
+          },
+          "docs": "Returns a list of application role connection metadata objects for the given application."
+        },
+        {
+          "info": {
+            "name": "Discord Update application role connection metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://discord.com/api/v10/applications/:application_id/role-connections/metadata",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the application"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates and returns a list of application role connection metadata objects for the given application. An application can have up to 5 metadata records."
+        },
+        {
+          "info": {
+            "name": "Discord Get user application role connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/users/@me/applications/:application_id/role-connection",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the application"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the application role connection for the user. Requires an OAuth2 access token with role_connections.write scope."
+        },
+        {
+          "info": {
+            "name": "Discord Update user application role connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://discord.com/api/v10/users/@me/applications/:application_id/role-connection",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the application"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Updates and returns the application role connection for the user. Requires an OAuth2 access token with role_connections.write scope."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

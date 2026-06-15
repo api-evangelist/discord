@@ -1,0 +1,254 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Discord OAuth2 API",
+    "version": "10"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "OAuth2",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Discord Authorize",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/oauth2/authorize",
+            "params": [
+              {
+                "name": "response_type",
+                "value": "",
+                "type": "query",
+                "description": "OAuth2 grant type (code or token)"
+              },
+              {
+                "name": "client_id",
+                "value": "",
+                "type": "query",
+                "description": "Your application's client ID"
+              },
+              {
+                "name": "scope",
+                "value": "",
+                "type": "query",
+                "description": "Space-delimited list of OAuth2 scopes"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Unique string for CSRF protection"
+              },
+              {
+                "name": "redirect_uri",
+                "value": "",
+                "type": "query",
+                "description": "Registered redirect URI"
+              },
+              {
+                "name": "prompt",
+                "value": "",
+                "type": "query",
+                "description": "Controls the authorization prompt behavior"
+              }
+            ]
+          },
+          "docs": "Redirect the user to this URL to begin the OAuth2 authorization flow. This is a browser-based endpoint, not a REST API call."
+        },
+        {
+          "info": {
+            "name": "Discord Get access token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://discord.com/api/v10/oauth2/token",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "grant_type",
+                  "value": ""
+                },
+                {
+                  "name": "code",
+                  "value": ""
+                },
+                {
+                  "name": "redirect_uri",
+                  "value": ""
+                },
+                {
+                  "name": "client_id",
+                  "value": ""
+                },
+                {
+                  "name": "client_secret",
+                  "value": ""
+                },
+                {
+                  "name": "refresh_token",
+                  "value": ""
+                },
+                {
+                  "name": "scope",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Exchange an authorization code for an access token."
+        },
+        {
+          "info": {
+            "name": "Discord Revoke access token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://discord.com/api/v10/oauth2/token/revoke",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "token",
+                  "value": ""
+                },
+                {
+                  "name": "token_type_hint",
+                  "value": ""
+                },
+                {
+                  "name": "client_id",
+                  "value": ""
+                },
+                {
+                  "name": "client_secret",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Revoke an access token or refresh token."
+        },
+        {
+          "info": {
+            "name": "Discord Get OAuth2 keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/oauth2/keys"
+          },
+          "docs": "Returns the list of public keys used for token verification."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "User Identity",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Discord Get current authorization information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/oauth2/@me",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns info about the current authorization including the user, application, scopes, and expiration."
+        },
+        {
+          "info": {
+            "name": "Discord Get current application",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/oauth2/applications/@me",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the bot's application object."
+        },
+        {
+          "info": {
+            "name": "Discord Get current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/users/@me",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the user object of the current OAuth2 authorized user."
+        },
+        {
+          "info": {
+            "name": "Discord List current user guilds",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/users/@me/guilds",
+            "params": [
+              {
+                "name": "before",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns a list of partial guild objects the current user is a member of."
+        },
+        {
+          "info": {
+            "name": "Discord List current user connections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/users/@me/connections",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns a list of connection objects for the user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
