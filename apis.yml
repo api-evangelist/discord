@@ -268,7 +268,7 @@ common:
 - url: https://discord.com/developers/docs/topics/oauth2
   type: Authentication
 - url: https://discord.com/developers/docs/topics/opcodes-and-status-codes
-  type: StatusCodes
+  type: ErrorCodes
 - url: https://discord.com/developers/docs/developer-tools/community-resources
   type: CommunityResources
 - url: https://discord.com/developers/docs/topics/threads
