@@ -1,0 +1,56 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/discord-interactions-api-openapi.yml, openapi/discord-linked-roles-api-openapi.yml,
+  openapi/discord-oauth2-api-openapi.yml, openapi/discord-openapi-original.yml, openapi/discord-rest-api-openapi.yml
+summary:
+  types:
+  - apiKey
+  - http
+  - oauth2
+  api_key_in:
+  - header
+  oauth2_flows:
+  - authorizationCode
+  - clientCredentials
+  - implicit
+schemes:
+- name: BotToken
+  type: http
+  scheme: bearer
+  description: Bot token authentication
+  sources:
+  - openapi/discord-interactions-api-openapi.yml
+  - openapi/discord-linked-roles-api-openapi.yml
+  - openapi/discord-oauth2-api-openapi.yml
+  - openapi/discord-rest-api-openapi.yml
+- name: BotToken
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: Discord bot token
+  sources:
+  - openapi/discord-openapi-original.yml
+- name: OAuth2
+  type: oauth2
+  flows:
+  - flow: implicit
+    authorizationUrl: discord.com/oauth2/authorize
+    scopes: 31
+  - flow: clientCredentials
+    tokenUrl: https://discord.com/api/oauth2/token
+    scopes: 32
+  - flow: authorizationCode
+    authorizationUrl: discord.com/oauth2/authorize
+    tokenUrl: https://discord.com/api/oauth2/token
+    scopes: 32
+  sources:
+  - openapi/discord-openapi-original.yml
+- name: OAuth2
+  type: oauth2
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://discord.com/oauth2/authorize
+    tokenUrl: https://discord.com/api/v10/oauth2/token
+    scopes: 8
+  sources:
+  - openapi/discord-rest-api-openapi.yml

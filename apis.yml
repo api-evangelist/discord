@@ -229,6 +229,12 @@ maintainers:
   twitter: discord
   email: support@discord.com
 common:
+- type: VulnerabilityDisclosure
+  url: security/discord-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/discord-domain-security.yml
+- type: Authentication
+  url: authentication/discord-authentication.yml
 - type: OAuthScopes
   url: scopes/discord-scopes.yml
 - type: LinkedIn
