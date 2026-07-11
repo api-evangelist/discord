@@ -229,6 +229,8 @@ maintainers:
   twitter: discord
   email: support@discord.com
 common:
+- type: OAuthScopes
+  url: scopes/discord-scopes.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/discord
 - url: https://discord.com/developers/applications
