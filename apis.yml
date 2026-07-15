@@ -229,6 +229,8 @@ maintainers:
   twitter: discord
   email: support@discord.com
 common:
+- type: AgenticAccess
+  url: agentic-access/discord-agentic-access.yml
 - type: VulnerabilityDisclosure
   url: security/discord-vulnerability-disclosure.yml
 - type: DomainSecurity
