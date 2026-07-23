@@ -1,0 +1,1552 @@
+openapi: 3.1.0
+info:
+  title: Discord Interactions Application Commands Invites API
+  description: The Discord Interactions API enables applications to create and respond to application commands (slash commands), message components, and modals. It supports both Gateway-based and webhook-based interaction handling, allowing bots to build rich, interactive user experiences within Discord.
+  version: '10'
+  contact:
+    name: Discord Support
+    url: https://support-dev.discord.com/hc/en-us
+    email: support@discord.com
+  termsOfService: https://discord.com/developers/docs/policies-and-agreements/developer-terms-of-service
+servers:
+- url: https://discord.com/api/v10
+  description: Discord API v10
+security:
+- BotToken: []
+tags:
+- name: Invites
+paths:
+  /invites/{code}:
+    parameters:
+    - name: code
+      in: path
+      schema:
+        type: string
+        maxLength: 152133
+      required: true
+    get:
+      operationId: invite_resolve
+      parameters:
+      - name: with_counts
+        in: query
+        schema:
+          type: boolean
+      - name: guild_scheduled_event_id
+        in: query
+        schema:
+          $ref: '#/components/schemas/SnowflakeType'
+      responses:
+        '200':
+          description: 200 response for invite_resolve
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/FriendInviteResponse'
+                - $ref: '#/components/schemas/GroupDMInviteResponse'
+                - $ref: '#/components/schemas/GuildInviteResponse'
+                x-discord-union: oneOf
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - {}
+      - BotToken: []
+      tags:
+      - Invites
+    delete:
+      operationId: invite_revoke
+      responses:
+        '200':
+          description: 200 response for invite_revoke
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/FriendInviteResponse'
+                - $ref: '#/components/schemas/GroupDMInviteResponse'
+                - $ref: '#/components/schemas/GuildInviteResponse'
+                x-discord-union: oneOf
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      tags:
+      - Invites
+  /channels/{channel_id}/invites:
+    get:
+      operationId: getChannelInvites
+      summary: Discord List channel invites
+      description: Returns a list of invite objects for the channel.
+      tags:
+      - Invites
+      parameters:
+      - $ref: '#/components/parameters/channelId'
+      responses:
+        '200':
+          description: List of invite objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Invite'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    post:
+      operationId: createChannelInvite
+      summary: Discord Create channel invite
+      description: Create a new invite object for the channel.
+      tags:
+      - Invites
+      parameters:
+      - $ref: '#/components/parameters/channelId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateInviteRequest'
+      responses:
+        '200':
+          description: Invite object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invite'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /guilds/{guild_id}/invites:
+    get:
+      operationId: getGuildInvites
+      summary: Discord List guild invites
+      description: Returns a list of invite objects for the guild.
+      tags:
+      - Invites
+      parameters:
+      - $ref: '#/components/parameters/guildId'
+      responses:
+        '200':
+          description: List of invite objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Invite'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+components:
+  schemas:
+    Int53Type:
+      type: integer
+      minimum: -9007199254740991
+      maximum: 9007199254740991
+      format: int64
+    UserAvatarDecorationResponse:
+      type: object
+      properties: {}
+    ThreadMetadata:
+      type: object
+      properties:
+        archived:
+          type: boolean
+        auto_archive_duration:
+          type: integer
+        archive_timestamp:
+          type: string
+          format: date-time
+        locked:
+          type: boolean
+        invitable:
+          type: boolean
+        create_timestamp:
+          type: string
+          format: date-time
+          nullable: true
+    ApplicationTypes:
+      type: integer
+      oneOf:
+      - title: GUILD_ROLE_SUBSCRIPTIONS
+        const: 4
+      format: int32
+    InviteChannelRecipientResponse:
+      type: object
+      properties:
+        username:
+          type: string
+      required:
+      - username
+    FriendInviteResponse:
+      type: object
+      properties:
+        type:
+          oneOf:
+          - type: 'null'
+          - type: integer
+            enum:
+            - 2
+            allOf:
+            - $ref: '#/components/schemas/InviteTypes'
+            format: int32
+        code:
+          type: string
+        inviter:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/UserResponse'
+        max_age:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        created_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        expires_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        friends_count:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        channel:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/InviteChannelResponse'
+        is_contact:
+          type:
+          - boolean
+          - 'null'
+        uses:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        max_uses:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        flags:
+          type:
+          - integer
+          - 'null'
+          format: int32
+      required:
+      - code
+    GuildScheduledEventStatuses:
+      type: integer
+      oneOf:
+      - title: SCHEDULED
+        const: 1
+      - title: ACTIVE
+        const: 2
+      - title: COMPLETED
+        const: 3
+      - title: CANCELED
+        const: 4
+      format: int32
+    OAuth2Scopes:
+      type: string
+      oneOf:
+      - title: IDENTIFY
+        description: allows /users/@me without email
+        const: identify
+      - title: EMAIL
+        description: enables /users/@me to return an email
+        const: email
+      - title: CONNECTIONS
+        description: allows /users/@me/connections to return linked third-party accounts
+        const: connections
+      - title: GUILDS
+        description: allows /users/@me/guilds to return basic information about all of a user's guilds
+        const: guilds
+      - title: GUILDS_JOIN
+        description: allows /guilds/{guild.id}/members/{user.id} to be used for joining users to a guild
+        const: guilds.join
+      - title: GUILDS_MEMBERS_READ
+        description: allows /users/@me/guilds/{guild.id}/member to return a user's member information in a guild
+        const: guilds.members.read
+      - title: GDM_JOIN
+        description: allows your app to join users to a group dm
+        const: gdm.join
+      - title: BOT
+        description: for oauth2 bots, this puts the bot in the user's selected guild by default
+        const: bot
+      - title: RPC
+        description: for local rpc server access, this allows you to control a user's local Discord client - requires Discord approval
+        const: rpc
+      - title: RPC_NOTIFICATIONS_READ
+        description: for local rpc server access, this allows you to receive notifications pushed out to the user - requires Discord approval
+        const: rpc.notifications.read
+      - title: RPC_VOICE_READ
+        description: for local rpc server access, this allows you to read a user's voice settings and listen for voice events - requires Discord approval
+        const: rpc.voice.read
+      - title: RPC_VOICE_WRITE
+        description: for local rpc server access, this allows you to update a user's voice settings - requires Discord approval
+        const: rpc.voice.write
+      - title: RPC_VIDEO_READ
+        description: for local rpc server access, this allows you to read a user's video status - requires Discord approval
+        const: rpc.video.read
+      - title: RPC_VIDEO_WRITE
+        description: for local rpc server access, this allows you to update a user's video settings - requires Discord approval
+        const: rpc.video.write
+      - title: RPC_SCREENSHARE_READ
+        description: for local rpc server access, this allows you to read a user's screenshare status- requires Discord approval
+        const: rpc.screenshare.read
+      - title: RPC_SCREENSHARE_WRITE
+        description: for local rpc server access, this allows you to update a user's screenshare settings- requires Discord approval
+        const: rpc.screenshare.write
+      - title: RPC_ACTIVITIES_WRITE
+        description: for local rpc server access, this allows you to update a user's activity - requires Discord approval
+        const: rpc.activities.write
+      - title: WEBHOOK_INCOMING
+        description: this generates a webhook that is returned in the oauth token response for authorization code grants
+        const: webhook.incoming
+      - title: MESSAGES_READ
+        description: for local rpc server api access, this allows you to read messages from all client channels (otherwise restricted to channels/guilds your app creates)
+        const: messages.read
+      - title: APPLICATIONS_BUILDS_UPLOAD
+        description: allows your app to upload/update builds for a user's applications - requires Discord approval
+        const: applications.builds.upload
+      - title: APPLICATIONS_BUILDS_READ
+        description: allows your app to read build data for a user's applications
+        const: applications.builds.read
+      - title: APPLICATIONS_COMMANDS
+        description: allows your app to use commands in a guild
+        const: applications.commands
+      - title: APPLICATIONS_COMMANDS_PERMISSIONS_UPDATE
+        description: allows your app to update permissions for its commands in a guild a user has permissions to
+        const: applications.commands.permissions.update
+      - title: APPLICATIONS_COMMANDS_UPDATE
+        description: allows your app to update its commands using a Bearer token - client credentials grant only
+        const: applications.commands.update
+      - title: APPLICATIONS_STORE_UPDATE
+        description: allows your app to read and update store data (SKUs, store listings, achievements, etc.) for a user's applications
+        const: applications.store.update
+      - title: APPLICATIONS_ENTITLEMENTS
+        description: allows your app to read entitlements for a user's applications
+        const: applications.entitlements
+      - title: ACTIVITIES_READ
+        description: allows your app to fetch data from a user's "Now Playing/Recently Played" list - requires Discord approval
+        const: activities.read
+      - title: ACTIVITIES_WRITE
+        description: allows your app to update a user's activity - requires Discord approval (NOT REQUIRED FOR GAMESDK ACTIVITY MANAGER)
+        const: activities.write
+      - title: RELATIONSHIPS_READ
+        description: allows your app to know a user's friends and implicit relationships - requires Discord approval
+        const: relationships.read
+      - title: VOICE
+        description: allows your app to connect to voice on user's behalf and see all the voice members - requires Discord approval
+        const: voice
+      - title: DM_CHANNELS_READ
+        description: allows your app to see information about the user's DMs and group DMs - requires Discord approval
+        const: dm_channels.read
+      - title: ROLE_CONNECTIONS_WRITE
+        description: allows your app to update a user's connection and metadata for the app
+        const: role_connections.write
+      - title: OPENID
+        description: for OpenID Connect, this allows your app to receive user id and basic profile information
+        const: openid
+    UserResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        username:
+          type: string
+        avatar:
+          type:
+          - string
+          - 'null'
+        discriminator:
+          type: string
+        public_flags:
+          type: integer
+          format: int32
+        flags:
+          $ref: '#/components/schemas/Int53Type'
+        bot:
+          type:
+          - boolean
+          - 'null'
+        system:
+          type:
+          - boolean
+          - 'null'
+        banner:
+          type:
+          - string
+          - 'null'
+        accent_color:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        global_name:
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - username
+      - discriminator
+      - public_flags
+      - flags
+    InviteTargetTypes:
+      type: integer
+      oneOf:
+      - title: STREAM
+        const: 1
+      - title: EMBEDDED_APPLICATION
+        const: 2
+      - title: ROLE_SUBSCRIPTIONS_PURCHASE
+        const: 3
+      format: int32
+    Emoji:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Snowflake'
+        name:
+          type: string
+          nullable: true
+        roles:
+          type: array
+          items:
+            type: string
+        user:
+          $ref: '#/components/schemas/User'
+        require_colons:
+          type: boolean
+        managed:
+          type: boolean
+        animated:
+          type: boolean
+        available:
+          type: boolean
+    CreateInviteRequest:
+      type: object
+      properties:
+        max_age:
+          type: integer
+          default: 86400
+        max_uses:
+          type: integer
+          default: 0
+        temporary:
+          type: boolean
+          default: false
+        unique:
+          type: boolean
+          default: false
+        target_type:
+          type: integer
+        target_user_id:
+          $ref: '#/components/schemas/Snowflake'
+        target_application_id:
+          $ref: '#/components/schemas/Snowflake'
+    VerificationLevels:
+      type: integer
+      oneOf:
+      - title: NONE
+        description: unrestricted
+        const: 0
+      - title: LOW
+        description: must have verified email on account
+        const: 1
+      - title: MEDIUM
+        description: must be registered on Discord for longer than 5 minutes
+        const: 2
+      - title: HIGH
+        description: must be a member of the server for longer than 10 minutes
+        const: 3
+      - title: VERY_HIGH
+        description: must have a verified phone number
+        const: 4
+      format: int32
+    InviteTypes:
+      type: integer
+      oneOf:
+      - title: GUILD
+        const: 0
+      - title: GROUP_DM
+        const: 1
+      - title: FRIEND
+        const: 2
+      format: int32
+    GuildScheduledEventEntityTypes:
+      type: integer
+      oneOf:
+      - title: NONE
+        const: 0
+      - title: STAGE_INSTANCE
+        const: 1
+      - title: VOICE
+        const: 2
+      - title: EXTERNAL
+        const: 3
+      format: int32
+    Sticker:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Snowflake'
+        pack_id:
+          $ref: '#/components/schemas/Snowflake'
+        name:
+          type: string
+        description:
+          type: string
+          nullable: true
+        tags:
+          type: string
+        type:
+          type: integer
+          description: 1=STANDARD, 2=GUILD
+        format_type:
+          type: integer
+          description: 1=PNG, 2=APNG, 3=LOTTIE, 4=GIF
+        available:
+          type: boolean
+        guild_id:
+          $ref: '#/components/schemas/Snowflake'
+        user:
+          $ref: '#/components/schemas/User'
+        sort_value:
+          type: integer
+      required:
+      - id
+      - name
+      - type
+      - format_type
+    InviteApplicationResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        name:
+          type: string
+        icon:
+          type:
+          - string
+          - 'null'
+        description:
+          type: string
+        type:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/ApplicationTypes'
+        cover_image:
+          type:
+          - string
+          - 'null'
+        primary_sku_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        bot:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/UserResponse'
+        slug:
+          type:
+          - string
+          - 'null'
+        guild_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        rpc_origins:
+          type:
+          - array
+          - 'null'
+          items:
+            type:
+            - string
+            - 'null'
+        bot_public:
+          type:
+          - boolean
+          - 'null'
+        bot_require_code_grant:
+          type:
+          - boolean
+          - 'null'
+        terms_of_service_url:
+          type:
+          - string
+          - 'null'
+          format: uri
+        privacy_policy_url:
+          type:
+          - string
+          - 'null'
+          format: uri
+        custom_install_url:
+          type:
+          - string
+          - 'null'
+          format: uri
+        install_params:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/ApplicationOAuth2InstallParamsResponse'
+        verify_key:
+          type: string
+        flags:
+          type: integer
+          format: int32
+        max_participants:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        tags:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          uniqueItems: true
+      required:
+      - id
+      - name
+      - description
+      - verify_key
+      - flags
+    ErrorResponse:
+      type: object
+      description: Errors object returned by the Discord API
+      allOf:
+      - $ref: '#/components/schemas/Error'
+      - type: object
+        properties:
+          errors:
+            $ref: '#/components/schemas/ErrorDetails'
+    Invite:
+      type: object
+      properties:
+        code:
+          type: string
+        guild:
+          $ref: '#/components/schemas/Guild'
+        channel:
+          $ref: '#/components/schemas/Channel'
+        inviter:
+          $ref: '#/components/schemas/User'
+        target_type:
+          type: integer
+        target_user:
+          $ref: '#/components/schemas/User'
+        approximate_presence_count:
+          type: integer
+        approximate_member_count:
+          type: integer
+        expires_at:
+          type: string
+          format: date-time
+          nullable: true
+        uses:
+          type: integer
+        max_uses:
+          type: integer
+        max_age:
+          type: integer
+        temporary:
+          type: boolean
+        created_at:
+          type: string
+          format: date-time
+    ErrorDetails:
+      oneOf:
+      - type: object
+        additionalProperties:
+          $ref: '#/components/schemas/ErrorDetails'
+      - $ref: '#/components/schemas/InnerErrors'
+    Overwrite:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Snowflake'
+        type:
+          type: integer
+          description: 0=role, 1=member
+        allow:
+          type: string
+        deny:
+          type: string
+    GuildInviteResponse:
+      type: object
+      properties:
+        type:
+          oneOf:
+          - type: 'null'
+          - type: integer
+            enum:
+            - 0
+            allOf:
+            - $ref: '#/components/schemas/InviteTypes'
+            format: int32
+        code:
+          type: string
+        inviter:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/UserResponse'
+        max_age:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        created_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        expires_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        is_contact:
+          type:
+          - boolean
+          - 'null'
+        flags:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        guild:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/InviteGuildResponse'
+        guild_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        channel:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/InviteChannelResponse'
+        stage_instance:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/InviteStageInstanceResponse'
+        target_type:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/InviteTargetTypes'
+        target_user:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/UserResponse'
+        target_application:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/InviteApplicationResponse'
+        guild_scheduled_event:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/ScheduledEventResponse'
+        uses:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        max_uses:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        temporary:
+          type:
+          - boolean
+          - 'null'
+        approximate_member_count:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        approximate_presence_count:
+          type:
+          - integer
+          - 'null'
+          format: int32
+      required:
+      - code
+    GroupDMInviteResponse:
+      type: object
+      properties:
+        type:
+          oneOf:
+          - type: 'null'
+          - type: integer
+            enum:
+            - 1
+            allOf:
+            - $ref: '#/components/schemas/InviteTypes'
+            format: int32
+        code:
+          type: string
+        inviter:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/UserResponse'
+        max_age:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        created_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        expires_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        channel:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/InviteChannelResponse'
+        approximate_member_count:
+          type:
+          - integer
+          - 'null'
+          format: int32
+      required:
+      - code
+    Channel:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Snowflake'
+        type:
+          type: integer
+          description: 0=GUILD_TEXT, 1=DM, 2=GUILD_VOICE, 3=GROUP_DM, 4=GUILD_CATEGORY, 5=GUILD_ANNOUNCEMENT, 10=ANNOUNCEMENT_THREAD, 11=PUBLIC_THREAD, 12=PRIVATE_THREAD, 13=GUILD_STAGE_VOICE, 14=GUILD_DIRECTORY, 15=GUILD_FORUM, 16=GUILD_MEDIA
+        guild_id:
+          $ref: '#/components/schemas/Snowflake'
+        position:
+          type: integer
+        permission_overwrites:
+          type: array
+          items:
+            $ref: '#/components/schemas/Overwrite'
+        name:
+          type: string
+          nullable: true
+        topic:
+          type: string
+          nullable: true
+        nsfw:
+          type: boolean
+        last_message_id:
+          $ref: '#/components/schemas/Snowflake'
+        bitrate:
+          type: integer
+        user_limit:
+          type: integer
+        rate_limit_per_user:
+          type: integer
+        recipients:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        icon:
+          type: string
+          nullable: true
+        owner_id:
+          $ref: '#/components/schemas/Snowflake'
+        parent_id:
+          $ref: '#/components/schemas/Snowflake'
+        last_pin_timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        rtc_region:
+          type: string
+          nullable: true
+        video_quality_mode:
+          type: integer
+        message_count:
+          type: integer
+        member_count:
+          type: integer
+        thread_metadata:
+          $ref: '#/components/schemas/ThreadMetadata'
+        default_auto_archive_duration:
+          type: integer
+        flags:
+          type: integer
+        total_message_sent:
+          type: integer
+      required:
+      - id
+      - type
+    SnowflakeType:
+      type: string
+      pattern: ^(0|[1-9][0-9]*)$
+      format: snowflake
+    InviteChannelResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        type:
+          $ref: '#/components/schemas/ChannelTypes'
+        name:
+          type:
+          - string
+          - 'null'
+        icon:
+          type:
+          - string
+          - 'null'
+        recipients:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/InviteChannelRecipientResponse'
+      required:
+      - id
+      - type
+    Guild:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Snowflake'
+        name:
+          type: string
+        icon:
+          type: string
+          nullable: true
+        icon_hash:
+          type: string
+          nullable: true
+        splash:
+          type: string
+          nullable: true
+        discovery_splash:
+          type: string
+          nullable: true
+        owner:
+          type: boolean
+        owner_id:
+          $ref: '#/components/schemas/Snowflake'
+        permissions:
+          type: string
+        afk_channel_id:
+          $ref: '#/components/schemas/Snowflake'
+        afk_timeout:
+          type: integer
+        verification_level:
+          type: integer
+        default_message_notifications:
+          type: integer
+        explicit_content_filter:
+          type: integer
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'
+        emojis:
+          type: array
+          items:
+            $ref: '#/components/schemas/Emoji'
+        features:
+          type: array
+          items:
+            type: string
+        mfa_level:
+          type: integer
+        system_channel_id:
+          $ref: '#/components/schemas/Snowflake'
+        system_channel_flags:
+          type: integer
+        rules_channel_id:
+          $ref: '#/components/schemas/Snowflake'
+        max_presences:
+          type: integer
+          nullable: true
+        max_members:
+          type: integer
+        vanity_url_code:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        banner:
+          type: string
+          nullable: true
+        premium_tier:
+          type: integer
+        premium_subscription_count:
+          type: integer
+        preferred_locale:
+          type: string
+        public_updates_channel_id:
+          $ref: '#/components/schemas/Snowflake'
+        nsfw_level:
+          type: integer
+        stickers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Sticker'
+        premium_progress_bar_enabled:
+          type: boolean
+        safety_alerts_channel_id:
+          $ref: '#/components/schemas/Snowflake'
+      required:
+      - id
+      - name
+    ScheduledEventResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        guild_id:
+          $ref: '#/components/schemas/SnowflakeType'
+        name:
+          type: string
+        description:
+          type:
+          - string
+          - 'null'
+        channel_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        creator_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        creator:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/UserResponse'
+        image:
+          type:
+          - string
+          - 'null'
+        scheduled_start_time:
+          type: string
+          format: date-time
+        scheduled_end_time:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        status:
+          $ref: '#/components/schemas/GuildScheduledEventStatuses'
+        entity_type:
+          $ref: '#/components/schemas/GuildScheduledEventEntityTypes'
+        entity_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        user_count:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        privacy_level:
+          $ref: '#/components/schemas/GuildScheduledEventPrivacyLevels'
+        user_rsvp:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/ScheduledEventUserResponse'
+      required:
+      - id
+      - guild_id
+      - name
+      - scheduled_start_time
+      - status
+      - entity_type
+      - privacy_level
+    InnerErrors:
+      type: object
+      properties:
+        _errors:
+          type: array
+          description: The list of errors for this field
+          items:
+            $ref: '#/components/schemas/Error'
+      additionalProperties: false
+      required:
+      - _errors
+    InviteGuildResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        name:
+          type: string
+        splash:
+          type:
+          - string
+          - 'null'
+        banner:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        icon:
+          type:
+          - string
+          - 'null'
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/GuildFeatures'
+          uniqueItems: true
+        verification_level:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/VerificationLevels'
+        vanity_url_code:
+          type:
+          - string
+          - 'null'
+        nsfw_level:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/GuildNSFWContentLevel'
+        nsfw:
+          type:
+          - boolean
+          - 'null'
+        premium_subscription_count:
+          type:
+          - integer
+          - 'null'
+          format: int32
+      required:
+      - id
+      - name
+      - features
+    ScheduledEventUserResponse:
+      type: object
+      properties:
+        guild_scheduled_event_id:
+          $ref: '#/components/schemas/SnowflakeType'
+        user_id:
+          $ref: '#/components/schemas/SnowflakeType'
+        user:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/UserResponse'
+        member:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/GuildMemberResponse'
+      required:
+      - guild_scheduled_event_id
+      - user_id
+    Role:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Snowflake'
+        name:
+          type: string
+        color:
+          type: integer
+        hoist:
+          type: boolean
+        icon:
+          type: string
+          nullable: true
+        unicode_emoji:
+          type: string
+          nullable: true
+        position:
+          type: integer
+        permissions:
+          type: string
+        managed:
+          type: boolean
+        mentionable:
+          type: boolean
+        tags:
+          $ref: '#/components/schemas/RoleTags'
+        flags:
+          type: integer
+      required:
+      - id
+      - name
+      - color
+      - hoist
+      - position
+      - permissions
+      - managed
+      - mentionable
+    GuildFeatures:
+      type: string
+      oneOf:
+      - title: ANIMATED_BANNER
+        description: guild has access to set an animated guild banner image
+        const: ANIMATED_BANNER
+      - title: ANIMATED_ICON
+        description: guild has access to set an animated guild icon
+        const: ANIMATED_ICON
+      - title: APPLICATION_COMMAND_PERMISSIONS_V2
+        description: guild is using the old permissions configuration behavior
+        const: APPLICATION_COMMAND_PERMISSIONS_V2
+      - title: AUTO_MODERATION
+        description: guild has set up auto moderation rules
+        const: AUTO_MODERATION
+      - title: BANNER
+        description: guild has access to set a guild banner image
+        const: BANNER
+      - title: COMMUNITY
+        description: guild can enable welcome screen, Membership Screening, stage channels and discovery, and             receives community updates
+        const: COMMUNITY
+      - title: CREATOR_MONETIZABLE_PROVISIONAL
+        description: guild has enabled monetization
+        const: CREATOR_MONETIZABLE_PROVISIONAL
+      - title: CREATOR_STORE_PAGE
+        description: guild has enabled the role subscription promo page
+        const: CREATOR_STORE_PAGE
+      - title: DEVELOPER_SUPPORT_SERVER
+        description: guild has been set as a support server on the App Directory
+        const: DEVELOPER_SUPPORT_SERVER
+      - title: DISCOVERABLE
+        description: guild is able to be discovered in the directory
+        const: DISCOVERABLE
+      - title: FEATURABLE
+        description: guild is able to be featured in the directory
+        const: FEATURABLE
+      - title: INVITES_DISABLED
+        description: guild has paused invites, preventing new users from joining
+        const: INVITES_DISABLED
+      - title: INVITE_SPLASH
+        description: guild has access to set an invite splash background
+        const: INVITE_SPLASH
+      - title: MEMBER_VERIFICATION_GATE_ENABLED
+        description: guild has enabled Membership Screening
+        const: MEMBER_VERIFICATION_GATE_ENABLED
+      - title: MORE_STICKERS
+        description: guild has increased custom sticker slots
+        const: MORE_STICKERS
+      - title: NEWS
+        description: guild has access to create announcement channels
+        const: NEWS
+      - title: PARTNERED
+        description: guild is partnered
+        const: PARTNERED
+      - title: PREVIEW_ENABLED
+        description: guild can be previewed before joining via Membership Screening or the directory
+        const: PREVIEW_ENABLED
+      - title: RAID_ALERTS_DISABLED
+        description: guild has disabled activity alerts in the configured safety alerts channel
+        const: RAID_ALERTS_DISABLED
+      - title: ROLE_ICONS
+        description: guild is able to set role icons
+        const: ROLE_ICONS
+      - title: ROLE_SUBSCRIPTIONS_AVAILABLE_FOR_PURCHASE
+        description: guild has role subscriptions that can be purchased
+        const: ROLE_SUBSCRIPTIONS_AVAILABLE_FOR_PURCHASE
+      - title: ROLE_SUBSCRIPTIONS_ENABLED
+        description: guild has enabled role subscriptions
+        const: ROLE_SUBSCRIPTIONS_ENABLED
+      - title: TICKETED_EVENTS_ENABLED
+        description: guild has enabled ticketed events
+        const: TICKETED_EVENTS_ENABLED
+      - title: VANITY_URL
+        description: guild has access to set a vanity URL
+        const: VANITY_URL
+      - title: VERIFIED
+        description: guild is verified
+        const: VERIFIED
+      - title: VIP_REGIONS
+        description: guild has access to set 384kbps bitrate in voice (previously VIP voice servers)
+        const: VIP_REGIONS
+      - title: WELCOME_SCREEN_ENABLED
+        description: guild has enabled the welcome screen
+        const: WELCOME_SCREEN_ENABLED
+    RoleTags:
+      type: object
+      properties:
+        bot_id:
+          $ref: '#/components/schemas/Snowflake'
+        integration_id:
+          $ref: '#/components/schemas/Snowflake'
+        premium_subscriber:
+          type: 'null'
+        subscription_listing_id:
+          $ref: '#/components/schemas/Snowflake'
+        available_for_purchase:
+          type: 'null'
+        guild_connections:
+          type: 'null'
+    GuildNSFWContentLevel:
+      type: integer
+      oneOf:
+      - title: DEFAULT
+        const: 0
+      - title: EXPLICIT
+        const: 1
+      - title: SAFE
+        const: 2
+      - title: AGE_RESTRICTED
+        const: 3
+      format: int32
+    GuildMemberResponse:
+      type: object
+      properties:
+        avatar:
+          type:
+          - string
+          - 'null'
+        avatar_decoration_data:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/UserAvatarDecorationResponse'
+        communication_disabled_until:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        flags:
+          type: integer
+          format: int32
+        joined_at:
+          type: string
+          format: date-time
+        nick:
+          type:
+          - string
+          - 'null'
+        pending:
+          type: boolean
+        premium_since:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/SnowflakeType'
+          uniqueItems: true
+        user:
+          $ref: '#/components/schemas/UserResponse'
+        mute:
+          type: boolean
+        deaf:
+          type: boolean
+      required:
+      - flags
+      - joined_at
+      - pending
+      - roles
+      - user
+      - mute
+      - deaf
+    User:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Snowflake'
+        username:
+          type: string
+        discriminator:
+          type: string
+        global_name:
+          type: string
+          nullable: true
+        avatar:
+          type: string
+          nullable: true
+        bot:
+          type: boolean
+        system:
+          type: boolean
+        mfa_enabled:
+          type: boolean
+        banner:
+          type: string
+          nullable: true
+        accent_color:
+          type: integer
+          nullable: true
+        locale:
+          type: string
+        verified:
+          type: boolean
+        email:
+          type: string
+          nullable: true
+        flags:
+          type: integer
+        premium_type:
+          type: integer
+        public_flags:
+          type: integer
+        avatar_decoration_data:
+          type: object
+          nullable: true
+      required:
+      - id
+      - username
+    InviteStageInstanceResponse:
+      type: object
+      properties:
+        topic:
+          type: string
+        participant_count:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        speaker_count:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        members:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/GuildMemberResponse'
+      required:
+      - topic
+    GuildScheduledEventPrivacyLevels:
+      type: integer
+      oneOf:
+      - title: GUILD_ONLY
+        description: the scheduled event is only accessible to guild members
+        const: 2
+      format: int32
+    Error:
+      type: object
+      description: A single error, either for an API response or a specific field.
+      properties:
+        code:
+          type: integer
+          description: Discord internal error code. See error code reference
+        message:
+          type: string
+          description: Human-readable error message
+      required:
+      - code
+      - message
+    ApplicationOAuth2InstallParamsResponse:
+      type: object
+      properties:
+        scopes:
+          type: array
+          items:
+            type: string
+            enum:
+            - applications.commands
+            - bot
+            allOf:
+            - $ref: '#/components/schemas/OAuth2Scopes'
+          uniqueItems: true
+        permissions:
+          type: string
+      required:
+      - scopes
+      - permissions
+    Snowflake:
+      type: string
+      description: Discord unique ID represented as a string
+      pattern: ^[0-9]+$
+    ChannelTypes:
+      type: integer
+      oneOf:
+      - title: DM
+        description: A direct message between users
+        const: 1
+      - title: GROUP_DM
+        description: A direct message between multiple users
+        const: 3
+      - title: GUILD_TEXT
+        description: A text channel within a server
+        const: 0
+      - title: GUILD_VOICE
+        description: A voice channel within a server
+        const: 2
+      - title: GUILD_CATEGORY
+        description: An organizational category that contains up to 50 channels
+        const: 4
+      - title: GUILD_ANNOUNCEMENT
+        description: A channel that users can follow and crosspost into their own server (formerly news channels)
+        const: 5
+      - title: ANNOUNCEMENT_THREAD
+        description: A temporary sub-channel within a GUILD_ANNOUNCEMENT channel
+        const: 10
+      - title: PUBLIC_THREAD
+        description: A temporary sub-channel within a GUILD_TEXT or GUILD_THREADS_ONLY channel type set
+        const: 11
+      - title: PRIVATE_THREAD
+        description: A temporary sub-channel within a GUILD_TEXT channel that is only viewable by those invited and those with the MANAGE_THREADS permission
+        const: 12
+      - title: GUILD_STAGE_VOICE
+        description: A voice channel for hosting events with an audience
+        const: 13
+      - title: GUILD_DIRECTORY
+        description: The channel in a hub containing the listed servers
+        const: 14
+      - title: GUILD_FORUM
+        description: Channel that can only contain threads
+        const: 15
+      format: int32
+  responses:
+    ClientError:
+      description: Client error response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+              message:
+                type: string
+              errors:
+                type: object
+    ClientErrorResponse:
+      description: Client error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    guildId:
+      name: guild_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the guild (Snowflake)
+    channelId:
+      name: channel_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the channel (Snowflake)
+  securitySchemes:
+    BotToken:
+      type: http
+      scheme: bearer
+      description: Bot token authentication
+externalDocs:
+  description: Discord Interactions Documentation
+  url: https://discord.com/developers/docs/interactions/overview

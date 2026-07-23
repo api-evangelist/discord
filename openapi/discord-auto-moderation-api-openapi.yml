@@ -1,0 +1,193 @@
+openapi: 3.1.0
+info:
+  title: Discord Interactions Application Commands Auto Moderation API
+  description: The Discord Interactions API enables applications to create and respond to application commands (slash commands), message components, and modals. It supports both Gateway-based and webhook-based interaction handling, allowing bots to build rich, interactive user experiences within Discord.
+  version: '10'
+  contact:
+    name: Discord Support
+    url: https://support-dev.discord.com/hc/en-us
+    email: support@discord.com
+  termsOfService: https://discord.com/developers/docs/policies-and-agreements/developer-terms-of-service
+servers:
+- url: https://discord.com/api/v10
+  description: Discord API v10
+security:
+- BotToken: []
+tags:
+- name: Auto Moderation
+  description: Operations on auto moderation rules
+paths:
+  /guilds/{guild_id}/auto-moderation/rules:
+    get:
+      operationId: listAutoModerationRules
+      summary: Discord List auto moderation rules
+      description: Get a list of all rules currently configured for the guild.
+      tags:
+      - Auto Moderation
+      parameters:
+      - $ref: '#/components/parameters/guildId'
+      responses:
+        '200':
+          description: List of auto moderation rule objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AutoModerationRule'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    post:
+      operationId: createAutoModerationRule
+      summary: Discord Create auto moderation rule
+      description: Create a new rule for the guild.
+      tags:
+      - Auto Moderation
+      parameters:
+      - $ref: '#/components/parameters/guildId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAutoModerationRuleRequest'
+      responses:
+        '200':
+          description: Auto moderation rule created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutoModerationRule'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+components:
+  schemas:
+    CreateAutoModerationRuleRequest:
+      type: object
+      required:
+      - name
+      - event_type
+      - trigger_type
+      - actions
+      properties:
+        name:
+          type: string
+        event_type:
+          type: integer
+        trigger_type:
+          type: integer
+        trigger_metadata:
+          type: object
+        actions:
+          type: array
+          items:
+            type: object
+            required:
+            - type
+            properties:
+              type:
+                type: integer
+              metadata:
+                type: object
+        enabled:
+          type: boolean
+          default: false
+        exempt_roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Snowflake'
+        exempt_channels:
+          type: array
+          items:
+            $ref: '#/components/schemas/Snowflake'
+    AutoModerationRule:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Snowflake'
+        guild_id:
+          $ref: '#/components/schemas/Snowflake'
+        name:
+          type: string
+        creator_id:
+          $ref: '#/components/schemas/Snowflake'
+        event_type:
+          type: integer
+          description: 1=MESSAGE_SEND
+        trigger_type:
+          type: integer
+          description: 1=KEYWORD, 3=SPAM, 4=KEYWORD_PRESET, 5=MENTION_SPAM
+        trigger_metadata:
+          type: object
+          properties:
+            keyword_filter:
+              type: array
+              items:
+                type: string
+            regex_patterns:
+              type: array
+              items:
+                type: string
+            presets:
+              type: array
+              items:
+                type: integer
+            allow_list:
+              type: array
+              items:
+                type: string
+            mention_total_limit:
+              type: integer
+        actions:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: integer
+              metadata:
+                type: object
+        enabled:
+          type: boolean
+        exempt_roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Snowflake'
+        exempt_channels:
+          type: array
+          items:
+            $ref: '#/components/schemas/Snowflake'
+    Snowflake:
+      type: string
+      description: Discord unique ID represented as a string
+      pattern: ^[0-9]+$
+  responses:
+    ClientError:
+      description: Client error response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+              message:
+                type: string
+              errors:
+                type: object
+  parameters:
+    guildId:
+      name: guild_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the guild (Snowflake)
+  securitySchemes:
+    BotToken:
+      type: http
+      scheme: bearer
+      description: Bot token authentication
+externalDocs:
+  description: Discord Interactions Documentation
+  url: https://discord.com/developers/docs/interactions/overview

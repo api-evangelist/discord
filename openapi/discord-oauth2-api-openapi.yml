@@ -1,81 +1,71 @@
 openapi: 3.1.0
 info:
-  title: Discord OAuth2 API
-  description: >-
-    The Discord OAuth2 API enables application developers to build
-    applications that utilize authentication and data from the Discord API.
-    Discord supports the authorization code grant, the implicit grant,
-    client credentials, and specialized flows for bots and webhooks, allowing
-    third-party applications to access Discord user data with proper consent.
+  title: Discord Interactions Application Commands OAuth2 API
+  description: The Discord Interactions API enables applications to create and respond to application commands (slash commands), message components, and modals. It supports both Gateway-based and webhook-based interaction handling, allowing bots to build rich, interactive user experiences within Discord.
   version: '10'
   contact:
     name: Discord Support
     url: https://support-dev.discord.com/hc/en-us
     email: support@discord.com
   termsOfService: https://discord.com/developers/docs/policies-and-agreements/developer-terms-of-service
-externalDocs:
-  description: Discord OAuth2 Documentation
-  url: https://discord.com/developers/docs/topics/oauth2
 servers:
-  - url: https://discord.com/api/v10
-    description: Discord API v10
+- url: https://discord.com/api/v10
+  description: Discord API v10
+security:
+- BotToken: []
 tags:
-  - name: OAuth2
-    description: OAuth2 token and authorization operations
-  - name: User Identity
-    description: Retrieve current user information via OAuth2
+- name: OAuth2
+  description: OAuth2 token and authorization operations
 paths:
   /oauth2/authorize:
     get:
       operationId: authorize
       summary: Discord Authorize
-      description: >-
-        Redirect the user to this URL to begin the OAuth2 authorization flow.
-        This is a browser-based endpoint, not a REST API call.
+      description: Redirect the user to this URL to begin the OAuth2 authorization flow. This is a browser-based endpoint, not a REST API call.
       tags:
-        - OAuth2
+      - OAuth2
       security: []
       parameters:
-        - name: response_type
-          in: query
-          required: true
-          schema:
-            type: string
-            enum:
-              - code
-              - token
-          description: OAuth2 grant type (code or token)
-        - name: client_id
-          in: query
-          required: true
-          schema:
-            type: string
-          description: Your application's client ID
-        - name: scope
-          in: query
-          required: true
-          schema:
-            type: string
-          description: Space-delimited list of OAuth2 scopes
-        - name: state
-          in: query
-          schema:
-            type: string
-          description: Unique string for CSRF protection
-        - name: redirect_uri
-          in: query
-          schema:
-            type: string
-            format: uri
-          description: Registered redirect URI
-        - name: prompt
-          in: query
-          schema:
-            type: string
-            enum:
-              - consent
-              - none
-          description: Controls the authorization prompt behavior
+      - name: response_type
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - code
+          - token
+        description: OAuth2 grant type (code or token)
+      - name: client_id
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Your application's client ID
+      - name: scope
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Space-delimited list of OAuth2 scopes
+      - name: state
+        in: query
+        schema:
+          type: string
+        description: Unique string for CSRF protection
+      - name: redirect_uri
+        in: query
+        schema:
+          type: string
+          format: uri
+        description: Registered redirect URI
+      - name: prompt
+        in: query
+        schema:
+          type: string
+          enum:
+          - consent
+          - none
+        description: Controls the authorization prompt behavior
       responses:
         '302':
           description: Redirect to Discord authorization page
@@ -85,7 +75,7 @@ paths:
       summary: Discord Get access token
       description: Exchange an authorization code for an access token.
       tags:
-        - OAuth2
+      - OAuth2
       security: []
       requestBody:
         required: true
@@ -94,16 +84,16 @@ paths:
             schema:
               type: object
               required:
-                - grant_type
-                - code
-                - redirect_uri
+              - grant_type
+              - code
+              - redirect_uri
               properties:
                 grant_type:
                   type: string
                   enum:
-                    - authorization_code
-                    - refresh_token
-                    - client_credentials
+                  - authorization_code
+                  - refresh_token
+                  - client_credentials
                 code:
                   type: string
                   description: Authorization code received from the authorize redirect
@@ -138,7 +128,7 @@ paths:
       summary: Discord Revoke access token
       description: Revoke an access token or refresh token.
       tags:
-        - OAuth2
+      - OAuth2
       security: []
       requestBody:
         required: true
@@ -147,7 +137,7 @@ paths:
             schema:
               type: object
               required:
-                - token
+              - token
               properties:
                 token:
                   type: string
@@ -155,8 +145,8 @@ paths:
                 token_type_hint:
                   type: string
                   enum:
-                    - access_token
-                    - refresh_token
+                  - access_token
+                  - refresh_token
                 client_id:
                   type: string
                 client_secret:
@@ -166,33 +156,13 @@ paths:
           description: Token revoked
         4XX:
           $ref: '#/components/responses/ClientError'
-  /oauth2/@me:
-    get:
-      operationId: getCurrentAuthorizationInformation
-      summary: Discord Get current authorization information
-      description: >-
-        Returns info about the current authorization including the user,
-        application, scopes, and expiration.
-      tags:
-        - User Identity
-      security:
-        - BearerToken: []
-      responses:
-        '200':
-          description: Current authorization information
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AuthorizationInformation'
-        4XX:
-          $ref: '#/components/responses/ClientError'
   /oauth2/keys:
     get:
       operationId: getOAuth2Keys
       summary: Discord Get OAuth2 keys
       description: Returns the list of public keys used for token verification.
       tags:
-        - OAuth2
+      - OAuth2
       security: []
       responses:
         '200':
@@ -221,119 +191,356 @@ paths:
           $ref: '#/components/responses/ClientError'
   /oauth2/applications/@me:
     get:
-      operationId: getMyOAuth2Application
-      summary: Discord Get current application
-      description: Returns the bot's application object.
-      tags:
-        - User Identity
-      security:
-        - BotToken: []
+      operationId: get_my_oauth2_application
       responses:
         '200':
-          description: Application object
+          description: 200 response for get_my_oauth2_application
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Application'
+                $ref: '#/components/schemas/PrivateApplicationResponse'
         4XX:
-          $ref: '#/components/responses/ClientError'
-  /users/@me:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      tags:
+      - OAuth2
+  /oauth2/@me:
     get:
-      operationId: getCurrentUser
-      summary: Discord Get current user
-      description: Returns the user object of the current OAuth2 authorized user.
-      tags:
-        - User Identity
-      security:
-        - BearerToken: []
+      operationId: get_my_oauth2_authorization
       responses:
         '200':
-          description: User object
+          description: 200 response for get_my_oauth2_authorization
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                $ref: '#/components/schemas/OAuth2GetAuthorizationResponse'
         4XX:
-          $ref: '#/components/responses/ClientError'
-  /users/@me/guilds:
-    get:
-      operationId: getCurrentUserGuilds
-      summary: Discord List current user guilds
-      description: Returns a list of partial guild objects the current user is a member of.
-      tags:
-        - User Identity
+          $ref: '#/components/responses/ClientErrorResponse'
       security:
-        - BearerToken: []
-      parameters:
-        - name: before
-          in: query
-          schema:
-            type: string
-        - name: after
-          in: query
-          schema:
-            type: string
-        - name: limit
-          in: query
-          schema:
-            type: integer
-            minimum: 1
-            maximum: 200
-            default: 200
-      responses:
-        '200':
-          description: List of partial guild objects
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/PartialGuild'
-        4XX:
-          $ref: '#/components/responses/ClientError'
-  /users/@me/connections:
-    get:
-      operationId: getCurrentUserConnections
-      summary: Discord List current user connections
-      description: Returns a list of connection objects for the user.
+      - BotToken: []
+      - OAuth2:
+        - activities.read
+        - activities.write
+        - applications.builds.read
+        - applications.builds.upload
+        - applications.commands
+        - applications.commands.permissions.update
+        - applications.commands.update
+        - applications.entitlements
+        - applications.store.update
+        - bot
+        - connections
+        - dm_channels.read
+        - email
+        - gdm.join
+        - guilds
+        - guilds.join
+        - guilds.members.read
+        - identify
+        - messages.read
+        - openid
+        - relationships.read
+        - role_connections.write
+        - rpc
+        - rpc.activities.write
+        - rpc.notifications.read
+        - rpc.screenshare.read
+        - rpc.screenshare.write
+        - rpc.video.read
+        - rpc.video.write
+        - rpc.voice.read
+        - rpc.voice.write
+        - voice
+        - webhook.incoming
       tags:
-        - User Identity
-      security:
-        - BearerToken: []
-      responses:
-        '200':
-          description: List of connection objects
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Connection'
-        4XX:
-          $ref: '#/components/responses/ClientError'
+      - OAuth2
 components:
-  securitySchemes:
-    BearerToken:
-      type: http
-      scheme: bearer
-      description: OAuth2 bearer token
-    BotToken:
-      type: http
-      scheme: bearer
-      description: Bot token authentication
-  responses:
-    ClientError:
-      description: Client error response
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
-              error_description:
-                type: string
   schemas:
+    Int53Type:
+      type: integer
+      minimum: -9007199254740991
+      maximum: 9007199254740991
+      format: int64
+    ApplicationTypes:
+      type: integer
+      oneOf:
+      - title: GUILD_ROLE_SUBSCRIPTIONS
+        const: 4
+      format: int32
+    PartialGuild:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        icon:
+          type: string
+          nullable: true
+        owner:
+          type: boolean
+        permissions:
+          type: string
+        features:
+          type: array
+          items:
+            type: string
+    OAuth2Scopes:
+      type: string
+      oneOf:
+      - title: IDENTIFY
+        description: allows /users/@me without email
+        const: identify
+      - title: EMAIL
+        description: enables /users/@me to return an email
+        const: email
+      - title: CONNECTIONS
+        description: allows /users/@me/connections to return linked third-party accounts
+        const: connections
+      - title: GUILDS
+        description: allows /users/@me/guilds to return basic information about all of a user's guilds
+        const: guilds
+      - title: GUILDS_JOIN
+        description: allows /guilds/{guild.id}/members/{user.id} to be used for joining users to a guild
+        const: guilds.join
+      - title: GUILDS_MEMBERS_READ
+        description: allows /users/@me/guilds/{guild.id}/member to return a user's member information in a guild
+        const: guilds.members.read
+      - title: GDM_JOIN
+        description: allows your app to join users to a group dm
+        const: gdm.join
+      - title: BOT
+        description: for oauth2 bots, this puts the bot in the user's selected guild by default
+        const: bot
+      - title: RPC
+        description: for local rpc server access, this allows you to control a user's local Discord client - requires Discord approval
+        const: rpc
+      - title: RPC_NOTIFICATIONS_READ
+        description: for local rpc server access, this allows you to receive notifications pushed out to the user - requires Discord approval
+        const: rpc.notifications.read
+      - title: RPC_VOICE_READ
+        description: for local rpc server access, this allows you to read a user's voice settings and listen for voice events - requires Discord approval
+        const: rpc.voice.read
+      - title: RPC_VOICE_WRITE
+        description: for local rpc server access, this allows you to update a user's voice settings - requires Discord approval
+        const: rpc.voice.write
+      - title: RPC_VIDEO_READ
+        description: for local rpc server access, this allows you to read a user's video status - requires Discord approval
+        const: rpc.video.read
+      - title: RPC_VIDEO_WRITE
+        description: for local rpc server access, this allows you to update a user's video settings - requires Discord approval
+        const: rpc.video.write
+      - title: RPC_SCREENSHARE_READ
+        description: for local rpc server access, this allows you to read a user's screenshare status- requires Discord approval
+        const: rpc.screenshare.read
+      - title: RPC_SCREENSHARE_WRITE
+        description: for local rpc server access, this allows you to update a user's screenshare settings- requires Discord approval
+        const: rpc.screenshare.write
+      - title: RPC_ACTIVITIES_WRITE
+        description: for local rpc server access, this allows you to update a user's activity - requires Discord approval
+        const: rpc.activities.write
+      - title: WEBHOOK_INCOMING
+        description: this generates a webhook that is returned in the oauth token response for authorization code grants
+        const: webhook.incoming
+      - title: MESSAGES_READ
+        description: for local rpc server api access, this allows you to read messages from all client channels (otherwise restricted to channels/guilds your app creates)
+        const: messages.read
+      - title: APPLICATIONS_BUILDS_UPLOAD
+        description: allows your app to upload/update builds for a user's applications - requires Discord approval
+        const: applications.builds.upload
+      - title: APPLICATIONS_BUILDS_READ
+        description: allows your app to read build data for a user's applications
+        const: applications.builds.read
+      - title: APPLICATIONS_COMMANDS
+        description: allows your app to use commands in a guild
+        const: applications.commands
+      - title: APPLICATIONS_COMMANDS_PERMISSIONS_UPDATE
+        description: allows your app to update permissions for its commands in a guild a user has permissions to
+        const: applications.commands.permissions.update
+      - title: APPLICATIONS_COMMANDS_UPDATE
+        description: allows your app to update its commands using a Bearer token - client credentials grant only
+        const: applications.commands.update
+      - title: APPLICATIONS_STORE_UPDATE
+        description: allows your app to read and update store data (SKUs, store listings, achievements, etc.) for a user's applications
+        const: applications.store.update
+      - title: APPLICATIONS_ENTITLEMENTS
+        description: allows your app to read entitlements for a user's applications
+        const: applications.entitlements
+      - title: ACTIVITIES_READ
+        description: allows your app to fetch data from a user's "Now Playing/Recently Played" list - requires Discord approval
+        const: activities.read
+      - title: ACTIVITIES_WRITE
+        description: allows your app to update a user's activity - requires Discord approval (NOT REQUIRED FOR GAMESDK ACTIVITY MANAGER)
+        const: activities.write
+      - title: RELATIONSHIPS_READ
+        description: allows your app to know a user's friends and implicit relationships - requires Discord approval
+        const: relationships.read
+      - title: VOICE
+        description: allows your app to connect to voice on user's behalf and see all the voice members - requires Discord approval
+        const: voice
+      - title: DM_CHANNELS_READ
+        description: allows your app to see information about the user's DMs and group DMs - requires Discord approval
+        const: dm_channels.read
+      - title: ROLE_CONNECTIONS_WRITE
+        description: allows your app to update a user's connection and metadata for the app
+        const: role_connections.write
+      - title: OPENID
+        description: for OpenID Connect, this allows your app to receive user id and basic profile information
+        const: openid
+    ApplicationResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        name:
+          type: string
+        icon:
+          type:
+          - string
+          - 'null'
+        description:
+          type: string
+        type:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/ApplicationTypes'
+        cover_image:
+          type:
+          - string
+          - 'null'
+        primary_sku_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        bot:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/UserResponse'
+        slug:
+          type:
+          - string
+          - 'null'
+        guild_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        rpc_origins:
+          type:
+          - array
+          - 'null'
+          items:
+            type:
+            - string
+            - 'null'
+        bot_public:
+          type:
+          - boolean
+          - 'null'
+        bot_require_code_grant:
+          type:
+          - boolean
+          - 'null'
+        terms_of_service_url:
+          type:
+          - string
+          - 'null'
+          format: uri
+        privacy_policy_url:
+          type:
+          - string
+          - 'null'
+          format: uri
+        custom_install_url:
+          type:
+          - string
+          - 'null'
+          format: uri
+        install_params:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/ApplicationOAuth2InstallParamsResponse'
+        verify_key:
+          type: string
+        flags:
+          type: integer
+          format: int32
+        max_participants:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        tags:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          uniqueItems: true
+      required:
+      - id
+      - name
+      - description
+      - verify_key
+      - flags
+    TeamMemberResponse:
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/UserResponse'
+        team_id:
+          $ref: '#/components/schemas/SnowflakeType'
+        membership_state:
+          $ref: '#/components/schemas/TeamMembershipStates'
+      required:
+      - user
+      - team_id
+      - membership_state
+    UserResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        username:
+          type: string
+        avatar:
+          type:
+          - string
+          - 'null'
+        discriminator:
+          type: string
+        public_flags:
+          type: integer
+          format: int32
+        flags:
+          $ref: '#/components/schemas/Int53Type'
+        bot:
+          type:
+          - boolean
+          - 'null'
+        system:
+          type:
+          - boolean
+          - 'null'
+        banner:
+          type:
+          - string
+          - 'null'
+        accent_color:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        global_name:
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - username
+      - discriminator
+      - public_flags
+      - flags
     AccessTokenResponse:
       type: object
       properties:
@@ -367,124 +574,272 @@ components:
               type: string
               nullable: true
       required:
-        - access_token
-        - token_type
-        - expires_in
-        - scope
-    AuthorizationInformation:
-      type: object
-      properties:
-        application:
-          $ref: '#/components/schemas/Application'
-        scopes:
-          type: array
-          items:
-            type: string
-        expires:
-          type: string
-          format: date-time
-        user:
-          $ref: '#/components/schemas/User'
-      required:
-        - application
-        - scopes
-        - expires
-    Application:
+      - access_token
+      - token_type
+      - expires_in
+      - scope
+    PrivateApplicationResponse:
       type: object
       properties:
         id:
-          type: string
+          $ref: '#/components/schemas/SnowflakeType'
         name:
           type: string
         icon:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         description:
           type: string
+        type:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/ApplicationTypes'
+        cover_image:
+          type:
+          - string
+          - 'null'
+        primary_sku_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        bot:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/UserResponse'
+        slug:
+          type:
+          - string
+          - 'null'
+        guild_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        rpc_origins:
+          type:
+          - array
+          - 'null'
+          items:
+            type:
+            - string
+            - 'null'
         bot_public:
-          type: boolean
+          type:
+          - boolean
+          - 'null'
         bot_require_code_grant:
-          type: boolean
+          type:
+          - boolean
+          - 'null'
+        terms_of_service_url:
+          type:
+          - string
+          - 'null'
+          format: uri
+        privacy_policy_url:
+          type:
+          - string
+          - 'null'
+          format: uri
+        custom_install_url:
+          type:
+          - string
+          - 'null'
+          format: uri
+        install_params:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/ApplicationOAuth2InstallParamsResponse'
         verify_key:
           type: string
         flags:
           type: integer
+          format: int32
+        max_participants:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        tags:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          uniqueItems: true
+        redirect_uris:
+          type: array
+          items:
+            type:
+            - string
+            - 'null'
+            format: uri
+        interactions_endpoint_url:
+          type:
+          - string
+          - 'null'
+          format: uri
+        role_connections_verification_url:
+          type:
+          - string
+          - 'null'
+          format: uri
+        owner:
+          $ref: '#/components/schemas/UserResponse'
+        approximate_guild_count:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        team:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/TeamResponse'
       required:
-        - id
-        - name
-        - description
-    User:
+      - id
+      - name
+      - description
+      - verify_key
+      - flags
+      - redirect_uris
+      - owner
+    TeamResponse:
       type: object
       properties:
         id:
-          type: string
-        username:
-          type: string
-        discriminator:
-          type: string
-        global_name:
-          type: string
-          nullable: true
-        avatar:
-          type: string
-          nullable: true
-        bot:
-          type: boolean
-        mfa_enabled:
-          type: boolean
-        locale:
-          type: string
-        verified:
-          type: boolean
-        email:
-          type: string
-          nullable: true
-        flags:
-          type: integer
-        premium_type:
-          type: integer
-        public_flags:
-          type: integer
-      required:
-        - id
-        - username
-    PartialGuild:
-      type: object
-      properties:
-        id:
-          type: string
+          $ref: '#/components/schemas/SnowflakeType'
+        icon:
+          type:
+          - string
+          - 'null'
         name:
           type: string
-        icon:
-          type: string
-          nullable: true
-        owner:
-          type: boolean
-        permissions:
-          type: string
-        features:
+        owner_user_id:
+          $ref: '#/components/schemas/SnowflakeType'
+        members:
+          type: array
+          items:
+            $ref: '#/components/schemas/TeamMemberResponse'
+      required:
+      - id
+      - name
+      - owner_user_id
+      - members
+    ErrorResponse:
+      type: object
+      description: Errors object returned by the Discord API
+      allOf:
+      - $ref: '#/components/schemas/Error'
+      - type: object
+        properties:
+          errors:
+            $ref: '#/components/schemas/ErrorDetails'
+    TeamMembershipStates:
+      type: integer
+      oneOf:
+      - title: INVITED
+        description: User has been invited to the team.
+        const: 1
+      - title: ACCEPTED
+        description: User has accepted the team invitation.
+        const: 2
+      format: int32
+    ErrorDetails:
+      oneOf:
+      - type: object
+        additionalProperties:
+          $ref: '#/components/schemas/ErrorDetails'
+      - $ref: '#/components/schemas/InnerErrors'
+    SnowflakeType:
+      type: string
+      pattern: ^(0|[1-9][0-9]*)$
+      format: snowflake
+    InnerErrors:
+      type: object
+      properties:
+        _errors:
+          type: array
+          description: The list of errors for this field
+          items:
+            $ref: '#/components/schemas/Error'
+      additionalProperties: false
+      required:
+      - _errors
+    ApplicationOAuth2InstallParamsResponse:
+      type: object
+      properties:
+        scopes:
           type: array
           items:
             type: string
-    Connection:
+            enum:
+            - applications.commands
+            - bot
+            allOf:
+            - $ref: '#/components/schemas/OAuth2Scopes'
+          uniqueItems: true
+        permissions:
+          type: string
+      required:
+      - scopes
+      - permissions
+    Error:
+      type: object
+      description: A single error, either for an API response or a specific field.
+      properties:
+        code:
+          type: integer
+          description: Discord internal error code. See error code reference
+        message:
+          type: string
+          description: Human-readable error message
+      required:
+      - code
+      - message
+    OAuth2GetAuthorizationResponse:
       type: object
       properties:
-        id:
+        application:
+          $ref: '#/components/schemas/ApplicationResponse'
+        expires:
           type: string
-        name:
-          type: string
-        type:
-          type: string
-        revoked:
-          type: boolean
-        verified:
-          type: boolean
-        friend_sync:
-          type: boolean
-        show_activity:
-          type: boolean
-        two_way_link:
-          type: boolean
-        visibility:
-          type: integer
-          description: 0=None, 1=Everyone
+          format: date-time
+        scopes:
+          type: array
+          items:
+            $ref: '#/components/schemas/OAuth2Scopes'
+          uniqueItems: true
+        user:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/UserResponse'
+      required:
+      - application
+      - expires
+      - scopes
+  responses:
+    ClientError:
+      description: Client error response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              error_description:
+                type: string
+    ClientErrorResponse:
+      description: Client error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    BotToken:
+      type: http
+      scheme: bearer
+      description: Bot token authentication
+externalDocs:
+  description: Discord Interactions Documentation
+  url: https://discord.com/developers/docs/interactions/overview

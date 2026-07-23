@@ -1,0 +1,308 @@
+openapi: 3.1.0
+info:
+  title: Discord Interactions Application Commands Audit Log API
+  description: The Discord Interactions API enables applications to create and respond to application commands (slash commands), message components, and modals. It supports both Gateway-based and webhook-based interaction handling, allowing bots to build rich, interactive user experiences within Discord.
+  version: '10'
+  contact:
+    name: Discord Support
+    url: https://support-dev.discord.com/hc/en-us
+    email: support@discord.com
+  termsOfService: https://discord.com/developers/docs/policies-and-agreements/developer-terms-of-service
+servers:
+- url: https://discord.com/api/v10
+  description: Discord API v10
+security:
+- BotToken: []
+tags:
+- name: Audit Log
+  description: Operations on guild audit logs
+paths:
+  /guilds/{guild_id}/audit-logs:
+    get:
+      operationId: getGuildAuditLog
+      summary: Discord Get guild audit log
+      description: Returns an audit log object for the guild.
+      tags:
+      - Audit Log
+      parameters:
+      - $ref: '#/components/parameters/guildId'
+      - name: user_id
+        in: query
+        schema:
+          type: string
+      - name: action_type
+        in: query
+        schema:
+          type: integer
+      - name: before
+        in: query
+        schema:
+          type: string
+      - name: after
+        in: query
+        schema:
+          type: string
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 50
+      responses:
+        '200':
+          description: Audit log object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuditLog'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+components:
+  schemas:
+    Overwrite:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Snowflake'
+        type:
+          type: integer
+          description: 0=role, 1=member
+        allow:
+          type: string
+        deny:
+          type: string
+    ThreadMetadata:
+      type: object
+      properties:
+        archived:
+          type: boolean
+        auto_archive_duration:
+          type: integer
+        archive_timestamp:
+          type: string
+          format: date-time
+        locked:
+          type: boolean
+        invitable:
+          type: boolean
+        create_timestamp:
+          type: string
+          format: date-time
+          nullable: true
+    Channel:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Snowflake'
+        type:
+          type: integer
+          description: 0=GUILD_TEXT, 1=DM, 2=GUILD_VOICE, 3=GROUP_DM, 4=GUILD_CATEGORY, 5=GUILD_ANNOUNCEMENT, 10=ANNOUNCEMENT_THREAD, 11=PUBLIC_THREAD, 12=PRIVATE_THREAD, 13=GUILD_STAGE_VOICE, 14=GUILD_DIRECTORY, 15=GUILD_FORUM, 16=GUILD_MEDIA
+        guild_id:
+          $ref: '#/components/schemas/Snowflake'
+        position:
+          type: integer
+        permission_overwrites:
+          type: array
+          items:
+            $ref: '#/components/schemas/Overwrite'
+        name:
+          type: string
+          nullable: true
+        topic:
+          type: string
+          nullable: true
+        nsfw:
+          type: boolean
+        last_message_id:
+          $ref: '#/components/schemas/Snowflake'
+        bitrate:
+          type: integer
+        user_limit:
+          type: integer
+        rate_limit_per_user:
+          type: integer
+        recipients:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        icon:
+          type: string
+          nullable: true
+        owner_id:
+          $ref: '#/components/schemas/Snowflake'
+        parent_id:
+          $ref: '#/components/schemas/Snowflake'
+        last_pin_timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        rtc_region:
+          type: string
+          nullable: true
+        video_quality_mode:
+          type: integer
+        message_count:
+          type: integer
+        member_count:
+          type: integer
+        thread_metadata:
+          $ref: '#/components/schemas/ThreadMetadata'
+        default_auto_archive_duration:
+          type: integer
+        flags:
+          type: integer
+        total_message_sent:
+          type: integer
+      required:
+      - id
+      - type
+    Webhook:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Snowflake'
+        type:
+          type: integer
+          description: 1=Incoming, 2=Channel Follower, 3=Application
+        guild_id:
+          $ref: '#/components/schemas/Snowflake'
+        channel_id:
+          $ref: '#/components/schemas/Snowflake'
+        user:
+          $ref: '#/components/schemas/User'
+        name:
+          type: string
+          nullable: true
+        avatar:
+          type: string
+          nullable: true
+        token:
+          type: string
+        application_id:
+          $ref: '#/components/schemas/Snowflake'
+        url:
+          type: string
+          format: uri
+      required:
+      - id
+      - type
+    User:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Snowflake'
+        username:
+          type: string
+        discriminator:
+          type: string
+        global_name:
+          type: string
+          nullable: true
+        avatar:
+          type: string
+          nullable: true
+        bot:
+          type: boolean
+        system:
+          type: boolean
+        mfa_enabled:
+          type: boolean
+        banner:
+          type: string
+          nullable: true
+        accent_color:
+          type: integer
+          nullable: true
+        locale:
+          type: string
+        verified:
+          type: boolean
+        email:
+          type: string
+          nullable: true
+        flags:
+          type: integer
+        premium_type:
+          type: integer
+        public_flags:
+          type: integer
+        avatar_decoration_data:
+          type: object
+          nullable: true
+      required:
+      - id
+      - username
+    Snowflake:
+      type: string
+      description: Discord unique ID represented as a string
+      pattern: ^[0-9]+$
+    AuditLog:
+      type: object
+      properties:
+        application_commands:
+          type: array
+          items:
+            type: object
+        audit_log_entries:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                $ref: '#/components/schemas/Snowflake'
+              target_id:
+                type: string
+                nullable: true
+              user_id:
+                $ref: '#/components/schemas/Snowflake'
+              action_type:
+                type: integer
+              reason:
+                type: string
+        integrations:
+          type: array
+          items:
+            type: object
+        threads:
+          type: array
+          items:
+            $ref: '#/components/schemas/Channel'
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        webhooks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Webhook'
+  responses:
+    ClientError:
+      description: Client error response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+              message:
+                type: string
+              errors:
+                type: object
+  parameters:
+    guildId:
+      name: guild_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the guild (Snowflake)
+  securitySchemes:
+    BotToken:
+      type: http
+      scheme: bearer
+      description: Bot token authentication
+externalDocs:
+  description: Discord Interactions Documentation
+  url: https://discord.com/developers/docs/interactions/overview

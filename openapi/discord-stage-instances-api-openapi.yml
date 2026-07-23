@@ -1,0 +1,220 @@
+openapi: 3.1.0
+info:
+  title: Discord Interactions Application Commands Stage Instances API
+  description: The Discord Interactions API enables applications to create and respond to application commands (slash commands), message components, and modals. It supports both Gateway-based and webhook-based interaction handling, allowing bots to build rich, interactive user experiences within Discord.
+  version: '10'
+  contact:
+    name: Discord Support
+    url: https://support-dev.discord.com/hc/en-us
+    email: support@discord.com
+  termsOfService: https://discord.com/developers/docs/policies-and-agreements/developer-terms-of-service
+servers:
+- url: https://discord.com/api/v10
+  description: Discord API v10
+security:
+- BotToken: []
+tags:
+- name: Stage Instances
+paths:
+  /stage-instances:
+    post:
+      operationId: create_stage_instance
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                topic:
+                  type: string
+                  minLength: 1
+                  maxLength: 120
+                channel_id:
+                  $ref: '#/components/schemas/SnowflakeType'
+                privacy_level:
+                  oneOf:
+                  - type: 'null'
+                  - $ref: '#/components/schemas/StageInstancesPrivacyLevels'
+                guild_scheduled_event_id:
+                  oneOf:
+                  - type: 'null'
+                  - $ref: '#/components/schemas/SnowflakeType'
+                send_start_notification:
+                  type:
+                  - boolean
+                  - 'null'
+              required:
+              - topic
+              - channel_id
+        required: true
+      responses:
+        '200':
+          description: 200 response for create_stage_instance
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StageInstanceResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      tags:
+      - Stage Instances
+  /stage-instances/{channel_id}:
+    parameters:
+    - name: channel_id
+      in: path
+      schema:
+        $ref: '#/components/schemas/SnowflakeType'
+      required: true
+    get:
+      operationId: get_stage_instance
+      responses:
+        '200':
+          description: 200 response for get_stage_instance
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StageInstanceResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      tags:
+      - Stage Instances
+    delete:
+      operationId: delete_stage_instance
+      responses:
+        '204':
+          description: 204 response for delete_stage_instance
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      tags:
+      - Stage Instances
+    patch:
+      operationId: update_stage_instance
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                topic:
+                  type: string
+                  minLength: 1
+                  maxLength: 120
+                privacy_level:
+                  $ref: '#/components/schemas/StageInstancesPrivacyLevels'
+        required: true
+      responses:
+        '200':
+          description: 200 response for update_stage_instance
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StageInstanceResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      tags:
+      - Stage Instances
+components:
+  schemas:
+    SnowflakeType:
+      type: string
+      pattern: ^(0|[1-9][0-9]*)$
+      format: snowflake
+    StageInstanceResponse:
+      type: object
+      properties:
+        guild_id:
+          $ref: '#/components/schemas/SnowflakeType'
+        channel_id:
+          $ref: '#/components/schemas/SnowflakeType'
+        topic:
+          type: string
+        privacy_level:
+          $ref: '#/components/schemas/StageInstancesPrivacyLevels'
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        discoverable_disabled:
+          type:
+          - boolean
+          - 'null'
+        guild_scheduled_event_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+      required:
+      - guild_id
+      - channel_id
+      - topic
+      - privacy_level
+      - id
+    Error:
+      type: object
+      description: A single error, either for an API response or a specific field.
+      properties:
+        code:
+          type: integer
+          description: Discord internal error code. See error code reference
+        message:
+          type: string
+          description: Human-readable error message
+      required:
+      - code
+      - message
+    ErrorResponse:
+      type: object
+      description: Errors object returned by the Discord API
+      allOf:
+      - $ref: '#/components/schemas/Error'
+      - type: object
+        properties:
+          errors:
+            $ref: '#/components/schemas/ErrorDetails'
+    StageInstancesPrivacyLevels:
+      type: integer
+      oneOf:
+      - title: PUBLIC
+        description: The Stage instance is visible publicly. (deprecated)
+        const: 1
+      - title: GUILD_ONLY
+        description: The Stage instance is visible publicly. (deprecated)
+        const: 2
+      format: int32
+    InnerErrors:
+      type: object
+      properties:
+        _errors:
+          type: array
+          description: The list of errors for this field
+          items:
+            $ref: '#/components/schemas/Error'
+      additionalProperties: false
+      required:
+      - _errors
+    ErrorDetails:
+      oneOf:
+      - type: object
+        additionalProperties:
+          $ref: '#/components/schemas/ErrorDetails'
+      - $ref: '#/components/schemas/InnerErrors'
+  responses:
+    ClientErrorResponse:
+      description: Client error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    BotToken:
+      type: http
+      scheme: bearer
+      description: Bot token authentication
+externalDocs:
+  description: Discord Interactions Documentation
+  url: https://discord.com/developers/docs/interactions/overview

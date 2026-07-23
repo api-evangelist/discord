@@ -1,0 +1,220 @@
+openapi: 3.1.0
+info:
+  title: Discord Interactions Application Commands Roles API
+  description: The Discord Interactions API enables applications to create and respond to application commands (slash commands), message components, and modals. It supports both Gateway-based and webhook-based interaction handling, allowing bots to build rich, interactive user experiences within Discord.
+  version: '10'
+  contact:
+    name: Discord Support
+    url: https://support-dev.discord.com/hc/en-us
+    email: support@discord.com
+  termsOfService: https://discord.com/developers/docs/policies-and-agreements/developer-terms-of-service
+servers:
+- url: https://discord.com/api/v10
+  description: Discord API v10
+security:
+- BotToken: []
+tags:
+- name: Roles
+  description: Operations on guild roles
+paths:
+  /guilds/{guild_id}/roles:
+    get:
+      operationId: getGuildRoles
+      summary: Discord List guild roles
+      description: Returns a list of role objects for the guild.
+      tags:
+      - Roles
+      parameters:
+      - $ref: '#/components/parameters/guildId'
+      responses:
+        '200':
+          description: List of role objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Role'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    post:
+      operationId: createGuildRole
+      summary: Discord Create guild role
+      description: Create a new role for the guild.
+      tags:
+      - Roles
+      parameters:
+      - $ref: '#/components/parameters/guildId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRoleRequest'
+      responses:
+        '200':
+          description: Role created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Role'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /guilds/{guild_id}/roles/{role_id}:
+    patch:
+      operationId: modifyGuildRole
+      summary: Discord Modify guild role
+      description: Modify a guild role. Returns the updated role.
+      tags:
+      - Roles
+      parameters:
+      - $ref: '#/components/parameters/guildId'
+      - name: role_id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRoleRequest'
+      responses:
+        '200':
+          description: Updated role
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Role'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    delete:
+      operationId: deleteGuildRole
+      summary: Discord Delete guild role
+      description: Delete a guild role.
+      tags:
+      - Roles
+      parameters:
+      - $ref: '#/components/parameters/guildId'
+      - name: role_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Role deleted
+        4XX:
+          $ref: '#/components/responses/ClientError'
+components:
+  schemas:
+    Role:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Snowflake'
+        name:
+          type: string
+        color:
+          type: integer
+        hoist:
+          type: boolean
+        icon:
+          type: string
+          nullable: true
+        unicode_emoji:
+          type: string
+          nullable: true
+        position:
+          type: integer
+        permissions:
+          type: string
+        managed:
+          type: boolean
+        mentionable:
+          type: boolean
+        tags:
+          $ref: '#/components/schemas/RoleTags'
+        flags:
+          type: integer
+      required:
+      - id
+      - name
+      - color
+      - hoist
+      - position
+      - permissions
+      - managed
+      - mentionable
+    RoleTags:
+      type: object
+      properties:
+        bot_id:
+          $ref: '#/components/schemas/Snowflake'
+        integration_id:
+          $ref: '#/components/schemas/Snowflake'
+        premium_subscriber:
+          type: 'null'
+        subscription_listing_id:
+          $ref: '#/components/schemas/Snowflake'
+        available_for_purchase:
+          type: 'null'
+        guild_connections:
+          type: 'null'
+    CreateRoleRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 100
+        permissions:
+          type: string
+        color:
+          type: integer
+          default: 0
+        hoist:
+          type: boolean
+          default: false
+        icon:
+          type: string
+          nullable: true
+        unicode_emoji:
+          type: string
+          nullable: true
+        mentionable:
+          type: boolean
+          default: false
+    Snowflake:
+      type: string
+      description: Discord unique ID represented as a string
+      pattern: ^[0-9]+$
+  responses:
+    ClientError:
+      description: Client error response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+              message:
+                type: string
+              errors:
+                type: object
+  parameters:
+    guildId:
+      name: guild_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the guild (Snowflake)
+  securitySchemes:
+    BotToken:
+      type: http
+      scheme: bearer
+      description: Bot token authentication
+externalDocs:
+  description: Discord Interactions Documentation
+  url: https://discord.com/developers/docs/interactions/overview

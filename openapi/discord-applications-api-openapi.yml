@@ -1,0 +1,3102 @@
+openapi: 3.1.0
+info:
+  title: Discord Interactions Application Commands Applications API
+  description: The Discord Interactions API enables applications to create and respond to application commands (slash commands), message components, and modals. It supports both Gateway-based and webhook-based interaction handling, allowing bots to build rich, interactive user experiences within Discord.
+  version: '10'
+  contact:
+    name: Discord Support
+    url: https://support-dev.discord.com/hc/en-us
+    email: support@discord.com
+  termsOfService: https://discord.com/developers/docs/policies-and-agreements/developer-terms-of-service
+servers:
+- url: https://discord.com/api/v10
+  description: Discord API v10
+security:
+- BotToken: []
+tags:
+- name: Applications
+paths:
+  /applications/@me:
+    get:
+      operationId: get_my_application
+      responses:
+        '200':
+          description: 200 response for get_my_application
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrivateApplicationResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      tags:
+      - Applications
+    patch:
+      operationId: update_my_application
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApplicationFormPartial'
+        required: true
+      responses:
+        '200':
+          description: 200 response for update_my_application
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrivateApplicationResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      tags:
+      - Applications
+  /applications/{application_id}/guilds/{guild_id}/commands/permissions:
+    parameters:
+    - name: application_id
+      in: path
+      schema:
+        $ref: '#/components/schemas/SnowflakeType'
+      required: true
+    - name: guild_id
+      in: path
+      schema:
+        $ref: '#/components/schemas/SnowflakeType'
+      required: true
+    get:
+      operationId: list_guild_application_command_permissions
+      responses:
+        '200':
+          description: 200 response for list_guild_application_command_permissions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CommandPermissionsResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      - OAuth2:
+        - applications.commands.permissions.update
+      tags:
+      - Applications
+  /applications/{application_id}/guilds/{guild_id}/commands/{command_id}/permissions:
+    parameters:
+    - name: application_id
+      in: path
+      schema:
+        $ref: '#/components/schemas/SnowflakeType'
+      required: true
+    - name: guild_id
+      in: path
+      schema:
+        $ref: '#/components/schemas/SnowflakeType'
+      required: true
+    - name: command_id
+      in: path
+      schema:
+        $ref: '#/components/schemas/SnowflakeType'
+      required: true
+    get:
+      operationId: get_guild_application_command_permissions
+      responses:
+        '200':
+          description: 200 response for get_guild_application_command_permissions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommandPermissionsResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      - OAuth2:
+        - applications.commands.permissions.update
+      tags:
+      - Applications
+    put:
+      operationId: set_guild_application_command_permissions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                permissions:
+                  type:
+                  - array
+                  - 'null'
+                  items:
+                    $ref: '#/components/schemas/ApplicationCommandPermission'
+                  maxItems: 100
+        required: true
+      responses:
+        '200':
+          description: 200 response for set_guild_application_command_permissions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommandPermissionsResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      - OAuth2:
+        - applications.commands.permissions.update
+      tags:
+      - Applications
+  /applications/{application_id}/role-connections/metadata:
+    parameters:
+    - name: application_id
+      in: path
+      schema:
+        $ref: '#/components/schemas/SnowflakeType'
+      required: true
+    get:
+      operationId: get_application_role_connections_metadata
+      responses:
+        '200':
+          description: 200 response for get_application_role_connections_metadata
+          content:
+            application/json:
+              schema:
+                type:
+                - array
+                - 'null'
+                items:
+                  $ref: '#/components/schemas/ApplicationRoleConnectionsMetadataItemResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      tags:
+      - Applications
+    put:
+      operationId: update_application_role_connections_metadata
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type:
+              - array
+              - 'null'
+              items:
+                $ref: '#/components/schemas/ApplicationRoleConnectionsMetadataItemRequest'
+              maxItems: 5
+        required: true
+      responses:
+        '200':
+          description: 200 response for update_application_role_connections_metadata
+          content:
+            application/json:
+              schema:
+                type:
+                - array
+                - 'null'
+                items:
+                  $ref: '#/components/schemas/ApplicationRoleConnectionsMetadataItemResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      tags:
+      - Applications
+  /applications/{application_id}/entitlements/{entitlement_id}/consume:
+    parameters:
+    - name: application_id
+      in: path
+      schema:
+        $ref: '#/components/schemas/SnowflakeType'
+      required: true
+    - name: entitlement_id
+      in: path
+      schema:
+        $ref: '#/components/schemas/SnowflakeType'
+      required: true
+    post:
+      operationId: consume_entitlement
+      responses:
+        '204':
+          description: 204 response for consume_entitlement
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      - OAuth2:
+        - applications.entitlements
+      tags:
+      - Applications
+  /applications/{application_id}/guilds/{guild_id}/commands/{command_id}:
+    parameters:
+    - name: application_id
+      in: path
+      schema:
+        $ref: '#/components/schemas/SnowflakeType'
+      required: true
+    - name: guild_id
+      in: path
+      schema:
+        $ref: '#/components/schemas/SnowflakeType'
+      required: true
+    - name: command_id
+      in: path
+      schema:
+        $ref: '#/components/schemas/SnowflakeType'
+      required: true
+    get:
+      operationId: get_guild_application_command
+      responses:
+        '200':
+          description: 200 response for get_guild_application_command
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationCommandResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      - OAuth2:
+        - applications.commands.update
+      tags:
+      - Applications
+    delete:
+      operationId: delete_guild_application_command
+      responses:
+        '204':
+          description: 204 response for delete_guild_application_command
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      - OAuth2:
+        - applications.commands.update
+      tags:
+      - Applications
+    patch:
+      operationId: update_guild_application_command
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApplicationCommandPatchRequestPartial'
+        required: true
+      responses:
+        '200':
+          description: 200 response for update_guild_application_command
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationCommandResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      - OAuth2:
+        - applications.commands.update
+      tags:
+      - Applications
+  /applications/{application_id}/guilds/{guild_id}/commands:
+    parameters:
+    - name: application_id
+      in: path
+      schema:
+        $ref: '#/components/schemas/SnowflakeType'
+      required: true
+    - name: guild_id
+      in: path
+      schema:
+        $ref: '#/components/schemas/SnowflakeType'
+      required: true
+    get:
+      operationId: list_guild_application_commands
+      parameters:
+      - name: with_localizations
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: 200 response for list_guild_application_commands
+          content:
+            application/json:
+              schema:
+                type:
+                - array
+                - 'null'
+                items:
+                  $ref: '#/components/schemas/ApplicationCommandResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      - OAuth2:
+        - applications.commands.update
+      tags:
+      - Applications
+    put:
+      operationId: bulk_set_guild_application_commands
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type:
+              - array
+              - 'null'
+              items:
+                $ref: '#/components/schemas/ApplicationCommandUpdateRequest'
+              maxItems: 110
+        required: true
+      responses:
+        '200':
+          description: 200 response for bulk_set_guild_application_commands
+          content:
+            application/json:
+              schema:
+                type:
+                - array
+                - 'null'
+                items:
+                  $ref: '#/components/schemas/ApplicationCommandResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      - OAuth2:
+        - applications.commands.update
+      tags:
+      - Applications
+    post:
+      operationId: create_guild_application_command
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApplicationCommandCreateRequest'
+        required: true
+      responses:
+        '200':
+          description: 200 response for create_guild_application_command
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationCommandResponse'
+        '201':
+          description: 201 response for create_guild_application_command
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationCommandResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      - OAuth2:
+        - applications.commands.update
+      tags:
+      - Applications
+  /applications/{application_id}/entitlements/{entitlement_id}:
+    parameters:
+    - name: application_id
+      in: path
+      schema:
+        $ref: '#/components/schemas/SnowflakeType'
+      required: true
+    - name: entitlement_id
+      in: path
+      schema:
+        $ref: '#/components/schemas/SnowflakeType'
+      required: true
+    get:
+      operationId: get_entitlement
+      responses:
+        '200':
+          description: 200 response for get_entitlement
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntitlementResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      - OAuth2:
+        - applications.entitlements
+      tags:
+      - Applications
+    delete:
+      operationId: delete_entitlement
+      responses:
+        '204':
+          description: 204 response for delete_entitlement
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      - OAuth2:
+        - applications.entitlements
+      tags:
+      - Applications
+  /applications/{application_id}/entitlements:
+    parameters:
+    - name: application_id
+      in: path
+      schema:
+        $ref: '#/components/schemas/SnowflakeType'
+      required: true
+    get:
+      operationId: get_entitlements
+      parameters:
+      - name: user_id
+        in: query
+        schema:
+          $ref: '#/components/schemas/SnowflakeType'
+      - name: sku_ids
+        in: query
+        schema:
+          oneOf:
+          - type: string
+          - type: array
+            items:
+              oneOf:
+              - type: 'null'
+              - $ref: '#/components/schemas/SnowflakeType'
+            maxItems: 100
+            uniqueItems: true
+        required: true
+      - name: guild_id
+        in: query
+        schema:
+          $ref: '#/components/schemas/SnowflakeType'
+      - name: before
+        in: query
+        schema:
+          $ref: '#/components/schemas/SnowflakeType'
+      - name: after
+        in: query
+        schema:
+          $ref: '#/components/schemas/SnowflakeType'
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+      - name: exclude_ended
+        in: query
+        schema:
+          type: boolean
+      - name: only_active
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: 200 response for get_entitlements
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  oneOf:
+                  - type: 'null'
+                  - $ref: '#/components/schemas/EntitlementResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      - OAuth2:
+        - applications.entitlements
+      tags:
+      - Applications
+    post:
+      operationId: create_entitlement
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateEntitlementRequestData'
+        required: true
+      responses:
+        '200':
+          description: 200 response for create_entitlement
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntitlementResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      tags:
+      - Applications
+  /applications/{application_id}/commands/{command_id}:
+    parameters:
+    - name: application_id
+      in: path
+      schema:
+        $ref: '#/components/schemas/SnowflakeType'
+      required: true
+    - name: command_id
+      in: path
+      schema:
+        $ref: '#/components/schemas/SnowflakeType'
+      required: true
+    get:
+      operationId: get_application_command
+      responses:
+        '200':
+          description: 200 response for get_application_command
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationCommandResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      - OAuth2:
+        - applications.commands.update
+      tags:
+      - Applications
+    delete:
+      operationId: delete_application_command
+      responses:
+        '204':
+          description: 204 response for delete_application_command
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      - OAuth2:
+        - applications.commands.update
+      tags:
+      - Applications
+    patch:
+      operationId: update_application_command
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApplicationCommandPatchRequestPartial'
+        required: true
+      responses:
+        '200':
+          description: 200 response for update_application_command
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationCommandResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      - OAuth2:
+        - applications.commands.update
+      tags:
+      - Applications
+  /applications/{application_id}/commands:
+    parameters:
+    - name: application_id
+      in: path
+      schema:
+        $ref: '#/components/schemas/SnowflakeType'
+      required: true
+    get:
+      operationId: list_application_commands
+      parameters:
+      - name: with_localizations
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: 200 response for list_application_commands
+          content:
+            application/json:
+              schema:
+                type:
+                - array
+                - 'null'
+                items:
+                  $ref: '#/components/schemas/ApplicationCommandResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      - OAuth2:
+        - applications.commands.update
+      tags:
+      - Applications
+    put:
+      operationId: bulk_set_application_commands
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type:
+              - array
+              - 'null'
+              items:
+                $ref: '#/components/schemas/ApplicationCommandUpdateRequest'
+              maxItems: 110
+        required: true
+      responses:
+        '200':
+          description: 200 response for bulk_set_application_commands
+          content:
+            application/json:
+              schema:
+                type:
+                - array
+                - 'null'
+                items:
+                  $ref: '#/components/schemas/ApplicationCommandResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      - OAuth2:
+        - applications.commands.update
+      tags:
+      - Applications
+    post:
+      operationId: create_application_command
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApplicationCommandCreateRequest'
+        required: true
+      responses:
+        '200':
+          description: 200 response for create_application_command
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationCommandResponse'
+        '201':
+          description: 201 response for create_application_command
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationCommandResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      - OAuth2:
+        - applications.commands.update
+      tags:
+      - Applications
+  /applications/{application_id}:
+    parameters:
+    - name: application_id
+      in: path
+      schema:
+        $ref: '#/components/schemas/SnowflakeType'
+      required: true
+    get:
+      operationId: get_application
+      responses:
+        '200':
+          description: 200 response for get_application
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrivateApplicationResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      tags:
+      - Applications
+    patch:
+      operationId: update_application
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApplicationFormPartial'
+        required: true
+      responses:
+        '200':
+          description: 200 response for update_application
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrivateApplicationResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      tags:
+      - Applications
+components:
+  schemas:
+    ApplicationCommandStringOptionResponse:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 3
+          allOf:
+          - $ref: '#/components/schemas/ApplicationCommandOptionType'
+          format: int32
+        name:
+          type: string
+        name_localized:
+          type:
+          - string
+          - 'null'
+        name_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+        description:
+          type: string
+        description_localized:
+          type:
+          - string
+          - 'null'
+        description_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+        required:
+          type:
+          - boolean
+          - 'null'
+        autocomplete:
+          type:
+          - boolean
+          - 'null'
+        choices:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApplicationCommandOptionStringChoiceResponse'
+        min_length:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        max_length:
+          type:
+          - integer
+          - 'null'
+          format: int32
+      required:
+      - type
+      - name
+      - description
+    Int53Type:
+      type: integer
+      minimum: -9007199254740991
+      maximum: 9007199254740991
+      format: int64
+    ApplicationCommandUserOptionResponse:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 6
+          allOf:
+          - $ref: '#/components/schemas/ApplicationCommandOptionType'
+          format: int32
+        name:
+          type: string
+        name_localized:
+          type:
+          - string
+          - 'null'
+        name_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+        description:
+          type: string
+        description_localized:
+          type:
+          - string
+          - 'null'
+        description_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+        required:
+          type:
+          - boolean
+          - 'null'
+      required:
+      - type
+      - name
+      - description
+    EntitlementTenantFulfillmentStatusResponse:
+      type: integer
+      oneOf:
+      - title: UNKNOWN
+        const: 0
+      - title: FULFILLMENT_NOT_NEEDED
+        const: 1
+      - title: FULFILLMENT_NEEDED
+        const: 2
+      - title: FULFILLED
+        const: 3
+      - title: FULFILLMENT_FAILED
+        const: 4
+      - title: UNFULFILLMENT_NEEDED
+        const: 5
+      - title: UNFULFILLED
+        const: 6
+      - title: UNFULFILLMENT_FAILED
+        const: 7
+      format: int32
+    ApplicationCommandSubcommandGroupOption:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 2
+          allOf:
+          - $ref: '#/components/schemas/ApplicationCommandOptionType'
+          format: int32
+        name:
+          type: string
+          minLength: 1
+          maxLength: 32
+        name_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+            minLength: 1
+            maxLength: 32
+          maxProperties: 34
+        description:
+          type: string
+          minLength: 1
+          maxLength: 100
+        description_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+            minLength: 1
+            maxLength: 100
+          maxProperties: 34
+        required:
+          type:
+          - boolean
+          - 'null'
+        options:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApplicationCommandSubcommandOption'
+          maxItems: 25
+      required:
+      - type
+      - name
+      - description
+    CommandPermissionResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        type:
+          $ref: '#/components/schemas/ApplicationCommandPermissionType'
+        permission:
+          type: boolean
+      required:
+      - id
+      - type
+      - permission
+    ApplicationCommandAttachmentOptionResponse:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 11
+          allOf:
+          - $ref: '#/components/schemas/ApplicationCommandOptionType'
+          format: int32
+        name:
+          type: string
+        name_localized:
+          type:
+          - string
+          - 'null'
+        name_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+        description:
+          type: string
+        description_localized:
+          type:
+          - string
+          - 'null'
+        description_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+        required:
+          type:
+          - boolean
+          - 'null'
+      required:
+      - type
+      - name
+      - description
+    ApplicationCommandOptionIntegerChoice:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 100
+        name_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+            minLength: 1
+            maxLength: 100
+          maxProperties: 34
+        value:
+          $ref: '#/components/schemas/Int53Type'
+      required:
+      - name
+      - value
+    ApplicationTypes:
+      type: integer
+      oneOf:
+      - title: GUILD_ROLE_SUBSCRIPTIONS
+        const: 4
+      format: int32
+    ApplicationCommandSubcommandGroupOptionResponse:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 2
+          allOf:
+          - $ref: '#/components/schemas/ApplicationCommandOptionType'
+          format: int32
+        name:
+          type: string
+        name_localized:
+          type:
+          - string
+          - 'null'
+        name_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+        description:
+          type: string
+        description_localized:
+          type:
+          - string
+          - 'null'
+        description_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+        required:
+          type:
+          - boolean
+          - 'null'
+        options:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApplicationCommandSubcommandOptionResponse'
+      required:
+      - type
+      - name
+      - description
+    ApplicationCommandBooleanOptionResponse:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 5
+          allOf:
+          - $ref: '#/components/schemas/ApplicationCommandOptionType'
+          format: int32
+        name:
+          type: string
+        name_localized:
+          type:
+          - string
+          - 'null'
+        name_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+        description:
+          type: string
+        description_localized:
+          type:
+          - string
+          - 'null'
+        description_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+        required:
+          type:
+          - boolean
+          - 'null'
+      required:
+      - type
+      - name
+      - description
+    OAuth2Scopes:
+      type: string
+      oneOf:
+      - title: IDENTIFY
+        description: allows /users/@me without email
+        const: identify
+      - title: EMAIL
+        description: enables /users/@me to return an email
+        const: email
+      - title: CONNECTIONS
+        description: allows /users/@me/connections to return linked third-party accounts
+        const: connections
+      - title: GUILDS
+        description: allows /users/@me/guilds to return basic information about all of a user's guilds
+        const: guilds
+      - title: GUILDS_JOIN
+        description: allows /guilds/{guild.id}/members/{user.id} to be used for joining users to a guild
+        const: guilds.join
+      - title: GUILDS_MEMBERS_READ
+        description: allows /users/@me/guilds/{guild.id}/member to return a user's member information in a guild
+        const: guilds.members.read
+      - title: GDM_JOIN
+        description: allows your app to join users to a group dm
+        const: gdm.join
+      - title: BOT
+        description: for oauth2 bots, this puts the bot in the user's selected guild by default
+        const: bot
+      - title: RPC
+        description: for local rpc server access, this allows you to control a user's local Discord client - requires Discord approval
+        const: rpc
+      - title: RPC_NOTIFICATIONS_READ
+        description: for local rpc server access, this allows you to receive notifications pushed out to the user - requires Discord approval
+        const: rpc.notifications.read
+      - title: RPC_VOICE_READ
+        description: for local rpc server access, this allows you to read a user's voice settings and listen for voice events - requires Discord approval
+        const: rpc.voice.read
+      - title: RPC_VOICE_WRITE
+        description: for local rpc server access, this allows you to update a user's voice settings - requires Discord approval
+        const: rpc.voice.write
+      - title: RPC_VIDEO_READ
+        description: for local rpc server access, this allows you to read a user's video status - requires Discord approval
+        const: rpc.video.read
+      - title: RPC_VIDEO_WRITE
+        description: for local rpc server access, this allows you to update a user's video settings - requires Discord approval
+        const: rpc.video.write
+      - title: RPC_SCREENSHARE_READ
+        description: for local rpc server access, this allows you to read a user's screenshare status- requires Discord approval
+        const: rpc.screenshare.read
+      - title: RPC_SCREENSHARE_WRITE
+        description: for local rpc server access, this allows you to update a user's screenshare settings- requires Discord approval
+        const: rpc.screenshare.write
+      - title: RPC_ACTIVITIES_WRITE
+        description: for local rpc server access, this allows you to update a user's activity - requires Discord approval
+        const: rpc.activities.write
+      - title: WEBHOOK_INCOMING
+        description: this generates a webhook that is returned in the oauth token response for authorization code grants
+        const: webhook.incoming
+      - title: MESSAGES_READ
+        description: for local rpc server api access, this allows you to read messages from all client channels (otherwise restricted to channels/guilds your app creates)
+        const: messages.read
+      - title: APPLICATIONS_BUILDS_UPLOAD
+        description: allows your app to upload/update builds for a user's applications - requires Discord approval
+        const: applications.builds.upload
+      - title: APPLICATIONS_BUILDS_READ
+        description: allows your app to read build data for a user's applications
+        const: applications.builds.read
+      - title: APPLICATIONS_COMMANDS
+        description: allows your app to use commands in a guild
+        const: applications.commands
+      - title: APPLICATIONS_COMMANDS_PERMISSIONS_UPDATE
+        description: allows your app to update permissions for its commands in a guild a user has permissions to
+        const: applications.commands.permissions.update
+      - title: APPLICATIONS_COMMANDS_UPDATE
+        description: allows your app to update its commands using a Bearer token - client credentials grant only
+        const: applications.commands.update
+      - title: APPLICATIONS_STORE_UPDATE
+        description: allows your app to read and update store data (SKUs, store listings, achievements, etc.) for a user's applications
+        const: applications.store.update
+      - title: APPLICATIONS_ENTITLEMENTS
+        description: allows your app to read entitlements for a user's applications
+        const: applications.entitlements
+      - title: ACTIVITIES_READ
+        description: allows your app to fetch data from a user's "Now Playing/Recently Played" list - requires Discord approval
+        const: activities.read
+      - title: ACTIVITIES_WRITE
+        description: allows your app to update a user's activity - requires Discord approval (NOT REQUIRED FOR GAMESDK ACTIVITY MANAGER)
+        const: activities.write
+      - title: RELATIONSHIPS_READ
+        description: allows your app to know a user's friends and implicit relationships - requires Discord approval
+        const: relationships.read
+      - title: VOICE
+        description: allows your app to connect to voice on user's behalf and see all the voice members - requires Discord approval
+        const: voice
+      - title: DM_CHANNELS_READ
+        description: allows your app to see information about the user's DMs and group DMs - requires Discord approval
+        const: dm_channels.read
+      - title: ROLE_CONNECTIONS_WRITE
+        description: allows your app to update a user's connection and metadata for the app
+        const: role_connections.write
+      - title: OPENID
+        description: for OpenID Connect, this allows your app to receive user id and basic profile information
+        const: openid
+    ApplicationCommandIntegerOption:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 4
+          allOf:
+          - $ref: '#/components/schemas/ApplicationCommandOptionType'
+          format: int32
+        name:
+          type: string
+          minLength: 1
+          maxLength: 32
+        name_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+            minLength: 1
+            maxLength: 32
+          maxProperties: 34
+        description:
+          type: string
+          minLength: 1
+          maxLength: 100
+        description_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+            minLength: 1
+            maxLength: 100
+          maxProperties: 34
+        required:
+          type:
+          - boolean
+          - 'null'
+        autocomplete:
+          type:
+          - boolean
+          - 'null'
+        choices:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApplicationCommandOptionIntegerChoice'
+          maxItems: 25
+        min_value:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Int53Type'
+        max_value:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Int53Type'
+      required:
+      - type
+      - name
+      - description
+    ApplicationRoleConnectionsMetadataItemResponse:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/MetadataItemTypes'
+        key:
+          type: string
+        name:
+          type: string
+        name_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+        description:
+          type: string
+        description_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+      required:
+      - type
+      - key
+      - name
+      - description
+    ApplicationCommandPatchRequestPartial:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 32
+        name_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+            minLength: 1
+            maxLength: 32
+          maxProperties: 34
+        description:
+          type:
+          - string
+          - 'null'
+          maxLength: 100
+        description_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+            minLength: 1
+            maxLength: 100
+          maxProperties: 34
+        options:
+          type:
+          - array
+          - 'null'
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/ApplicationCommandAttachmentOption'
+            - $ref: '#/components/schemas/ApplicationCommandBooleanOption'
+            - $ref: '#/components/schemas/ApplicationCommandChannelOption'
+            - $ref: '#/components/schemas/ApplicationCommandIntegerOption'
+            - $ref: '#/components/schemas/ApplicationCommandMentionableOption'
+            - $ref: '#/components/schemas/ApplicationCommandNumberOption'
+            - $ref: '#/components/schemas/ApplicationCommandRoleOption'
+            - $ref: '#/components/schemas/ApplicationCommandStringOption'
+            - $ref: '#/components/schemas/ApplicationCommandSubcommandGroupOption'
+            - $ref: '#/components/schemas/ApplicationCommandSubcommandOption'
+            - $ref: '#/components/schemas/ApplicationCommandUserOption'
+          maxItems: 25
+        default_member_permissions:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          maximum: 2251799813685247
+        dm_permission:
+          type:
+          - boolean
+          - 'null'
+    ApplicationCommandOptionNumberChoice:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 100
+        name_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+            minLength: 1
+            maxLength: 100
+          maxProperties: 34
+        value:
+          type: number
+          format: double
+      required:
+      - name
+      - value
+    EntitlementResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        sku_id:
+          $ref: '#/components/schemas/SnowflakeType'
+        application_id:
+          $ref: '#/components/schemas/SnowflakeType'
+        user_id:
+          $ref: '#/components/schemas/SnowflakeType'
+        guild_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        deleted:
+          type: boolean
+        starts_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        ends_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        type:
+          $ref: '#/components/schemas/EntitlementTypes'
+        fulfilled_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        fulfillment_status:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/EntitlementTenantFulfillmentStatusResponse'
+        consumed:
+          type:
+          - boolean
+          - 'null'
+      required:
+      - id
+      - sku_id
+      - application_id
+      - user_id
+      - deleted
+      - type
+    ApplicationCommandNumberOption:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 10
+          allOf:
+          - $ref: '#/components/schemas/ApplicationCommandOptionType'
+          format: int32
+        name:
+          type: string
+          minLength: 1
+          maxLength: 32
+        name_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+            minLength: 1
+            maxLength: 32
+          maxProperties: 34
+        description:
+          type: string
+          minLength: 1
+          maxLength: 100
+        description_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+            minLength: 1
+            maxLength: 100
+          maxProperties: 34
+        required:
+          type:
+          - boolean
+          - 'null'
+        autocomplete:
+          type:
+          - boolean
+          - 'null'
+        choices:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApplicationCommandOptionNumberChoice'
+          maxItems: 25
+        min_value:
+          type:
+          - number
+          - 'null'
+          format: double
+        max_value:
+          type:
+          - number
+          - 'null'
+          format: double
+      required:
+      - type
+      - name
+      - description
+    TeamMemberResponse:
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/UserResponse'
+        team_id:
+          $ref: '#/components/schemas/SnowflakeType'
+        membership_state:
+          $ref: '#/components/schemas/TeamMembershipStates'
+      required:
+      - user
+      - team_id
+      - membership_state
+    ApplicationCommandNumberOptionResponse:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 10
+          allOf:
+          - $ref: '#/components/schemas/ApplicationCommandOptionType'
+          format: int32
+        name:
+          type: string
+        name_localized:
+          type:
+          - string
+          - 'null'
+        name_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+        description:
+          type: string
+        description_localized:
+          type:
+          - string
+          - 'null'
+        description_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+        required:
+          type:
+          - boolean
+          - 'null'
+        autocomplete:
+          type:
+          - boolean
+          - 'null'
+        choices:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApplicationCommandOptionNumberChoiceResponse'
+        min_value:
+          type:
+          - number
+          - 'null'
+          format: double
+        max_value:
+          type:
+          - number
+          - 'null'
+          format: double
+      required:
+      - type
+      - name
+      - description
+    UserResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        username:
+          type: string
+        avatar:
+          type:
+          - string
+          - 'null'
+        discriminator:
+          type: string
+        public_flags:
+          type: integer
+          format: int32
+        flags:
+          $ref: '#/components/schemas/Int53Type'
+        bot:
+          type:
+          - boolean
+          - 'null'
+        system:
+          type:
+          - boolean
+          - 'null'
+        banner:
+          type:
+          - string
+          - 'null'
+        accent_color:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        global_name:
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - username
+      - discriminator
+      - public_flags
+      - flags
+    ApplicationCommandBooleanOption:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 5
+          allOf:
+          - $ref: '#/components/schemas/ApplicationCommandOptionType'
+          format: int32
+        name:
+          type: string
+          minLength: 1
+          maxLength: 32
+        name_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+            minLength: 1
+            maxLength: 32
+          maxProperties: 34
+        description:
+          type: string
+          minLength: 1
+          maxLength: 100
+        description_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+            minLength: 1
+            maxLength: 100
+          maxProperties: 34
+        required:
+          type:
+          - boolean
+          - 'null'
+      required:
+      - type
+      - name
+      - description
+    ApplicationCommandOptionNumberChoiceResponse:
+      type: object
+      properties:
+        name:
+          type: string
+        name_localized:
+          type:
+          - string
+          - 'null'
+        name_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+        value:
+          type: number
+          format: double
+      required:
+      - name
+      - value
+    PrivateApplicationResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        name:
+          type: string
+        icon:
+          type:
+          - string
+          - 'null'
+        description:
+          type: string
+        type:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/ApplicationTypes'
+        cover_image:
+          type:
+          - string
+          - 'null'
+        primary_sku_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        bot:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/UserResponse'
+        slug:
+          type:
+          - string
+          - 'null'
+        guild_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        rpc_origins:
+          type:
+          - array
+          - 'null'
+          items:
+            type:
+            - string
+            - 'null'
+        bot_public:
+          type:
+          - boolean
+          - 'null'
+        bot_require_code_grant:
+          type:
+          - boolean
+          - 'null'
+        terms_of_service_url:
+          type:
+          - string
+          - 'null'
+          format: uri
+        privacy_policy_url:
+          type:
+          - string
+          - 'null'
+          format: uri
+        custom_install_url:
+          type:
+          - string
+          - 'null'
+          format: uri
+        install_params:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/ApplicationOAuth2InstallParamsResponse'
+        verify_key:
+          type: string
+        flags:
+          type: integer
+          format: int32
+        max_participants:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        tags:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          uniqueItems: true
+        redirect_uris:
+          type: array
+          items:
+            type:
+            - string
+            - 'null'
+            format: uri
+        interactions_endpoint_url:
+          type:
+          - string
+          - 'null'
+          format: uri
+        role_connections_verification_url:
+          type:
+          - string
+          - 'null'
+          format: uri
+        owner:
+          $ref: '#/components/schemas/UserResponse'
+        approximate_guild_count:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        team:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/TeamResponse'
+      required:
+      - id
+      - name
+      - description
+      - verify_key
+      - flags
+      - redirect_uris
+      - owner
+    ApplicationCommandMentionableOption:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 9
+          allOf:
+          - $ref: '#/components/schemas/ApplicationCommandOptionType'
+          format: int32
+        name:
+          type: string
+          minLength: 1
+          maxLength: 32
+        name_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+            minLength: 1
+            maxLength: 32
+          maxProperties: 34
+        description:
+          type: string
+          minLength: 1
+          maxLength: 100
+        description_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+            minLength: 1
+            maxLength: 100
+          maxProperties: 34
+        required:
+          type:
+          - boolean
+          - 'null'
+      required:
+      - type
+      - name
+      - description
+    ApplicationRoleConnectionsMetadataItemRequest:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/MetadataItemTypes'
+        key:
+          type: string
+          minLength: 1
+          maxLength: 50
+        name:
+          type: string
+          minLength: 1
+          maxLength: 100
+        name_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type:
+            - string
+            - 'null'
+            minLength: 1
+            maxLength: 100
+          maxProperties: 1521
+        description:
+          type: string
+          minLength: 1
+          maxLength: 200
+        description_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type:
+            - string
+            - 'null'
+            minLength: 1
+            maxLength: 200
+          maxProperties: 1521
+      required:
+      - type
+      - key
+      - name
+      - description
+    EntitlementTypes:
+      type: integer
+      oneOf:
+      - title: APPLICATION_SUBSCRIPTION
+        const: 8
+      - title: QUEST_REWARD
+        const: 10
+      format: int32
+    TeamResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        icon:
+          type:
+          - string
+          - 'null'
+        name:
+          type: string
+        owner_user_id:
+          $ref: '#/components/schemas/SnowflakeType'
+        members:
+          type: array
+          items:
+            $ref: '#/components/schemas/TeamMemberResponse'
+      required:
+      - id
+      - name
+      - owner_user_id
+      - members
+    ApplicationOAuth2InstallParams:
+      type: object
+      properties:
+        scopes:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            enum:
+            - applications.commands
+            - bot
+            allOf:
+            - $ref: '#/components/schemas/OAuth2Scopes'
+          minItems: 1
+          uniqueItems: true
+        permissions:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          maximum: 2251799813685247
+    ApplicationCommandRoleOptionResponse:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 8
+          allOf:
+          - $ref: '#/components/schemas/ApplicationCommandOptionType'
+          format: int32
+        name:
+          type: string
+        name_localized:
+          type:
+          - string
+          - 'null'
+        name_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+        description:
+          type: string
+        description_localized:
+          type:
+          - string
+          - 'null'
+        description_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+        required:
+          type:
+          - boolean
+          - 'null'
+      required:
+      - type
+      - name
+      - description
+    ApplicationCommandIntegerOptionResponse:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 4
+          allOf:
+          - $ref: '#/components/schemas/ApplicationCommandOptionType'
+          format: int32
+        name:
+          type: string
+        name_localized:
+          type:
+          - string
+          - 'null'
+        name_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+        description:
+          type: string
+        description_localized:
+          type:
+          - string
+          - 'null'
+        description_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+        required:
+          type:
+          - boolean
+          - 'null'
+        autocomplete:
+          type:
+          - boolean
+          - 'null'
+        choices:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApplicationCommandOptionIntegerChoiceResponse'
+        min_value:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Int53Type'
+        max_value:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Int53Type'
+      required:
+      - type
+      - name
+      - description
+    ApplicationCommandAttachmentOption:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 11
+          allOf:
+          - $ref: '#/components/schemas/ApplicationCommandOptionType'
+          format: int32
+        name:
+          type: string
+          minLength: 1
+          maxLength: 32
+        name_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+            minLength: 1
+            maxLength: 32
+          maxProperties: 34
+        description:
+          type: string
+          minLength: 1
+          maxLength: 100
+        description_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+            minLength: 1
+            maxLength: 100
+          maxProperties: 34
+        required:
+          type:
+          - boolean
+          - 'null'
+      required:
+      - type
+      - name
+      - description
+    ErrorResponse:
+      type: object
+      description: Errors object returned by the Discord API
+      allOf:
+      - $ref: '#/components/schemas/Error'
+      - type: object
+        properties:
+          errors:
+            $ref: '#/components/schemas/ErrorDetails'
+    ApplicationCommandResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        application_id:
+          $ref: '#/components/schemas/SnowflakeType'
+        version:
+          $ref: '#/components/schemas/SnowflakeType'
+        default_member_permissions:
+          type:
+          - string
+          - 'null'
+        type:
+          $ref: '#/components/schemas/ApplicationCommandType'
+        name:
+          type: string
+        name_localized:
+          type:
+          - string
+          - 'null'
+        name_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+        description:
+          type: string
+        description_localized:
+          type:
+          - string
+          - 'null'
+        description_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+        guild_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        dm_permission:
+          type:
+          - boolean
+          - 'null'
+        options:
+          type:
+          - array
+          - 'null'
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/ApplicationCommandAttachmentOptionResponse'
+            - $ref: '#/components/schemas/ApplicationCommandBooleanOptionResponse'
+            - $ref: '#/components/schemas/ApplicationCommandChannelOptionResponse'
+            - $ref: '#/components/schemas/ApplicationCommandIntegerOptionResponse'
+            - $ref: '#/components/schemas/ApplicationCommandMentionableOptionResponse'
+            - $ref: '#/components/schemas/ApplicationCommandNumberOptionResponse'
+            - $ref: '#/components/schemas/ApplicationCommandRoleOptionResponse'
+            - $ref: '#/components/schemas/ApplicationCommandStringOptionResponse'
+            - $ref: '#/components/schemas/ApplicationCommandSubcommandGroupOptionResponse'
+            - $ref: '#/components/schemas/ApplicationCommandSubcommandOptionResponse'
+            - $ref: '#/components/schemas/ApplicationCommandUserOptionResponse'
+        nsfw:
+          type:
+          - boolean
+          - 'null'
+      required:
+      - id
+      - application_id
+      - version
+      - type
+      - name
+      - description
+    ApplicationCommandPermissionType:
+      type: integer
+      oneOf:
+      - title: ROLE
+        description: This permission is for a role.
+        const: 1
+      - title: USER
+        description: This permission is for a user.
+        const: 2
+      - title: CHANNEL
+        description: This permission is for a channel.
+        const: 3
+      format: int32
+    TeamMembershipStates:
+      type: integer
+      oneOf:
+      - title: INVITED
+        description: User has been invited to the team.
+        const: 1
+      - title: ACCEPTED
+        description: User has accepted the team invitation.
+        const: 2
+      format: int32
+    ErrorDetails:
+      oneOf:
+      - type: object
+        additionalProperties:
+          $ref: '#/components/schemas/ErrorDetails'
+      - $ref: '#/components/schemas/InnerErrors'
+    ApplicationCommandOptionStringChoice:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 100
+        name_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+            minLength: 1
+            maxLength: 100
+          maxProperties: 34
+        value:
+          type: string
+          maxLength: 6000
+      required:
+      - name
+      - value
+    ApplicationCommandSubcommandOption:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 1
+          allOf:
+          - $ref: '#/components/schemas/ApplicationCommandOptionType'
+          format: int32
+        name:
+          type: string
+          minLength: 1
+          maxLength: 32
+        name_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+            minLength: 1
+            maxLength: 32
+          maxProperties: 34
+        description:
+          type: string
+          minLength: 1
+          maxLength: 100
+        description_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+            minLength: 1
+            maxLength: 100
+          maxProperties: 34
+        required:
+          type:
+          - boolean
+          - 'null'
+        options:
+          type:
+          - array
+          - 'null'
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/ApplicationCommandAttachmentOption'
+            - $ref: '#/components/schemas/ApplicationCommandBooleanOption'
+            - $ref: '#/components/schemas/ApplicationCommandChannelOption'
+            - $ref: '#/components/schemas/ApplicationCommandIntegerOption'
+            - $ref: '#/components/schemas/ApplicationCommandMentionableOption'
+            - $ref: '#/components/schemas/ApplicationCommandNumberOption'
+            - $ref: '#/components/schemas/ApplicationCommandRoleOption'
+            - $ref: '#/components/schemas/ApplicationCommandStringOption'
+            - $ref: '#/components/schemas/ApplicationCommandUserOption'
+          maxItems: 25
+      required:
+      - type
+      - name
+      - description
+    ApplicationCommandOptionType:
+      type: integer
+      oneOf:
+      - title: SUB_COMMAND
+        description: A sub-action within a command or group
+        const: 1
+      - title: SUB_COMMAND_GROUP
+        description: A group of subcommands
+        const: 2
+      - title: STRING
+        description: A string option
+        const: 3
+      - title: INTEGER
+        description: An integer option. Any integer between -2^53 and 2^53 is a valid value
+        const: 4
+      - title: BOOLEAN
+        description: A boolean option
+        const: 5
+      - title: USER
+        description: A snowflake option that represents a User
+        const: 6
+      - title: CHANNEL
+        description: A snowflake option that represents a Channel. Includes all channel types and categories
+        const: 7
+      - title: ROLE
+        description: A snowflake option that represents a Role
+        const: 8
+      - title: MENTIONABLE
+        description: A snowflake option that represents anything you can mention
+        const: 9
+      - title: NUMBER
+        description: A number option. Any double between -2^53 and 2^53 is a valid value
+        const: 10
+      - title: ATTACHMENT
+        description: An attachment option
+        const: 11
+      format: int32
+    SnowflakeType:
+      type: string
+      pattern: ^(0|[1-9][0-9]*)$
+      format: snowflake
+    ApplicationCommandStringOption:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 3
+          allOf:
+          - $ref: '#/components/schemas/ApplicationCommandOptionType'
+          format: int32
+        name:
+          type: string
+          minLength: 1
+          maxLength: 32
+        name_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+            minLength: 1
+            maxLength: 32
+          maxProperties: 34
+        description:
+          type: string
+          minLength: 1
+          maxLength: 100
+        description_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+            minLength: 1
+            maxLength: 100
+          maxProperties: 34
+        required:
+          type:
+          - boolean
+          - 'null'
+        autocomplete:
+          type:
+          - boolean
+          - 'null'
+        min_length:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          maximum: 6000
+        max_length:
+          type:
+          - integer
+          - 'null'
+          minimum: 1
+          maximum: 6000
+        choices:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ApplicationCommandOptionStringChoice'
+          maxItems: 25
+      required:
+      - type
+      - name
+      - description
+    ApplicationCommandRoleOption:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 8
+          allOf:
+          - $ref: '#/components/schemas/ApplicationCommandOptionType'
+          format: int32
+        name:
+          type: string
+          minLength: 1
+          maxLength: 32
+        name_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+            minLength: 1
+            maxLength: 32
+          maxProperties: 34
+        description:
+          type: string
+          minLength: 1
+          maxLength: 100
+        description_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+            minLength: 1
+            maxLength: 100
+          maxProperties: 34
+        required:
+          type:
+          - boolean
+          - 'null'
+      required:
+      - type
+      - name
+      - description
+    ApplicationCommandUpdateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 32
+        name_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+            minLength: 1
+            maxLength: 32
+          maxProperties: 34
+        description:
+          type:
+          - string
+          - 'null'
+          maxLength: 100
+        description_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+            minLength: 1
+            maxLength: 100
+          maxProperties: 34
+        options:
+          type:
+          - array
+          - 'null'
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/ApplicationCommandAttachmentOption'
+            - $ref: '#/components/schemas/ApplicationCommandBooleanOption'
+            - $ref: '#/components/schemas/ApplicationCommandChannelOption'
+            - $ref: '#/components/schemas/ApplicationCommandIntegerOption'
+            - $ref: '#/components/schemas/ApplicationCommandMentionableOption'
+            - $ref: '#/components/schemas/ApplicationCommandNumberOption'
+            - $ref: '#/components/schemas/ApplicationCommandRoleOption'
+            - $ref: '#/components/schemas/ApplicationCommandStringOption'
+            - $ref: '#/components/schemas/ApplicationCommandSubcommandGroupOption'
+            - $ref: '#/components/schemas/ApplicationCommandSubcommandOption'
+            - $ref: '#/components/schemas/ApplicationCommandUserOption'
+          maxItems: 25
+        default_member_permissions:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          maximum: 2251799813685247
+        dm_permission:
+          type:
+          - boolean
+          - 'null'
+        type:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/ApplicationCommandType'
+        id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+      required:
+      - name
+    ApplicationCommandOptionStringChoiceResponse:
+      type: object
+      properties:
+        name:
+          type: string
+        name_localized:
+          type:
+          - string
+          - 'null'
+        name_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+        value:
+          type: string
+      required:
+      - name
+      - value
+    ApplicationCommandType:
+      type: integer
+      oneOf:
+      - title: CHAT
+        description: Slash commands; a text-based command that shows up when a user types /
+        const: 1
+      - title: USER
+        description: A UI-based command that shows up when you right click or tap on a user
+        const: 2
+      - title: MESSAGE
+        description: A UI-based command that shows up when you right click or tap on a message
+        const: 3
+      format: int32
+    InnerErrors:
+      type: object
+      properties:
+        _errors:
+          type: array
+          description: The list of errors for this field
+          items:
+            $ref: '#/components/schemas/Error'
+      additionalProperties: false
+      required:
+      - _errors
+    ApplicationCommandOptionIntegerChoiceResponse:
+      type: object
+      properties:
+        name:
+          type: string
+        name_localized:
+          type:
+          - string
+          - 'null'
+        name_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+        value:
+          $ref: '#/components/schemas/Int53Type'
+      required:
+      - name
+      - value
+    ApplicationFormPartial:
+      type: object
+      properties:
+        description:
+          type:
+          - object
+          - 'null'
+          properties:
+            default:
+              type: string
+              maxLength: 400
+            localizations:
+              type:
+              - object
+              - 'null'
+              additionalProperties:
+                type: string
+                maxLength: 400
+          required:
+          - default
+        icon:
+          type:
+          - string
+          - 'null'
+          contentEncoding: base64
+        cover_image:
+          type:
+          - string
+          - 'null'
+          contentEncoding: base64
+        team_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        flags:
+          type:
+          - integer
+          - 'null'
+        interactions_endpoint_url:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+          format: uri
+        max_participants:
+          type:
+          - integer
+          - 'null'
+          minimum: -1
+          format: int32
+        type:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/ApplicationTypes'
+        tags:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            maxLength: 20
+          maxItems: 5
+          uniqueItems: true
+        custom_install_url:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+          format: uri
+        install_params:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/ApplicationOAuth2InstallParams'
+        role_connections_verification_url:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+          format: uri
+    MetadataItemTypes:
+      type: integer
+      oneOf:
+      - title: INTEGER_LESS_THAN_EQUAL
+        description: the metadata value (integer) is less than or equal to the guild's configured value (integer)
+        const: 1
+      - title: INTEGER_GREATER_THAN_EQUAL
+        description: the metadata value (integer) is greater than or equal to the guild's configured value (integer)
+        const: 2
+      - title: INTEGER_EQUAL
+        description: the metadata value (integer) is equal to the guild's configured value (integer)
+        const: 3
+      - title: INTEGER_NOT_EQUAL
+        description: the metadata value (integer) is not equal to the guild's configured value (integer)
+        const: 4
+      - title: DATETIME_LESS_THAN_EQUAL
+        description: the metadata value (ISO8601 string) is less than or equal to the guild's configured value (integer; days before current date)
+        const: 5
+      - title: DATETIME_GREATER_THAN_EQUAL
+        description: the metadata value (ISO8601 string) is greater than or equal to the guild's configured value (integer; days before current date)
+        const: 6
+      - title: BOOLEAN_EQUAL
+        description: the metadata value (integer) is equal to the guild's configured value (integer; 1)
+        const: 7
+      - title: BOOLEAN_NOT_EQUAL
+        description: the metadata value (integer) is not equal to the guild's configured value (integer; 1)
+        const: 8
+      format: int32
+    ApplicationCommandMentionableOptionResponse:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 9
+          allOf:
+          - $ref: '#/components/schemas/ApplicationCommandOptionType'
+          format: int32
+        name:
+          type: string
+        name_localized:
+          type:
+          - string
+          - 'null'
+        name_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+        description:
+          type: string
+        description_localized:
+          type:
+          - string
+          - 'null'
+        description_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+        required:
+          type:
+          - boolean
+          - 'null'
+      required:
+      - type
+      - name
+      - description
+    CreateEntitlementRequestData:
+      type: object
+      properties:
+        sku_id:
+          $ref: '#/components/schemas/SnowflakeType'
+        owner_id:
+          $ref: '#/components/schemas/SnowflakeType'
+        owner_type:
+          $ref: '#/components/schemas/EntitlementOwnerTypes'
+      required:
+      - sku_id
+      - owner_id
+      - owner_type
+    ApplicationCommandPermission:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        type:
+          $ref: '#/components/schemas/ApplicationCommandPermissionType'
+        permission:
+          type: boolean
+      required:
+      - id
+      - type
+      - permission
+    CommandPermissionsResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        application_id:
+          $ref: '#/components/schemas/SnowflakeType'
+        guild_id:
+          $ref: '#/components/schemas/SnowflakeType'
+        permissions:
+          type: array
+          items:
+            $ref: '#/components/schemas/CommandPermissionResponse'
+      required:
+      - id
+      - application_id
+      - guild_id
+      - permissions
+    ApplicationCommandChannelOption:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 7
+          allOf:
+          - $ref: '#/components/schemas/ApplicationCommandOptionType'
+          format: int32
+        name:
+          type: string
+          minLength: 1
+          maxLength: 32
+        name_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+            minLength: 1
+            maxLength: 32
+          maxProperties: 34
+        description:
+          type: string
+          minLength: 1
+          maxLength: 100
+        description_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+            minLength: 1
+            maxLength: 100
+          maxProperties: 34
+        required:
+          type:
+          - boolean
+          - 'null'
+        channel_types:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ChannelTypes'
+          uniqueItems: true
+      required:
+      - type
+      - name
+      - description
+    EntitlementOwnerTypes:
+      type: integer
+      oneOf: []
+      format: int32
+    ApplicationCommandSubcommandOptionResponse:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 1
+          allOf:
+          - $ref: '#/components/schemas/ApplicationCommandOptionType'
+          format: int32
+        name:
+          type: string
+        name_localized:
+          type:
+          - string
+          - 'null'
+        name_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+        description:
+          type: string
+        description_localized:
+          type:
+          - string
+          - 'null'
+        description_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+        required:
+          type:
+          - boolean
+          - 'null'
+        options:
+          type:
+          - array
+          - 'null'
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/ApplicationCommandAttachmentOptionResponse'
+            - $ref: '#/components/schemas/ApplicationCommandBooleanOptionResponse'
+            - $ref: '#/components/schemas/ApplicationCommandChannelOptionResponse'
+            - $ref: '#/components/schemas/ApplicationCommandIntegerOptionResponse'
+            - $ref: '#/components/schemas/ApplicationCommandMentionableOptionResponse'
+            - $ref: '#/components/schemas/ApplicationCommandNumberOptionResponse'
+            - $ref: '#/components/schemas/ApplicationCommandRoleOptionResponse'
+            - $ref: '#/components/schemas/ApplicationCommandStringOptionResponse'
+            - $ref: '#/components/schemas/ApplicationCommandUserOptionResponse'
+      required:
+      - type
+      - name
+      - description
+    Error:
+      type: object
+      description: A single error, either for an API response or a specific field.
+      properties:
+        code:
+          type: integer
+          description: Discord internal error code. See error code reference
+        message:
+          type: string
+          description: Human-readable error message
+      required:
+      - code
+      - message
+    ApplicationCommandCreateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 32
+        name_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+            minLength: 1
+            maxLength: 32
+          maxProperties: 34
+        description:
+          type:
+          - string
+          - 'null'
+          maxLength: 100
+        description_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+            minLength: 1
+            maxLength: 100
+          maxProperties: 34
+        options:
+          type:
+          - array
+          - 'null'
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/ApplicationCommandAttachmentOption'
+            - $ref: '#/components/schemas/ApplicationCommandBooleanOption'
+            - $ref: '#/components/schemas/ApplicationCommandChannelOption'
+            - $ref: '#/components/schemas/ApplicationCommandIntegerOption'
+            - $ref: '#/components/schemas/ApplicationCommandMentionableOption'
+            - $ref: '#/components/schemas/ApplicationCommandNumberOption'
+            - $ref: '#/components/schemas/ApplicationCommandRoleOption'
+            - $ref: '#/components/schemas/ApplicationCommandStringOption'
+            - $ref: '#/components/schemas/ApplicationCommandSubcommandGroupOption'
+            - $ref: '#/components/schemas/ApplicationCommandSubcommandOption'
+            - $ref: '#/components/schemas/ApplicationCommandUserOption'
+          maxItems: 25
+        default_member_permissions:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          maximum: 2251799813685247
+        dm_permission:
+          type:
+          - boolean
+          - 'null'
+        type:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/ApplicationCommandType'
+      required:
+      - name
+    ApplicationOAuth2InstallParamsResponse:
+      type: object
+      properties:
+        scopes:
+          type: array
+          items:
+            type: string
+            enum:
+            - applications.commands
+            - bot
+            allOf:
+            - $ref: '#/components/schemas/OAuth2Scopes'
+          uniqueItems: true
+        permissions:
+          type: string
+      required:
+      - scopes
+      - permissions
+    ApplicationCommandUserOption:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 6
+          allOf:
+          - $ref: '#/components/schemas/ApplicationCommandOptionType'
+          format: int32
+        name:
+          type: string
+          minLength: 1
+          maxLength: 32
+        name_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+            minLength: 1
+            maxLength: 32
+          maxProperties: 34
+        description:
+          type: string
+          minLength: 1
+          maxLength: 100
+        description_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+            minLength: 1
+            maxLength: 100
+          maxProperties: 34
+        required:
+          type:
+          - boolean
+          - 'null'
+      required:
+      - type
+      - name
+      - description
+    ApplicationCommandChannelOptionResponse:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 7
+          allOf:
+          - $ref: '#/components/schemas/ApplicationCommandOptionType'
+          format: int32
+        name:
+          type: string
+        name_localized:
+          type:
+          - string
+          - 'null'
+        name_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+        description:
+          type: string
+        description_localized:
+          type:
+          - string
+          - 'null'
+        description_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+        required:
+          type:
+          - boolean
+          - 'null'
+        channel_types:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ChannelTypes'
+          uniqueItems: true
+      required:
+      - type
+      - name
+      - description
+    ChannelTypes:
+      type: integer
+      oneOf:
+      - title: DM
+        description: A direct message between users
+        const: 1
+      - title: GROUP_DM
+        description: A direct message between multiple users
+        const: 3
+      - title: GUILD_TEXT
+        description: A text channel within a server
+        const: 0
+      - title: GUILD_VOICE
+        description: A voice channel within a server
+        const: 2
+      - title: GUILD_CATEGORY
+        description: An organizational category that contains up to 50 channels
+        const: 4
+      - title: GUILD_ANNOUNCEMENT
+        description: A channel that users can follow and crosspost into their own server (formerly news channels)
+        const: 5
+      - title: ANNOUNCEMENT_THREAD
+        description: A temporary sub-channel within a GUILD_ANNOUNCEMENT channel
+        const: 10
+      - title: PUBLIC_THREAD
+        description: A temporary sub-channel within a GUILD_TEXT or GUILD_THREADS_ONLY channel type set
+        const: 11
+      - title: PRIVATE_THREAD
+        description: A temporary sub-channel within a GUILD_TEXT channel that is only viewable by those invited and those with the MANAGE_THREADS permission
+        const: 12
+      - title: GUILD_STAGE_VOICE
+        description: A voice channel for hosting events with an audience
+        const: 13
+      - title: GUILD_DIRECTORY
+        description: The channel in a hub containing the listed servers
+        const: 14
+      - title: GUILD_FORUM
+        description: Channel that can only contain threads
+        const: 15
+      format: int32
+  responses:
+    ClientErrorResponse:
+      description: Client error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    BotToken:
+      type: http
+      scheme: bearer
+      description: Bot token authentication
+externalDocs:
+  description: Discord Interactions Documentation
+  url: https://discord.com/developers/docs/interactions/overview

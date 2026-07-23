@@ -1,0 +1,413 @@
+openapi: 3.1.0
+info:
+  title: Discord Interactions Application Commands Stickers API
+  description: The Discord Interactions API enables applications to create and respond to application commands (slash commands), message components, and modals. It supports both Gateway-based and webhook-based interaction handling, allowing bots to build rich, interactive user experiences within Discord.
+  version: '10'
+  contact:
+    name: Discord Support
+    url: https://support-dev.discord.com/hc/en-us
+    email: support@discord.com
+  termsOfService: https://discord.com/developers/docs/policies-and-agreements/developer-terms-of-service
+servers:
+- url: https://discord.com/api/v10
+  description: Discord API v10
+security:
+- BotToken: []
+tags:
+- name: Stickers
+paths:
+  /stickers/{sticker_id}:
+    parameters:
+    - name: sticker_id
+      in: path
+      schema:
+        $ref: '#/components/schemas/SnowflakeType'
+      required: true
+    get:
+      operationId: get_sticker
+      responses:
+        '200':
+          description: 200 response for get_sticker
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/GuildStickerResponse'
+                - $ref: '#/components/schemas/StandardStickerResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      tags:
+      - Stickers
+  /guilds/{guild_id}/stickers:
+    get:
+      operationId: listGuildStickers
+      summary: Discord List guild stickers
+      description: Returns an array of sticker objects for the given guild.
+      tags:
+      - Stickers
+      parameters:
+      - $ref: '#/components/parameters/guildId'
+      responses:
+        '200':
+          description: List of sticker objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Sticker'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /sticker-packs:
+    get:
+      operationId: listStickerPacks
+      summary: Discord List sticker packs
+      description: Returns the list of sticker packs available to Nitro subscribers.
+      tags:
+      - Stickers
+      responses:
+        '200':
+          description: List of sticker pack objects
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sticker_packs:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/StickerPack'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+components:
+  schemas:
+    Int53Type:
+      type: integer
+      minimum: -9007199254740991
+      maximum: 9007199254740991
+      format: int64
+    StickerFormatTypes:
+      type: integer
+      oneOf:
+      - title: PNG
+        const: 1
+      - title: APNG
+        const: 2
+      - title: LOTTIE
+        const: 3
+      - title: GIF
+        const: 4
+      format: int32
+    SnowflakeType:
+      type: string
+      pattern: ^(0|[1-9][0-9]*)$
+      format: snowflake
+    StickerTypes:
+      type: integer
+      oneOf:
+      - title: STANDARD
+        description: an official sticker in a pack, part of Nitro or in a removed purchasable pack
+        const: 1
+      - title: GUILD
+        description: a sticker uploaded to a guild for the guild's members
+        const: 2
+      format: int32
+    UserResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        username:
+          type: string
+        avatar:
+          type:
+          - string
+          - 'null'
+        discriminator:
+          type: string
+        public_flags:
+          type: integer
+          format: int32
+        flags:
+          $ref: '#/components/schemas/Int53Type'
+        bot:
+          type:
+          - boolean
+          - 'null'
+        system:
+          type:
+          - boolean
+          - 'null'
+        banner:
+          type:
+          - string
+          - 'null'
+        accent_color:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        global_name:
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - username
+      - discriminator
+      - public_flags
+      - flags
+    StickerPack:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Snowflake'
+        stickers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Sticker'
+        name:
+          type: string
+        sku_id:
+          $ref: '#/components/schemas/Snowflake'
+        cover_sticker_id:
+          $ref: '#/components/schemas/Snowflake'
+        description:
+          type: string
+        banner_asset_id:
+          $ref: '#/components/schemas/Snowflake'
+    Sticker:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Snowflake'
+        pack_id:
+          $ref: '#/components/schemas/Snowflake'
+        name:
+          type: string
+        description:
+          type: string
+          nullable: true
+        tags:
+          type: string
+        type:
+          type: integer
+          description: 1=STANDARD, 2=GUILD
+        format_type:
+          type: integer
+          description: 1=PNG, 2=APNG, 3=LOTTIE, 4=GIF
+        available:
+          type: boolean
+        guild_id:
+          $ref: '#/components/schemas/Snowflake'
+        user:
+          $ref: '#/components/schemas/User'
+        sort_value:
+          type: integer
+      required:
+      - id
+      - name
+      - type
+      - format_type
+    StandardStickerResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        name:
+          type: string
+        tags:
+          type: string
+        type:
+          type: integer
+          enum:
+          - 1
+          allOf:
+          - $ref: '#/components/schemas/StickerTypes'
+          format: int32
+        format_type:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/StickerFormatTypes'
+        description:
+          type:
+          - string
+          - 'null'
+        pack_id:
+          $ref: '#/components/schemas/SnowflakeType'
+        sort_value:
+          type: integer
+          format: int32
+      required:
+      - id
+      - name
+      - tags
+      - type
+      - pack_id
+      - sort_value
+    User:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Snowflake'
+        username:
+          type: string
+        discriminator:
+          type: string
+        global_name:
+          type: string
+          nullable: true
+        avatar:
+          type: string
+          nullable: true
+        bot:
+          type: boolean
+        system:
+          type: boolean
+        mfa_enabled:
+          type: boolean
+        banner:
+          type: string
+          nullable: true
+        accent_color:
+          type: integer
+          nullable: true
+        locale:
+          type: string
+        verified:
+          type: boolean
+        email:
+          type: string
+          nullable: true
+        flags:
+          type: integer
+        premium_type:
+          type: integer
+        public_flags:
+          type: integer
+        avatar_decoration_data:
+          type: object
+          nullable: true
+      required:
+      - id
+      - username
+    Error:
+      type: object
+      description: A single error, either for an API response or a specific field.
+      properties:
+        code:
+          type: integer
+          description: Discord internal error code. See error code reference
+        message:
+          type: string
+          description: Human-readable error message
+      required:
+      - code
+      - message
+    Snowflake:
+      type: string
+      description: Discord unique ID represented as a string
+      pattern: ^[0-9]+$
+    ErrorResponse:
+      type: object
+      description: Errors object returned by the Discord API
+      allOf:
+      - $ref: '#/components/schemas/Error'
+      - type: object
+        properties:
+          errors:
+            $ref: '#/components/schemas/ErrorDetails'
+    GuildStickerResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        name:
+          type: string
+        tags:
+          type: string
+        type:
+          type: integer
+          enum:
+          - 2
+          allOf:
+          - $ref: '#/components/schemas/StickerTypes'
+          format: int32
+        format_type:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/StickerFormatTypes'
+        description:
+          type:
+          - string
+          - 'null'
+        available:
+          type: boolean
+        guild_id:
+          $ref: '#/components/schemas/SnowflakeType'
+        user:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/UserResponse'
+      required:
+      - id
+      - name
+      - tags
+      - type
+      - available
+      - guild_id
+    InnerErrors:
+      type: object
+      properties:
+        _errors:
+          type: array
+          description: The list of errors for this field
+          items:
+            $ref: '#/components/schemas/Error'
+      additionalProperties: false
+      required:
+      - _errors
+    ErrorDetails:
+      oneOf:
+      - type: object
+        additionalProperties:
+          $ref: '#/components/schemas/ErrorDetails'
+      - $ref: '#/components/schemas/InnerErrors'
+  responses:
+    ClientError:
+      description: Client error response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+              message:
+                type: string
+              errors:
+                type: object
+    ClientErrorResponse:
+      description: Client error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    guildId:
+      name: guild_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the guild (Snowflake)
+  securitySchemes:
+    BotToken:
+      type: http
+      scheme: bearer
+      description: Bot token authentication
+externalDocs:
+  description: Discord Interactions Documentation
+  url: https://discord.com/developers/docs/interactions/overview

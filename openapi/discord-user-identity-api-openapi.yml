@@ -1,0 +1,268 @@
+openapi: 3.1.0
+info:
+  title: Discord Interactions Application Commands User Identity API
+  description: The Discord Interactions API enables applications to create and respond to application commands (slash commands), message components, and modals. It supports both Gateway-based and webhook-based interaction handling, allowing bots to build rich, interactive user experiences within Discord.
+  version: '10'
+  contact:
+    name: Discord Support
+    url: https://support-dev.discord.com/hc/en-us
+    email: support@discord.com
+  termsOfService: https://discord.com/developers/docs/policies-and-agreements/developer-terms-of-service
+servers:
+- url: https://discord.com/api/v10
+  description: Discord API v10
+security:
+- BotToken: []
+tags:
+- name: User Identity
+  description: Retrieve current user information via OAuth2
+paths:
+  /oauth2/@me:
+    get:
+      operationId: getCurrentAuthorizationInformation
+      summary: Discord Get current authorization information
+      description: Returns info about the current authorization including the user, application, scopes, and expiration.
+      tags:
+      - User Identity
+      security:
+      - BearerToken: []
+      responses:
+        '200':
+          description: Current authorization information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorizationInformation'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /oauth2/applications/@me:
+    get:
+      operationId: getMyOAuth2Application
+      summary: Discord Get current application
+      description: Returns the bot's application object.
+      tags:
+      - User Identity
+      security:
+      - BotToken: []
+      responses:
+        '200':
+          description: Application object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /users/@me:
+    get:
+      operationId: getCurrentUser
+      summary: Discord Get current user
+      description: Returns the user object of the current OAuth2 authorized user.
+      tags:
+      - User Identity
+      security:
+      - BearerToken: []
+      responses:
+        '200':
+          description: User object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /users/@me/guilds:
+    get:
+      operationId: getCurrentUserGuilds
+      summary: Discord List current user guilds
+      description: Returns a list of partial guild objects the current user is a member of.
+      tags:
+      - User Identity
+      security:
+      - BearerToken: []
+      parameters:
+      - name: before
+        in: query
+        schema:
+          type: string
+      - name: after
+        in: query
+        schema:
+          type: string
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 200
+          default: 200
+      responses:
+        '200':
+          description: List of partial guild objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PartialGuild'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /users/@me/connections:
+    get:
+      operationId: getCurrentUserConnections
+      summary: Discord List current user connections
+      description: Returns a list of connection objects for the user.
+      tags:
+      - User Identity
+      security:
+      - BearerToken: []
+      responses:
+        '200':
+          description: List of connection objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Connection'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+components:
+  responses:
+    ClientError:
+      description: Client error response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              error_description:
+                type: string
+  schemas:
+    PartialGuild:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        icon:
+          type: string
+          nullable: true
+        owner:
+          type: boolean
+        permissions:
+          type: string
+        features:
+          type: array
+          items:
+            type: string
+    Application:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        icon:
+          type: string
+          nullable: true
+        description:
+          type: string
+        bot_public:
+          type: boolean
+        bot_require_code_grant:
+          type: boolean
+        verify_key:
+          type: string
+        flags:
+          type: integer
+      required:
+      - id
+      - name
+      - description
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        username:
+          type: string
+        discriminator:
+          type: string
+        global_name:
+          type: string
+          nullable: true
+        avatar:
+          type: string
+          nullable: true
+        bot:
+          type: boolean
+        mfa_enabled:
+          type: boolean
+        locale:
+          type: string
+        verified:
+          type: boolean
+        email:
+          type: string
+          nullable: true
+        flags:
+          type: integer
+        premium_type:
+          type: integer
+        public_flags:
+          type: integer
+      required:
+      - id
+      - username
+    AuthorizationInformation:
+      type: object
+      properties:
+        application:
+          $ref: '#/components/schemas/Application'
+        scopes:
+          type: array
+          items:
+            type: string
+        expires:
+          type: string
+          format: date-time
+        user:
+          $ref: '#/components/schemas/User'
+      required:
+      - application
+      - scopes
+      - expires
+    Connection:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        revoked:
+          type: boolean
+        verified:
+          type: boolean
+        friend_sync:
+          type: boolean
+        show_activity:
+          type: boolean
+        two_way_link:
+          type: boolean
+        visibility:
+          type: integer
+          description: 0=None, 1=Everyone
+  securitySchemes:
+    BotToken:
+      type: http
+      scheme: bearer
+      description: Bot token authentication
+externalDocs:
+  description: Discord Interactions Documentation
+  url: https://discord.com/developers/docs/interactions/overview

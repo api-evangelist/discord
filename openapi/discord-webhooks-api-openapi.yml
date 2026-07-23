@@ -1,0 +1,4630 @@
+openapi: 3.1.0
+info:
+  title: Discord Interactions Application Commands Webhooks API
+  description: The Discord Interactions API enables applications to create and respond to application commands (slash commands), message components, and modals. It supports both Gateway-based and webhook-based interaction handling, allowing bots to build rich, interactive user experiences within Discord.
+  version: '10'
+  contact:
+    name: Discord Support
+    url: https://support-dev.discord.com/hc/en-us
+    email: support@discord.com
+  termsOfService: https://discord.com/developers/docs/policies-and-agreements/developer-terms-of-service
+servers:
+- url: https://discord.com/api/v10
+  description: Discord API v10
+security:
+- BotToken: []
+tags:
+- name: Webhooks
+paths:
+  /webhooks/{webhook_id}/{webhook_token}/messages/@original:
+    parameters:
+    - name: webhook_id
+      in: path
+      schema:
+        $ref: '#/components/schemas/SnowflakeType'
+      required: true
+    - name: webhook_token
+      in: path
+      schema:
+        type: string
+        maxLength: 152133
+      required: true
+    get:
+      operationId: get_original_webhook_message
+      parameters:
+      - name: thread_id
+        in: query
+        schema:
+          $ref: '#/components/schemas/SnowflakeType'
+      responses:
+        '200':
+          description: 200 response for get_original_webhook_message
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - {}
+      - BotToken: []
+      tags:
+      - Webhooks
+    delete:
+      operationId: delete_original_webhook_message
+      parameters:
+      - name: thread_id
+        in: query
+        schema:
+          $ref: '#/components/schemas/SnowflakeType'
+      responses:
+        '204':
+          description: 204 response for delete_original_webhook_message
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - {}
+      - BotToken: []
+      tags:
+      - Webhooks
+    patch:
+      operationId: update_original_webhook_message
+      parameters:
+      - name: thread_id
+        in: query
+        schema:
+          $ref: '#/components/schemas/SnowflakeType'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IncomingWebhookUpdateRequestPartial'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/IncomingWebhookUpdateRequestPartial'
+          multipart/form-data:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/IncomingWebhookUpdateRequestPartial'
+              - type: object
+                properties:
+                  files[0]:
+                    type: string
+                    contentEncoding: binary
+                  files[1]:
+                    type: string
+                    contentEncoding: binary
+                  files[2]:
+                    type: string
+                    contentEncoding: binary
+                  files[3]:
+                    type: string
+                    contentEncoding: binary
+                  files[4]:
+                    type: string
+                    contentEncoding: binary
+                  files[5]:
+                    type: string
+                    contentEncoding: binary
+                  files[6]:
+                    type: string
+                    contentEncoding: binary
+                  files[7]:
+                    type: string
+                    contentEncoding: binary
+                  files[8]:
+                    type: string
+                    contentEncoding: binary
+                  files[9]:
+                    type: string
+                    contentEncoding: binary
+        required: true
+      responses:
+        '200':
+          description: 200 response for update_original_webhook_message
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - {}
+      - BotToken: []
+      tags:
+      - Webhooks
+  /webhooks/{webhook_id}/{webhook_token}/messages/{message_id}:
+    parameters:
+    - name: webhook_id
+      in: path
+      schema:
+        $ref: '#/components/schemas/SnowflakeType'
+      required: true
+    - name: webhook_token
+      in: path
+      schema:
+        type: string
+        maxLength: 152133
+      required: true
+    - name: message_id
+      in: path
+      schema:
+        $ref: '#/components/schemas/SnowflakeType'
+      required: true
+    get:
+      operationId: get_webhook_message
+      parameters:
+      - name: thread_id
+        in: query
+        schema:
+          $ref: '#/components/schemas/SnowflakeType'
+      responses:
+        '200':
+          description: 200 response for get_webhook_message
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - {}
+      - BotToken: []
+      tags:
+      - Webhooks
+    delete:
+      operationId: delete_webhook_message
+      parameters:
+      - name: thread_id
+        in: query
+        schema:
+          $ref: '#/components/schemas/SnowflakeType'
+      responses:
+        '204':
+          description: 204 response for delete_webhook_message
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - {}
+      - BotToken: []
+      tags:
+      - Webhooks
+    patch:
+      operationId: update_webhook_message
+      parameters:
+      - name: thread_id
+        in: query
+        schema:
+          $ref: '#/components/schemas/SnowflakeType'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IncomingWebhookUpdateRequestPartial'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/IncomingWebhookUpdateRequestPartial'
+          multipart/form-data:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/IncomingWebhookUpdateRequestPartial'
+              - type: object
+                properties:
+                  files[0]:
+                    type: string
+                    contentEncoding: binary
+                  files[1]:
+                    type: string
+                    contentEncoding: binary
+                  files[2]:
+                    type: string
+                    contentEncoding: binary
+                  files[3]:
+                    type: string
+                    contentEncoding: binary
+                  files[4]:
+                    type: string
+                    contentEncoding: binary
+                  files[5]:
+                    type: string
+                    contentEncoding: binary
+                  files[6]:
+                    type: string
+                    contentEncoding: binary
+                  files[7]:
+                    type: string
+                    contentEncoding: binary
+                  files[8]:
+                    type: string
+                    contentEncoding: binary
+                  files[9]:
+                    type: string
+                    contentEncoding: binary
+        required: true
+      responses:
+        '200':
+          description: 200 response for update_webhook_message
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - {}
+      - BotToken: []
+      tags:
+      - Webhooks
+  /webhooks/{webhook_id}/{webhook_token}/github:
+    parameters:
+    - name: webhook_id
+      in: path
+      schema:
+        $ref: '#/components/schemas/SnowflakeType'
+      required: true
+    - name: webhook_token
+      in: path
+      schema:
+        type: string
+        maxLength: 152133
+      required: true
+    post:
+      operationId: execute_github_compatible_webhook
+      parameters:
+      - name: wait
+        in: query
+        schema:
+          type: boolean
+      - name: thread_id
+        in: query
+        schema:
+          $ref: '#/components/schemas/SnowflakeType'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GithubWebhook'
+        required: true
+      responses:
+        '204':
+          description: 204 response for execute_github_compatible_webhook
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - {}
+      - BotToken: []
+      tags:
+      - Webhooks
+  /webhooks/{webhook_id}/{webhook_token}/slack:
+    parameters:
+    - name: webhook_id
+      in: path
+      schema:
+        $ref: '#/components/schemas/SnowflakeType'
+      required: true
+    - name: webhook_token
+      in: path
+      schema:
+        type: string
+        maxLength: 152133
+      required: true
+    post:
+      operationId: execute_slack_compatible_webhook
+      parameters:
+      - name: wait
+        in: query
+        schema:
+          type: boolean
+      - name: thread_id
+        in: query
+        schema:
+          $ref: '#/components/schemas/SnowflakeType'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SlackWebhook'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SlackWebhook'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SlackWebhook'
+        required: true
+      responses:
+        '200':
+          description: 200 response for execute_slack_compatible_webhook
+          content:
+            application/json:
+              schema:
+                type:
+                - string
+                - 'null'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - {}
+      - BotToken: []
+      tags:
+      - Webhooks
+  /webhooks/{webhook_id}/{webhook_token}:
+    parameters:
+    - name: webhook_id
+      in: path
+      schema:
+        $ref: '#/components/schemas/SnowflakeType'
+      required: true
+    - name: webhook_token
+      in: path
+      schema:
+        type: string
+        maxLength: 152133
+      required: true
+    get:
+      operationId: get_webhook_by_token
+      responses:
+        '200':
+          description: 200 response for get_webhook_by_token
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ApplicationIncomingWebhookResponse'
+                - $ref: '#/components/schemas/ChannelFollowerWebhookResponse'
+                - $ref: '#/components/schemas/GuildIncomingWebhookResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - {}
+      - BotToken: []
+      tags:
+      - Webhooks
+    post:
+      operationId: execute_webhook
+      parameters:
+      - name: wait
+        in: query
+        schema:
+          type: boolean
+      - name: thread_id
+        in: query
+        schema:
+          $ref: '#/components/schemas/SnowflakeType'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              anyOf:
+              - $ref: '#/components/schemas/IncomingWebhookRequestPartial'
+              - $ref: '#/components/schemas/IncomingWebhookUpdateRequestPartial'
+              x-discord-union: oneOf
+          application/x-www-form-urlencoded:
+            schema:
+              anyOf:
+              - $ref: '#/components/schemas/IncomingWebhookRequestPartial'
+              - $ref: '#/components/schemas/IncomingWebhookUpdateRequestPartial'
+              x-discord-union: oneOf
+          multipart/form-data:
+            schema:
+              anyOf:
+              - $ref: '#/components/schemas/IncomingWebhookRequestPartial'
+              - $ref: '#/components/schemas/IncomingWebhookUpdateRequestPartial'
+              x-discord-union: oneOf
+        required: true
+      responses:
+        '200':
+          description: 200 response for execute_webhook
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageResponse'
+        '204':
+          description: 204 response for execute_webhook
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - {}
+      - BotToken: []
+      tags:
+      - Webhooks
+    delete:
+      operationId: delete_webhook_by_token
+      responses:
+        '204':
+          description: 204 response for delete_webhook_by_token
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - {}
+      - BotToken: []
+      tags:
+      - Webhooks
+    patch:
+      operationId: update_webhook_by_token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  minLength: 1
+                  maxLength: 80
+                avatar:
+                  type:
+                  - string
+                  - 'null'
+                  contentEncoding: base64
+        required: true
+      responses:
+        '200':
+          description: 200 response for update_webhook_by_token
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ApplicationIncomingWebhookResponse'
+                - $ref: '#/components/schemas/ChannelFollowerWebhookResponse'
+                - $ref: '#/components/schemas/GuildIncomingWebhookResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - {}
+      - BotToken: []
+      tags:
+      - Webhooks
+  /webhooks/{webhook_id}:
+    parameters:
+    - name: webhook_id
+      in: path
+      schema:
+        $ref: '#/components/schemas/SnowflakeType'
+      required: true
+    get:
+      operationId: get_webhook
+      responses:
+        '200':
+          description: 200 response for get_webhook
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ApplicationIncomingWebhookResponse'
+                - $ref: '#/components/schemas/ChannelFollowerWebhookResponse'
+                - $ref: '#/components/schemas/GuildIncomingWebhookResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      tags:
+      - Webhooks
+    delete:
+      operationId: delete_webhook
+      responses:
+        '204':
+          description: 204 response for delete_webhook
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      tags:
+      - Webhooks
+    patch:
+      operationId: update_webhook
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  minLength: 1
+                  maxLength: 80
+                avatar:
+                  type:
+                  - string
+                  - 'null'
+                  contentEncoding: base64
+                channel_id:
+                  oneOf:
+                  - type: 'null'
+                  - $ref: '#/components/schemas/SnowflakeType'
+        required: true
+      responses:
+        '200':
+          description: 200 response for update_webhook
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/ApplicationIncomingWebhookResponse'
+                - $ref: '#/components/schemas/ChannelFollowerWebhookResponse'
+                - $ref: '#/components/schemas/GuildIncomingWebhookResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      tags:
+      - Webhooks
+  /channels/{channel_id}/webhooks:
+    get:
+      operationId: getChannelWebhooks
+      summary: Discord List channel webhooks
+      description: Returns a list of channel webhook objects.
+      tags:
+      - Webhooks
+      parameters:
+      - $ref: '#/components/parameters/channelId'
+      responses:
+        '200':
+          description: List of webhook objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Webhook'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    post:
+      operationId: createWebhook
+      summary: Discord Create webhook
+      description: Creates a new webhook for the channel.
+      tags:
+      - Webhooks
+      parameters:
+      - $ref: '#/components/parameters/channelId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - name
+              properties:
+                name:
+                  type: string
+                  minLength: 1
+                  maxLength: 80
+                avatar:
+                  type: string
+                  nullable: true
+      responses:
+        '200':
+          description: Webhook created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /guilds/{guild_id}/webhooks:
+    get:
+      operationId: getGuildWebhooks
+      summary: Discord List guild webhooks
+      description: Returns a list of guild webhook objects.
+      tags:
+      - Webhooks
+      parameters:
+      - $ref: '#/components/parameters/guildId'
+      responses:
+        '200':
+          description: List of webhook objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Webhook'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+components:
+  schemas:
+    MessageReactionCountDetailsResponse:
+      type: object
+      properties:
+        burst:
+          type: integer
+          format: int32
+        normal:
+          type: integer
+          format: int32
+      required:
+      - burst
+      - normal
+    Int53Type:
+      type: integer
+      minimum: -9007199254740991
+      maximum: 9007199254740991
+      format: int64
+    ApplicationTypes:
+      type: integer
+      oneOf:
+      - title: GUILD_ROLE_SUBSCRIPTIONS
+        const: 4
+      format: int32
+    MessageRoleSubscriptionDataResponse:
+      type: object
+      properties:
+        role_subscription_listing_id:
+          $ref: '#/components/schemas/SnowflakeType'
+        tier_name:
+          type: string
+        total_months_subscribed:
+          type: integer
+          format: int32
+        is_renewal:
+          type: boolean
+      required:
+      - role_subscription_listing_id
+      - tier_name
+      - total_months_subscribed
+      - is_renewal
+    InputText:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 4
+          allOf:
+          - $ref: '#/components/schemas/MessageComponentTypes'
+          format: int32
+        custom_id:
+          type: string
+          maxLength: 100
+        style:
+          $ref: '#/components/schemas/TextStyleTypes'
+        label:
+          type: string
+          maxLength: 45
+        value:
+          type:
+          - string
+          - 'null'
+          maxLength: 4000
+        placeholder:
+          type:
+          - string
+          - 'null'
+          maxLength: 100
+        required:
+          type:
+          - boolean
+          - 'null'
+        min_length:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          maximum: 4000
+        max_length:
+          type:
+          - integer
+          - 'null'
+          minimum: 1
+          maximum: 4000
+      required:
+      - type
+      - custom_id
+      - style
+      - label
+    GithubRelease:
+      type: object
+      properties:
+        id:
+          type: integer
+        tag_name:
+          type: string
+          maxLength: 152133
+        html_url:
+          type: string
+          maxLength: 2048
+          format: uri
+        author:
+          $ref: '#/components/schemas/GithubUser'
+      required:
+      - id
+      - tag_name
+      - html_url
+      - author
+    ChannelSelectDefaultValue:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - channel
+          allOf:
+          - $ref: '#/components/schemas/SnowflakeSelectDefaultValueTypes'
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+      required:
+      - type
+      - id
+    StringSelect:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 3
+          allOf:
+          - $ref: '#/components/schemas/MessageComponentTypes'
+          format: int32
+        custom_id:
+          type: string
+          maxLength: 100
+        placeholder:
+          type:
+          - string
+          - 'null'
+          maxLength: 150
+        min_values:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          maximum: 25
+        max_values:
+          type:
+          - integer
+          - 'null'
+          minimum: 1
+          maximum: 25
+        disabled:
+          type:
+          - boolean
+          - 'null'
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/SelectOption'
+          minItems: 1
+          maxItems: 25
+      required:
+      - type
+      - custom_id
+      - options
+    ApplicationResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        name:
+          type: string
+        icon:
+          type:
+          - string
+          - 'null'
+        description:
+          type: string
+        type:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/ApplicationTypes'
+        cover_image:
+          type:
+          - string
+          - 'null'
+        primary_sku_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        bot:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/UserResponse'
+        slug:
+          type:
+          - string
+          - 'null'
+        guild_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        rpc_origins:
+          type:
+          - array
+          - 'null'
+          items:
+            type:
+            - string
+            - 'null'
+        bot_public:
+          type:
+          - boolean
+          - 'null'
+        bot_require_code_grant:
+          type:
+          - boolean
+          - 'null'
+        terms_of_service_url:
+          type:
+          - string
+          - 'null'
+          format: uri
+        privacy_policy_url:
+          type:
+          - string
+          - 'null'
+          format: uri
+        custom_install_url:
+          type:
+          - string
+          - 'null'
+          format: uri
+        install_params:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/ApplicationOAuth2InstallParamsResponse'
+        verify_key:
+          type: string
+        flags:
+          type: integer
+          format: int32
+        max_participants:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        tags:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          uniqueItems: true
+      required:
+      - id
+      - name
+      - description
+      - verify_key
+      - flags
+    ChannelFollowerWebhookResponse:
+      type: object
+      properties:
+        application_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        avatar:
+          type:
+          - string
+          - 'null'
+        channel_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        guild_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        name:
+          type: string
+        type:
+          type: integer
+          enum:
+          - 2
+          allOf:
+          - $ref: '#/components/schemas/WebhookTypes'
+          format: int32
+        user:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/UserResponse'
+        source_guild:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/WebhookSourceGuildResponse'
+        source_channel:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/WebhookSourceChannelResponse'
+      required:
+      - id
+      - name
+      - type
+    MessageComponentRoleSelectResponse:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 6
+          allOf:
+          - $ref: '#/components/schemas/MessageComponentTypes'
+          format: int32
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        custom_id:
+          type: string
+        placeholder:
+          type:
+          - string
+          - 'null'
+        min_values:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        max_values:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        disabled:
+          type:
+          - boolean
+          - 'null'
+      required:
+      - type
+      - id
+      - custom_id
+    Button:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 2
+          allOf:
+          - $ref: '#/components/schemas/MessageComponentTypes'
+          format: int32
+        custom_id:
+          type:
+          - string
+          - 'null'
+          maxLength: 100
+        style:
+          $ref: '#/components/schemas/ButtonStyleTypes'
+        label:
+          type:
+          - string
+          - 'null'
+          maxLength: 80
+        disabled:
+          type:
+          - boolean
+          - 'null'
+        emoji:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Emoji'
+        url:
+          type:
+          - string
+          - 'null'
+          maxLength: 512
+          format: uri
+        sku_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+      required:
+      - type
+      - style
+    RichEmbedVideo:
+      type: object
+      properties:
+        url:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+          format: uri
+        width:
+          type:
+          - integer
+          - 'null'
+        height:
+          type:
+          - integer
+          - 'null'
+        placeholder:
+          type:
+          - string
+          - 'null'
+          maxLength: 64
+        placeholder_version:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          maximum: 2147483647
+    GithubAuthor:
+      type: object
+      properties:
+        username:
+          type:
+          - string
+          - 'null'
+          maxLength: 152133
+        name:
+          type: string
+          maxLength: 152133
+      required:
+      - name
+    StickerFormatTypes:
+      type: integer
+      oneOf:
+      - title: PNG
+        const: 1
+      - title: APNG
+        const: 2
+      - title: LOTTIE
+        const: 3
+      - title: GIF
+        const: 4
+      format: int32
+    GithubRepository:
+      type: object
+      properties:
+        id:
+          type: integer
+        html_url:
+          type: string
+          maxLength: 2048
+          format: uri
+        name:
+          type: string
+          maxLength: 152133
+        full_name:
+          type: string
+          maxLength: 152133
+      required:
+      - id
+      - html_url
+      - name
+      - full_name
+    MessageEmbedVideoResponse:
+      type: object
+      properties:
+        url:
+          type:
+          - string
+          - 'null'
+        proxy_url:
+          type:
+          - string
+          - 'null'
+          format: uri
+        width:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/UInt32Type'
+        height:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/UInt32Type'
+        placeholder:
+          type:
+          - string
+          - 'null'
+        placeholder_version:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/UInt32Type'
+    GithubCheckSuite:
+      type: object
+      properties:
+        conclusion:
+          type:
+          - string
+          - 'null'
+          maxLength: 152133
+        head_branch:
+          type:
+          - string
+          - 'null'
+          maxLength: 152133
+        head_sha:
+          type: string
+          maxLength: 152133
+        pull_requests:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/GithubCheckPullRequest'
+          maxItems: 1521
+        app:
+          $ref: '#/components/schemas/GithubCheckApp'
+      required:
+      - head_sha
+      - app
+    ThreadMetadataResponse:
+      type: object
+      properties:
+        archived:
+          type: boolean
+        archive_timestamp:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        auto_archive_duration:
+          $ref: '#/components/schemas/ThreadAutoArchiveDuration'
+        locked:
+          type: boolean
+        create_timestamp:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        invitable:
+          type:
+          - boolean
+          - 'null'
+      required:
+      - archived
+      - auto_archive_duration
+      - locked
+    ResolvedObjectsResponse:
+      type: object
+      properties:
+        users:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/UserResponse'
+        members:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/GuildMemberResponse'
+        channels:
+          type: object
+          additionalProperties:
+            oneOf:
+            - $ref: '#/components/schemas/GuildChannelResponse'
+            - $ref: '#/components/schemas/PrivateChannelResponse'
+            - $ref: '#/components/schemas/PrivateGroupChannelResponse'
+            - $ref: '#/components/schemas/ThreadResponse'
+        roles:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/GuildRoleResponse'
+      required:
+      - users
+      - members
+      - channels
+      - roles
+    SnowflakeType:
+      type: string
+      pattern: ^(0|[1-9][0-9]*)$
+      format: snowflake
+    StickerTypes:
+      type: integer
+      oneOf:
+      - title: STANDARD
+        description: an official sticker in a pack, part of Nitro or in a removed purchasable pack
+        const: 1
+      - title: GUILD
+        description: a sticker uploaded to a guild for the guild's members
+        const: 2
+      format: int32
+    BasicApplicationResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        name:
+          type: string
+        icon:
+          type:
+          - string
+          - 'null'
+        description:
+          type: string
+        type:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/ApplicationTypes'
+        cover_image:
+          type:
+          - string
+          - 'null'
+        primary_sku_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        bot:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/UserResponse'
+      required:
+      - id
+      - name
+      - description
+    GithubCheckApp:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 152133
+      required:
+      - name
+    MessageEmbedFooterResponse:
+      type: object
+      properties:
+        text:
+          type: string
+        icon_url:
+          type:
+          - string
+          - 'null'
+        proxy_icon_url:
+          type:
+          - string
+          - 'null'
+          format: uri
+      required:
+      - text
+    MessageEmbedImageResponse:
+      type: object
+      properties:
+        url:
+          type:
+          - string
+          - 'null'
+        proxy_url:
+          type:
+          - string
+          - 'null'
+          format: uri
+        width:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/UInt32Type'
+        height:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/UInt32Type'
+        placeholder:
+          type:
+          - string
+          - 'null'
+        placeholder_version:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/UInt32Type'
+    MessageComponentStringSelectResponse:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 3
+          allOf:
+          - $ref: '#/components/schemas/MessageComponentTypes'
+          format: int32
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        custom_id:
+          type: string
+        placeholder:
+          type:
+          - string
+          - 'null'
+        min_values:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        max_values:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        disabled:
+          type:
+          - boolean
+          - 'null'
+        options:
+          type:
+          - array
+          - 'null'
+          items:
+            oneOf:
+            - type: 'null'
+            - $ref: '#/components/schemas/SelectOptionResponse'
+      required:
+      - type
+      - id
+      - custom_id
+    Webhook:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Snowflake'
+        type:
+          type: integer
+          description: 1=Incoming, 2=Channel Follower, 3=Application
+        guild_id:
+          $ref: '#/components/schemas/Snowflake'
+        channel_id:
+          $ref: '#/components/schemas/Snowflake'
+        user:
+          $ref: '#/components/schemas/User'
+        name:
+          type: string
+          nullable: true
+        avatar:
+          type: string
+          nullable: true
+        token:
+          type: string
+        application_id:
+          $ref: '#/components/schemas/Snowflake'
+        url:
+          type: string
+          format: uri
+      required:
+      - id
+      - type
+    MessageCallResponse:
+      type: object
+      properties:
+        ended_timestamp:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/SnowflakeType'
+          uniqueItems: true
+      required:
+      - participants
+    User:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Snowflake'
+        username:
+          type: string
+        discriminator:
+          type: string
+        global_name:
+          type: string
+          nullable: true
+        avatar:
+          type: string
+          nullable: true
+        bot:
+          type: boolean
+        system:
+          type: boolean
+        mfa_enabled:
+          type: boolean
+        banner:
+          type: string
+          nullable: true
+        accent_color:
+          type: integer
+          nullable: true
+        locale:
+          type: string
+        verified:
+          type: boolean
+        email:
+          type: string
+          nullable: true
+        flags:
+          type: integer
+        premium_type:
+          type: integer
+        public_flags:
+          type: integer
+        avatar_decoration_data:
+          type: object
+          nullable: true
+      required:
+      - id
+      - username
+    PurchaseNotificationResponse:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/PurchaseType'
+        guild_product_purchase:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/GuildProductPurchaseResponse'
+      required:
+      - type
+    Error:
+      type: object
+      description: A single error, either for an API response or a specific field.
+      properties:
+        code:
+          type: integer
+          description: Discord internal error code. See error code reference
+        message:
+          type: string
+          description: Human-readable error message
+      required:
+      - code
+      - message
+    GithubCheckPullRequest:
+      type: object
+      properties:
+        number:
+          type: integer
+      required:
+      - number
+    GithubReview:
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/GithubUser'
+        body:
+          type:
+          - string
+          - 'null'
+          maxLength: 152133
+        html_url:
+          type: string
+          maxLength: 2048
+          format: uri
+        state:
+          type: string
+          maxLength: 152133
+      required:
+      - user
+      - html_url
+      - state
+    UserResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        username:
+          type: string
+        avatar:
+          type:
+          - string
+          - 'null'
+        discriminator:
+          type: string
+        public_flags:
+          type: integer
+          format: int32
+        flags:
+          $ref: '#/components/schemas/Int53Type'
+        bot:
+          type:
+          - boolean
+          - 'null'
+        system:
+          type:
+          - boolean
+          - 'null'
+        banner:
+          type:
+          - string
+          - 'null'
+        accent_color:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        global_name:
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - username
+      - discriminator
+      - public_flags
+      - flags
+    StandardStickerResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        name:
+          type: string
+        tags:
+          type: string
+        type:
+          type: integer
+          enum:
+          - 1
+          allOf:
+          - $ref: '#/components/schemas/StickerTypes'
+          format: int32
+        format_type:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/StickerFormatTypes'
+        description:
+          type:
+          - string
+          - 'null'
+        pack_id:
+          $ref: '#/components/schemas/SnowflakeType'
+        sort_value:
+          type: integer
+          format: int32
+      required:
+      - id
+      - name
+      - tags
+      - type
+      - pack_id
+      - sort_value
+    ChannelPermissionOverwrites:
+      type: integer
+      oneOf:
+      - title: ROLE
+        const: 0
+      - title: MEMBER
+        const: 1
+      format: int32
+    GithubWebhook:
+      type: object
+      properties:
+        action:
+          type:
+          - string
+          - 'null'
+          maxLength: 152133
+        ref:
+          type:
+          - string
+          - 'null'
+          maxLength: 152133
+        ref_type:
+          type:
+          - string
+          - 'null'
+          maxLength: 152133
+        comment:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/GithubComment'
+        issue:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/GithubIssue'
+        pull_request:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/GithubIssue'
+        repository:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/GithubRepository'
+        forkee:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/GithubRepository'
+        sender:
+          $ref: '#/components/schemas/GithubUser'
+        member:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/GithubUser'
+        release:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/GithubRelease'
+        head_commit:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/GithubCommit'
+        commits:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/GithubCommit'
+          maxItems: 1521
+        forced:
+          type:
+          - boolean
+          - 'null'
+        compare:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+          format: uri
+        review:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/GithubReview'
+        check_run:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/GithubCheckRun'
+        check_suite:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/GithubCheckSuite'
+        discussion:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/GithubDiscussion'
+        answer:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/GithubComment'
+      required:
+      - sender
+    IncomingWebhookRequestPartial:
+      type: object
+      properties:
+        content:
+          type:
+          - string
+          - 'null'
+          maxLength: 2000
+        embeds:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/RichEmbed'
+          maxItems: 10
+        allowed_mentions:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/MessageAllowedMentionsRequest'
+        components:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ActionRow'
+          maxItems: 5
+        attachments:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/MessageAttachmentRequest'
+          maxItems: 10
+        tts:
+          type:
+          - boolean
+          - 'null'
+        flags:
+          type:
+          - integer
+          - 'null'
+        username:
+          type:
+          - string
+          - 'null'
+          minLength: 1
+          maxLength: 80
+        avatar_url:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+          format: uri
+        thread_name:
+          type:
+          - string
+          - 'null'
+          minLength: 0
+          maxLength: 100
+        applied_tags:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SnowflakeType'
+          maxItems: 5
+    SnowflakeSelectDefaultValueTypes:
+      type: string
+      oneOf:
+      - title: USER
+        const: user
+      - title: ROLE
+        const: role
+      - title: CHANNEL
+        const: channel
+    GuildChannelResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        type:
+          type: integer
+          enum:
+          - 0
+          - 2
+          - 4
+          - 5
+          - 13
+          - 14
+          - 15
+          allOf:
+          - $ref: '#/components/schemas/ChannelTypes'
+          format: int32
+        last_message_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        flags:
+          type: integer
+          format: int32
+        last_pin_timestamp:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        guild_id:
+          $ref: '#/components/schemas/SnowflakeType'
+        name:
+          type: string
+        parent_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        rate_limit_per_user:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        bitrate:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        user_limit:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        rtc_region:
+          type:
+          - string
+          - 'null'
+        video_quality_mode:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/VideoQualityModes'
+        permissions:
+          type:
+          - string
+          - 'null'
+        topic:
+          type:
+          - string
+          - 'null'
+        default_auto_archive_duration:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/ThreadAutoArchiveDuration'
+        default_thread_rate_limit_per_user:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        position:
+          type: integer
+          format: int32
+        permission_overwrites:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ChannelPermissionOverwriteResponse'
+        nsfw:
+          type:
+          - boolean
+          - 'null'
+        available_tags:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ForumTagResponse'
+        default_reaction_emoji:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/DefaultReactionEmojiResponse'
+        default_sort_order:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/ThreadSortOrder'
+        default_forum_layout:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/ForumLayout'
+      required:
+      - id
+      - type
+      - flags
+      - guild_id
+      - name
+      - position
+    PrivateChannelResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        type:
+          type: integer
+          enum:
+          - 1
+          allOf:
+          - $ref: '#/components/schemas/ChannelTypes'
+          format: int32
+        last_message_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        flags:
+          type: integer
+          format: int32
+        last_pin_timestamp:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        recipients:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserResponse'
+      required:
+      - id
+      - type
+      - flags
+      - recipients
+    GithubCheckRunOutput:
+      type: object
+      properties:
+        title:
+          type:
+          - string
+          - 'null'
+          maxLength: 152133
+        summary:
+          type:
+          - string
+          - 'null'
+          maxLength: 152133
+    WebhookSourceGuildResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        icon:
+          type:
+          - string
+          - 'null'
+        name:
+          type: string
+      required:
+      - id
+      - name
+    MessageReferenceResponse:
+      type: object
+      properties:
+        type:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/MessageReferenceType'
+        channel_id:
+          $ref: '#/components/schemas/SnowflakeType'
+        message_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        guild_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+      required:
+      - channel_id
+    UserSelect:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 5
+          allOf:
+          - $ref: '#/components/schemas/MessageComponentTypes'
+          format: int32
+        custom_id:
+          type: string
+          maxLength: 100
+        placeholder:
+          type:
+          - string
+          - 'null'
+          maxLength: 150
+        min_values:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          maximum: 25
+        max_values:
+          type:
+          - integer
+          - 'null'
+          minimum: 1
+          maximum: 25
+        disabled:
+          type:
+          - boolean
+          - 'null'
+        default_values:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/UserSelectDefaultValue'
+          maxItems: 25
+      required:
+      - type
+      - custom_id
+    UInt32Type:
+      type: integer
+      minimum: 0
+      maximum: 4294967295
+      format: int64
+    GithubIssue:
+      type: object
+      properties:
+        id:
+          type: integer
+        number:
+          type: integer
+        html_url:
+          type: string
+          maxLength: 2048
+          format: uri
+        user:
+          $ref: '#/components/schemas/GithubUser'
+        title:
+          type: string
+          maxLength: 152133
+        body:
+          type:
+          - string
+          - 'null'
+          maxLength: 152133
+        pull_request: {}
+      required:
+      - id
+      - number
+      - html_url
+      - user
+      - title
+    RichEmbedFooter:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+        icon_url:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+          format: uri
+    MessageEmbedResponse:
+      type: object
+      properties:
+        type:
+          type: string
+        url:
+          type:
+          - string
+          - 'null'
+          format: uri
+        title:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        color:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        timestamp:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        fields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/MessageEmbedFieldResponse'
+        author:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/MessageEmbedAuthorResponse'
+        provider:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/MessageEmbedProviderResponse'
+        image:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/MessageEmbedImageResponse'
+        thumbnail:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/MessageEmbedImageResponse'
+        video:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/MessageEmbedVideoResponse'
+        footer:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/MessageEmbedFooterResponse'
+      required:
+      - type
+    GuildRoleResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        name:
+          type: string
+        description:
+          type:
+          - string
+          - 'null'
+        permissions:
+          type: string
+        position:
+          type: integer
+          format: int32
+        color:
+          type: integer
+          format: int32
+        hoist:
+          type: boolean
+        managed:
+          type: boolean
+        mentionable:
+          type: boolean
+        icon:
+          type:
+          - string
+          - 'null'
+        unicode_emoji:
+          type:
+          - string
+          - 'null'
+        tags:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/GuildRoleTagsResponse'
+      required:
+      - id
+      - name
+      - permissions
+      - position
+      - color
+      - hoist
+      - managed
+      - mentionable
+    ThreadSortOrder:
+      type: integer
+      oneOf:
+      - title: LATEST_ACTIVITY
+        description: Sort forum posts by activity
+        const: 0
+      - title: CREATION_DATE
+        description: Sort forum posts by creation time (from most recent to oldest)
+        const: 1
+      format: int32
+    RichEmbedImage:
+      type: object
+      properties:
+        url:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+          format: uri
+        width:
+          type:
+          - integer
+          - 'null'
+        height:
+          type:
+          - integer
+          - 'null'
+        placeholder:
+          type:
+          - string
+          - 'null'
+          maxLength: 64
+        placeholder_version:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          maximum: 2147483647
+    GuildMemberResponse:
+      type: object
+      properties:
+        avatar:
+          type:
+          - string
+          - 'null'
+        avatar_decoration_data:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/UserAvatarDecorationResponse'
+        communication_disabled_until:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        flags:
+          type: integer
+          format: int32
+        joined_at:
+          type: string
+          format: date-time
+        nick:
+          type:
+          - string
+          - 'null'
+        pending:
+          type: boolean
+        premium_since:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/SnowflakeType'
+          uniqueItems: true
+        user:
+          $ref: '#/components/schemas/UserResponse'
+        mute:
+          type: boolean
+        deaf:
+          type: boolean
+      required:
+      - flags
+      - joined_at
+      - pending
+      - roles
+      - user
+      - mute
+      - deaf
+    Snowflake:
+      type: string
+      description: Discord unique ID represented as a string
+      pattern: ^[0-9]+$
+    GithubUser:
+      type: object
+      properties:
+        id:
+          type: integer
+        login:
+          type: string
+          maxLength: 152133
+        html_url:
+          type: string
+          maxLength: 2048
+          format: uri
+        avatar_url:
+          type: string
+          maxLength: 2048
+          format: uri
+      required:
+      - id
+      - login
+      - html_url
+      - avatar_url
+    SelectOption:
+      type: object
+      properties:
+        label:
+          type: string
+          minLength: 1
+          maxLength: 100
+        value:
+          type: string
+          minLength: 1
+          maxLength: 100
+        description:
+          type:
+          - string
+          - 'null'
+          maxLength: 100
+        emoji:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Emoji'
+        default:
+          type:
+          - boolean
+          - 'null'
+      required:
+      - label
+      - value
+    RoleSelectDefaultValue:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - role
+          allOf:
+          - $ref: '#/components/schemas/SnowflakeSelectDefaultValueTypes'
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+      required:
+      - type
+      - id
+    RichEmbedField:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 256
+        value:
+          type: string
+          maxLength: 1024
+        inline:
+          type:
+          - boolean
+          - 'null'
+      required:
+      - name
+      - value
+    DefaultReactionEmojiResponse:
+      type: object
+      properties:
+        emoji_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        emoji_name:
+          type:
+          - string
+          - 'null'
+    ThreadAutoArchiveDuration:
+      type: integer
+      oneOf:
+      - title: ONE_HOUR
+        description: One hour
+        const: 60
+      - title: ONE_DAY
+        description: One day
+        const: 1440
+      - title: THREE_DAY
+        description: Three days
+        const: 4320
+      - title: SEVEN_DAY
+        description: Seven days
+        const: 10080
+      format: int32
+    MessageComponentInputTextResponse:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 4
+          allOf:
+          - $ref: '#/components/schemas/MessageComponentTypes'
+          format: int32
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        custom_id:
+          type: string
+        style:
+          $ref: '#/components/schemas/TextStyleTypes'
+        label:
+          type:
+          - string
+          - 'null'
+        value:
+          type:
+          - string
+          - 'null'
+        placeholder:
+          type:
+          - string
+          - 'null'
+        required:
+          type:
+          - boolean
+          - 'null'
+        min_length:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        max_length:
+          type:
+          - integer
+          - 'null'
+          format: int32
+      required:
+      - type
+      - id
+      - custom_id
+      - style
+    OAuth2Scopes:
+      type: string
+      oneOf:
+      - title: IDENTIFY
+        description: allows /users/@me without email
+        const: identify
+      - title: EMAIL
+        description: enables /users/@me to return an email
+        const: email
+      - title: CONNECTIONS
+        description: allows /users/@me/connections to return linked third-party accounts
+        const: connections
+      - title: GUILDS
+        description: allows /users/@me/guilds to return basic information about all of a user's guilds
+        const: guilds
+      - title: GUILDS_JOIN
+        description: allows /guilds/{guild.id}/members/{user.id} to be used for joining users to a guild
+        const: guilds.join
+      - title: GUILDS_MEMBERS_READ
+        description: allows /users/@me/guilds/{guild.id}/member to return a user's member information in a guild
+        const: guilds.members.read
+      - title: GDM_JOIN
+        description: allows your app to join users to a group dm
+        const: gdm.join
+      - title: BOT
+        description: for oauth2 bots, this puts the bot in the user's selected guild by default
+        const: bot
+      - title: RPC
+        description: for local rpc server access, this allows you to control a user's local Discord client - requires Discord approval
+        const: rpc
+      - title: RPC_NOTIFICATIONS_READ
+        description: for local rpc server access, this allows you to receive notifications pushed out to the user - requires Discord approval
+        const: rpc.notifications.read
+      - title: RPC_VOICE_READ
+        description: for local rpc server access, this allows you to read a user's voice settings and listen for voice events - requires Discord approval
+        const: rpc.voice.read
+      - title: RPC_VOICE_WRITE
+        description: for local rpc server access, this allows you to update a user's voice settings - requires Discord approval
+        const: rpc.voice.write
+      - title: RPC_VIDEO_READ
+        description: for local rpc server access, this allows you to read a user's video status - requires Discord approval
+        const: rpc.video.read
+      - title: RPC_VIDEO_WRITE
+        description: for local rpc server access, this allows you to update a user's video settings - requires Discord approval
+        const: rpc.video.write
+      - title: RPC_SCREENSHARE_READ
+        description: for local rpc server access, this allows you to read a user's screenshare status- requires Discord approval
+        const: rpc.screenshare.read
+      - title: RPC_SCREENSHARE_WRITE
+        description: for local rpc server access, this allows you to update a user's screenshare settings- requires Discord approval
+        const: rpc.screenshare.write
+      - title: RPC_ACTIVITIES_WRITE
+        description: for local rpc server access, this allows you to update a user's activity - requires Discord approval
+        const: rpc.activities.write
+      - title: WEBHOOK_INCOMING
+        description: this generates a webhook that is returned in the oauth token response for authorization code grants
+        const: webhook.incoming
+      - title: MESSAGES_READ
+        description: for local rpc server api access, this allows you to read messages from all client channels (otherwise restricted to channels/guilds your app creates)
+        const: messages.read
+      - title: APPLICATIONS_BUILDS_UPLOAD
+        description: allows your app to upload/update builds for a user's applications - requires Discord approval
+        const: applications.builds.upload
+      - title: APPLICATIONS_BUILDS_READ
+        description: allows your app to read build data for a user's applications
+        const: applications.builds.read
+      - title: APPLICATIONS_COMMANDS
+        description: allows your app to use commands in a guild
+        const: applications.commands
+      - title: APPLICATIONS_COMMANDS_PERMISSIONS_UPDATE
+        description: allows your app to update permissions for its commands in a guild a user has permissions to
+        const: applications.commands.permissions.update
+      - title: APPLICATIONS_COMMANDS_UPDATE
+        description: allows your app to update its commands using a Bearer token - client credentials grant only
+        const: applications.commands.update
+      - title: APPLICATIONS_STORE_UPDATE
+        description: allows your app to read and update store data (SKUs, store listings, achievements, etc.) for a user's applications
+        const: applications.store.update
+      - title: APPLICATIONS_ENTITLEMENTS
+        description: allows your app to read entitlements for a user's applications
+        const: applications.entitlements
+      - title: ACTIVITIES_READ
+        description: allows your app to fetch data from a user's "Now Playing/Recently Played" list - requires Discord approval
+        const: activities.read
+      - title: ACTIVITIES_WRITE
+        description: allows your app to update a user's activity - requires Discord approval (NOT REQUIRED FOR GAMESDK ACTIVITY MANAGER)
+        const: activities.write
+      - title: RELATIONSHIPS_READ
+        description: allows your app to know a user's friends and implicit relationships - requires Discord approval
+        const: relationships.read
+      - title: VOICE
+        description: allows your app to connect to voice on user's behalf and see all the voice members - requires Discord approval
+        const: voice
+      - title: DM_CHANNELS_READ
+        description: allows your app to see information about the user's DMs and group DMs - requires Discord approval
+        const: dm_channels.read
+      - title: ROLE_CONNECTIONS_WRITE
+        description: allows your app to update a user's connection and metadata for the app
+        const: role_connections.write
+      - title: OPENID
+        description: for OpenID Connect, this allows your app to receive user id and basic profile information
+        const: openid
+    VideoQualityModes:
+      type: integer
+      oneOf:
+      - title: AUTO
+        description: Discord chooses the quality for optimal performance
+        const: 1
+      - title: FULL
+        description: 720p
+        const: 2
+      format: int32
+    MessageResponse:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/MessageType'
+        channel_id:
+          $ref: '#/components/schemas/SnowflakeType'
+        content:
+          type: string
+        attachments:
+          type: array
+          items:
+            $ref: '#/components/schemas/MessageAttachmentResponse'
+        embeds:
+          type: array
+          items:
+            $ref: '#/components/schemas/MessageEmbedResponse'
+        timestamp:
+          type: string
+          format: date-time
+        edited_timestamp:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        flags:
+          type: integer
+          format: int32
+        components:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/MessageComponentActionRowResponse'
+            - $ref: '#/components/schemas/MessageComponentButtonResponse'
+            - $ref: '#/components/schemas/MessageComponentChannelSelectResponse'
+            - $ref: '#/components/schemas/MessageComponentInputTextResponse'
+            - $ref: '#/components/schemas/MessageComponentMentionableSelectResponse'
+            - $ref: '#/components/schemas/MessageComponentRoleSelectResponse'
+            - $ref: '#/components/schemas/MessageComponentStringSelectResponse'
+            - $ref: '#/components/schemas/MessageComponentUserSelectResponse'
+        resolved:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/ResolvedObjectsResponse'
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        author:
+          $ref: '#/components/schemas/UserResponse'
+        mentions:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserResponse'
+        mention_roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/SnowflakeType'
+          uniqueItems: true
+        pinned:
+          type: boolean
+        mention_everyone:
+          type: boolean
+        tts:
+          type: boolean
+        call:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/MessageCallResponse'
+        activity:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/MessageActivityResponse'
+        application:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/BasicApplicationResponse'
+        application_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        interaction:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/MessageInteractionResponse'
+        nonce:
+          oneOf:
+          - type: integer
+            minimum: -9223372036854776000
+            maximum: 9223372036854776000
+            format: int64
+          - type: string
+            maxLength: 25
+            format: nonce
+          - type: 'null'
+        webhook_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        message_reference:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/MessageReferenceResponse'
+        thread:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/ThreadResponse'
+        mention_channels:
+          type:
+          - array
+          - 'null'
+          items:
+            oneOf:
+            - type: 'null'
+            - $ref: '#/components/schemas/MessageMentionChannelResponse'
+        stickers:
+          type:
+          - array
+          - 'null'
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/GuildStickerResponse'
+            - $ref: '#/components/schemas/StandardStickerResponse'
+        sticker_items:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/MessageStickerItemResponse'
+        role_subscription_data:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/MessageRoleSubscriptionDataResponse'
+        purchase_notification:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/PurchaseNotificationResponse'
+        position:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        reactions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/MessageReactionResponse'
+        referenced_message:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/BasicMessageResponse'
+      required:
+      - type
+      - channel_id
+      - content
+      - attachments
+      - embeds
+      - timestamp
+      - flags
+      - components
+      - id
+      - author
+      - mentions
+      - mention_roles
+      - pinned
+      - mention_everyone
+      - tts
+    GithubDiscussion:
+      type: object
+      properties:
+        title:
+          type: string
+          maxLength: 152133
+        number:
+          type: integer
+        html_url:
+          type: string
+          maxLength: 2048
+          format: uri
+        answer_html_url:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+          format: uri
+        body:
+          type:
+          - string
+          - 'null'
+          maxLength: 152133
+        user:
+          $ref: '#/components/schemas/GithubUser'
+      required:
+      - title
+      - number
+      - html_url
+      - user
+    ForumTagResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        name:
+          type: string
+        moderated:
+          type: boolean
+        emoji_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        emoji_name:
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - name
+      - moderated
+    MessageComponentChannelSelectResponse:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 8
+          allOf:
+          - $ref: '#/components/schemas/MessageComponentTypes'
+          format: int32
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        custom_id:
+          type: string
+        placeholder:
+          type:
+          - string
+          - 'null'
+        min_values:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        max_values:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        disabled:
+          type:
+          - boolean
+          - 'null'
+        channel_types:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ChannelTypes'
+          uniqueItems: true
+      required:
+      - type
+      - id
+      - custom_id
+    MessageComponentTypes:
+      type: integer
+      oneOf:
+      - title: ACTION_ROW
+        description: Container for other components
+        const: 1
+      - title: BUTTON
+        description: Button object
+        const: 2
+      - title: STRING_SELECT
+        description: Select menu for picking from defined text options
+        const: 3
+      - title: INPUT_TEXT
+        description: Text input object
+        const: 4
+      - title: USER_SELECT
+        description: Select menu for users
+        const: 5
+      - title: ROLE_SELECT
+        description: Select menu for roles
+        const: 6
+      - title: MENTIONABLE_SELECT
+        description: Select menu for mentionables (users and roles)
+        const: 7
+      - title: CHANNEL_SELECT
+        description: Select menu for channels
+        const: 8
+      format: int32
+    UserSelectDefaultValue:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - user
+          allOf:
+          - $ref: '#/components/schemas/SnowflakeSelectDefaultValueTypes'
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+      required:
+      - type
+      - id
+    MessageAttachmentResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        filename:
+          type: string
+        size:
+          type: integer
+          format: int32
+        url:
+          type: string
+          format: uri
+        proxy_url:
+          type: string
+          format: uri
+        width:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        height:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        duration_secs:
+          type:
+          - number
+          - 'null'
+          format: double
+        waveform:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        content_type:
+          type:
+          - string
+          - 'null'
+        ephemeral:
+          type:
+          - boolean
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        application:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/ApplicationResponse'
+        clip_created_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        clip_participants:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/UserResponse'
+      required:
+      - id
+      - filename
+      - size
+      - url
+      - proxy_url
+    ChannelPermissionOverwriteResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        type:
+          $ref: '#/components/schemas/ChannelPermissionOverwrites'
+        allow:
+          type: string
+        deny:
+          type: string
+      required:
+      - id
+      - type
+      - allow
+      - deny
+    MessageEmbedFieldResponse:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+        inline:
+          type: boolean
+      required:
+      - name
+      - value
+      - inline
+    MessageMentionChannelResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        name:
+          type: string
+        type:
+          $ref: '#/components/schemas/ChannelTypes'
+        guild_id:
+          $ref: '#/components/schemas/SnowflakeType'
+      required:
+      - id
+      - name
+      - type
+      - guild_id
+    RichEmbedAuthor:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          maxLength: 256
+        url:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+          format: uri
+        icon_url:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+          format: uri
+    MessageComponentMentionableSelectResponse:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 7
+          allOf:
+          - $ref: '#/components/schemas/MessageComponentTypes'
+          format: int32
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        custom_id:
+          type: string
+        placeholder:
+          type:
+          - string
+          - 'null'
+        min_values:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        max_values:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        disabled:
+          type:
+          - boolean
+          - 'null'
+      required:
+      - type
+      - id
+      - custom_id
+    GithubCommit:
+      type: object
+      properties:
+        id:
+          type: string
+          maxLength: 152133
+        url:
+          type: string
+          maxLength: 2048
+          format: uri
+        message:
+          type: string
+          maxLength: 152133
+        author:
+          $ref: '#/components/schemas/GithubAuthor'
+      required:
+      - id
+      - url
+      - message
+      - author
+    ErrorDetails:
+      oneOf:
+      - type: object
+        additionalProperties:
+          $ref: '#/components/schemas/ErrorDetails'
+      - $ref: '#/components/schemas/InnerErrors'
+    ThreadMemberResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        user_id:
+          $ref: '#/components/schemas/SnowflakeType'
+        join_timestamp:
+          type: string
+          format: date-time
+        flags:
+          type: integer
+          format: int32
+        member:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/GuildMemberResponse'
+      required:
+      - id
+      - user_id
+      - join_timestamp
+      - flags
+    MessageReferenceType:
+      type: integer
+      oneOf:
+      - title: DEFAULT
+        description: Reference to a message
+        const: 0
+      format: int32
+    GithubComment:
+      type: object
+      properties:
+        id:
+          type: integer
+        html_url:
+          type: string
+          maxLength: 2048
+          format: uri
+        user:
+          $ref: '#/components/schemas/GithubUser'
+        commit_id:
+          type:
+          - string
+          - 'null'
+          maxLength: 152133
+        body:
+          type: string
+          maxLength: 152133
+      required:
+      - id
+      - html_url
+      - user
+      - body
+    InteractionTypes:
+      type: integer
+      oneOf:
+      - title: PING
+        description: Sent by Discord to validate your application's interaction handler
+        const: 1
+      - title: APPLICATION_COMMAND
+        description: Sent when a user uses an application command
+        const: 2
+      - title: MESSAGE_COMPONENT
+        description: Sent when a user interacts with a message component previously sent by your application
+        const: 3
+      - title: APPLICATION_COMMAND_AUTOCOMPLETE
+        description: Sent when a user is filling in an autocomplete option in a chat command
+        const: 4
+      - title: MODAL_SUBMIT
+        description: Sent when a user submits a modal previously sent by your application
+        const: 5
+      format: int32
+    GuildRoleTagsResponse:
+      type: object
+      properties:
+        premium_subscriber:
+          type: 'null'
+        bot_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        integration_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        subscription_listing_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        available_for_purchase:
+          type: 'null'
+        guild_connections:
+          type: 'null'
+    GithubCheckRun:
+      type: object
+      properties:
+        conclusion:
+          type:
+          - string
+          - 'null'
+          maxLength: 152133
+        name:
+          type: string
+          maxLength: 152133
+        html_url:
+          type: string
+          maxLength: 2048
+          format: uri
+        check_suite:
+          $ref: '#/components/schemas/GithubCheckSuite'
+        details_url:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+          format: uri
+        output:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/GithubCheckRunOutput'
+        pull_requests:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/GithubCheckPullRequest'
+          maxItems: 1521
+      required:
+      - name
+      - html_url
+      - check_suite
+    TextStyleTypes:
+      type: integer
+      oneOf:
+      - title: SHORT
+        description: Single-line input
+        const: 1
+      - title: PARAGRAPH
+        description: Multi-line input
+        const: 2
+      format: int32
+    MessageActivityResponse:
+      type: object
+      properties: {}
+    MessageComponentEmojiResponse:
+      type: object
+      properties:
+        id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        name:
+          type: string
+        animated:
+          type:
+          - boolean
+          - 'null'
+      required:
+      - name
+    ThreadResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        type:
+          type: integer
+          enum:
+          - 10
+          - 11
+          - 12
+          allOf:
+          - $ref: '#/components/schemas/ChannelTypes'
+          format: int32
+        last_message_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        flags:
+          type: integer
+          format: int32
+        last_pin_timestamp:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        guild_id:
+          $ref: '#/components/schemas/SnowflakeType'
+        name:
+          type: string
+        parent_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        rate_limit_per_user:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        bitrate:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        user_limit:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        rtc_region:
+          type:
+          - string
+          - 'null'
+        video_quality_mode:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/VideoQualityModes'
+        permissions:
+          type:
+          - string
+          - 'null'
+        owner_id:
+          $ref: '#/components/schemas/SnowflakeType'
+        thread_metadata:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/ThreadMetadataResponse'
+        message_count:
+          type: integer
+          format: int32
+        member_count:
+          type: integer
+          format: int32
+        total_message_sent:
+          type: integer
+          format: int32
+        applied_tags:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SnowflakeType'
+        member:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/ThreadMemberResponse'
+      required:
+      - id
+      - type
+      - flags
+      - guild_id
+      - name
+      - owner_id
+      - message_count
+      - member_count
+      - total_message_sent
+    MessageType:
+      type: integer
+      oneOf:
+      - title: DEFAULT
+        description: ''
+        const: 0
+      - title: RECIPIENT_ADD
+        description: ''
+        const: 1
+      - title: RECIPIENT_REMOVE
+        description: ''
+        const: 2
+      - title: CALL
+        description: ''
+        const: 3
+      - title: CHANNEL_NAME_CHANGE
+        description: ''
+        const: 4
+      - title: CHANNEL_ICON_CHANGE
+        description: ''
+        const: 5
+      - title: CHANNEL_PINNED_MESSAGE
+        description: ''
+        const: 6
+      - title: USER_JOIN
+        description: ''
+        const: 7
+      - title: GUILD_BOOST
+        description: ''
+        const: 8
+      - title: GUILD_BOOST_TIER_1
+        description: ''
+        const: 9
+      - title: GUILD_BOOST_TIER_2
+        description: ''
+        const: 10
+      - title: GUILD_BOOST_TIER_3
+        description: ''
+        const: 11
+      - title: CHANNEL_FOLLOW_ADD
+        description: ''
+        const: 12
+      - title: GUILD_DISCOVERY_DISQUALIFIED
+        description: ''
+        const: 14
+      - title: GUILD_DISCOVERY_REQUALIFIED
+        description: ''
+        const: 15
+      - title: GUILD_DISCOVERY_GRACE_PERIOD_INITIAL_WARNING
+        description: ''
+        const: 16
+      - title: GUILD_DISCOVERY_GRACE_PERIOD_FINAL_WARNING
+        description: ''
+        const: 17
+      - title: THREAD_CREATED
+        description: ''
+        const: 18
+      - title: REPLY
+        description: ''
+        const: 19
+      - title: CHAT_INPUT_COMMAND
+        description: ''
+        const: 20
+      - title: THREAD_STARTER_MESSAGE
+        description: ''
+        const: 21
+      - title: GUILD_INVITE_REMINDER
+        description: ''
+        const: 22
+      - title: CONTEXT_MENU_COMMAND
+        description: ''
+        const: 23
+      - title: AUTO_MODERATION_ACTION
+        description: ''
+        const: 24
+      - title: ROLE_SUBSCRIPTION_PURCHASE
+        description: ''
+        const: 25
+      - title: INTERACTION_PREMIUM_UPSELL
+        description: ''
+        const: 26
+      - title: STAGE_START
+        description: ''
+        const: 27
+      - title: STAGE_END
+        description: ''
+        const: 28
+      - title: STAGE_SPEAKER
+        description: ''
+        const: 29
+      - title: STAGE_TOPIC
+        description: ''
+        const: 31
+      - title: GUILD_APPLICATION_PREMIUM_SUBSCRIPTION
+        description: ''
+        const: 32
+      - title: GUILD_INCIDENT_ALERT_MODE_ENABLED
+        description: ''
+        const: 36
+      - title: GUILD_INCIDENT_ALERT_MODE_DISABLED
+        description: ''
+        const: 37
+      - title: GUILD_INCIDENT_REPORT_RAID
+        description: ''
+        const: 38
+      - title: GUILD_INCIDENT_REPORT_FALSE_ALARM
+        description: ''
+        const: 39
+      format: int32
+    GuildStickerResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        name:
+          type: string
+        tags:
+          type: string
+        type:
+          type: integer
+          enum:
+          - 2
+          allOf:
+          - $ref: '#/components/schemas/StickerTypes'
+          format: int32
+        format_type:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/StickerFormatTypes'
+        description:
+          type:
+          - string
+          - 'null'
+        available:
+          type: boolean
+        guild_id:
+          $ref: '#/components/schemas/SnowflakeType'
+        user:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/UserResponse'
+      required:
+      - id
+      - name
+      - tags
+      - type
+      - available
+      - guild_id
+    ActionRow:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 1
+          allOf:
+          - $ref: '#/components/schemas/MessageComponentTypes'
+          format: int32
+        components:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/Button'
+            - $ref: '#/components/schemas/ChannelSelect'
+            - $ref: '#/components/schemas/InputText'
+            - $ref: '#/components/schemas/MentionableSelect'
+            - $ref: '#/components/schemas/RoleSelect'
+            - $ref: '#/components/schemas/StringSelect'
+            - $ref: '#/components/schemas/UserSelect'
+          minItems: 1
+          maxItems: 5
+      required:
+      - type
+      - components
+    InnerErrors:
+      type: object
+      properties:
+        _errors:
+          type: array
+          description: The list of errors for this field
+          items:
+            $ref: '#/components/schemas/Error'
+      additionalProperties: false
+      required:
+      - _errors
+    IncomingWebhookUpdateRequestPartial:
+      type: object
+      properties:
+        content:
+          type:
+          - string
+          - 'null'
+          maxLength: 2000
+        embeds:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/RichEmbed'
+          maxItems: 10
+        allowed_mentions:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/MessageAllowedMentionsRequest'
+        components:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ActionRow'
+          maxItems: 5
+        attachments:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/MessageAttachmentRequest'
+          maxItems: 10
+        flags:
+          type:
+          - integer
+          - 'null'
+    ChannelSelect:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 8
+          allOf:
+          - $ref: '#/components/schemas/MessageComponentTypes'
+          format: int32
+        custom_id:
+          type: string
+          maxLength: 100
+        placeholder:
+          type:
+          - string
+          - 'null'
+          maxLength: 150
+        min_values:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          maximum: 25
+        max_values:
+          type:
+          - integer
+          - 'null'
+          minimum: 1
+          maximum: 25
+        disabled:
+          type:
+          - boolean
+          - 'null'
+        default_values:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ChannelSelectDefaultValue'
+          maxItems: 25
+        channel_types:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ChannelTypes'
+          uniqueItems: true
+      required:
+      - type
+      - custom_id
+    MentionableSelect:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 7
+          allOf:
+          - $ref: '#/components/schemas/MessageComponentTypes'
+          format: int32
+        custom_id:
+          type: string
+          maxLength: 100
+        placeholder:
+          type:
+          - string
+          - 'null'
+          maxLength: 150
+        min_values:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          maximum: 25
+        max_values:
+          type:
+          - integer
+          - 'null'
+          minimum: 1
+          maximum: 25
+        disabled:
+          type:
+          - boolean
+          - 'null'
+        default_values:
+          type:
+          - array
+          - 'null'
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/RoleSelectDefaultValue'
+            - $ref: '#/components/schemas/UserSelectDefaultValue'
+          maxItems: 25
+      required:
+      - type
+      - custom_id
+    ButtonStyleTypes:
+      type: integer
+      oneOf:
+      - title: PRIMARY
+        const: 1
+      - title: SECONDARY
+        const: 2
+      - title: SUCCESS
+        const: 3
+      - title: DANGER
+        const: 4
+      - title: LINK
+        const: 5
+      - title: PREMIUM
+        const: 6
+      format: int32
+    MessageReactionEmojiResponse:
+      type: object
+      properties:
+        id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        name:
+          type:
+          - string
+          - 'null'
+        animated:
+          type:
+          - boolean
+          - 'null'
+    RichEmbedProvider:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          maxLength: 256
+        url:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+          format: uri
+    AllowedMentionTypes:
+      type: string
+      oneOf:
+      - title: USERS
+        description: Controls role mentions
+        const: users
+      - title: ROLES
+        description: Controls user mentions
+        const: roles
+      - title: EVERYONE
+        description: Controls @everyone and @here mentions
+        const: everyone
+    ApplicationOAuth2InstallParamsResponse:
+      type: object
+      properties:
+        scopes:
+          type: array
+          items:
+            type: string
+            enum:
+            - applications.commands
+            - bot
+            allOf:
+            - $ref: '#/components/schemas/OAuth2Scopes'
+          uniqueItems: true
+        permissions:
+          type: string
+      required:
+      - scopes
+      - permissions
+    PrivateGroupChannelResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        type:
+          type: integer
+          enum:
+          - 3
+          allOf:
+          - $ref: '#/components/schemas/ChannelTypes'
+          format: int32
+        last_message_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        flags:
+          type: integer
+          format: int32
+        last_pin_timestamp:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        recipients:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserResponse'
+        name:
+          type:
+          - string
+          - 'null'
+        icon:
+          type:
+          - string
+          - 'null'
+        owner_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        managed:
+          type:
+          - boolean
+          - 'null'
+        application_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+      required:
+      - id
+      - type
+      - flags
+      - recipients
+    WebhookSlackEmbed:
+      type: object
+      properties:
+        title:
+          type:
+          - string
+          - 'null'
+          maxLength: 152133
+        title_link:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+          format: uri
+        text:
+          type:
+          - string
+          - 'null'
+          maxLength: 152133
+        color:
+          type:
+          - string
+          - 'null'
+          maxLength: 7
+          pattern: ^#(([0-9a-fA-F]{2}){3}|([0-9a-fA-F]){3})$
+        ts:
+          type:
+          - integer
+          - 'null'
+        pretext:
+          type:
+          - string
+          - 'null'
+          maxLength: 152133
+        footer:
+          type:
+          - string
+          - 'null'
+          maxLength: 152133
+        footer_icon:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+          format: uri
+        author_name:
+          type:
+          - string
+          - 'null'
+          maxLength: 152133
+        author_link:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+          format: uri
+        author_icon:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+          format: uri
+        image_url:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+          format: uri
+        thumb_url:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+          format: uri
+        fields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/WebhookSlackEmbedField'
+          maxItems: 1521
+    MessageComponentButtonResponse:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 2
+          allOf:
+          - $ref: '#/components/schemas/MessageComponentTypes'
+          format: int32
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        custom_id:
+          type:
+          - string
+          - 'null'
+        style:
+          $ref: '#/components/schemas/ButtonStyleTypes'
+        label:
+          type:
+          - string
+          - 'null'
+        disabled:
+          type:
+          - boolean
+          - 'null'
+        emoji:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/MessageComponentEmojiResponse'
+        url:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+          format: uri
+      required:
+      - type
+      - id
+      - style
+    UserAvatarDecorationResponse:
+      type: object
+      properties: {}
+    MessageComponentActionRowResponse:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 1
+          allOf:
+          - $ref: '#/components/schemas/MessageComponentTypes'
+          format: int32
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        components:
+          type:
+          - array
+          - 'null'
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/MessageComponentButtonResponse'
+            - $ref: '#/components/schemas/MessageComponentChannelSelectResponse'
+            - $ref: '#/components/schemas/MessageComponentInputTextResponse'
+            - $ref: '#/components/schemas/MessageComponentMentionableSelectResponse'
+            - $ref: '#/components/schemas/MessageComponentRoleSelectResponse'
+            - $ref: '#/components/schemas/MessageComponentStringSelectResponse'
+            - $ref: '#/components/schemas/MessageComponentUserSelectResponse'
+      required:
+      - type
+      - id
+    MessageStickerItemResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        name:
+          type: string
+        format_type:
+          $ref: '#/components/schemas/StickerFormatTypes'
+      required:
+      - id
+      - name
+      - format_type
+    MessageAllowedMentionsRequest:
+      type: object
+      properties:
+        parse:
+          type:
+          - array
+          - 'null'
+          items:
+            oneOf:
+            - type: 'null'
+            - $ref: '#/components/schemas/AllowedMentionTypes'
+          maxItems: 1521
+          uniqueItems: true
+        users:
+          type:
+          - array
+          - 'null'
+          items:
+            oneOf:
+            - type: 'null'
+            - $ref: '#/components/schemas/SnowflakeType'
+          maxItems: 100
+          uniqueItems: true
+        roles:
+          type:
+          - array
+          - 'null'
+          items:
+            oneOf:
+            - type: 'null'
+            - $ref: '#/components/schemas/SnowflakeType'
+          maxItems: 100
+          uniqueItems: true
+        replied_user:
+          type:
+          - boolean
+          - 'null'
+    MessageAttachmentRequest:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        filename:
+          type:
+          - string
+          - 'null'
+          maxLength: 1024
+        description:
+          type:
+          - string
+          - 'null'
+          maxLength: 1024
+        is_remix:
+          type:
+          - boolean
+          - 'null'
+      required:
+      - id
+    WebhookTypes:
+      type: integer
+      oneOf:
+      - title: GUILD_INCOMING
+        description: Incoming Webhooks can post messages to channels with a generated token
+        const: 1
+      - title: CHANNEL_FOLLOWER
+        description: Channel Follower Webhooks are internal webhooks used with Channel Following to post new messages into channels
+        const: 2
+      - title: APPLICATION_INCOMING
+        description: Application webhooks are webhooks used with Interactions
+        const: 3
+      format: int32
+    RichEmbed:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+          maxLength: 152133
+        url:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+          format: uri
+        title:
+          type:
+          - string
+          - 'null'
+          maxLength: 256
+        color:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          maximum: 16777215
+        timestamp:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        description:
+          type:
+          - string
+          - 'null'
+          maxLength: 4096
+        author:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/RichEmbedAuthor'
+        image:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/RichEmbedImage'
+        thumbnail:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/RichEmbedThumbnail'
+        footer:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/RichEmbedFooter'
+        fields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/RichEmbedField'
+          maxItems: 25
+        provider:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/RichEmbedProvider'
+        video:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/RichEmbedVideo'
+    MessageEmbedAuthorResponse:
+      type: object
+      properties:
+        name:
+          type: string
+        url:
+          type:
+          - string
+          - 'null'
+        icon_url:
+          type:
+          - string
+          - 'null'
+        proxy_icon_url:
+          type:
+          - string
+          - 'null'
+          format: uri
+      required:
+      - name
+    Emoji:
+      type: object
+      properties:
+        id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        name:
+          type: string
+          maxLength: 32
+        animated:
+          type:
+          - boolean
+          - 'null'
+      required:
+      - name
+    RichEmbedThumbnail:
+      type: object
+      properties:
+        url:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+          format: uri
+        width:
+          type:
+          - integer
+          - 'null'
+        height:
+          type:
+          - integer
+          - 'null'
+        placeholder:
+          type:
+          - string
+          - 'null'
+          maxLength: 64
+        placeholder_version:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          maximum: 2147483647
+    SlackWebhook:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+          maxLength: 2000
+        username:
+          type:
+          - string
+          - 'null'
+          maxLength: 152133
+        icon_url:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+          format: uri
+        attachments:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/WebhookSlackEmbed'
+          maxItems: 1521
+    MessageEmbedProviderResponse:
+      type: object
+      properties:
+        name:
+          type: string
+        url:
+          type:
+          - string
+          - 'null'
+          format: uri
+      required:
+      - name
+    BasicMessageResponse:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/MessageType'
+        channel_id:
+          $ref: '#/components/schemas/SnowflakeType'
+        content:
+          type: string
+        attachments:
+          type: array
+          items:
+            $ref: '#/components/schemas/MessageAttachmentResponse'
+        embeds:
+          type: array
+          items:
+            $ref: '#/components/schemas/MessageEmbedResponse'
+        timestamp:
+          type: string
+          format: date-time
+        edited_timestamp:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        flags:
+          type: integer
+          format: int32
+        components:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/MessageComponentActionRowResponse'
+            - $ref: '#/components/schemas/MessageComponentButtonResponse'
+            - $ref: '#/components/schemas/MessageComponentChannelSelectResponse'
+            - $ref: '#/components/schemas/MessageComponentInputTextResponse'
+            - $ref: '#/components/schemas/MessageComponentMentionableSelectResponse'
+            - $ref: '#/components/schemas/MessageComponentRoleSelectResponse'
+            - $ref: '#/components/schemas/MessageComponentStringSelectResponse'
+            - $ref: '#/components/schemas/MessageComponentUserSelectResponse'
+        resolved:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/ResolvedObjectsResponse'
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        author:
+          $ref: '#/components/schemas/UserResponse'
+        mentions:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserResponse'
+        mention_roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/SnowflakeType'
+          uniqueItems: true
+        pinned:
+          type: boolean
+        mention_everyone:
+          type: boolean
+        tts:
+          type: boolean
+        call:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/MessageCallResponse'
+        activity:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/MessageActivityResponse'
+        application:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/BasicApplicationResponse'
+        application_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        interaction:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/MessageInteractionResponse'
+        nonce:
+          oneOf:
+          - type: integer
+            minimum: -9223372036854776000
+            maximum: 9223372036854776000
+            format: int64
+          - type: string
+            maxLength: 25
+            format: nonce
+          - type: 'null'
+        webhook_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        message_reference:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/MessageReferenceResponse'
+        thread:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/ThreadResponse'
+        mention_channels:
+          type:
+          - array
+          - 'null'
+          items:
+            oneOf:
+            - type: 'null'
+            - $ref: '#/components/schemas/MessageMentionChannelResponse'
+        stickers:
+          type:
+          - array
+          - 'null'
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/GuildStickerResponse'
+            - $ref: '#/components/schemas/StandardStickerResponse'
+        sticker_items:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/MessageStickerItemResponse'
+        role_subscription_data:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/MessageRoleSubscriptionDataResponse'
+        purchase_notification:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/PurchaseNotificationResponse'
+        position:
+          type:
+          - integer
+          - 'null'
+          format: int32
+      required:
+      - type
+      - channel_id
+      - content
+      - attachments
+      - embeds
+      - timestamp
+      - flags
+      - components
+      - id
+      - author
+      - mentions
+      - mention_roles
+      - pinned
+      - mention_everyone
+      - tts
+    GuildProductPurchaseResponse:
+      type: object
+      properties:
+        listing_id:
+          $ref: '#/components/schemas/SnowflakeType'
+        product_name:
+          type: string
+      required:
+      - listing_id
+      - product_name
+    ForumLayout:
+      type: integer
+      oneOf:
+      - title: DEFAULT
+        description: No default has been set for forum channel
+        const: 0
+      - title: LIST
+        description: Display posts as a list
+        const: 1
+      - title: GRID
+        description: Display posts as a collection of tiles
+        const: 2
+      format: int32
+    ErrorResponse:
+      type: object
+      description: Errors object returned by the Discord API
+      allOf:
+      - $ref: '#/components/schemas/Error'
+      - type: object
+        properties:
+          errors:
+            $ref: '#/components/schemas/ErrorDetails'
+    SelectOptionResponse:
+      type: object
+      properties:
+        label:
+          type: string
+        value:
+          type: string
+        description:
+          type:
+          - string
+          - 'null'
+        emoji:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/MessageComponentEmojiResponse'
+        default:
+          type:
+          - boolean
+          - 'null'
+      required:
+      - label
+      - value
+    ApplicationIncomingWebhookResponse:
+      type: object
+      properties:
+        application_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        avatar:
+          type:
+          - string
+          - 'null'
+        channel_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        guild_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        name:
+          type: string
+        type:
+          type: integer
+          enum:
+          - 3
+          allOf:
+          - $ref: '#/components/schemas/WebhookTypes'
+          format: int32
+        user:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/UserResponse'
+      required:
+      - id
+      - name
+      - type
+    PurchaseType:
+      type: integer
+      oneOf:
+      - title: GUILD_PRODUCT
+        const: 0
+      format: int32
+    MessageInteractionResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        type:
+          $ref: '#/components/schemas/InteractionTypes'
+        name:
+          type: string
+        user:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/UserResponse'
+        name_localized:
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - type
+      - name
+    WebhookSlackEmbedField:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          maxLength: 152133
+        value:
+          type:
+          - string
+          - 'null'
+          maxLength: 152133
+        inline:
+          type:
+          - boolean
+          - 'null'
+    WebhookSourceChannelResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        name:
+          type: string
+      required:
+      - id
+      - name
+    RoleSelect:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 6
+          allOf:
+          - $ref: '#/components/schemas/MessageComponentTypes'
+          format: int32
+        custom_id:
+          type: string
+          maxLength: 100
+        placeholder:
+          type:
+          - string
+          - 'null'
+          maxLength: 150
+        min_values:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          maximum: 25
+        max_values:
+          type:
+          - integer
+          - 'null'
+          minimum: 1
+          maximum: 25
+        disabled:
+          type:
+          - boolean
+          - 'null'
+        default_values:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/RoleSelectDefaultValue'
+          maxItems: 25
+      required:
+      - type
+      - custom_id
+    MessageComponentUserSelectResponse:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 5
+          allOf:
+          - $ref: '#/components/schemas/MessageComponentTypes'
+          format: int32
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        custom_id:
+          type: string
+        placeholder:
+          type:
+          - string
+          - 'null'
+        min_values:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        max_values:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        disabled:
+          type:
+          - boolean
+          - 'null'
+      required:
+      - type
+      - id
+      - custom_id
+    GuildIncomingWebhookResponse:
+      type: object
+      properties:
+        application_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        avatar:
+          type:
+          - string
+          - 'null'
+        channel_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        guild_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        name:
+          type: string
+        type:
+          type: integer
+          enum:
+          - 1
+          allOf:
+          - $ref: '#/components/schemas/WebhookTypes'
+          format: int32
+        user:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/UserResponse'
+        token:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+          format: uri
+      required:
+      - id
+      - name
+      - type
+    MessageReactionResponse:
+      type: object
+      properties:
+        emoji:
+          $ref: '#/components/schemas/MessageReactionEmojiResponse'
+        count:
+          type: integer
+          format: int32
+        count_details:
+          $ref: '#/components/schemas/MessageReactionCountDetailsResponse'
+        burst_colors:
+          type: array
+          items:
+            type: string
+        me_burst:
+          type: boolean
+        me:
+          type: boolean
+      required:
+      - emoji
+      - count
+      - count_details
+      - burst_colors
+      - me_burst
+      - me
+    ChannelTypes:
+      type: integer
+      oneOf:
+      - title: DM
+        description: A direct message between users
+        const: 1
+      - title: GROUP_DM
+        description: A direct message between multiple users
+        const: 3
+      - title: GUILD_TEXT
+        description: A text channel within a server
+        const: 0
+      - title: GUILD_VOICE
+        description: A voice channel within a server
+        const: 2
+      - title: GUILD_CATEGORY
+        description: An organizational category that contains up to 50 channels
+        const: 4
+      - title: GUILD_ANNOUNCEMENT
+        description: A channel that users can follow and crosspost into their own server (formerly news channels)
+        const: 5
+      - title: ANNOUNCEMENT_THREAD
+        description: A temporary sub-channel within a GUILD_ANNOUNCEMENT channel
+        const: 10
+      - title: PUBLIC_THREAD
+        description: A temporary sub-channel within a GUILD_TEXT or GUILD_THREADS_ONLY channel type set
+        const: 11
+      - title: PRIVATE_THREAD
+        description: A temporary sub-channel within a GUILD_TEXT channel that is only viewable by those invited and those with the MANAGE_THREADS permission
+        const: 12
+      - title: GUILD_STAGE_VOICE
+        description: A voice channel for hosting events with an audience
+        const: 13
+      - title: GUILD_DIRECTORY
+        description: The channel in a hub containing the listed servers
+        const: 14
+      - title: GUILD_FORUM
+        description: Channel that can only contain threads
+        const: 15
+      format: int32
+  responses:
+    ClientError:
+      description: Client error response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+              message:
+                type: string
+              errors:
+                type: object
+    ClientErrorResponse:
+      description: Client error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    guildId:
+      name: guild_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the guild (Snowflake)
+    channelId:
+      name: channel_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the channel (Snowflake)
+  securitySchemes:
+    BotToken:
+      type: http
+      scheme: bearer
+      description: Bot token authentication
+externalDocs:
+  description: Discord Interactions Documentation
+  url: https://discord.com/developers/docs/interactions/overview

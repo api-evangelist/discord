@@ -1,1045 +1,1255 @@
 openapi: 3.1.0
 info:
-  title: Discord Interactions API
-  description: >-
-    The Discord Interactions API enables applications to create and respond
-    to application commands (slash commands), message components, and modals.
-    It supports both Gateway-based and webhook-based interaction handling,
-    allowing bots to build rich, interactive user experiences within Discord.
+  title: Discord Application Commands Interactions API
+  description: The Discord Interactions API enables applications to create and respond to application commands (slash commands), message components, and modals. It supports both Gateway-based and webhook-based interaction handling, allowing bots to build rich, interactive user experiences within Discord.
   version: '10'
   contact:
     name: Discord Support
     url: https://support-dev.discord.com/hc/en-us
     email: support@discord.com
   termsOfService: https://discord.com/developers/docs/policies-and-agreements/developer-terms-of-service
-externalDocs:
-  description: Discord Interactions Documentation
-  url: https://discord.com/developers/docs/interactions/overview
 servers:
-  - url: https://discord.com/api/v10
-    description: Discord API v10
-tags:
-  - name: Application Commands
-    description: Manage global and guild application commands
-  - name: Interaction Responses
-    description: Respond to interactions received from Discord
+- url: https://discord.com/api/v10
+  description: Discord API v10
 security:
-  - BotToken: []
+- BotToken: []
+tags:
+- name: Interactions
 paths:
-  /applications/{application_id}/commands:
-    get:
-      operationId: getGlobalApplicationCommands
-      summary: Discord List global application commands
-      description: Fetch all of the global commands for your application.
-      tags:
-        - Application Commands
-      parameters:
-        - $ref: '#/components/parameters/applicationId'
-        - name: with_localizations
-          in: query
-          schema:
-            type: boolean
-      responses:
-        '200':
-          description: List of application command objects
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ApplicationCommand'
-        4XX:
-          $ref: '#/components/responses/ClientError'
-    post:
-      operationId: createGlobalApplicationCommand
-      summary: Discord Create global application command
-      description: >-
-        Create a new global command. Returns 201 if a command with the same
-        name does not already exist, or a 200 if it does.
-      tags:
-        - Application Commands
-      parameters:
-        - $ref: '#/components/parameters/applicationId'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CreateApplicationCommandRequest'
-      responses:
-        '200':
-          description: Updated command (name already exists)
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApplicationCommand'
-        '201':
-          description: Command created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApplicationCommand'
-        4XX:
-          $ref: '#/components/responses/ClientError'
-    put:
-      operationId: bulkOverwriteGlobalApplicationCommands
-      summary: Discord Bulk overwrite global application commands
-      description: >-
-        Overwrites all existing global commands. Commands not in the payload
-        will be deleted.
-      tags:
-        - Application Commands
-      parameters:
-        - $ref: '#/components/parameters/applicationId'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/CreateApplicationCommandRequest'
-      responses:
-        '200':
-          description: List of application command objects
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ApplicationCommand'
-        4XX:
-          $ref: '#/components/responses/ClientError'
-  /applications/{application_id}/commands/{command_id}:
-    get:
-      operationId: getGlobalApplicationCommand
-      summary: Discord Get global application command
-      description: Fetch a global command for your application.
-      tags:
-        - Application Commands
-      parameters:
-        - $ref: '#/components/parameters/applicationId'
-        - $ref: '#/components/parameters/commandId'
-      responses:
-        '200':
-          description: Application command object
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApplicationCommand'
-        4XX:
-          $ref: '#/components/responses/ClientError'
-    patch:
-      operationId: editGlobalApplicationCommand
-      summary: Discord Edit global application command
-      description: Edit a global command. Returns the updated command object.
-      tags:
-        - Application Commands
-      parameters:
-        - $ref: '#/components/parameters/applicationId'
-        - $ref: '#/components/parameters/commandId'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/EditApplicationCommandRequest'
-      responses:
-        '200':
-          description: Updated application command object
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApplicationCommand'
-        4XX:
-          $ref: '#/components/responses/ClientError'
-    delete:
-      operationId: deleteGlobalApplicationCommand
-      summary: Discord Delete global application command
-      description: Deletes a global command.
-      tags:
-        - Application Commands
-      parameters:
-        - $ref: '#/components/parameters/applicationId'
-        - $ref: '#/components/parameters/commandId'
-      responses:
-        '204':
-          description: Command deleted
-        4XX:
-          $ref: '#/components/responses/ClientError'
-  /applications/{application_id}/guilds/{guild_id}/commands:
-    get:
-      operationId: getGuildApplicationCommands
-      summary: Discord List guild application commands
-      description: Fetch all of the guild commands for your application for a specific guild.
-      tags:
-        - Application Commands
-      parameters:
-        - $ref: '#/components/parameters/applicationId'
-        - $ref: '#/components/parameters/guildId'
-        - name: with_localizations
-          in: query
-          schema:
-            type: boolean
-      responses:
-        '200':
-          description: List of application command objects
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ApplicationCommand'
-        4XX:
-          $ref: '#/components/responses/ClientError'
-    post:
-      operationId: createGuildApplicationCommand
-      summary: Discord Create guild application command
-      description: Create a new guild command.
-      tags:
-        - Application Commands
-      parameters:
-        - $ref: '#/components/parameters/applicationId'
-        - $ref: '#/components/parameters/guildId'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CreateApplicationCommandRequest'
-      responses:
-        '200':
-          description: Updated command
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApplicationCommand'
-        '201':
-          description: Command created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApplicationCommand'
-        4XX:
-          $ref: '#/components/responses/ClientError'
-    put:
-      operationId: bulkOverwriteGuildApplicationCommands
-      summary: Discord Bulk overwrite guild application commands
-      description: Overwrites all existing guild commands for your application.
-      tags:
-        - Application Commands
-      parameters:
-        - $ref: '#/components/parameters/applicationId'
-        - $ref: '#/components/parameters/guildId'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/CreateApplicationCommandRequest'
-      responses:
-        '200':
-          description: List of application command objects
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ApplicationCommand'
-        4XX:
-          $ref: '#/components/responses/ClientError'
-  /applications/{application_id}/guilds/{guild_id}/commands/{command_id}:
-    get:
-      operationId: getGuildApplicationCommand
-      summary: Discord Get guild application command
-      description: Fetch a guild command for your application.
-      tags:
-        - Application Commands
-      parameters:
-        - $ref: '#/components/parameters/applicationId'
-        - $ref: '#/components/parameters/guildId'
-        - $ref: '#/components/parameters/commandId'
-      responses:
-        '200':
-          description: Application command object
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApplicationCommand'
-        4XX:
-          $ref: '#/components/responses/ClientError'
-    patch:
-      operationId: editGuildApplicationCommand
-      summary: Discord Edit guild application command
-      description: Edit a guild command.
-      tags:
-        - Application Commands
-      parameters:
-        - $ref: '#/components/parameters/applicationId'
-        - $ref: '#/components/parameters/guildId'
-        - $ref: '#/components/parameters/commandId'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/EditApplicationCommandRequest'
-      responses:
-        '200':
-          description: Updated application command
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApplicationCommand'
-        4XX:
-          $ref: '#/components/responses/ClientError'
-    delete:
-      operationId: deleteGuildApplicationCommand
-      summary: Discord Delete guild application command
-      description: Delete a guild command.
-      tags:
-        - Application Commands
-      parameters:
-        - $ref: '#/components/parameters/applicationId'
-        - $ref: '#/components/parameters/guildId'
-        - $ref: '#/components/parameters/commandId'
-      responses:
-        '204':
-          description: Command deleted
-        4XX:
-          $ref: '#/components/responses/ClientError'
-  /applications/{application_id}/guilds/{guild_id}/commands/permissions:
-    get:
-      operationId: getGuildApplicationCommandPermissions
-      summary: Discord List guild application command permissions
-      description: Fetches permissions for all commands in a guild.
-      tags:
-        - Application Commands
-      parameters:
-        - $ref: '#/components/parameters/applicationId'
-        - $ref: '#/components/parameters/guildId'
-      responses:
-        '200':
-          description: List of guild application command permissions
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/GuildApplicationCommandPermissions'
-        4XX:
-          $ref: '#/components/responses/ClientError'
-  /applications/{application_id}/guilds/{guild_id}/commands/{command_id}/permissions:
-    get:
-      operationId: getApplicationCommandPermissions
-      summary: Discord Get application command permissions
-      description: Fetches permissions for a specific command in a guild.
-      tags:
-        - Application Commands
-      parameters:
-        - $ref: '#/components/parameters/applicationId'
-        - $ref: '#/components/parameters/guildId'
-        - $ref: '#/components/parameters/commandId'
-      responses:
-        '200':
-          description: Guild application command permissions object
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GuildApplicationCommandPermissions'
-        4XX:
-          $ref: '#/components/responses/ClientError'
-    put:
-      operationId: editApplicationCommandPermissions
-      summary: Discord Edit application command permissions
-      description: >-
-        Edits command permissions for a specific command in a guild. Requires
-        Bearer token with applications.commands.permissions.update scope.
-      tags:
-        - Application Commands
-      parameters:
-        - $ref: '#/components/parameters/applicationId'
-        - $ref: '#/components/parameters/guildId'
-        - $ref: '#/components/parameters/commandId'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-                - permissions
-              properties:
-                permissions:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/ApplicationCommandPermission'
-      responses:
-        '200':
-          description: Updated permissions
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GuildApplicationCommandPermissions'
-        4XX:
-          $ref: '#/components/responses/ClientError'
   /interactions/{interaction_id}/{interaction_token}/callback:
+    parameters:
+    - name: interaction_id
+      in: path
+      schema:
+        $ref: '#/components/schemas/SnowflakeType'
+      required: true
+    - name: interaction_token
+      in: path
+      schema:
+        type: string
+        maxLength: 152133
+      required: true
     post:
-      operationId: createInteractionResponse
-      summary: Discord Create interaction response
-      description: >-
-        Create a response to an interaction from the gateway or webhook.
-        Takes an interaction response object.
-      tags:
-        - Interaction Responses
-      security: []
-      parameters:
-        - name: interaction_id
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: interaction_token
-          in: path
-          required: true
-          schema:
-            type: string
+      operationId: create_interaction_response
       requestBody:
-        required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/InteractionResponse'
-      responses:
-        '200':
-          description: Interaction callback response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InteractionCallbackResponse'
-        '204':
-          description: Interaction response accepted
-        4XX:
-          $ref: '#/components/responses/ClientError'
-  /webhooks/{application_id}/{interaction_token}/messages/@original:
-    get:
-      operationId: getOriginalInteractionResponse
-      summary: Discord Get original interaction response
-      description: Returns the initial Interaction response.
-      tags:
-        - Interaction Responses
-      security: []
-      parameters:
-        - $ref: '#/components/parameters/applicationId'
-        - name: interaction_token
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Message object
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Message'
-        4XX:
-          $ref: '#/components/responses/ClientError'
-    patch:
-      operationId: editOriginalInteractionResponse
-      summary: Discord Edit original interaction response
-      description: Edits the initial Interaction response.
-      tags:
-        - Interaction Responses
-      security: []
-      parameters:
-        - $ref: '#/components/parameters/applicationId'
-        - name: interaction_token
-          in: path
-          required: true
-          schema:
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
+              anyOf:
+              - $ref: '#/components/schemas/ApplicationCommandAutocompleteCallbackRequest'
+              - $ref: '#/components/schemas/CreateMessageInteractionCallbackRequest'
+              - $ref: '#/components/schemas/ModalInteractionCallbackRequest'
+              - $ref: '#/components/schemas/PongInteractionCallbackRequest'
+              - $ref: '#/components/schemas/UpdateMessageInteractionCallbackRequest'
+              x-discord-union: oneOf
+          application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/EditMessageRequest'
-      responses:
-        '200':
-          description: Updated message
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Message'
-        4XX:
-          $ref: '#/components/responses/ClientError'
-    delete:
-      operationId: deleteOriginalInteractionResponse
-      summary: Discord Delete original interaction response
-      description: Deletes the initial Interaction response.
-      tags:
-        - Interaction Responses
-      security: []
-      parameters:
-        - $ref: '#/components/parameters/applicationId'
-        - name: interaction_token
-          in: path
-          required: true
-          schema:
-            type: string
+              anyOf:
+              - $ref: '#/components/schemas/ApplicationCommandAutocompleteCallbackRequest'
+              - $ref: '#/components/schemas/CreateMessageInteractionCallbackRequest'
+              - $ref: '#/components/schemas/ModalInteractionCallbackRequest'
+              - $ref: '#/components/schemas/PongInteractionCallbackRequest'
+              - $ref: '#/components/schemas/UpdateMessageInteractionCallbackRequest'
+              x-discord-union: oneOf
+          multipart/form-data:
+            schema:
+              anyOf:
+              - $ref: '#/components/schemas/ApplicationCommandAutocompleteCallbackRequest'
+              - $ref: '#/components/schemas/CreateMessageInteractionCallbackRequest'
+              - $ref: '#/components/schemas/ModalInteractionCallbackRequest'
+              - $ref: '#/components/schemas/PongInteractionCallbackRequest'
+              - $ref: '#/components/schemas/UpdateMessageInteractionCallbackRequest'
+              x-discord-union: oneOf
+        required: true
       responses:
         '204':
-          description: Response deleted
+          description: 204 response for create_interaction_response
         4XX:
-          $ref: '#/components/responses/ClientError'
-  /webhooks/{application_id}/{interaction_token}:
-    post:
-      operationId: createFollowupMessage
-      summary: Discord Create followup message
-      description: Create a followup message for an Interaction.
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - {}
+      - BotToken: []
       tags:
-        - Interaction Responses
-      security: []
-      parameters:
-        - $ref: '#/components/parameters/applicationId'
-        - name: interaction_token
-          in: path
-          required: true
-          schema:
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CreateMessageRequest'
-      responses:
-        '200':
-          description: Followup message
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Message'
-        4XX:
-          $ref: '#/components/responses/ClientError'
-  /webhooks/{application_id}/{interaction_token}/messages/{message_id}:
-    get:
-      operationId: getFollowupMessage
-      summary: Discord Get followup message
-      description: Returns a followup message for an Interaction.
-      tags:
-        - Interaction Responses
-      security: []
-      parameters:
-        - $ref: '#/components/parameters/applicationId'
-        - name: interaction_token
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: message_id
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Message object
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Message'
-        4XX:
-          $ref: '#/components/responses/ClientError'
-    patch:
-      operationId: editFollowupMessage
-      summary: Discord Edit followup message
-      description: Edits a followup message for an Interaction.
-      tags:
-        - Interaction Responses
-      security: []
-      parameters:
-        - $ref: '#/components/parameters/applicationId'
-        - name: interaction_token
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: message_id
-          in: path
-          required: true
-          schema:
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/EditMessageRequest'
-      responses:
-        '200':
-          description: Updated message
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Message'
-        4XX:
-          $ref: '#/components/responses/ClientError'
-    delete:
-      operationId: deleteFollowupMessage
-      summary: Discord Delete followup message
-      description: Deletes a followup message for an Interaction.
-      tags:
-        - Interaction Responses
-      security: []
-      parameters:
-        - $ref: '#/components/parameters/applicationId'
-        - name: interaction_token
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: message_id
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '204':
-          description: Message deleted
-        4XX:
-          $ref: '#/components/responses/ClientError'
+      - Interactions
 components:
+  schemas:
+    RichEmbedField:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 256
+        value:
+          type: string
+          maxLength: 1024
+        inline:
+          type:
+          - boolean
+          - 'null'
+      required:
+      - name
+      - value
+    Int53Type:
+      type: integer
+      minimum: -9007199254740991
+      maximum: 9007199254740991
+      format: int64
+    ApplicationCommandOptionIntegerChoice:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 100
+        name_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+            minLength: 1
+            maxLength: 100
+          maxProperties: 34
+        value:
+          $ref: '#/components/schemas/Int53Type'
+      required:
+      - name
+      - value
+    ApplicationCommandAutocompleteCallbackRequest:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 8
+          allOf:
+          - $ref: '#/components/schemas/InteractionCallbackTypes'
+          format: int32
+        data:
+          anyOf:
+          - $ref: '#/components/schemas/InteractionApplicationCommandAutocompleteCallbackIntegerData'
+          - $ref: '#/components/schemas/InteractionApplicationCommandAutocompleteCallbackNumberData'
+          - $ref: '#/components/schemas/InteractionApplicationCommandAutocompleteCallbackStringData'
+          x-discord-union: oneOf
+      required:
+      - type
+      - data
+    InteractionApplicationCommandAutocompleteCallbackIntegerData:
+      type: object
+      properties:
+        choices:
+          type:
+          - array
+          - 'null'
+          items:
+            oneOf:
+            - type: 'null'
+            - $ref: '#/components/schemas/ApplicationCommandOptionIntegerChoice'
+          maxItems: 25
+    InputText:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 4
+          allOf:
+          - $ref: '#/components/schemas/MessageComponentTypes'
+          format: int32
+        custom_id:
+          type: string
+          maxLength: 100
+        style:
+          $ref: '#/components/schemas/TextStyleTypes'
+        label:
+          type: string
+          maxLength: 45
+        value:
+          type:
+          - string
+          - 'null'
+          maxLength: 4000
+        placeholder:
+          type:
+          - string
+          - 'null'
+          maxLength: 100
+        required:
+          type:
+          - boolean
+          - 'null'
+        min_length:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          maximum: 4000
+        max_length:
+          type:
+          - integer
+          - 'null'
+          minimum: 1
+          maximum: 4000
+      required:
+      - type
+      - custom_id
+      - style
+      - label
+    UpdateMessageInteractionCallbackRequest:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 6
+          - 7
+          allOf:
+          - $ref: '#/components/schemas/InteractionCallbackTypes'
+          format: int32
+        data:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/IncomingWebhookUpdateForInteractionCallbackRequestPartial'
+      required:
+      - type
+    ChannelSelectDefaultValue:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - channel
+          allOf:
+          - $ref: '#/components/schemas/SnowflakeSelectDefaultValueTypes'
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+      required:
+      - type
+      - id
+    MessageAllowedMentionsRequest:
+      type: object
+      properties:
+        parse:
+          type:
+          - array
+          - 'null'
+          items:
+            oneOf:
+            - type: 'null'
+            - $ref: '#/components/schemas/AllowedMentionTypes'
+          maxItems: 1521
+          uniqueItems: true
+        users:
+          type:
+          - array
+          - 'null'
+          items:
+            oneOf:
+            - type: 'null'
+            - $ref: '#/components/schemas/SnowflakeType'
+          maxItems: 100
+          uniqueItems: true
+        roles:
+          type:
+          - array
+          - 'null'
+          items:
+            oneOf:
+            - type: 'null'
+            - $ref: '#/components/schemas/SnowflakeType'
+          maxItems: 100
+          uniqueItems: true
+        replied_user:
+          type:
+          - boolean
+          - 'null'
+    StringSelect:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 3
+          allOf:
+          - $ref: '#/components/schemas/MessageComponentTypes'
+          format: int32
+        custom_id:
+          type: string
+          maxLength: 100
+        placeholder:
+          type:
+          - string
+          - 'null'
+          maxLength: 150
+        min_values:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          maximum: 25
+        max_values:
+          type:
+          - integer
+          - 'null'
+          minimum: 1
+          maximum: 25
+        disabled:
+          type:
+          - boolean
+          - 'null'
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/SelectOption'
+          minItems: 1
+          maxItems: 25
+      required:
+      - type
+      - custom_id
+      - options
+    MessageAttachmentRequest:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        filename:
+          type:
+          - string
+          - 'null'
+          maxLength: 1024
+        description:
+          type:
+          - string
+          - 'null'
+          maxLength: 1024
+        is_remix:
+          type:
+          - boolean
+          - 'null'
+      required:
+      - id
+    ApplicationCommandOptionNumberChoice:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 100
+        name_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+            minLength: 1
+            maxLength: 100
+          maxProperties: 34
+        value:
+          type: number
+          format: double
+      required:
+      - name
+      - value
+    Emoji:
+      type: object
+      properties:
+        id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        name:
+          type: string
+          maxLength: 32
+        animated:
+          type:
+          - boolean
+          - 'null'
+      required:
+      - name
+    Button:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 2
+          allOf:
+          - $ref: '#/components/schemas/MessageComponentTypes'
+          format: int32
+        custom_id:
+          type:
+          - string
+          - 'null'
+          maxLength: 100
+        style:
+          $ref: '#/components/schemas/ButtonStyleTypes'
+        label:
+          type:
+          - string
+          - 'null'
+          maxLength: 80
+        disabled:
+          type:
+          - boolean
+          - 'null'
+        emoji:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Emoji'
+        url:
+          type:
+          - string
+          - 'null'
+          maxLength: 512
+          format: uri
+        sku_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+      required:
+      - type
+      - style
+    MessageComponentTypes:
+      type: integer
+      oneOf:
+      - title: ACTION_ROW
+        description: Container for other components
+        const: 1
+      - title: BUTTON
+        description: Button object
+        const: 2
+      - title: STRING_SELECT
+        description: Select menu for picking from defined text options
+        const: 3
+      - title: INPUT_TEXT
+        description: Text input object
+        const: 4
+      - title: USER_SELECT
+        description: Select menu for users
+        const: 5
+      - title: ROLE_SELECT
+        description: Select menu for roles
+        const: 6
+      - title: MENTIONABLE_SELECT
+        description: Select menu for mentionables (users and roles)
+        const: 7
+      - title: CHANNEL_SELECT
+        description: Select menu for channels
+        const: 8
+      format: int32
+    RichEmbed:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+          maxLength: 152133
+        url:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+          format: uri
+        title:
+          type:
+          - string
+          - 'null'
+          maxLength: 256
+        color:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          maximum: 16777215
+        timestamp:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        description:
+          type:
+          - string
+          - 'null'
+          maxLength: 4096
+        author:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/RichEmbedAuthor'
+        image:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/RichEmbedImage'
+        thumbnail:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/RichEmbedThumbnail'
+        footer:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/RichEmbedFooter'
+        fields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/RichEmbedField'
+          maxItems: 25
+        provider:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/RichEmbedProvider'
+        video:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/RichEmbedVideo'
+    RichEmbedThumbnail:
+      type: object
+      properties:
+        url:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+          format: uri
+        width:
+          type:
+          - integer
+          - 'null'
+        height:
+          type:
+          - integer
+          - 'null'
+        placeholder:
+          type:
+          - string
+          - 'null'
+          maxLength: 64
+        placeholder_version:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          maximum: 2147483647
+    InteractionApplicationCommandAutocompleteCallbackNumberData:
+      type: object
+      properties:
+        choices:
+          type:
+          - array
+          - 'null'
+          items:
+            oneOf:
+            - type: 'null'
+            - $ref: '#/components/schemas/ApplicationCommandOptionNumberChoice'
+          maxItems: 25
+    RichEmbedVideo:
+      type: object
+      properties:
+        url:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+          format: uri
+        width:
+          type:
+          - integer
+          - 'null'
+        height:
+          type:
+          - integer
+          - 'null'
+        placeholder:
+          type:
+          - string
+          - 'null'
+          maxLength: 64
+        placeholder_version:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          maximum: 2147483647
+    SnowflakeSelectDefaultValueTypes:
+      type: string
+      oneOf:
+      - title: USER
+        const: user
+      - title: ROLE
+        const: role
+      - title: CHANNEL
+        const: channel
+    UserSelectDefaultValue:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - user
+          allOf:
+          - $ref: '#/components/schemas/SnowflakeSelectDefaultValueTypes'
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+      required:
+      - type
+      - id
+    InteractionCallbackTypes:
+      type: integer
+      oneOf:
+      - title: PONG
+        const: 1
+      - title: CHANNEL_MESSAGE_WITH_SOURCE
+        const: 4
+      - title: DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE
+        const: 5
+      - title: DEFERRED_UPDATE_MESSAGE
+        const: 6
+      - title: UPDATE_MESSAGE
+        const: 7
+      - title: APPLICATION_COMMAND_AUTOCOMPLETE_RESULT
+        const: 8
+      - title: MODAL
+        const: 9
+      format: int32
+    PongInteractionCallbackRequest:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 1
+          allOf:
+          - $ref: '#/components/schemas/InteractionCallbackTypes'
+          format: int32
+      required:
+      - type
+    ErrorResponse:
+      type: object
+      description: Errors object returned by the Discord API
+      allOf:
+      - $ref: '#/components/schemas/Error'
+      - type: object
+        properties:
+          errors:
+            $ref: '#/components/schemas/ErrorDetails'
+    RichEmbedAuthor:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          maxLength: 256
+        url:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+          format: uri
+        icon_url:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+          format: uri
+    ErrorDetails:
+      oneOf:
+      - type: object
+        additionalProperties:
+          $ref: '#/components/schemas/ErrorDetails'
+      - $ref: '#/components/schemas/InnerErrors'
+    CreateMessageInteractionCallbackRequest:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 4
+          - 5
+          allOf:
+          - $ref: '#/components/schemas/InteractionCallbackTypes'
+          format: int32
+        data:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/IncomingWebhookInteractionRequest'
+      required:
+      - type
+    ApplicationCommandOptionStringChoice:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 100
+        name_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+            minLength: 1
+            maxLength: 100
+          maxProperties: 34
+        value:
+          type: string
+          maxLength: 6000
+      required:
+      - name
+      - value
+    InteractionApplicationCommandAutocompleteCallbackStringData:
+      type: object
+      properties:
+        choices:
+          type:
+          - array
+          - 'null'
+          items:
+            oneOf:
+            - type: 'null'
+            - $ref: '#/components/schemas/ApplicationCommandOptionStringChoice'
+          maxItems: 25
+    SnowflakeType:
+      type: string
+      pattern: ^(0|[1-9][0-9]*)$
+      format: snowflake
+    UserSelect:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 5
+          allOf:
+          - $ref: '#/components/schemas/MessageComponentTypes'
+          format: int32
+        custom_id:
+          type: string
+          maxLength: 100
+        placeholder:
+          type:
+          - string
+          - 'null'
+          maxLength: 150
+        min_values:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          maximum: 25
+        max_values:
+          type:
+          - integer
+          - 'null'
+          minimum: 1
+          maximum: 25
+        disabled:
+          type:
+          - boolean
+          - 'null'
+        default_values:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/UserSelectDefaultValue'
+          maxItems: 25
+      required:
+      - type
+      - custom_id
+    TextStyleTypes:
+      type: integer
+      oneOf:
+      - title: SHORT
+        description: Single-line input
+        const: 1
+      - title: PARAGRAPH
+        description: Multi-line input
+        const: 2
+      format: int32
+    IncomingWebhookUpdateForInteractionCallbackRequestPartial:
+      type: object
+      properties:
+        content:
+          type:
+          - string
+          - 'null'
+          maxLength: 2000
+        embeds:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/RichEmbed'
+          maxItems: 10
+        allowed_mentions:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/MessageAllowedMentionsRequest'
+        components:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ActionRow'
+          maxItems: 5
+        attachments:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/MessageAttachmentRequest'
+          maxItems: 10
+        flags:
+          type:
+          - integer
+          - 'null'
+    ActionRow:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 1
+          allOf:
+          - $ref: '#/components/schemas/MessageComponentTypes'
+          format: int32
+        components:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/Button'
+            - $ref: '#/components/schemas/ChannelSelect'
+            - $ref: '#/components/schemas/InputText'
+            - $ref: '#/components/schemas/MentionableSelect'
+            - $ref: '#/components/schemas/RoleSelect'
+            - $ref: '#/components/schemas/StringSelect'
+            - $ref: '#/components/schemas/UserSelect'
+          minItems: 1
+          maxItems: 5
+      required:
+      - type
+      - components
+    InnerErrors:
+      type: object
+      properties:
+        _errors:
+          type: array
+          description: The list of errors for this field
+          items:
+            $ref: '#/components/schemas/Error'
+      additionalProperties: false
+      required:
+      - _errors
+    RichEmbedFooter:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+        icon_url:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+          format: uri
+    ModalInteractionCallbackRequest:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 9
+          allOf:
+          - $ref: '#/components/schemas/InteractionCallbackTypes'
+          format: int32
+        data:
+          $ref: '#/components/schemas/ModalInteractionCallbackData'
+      required:
+      - type
+      - data
+    ModalInteractionCallbackData:
+      type: object
+      properties:
+        custom_id:
+          type: string
+          maxLength: 100
+        title:
+          type: string
+          maxLength: 45
+        components:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/ActionRow'
+            - $ref: '#/components/schemas/InputText'
+          minItems: 1
+          maxItems: 5
+      required:
+      - custom_id
+      - title
+      - components
+    ChannelSelect:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 8
+          allOf:
+          - $ref: '#/components/schemas/MessageComponentTypes'
+          format: int32
+        custom_id:
+          type: string
+          maxLength: 100
+        placeholder:
+          type:
+          - string
+          - 'null'
+          maxLength: 150
+        min_values:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          maximum: 25
+        max_values:
+          type:
+          - integer
+          - 'null'
+          minimum: 1
+          maximum: 25
+        disabled:
+          type:
+          - boolean
+          - 'null'
+        default_values:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ChannelSelectDefaultValue'
+          maxItems: 25
+        channel_types:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ChannelTypes'
+          uniqueItems: true
+      required:
+      - type
+      - custom_id
+    MentionableSelect:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 7
+          allOf:
+          - $ref: '#/components/schemas/MessageComponentTypes'
+          format: int32
+        custom_id:
+          type: string
+          maxLength: 100
+        placeholder:
+          type:
+          - string
+          - 'null'
+          maxLength: 150
+        min_values:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          maximum: 25
+        max_values:
+          type:
+          - integer
+          - 'null'
+          minimum: 1
+          maximum: 25
+        disabled:
+          type:
+          - boolean
+          - 'null'
+        default_values:
+          type:
+          - array
+          - 'null'
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/RoleSelectDefaultValue'
+            - $ref: '#/components/schemas/UserSelectDefaultValue'
+          maxItems: 25
+      required:
+      - type
+      - custom_id
+    IncomingWebhookInteractionRequest:
+      type: object
+      properties:
+        content:
+          type:
+          - string
+          - 'null'
+          maxLength: 2000
+        embeds:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/RichEmbed'
+          maxItems: 10
+        allowed_mentions:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/MessageAllowedMentionsRequest'
+        components:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ActionRow'
+          maxItems: 5
+        attachments:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/MessageAttachmentRequest'
+          maxItems: 10
+        tts:
+          type:
+          - boolean
+          - 'null'
+        flags:
+          type:
+          - integer
+          - 'null'
+    RoleSelect:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 6
+          allOf:
+          - $ref: '#/components/schemas/MessageComponentTypes'
+          format: int32
+        custom_id:
+          type: string
+          maxLength: 100
+        placeholder:
+          type:
+          - string
+          - 'null'
+          maxLength: 150
+        min_values:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          maximum: 25
+        max_values:
+          type:
+          - integer
+          - 'null'
+          minimum: 1
+          maximum: 25
+        disabled:
+          type:
+          - boolean
+          - 'null'
+        default_values:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/RoleSelectDefaultValue'
+          maxItems: 25
+      required:
+      - type
+      - custom_id
+    ButtonStyleTypes:
+      type: integer
+      oneOf:
+      - title: PRIMARY
+        const: 1
+      - title: SECONDARY
+        const: 2
+      - title: SUCCESS
+        const: 3
+      - title: DANGER
+        const: 4
+      - title: LINK
+        const: 5
+      - title: PREMIUM
+        const: 6
+      format: int32
+    RichEmbedProvider:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          maxLength: 256
+        url:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+          format: uri
+    AllowedMentionTypes:
+      type: string
+      oneOf:
+      - title: USERS
+        description: Controls role mentions
+        const: users
+      - title: ROLES
+        description: Controls user mentions
+        const: roles
+      - title: EVERYONE
+        description: Controls @everyone and @here mentions
+        const: everyone
+    RichEmbedImage:
+      type: object
+      properties:
+        url:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+          format: uri
+        width:
+          type:
+          - integer
+          - 'null'
+        height:
+          type:
+          - integer
+          - 'null'
+        placeholder:
+          type:
+          - string
+          - 'null'
+          maxLength: 64
+        placeholder_version:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          maximum: 2147483647
+    SelectOption:
+      type: object
+      properties:
+        label:
+          type: string
+          minLength: 1
+          maxLength: 100
+        value:
+          type: string
+          minLength: 1
+          maxLength: 100
+        description:
+          type:
+          - string
+          - 'null'
+          maxLength: 100
+        emoji:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Emoji'
+        default:
+          type:
+          - boolean
+          - 'null'
+      required:
+      - label
+      - value
+    Error:
+      type: object
+      description: A single error, either for an API response or a specific field.
+      properties:
+        code:
+          type: integer
+          description: Discord internal error code. See error code reference
+        message:
+          type: string
+          description: Human-readable error message
+      required:
+      - code
+      - message
+    RoleSelectDefaultValue:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - role
+          allOf:
+          - $ref: '#/components/schemas/SnowflakeSelectDefaultValueTypes'
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+      required:
+      - type
+      - id
+    ChannelTypes:
+      type: integer
+      oneOf:
+      - title: DM
+        description: A direct message between users
+        const: 1
+      - title: GROUP_DM
+        description: A direct message between multiple users
+        const: 3
+      - title: GUILD_TEXT
+        description: A text channel within a server
+        const: 0
+      - title: GUILD_VOICE
+        description: A voice channel within a server
+        const: 2
+      - title: GUILD_CATEGORY
+        description: An organizational category that contains up to 50 channels
+        const: 4
+      - title: GUILD_ANNOUNCEMENT
+        description: A channel that users can follow and crosspost into their own server (formerly news channels)
+        const: 5
+      - title: ANNOUNCEMENT_THREAD
+        description: A temporary sub-channel within a GUILD_ANNOUNCEMENT channel
+        const: 10
+      - title: PUBLIC_THREAD
+        description: A temporary sub-channel within a GUILD_TEXT or GUILD_THREADS_ONLY channel type set
+        const: 11
+      - title: PRIVATE_THREAD
+        description: A temporary sub-channel within a GUILD_TEXT channel that is only viewable by those invited and those with the MANAGE_THREADS permission
+        const: 12
+      - title: GUILD_STAGE_VOICE
+        description: A voice channel for hosting events with an audience
+        const: 13
+      - title: GUILD_DIRECTORY
+        description: The channel in a hub containing the listed servers
+        const: 14
+      - title: GUILD_FORUM
+        description: Channel that can only contain threads
+        const: 15
+      format: int32
+  responses:
+    ClientErrorResponse:
+      description: Client error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     BotToken:
       type: http
       scheme: bearer
       description: Bot token authentication
-  parameters:
-    applicationId:
-      name: application_id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The ID of the application
-    guildId:
-      name: guild_id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The ID of the guild
-    commandId:
-      name: command_id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The ID of the command
-  responses:
-    ClientError:
-      description: Client error response
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-              message:
-                type: string
-  schemas:
-    Snowflake:
-      type: string
-      pattern: '^[0-9]+$'
-    ApplicationCommand:
-      type: object
-      properties:
-        id:
-          $ref: '#/components/schemas/Snowflake'
-        type:
-          type: integer
-          description: 1=CHAT_INPUT, 2=USER, 3=MESSAGE
-        application_id:
-          $ref: '#/components/schemas/Snowflake'
-        guild_id:
-          $ref: '#/components/schemas/Snowflake'
-        name:
-          type: string
-          minLength: 1
-          maxLength: 32
-        name_localizations:
-          type: object
-          additionalProperties:
-            type: string
-          nullable: true
-        description:
-          type: string
-          maxLength: 100
-        description_localizations:
-          type: object
-          additionalProperties:
-            type: string
-          nullable: true
-        options:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApplicationCommandOption'
-          maxItems: 25
-        default_member_permissions:
-          type: string
-          nullable: true
-        dm_permission:
-          type: boolean
-        default_permission:
-          type: boolean
-          deprecated: true
-        nsfw:
-          type: boolean
-        version:
-          $ref: '#/components/schemas/Snowflake'
-      required:
-        - id
-        - application_id
-        - name
-        - description
-    ApplicationCommandOption:
-      type: object
-      properties:
-        type:
-          type: integer
-          description: >-
-            1=SUB_COMMAND, 2=SUB_COMMAND_GROUP, 3=STRING, 4=INTEGER,
-            5=BOOLEAN, 6=USER, 7=CHANNEL, 8=ROLE, 9=MENTIONABLE,
-            10=NUMBER, 11=ATTACHMENT
-        name:
-          type: string
-          minLength: 1
-          maxLength: 32
-        name_localizations:
-          type: object
-          additionalProperties:
-            type: string
-          nullable: true
-        description:
-          type: string
-          minLength: 1
-          maxLength: 100
-        description_localizations:
-          type: object
-          additionalProperties:
-            type: string
-          nullable: true
-        required:
-          type: boolean
-        choices:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApplicationCommandOptionChoice'
-          maxItems: 25
-        options:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApplicationCommandOption'
-          maxItems: 25
-        channel_types:
-          type: array
-          items:
-            type: integer
-        min_value:
-          type: number
-        max_value:
-          type: number
-        min_length:
-          type: integer
-          minimum: 0
-          maximum: 6000
-        max_length:
-          type: integer
-          minimum: 1
-          maximum: 6000
-        autocomplete:
-          type: boolean
-      required:
-        - type
-        - name
-        - description
-    ApplicationCommandOptionChoice:
-      type: object
-      properties:
-        name:
-          type: string
-          minLength: 1
-          maxLength: 100
-        name_localizations:
-          type: object
-          additionalProperties:
-            type: string
-          nullable: true
-        value:
-          oneOf:
-            - type: string
-            - type: integer
-            - type: number
-      required:
-        - name
-        - value
-    ApplicationCommandPermission:
-      type: object
-      properties:
-        id:
-          $ref: '#/components/schemas/Snowflake'
-        type:
-          type: integer
-          description: 1=ROLE, 2=USER, 3=CHANNEL
-        permission:
-          type: boolean
-      required:
-        - id
-        - type
-        - permission
-    GuildApplicationCommandPermissions:
-      type: object
-      properties:
-        id:
-          $ref: '#/components/schemas/Snowflake'
-        application_id:
-          $ref: '#/components/schemas/Snowflake'
-        guild_id:
-          $ref: '#/components/schemas/Snowflake'
-        permissions:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApplicationCommandPermission'
-      required:
-        - id
-        - application_id
-        - guild_id
-        - permissions
-    InteractionResponse:
-      type: object
-      required:
-        - type
-      properties:
-        type:
-          type: integer
-          description: >-
-            1=PONG, 4=CHANNEL_MESSAGE_WITH_SOURCE,
-            5=DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE,
-            6=DEFERRED_UPDATE_MESSAGE, 7=UPDATE_MESSAGE,
-            8=APPLICATION_COMMAND_AUTOCOMPLETE_RESULT,
-            9=MODAL, 10=PREMIUM_REQUIRED
-        data:
-          $ref: '#/components/schemas/InteractionCallbackData'
-    InteractionCallbackData:
-      type: object
-      properties:
-        tts:
-          type: boolean
-        content:
-          type: string
-          maxLength: 2000
-        embeds:
-          type: array
-          items:
-            $ref: '#/components/schemas/Embed'
-          maxItems: 10
-        allowed_mentions:
-          type: object
-          properties:
-            parse:
-              type: array
-              items:
-                type: string
-            roles:
-              type: array
-              items:
-                type: string
-            users:
-              type: array
-              items:
-                type: string
-            replied_user:
-              type: boolean
-        flags:
-          type: integer
-          description: Set to 64 for ephemeral messages
-        components:
-          type: array
-          items:
-            type: object
-        choices:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApplicationCommandOptionChoice'
-          description: Used for autocomplete responses
-        custom_id:
-          type: string
-          description: Used for modal responses
-        title:
-          type: string
-          description: Used for modal responses
-    InteractionCallbackResponse:
-      type: object
-      properties:
-        interaction:
-          type: object
-          properties:
-            id:
-              $ref: '#/components/schemas/Snowflake'
-            type:
-              type: integer
-            activity_instance_id:
-              type: string
-            response_message_id:
-              $ref: '#/components/schemas/Snowflake'
-            response_message_loading:
-              type: boolean
-            response_message_ephemeral:
-              type: boolean
-        resource:
-          type: object
-          properties:
-            type:
-              type: integer
-            message:
-              $ref: '#/components/schemas/Message'
-    Embed:
-      type: object
-      properties:
-        title:
-          type: string
-        description:
-          type: string
-        url:
-          type: string
-          format: uri
-        color:
-          type: integer
-        fields:
-          type: array
-          items:
-            type: object
-            required:
-              - name
-              - value
-            properties:
-              name:
-                type: string
-              value:
-                type: string
-              inline:
-                type: boolean
-    Message:
-      type: object
-      properties:
-        id:
-          $ref: '#/components/schemas/Snowflake'
-        channel_id:
-          $ref: '#/components/schemas/Snowflake'
-        content:
-          type: string
-        timestamp:
-          type: string
-          format: date-time
-        flags:
-          type: integer
-    CreateApplicationCommandRequest:
-      type: object
-      required:
-        - name
-        - description
-      properties:
-        name:
-          type: string
-          minLength: 1
-          maxLength: 32
-        name_localizations:
-          type: object
-          additionalProperties:
-            type: string
-          nullable: true
-        description:
-          type: string
-          maxLength: 100
-        description_localizations:
-          type: object
-          additionalProperties:
-            type: string
-          nullable: true
-        options:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApplicationCommandOption'
-          maxItems: 25
-        default_member_permissions:
-          type: string
-          nullable: true
-        dm_permission:
-          type: boolean
-        type:
-          type: integer
-          default: 1
-        nsfw:
-          type: boolean
-    EditApplicationCommandRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          minLength: 1
-          maxLength: 32
-        description:
-          type: string
-          maxLength: 100
-        options:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApplicationCommandOption'
-          maxItems: 25
-        default_member_permissions:
-          type: string
-          nullable: true
-        dm_permission:
-          type: boolean
-        nsfw:
-          type: boolean
-    CreateMessageRequest:
-      type: object
-      properties:
-        content:
-          type: string
-          maxLength: 2000
-        embeds:
-          type: array
-          items:
-            $ref: '#/components/schemas/Embed'
-          maxItems: 10
-        flags:
-          type: integer
-        components:
-          type: array
-          items:
-            type: object
-    EditMessageRequest:
-      type: object
-      properties:
-        content:
-          type: string
-          nullable: true
-          maxLength: 2000
-        embeds:
-          type: array
-          nullable: true
-          items:
-            $ref: '#/components/schemas/Embed'
-          maxItems: 10
-        components:
-          type: array
-          nullable: true
-          items:
-            type: object
+externalDocs:
+  description: Discord Interactions Documentation
+  url: https://discord.com/developers/docs/interactions/overview

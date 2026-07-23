@@ -1,0 +1,455 @@
+openapi: 3.1.0
+info:
+  title: Discord Interactions Application Commands Interaction Responses API
+  description: The Discord Interactions API enables applications to create and respond to application commands (slash commands), message components, and modals. It supports both Gateway-based and webhook-based interaction handling, allowing bots to build rich, interactive user experiences within Discord.
+  version: '10'
+  contact:
+    name: Discord Support
+    url: https://support-dev.discord.com/hc/en-us
+    email: support@discord.com
+  termsOfService: https://discord.com/developers/docs/policies-and-agreements/developer-terms-of-service
+servers:
+- url: https://discord.com/api/v10
+  description: Discord API v10
+security:
+- BotToken: []
+tags:
+- name: Interaction Responses
+  description: Respond to interactions received from Discord
+paths:
+  /interactions/{interaction_id}/{interaction_token}/callback:
+    post:
+      operationId: createInteractionResponse
+      summary: Discord Create interaction response
+      description: Create a response to an interaction from the gateway or webhook. Takes an interaction response object.
+      tags:
+      - Interaction Responses
+      security: []
+      parameters:
+      - name: interaction_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: interaction_token
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InteractionResponse'
+      responses:
+        '200':
+          description: Interaction callback response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InteractionCallbackResponse'
+        '204':
+          description: Interaction response accepted
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /webhooks/{application_id}/{interaction_token}/messages/@original:
+    get:
+      operationId: getOriginalInteractionResponse
+      summary: Discord Get original interaction response
+      description: Returns the initial Interaction response.
+      tags:
+      - Interaction Responses
+      security: []
+      parameters:
+      - $ref: '#/components/parameters/applicationId'
+      - name: interaction_token
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Message object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    patch:
+      operationId: editOriginalInteractionResponse
+      summary: Discord Edit original interaction response
+      description: Edits the initial Interaction response.
+      tags:
+      - Interaction Responses
+      security: []
+      parameters:
+      - $ref: '#/components/parameters/applicationId'
+      - name: interaction_token
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EditMessageRequest'
+      responses:
+        '200':
+          description: Updated message
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    delete:
+      operationId: deleteOriginalInteractionResponse
+      summary: Discord Delete original interaction response
+      description: Deletes the initial Interaction response.
+      tags:
+      - Interaction Responses
+      security: []
+      parameters:
+      - $ref: '#/components/parameters/applicationId'
+      - name: interaction_token
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Response deleted
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /webhooks/{application_id}/{interaction_token}:
+    post:
+      operationId: createFollowupMessage
+      summary: Discord Create followup message
+      description: Create a followup message for an Interaction.
+      tags:
+      - Interaction Responses
+      security: []
+      parameters:
+      - $ref: '#/components/parameters/applicationId'
+      - name: interaction_token
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateMessageRequest'
+      responses:
+        '200':
+          description: Followup message
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /webhooks/{application_id}/{interaction_token}/messages/{message_id}:
+    get:
+      operationId: getFollowupMessage
+      summary: Discord Get followup message
+      description: Returns a followup message for an Interaction.
+      tags:
+      - Interaction Responses
+      security: []
+      parameters:
+      - $ref: '#/components/parameters/applicationId'
+      - name: interaction_token
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: message_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Message object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    patch:
+      operationId: editFollowupMessage
+      summary: Discord Edit followup message
+      description: Edits a followup message for an Interaction.
+      tags:
+      - Interaction Responses
+      security: []
+      parameters:
+      - $ref: '#/components/parameters/applicationId'
+      - name: interaction_token
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: message_id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EditMessageRequest'
+      responses:
+        '200':
+          description: Updated message
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    delete:
+      operationId: deleteFollowupMessage
+      summary: Discord Delete followup message
+      description: Deletes a followup message for an Interaction.
+      tags:
+      - Interaction Responses
+      security: []
+      parameters:
+      - $ref: '#/components/parameters/applicationId'
+      - name: interaction_token
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: message_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Message deleted
+        4XX:
+          $ref: '#/components/responses/ClientError'
+components:
+  schemas:
+    Message:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Snowflake'
+        channel_id:
+          $ref: '#/components/schemas/Snowflake'
+        content:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        flags:
+          type: integer
+    CreateMessageRequest:
+      type: object
+      properties:
+        content:
+          type: string
+          maxLength: 2000
+        embeds:
+          type: array
+          items:
+            $ref: '#/components/schemas/Embed'
+          maxItems: 10
+        flags:
+          type: integer
+        components:
+          type: array
+          items:
+            type: object
+    ApplicationCommandOptionChoice:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 100
+        name_localizations:
+          type: object
+          additionalProperties:
+            type: string
+          nullable: true
+        value:
+          oneOf:
+          - type: string
+          - type: integer
+          - type: number
+      required:
+      - name
+      - value
+    InteractionResponse:
+      type: object
+      required:
+      - type
+      properties:
+        type:
+          type: integer
+          description: 1=PONG, 4=CHANNEL_MESSAGE_WITH_SOURCE, 5=DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE, 6=DEFERRED_UPDATE_MESSAGE, 7=UPDATE_MESSAGE, 8=APPLICATION_COMMAND_AUTOCOMPLETE_RESULT, 9=MODAL, 10=PREMIUM_REQUIRED
+        data:
+          $ref: '#/components/schemas/InteractionCallbackData'
+    EditMessageRequest:
+      type: object
+      properties:
+        content:
+          type: string
+          nullable: true
+          maxLength: 2000
+        embeds:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/Embed'
+          maxItems: 10
+        components:
+          type: array
+          nullable: true
+          items:
+            type: object
+    InteractionCallbackData:
+      type: object
+      properties:
+        tts:
+          type: boolean
+        content:
+          type: string
+          maxLength: 2000
+        embeds:
+          type: array
+          items:
+            $ref: '#/components/schemas/Embed'
+          maxItems: 10
+        allowed_mentions:
+          type: object
+          properties:
+            parse:
+              type: array
+              items:
+                type: string
+            roles:
+              type: array
+              items:
+                type: string
+            users:
+              type: array
+              items:
+                type: string
+            replied_user:
+              type: boolean
+        flags:
+          type: integer
+          description: Set to 64 for ephemeral messages
+        components:
+          type: array
+          items:
+            type: object
+        choices:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApplicationCommandOptionChoice'
+          description: Used for autocomplete responses
+        custom_id:
+          type: string
+          description: Used for modal responses
+        title:
+          type: string
+          description: Used for modal responses
+    Embed:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        url:
+          type: string
+          format: uri
+        color:
+          type: integer
+        fields:
+          type: array
+          items:
+            type: object
+            required:
+            - name
+            - value
+            properties:
+              name:
+                type: string
+              value:
+                type: string
+              inline:
+                type: boolean
+    InteractionCallbackResponse:
+      type: object
+      properties:
+        interaction:
+          type: object
+          properties:
+            id:
+              $ref: '#/components/schemas/Snowflake'
+            type:
+              type: integer
+            activity_instance_id:
+              type: string
+            response_message_id:
+              $ref: '#/components/schemas/Snowflake'
+            response_message_loading:
+              type: boolean
+            response_message_ephemeral:
+              type: boolean
+        resource:
+          type: object
+          properties:
+            type:
+              type: integer
+            message:
+              $ref: '#/components/schemas/Message'
+    Snowflake:
+      type: string
+      pattern: ^[0-9]+$
+  responses:
+    ClientError:
+      description: Client error response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+              message:
+                type: string
+  parameters:
+    applicationId:
+      name: application_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the application
+  securitySchemes:
+    BotToken:
+      type: http
+      scheme: bearer
+      description: Bot token authentication
+externalDocs:
+  description: Discord Interactions Documentation
+  url: https://discord.com/developers/docs/interactions/overview

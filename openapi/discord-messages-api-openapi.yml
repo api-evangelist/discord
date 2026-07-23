@@ -1,0 +1,809 @@
+openapi: 3.1.0
+info:
+  title: Discord Interactions Application Commands Messages API
+  description: The Discord Interactions API enables applications to create and respond to application commands (slash commands), message components, and modals. It supports both Gateway-based and webhook-based interaction handling, allowing bots to build rich, interactive user experiences within Discord.
+  version: '10'
+  contact:
+    name: Discord Support
+    url: https://support-dev.discord.com/hc/en-us
+    email: support@discord.com
+  termsOfService: https://discord.com/developers/docs/policies-and-agreements/developer-terms-of-service
+servers:
+- url: https://discord.com/api/v10
+  description: Discord API v10
+security:
+- BotToken: []
+tags:
+- name: Messages
+  description: Operations on messages within channels
+paths:
+  /channels/{channel_id}/messages:
+    get:
+      operationId: getChannelMessages
+      summary: Discord List channel messages
+      description: Returns messages for a channel. Requires READ_MESSAGE_HISTORY.
+      tags:
+      - Messages
+      parameters:
+      - $ref: '#/components/parameters/channelId'
+      - name: around
+        in: query
+        schema:
+          type: string
+      - name: before
+        in: query
+        schema:
+          type: string
+      - name: after
+        in: query
+        schema:
+          type: string
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 50
+      responses:
+        '200':
+          description: List of message objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Message'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    post:
+      operationId: createMessage
+      summary: Discord Create message
+      description: Post a message to a guild text or DM channel.
+      tags:
+      - Messages
+      parameters:
+      - $ref: '#/components/parameters/channelId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateMessageRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CreateMessageRequest'
+      responses:
+        '200':
+          description: Message object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /channels/{channel_id}/messages/{message_id}:
+    get:
+      operationId: getMessage
+      summary: Discord Get message
+      description: Returns a specific message in a channel.
+      tags:
+      - Messages
+      parameters:
+      - $ref: '#/components/parameters/channelId'
+      - $ref: '#/components/parameters/messageId'
+      responses:
+        '200':
+          description: Message object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    patch:
+      operationId: editMessage
+      summary: Discord Edit message
+      description: Edit a previously sent message.
+      tags:
+      - Messages
+      parameters:
+      - $ref: '#/components/parameters/channelId'
+      - $ref: '#/components/parameters/messageId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EditMessageRequest'
+      responses:
+        '200':
+          description: Updated message object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    delete:
+      operationId: deleteMessage
+      summary: Discord Delete message
+      description: Delete a message. Requires MANAGE_MESSAGES for others' messages.
+      tags:
+      - Messages
+      parameters:
+      - $ref: '#/components/parameters/channelId'
+      - $ref: '#/components/parameters/messageId'
+      responses:
+        '204':
+          description: Message deleted
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /channels/{channel_id}/messages/bulk-delete:
+    post:
+      operationId: bulkDeleteMessages
+      summary: Discord Bulk delete messages
+      description: Delete multiple messages in a single request. Requires MANAGE_MESSAGES.
+      tags:
+      - Messages
+      parameters:
+      - $ref: '#/components/parameters/channelId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - messages
+              properties:
+                messages:
+                  type: array
+                  items:
+                    type: string
+                  minItems: 2
+                  maxItems: 100
+      responses:
+        '204':
+          description: Messages deleted
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /channels/{channel_id}/messages/{message_id}/reactions/{emoji_name}/@me:
+    put:
+      operationId: createReaction
+      summary: Discord Create reaction
+      description: Create a reaction for the message.
+      tags:
+      - Messages
+      parameters:
+      - $ref: '#/components/parameters/channelId'
+      - $ref: '#/components/parameters/messageId'
+      - name: emoji_name
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Reaction added
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    delete:
+      operationId: deleteOwnReaction
+      summary: Discord Delete own reaction
+      description: Delete a reaction the current user has made.
+      tags:
+      - Messages
+      parameters:
+      - $ref: '#/components/parameters/channelId'
+      - $ref: '#/components/parameters/messageId'
+      - name: emoji_name
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Reaction removed
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /channels/{channel_id}/messages/{message_id}/crosspost:
+    post:
+      operationId: crosspostMessage
+      summary: Discord Crosspost message
+      description: Crosspost a message in an Announcement Channel to following channels.
+      tags:
+      - Messages
+      parameters:
+      - $ref: '#/components/parameters/channelId'
+      - $ref: '#/components/parameters/messageId'
+      responses:
+        '200':
+          description: Crossposted message
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /channels/{channel_id}/pins:
+    get:
+      operationId: getPinnedMessages
+      summary: Discord Get pinned messages
+      description: Returns all pinned messages in the channel.
+      tags:
+      - Messages
+      parameters:
+      - $ref: '#/components/parameters/channelId'
+      responses:
+        '200':
+          description: List of pinned message objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Message'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /channels/{channel_id}/pins/{message_id}:
+    put:
+      operationId: pinMessage
+      summary: Discord Pin message
+      description: Pin a message in a channel. Max 50 pins per channel.
+      tags:
+      - Messages
+      parameters:
+      - $ref: '#/components/parameters/channelId'
+      - $ref: '#/components/parameters/messageId'
+      responses:
+        '204':
+          description: Message pinned
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    delete:
+      operationId: unpinMessage
+      summary: Discord Unpin message
+      description: Unpin a message in a channel.
+      tags:
+      - Messages
+      parameters:
+      - $ref: '#/components/parameters/channelId'
+      - $ref: '#/components/parameters/messageId'
+      responses:
+        '204':
+          description: Message unpinned
+        4XX:
+          $ref: '#/components/responses/ClientError'
+components:
+  schemas:
+    Message:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Snowflake'
+        channel_id:
+          $ref: '#/components/schemas/Snowflake'
+        author:
+          $ref: '#/components/schemas/User'
+        content:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        edited_timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        tts:
+          type: boolean
+        mention_everyone:
+          type: boolean
+        mentions:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        mention_roles:
+          type: array
+          items:
+            type: string
+        attachments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attachment'
+        embeds:
+          type: array
+          items:
+            $ref: '#/components/schemas/Embed'
+        reactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Reaction'
+        pinned:
+          type: boolean
+        webhook_id:
+          $ref: '#/components/schemas/Snowflake'
+        type:
+          type: integer
+        flags:
+          type: integer
+        referenced_message:
+          nullable: true
+        thread:
+          $ref: '#/components/schemas/Channel'
+        components:
+          type: array
+          items:
+            $ref: '#/components/schemas/Component'
+      required:
+      - id
+      - channel_id
+      - author
+      - content
+      - timestamp
+      - tts
+      - mention_everyone
+      - mentions
+      - mention_roles
+      - attachments
+      - embeds
+      - pinned
+      - type
+    CreateMessageRequest:
+      type: object
+      properties:
+        content:
+          type: string
+          maxLength: 2000
+        nonce:
+          oneOf:
+          - type: string
+          - type: integer
+        tts:
+          type: boolean
+        embeds:
+          type: array
+          items:
+            $ref: '#/components/schemas/Embed'
+          maxItems: 10
+        allowed_mentions:
+          type: object
+          properties:
+            parse:
+              type: array
+              items:
+                type: string
+            roles:
+              type: array
+              items:
+                type: string
+            users:
+              type: array
+              items:
+                type: string
+            replied_user:
+              type: boolean
+        message_reference:
+          type: object
+          properties:
+            message_id:
+              $ref: '#/components/schemas/Snowflake'
+            channel_id:
+              $ref: '#/components/schemas/Snowflake'
+            guild_id:
+              $ref: '#/components/schemas/Snowflake'
+            fail_if_not_exists:
+              type: boolean
+        components:
+          type: array
+          items:
+            $ref: '#/components/schemas/Component'
+        sticker_ids:
+          type: array
+          items:
+            $ref: '#/components/schemas/Snowflake'
+          maxItems: 3
+        flags:
+          type: integer
+    Overwrite:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Snowflake'
+        type:
+          type: integer
+          description: 0=role, 1=member
+        allow:
+          type: string
+        deny:
+          type: string
+    Channel:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Snowflake'
+        type:
+          type: integer
+          description: 0=GUILD_TEXT, 1=DM, 2=GUILD_VOICE, 3=GROUP_DM, 4=GUILD_CATEGORY, 5=GUILD_ANNOUNCEMENT, 10=ANNOUNCEMENT_THREAD, 11=PUBLIC_THREAD, 12=PRIVATE_THREAD, 13=GUILD_STAGE_VOICE, 14=GUILD_DIRECTORY, 15=GUILD_FORUM, 16=GUILD_MEDIA
+        guild_id:
+          $ref: '#/components/schemas/Snowflake'
+        position:
+          type: integer
+        permission_overwrites:
+          type: array
+          items:
+            $ref: '#/components/schemas/Overwrite'
+        name:
+          type: string
+          nullable: true
+        topic:
+          type: string
+          nullable: true
+        nsfw:
+          type: boolean
+        last_message_id:
+          $ref: '#/components/schemas/Snowflake'
+        bitrate:
+          type: integer
+        user_limit:
+          type: integer
+        rate_limit_per_user:
+          type: integer
+        recipients:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        icon:
+          type: string
+          nullable: true
+        owner_id:
+          $ref: '#/components/schemas/Snowflake'
+        parent_id:
+          $ref: '#/components/schemas/Snowflake'
+        last_pin_timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        rtc_region:
+          type: string
+          nullable: true
+        video_quality_mode:
+          type: integer
+        message_count:
+          type: integer
+        member_count:
+          type: integer
+        thread_metadata:
+          $ref: '#/components/schemas/ThreadMetadata'
+        default_auto_archive_duration:
+          type: integer
+        flags:
+          type: integer
+        total_message_sent:
+          type: integer
+      required:
+      - id
+      - type
+    ThreadMetadata:
+      type: object
+      properties:
+        archived:
+          type: boolean
+        auto_archive_duration:
+          type: integer
+        archive_timestamp:
+          type: string
+          format: date-time
+        locked:
+          type: boolean
+        invitable:
+          type: boolean
+        create_timestamp:
+          type: string
+          format: date-time
+          nullable: true
+    EditMessageRequest:
+      type: object
+      properties:
+        content:
+          type: string
+          nullable: true
+          maxLength: 2000
+        embeds:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/Embed'
+          maxItems: 10
+        flags:
+          type: integer
+          nullable: true
+        allowed_mentions:
+          type: object
+          nullable: true
+        components:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/Component'
+    User:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Snowflake'
+        username:
+          type: string
+        discriminator:
+          type: string
+        global_name:
+          type: string
+          nullable: true
+        avatar:
+          type: string
+          nullable: true
+        bot:
+          type: boolean
+        system:
+          type: boolean
+        mfa_enabled:
+          type: boolean
+        banner:
+          type: string
+          nullable: true
+        accent_color:
+          type: integer
+          nullable: true
+        locale:
+          type: string
+        verified:
+          type: boolean
+        email:
+          type: string
+          nullable: true
+        flags:
+          type: integer
+        premium_type:
+          type: integer
+        public_flags:
+          type: integer
+        avatar_decoration_data:
+          type: object
+          nullable: true
+      required:
+      - id
+      - username
+    Component:
+      type: object
+      properties:
+        type:
+          type: integer
+          description: 1=ActionRow, 2=Button, 3=StringSelect, 4=TextInput, 5=UserSelect, 6=RoleSelect, 7=MentionableSelect, 8=ChannelSelect
+        components:
+          type: array
+          items:
+            $ref: '#/components/schemas/Component'
+        style:
+          type: integer
+        label:
+          type: string
+        emoji:
+          $ref: '#/components/schemas/Emoji'
+        custom_id:
+          type: string
+        url:
+          type: string
+          format: uri
+        disabled:
+          type: boolean
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/SelectOption'
+        placeholder:
+          type: string
+        min_values:
+          type: integer
+        max_values:
+          type: integer
+      required:
+      - type
+    Embed:
+      type: object
+      properties:
+        title:
+          type: string
+        type:
+          type: string
+        description:
+          type: string
+        url:
+          type: string
+          format: uri
+        timestamp:
+          type: string
+          format: date-time
+        color:
+          type: integer
+        footer:
+          type: object
+          properties:
+            text:
+              type: string
+            icon_url:
+              type: string
+              format: uri
+        image:
+          type: object
+          properties:
+            url:
+              type: string
+              format: uri
+            height:
+              type: integer
+            width:
+              type: integer
+        thumbnail:
+          type: object
+          properties:
+            url:
+              type: string
+              format: uri
+            height:
+              type: integer
+            width:
+              type: integer
+        author:
+          type: object
+          properties:
+            name:
+              type: string
+            url:
+              type: string
+              format: uri
+            icon_url:
+              type: string
+              format: uri
+        fields:
+          type: array
+          items:
+            type: object
+            required:
+            - name
+            - value
+            properties:
+              name:
+                type: string
+              value:
+                type: string
+              inline:
+                type: boolean
+    Snowflake:
+      type: string
+      description: Discord unique ID represented as a string
+      pattern: ^[0-9]+$
+    Reaction:
+      type: object
+      properties:
+        count:
+          type: integer
+        count_details:
+          type: object
+          properties:
+            burst:
+              type: integer
+            normal:
+              type: integer
+        me:
+          type: boolean
+        me_burst:
+          type: boolean
+        emoji:
+          $ref: '#/components/schemas/Emoji'
+    Attachment:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Snowflake'
+        filename:
+          type: string
+        description:
+          type: string
+        content_type:
+          type: string
+        size:
+          type: integer
+        url:
+          type: string
+          format: uri
+        proxy_url:
+          type: string
+          format: uri
+        height:
+          type: integer
+          nullable: true
+        width:
+          type: integer
+          nullable: true
+        ephemeral:
+          type: boolean
+      required:
+      - id
+      - filename
+      - size
+      - url
+      - proxy_url
+    SelectOption:
+      type: object
+      properties:
+        label:
+          type: string
+        value:
+          type: string
+        description:
+          type: string
+        emoji:
+          $ref: '#/components/schemas/Emoji'
+        default:
+          type: boolean
+      required:
+      - label
+      - value
+    Emoji:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Snowflake'
+        name:
+          type: string
+          nullable: true
+        roles:
+          type: array
+          items:
+            type: string
+        user:
+          $ref: '#/components/schemas/User'
+        require_colons:
+          type: boolean
+        managed:
+          type: boolean
+        animated:
+          type: boolean
+        available:
+          type: boolean
+  parameters:
+    messageId:
+      name: message_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the message (Snowflake)
+    channelId:
+      name: channel_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the channel (Snowflake)
+  responses:
+    ClientError:
+      description: Client error response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+              message:
+                type: string
+              errors:
+                type: object
+  securitySchemes:
+    BotToken:
+      type: http
+      scheme: bearer
+      description: Bot token authentication
+externalDocs:
+  description: Discord Interactions Documentation
+  url: https://discord.com/developers/docs/interactions/overview

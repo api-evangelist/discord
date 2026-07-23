@@ -1,0 +1,150 @@
+openapi: 3.1.0
+info:
+  title: Discord Interactions Application Commands Gateway API
+  description: The Discord Interactions API enables applications to create and respond to application commands (slash commands), message components, and modals. It supports both Gateway-based and webhook-based interaction handling, allowing bots to build rich, interactive user experiences within Discord.
+  version: '10'
+  contact:
+    name: Discord Support
+    url: https://support-dev.discord.com/hc/en-us
+    email: support@discord.com
+  termsOfService: https://discord.com/developers/docs/policies-and-agreements/developer-terms-of-service
+servers:
+- url: https://discord.com/api/v10
+  description: Discord API v10
+security:
+- BotToken: []
+tags:
+- name: Gateway
+paths:
+  /gateway/bot:
+    get:
+      operationId: get_bot_gateway
+      responses:
+        '200':
+          description: 200 response for get_bot_gateway
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GatewayBotResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      tags:
+      - Gateway
+  /gateway:
+    get:
+      operationId: get_gateway
+      responses:
+        '200':
+          description: 200 response for get_gateway
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GatewayResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - {}
+      - BotToken: []
+      tags:
+      - Gateway
+components:
+  schemas:
+    GatewayBotResponse:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+        session_start_limit:
+          $ref: '#/components/schemas/GatewayBotSessionStartLimitResponse'
+        shards:
+          type: integer
+          format: int32
+      required:
+      - url
+      - session_start_limit
+      - shards
+    GatewayBotSessionStartLimitResponse:
+      type: object
+      properties:
+        max_concurrency:
+          type: integer
+          format: int32
+        remaining:
+          type: integer
+          format: int32
+        reset_after:
+          type: integer
+          format: int32
+        total:
+          type: integer
+          format: int32
+      required:
+      - max_concurrency
+      - remaining
+      - reset_after
+      - total
+    GatewayResponse:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+      required:
+      - url
+    Error:
+      type: object
+      description: A single error, either for an API response or a specific field.
+      properties:
+        code:
+          type: integer
+          description: Discord internal error code. See error code reference
+        message:
+          type: string
+          description: Human-readable error message
+      required:
+      - code
+      - message
+    ErrorResponse:
+      type: object
+      description: Errors object returned by the Discord API
+      allOf:
+      - $ref: '#/components/schemas/Error'
+      - type: object
+        properties:
+          errors:
+            $ref: '#/components/schemas/ErrorDetails'
+    InnerErrors:
+      type: object
+      properties:
+        _errors:
+          type: array
+          description: The list of errors for this field
+          items:
+            $ref: '#/components/schemas/Error'
+      additionalProperties: false
+      required:
+      - _errors
+    ErrorDetails:
+      oneOf:
+      - type: object
+        additionalProperties:
+          $ref: '#/components/schemas/ErrorDetails'
+      - $ref: '#/components/schemas/InnerErrors'
+  responses:
+    ClientErrorResponse:
+      description: Client error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    BotToken:
+      type: http
+      scheme: bearer
+      description: Bot token authentication
+externalDocs:
+  description: Discord Interactions Documentation
+  url: https://discord.com/developers/docs/interactions/overview

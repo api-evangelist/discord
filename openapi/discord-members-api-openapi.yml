@@ -1,0 +1,541 @@
+openapi: 3.1.0
+info:
+  title: Discord Interactions Application Commands Members API
+  description: The Discord Interactions API enables applications to create and respond to application commands (slash commands), message components, and modals. It supports both Gateway-based and webhook-based interaction handling, allowing bots to build rich, interactive user experiences within Discord.
+  version: '10'
+  contact:
+    name: Discord Support
+    url: https://support-dev.discord.com/hc/en-us
+    email: support@discord.com
+  termsOfService: https://discord.com/developers/docs/policies-and-agreements/developer-terms-of-service
+servers:
+- url: https://discord.com/api/v10
+  description: Discord API v10
+security:
+- BotToken: []
+tags:
+- name: Members
+  description: Operations on guild members
+paths:
+  /guilds/{guild_id}/members:
+    get:
+      operationId: listGuildMembers
+      summary: Discord List guild members
+      description: Returns a list of guild member objects.
+      tags:
+      - Members
+      parameters:
+      - $ref: '#/components/parameters/guildId'
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 1000
+          default: 1
+      - name: after
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of guild member objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GuildMember'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /guilds/{guild_id}/members/{user_id}:
+    get:
+      operationId: getGuildMember
+      summary: Discord Get guild member
+      description: Returns a guild member object for the specified user.
+      tags:
+      - Members
+      parameters:
+      - $ref: '#/components/parameters/guildId'
+      - $ref: '#/components/parameters/userId'
+      responses:
+        '200':
+          description: Guild member object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GuildMember'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    put:
+      operationId: addGuildMember
+      summary: Discord Add guild member
+      description: Adds a user to the guild using an OAuth2 access token.
+      tags:
+      - Members
+      parameters:
+      - $ref: '#/components/parameters/guildId'
+      - $ref: '#/components/parameters/userId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - access_token
+              properties:
+                access_token:
+                  type: string
+                nick:
+                  type: string
+                roles:
+                  type: array
+                  items:
+                    type: string
+                mute:
+                  type: boolean
+                deaf:
+                  type: boolean
+      responses:
+        '201':
+          description: Member added
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GuildMember'
+        '204':
+          description: Member already exists
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    patch:
+      operationId: modifyGuildMember
+      summary: Discord Modify guild member
+      description: Modify attributes of a guild member.
+      tags:
+      - Members
+      parameters:
+      - $ref: '#/components/parameters/guildId'
+      - $ref: '#/components/parameters/userId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nick:
+                  type: string
+                  nullable: true
+                roles:
+                  type: array
+                  items:
+                    type: string
+                mute:
+                  type: boolean
+                deaf:
+                  type: boolean
+                channel_id:
+                  type: string
+                  nullable: true
+                communication_disabled_until:
+                  type: string
+                  format: date-time
+                  nullable: true
+      responses:
+        '200':
+          description: Updated guild member
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GuildMember'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    delete:
+      operationId: removeGuildMember
+      summary: Discord Remove guild member
+      description: Remove a member from a guild. Requires KICK_MEMBERS.
+      tags:
+      - Members
+      parameters:
+      - $ref: '#/components/parameters/guildId'
+      - $ref: '#/components/parameters/userId'
+      responses:
+        '204':
+          description: Member removed
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /guilds/{guild_id}/members/search:
+    get:
+      operationId: searchGuildMembers
+      summary: Discord Search guild members
+      description: Returns guild members whose username or nickname starts with the query.
+      tags:
+      - Members
+      parameters:
+      - $ref: '#/components/parameters/guildId'
+      - name: query
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 1000
+          default: 1
+      responses:
+        '200':
+          description: List of guild member objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GuildMember'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /guilds/{guild_id}/bans:
+    get:
+      operationId: getGuildBans
+      summary: Discord List guild bans
+      description: Returns a list of ban objects for the guild.
+      tags:
+      - Members
+      parameters:
+      - $ref: '#/components/parameters/guildId'
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          maximum: 1000
+      - name: before
+        in: query
+        schema:
+          type: string
+      - name: after
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of ban objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Ban'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /guilds/{guild_id}/bans/{user_id}:
+    get:
+      operationId: getGuildBan
+      summary: Discord Get guild ban
+      description: Returns a ban object for the given user.
+      tags:
+      - Members
+      parameters:
+      - $ref: '#/components/parameters/guildId'
+      - $ref: '#/components/parameters/userId'
+      responses:
+        '200':
+          description: Ban object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ban'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    put:
+      operationId: createGuildBan
+      summary: Discord Create guild ban
+      description: Create a guild ban and optionally delete previous messages.
+      tags:
+      - Members
+      parameters:
+      - $ref: '#/components/parameters/guildId'
+      - $ref: '#/components/parameters/userId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                delete_message_seconds:
+                  type: integer
+                  minimum: 0
+                  maximum: 604800
+      responses:
+        '204':
+          description: Ban created
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    delete:
+      operationId: removeGuildBan
+      summary: Discord Remove guild ban
+      description: Remove the ban for a user.
+      tags:
+      - Members
+      parameters:
+      - $ref: '#/components/parameters/guildId'
+      - $ref: '#/components/parameters/userId'
+      responses:
+        '204':
+          description: Ban removed
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /guilds/{guild_id}/prune:
+    get:
+      operationId: getGuildPruneCount
+      summary: Discord Get guild prune count
+      description: Returns number of members that would be removed in a prune operation.
+      tags:
+      - Members
+      parameters:
+      - $ref: '#/components/parameters/guildId'
+      - name: days
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 30
+          default: 7
+      - name: include_roles
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Prune count
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pruned:
+                    type: integer
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    post:
+      operationId: beginGuildPrune
+      summary: Discord Begin guild prune
+      description: Begin a prune operation. Requires KICK_MEMBERS.
+      tags:
+      - Members
+      parameters:
+      - $ref: '#/components/parameters/guildId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                days:
+                  type: integer
+                  minimum: 1
+                  maximum: 30
+                  default: 7
+                compute_prune_count:
+                  type: boolean
+                  default: true
+                include_roles:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: Prune result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pruned:
+                    type: integer
+                    nullable: true
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /guilds/{guild_id}/bulk-ban:
+    post:
+      operationId: bulkGuildBan
+      summary: Discord Bulk guild ban
+      description: Ban up to 200 users from a guild.
+      tags:
+      - Members
+      parameters:
+      - $ref: '#/components/parameters/guildId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - user_ids
+              properties:
+                user_ids:
+                  type: array
+                  items:
+                    type: string
+                  maxItems: 200
+                delete_message_seconds:
+                  type: integer
+                  minimum: 0
+                  maximum: 604800
+      responses:
+        '200':
+          description: Bulk ban result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  banned_users:
+                    type: array
+                    items:
+                      type: string
+                  failed_users:
+                    type: array
+                    items:
+                      type: string
+        4XX:
+          $ref: '#/components/responses/ClientError'
+components:
+  schemas:
+    Ban:
+      type: object
+      properties:
+        reason:
+          type: string
+          nullable: true
+        user:
+          $ref: '#/components/schemas/User'
+    User:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Snowflake'
+        username:
+          type: string
+        discriminator:
+          type: string
+        global_name:
+          type: string
+          nullable: true
+        avatar:
+          type: string
+          nullable: true
+        bot:
+          type: boolean
+        system:
+          type: boolean
+        mfa_enabled:
+          type: boolean
+        banner:
+          type: string
+          nullable: true
+        accent_color:
+          type: integer
+          nullable: true
+        locale:
+          type: string
+        verified:
+          type: boolean
+        email:
+          type: string
+          nullable: true
+        flags:
+          type: integer
+        premium_type:
+          type: integer
+        public_flags:
+          type: integer
+        avatar_decoration_data:
+          type: object
+          nullable: true
+      required:
+      - id
+      - username
+    Snowflake:
+      type: string
+      description: Discord unique ID represented as a string
+      pattern: ^[0-9]+$
+    GuildMember:
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+        nick:
+          type: string
+          nullable: true
+        avatar:
+          type: string
+          nullable: true
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Snowflake'
+        joined_at:
+          type: string
+          format: date-time
+        premium_since:
+          type: string
+          format: date-time
+          nullable: true
+        deaf:
+          type: boolean
+        mute:
+          type: boolean
+        flags:
+          type: integer
+        pending:
+          type: boolean
+        communication_disabled_until:
+          type: string
+          format: date-time
+          nullable: true
+      required:
+      - roles
+      - joined_at
+      - deaf
+      - mute
+  responses:
+    ClientError:
+      description: Client error response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+              message:
+                type: string
+              errors:
+                type: object
+  parameters:
+    guildId:
+      name: guild_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the guild (Snowflake)
+    userId:
+      name: user_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the user (Snowflake)
+  securitySchemes:
+    BotToken:
+      type: http
+      scheme: bearer
+      description: Bot token authentication
+externalDocs:
+  description: Discord Interactions Documentation
+  url: https://discord.com/developers/docs/interactions/overview

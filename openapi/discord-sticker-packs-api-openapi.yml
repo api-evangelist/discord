@@ -1,0 +1,192 @@
+openapi: 3.1.0
+info:
+  title: Discord Interactions Application Commands Sticker Packs API
+  description: The Discord Interactions API enables applications to create and respond to application commands (slash commands), message components, and modals. It supports both Gateway-based and webhook-based interaction handling, allowing bots to build rich, interactive user experiences within Discord.
+  version: '10'
+  contact:
+    name: Discord Support
+    url: https://support-dev.discord.com/hc/en-us
+    email: support@discord.com
+  termsOfService: https://discord.com/developers/docs/policies-and-agreements/developer-terms-of-service
+servers:
+- url: https://discord.com/api/v10
+  description: Discord API v10
+security:
+- BotToken: []
+tags:
+- name: Sticker Packs
+paths:
+  /sticker-packs:
+    get:
+      operationId: list_sticker_packs
+      responses:
+        '200':
+          description: 200 response for list_sticker_packs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StickerPackCollectionResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - {}
+      - BotToken: []
+      tags:
+      - Sticker Packs
+components:
+  schemas:
+    StickerFormatTypes:
+      type: integer
+      oneOf:
+      - title: PNG
+        const: 1
+      - title: APNG
+        const: 2
+      - title: LOTTIE
+        const: 3
+      - title: GIF
+        const: 4
+      format: int32
+    StickerPackResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        sku_id:
+          $ref: '#/components/schemas/SnowflakeType'
+        name:
+          type: string
+        description:
+          type:
+          - string
+          - 'null'
+        stickers:
+          type: array
+          items:
+            $ref: '#/components/schemas/StandardStickerResponse'
+        cover_sticker_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        banner_asset_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+      required:
+      - id
+      - sku_id
+      - name
+      - stickers
+    SnowflakeType:
+      type: string
+      pattern: ^(0|[1-9][0-9]*)$
+      format: snowflake
+    StickerTypes:
+      type: integer
+      oneOf:
+      - title: STANDARD
+        description: an official sticker in a pack, part of Nitro or in a removed purchasable pack
+        const: 1
+      - title: GUILD
+        description: a sticker uploaded to a guild for the guild's members
+        const: 2
+      format: int32
+    StickerPackCollectionResponse:
+      type: object
+      properties:
+        sticker_packs:
+          type: array
+          items:
+            $ref: '#/components/schemas/StickerPackResponse'
+      required:
+      - sticker_packs
+    Error:
+      type: object
+      description: A single error, either for an API response or a specific field.
+      properties:
+        code:
+          type: integer
+          description: Discord internal error code. See error code reference
+        message:
+          type: string
+          description: Human-readable error message
+      required:
+      - code
+      - message
+    ErrorResponse:
+      type: object
+      description: Errors object returned by the Discord API
+      allOf:
+      - $ref: '#/components/schemas/Error'
+      - type: object
+        properties:
+          errors:
+            $ref: '#/components/schemas/ErrorDetails'
+    StandardStickerResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        name:
+          type: string
+        tags:
+          type: string
+        type:
+          type: integer
+          enum:
+          - 1
+          allOf:
+          - $ref: '#/components/schemas/StickerTypes'
+          format: int32
+        format_type:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/StickerFormatTypes'
+        description:
+          type:
+          - string
+          - 'null'
+        pack_id:
+          $ref: '#/components/schemas/SnowflakeType'
+        sort_value:
+          type: integer
+          format: int32
+      required:
+      - id
+      - name
+      - tags
+      - type
+      - pack_id
+      - sort_value
+    InnerErrors:
+      type: object
+      properties:
+        _errors:
+          type: array
+          description: The list of errors for this field
+          items:
+            $ref: '#/components/schemas/Error'
+      additionalProperties: false
+      required:
+      - _errors
+    ErrorDetails:
+      oneOf:
+      - type: object
+        additionalProperties:
+          $ref: '#/components/schemas/ErrorDetails'
+      - $ref: '#/components/schemas/InnerErrors'
+  responses:
+    ClientErrorResponse:
+      description: Client error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    BotToken:
+      type: http
+      scheme: bearer
+      description: Bot token authentication
+externalDocs:
+  description: Discord Interactions Documentation
+  url: https://discord.com/developers/docs/interactions/overview

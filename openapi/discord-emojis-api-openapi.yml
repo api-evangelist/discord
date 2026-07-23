@@ -1,0 +1,202 @@
+openapi: 3.1.0
+info:
+  title: Discord Interactions Application Commands Emojis API
+  description: The Discord Interactions API enables applications to create and respond to application commands (slash commands), message components, and modals. It supports both Gateway-based and webhook-based interaction handling, allowing bots to build rich, interactive user experiences within Discord.
+  version: '10'
+  contact:
+    name: Discord Support
+    url: https://support-dev.discord.com/hc/en-us
+    email: support@discord.com
+  termsOfService: https://discord.com/developers/docs/policies-and-agreements/developer-terms-of-service
+servers:
+- url: https://discord.com/api/v10
+  description: Discord API v10
+security:
+- BotToken: []
+tags:
+- name: Emojis
+  description: Operations on guild emojis
+paths:
+  /guilds/{guild_id}/emojis:
+    get:
+      operationId: listGuildEmojis
+      summary: Discord List guild emojis
+      description: Returns a list of emoji objects for the given guild.
+      tags:
+      - Emojis
+      parameters:
+      - $ref: '#/components/parameters/guildId'
+      responses:
+        '200':
+          description: List of emoji objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Emoji'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    post:
+      operationId: createGuildEmoji
+      summary: Discord Create guild emoji
+      description: Create a new emoji for the guild.
+      tags:
+      - Emojis
+      parameters:
+      - $ref: '#/components/parameters/guildId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - name
+              - image
+              properties:
+                name:
+                  type: string
+                image:
+                  type: string
+                  description: Base64-encoded image data
+                roles:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '201':
+          description: Emoji created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Emoji'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+  /guilds/{guild_id}/emojis/{emoji_id}:
+    get:
+      operationId: getGuildEmoji
+      summary: Discord Get guild emoji
+      description: Returns an emoji object for the given guild and emoji IDs.
+      tags:
+      - Emojis
+      parameters:
+      - $ref: '#/components/parameters/guildId'
+      - name: emoji_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Emoji object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Emoji'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+components:
+  responses:
+    ClientError:
+      description: Client error response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+              message:
+                type: string
+              errors:
+                type: object
+  parameters:
+    guildId:
+      name: guild_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the guild (Snowflake)
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Snowflake'
+        username:
+          type: string
+        discriminator:
+          type: string
+        global_name:
+          type: string
+          nullable: true
+        avatar:
+          type: string
+          nullable: true
+        bot:
+          type: boolean
+        system:
+          type: boolean
+        mfa_enabled:
+          type: boolean
+        banner:
+          type: string
+          nullable: true
+        accent_color:
+          type: integer
+          nullable: true
+        locale:
+          type: string
+        verified:
+          type: boolean
+        email:
+          type: string
+          nullable: true
+        flags:
+          type: integer
+        premium_type:
+          type: integer
+        public_flags:
+          type: integer
+        avatar_decoration_data:
+          type: object
+          nullable: true
+      required:
+      - id
+      - username
+    Snowflake:
+      type: string
+      description: Discord unique ID represented as a string
+      pattern: ^[0-9]+$
+    Emoji:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Snowflake'
+        name:
+          type: string
+          nullable: true
+        roles:
+          type: array
+          items:
+            type: string
+        user:
+          $ref: '#/components/schemas/User'
+        require_colons:
+          type: boolean
+        managed:
+          type: boolean
+        animated:
+          type: boolean
+        available:
+          type: boolean
+  securitySchemes:
+    BotToken:
+      type: http
+      scheme: bearer
+      description: Bot token authentication
+externalDocs:
+  description: Discord Interactions Documentation
+  url: https://discord.com/developers/docs/interactions/overview

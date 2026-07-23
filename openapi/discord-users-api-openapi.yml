@@ -1,0 +1,1253 @@
+openapi: 3.1.0
+info:
+  title: Discord Interactions Application Commands Users API
+  description: The Discord Interactions API enables applications to create and respond to application commands (slash commands), message components, and modals. It supports both Gateway-based and webhook-based interaction handling, allowing bots to build rich, interactive user experiences within Discord.
+  version: '10'
+  contact:
+    name: Discord Support
+    url: https://support-dev.discord.com/hc/en-us
+    email: support@discord.com
+  termsOfService: https://discord.com/developers/docs/policies-and-agreements/developer-terms-of-service
+servers:
+- url: https://discord.com/api/v10
+  description: Discord API v10
+security:
+- BotToken: []
+tags:
+- name: Users
+paths:
+  /users/@me/connections:
+    get:
+      operationId: list_my_connections
+      responses:
+        '200':
+          description: 200 response for list_my_connections
+          content:
+            application/json:
+              schema:
+                type:
+                - array
+                - 'null'
+                items:
+                  $ref: '#/components/schemas/ConnectedAccountResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      - OAuth2:
+        - connections
+      tags:
+      - Users
+  /users/@me/channels:
+    post:
+      operationId: create_dm
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePrivateChannelRequest'
+        required: true
+      responses:
+        '200':
+          description: 200 response for create_dm
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/PrivateChannelResponse'
+                - $ref: '#/components/schemas/PrivateGroupChannelResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      tags:
+      - Users
+  /users/@me/guilds:
+    get:
+      operationId: list_my_guilds
+      parameters:
+      - name: before
+        in: query
+        schema:
+          $ref: '#/components/schemas/SnowflakeType'
+      - name: after
+        in: query
+        schema:
+          $ref: '#/components/schemas/SnowflakeType'
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 200
+      - name: with_counts
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: 200 response for list_my_guilds
+          content:
+            application/json:
+              schema:
+                type:
+                - array
+                - 'null'
+                items:
+                  $ref: '#/components/schemas/MyGuildResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      - OAuth2:
+        - guilds
+      tags:
+      - Users
+  /users/@me:
+    get:
+      operationId: get_my_user
+      responses:
+        '200':
+          description: 200 response for get_my_user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserPIIResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      - OAuth2:
+        - identify
+      tags:
+      - Users
+    patch:
+      operationId: update_my_user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BotAccountPatchRequest'
+        required: true
+      responses:
+        '200':
+          description: 200 response for update_my_user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserPIIResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      tags:
+      - Users
+  /users/@me/applications/{application_id}/role-connection:
+    parameters:
+    - name: application_id
+      in: path
+      schema:
+        $ref: '#/components/schemas/SnowflakeType'
+      required: true
+    get:
+      operationId: get_application_user_role_connection
+      responses:
+        '200':
+          description: 200 response for get_application_user_role_connection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationUserRoleConnectionResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - OAuth2:
+        - role_connections.write
+      tags:
+      - Users
+    put:
+      operationId: update_application_user_role_connection
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                platform_name:
+                  type:
+                  - string
+                  - 'null'
+                  maxLength: 50
+                platform_username:
+                  type:
+                  - string
+                  - 'null'
+                  maxLength: 100
+                metadata:
+                  type:
+                  - object
+                  - 'null'
+                  additionalProperties:
+                    type: string
+                    minLength: 1
+                    maxLength: 100
+                  maxProperties: 5
+        required: true
+      responses:
+        '200':
+          description: 200 response for update_application_user_role_connection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationUserRoleConnectionResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - OAuth2:
+        - role_connections.write
+      tags:
+      - Users
+  /users/@me/guilds/{guild_id}/member:
+    parameters:
+    - name: guild_id
+      in: path
+      schema:
+        $ref: '#/components/schemas/SnowflakeType'
+      required: true
+    get:
+      operationId: get_my_guild_member
+      responses:
+        '200':
+          description: 200 response for get_my_guild_member
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrivateGuildMemberResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - OAuth2:
+        - guilds.members.read
+      tags:
+      - Users
+  /users/@me/guilds/{guild_id}:
+    parameters:
+    - name: guild_id
+      in: path
+      schema:
+        $ref: '#/components/schemas/SnowflakeType'
+      required: true
+    delete:
+      operationId: leave_guild
+      responses:
+        '204':
+          description: 204 response for leave_guild
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      tags:
+      - Users
+  /users/{user_id}:
+    parameters:
+    - name: user_id
+      in: path
+      schema:
+        $ref: '#/components/schemas/SnowflakeType'
+      required: true
+    get:
+      operationId: get_user
+      responses:
+        '200':
+          description: 200 response for get_user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      tags:
+      - Users
+  /applications/@me:
+    get:
+      operationId: getCurrentApplication
+      summary: Discord Get current application
+      description: Returns the application object associated with the requesting bot user.
+      tags:
+      - Users
+      responses:
+        '200':
+          description: Application object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+    patch:
+      operationId: editCurrentApplication
+      summary: Discord Edit current application
+      description: Edit properties of the app associated with the requesting bot user.
+      tags:
+      - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                description:
+                  type: string
+                interactions_endpoint_url:
+                  type: string
+                  format: uri
+                role_connections_verification_url:
+                  type: string
+                  format: uri
+                custom_install_url:
+                  type: string
+                  format: uri
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  maxItems: 5
+                icon:
+                  type: string
+                  nullable: true
+                cover_image:
+                  type: string
+                  nullable: true
+      responses:
+        '200':
+          description: Updated application object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+        4XX:
+          $ref: '#/components/responses/ClientError'
+components:
+  schemas:
+    Int53Type:
+      type: integer
+      minimum: -9007199254740991
+      maximum: 9007199254740991
+      format: int64
+    UserAvatarDecorationResponse:
+      type: object
+      properties: {}
+    CreatePrivateChannelRequest:
+      type: object
+      properties:
+        recipient_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        access_tokens:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            maxLength: 152133
+          maxItems: 1521
+          uniqueItems: true
+        nicks:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type:
+            - string
+            - 'null'
+            maxLength: 152133
+          maxProperties: 1521
+    PremiumTypes:
+      type: integer
+      oneOf:
+      - title: NONE
+        description: None
+        const: 0
+      - title: TIER_1
+        description: Nitro Classic
+        const: 1
+      - title: TIER_2
+        description: Nitro Standard
+        const: 2
+      - title: TIER_0
+        description: Nitro Basic
+        const: 3
+      format: int32
+    PrivateGuildMemberResponse:
+      type: object
+      properties:
+        avatar:
+          type:
+          - string
+          - 'null'
+        avatar_decoration_data:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/UserAvatarDecorationResponse'
+        communication_disabled_until:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        flags:
+          type: integer
+          format: int32
+        joined_at:
+          type: string
+          format: date-time
+        nick:
+          type:
+          - string
+          - 'null'
+        pending:
+          type: boolean
+        premium_since:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/SnowflakeType'
+          uniqueItems: true
+        user:
+          $ref: '#/components/schemas/UserResponse'
+        mute:
+          type: boolean
+        deaf:
+          type: boolean
+        banner:
+          type:
+          - string
+          - 'null'
+      required:
+      - flags
+      - joined_at
+      - pending
+      - roles
+      - user
+      - mute
+      - deaf
+    UserResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        username:
+          type: string
+        avatar:
+          type:
+          - string
+          - 'null'
+        discriminator:
+          type: string
+        public_flags:
+          type: integer
+          format: int32
+        flags:
+          $ref: '#/components/schemas/Int53Type'
+        bot:
+          type:
+          - boolean
+          - 'null'
+        system:
+          type:
+          - boolean
+          - 'null'
+        banner:
+          type:
+          - string
+          - 'null'
+        accent_color:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        global_name:
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - username
+      - discriminator
+      - public_flags
+      - flags
+    ConnectedAccountGuildResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        name:
+          type: string
+        icon:
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - name
+    ConnectedAccountVisibility:
+      type: integer
+      oneOf:
+      - title: NONE
+        const: 0
+      - title: EVERYONE
+        const: 1
+      format: int32
+    MyGuildResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        name:
+          type: string
+        icon:
+          type:
+          - string
+          - 'null'
+        owner:
+          type: boolean
+        permissions:
+          type: string
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/GuildFeatures'
+          uniqueItems: true
+        approximate_member_count:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        approximate_presence_count:
+          type:
+          - integer
+          - 'null'
+          format: int32
+      required:
+      - id
+      - name
+      - owner
+      - permissions
+      - features
+    UserPIIResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        username:
+          type: string
+        avatar:
+          type:
+          - string
+          - 'null'
+        discriminator:
+          type: string
+        public_flags:
+          type: integer
+          format: int32
+        flags:
+          $ref: '#/components/schemas/Int53Type'
+        bot:
+          type:
+          - boolean
+          - 'null'
+        system:
+          type:
+          - boolean
+          - 'null'
+        banner:
+          type:
+          - string
+          - 'null'
+        accent_color:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        global_name:
+          type:
+          - string
+          - 'null'
+        mfa_enabled:
+          type: boolean
+        locale:
+          $ref: '#/components/schemas/AvailableLocalesEnum'
+        premium_type:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/PremiumTypes'
+        email:
+          type:
+          - string
+          - 'null'
+        verified:
+          type:
+          - boolean
+          - 'null'
+      required:
+      - id
+      - username
+      - discriminator
+      - public_flags
+      - flags
+      - mfa_enabled
+      - locale
+    Application:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Snowflake'
+        name:
+          type: string
+        icon:
+          type: string
+          nullable: true
+        description:
+          type: string
+        bot_public:
+          type: boolean
+        bot_require_code_grant:
+          type: boolean
+        terms_of_service_url:
+          type: string
+          format: uri
+        privacy_policy_url:
+          type: string
+          format: uri
+        owner:
+          $ref: '#/components/schemas/User'
+        verify_key:
+          type: string
+        team:
+          type: object
+          nullable: true
+        guild_id:
+          $ref: '#/components/schemas/Snowflake'
+        custom_install_url:
+          type: string
+          format: uri
+        tags:
+          type: array
+          items:
+            type: string
+        flags:
+          type: integer
+        interactions_endpoint_url:
+          type: string
+          format: uri
+        role_connections_verification_url:
+          type: string
+          format: uri
+      required:
+      - id
+      - name
+      - description
+      - verify_key
+    AvailableLocalesEnum:
+      type: string
+      oneOf:
+      - title: ar
+        description: The ar locale
+        const: ar
+      - title: bg
+        description: The bg locale
+        const: bg
+      - title: cs
+        description: The cs locale
+        const: cs
+      - title: da
+        description: The da locale
+        const: da
+      - title: de
+        description: The de locale
+        const: de
+      - title: el
+        description: The el locale
+        const: el
+      - title: en-GB
+        description: The en-GB locale
+        const: en-GB
+      - title: en-US
+        description: The en-US locale
+        const: en-US
+      - title: es-419
+        description: The es-419 locale
+        const: es-419
+      - title: es-ES
+        description: The es-ES locale
+        const: es-ES
+      - title: fi
+        description: The fi locale
+        const: fi
+      - title: fr
+        description: The fr locale
+        const: fr
+      - title: he
+        description: The he locale
+        const: he
+      - title: hi
+        description: The hi locale
+        const: hi
+      - title: hr
+        description: The hr locale
+        const: hr
+      - title: hu
+        description: The hu locale
+        const: hu
+      - title: id
+        description: The id locale
+        const: id
+      - title: it
+        description: The it locale
+        const: it
+      - title: ja
+        description: The ja locale
+        const: ja
+      - title: ko
+        description: The ko locale
+        const: ko
+      - title: lt
+        description: The lt locale
+        const: lt
+      - title: nl
+        description: The nl locale
+        const: nl
+      - title: 'no'
+        description: The no locale
+        const: 'no'
+      - title: pl
+        description: The pl locale
+        const: pl
+      - title: pt-BR
+        description: The pt-BR locale
+        const: pt-BR
+      - title: ro
+        description: The ro locale
+        const: ro
+      - title: ru
+        description: The ru locale
+        const: ru
+      - title: sv-SE
+        description: The sv-SE locale
+        const: sv-SE
+      - title: th
+        description: The th locale
+        const: th
+      - title: tr
+        description: The tr locale
+        const: tr
+      - title: uk
+        description: The uk locale
+        const: uk
+      - title: vi
+        description: The vi locale
+        const: vi
+      - title: zh-CN
+        description: The zh-CN locale
+        const: zh-CN
+      - title: zh-TW
+        description: The zh-TW locale
+        const: zh-TW
+    ErrorResponse:
+      type: object
+      description: Errors object returned by the Discord API
+      allOf:
+      - $ref: '#/components/schemas/Error'
+      - type: object
+        properties:
+          errors:
+            $ref: '#/components/schemas/ErrorDetails'
+    ErrorDetails:
+      oneOf:
+      - type: object
+        additionalProperties:
+          $ref: '#/components/schemas/ErrorDetails'
+      - $ref: '#/components/schemas/InnerErrors'
+    PrivateChannelResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        type:
+          type: integer
+          enum:
+          - 1
+          allOf:
+          - $ref: '#/components/schemas/ChannelTypes'
+          format: int32
+        last_message_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        flags:
+          type: integer
+          format: int32
+        last_pin_timestamp:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        recipients:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserResponse'
+      required:
+      - id
+      - type
+      - flags
+      - recipients
+    ConnectedAccountResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type:
+          - string
+          - 'null'
+        type:
+          $ref: '#/components/schemas/ConnectedAccountProviders'
+        friend_sync:
+          type: boolean
+        integrations:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ConnectedAccountIntegrationResponse'
+        show_activity:
+          type: boolean
+        two_way_link:
+          type: boolean
+        verified:
+          type: boolean
+        visibility:
+          $ref: '#/components/schemas/ConnectedAccountVisibility'
+        revoked:
+          type:
+          - boolean
+          - 'null'
+      required:
+      - id
+      - type
+      - friend_sync
+      - show_activity
+      - two_way_link
+      - verified
+      - visibility
+    ConnectedAccountIntegrationResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          $ref: '#/components/schemas/IntegrationTypes'
+        account:
+          $ref: '#/components/schemas/AccountResponse'
+        guild:
+          $ref: '#/components/schemas/ConnectedAccountGuildResponse'
+      required:
+      - id
+      - type
+      - account
+      - guild
+    IntegrationTypes:
+      type: string
+      oneOf:
+      - title: DISCORD
+        const: discord
+      - title: TWITCH
+        const: twitch
+      - title: YOUTUBE
+        const: youtube
+      - title: GUILD_SUBSCRIPTION
+        const: guild_subscription
+    SnowflakeType:
+      type: string
+      pattern: ^(0|[1-9][0-9]*)$
+      format: snowflake
+    AccountResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+    InnerErrors:
+      type: object
+      properties:
+        _errors:
+          type: array
+          description: The list of errors for this field
+          items:
+            $ref: '#/components/schemas/Error'
+      additionalProperties: false
+      required:
+      - _errors
+    GuildFeatures:
+      type: string
+      oneOf:
+      - title: ANIMATED_BANNER
+        description: guild has access to set an animated guild banner image
+        const: ANIMATED_BANNER
+      - title: ANIMATED_ICON
+        description: guild has access to set an animated guild icon
+        const: ANIMATED_ICON
+      - title: APPLICATION_COMMAND_PERMISSIONS_V2
+        description: guild is using the old permissions configuration behavior
+        const: APPLICATION_COMMAND_PERMISSIONS_V2
+      - title: AUTO_MODERATION
+        description: guild has set up auto moderation rules
+        const: AUTO_MODERATION
+      - title: BANNER
+        description: guild has access to set a guild banner image
+        const: BANNER
+      - title: COMMUNITY
+        description: guild can enable welcome screen, Membership Screening, stage channels and discovery, and             receives community updates
+        const: COMMUNITY
+      - title: CREATOR_MONETIZABLE_PROVISIONAL
+        description: guild has enabled monetization
+        const: CREATOR_MONETIZABLE_PROVISIONAL
+      - title: CREATOR_STORE_PAGE
+        description: guild has enabled the role subscription promo page
+        const: CREATOR_STORE_PAGE
+      - title: DEVELOPER_SUPPORT_SERVER
+        description: guild has been set as a support server on the App Directory
+        const: DEVELOPER_SUPPORT_SERVER
+      - title: DISCOVERABLE
+        description: guild is able to be discovered in the directory
+        const: DISCOVERABLE
+      - title: FEATURABLE
+        description: guild is able to be featured in the directory
+        const: FEATURABLE
+      - title: INVITES_DISABLED
+        description: guild has paused invites, preventing new users from joining
+        const: INVITES_DISABLED
+      - title: INVITE_SPLASH
+        description: guild has access to set an invite splash background
+        const: INVITE_SPLASH
+      - title: MEMBER_VERIFICATION_GATE_ENABLED
+        description: guild has enabled Membership Screening
+        const: MEMBER_VERIFICATION_GATE_ENABLED
+      - title: MORE_STICKERS
+        description: guild has increased custom sticker slots
+        const: MORE_STICKERS
+      - title: NEWS
+        description: guild has access to create announcement channels
+        const: NEWS
+      - title: PARTNERED
+        description: guild is partnered
+        const: PARTNERED
+      - title: PREVIEW_ENABLED
+        description: guild can be previewed before joining via Membership Screening or the directory
+        const: PREVIEW_ENABLED
+      - title: RAID_ALERTS_DISABLED
+        description: guild has disabled activity alerts in the configured safety alerts channel
+        const: RAID_ALERTS_DISABLED
+      - title: ROLE_ICONS
+        description: guild is able to set role icons
+        const: ROLE_ICONS
+      - title: ROLE_SUBSCRIPTIONS_AVAILABLE_FOR_PURCHASE
+        description: guild has role subscriptions that can be purchased
+        const: ROLE_SUBSCRIPTIONS_AVAILABLE_FOR_PURCHASE
+      - title: ROLE_SUBSCRIPTIONS_ENABLED
+        description: guild has enabled role subscriptions
+        const: ROLE_SUBSCRIPTIONS_ENABLED
+      - title: TICKETED_EVENTS_ENABLED
+        description: guild has enabled ticketed events
+        const: TICKETED_EVENTS_ENABLED
+      - title: VANITY_URL
+        description: guild has access to set a vanity URL
+        const: VANITY_URL
+      - title: VERIFIED
+        description: guild is verified
+        const: VERIFIED
+      - title: VIP_REGIONS
+        description: guild has access to set 384kbps bitrate in voice (previously VIP voice servers)
+        const: VIP_REGIONS
+      - title: WELCOME_SCREEN_ENABLED
+        description: guild has enabled the welcome screen
+        const: WELCOME_SCREEN_ENABLED
+    ApplicationUserRoleConnectionResponse:
+      type: object
+      properties:
+        platform_name:
+          type:
+          - string
+          - 'null'
+        platform_username:
+          type:
+          - string
+          - 'null'
+        metadata:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+    User:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Snowflake'
+        username:
+          type: string
+        discriminator:
+          type: string
+        global_name:
+          type: string
+          nullable: true
+        avatar:
+          type: string
+          nullable: true
+        bot:
+          type: boolean
+        system:
+          type: boolean
+        mfa_enabled:
+          type: boolean
+        banner:
+          type: string
+          nullable: true
+        accent_color:
+          type: integer
+          nullable: true
+        locale:
+          type: string
+        verified:
+          type: boolean
+        email:
+          type: string
+          nullable: true
+        flags:
+          type: integer
+        premium_type:
+          type: integer
+        public_flags:
+          type: integer
+        avatar_decoration_data:
+          type: object
+          nullable: true
+      required:
+      - id
+      - username
+    Error:
+      type: object
+      description: A single error, either for an API response or a specific field.
+      properties:
+        code:
+          type: integer
+          description: Discord internal error code. See error code reference
+        message:
+          type: string
+          description: Human-readable error message
+      required:
+      - code
+      - message
+    PrivateGroupChannelResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        type:
+          type: integer
+          enum:
+          - 3
+          allOf:
+          - $ref: '#/components/schemas/ChannelTypes'
+          format: int32
+        last_message_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        flags:
+          type: integer
+          format: int32
+        last_pin_timestamp:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        recipients:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserResponse'
+        name:
+          type:
+          - string
+          - 'null'
+        icon:
+          type:
+          - string
+          - 'null'
+        owner_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        managed:
+          type:
+          - boolean
+          - 'null'
+        application_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+      required:
+      - id
+      - type
+      - flags
+      - recipients
+    Snowflake:
+      type: string
+      description: Discord unique ID represented as a string
+      pattern: ^[0-9]+$
+    ConnectedAccountProviders:
+      type: string
+      oneOf:
+      - title: BATTLENET
+        const: battlenet
+      - title: BUNGIE
+        const: bungie
+      - title: EBAY
+        const: ebay
+      - title: EPIC_GAMES
+        const: epicgames
+      - title: FACEBOOK
+        const: facebook
+      - title: GITHUB
+        const: github
+      - title: INSTAGRAM
+        const: instagram
+      - title: LEAGUE_OF_LEGENDS
+        const: leagueoflegends
+      - title: PAYPAL
+        const: paypal
+      - title: PLAYSTATION
+        const: playstation
+      - title: REDDIT
+        const: reddit
+      - title: RIOT_GAMES
+        const: riotgames
+      - title: ROBLOX
+        const: roblox
+      - title: SKYPE
+        const: skype
+      - title: SPOTIFY
+        const: spotify
+      - title: STEAM
+        const: steam
+      - title: TIKTOK
+        const: tiktok
+      - title: TWITCH
+        const: twitch
+      - title: TWITTER
+        const: twitter
+      - title: XBOX
+        const: xbox
+      - title: YOUTUBE
+        const: youtube
+      - title: DOMAIN
+        const: domain
+    BotAccountPatchRequest:
+      type: object
+      properties:
+        username:
+          type: string
+          minLength: 2
+          maxLength: 32
+        avatar:
+          type:
+          - string
+          - 'null'
+          contentEncoding: base64
+        banner:
+          type:
+          - string
+          - 'null'
+          contentEncoding: base64
+      required:
+      - username
+    ChannelTypes:
+      type: integer
+      oneOf:
+      - title: DM
+        description: A direct message between users
+        const: 1
+      - title: GROUP_DM
+        description: A direct message between multiple users
+        const: 3
+      - title: GUILD_TEXT
+        description: A text channel within a server
+        const: 0
+      - title: GUILD_VOICE
+        description: A voice channel within a server
+        const: 2
+      - title: GUILD_CATEGORY
+        description: An organizational category that contains up to 50 channels
+        const: 4
+      - title: GUILD_ANNOUNCEMENT
+        description: A channel that users can follow and crosspost into their own server (formerly news channels)
+        const: 5
+      - title: ANNOUNCEMENT_THREAD
+        description: A temporary sub-channel within a GUILD_ANNOUNCEMENT channel
+        const: 10
+      - title: PUBLIC_THREAD
+        description: A temporary sub-channel within a GUILD_TEXT or GUILD_THREADS_ONLY channel type set
+        const: 11
+      - title: PRIVATE_THREAD
+        description: A temporary sub-channel within a GUILD_TEXT channel that is only viewable by those invited and those with the MANAGE_THREADS permission
+        const: 12
+      - title: GUILD_STAGE_VOICE
+        description: A voice channel for hosting events with an audience
+        const: 13
+      - title: GUILD_DIRECTORY
+        description: The channel in a hub containing the listed servers
+        const: 14
+      - title: GUILD_FORUM
+        description: Channel that can only contain threads
+        const: 15
+      format: int32
+  responses:
+    ClientError:
+      description: Client error response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+              message:
+                type: string
+              errors:
+                type: object
+    ClientErrorResponse:
+      description: Client error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    BotToken:
+      type: http
+      scheme: bearer
+      description: Bot token authentication
+externalDocs:
+  description: Discord Interactions Documentation
+  url: https://discord.com/developers/docs/interactions/overview
