@@ -4,6 +4,19 @@ description: Discord is a voice, video and text communication service used by hu
   of millions of people to hang out and talk with their communities and friends.
 url: https://raw.githubusercontent.com/api-evangelist/discord/refs/heads/main/apis.yml
 type: Index
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
 image: https://discord.com/assets/fc0b01fe10a0b8c602fb0106d8189d9b.png
@@ -19,40 +32,13 @@ created: '2024-04-14'
 modified: '2026-05-19'
 specificationVersion: '0.18'
 apis:
-- aid: discord:discord-rest-api
-  name: Discord REST API
-  description: The Discord REST API provides programmatic access to Discord resources
-    including users, guilds, channels, messages, emojis, webhooks, and more. It is
-    the primary interface for building bots, integrations, and applications that interact
-    with Discord data through standard HTTP request-response operations.
-  humanURL: https://discord.com/developers/docs/reference
-  baseURL: https://discord.com/api/v10
-  tags:
-  - Channels
-  - Guilds
-  - Messaging
-  - REST
-  - Users
-  - Webhooks
-  properties:
-  - type: Documentation
-    url: https://discord.com/developers/docs/reference
-  - type: OpenAPI
-    url: https://github.com/discord/discord-api-spec
-  - type: OpenAPI
-    url: openapi/discord-rest-api-openapi.yml
-  - url: graphql/discord-graphql.md
-    type: GraphQL
-  contact:
-  - FN: Discord Support
-    url: https://support-dev.discord.com/hc/en-us
-    email: support@discord.com
 - aid: discord:discord-gateway-api
   name: Discord Gateway API
-  description: The Discord Gateway API provides persistent, stateful WebSocket connections
-    between your client and Discord servers. These connections are used for sending
-    and receiving real-time events your client can use to track and update local state,
-    including message creation, guild updates, presence changes, and voice state updates.
+  description: >-
+    The Discord Gateway API provides persistent, stateful WebSocket connections between your client and
+    Discord servers. These connections are used for sending and receiving real-time events your client
+    can use to track and update local state, including message creation, guild updates, presence changes,
+    and voice state updates.
   humanURL: https://discord.com/developers/docs/events/gateway
   tags:
   - Events
@@ -72,10 +58,10 @@ apis:
     email: support@discord.com
 - aid: discord:discord-interactions-api
   name: Discord Interactions API
-  description: The Discord Interactions API enables applications to create and respond
-    to application commands (slash commands), message components, and modals. It supports
-    both Gateway-based and webhook-based interaction handling, allowing bots to build
-    rich, interactive user experiences within Discord.
+  description: >-
+    The Discord Interactions API enables applications to create and respond to application commands (slash
+    commands), message components, and modals. It supports both Gateway-based and webhook-based interaction
+    handling, allowing bots to build rich, interactive user experiences within Discord.
   humanURL: https://discord.com/developers/docs/interactions/overview
   tags:
   - Components
@@ -97,11 +83,11 @@ apis:
     email: support@discord.com
 - aid: discord:discord-oauth2-api
   name: Discord OAuth2 API
-  description: The Discord OAuth2 API enables application developers to build applications
-    that utilize authentication and data from the Discord API. Discord supports the
-    authorization code grant, the implicit grant, client credentials, and specialized
-    flows for bots and webhooks, allowing third-party applications to access Discord
-    user data with proper consent.
+  description: >-
+    The Discord OAuth2 API enables application developers to build applications that utilize authentication
+    and data from the Discord API. Discord supports the authorization code grant, the implicit grant,
+    client credentials, and specialized flows for bots and webhooks, allowing third-party applications
+    to access Discord user data with proper consent.
   humanURL: https://discord.com/developers/docs/topics/oauth2
   tags:
   - Authentication
@@ -118,10 +104,10 @@ apis:
     email: support@discord.com
 - aid: discord:discord-webhook-events-api
   name: Discord Webhook Events API
-  description: The Discord Webhook Events API provides HTTP-based outgoing webhook
-    events that allow applications to receive notifications for specific events without
-    maintaining a persistent connection. Supported events include APPLICATION_AUTHORIZED,
-    ENTITLEMENT_CREATE, and QUEST_USER_ENROLLMENT.
+  description: >-
+    The Discord Webhook Events API provides HTTP-based outgoing webhook events that allow applications
+    to receive notifications for specific events without maintaining a persistent connection. Supported
+    events include APPLICATION_AUTHORIZED, ENTITLEMENT_CREATE, and QUEST_USER_ENROLLMENT.
   humanURL: https://discord.com/developers/docs/events/webhook-events
   tags:
   - Events
@@ -138,10 +124,10 @@ apis:
     email: support@discord.com
 - aid: discord:discord-embedded-app-sdk
   name: Discord Embedded App SDK
-  description: The Discord Embedded App SDK lets you build rich, multiplayer experiences
-    as Activities inside Discord. It handles RPC calls between your application and
-    Discord, enabling interactive activities like games that can run in voice channels,
-    text channels, or DMs.
+  description: >-
+    The Discord Embedded App SDK lets you build rich, multiplayer experiences as Activities inside Discord.
+    It handles RPC calls between your application and Discord, enabling interactive activities like games
+    that can run in voice channels, text channels, or DMs.
   humanURL: https://discord.com/developers/docs/developer-tools/embedded-app-sdk
   tags:
   - Activities
@@ -159,10 +145,10 @@ apis:
     email: support@discord.com
 - aid: discord:discord-voice-api
   name: Discord Voice API
-  description: The Discord Voice API provides the protocol for establishing and managing
-    voice connections between clients and Discord voice servers. It handles UDP-based
-    voice data transmission, encryption with XSalsa20-Poly1305, and supports features
-    like speaking indicators and voice state updates.
+  description: >-
+    The Discord Voice API provides the protocol for establishing and managing voice connections between
+    clients and Discord voice servers. It handles UDP-based voice data transmission, encryption with XSalsa20-Poly1305,
+    and supports features like speaking indicators and voice state updates.
   humanURL: https://discord.com/developers/docs/topics/voice-connections
   tags:
   - Real-Time
@@ -178,33 +164,13 @@ apis:
   - FN: Discord Support
     url: https://support-dev.discord.com/hc/en-us
     email: support@discord.com
-- aid: discord:discord-linked-roles-api
-  name: Discord Linked Roles API
-  description: The Discord Linked Roles API enables applications to associate third-party
-    metadata with Discord users through role connection metadata. Server admins can
-    use this metadata to configure requirements for linked roles, such as verified
-    accounts or achievement thresholds from external platforms.
-  humanURL: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
-  tags:
-  - Metadata
-  - OAuth2
-  - Roles
-  - Verification
-  properties:
-  - type: Documentation
-    url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
-  - type: OpenAPI
-    url: openapi/discord-linked-roles-api-openapi.yml
-  contact:
-  - FN: Discord Support
-    url: https://support-dev.discord.com/hc/en-us
-    email: support@discord.com
 - aid: discord:discord-social-sdk
   name: Discord Social SDK
-  description: The Discord Social SDK allows game developers to add rich social features
-    into their games across desktop, mobile, and console platforms. It supports features
-    like account linking, rich presence, lobbies, voice chat, direct messaging, friends
-    lists, and game invites to create connected social experiences powered by Discord.
+  description: >-
+    The Discord Social SDK allows game developers to add rich social features into their games across
+    desktop, mobile, and console platforms. It supports features like account linking, rich presence,
+    lobbies, voice chat, direct messaging, friends lists, and game invites to create connected social
+    experiences powered by Discord.
   humanURL: https://discord.com/developers/docs/discord-social-sdk/overview
   tags:
   - Gaming
@@ -221,6 +187,358 @@ apis:
   - FN: Discord Support
     url: https://support-dev.discord.com/hc/en-us
     email: support@discord.com
+- aid: discord:discord-application-commands-api
+  name: Discord Application Commands API
+  description: Manage global and guild application commands
+  humanURL: https://discord.com/developers/docs/reference
+  baseURL: https://discord.com/api/v10
+  tags:
+  - Application Commands
+  properties:
+  - type: OpenAPI
+    url: openapi/discord-application-commands-api-openapi.yml
+  - type: Documentation
+    url: https://discord.com/developers/docs/reference
+  - type: GraphQL
+    url: graphql/discord-graphql.md
+  - type: Documentation
+    url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
+- aid: discord:discord-applications-api
+  name: Discord Applications API
+  description: The Applications API from Discord — 12 operation(s) for applications.
+  humanURL: https://discord.com/developers/docs/reference
+  baseURL: https://discord.com/api/v10
+  tags:
+  - Applications
+  properties:
+  - type: OpenAPI
+    url: openapi/discord-applications-api-openapi.yml
+  - type: Documentation
+    url: https://discord.com/developers/docs/reference
+  - type: GraphQL
+    url: graphql/discord-graphql.md
+  - type: Documentation
+    url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
+- aid: discord:discord-audit-log-api
+  name: Discord Audit Log API
+  description: Operations on guild audit logs
+  humanURL: https://discord.com/developers/docs/reference
+  baseURL: https://discord.com/api/v10
+  tags:
+  - Audit Log
+  properties:
+  - type: OpenAPI
+    url: openapi/discord-audit-log-api-openapi.yml
+  - type: Documentation
+    url: https://discord.com/developers/docs/reference
+  - type: GraphQL
+    url: graphql/discord-graphql.md
+  - type: Documentation
+    url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
+- aid: discord:discord-auto-moderation-api
+  name: Discord Auto Moderation API
+  description: Operations on auto moderation rules
+  humanURL: https://discord.com/developers/docs/reference
+  baseURL: https://discord.com/api/v10
+  tags:
+  - Auto Moderation
+  properties:
+  - type: OpenAPI
+    url: openapi/discord-auto-moderation-api-openapi.yml
+  - type: Documentation
+    url: https://discord.com/developers/docs/reference
+  - type: GraphQL
+    url: graphql/discord-graphql.md
+  - type: Documentation
+    url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
+- aid: discord:discord-channels-api
+  name: Discord Channels API
+  description: The Channels API from Discord — 26 operation(s) for channels.
+  humanURL: https://discord.com/developers/docs/reference
+  baseURL: https://discord.com/api/v10
+  tags:
+  - Channels
+  properties:
+  - type: OpenAPI
+    url: openapi/discord-channels-api-openapi.yml
+  - type: Documentation
+    url: https://discord.com/developers/docs/reference
+  - type: GraphQL
+    url: graphql/discord-graphql.md
+  - type: Documentation
+    url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
+- aid: discord:discord-emojis-api
+  name: Discord Emojis API
+  description: Operations on guild emojis
+  humanURL: https://discord.com/developers/docs/reference
+  baseURL: https://discord.com/api/v10
+  tags:
+  - Emojis
+  properties:
+  - type: OpenAPI
+    url: openapi/discord-emojis-api-openapi.yml
+  - type: Documentation
+    url: https://discord.com/developers/docs/reference
+  - type: GraphQL
+    url: graphql/discord-graphql.md
+  - type: Documentation
+    url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
+- aid: discord:discord-gateway-api
+  name: Discord Gateway API
+  description: The Gateway API from Discord — 2 operation(s) for gateway.
+  humanURL: https://discord.com/developers/docs/reference
+  baseURL: https://discord.com/api/v10
+  tags:
+  - Gateway
+  properties:
+  - type: OpenAPI
+    url: openapi/discord-gateway-api-openapi.yml
+  - type: Documentation
+    url: https://discord.com/developers/docs/reference
+  - type: GraphQL
+    url: graphql/discord-graphql.md
+  - type: Documentation
+    url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
+- aid: discord:discord-guilds-api
+  name: Discord Guilds API
+  description: The Guilds API from Discord — 45 operation(s) for guilds.
+  humanURL: https://discord.com/developers/docs/reference
+  baseURL: https://discord.com/api/v10
+  tags:
+  - Guilds
+  properties:
+  - type: OpenAPI
+    url: openapi/discord-guilds-api-openapi.yml
+  - type: Documentation
+    url: https://discord.com/developers/docs/reference
+  - type: GraphQL
+    url: graphql/discord-graphql.md
+  - type: Documentation
+    url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
+- aid: discord:discord-interaction-responses-api
+  name: Discord Interaction Responses API
+  description: Respond to interactions received from Discord
+  humanURL: https://discord.com/developers/docs/reference
+  baseURL: https://discord.com/api/v10
+  tags:
+  - Interaction Responses
+  properties:
+  - type: OpenAPI
+    url: openapi/discord-interaction-responses-api-openapi.yml
+  - type: Documentation
+    url: https://discord.com/developers/docs/reference
+  - type: GraphQL
+    url: graphql/discord-graphql.md
+  - type: Documentation
+    url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
+- aid: discord:discord-invites-api
+  name: Discord Invites API
+  description: The Invites API from Discord — 3 operation(s) for invites.
+  humanURL: https://discord.com/developers/docs/reference
+  baseURL: https://discord.com/api/v10
+  tags:
+  - Invites
+  properties:
+  - type: OpenAPI
+    url: openapi/discord-invites-api-openapi.yml
+  - type: Documentation
+    url: https://discord.com/developers/docs/reference
+  - type: GraphQL
+    url: graphql/discord-graphql.md
+  - type: Documentation
+    url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
+- aid: discord:discord-members-api
+  name: Discord Members API
+  description: Operations on guild members
+  humanURL: https://discord.com/developers/docs/reference
+  baseURL: https://discord.com/api/v10
+  tags:
+  - Members
+  properties:
+  - type: OpenAPI
+    url: openapi/discord-members-api-openapi.yml
+  - type: Documentation
+    url: https://discord.com/developers/docs/reference
+  - type: GraphQL
+    url: graphql/discord-graphql.md
+  - type: Documentation
+    url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
+- aid: discord:discord-messages-api
+  name: Discord Messages API
+  description: Operations on messages within channels
+  humanURL: https://discord.com/developers/docs/reference
+  baseURL: https://discord.com/api/v10
+  tags:
+  - Messages
+  properties:
+  - type: OpenAPI
+    url: openapi/discord-messages-api-openapi.yml
+  - type: Documentation
+    url: https://discord.com/developers/docs/reference
+  - type: GraphQL
+    url: graphql/discord-graphql.md
+  - type: Documentation
+    url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
+- aid: discord:discord-role-connections-api
+  name: Discord Role Connections API
+  description: Manage application role connection metadata
+  humanURL: https://discord.com/developers/docs/reference
+  baseURL: https://discord.com/api/v10
+  tags:
+  - Role Connections
+  properties:
+  - type: OpenAPI
+    url: openapi/discord-role-connections-api-openapi.yml
+  - type: Documentation
+    url: https://discord.com/developers/docs/reference
+  - type: GraphQL
+    url: graphql/discord-graphql.md
+  - type: Documentation
+    url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
+- aid: discord:discord-roles-api
+  name: Discord Roles API
+  description: Operations on guild roles
+  humanURL: https://discord.com/developers/docs/reference
+  baseURL: https://discord.com/api/v10
+  tags:
+  - Roles
+  properties:
+  - type: OpenAPI
+    url: openapi/discord-roles-api-openapi.yml
+  - type: Documentation
+    url: https://discord.com/developers/docs/reference
+  - type: GraphQL
+    url: graphql/discord-graphql.md
+  - type: Documentation
+    url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
+- aid: discord:discord-scheduled-events-api
+  name: Discord Scheduled Events API
+  description: Operations on guild scheduled events
+  humanURL: https://discord.com/developers/docs/reference
+  baseURL: https://discord.com/api/v10
+  tags:
+  - Scheduled Events
+  properties:
+  - type: OpenAPI
+    url: openapi/discord-scheduled-events-api-openapi.yml
+  - type: Documentation
+    url: https://discord.com/developers/docs/reference
+  - type: GraphQL
+    url: graphql/discord-graphql.md
+  - type: Documentation
+    url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
+- aid: discord:discord-stage-instances-api
+  name: Discord Stage Instances API
+  description: The Stage Instances API from Discord — 2 operation(s) for stage instances.
+  humanURL: https://discord.com/developers/docs/reference
+  baseURL: https://discord.com/api/v10
+  tags:
+  - Stage Instances
+  properties:
+  - type: OpenAPI
+    url: openapi/discord-stage-instances-api-openapi.yml
+  - type: Documentation
+    url: https://discord.com/developers/docs/reference
+  - type: GraphQL
+    url: graphql/discord-graphql.md
+  - type: Documentation
+    url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
+- aid: discord:discord-sticker-packs-api
+  name: Discord Sticker Packs API
+  description: The Sticker Packs API from Discord — 1 operation(s) for sticker packs.
+  humanURL: https://discord.com/developers/docs/reference
+  baseURL: https://discord.com/api/v10
+  tags:
+  - Sticker Packs
+  properties:
+  - type: OpenAPI
+    url: openapi/discord-sticker-packs-api-openapi.yml
+  - type: Documentation
+    url: https://discord.com/developers/docs/reference
+  - type: GraphQL
+    url: graphql/discord-graphql.md
+  - type: Documentation
+    url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
+- aid: discord:discord-stickers-api
+  name: Discord Stickers API
+  description: The Stickers API from Discord — 3 operation(s) for stickers.
+  humanURL: https://discord.com/developers/docs/reference
+  baseURL: https://discord.com/api/v10
+  tags:
+  - Stickers
+  properties:
+  - type: OpenAPI
+    url: openapi/discord-stickers-api-openapi.yml
+  - type: Documentation
+    url: https://discord.com/developers/docs/reference
+  - type: GraphQL
+    url: graphql/discord-graphql.md
+  - type: Documentation
+    url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
+- aid: discord:discord-user-identity-api
+  name: Discord User Identity API
+  description: Retrieve current user information via OAuth2
+  humanURL: https://discord.com/developers/docs/reference
+  baseURL: https://discord.com/api/v10
+  tags:
+  - User Identity
+  properties:
+  - type: OpenAPI
+    url: openapi/discord-user-identity-api-openapi.yml
+  - type: Documentation
+    url: https://discord.com/developers/docs/reference
+  - type: GraphQL
+    url: graphql/discord-graphql.md
+  - type: Documentation
+    url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
+- aid: discord:discord-users-api
+  name: Discord Users API
+  description: The Users API from Discord — 9 operation(s) for users.
+  humanURL: https://discord.com/developers/docs/reference
+  baseURL: https://discord.com/api/v10
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/discord-users-api-openapi.yml
+  - type: Documentation
+    url: https://discord.com/developers/docs/reference
+  - type: GraphQL
+    url: graphql/discord-graphql.md
+  - type: Documentation
+    url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
+- aid: discord:discord-voice-api
+  name: Discord Voice API
+  description: The Voice API from Discord — 1 operation(s) for voice.
+  humanURL: https://discord.com/developers/docs/reference
+  baseURL: https://discord.com/api/v10
+  tags:
+  - Voice
+  properties:
+  - type: OpenAPI
+    url: openapi/discord-voice-api-openapi.yml
+  - type: Documentation
+    url: https://discord.com/developers/docs/reference
+  - type: GraphQL
+    url: graphql/discord-graphql.md
+  - type: Documentation
+    url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
+- aid: discord:discord-webhooks-api
+  name: Discord Webhooks API
+  description: The Webhooks API from Discord — 8 operation(s) for webhooks.
+  humanURL: https://discord.com/developers/docs/reference
+  baseURL: https://discord.com/api/v10
+  tags:
+  - Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/discord-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://discord.com/developers/docs/reference
+  - type: GraphQL
+    url: graphql/discord-graphql.md
+  - type: Documentation
+    url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
 maintainers:
 - FN: Kin Lane
   url: http://apievangelist.com
@@ -229,6 +547,8 @@ maintainers:
   twitter: discord
   email: support@discord.com
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/discord/overview
 - type: AgenticAccess
   url: agentic-access/discord-agentic-access.yml
 - type: VulnerabilityDisclosure
