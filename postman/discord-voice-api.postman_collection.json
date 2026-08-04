@@ -1,0 +1,175 @@
+{
+  "info": {
+    "_postman_id": "fd5f470b-6173-4a2e-b4d9-5c4969ad05aa",
+    "name": "Discord Interactions Application Commands Voice API",
+    "description": "The Discord Interactions API enables applications to create and respond to application commands (slash commands), message components, and modals. It supports both Gateway-based and webhook-based interaction handling, allowing bots to build rich, interactive user experiences within Discord.\n\nContact Support:\n Name: Discord Support\n Email: support@discord.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:32:32.000Z",
+    "updatedAt": "2026-07-28T01:32:32.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-fd5f470b-6173-4a2e-b4d9-5c4969ad05aa"
+  },
+  "item": [
+    {
+      "name": "voice",
+      "item": [
+        {
+          "name": "regions",
+          "item": [
+            {
+              "name": "list voice regions",
+              "id": "5ebcf8dc-afa8-4fae-ab32-b17034142b51",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/voice/regions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "voice",
+                    "regions"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "c4eae98c-e802-49d7-be9f-c103392f212d",
+                  "name": "200 response for list_voice_regions",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/voice/regions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "voice",
+                        "regions"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "null",
+                  "createdAt": "2026-07-28T01:32:32.000Z",
+                  "updatedAt": "2026-07-28T01:32:32.000Z",
+                  "uid": "35240-c4eae98c-e802-49d7-be9f-c103392f212d"
+                },
+                {
+                  "id": "b12c2a63-3e5b-4bbf-841f-95ea6a514313",
+                  "name": "Client error response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/voice/regions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "voice",
+                        "regions"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"errors\": {\n    \"reprehenderit_c__\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    },\n    \"ullamco_7a9\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T01:32:32.000Z",
+                  "updatedAt": "2026-07-28T01:32:32.000Z",
+                  "uid": "35240-b12c2a63-3e5b-4bbf-841f-95ea6a514313"
+                }
+              ],
+              "createdAt": "2026-07-28T01:32:32.000Z",
+              "updatedAt": "2026-07-28T01:32:32.000Z",
+              "uid": "35240-5ebcf8dc-afa8-4fae-ab32-b17034142b51"
+            }
+          ],
+          "id": "6260dea1-d3df-457a-8e2e-9af492814966",
+          "createdAt": "2026-07-28T01:32:32.000Z",
+          "updatedAt": "2026-07-28T01:32:32.000Z",
+          "uid": "35240-6260dea1-d3df-457a-8e2e-9af492814966"
+        }
+      ],
+      "id": "15afab9c-39bd-45a8-8e41-f847d9e03a1a",
+      "createdAt": "2026-07-28T01:32:32.000Z",
+      "updatedAt": "2026-07-28T01:32:32.000Z",
+      "uid": "35240-15afab9c-39bd-45a8-8e41-f847d9e03a1a"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://discord.com/api/v10"
+    }
+  ]
+}

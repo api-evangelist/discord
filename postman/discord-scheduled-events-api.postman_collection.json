@@ -1,0 +1,395 @@
+{
+  "info": {
+    "_postman_id": "83175d4b-155e-4802-9204-f70796e29a96",
+    "name": "Discord Interactions Application Commands Scheduled Events API",
+    "description": "The Discord Interactions API enables applications to create and respond to application commands (slash commands), message components, and modals. It supports both Gateway-based and webhook-based interaction handling, allowing bots to build rich, interactive user experiences within Discord.\n\nContact Support:\n Name: Discord Support\n Email: support@discord.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:31:43.000Z",
+    "updatedAt": "2026-07-28T01:31:43.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-83175d4b-155e-4802-9204-f70796e29a96"
+  },
+  "item": [
+    {
+      "name": "guilds",
+      "item": [
+        {
+          "name": "{guild_id}",
+          "item": [
+            {
+              "name": "scheduled-events",
+              "item": [
+                {
+                  "name": "Discord List guild scheduled events",
+                  "id": "3834fecc-e238-4bf2-96de-a3151a0c2ac8",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/guilds/:guild_id/scheduled-events?with_user_count=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "guilds",
+                        ":guild_id",
+                        "scheduled-events"
+                      ],
+                      "query": [
+                        {
+                          "key": "with_user_count",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "4b3a2215-43e7-4bfd-b800-42640739d4be",
+                          "key": "guild_id",
+                          "value": "<string>",
+                          "description": "(Required) The ID of the guild (Snowflake)"
+                        }
+                      ]
+                    },
+                    "description": "Returns a list of guild scheduled event objects."
+                  },
+                  "response": [
+                    {
+                      "id": "1ae2badb-36ad-4fb9-8362-0184dd49b488",
+                      "name": "List of scheduled events",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/guilds/:guild_id/scheduled-events?with_user_count=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "guilds",
+                            ":guild_id",
+                            "scheduled-events"
+                          ],
+                          "query": [
+                            {
+                              "key": "with_user_count",
+                              "value": "<boolean>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "guild_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"id\": \"71876863614\",\n    \"guild_id\": \"853\",\n    \"name\": \"<string>\",\n    \"scheduled_start_time\": \"<dateTime>\",\n    \"privacy_level\": \"<integer>\",\n    \"status\": \"<integer>\",\n    \"entity_type\": \"<integer>\",\n    \"channel_id\": \"64551\",\n    \"creator_id\": \"89432889\",\n    \"description\": \"<string>\",\n    \"scheduled_end_time\": \"<dateTime>\",\n    \"entity_id\": \"4305328825\",\n    \"entity_metadata\": {\n      \"location\": \"<string>\"\n    },\n    \"creator\": {\n      \"id\": \"97818245\",\n      \"username\": \"<string>\",\n      \"discriminator\": \"<string>\",\n      \"global_name\": \"<string>\",\n      \"avatar\": \"<string>\",\n      \"bot\": \"<boolean>\",\n      \"system\": \"<boolean>\",\n      \"mfa_enabled\": \"<boolean>\",\n      \"banner\": \"<string>\",\n      \"accent_color\": \"<integer>\",\n      \"locale\": \"<string>\",\n      \"verified\": \"<boolean>\",\n      \"email\": \"<string>\",\n      \"flags\": \"<integer>\",\n      \"premium_type\": \"<integer>\",\n      \"public_flags\": \"<integer>\",\n      \"avatar_decoration_data\": {}\n    },\n    \"user_count\": \"<integer>\",\n    \"image\": \"<string>\"\n  },\n  {\n    \"id\": \"19943\",\n    \"guild_id\": \"570927\",\n    \"name\": \"<string>\",\n    \"scheduled_start_time\": \"<dateTime>\",\n    \"privacy_level\": \"<integer>\",\n    \"status\": \"<integer>\",\n    \"entity_type\": \"<integer>\",\n    \"channel_id\": \"2\",\n    \"creator_id\": \"13214\",\n    \"description\": \"<string>\",\n    \"scheduled_end_time\": \"<dateTime>\",\n    \"entity_id\": \"5983\",\n    \"entity_metadata\": {\n      \"location\": \"<string>\"\n    },\n    \"creator\": {\n      \"id\": \"386556\",\n      \"username\": \"<string>\",\n      \"discriminator\": \"<string>\",\n      \"global_name\": \"<string>\",\n      \"avatar\": \"<string>\",\n      \"bot\": \"<boolean>\",\n      \"system\": \"<boolean>\",\n      \"mfa_enabled\": \"<boolean>\",\n      \"banner\": \"<string>\",\n      \"accent_color\": \"<integer>\",\n      \"locale\": \"<string>\",\n      \"verified\": \"<boolean>\",\n      \"email\": \"<string>\",\n      \"flags\": \"<integer>\",\n      \"premium_type\": \"<integer>\",\n      \"public_flags\": \"<integer>\",\n      \"avatar_decoration_data\": {}\n    },\n    \"user_count\": \"<integer>\",\n    \"image\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-07-28T01:31:43.000Z",
+                      "updatedAt": "2026-07-28T01:31:43.000Z",
+                      "uid": "35240-1ae2badb-36ad-4fb9-8362-0184dd49b488"
+                    },
+                    {
+                      "id": "34da09b6-7fbb-41b1-b9b8-2f17f6ccaf98",
+                      "name": "Client error response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/guilds/:guild_id/scheduled-events?with_user_count=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "guilds",
+                            ":guild_id",
+                            "scheduled-events"
+                          ],
+                          "query": [
+                            {
+                              "key": "with_user_count",
+                              "value": "<boolean>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "guild_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"errors\": {}\n}",
+                      "createdAt": "2026-07-28T01:31:43.000Z",
+                      "updatedAt": "2026-07-28T01:31:43.000Z",
+                      "uid": "35240-34da09b6-7fbb-41b1-b9b8-2f17f6ccaf98"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:31:43.000Z",
+                  "updatedAt": "2026-07-28T01:31:43.000Z",
+                  "uid": "35240-3834fecc-e238-4bf2-96de-a3151a0c2ac8"
+                },
+                {
+                  "name": "Discord Create guild scheduled event",
+                  "id": "2893b795-43ec-4958-9e2d-06bbe325d8c8",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"privacy_level\": \"<integer>\",\n  \"scheduled_start_time\": \"<dateTime>\",\n  \"entity_type\": \"<integer>\",\n  \"channel_id\": \"656087\",\n  \"entity_metadata\": {\n    \"location\": \"<string>\"\n  },\n  \"scheduled_end_time\": \"<dateTime>\",\n  \"description\": \"<string>\",\n  \"image\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/guilds/:guild_id/scheduled-events",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "guilds",
+                        ":guild_id",
+                        "scheduled-events"
+                      ],
+                      "variable": [
+                        {
+                          "id": "091ab6e5-981b-445f-bf1e-68240674b57f",
+                          "key": "guild_id",
+                          "value": "<string>",
+                          "description": "(Required) The ID of the guild (Snowflake)"
+                        }
+                      ]
+                    },
+                    "description": "Create a guild scheduled event."
+                  },
+                  "response": [
+                    {
+                      "id": "3f855926-36ae-4c07-a78a-be509e44f37a",
+                      "name": "Scheduled event created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"privacy_level\": \"<integer>\",\n  \"scheduled_start_time\": \"<dateTime>\",\n  \"entity_type\": \"<integer>\",\n  \"channel_id\": \"656087\",\n  \"entity_metadata\": {\n    \"location\": \"<string>\"\n  },\n  \"scheduled_end_time\": \"<dateTime>\",\n  \"description\": \"<string>\",\n  \"image\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/guilds/:guild_id/scheduled-events",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "guilds",
+                            ":guild_id",
+                            "scheduled-events"
+                          ],
+                          "variable": [
+                            {
+                              "key": "guild_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"32\",\n  \"guild_id\": \"7432962670\",\n  \"name\": \"<string>\",\n  \"scheduled_start_time\": \"<dateTime>\",\n  \"privacy_level\": \"<integer>\",\n  \"status\": \"<integer>\",\n  \"entity_type\": \"<integer>\",\n  \"channel_id\": \"7517028\",\n  \"creator_id\": \"896550\",\n  \"description\": \"<string>\",\n  \"scheduled_end_time\": \"<dateTime>\",\n  \"entity_id\": \"724926\",\n  \"entity_metadata\": {\n    \"location\": \"<string>\"\n  },\n  \"creator\": {\n    \"id\": \"046954\",\n    \"username\": \"<string>\",\n    \"discriminator\": \"<string>\",\n    \"global_name\": \"<string>\",\n    \"avatar\": \"<string>\",\n    \"bot\": \"<boolean>\",\n    \"system\": \"<boolean>\",\n    \"mfa_enabled\": \"<boolean>\",\n    \"banner\": \"<string>\",\n    \"accent_color\": \"<integer>\",\n    \"locale\": \"<string>\",\n    \"verified\": \"<boolean>\",\n    \"email\": \"<string>\",\n    \"flags\": \"<integer>\",\n    \"premium_type\": \"<integer>\",\n    \"public_flags\": \"<integer>\",\n    \"avatar_decoration_data\": {}\n  },\n  \"user_count\": \"<integer>\",\n  \"image\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:31:43.000Z",
+                      "updatedAt": "2026-07-28T01:31:43.000Z",
+                      "uid": "35240-3f855926-36ae-4c07-a78a-be509e44f37a"
+                    },
+                    {
+                      "id": "efeb0608-6e18-4398-a4b5-6d4b12501dc7",
+                      "name": "Client error response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"privacy_level\": \"<integer>\",\n  \"scheduled_start_time\": \"<dateTime>\",\n  \"entity_type\": \"<integer>\",\n  \"channel_id\": \"656087\",\n  \"entity_metadata\": {\n    \"location\": \"<string>\"\n  },\n  \"scheduled_end_time\": \"<dateTime>\",\n  \"description\": \"<string>\",\n  \"image\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/guilds/:guild_id/scheduled-events",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "guilds",
+                            ":guild_id",
+                            "scheduled-events"
+                          ],
+                          "variable": [
+                            {
+                              "key": "guild_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"errors\": {}\n}",
+                      "createdAt": "2026-07-28T01:31:43.000Z",
+                      "updatedAt": "2026-07-28T01:31:43.000Z",
+                      "uid": "35240-efeb0608-6e18-4398-a4b5-6d4b12501dc7"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:31:43.000Z",
+                  "updatedAt": "2026-07-28T01:31:43.000Z",
+                  "uid": "35240-2893b795-43ec-4958-9e2d-06bbe325d8c8"
+                }
+              ],
+              "id": "1a44dec6-eaf7-4f4f-a951-4296c1aa5131",
+              "createdAt": "2026-07-28T01:31:43.000Z",
+              "updatedAt": "2026-07-28T01:31:43.000Z",
+              "uid": "35240-1a44dec6-eaf7-4f4f-a951-4296c1aa5131"
+            }
+          ],
+          "id": "da924a1a-25ed-4773-a784-7accd689dd5d",
+          "createdAt": "2026-07-28T01:31:43.000Z",
+          "updatedAt": "2026-07-28T01:31:43.000Z",
+          "uid": "35240-da924a1a-25ed-4773-a784-7accd689dd5d"
+        }
+      ],
+      "id": "e420a8fe-046c-45aa-a570-6969cd85ce23",
+      "createdAt": "2026-07-28T01:31:43.000Z",
+      "updatedAt": "2026-07-28T01:31:43.000Z",
+      "uid": "35240-e420a8fe-046c-45aa-a570-6969cd85ce23"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://discord.com/api/v10"
+    }
+  ]
+}

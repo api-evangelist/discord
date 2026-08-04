@@ -1,0 +1,282 @@
+{
+  "info": {
+    "_postman_id": "3a49b629-e534-4f42-b39b-cd6fae8df5a8",
+    "name": "Discord Interactions Application Commands Gateway API",
+    "description": "The Discord Interactions API enables applications to create and respond to application commands (slash commands), message components, and modals. It supports both Gateway-based and webhook-based interaction handling, allowing bots to build rich, interactive user experiences within Discord.\n\nContact Support:\n Name: Discord Support\n Email: support@discord.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:31:32.000Z",
+    "updatedAt": "2026-07-28T01:31:32.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3a49b629-e534-4f42-b39b-cd6fae8df5a8"
+  },
+  "item": [
+    {
+      "name": "gateway",
+      "item": [
+        {
+          "name": "bot",
+          "item": [
+            {
+              "name": "get bot gateway",
+              "id": "6a30a53d-82a6-4242-a38d-23ea365c1363",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/gateway/bot",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "gateway",
+                    "bot"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "1f0031d5-7f0a-4b57-99fa-b23c0bf83e88",
+                  "name": "200 response for get_bot_gateway",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/gateway/bot",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "gateway",
+                        "bot"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"url\": \"<uri>\",\n  \"session_start_limit\": {\n    \"max_concurrency\": \"<integer>\",\n    \"remaining\": \"<integer>\",\n    \"reset_after\": \"<integer>\",\n    \"total\": \"<integer>\"\n  },\n  \"shards\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T01:31:32.000Z",
+                  "updatedAt": "2026-07-28T01:31:32.000Z",
+                  "uid": "35240-1f0031d5-7f0a-4b57-99fa-b23c0bf83e88"
+                },
+                {
+                  "id": "10793592-38d4-4d98-b989-cfddce856d56",
+                  "name": "Client error response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/gateway/bot",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "gateway",
+                        "bot"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"errors\": {\n    \"elit_3\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T01:31:32.000Z",
+                  "updatedAt": "2026-07-28T01:31:32.000Z",
+                  "uid": "35240-10793592-38d4-4d98-b989-cfddce856d56"
+                }
+              ],
+              "createdAt": "2026-07-28T01:31:32.000Z",
+              "updatedAt": "2026-07-28T01:31:32.000Z",
+              "uid": "35240-6a30a53d-82a6-4242-a38d-23ea365c1363"
+            }
+          ],
+          "id": "6fd328a1-217f-4b65-8979-004b10b039c9",
+          "createdAt": "2026-07-28T01:31:32.000Z",
+          "updatedAt": "2026-07-28T01:31:32.000Z",
+          "uid": "35240-6fd328a1-217f-4b65-8979-004b10b039c9"
+        },
+        {
+          "name": "get gateway",
+          "id": "7c4402fb-dc7d-40d1-8fd6-5f116412eb39",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/gateway",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "gateway"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f538e49e-d32a-4968-a3c5-a3f579655567",
+              "name": "200 response for get_gateway",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/gateway",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "gateway"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"url\": \"<uri>\"\n}",
+              "createdAt": "2026-07-28T01:31:32.000Z",
+              "updatedAt": "2026-07-28T01:31:32.000Z",
+              "uid": "35240-f538e49e-d32a-4968-a3c5-a3f579655567"
+            },
+            {
+              "id": "113826ca-4cc6-4447-a7f6-05f91bb9aee5",
+              "name": "Client error response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/gateway",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "gateway"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"errors\": {\n    \"elit_3\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    }\n  }\n}",
+              "createdAt": "2026-07-28T01:31:32.000Z",
+              "updatedAt": "2026-07-28T01:31:32.000Z",
+              "uid": "35240-113826ca-4cc6-4447-a7f6-05f91bb9aee5"
+            }
+          ],
+          "createdAt": "2026-07-28T01:31:32.000Z",
+          "updatedAt": "2026-07-28T01:31:32.000Z",
+          "uid": "35240-7c4402fb-dc7d-40d1-8fd6-5f116412eb39"
+        }
+      ],
+      "id": "16d44ea0-dc89-4a6f-aba2-97d2af9accbb",
+      "createdAt": "2026-07-28T01:31:32.000Z",
+      "updatedAt": "2026-07-28T01:31:32.000Z",
+      "uid": "35240-16d44ea0-dc89-4a6f-aba2-97d2af9accbb"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://discord.com/api/v10"
+    }
+  ]
+}

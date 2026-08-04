@@ -1,0 +1,146 @@
+{
+  "info": {
+    "_postman_id": "f54229f3-a5ce-41ee-929d-639bec17f95e",
+    "name": "Discord Interactions Application Commands Sticker Packs API",
+    "description": "The Discord Interactions API enables applications to create and respond to application commands (slash commands), message components, and modals. It supports both Gateway-based and webhook-based interaction handling, allowing bots to build rich, interactive user experiences within Discord.\n\nContact Support:\n Name: Discord Support\n Email: support@discord.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:31:46.000Z",
+    "updatedAt": "2026-07-28T01:31:47.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f54229f3-a5ce-41ee-929d-639bec17f95e"
+  },
+  "item": [
+    {
+      "name": "sticker-packs",
+      "item": [
+        {
+          "name": "list sticker packs",
+          "id": "49a86273-74c8-4e35-b8de-548047afbedb",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/sticker-packs",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "sticker-packs"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4925abd9-f945-45d9-a867-8deda6516eef",
+              "name": "200 response for list_sticker_packs",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/sticker-packs",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sticker-packs"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"sticker_packs\": [\n    {\n      \"id\": \"66062\",\n      \"sku_id\": \"6174112509\",\n      \"name\": \"<string>\",\n      \"stickers\": [\n        {\n          \"id\": \"0\",\n          \"name\": \"<string>\",\n          \"tags\": \"<string>\",\n          \"type\": 1,\n          \"pack_id\": \"8016981\",\n          \"sort_value\": \"<integer>\",\n          \"format_type\": \"<null>\",\n          \"description\": \"<string,null>\"\n        },\n        {\n          \"id\": \"98164\",\n          \"name\": \"<string>\",\n          \"tags\": \"<string>\",\n          \"type\": 1,\n          \"pack_id\": \"999\",\n          \"sort_value\": \"<integer>\",\n          \"format_type\": \"<null>\",\n          \"description\": \"<string,null>\"\n        }\n      ],\n      \"description\": \"<string,null>\",\n      \"cover_sticker_id\": \"<null>\",\n      \"banner_asset_id\": \"<null>\"\n    },\n    {\n      \"id\": \"36\",\n      \"sku_id\": \"560936\",\n      \"name\": \"<string>\",\n      \"stickers\": [\n        {\n          \"id\": \"9528\",\n          \"name\": \"<string>\",\n          \"tags\": \"<string>\",\n          \"type\": 1,\n          \"pack_id\": \"8107723\",\n          \"sort_value\": \"<integer>\",\n          \"format_type\": \"<null>\",\n          \"description\": \"<string,null>\"\n        },\n        {\n          \"id\": \"0\",\n          \"name\": \"<string>\",\n          \"tags\": \"<string>\",\n          \"type\": 1,\n          \"pack_id\": \"0\",\n          \"sort_value\": \"<integer>\",\n          \"format_type\": \"<null>\",\n          \"description\": \"<string,null>\"\n        }\n      ],\n      \"description\": \"<string,null>\",\n      \"cover_sticker_id\": \"<null>\",\n      \"banner_asset_id\": \"<null>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T01:31:47.000Z",
+              "updatedAt": "2026-07-28T01:31:47.000Z",
+              "uid": "35240-4925abd9-f945-45d9-a867-8deda6516eef"
+            },
+            {
+              "id": "2ba77cdc-dc2c-4cac-b7ca-ab79d38a1e39",
+              "name": "Client error response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/sticker-packs",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sticker-packs"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"errors\": {\n    \"aliquae\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    },\n    \"aute59e\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    }\n  }\n}",
+              "createdAt": "2026-07-28T01:31:47.000Z",
+              "updatedAt": "2026-07-28T01:31:47.000Z",
+              "uid": "35240-2ba77cdc-dc2c-4cac-b7ca-ab79d38a1e39"
+            }
+          ],
+          "createdAt": "2026-07-28T01:31:47.000Z",
+          "updatedAt": "2026-07-28T01:31:47.000Z",
+          "uid": "35240-49a86273-74c8-4e35-b8de-548047afbedb"
+        }
+      ],
+      "id": "6abc7cef-fd69-42d9-bf98-5b8d38852631",
+      "createdAt": "2026-07-28T01:31:47.000Z",
+      "updatedAt": "2026-07-28T01:31:47.000Z",
+      "uid": "35240-6abc7cef-fd69-42d9-bf98-5b8d38852631"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://discord.com/api/v10"
+    }
+  ]
+}

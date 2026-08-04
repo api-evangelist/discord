@@ -1,0 +1,392 @@
+{
+  "info": {
+    "_postman_id": "db01b4c0-743b-45c4-ac4f-60244eb0a414",
+    "name": "Discord Interactions Application Commands Auto Moderation API",
+    "description": "The Discord Interactions API enables applications to create and respond to application commands (slash commands), message components, and modals. It supports both Gateway-based and webhook-based interaction handling, allowing bots to build rich, interactive user experiences within Discord.\n\nContact Support:\n Name: Discord Support\n Email: support@discord.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:31:28.000Z",
+    "updatedAt": "2026-07-28T01:31:28.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-db01b4c0-743b-45c4-ac4f-60244eb0a414"
+  },
+  "item": [
+    {
+      "name": "guilds",
+      "item": [
+        {
+          "name": "{guild_id}",
+          "item": [
+            {
+              "name": "auto-moderation",
+              "item": [
+                {
+                  "name": "rules",
+                  "item": [
+                    {
+                      "name": "Discord List auto moderation rules",
+                      "id": "56ada754-ecea-4844-b0a1-60bbdee25e7c",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/guilds/:guild_id/auto-moderation/rules",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "guilds",
+                            ":guild_id",
+                            "auto-moderation",
+                            "rules"
+                          ],
+                          "variable": [
+                            {
+                              "id": "dffb4244-3bdc-4d62-aec3-007829826d8d",
+                              "key": "guild_id",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the guild (Snowflake)"
+                            }
+                          ]
+                        },
+                        "description": "Get a list of all rules currently configured for the guild."
+                      },
+                      "response": [
+                        {
+                          "id": "b756f10f-c776-4c73-a38f-95983590b13f",
+                          "name": "List of auto moderation rule objects",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/guilds/:guild_id/auto-moderation/rules",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "guilds",
+                                ":guild_id",
+                                "auto-moderation",
+                                "rules"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "guild_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"id\": \"85169\",\n    \"guild_id\": \"892765775\",\n    \"name\": \"<string>\",\n    \"creator_id\": \"9\",\n    \"event_type\": \"<integer>\",\n    \"trigger_type\": \"<integer>\",\n    \"trigger_metadata\": {\n      \"keyword_filter\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"regex_patterns\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"presets\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"allow_list\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"mention_total_limit\": \"<integer>\"\n    },\n    \"actions\": [\n      {\n        \"type\": \"<integer>\",\n        \"metadata\": {}\n      },\n      {\n        \"type\": \"<integer>\",\n        \"metadata\": {}\n      }\n    ],\n    \"enabled\": \"<boolean>\",\n    \"exempt_roles\": [\n      \"894320141\",\n      \"8\"\n    ],\n    \"exempt_channels\": [\n      \"0\",\n      \"163644\"\n    ]\n  },\n  {\n    \"id\": \"68052275204\",\n    \"guild_id\": \"6713871904\",\n    \"name\": \"<string>\",\n    \"creator_id\": \"146066736\",\n    \"event_type\": \"<integer>\",\n    \"trigger_type\": \"<integer>\",\n    \"trigger_metadata\": {\n      \"keyword_filter\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"regex_patterns\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"presets\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"allow_list\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"mention_total_limit\": \"<integer>\"\n    },\n    \"actions\": [\n      {\n        \"type\": \"<integer>\",\n        \"metadata\": {}\n      },\n      {\n        \"type\": \"<integer>\",\n        \"metadata\": {}\n      }\n    ],\n    \"enabled\": \"<boolean>\",\n    \"exempt_roles\": [\n      \"2885132601\",\n      \"5015\"\n    ],\n    \"exempt_channels\": [\n      \"8739015\",\n      \"0162\"\n    ]\n  }\n]",
+                          "createdAt": "2026-07-28T01:31:29.000Z",
+                          "updatedAt": "2026-07-28T01:31:29.000Z",
+                          "uid": "35240-b756f10f-c776-4c73-a38f-95983590b13f"
+                        },
+                        {
+                          "id": "16e07c6d-cd3c-4e3a-941d-a564f7fd9365",
+                          "name": "Client error response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/guilds/:guild_id/auto-moderation/rules",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "guilds",
+                                ":guild_id",
+                                "auto-moderation",
+                                "rules"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "guild_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"errors\": {}\n}",
+                          "createdAt": "2026-07-28T01:31:29.000Z",
+                          "updatedAt": "2026-07-28T01:31:29.000Z",
+                          "uid": "35240-16e07c6d-cd3c-4e3a-941d-a564f7fd9365"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:31:29.000Z",
+                      "updatedAt": "2026-07-28T01:31:29.000Z",
+                      "uid": "35240-56ada754-ecea-4844-b0a1-60bbdee25e7c"
+                    },
+                    {
+                      "name": "Discord Create auto moderation rule",
+                      "id": "4b3adaa0-dde3-4356-ac5e-caaee01785aa",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"event_type\": \"<integer>\",\n  \"trigger_type\": \"<integer>\",\n  \"actions\": [\n    {\n      \"type\": \"<integer>\",\n      \"metadata\": {}\n    },\n    {\n      \"type\": \"<integer>\",\n      \"metadata\": {}\n    }\n  ],\n  \"trigger_metadata\": {},\n  \"enabled\": false,\n  \"exempt_roles\": [\n    \"9166759947\",\n    \"558\"\n  ],\n  \"exempt_channels\": [\n    \"4632520\",\n    \"56274566\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/guilds/:guild_id/auto-moderation/rules",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "guilds",
+                            ":guild_id",
+                            "auto-moderation",
+                            "rules"
+                          ],
+                          "variable": [
+                            {
+                              "id": "d49ffdcb-dd3c-4e23-bdfe-6f45f311d465",
+                              "key": "guild_id",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the guild (Snowflake)"
+                            }
+                          ]
+                        },
+                        "description": "Create a new rule for the guild."
+                      },
+                      "response": [
+                        {
+                          "id": "c822b8b1-8509-4c5b-9323-37f3b9da0602",
+                          "name": "Auto moderation rule created",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"event_type\": \"<integer>\",\n  \"trigger_type\": \"<integer>\",\n  \"actions\": [\n    {\n      \"type\": \"<integer>\",\n      \"metadata\": {}\n    },\n    {\n      \"type\": \"<integer>\",\n      \"metadata\": {}\n    }\n  ],\n  \"trigger_metadata\": {},\n  \"enabled\": false,\n  \"exempt_roles\": [\n    \"9166759947\",\n    \"558\"\n  ],\n  \"exempt_channels\": [\n    \"4632520\",\n    \"56274566\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/guilds/:guild_id/auto-moderation/rules",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "guilds",
+                                ":guild_id",
+                                "auto-moderation",
+                                "rules"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "guild_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"255076\",\n  \"guild_id\": \"5679\",\n  \"name\": \"<string>\",\n  \"creator_id\": \"4\",\n  \"event_type\": \"<integer>\",\n  \"trigger_type\": \"<integer>\",\n  \"trigger_metadata\": {\n    \"keyword_filter\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"regex_patterns\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"presets\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"allow_list\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"mention_total_limit\": \"<integer>\"\n  },\n  \"actions\": [\n    {\n      \"type\": \"<integer>\",\n      \"metadata\": {}\n    },\n    {\n      \"type\": \"<integer>\",\n      \"metadata\": {}\n    }\n  ],\n  \"enabled\": \"<boolean>\",\n  \"exempt_roles\": [\n    \"76\",\n    \"7989763\"\n  ],\n  \"exempt_channels\": [\n    \"200172346\",\n    \"20274540\"\n  ]\n}",
+                          "createdAt": "2026-07-28T01:31:29.000Z",
+                          "updatedAt": "2026-07-28T01:31:29.000Z",
+                          "uid": "35240-c822b8b1-8509-4c5b-9323-37f3b9da0602"
+                        },
+                        {
+                          "id": "d09930e0-7838-4758-ae85-51085a5ee6b6",
+                          "name": "Client error response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"event_type\": \"<integer>\",\n  \"trigger_type\": \"<integer>\",\n  \"actions\": [\n    {\n      \"type\": \"<integer>\",\n      \"metadata\": {}\n    },\n    {\n      \"type\": \"<integer>\",\n      \"metadata\": {}\n    }\n  ],\n  \"trigger_metadata\": {},\n  \"enabled\": false,\n  \"exempt_roles\": [\n    \"9166759947\",\n    \"558\"\n  ],\n  \"exempt_channels\": [\n    \"4632520\",\n    \"56274566\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/guilds/:guild_id/auto-moderation/rules",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "guilds",
+                                ":guild_id",
+                                "auto-moderation",
+                                "rules"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "guild_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"errors\": {}\n}",
+                          "createdAt": "2026-07-28T01:31:29.000Z",
+                          "updatedAt": "2026-07-28T01:31:29.000Z",
+                          "uid": "35240-d09930e0-7838-4758-ae85-51085a5ee6b6"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:31:29.000Z",
+                      "updatedAt": "2026-07-28T01:31:29.000Z",
+                      "uid": "35240-4b3adaa0-dde3-4356-ac5e-caaee01785aa"
+                    }
+                  ],
+                  "id": "9caca523-adab-4387-aef7-c091ddbd2f11",
+                  "createdAt": "2026-07-28T01:31:29.000Z",
+                  "updatedAt": "2026-07-28T01:31:29.000Z",
+                  "uid": "35240-9caca523-adab-4387-aef7-c091ddbd2f11"
+                }
+              ],
+              "id": "09a52251-544d-4273-a6a1-609db2f72bcb",
+              "createdAt": "2026-07-28T01:31:29.000Z",
+              "updatedAt": "2026-07-28T01:31:29.000Z",
+              "uid": "35240-09a52251-544d-4273-a6a1-609db2f72bcb"
+            }
+          ],
+          "id": "abbfc2ef-f920-48f8-aec8-c9a5d36fd3bf",
+          "createdAt": "2026-07-28T01:31:29.000Z",
+          "updatedAt": "2026-07-28T01:31:29.000Z",
+          "uid": "35240-abbfc2ef-f920-48f8-aec8-c9a5d36fd3bf"
+        }
+      ],
+      "id": "a9f24b31-6f79-4acb-88a0-307599ce4b3c",
+      "createdAt": "2026-07-28T01:31:29.000Z",
+      "updatedAt": "2026-07-28T01:31:29.000Z",
+      "uid": "35240-a9f24b31-6f79-4acb-88a0-307599ce4b3c"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://discord.com/api/v10"
+    }
+  ]
+}

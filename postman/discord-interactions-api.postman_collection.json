@@ -1,0 +1,245 @@
+{
+  "info": {
+    "_postman_id": "2bea985a-c983-4c43-9576-57bd7f242ff8",
+    "name": "Discord Application Commands Interactions API",
+    "description": "The Discord Interactions API enables applications to create and respond to application commands (slash commands), message components, and modals. It supports both Gateway-based and webhook-based interaction handling, allowing bots to build rich, interactive user experiences within Discord.\n\nContact Support:\n Name: Discord Support\n Email: support@discord.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:31:10.000Z",
+    "updatedAt": "2026-07-28T01:31:11.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2bea985a-c983-4c43-9576-57bd7f242ff8"
+  },
+  "item": [
+    {
+      "name": "interactions",
+      "item": [
+        {
+          "name": "{interaction_id}",
+          "item": [
+            {
+              "name": "{interaction_token}",
+              "item": [
+                {
+                  "name": "callback",
+                  "item": [
+                    {
+                      "name": "create interaction response",
+                      "id": "539dde80-e321-4186-8a2b-c9346b78efec",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "noauth"
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"type\": 8,\n  \"data\": {\n    \"choices\": null\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/interactions/:interaction_id/:interaction_token/callback",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "interactions",
+                            ":interaction_id",
+                            ":interaction_token",
+                            "callback"
+                          ],
+                          "variable": [
+                            {
+                              "id": "9fc785af-65a4-44b6-9f50-356d14957ec3",
+                              "key": "interaction_id",
+                              "value": "0",
+                              "description": "(Required) "
+                            },
+                            {
+                              "id": "eb784215-b8af-4e90-a674-0b3c61771318",
+                              "key": "interaction_token",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "e4ced084-6c7a-4367-8fa1-f1d4e7ed5572",
+                          "name": "204 response for create_interaction_response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"type\": 8,\n  \"data\": {\n    \"choices\": null\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/interactions/:interaction_id/:interaction_token/callback",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "interactions",
+                                ":interaction_id",
+                                ":interaction_token",
+                                "callback"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "interaction_id"
+                                },
+                                {
+                                  "key": "interaction_token"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:31:11.000Z",
+                          "updatedAt": "2026-07-28T01:31:11.000Z",
+                          "uid": "35240-e4ced084-6c7a-4367-8fa1-f1d4e7ed5572"
+                        },
+                        {
+                          "id": "a4bf2636-ff04-448e-90d6-7c4f22cb687c",
+                          "name": "Client error response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"type\": 8,\n  \"data\": {\n    \"choices\": null\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/interactions/:interaction_id/:interaction_token/callback",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "interactions",
+                                ":interaction_id",
+                                ":interaction_token",
+                                "callback"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "interaction_id"
+                                },
+                                {
+                                  "key": "interaction_token"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"errors\": {\n    \"amet_8\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:31:11.000Z",
+                          "updatedAt": "2026-07-28T01:31:11.000Z",
+                          "uid": "35240-a4bf2636-ff04-448e-90d6-7c4f22cb687c"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:31:11.000Z",
+                      "updatedAt": "2026-07-28T01:31:11.000Z",
+                      "uid": "35240-539dde80-e321-4186-8a2b-c9346b78efec"
+                    }
+                  ],
+                  "id": "aa762219-2790-42e6-b121-5012cb1f4846",
+                  "createdAt": "2026-07-28T01:31:11.000Z",
+                  "updatedAt": "2026-07-28T01:31:11.000Z",
+                  "uid": "35240-aa762219-2790-42e6-b121-5012cb1f4846"
+                }
+              ],
+              "id": "bfd768d4-e837-454b-b4c7-030900bc7dd6",
+              "createdAt": "2026-07-28T01:31:11.000Z",
+              "updatedAt": "2026-07-28T01:31:11.000Z",
+              "uid": "35240-bfd768d4-e837-454b-b4c7-030900bc7dd6"
+            }
+          ],
+          "id": "7ea016a6-afce-4ae7-b20c-a5219300ac73",
+          "createdAt": "2026-07-28T01:31:11.000Z",
+          "updatedAt": "2026-07-28T01:31:11.000Z",
+          "uid": "35240-7ea016a6-afce-4ae7-b20c-a5219300ac73"
+        }
+      ],
+      "id": "2a6a5ff5-c7db-4833-ba61-2115b3edace7",
+      "createdAt": "2026-07-28T01:31:11.000Z",
+      "updatedAt": "2026-07-28T01:31:11.000Z",
+      "uid": "35240-2a6a5ff5-c7db-4833-ba61-2115b3edace7"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://discord.com/api/v10"
+    }
+  ]
+}

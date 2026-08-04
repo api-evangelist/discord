@@ -1,0 +1,682 @@
+{
+  "info": {
+    "_postman_id": "6927e3b4-2d32-4bb9-9874-be9c9f325e15",
+    "name": "Discord Interactions Application Commands Stage Instances API",
+    "description": "The Discord Interactions API enables applications to create and respond to application commands (slash commands), message components, and modals. It supports both Gateway-based and webhook-based interaction handling, allowing bots to build rich, interactive user experiences within Discord.\n\nContact Support:\n Name: Discord Support\n Email: support@discord.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:31:45.000Z",
+    "updatedAt": "2026-07-28T01:31:46.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6927e3b4-2d32-4bb9-9874-be9c9f325e15"
+  },
+  "item": [
+    {
+      "name": "stage-instances",
+      "item": [
+        {
+          "name": "{channel_id}",
+          "item": [
+            {
+              "name": "get stage instance",
+              "id": "424aecb5-5d42-4da9-bde6-f9d79d686dca",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/stage-instances/:channel_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "stage-instances",
+                    ":channel_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "8dfb95e6-fd78-49c7-b8ef-86c664fa7ec7",
+                      "key": "channel_id",
+                      "value": "2137841",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "eab8ed4f-b9ed-43e5-8804-e6166c3a3ef2",
+                  "name": "200 response for get_stage_instance",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/stage-instances/:channel_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "stage-instances",
+                        ":channel_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "channel_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"guild_id\": \"4977618162\",\n  \"channel_id\": \"5791\",\n  \"topic\": \"<string>\",\n  \"privacy_level\": {\n    \"title\": \"PUBLIC\",\n    \"description\": \"The Stage instance is visible publicly. (deprecated)\",\n    \"const\": 1\n  },\n  \"id\": \"0\",\n  \"discoverable_disabled\": \"<boolean,null>\",\n  \"guild_scheduled_event_id\": \"<null>\"\n}",
+                  "createdAt": "2026-07-28T01:31:46.000Z",
+                  "updatedAt": "2026-07-28T01:31:46.000Z",
+                  "uid": "35240-eab8ed4f-b9ed-43e5-8804-e6166c3a3ef2"
+                },
+                {
+                  "id": "15172587-1e50-4331-b7e1-8e8cdf241a09",
+                  "name": "Client error response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/stage-instances/:channel_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "stage-instances",
+                        ":channel_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "channel_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"errors\": {\n    \"velit_f1b\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T01:31:46.000Z",
+                  "updatedAt": "2026-07-28T01:31:46.000Z",
+                  "uid": "35240-15172587-1e50-4331-b7e1-8e8cdf241a09"
+                }
+              ],
+              "createdAt": "2026-07-28T01:31:46.000Z",
+              "updatedAt": "2026-07-28T01:31:46.000Z",
+              "uid": "35240-424aecb5-5d42-4da9-bde6-f9d79d686dca"
+            },
+            {
+              "name": "delete stage instance",
+              "id": "4a8d3954-35ce-47f7-af05-a2dc3cd661e7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/stage-instances/:channel_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "stage-instances",
+                    ":channel_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "7d02ac2b-3fb5-4b0a-b14b-ef410b443647",
+                      "key": "channel_id",
+                      "value": "2137841",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "157f4d22-2b69-414b-ab67-f1db683f6f14",
+                  "name": "204 response for delete_stage_instance",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/stage-instances/:channel_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "stage-instances",
+                        ":channel_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "channel_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:31:46.000Z",
+                  "updatedAt": "2026-07-28T01:31:46.000Z",
+                  "uid": "35240-157f4d22-2b69-414b-ab67-f1db683f6f14"
+                },
+                {
+                  "id": "59b80cb3-6f63-4e5a-ab1d-b7c4ad4c38b6",
+                  "name": "Client error response",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/stage-instances/:channel_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "stage-instances",
+                        ":channel_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "channel_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"errors\": {\n    \"velit_f1b\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T01:31:46.000Z",
+                  "updatedAt": "2026-07-28T01:31:46.000Z",
+                  "uid": "35240-59b80cb3-6f63-4e5a-ab1d-b7c4ad4c38b6"
+                }
+              ],
+              "createdAt": "2026-07-28T01:31:46.000Z",
+              "updatedAt": "2026-07-28T01:31:46.000Z",
+              "uid": "35240-4a8d3954-35ce-47f7-af05-a2dc3cd661e7"
+            },
+            {
+              "name": "update stage instance",
+              "id": "0a4bd047-5e18-4615-b670-d7048a649e2b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"topic\": \"<string>\",\n  \"privacy_level\": {\n    \"title\": \"PUBLIC\",\n    \"description\": \"The Stage instance is visible publicly. (deprecated)\",\n    \"const\": 1\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/stage-instances/:channel_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "stage-instances",
+                    ":channel_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "263c3441-2b9d-4ceb-82ed-b6f00ee39f3d",
+                      "key": "channel_id",
+                      "value": "2137841",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "429d9bf6-4249-419c-b6c2-b8508ddee755",
+                  "name": "200 response for update_stage_instance",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"topic\": \"<string>\",\n  \"privacy_level\": {\n    \"title\": \"PUBLIC\",\n    \"description\": \"The Stage instance is visible publicly. (deprecated)\",\n    \"const\": 1\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/stage-instances/:channel_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "stage-instances",
+                        ":channel_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "channel_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"guild_id\": \"4977618162\",\n  \"channel_id\": \"5791\",\n  \"topic\": \"<string>\",\n  \"privacy_level\": {\n    \"title\": \"PUBLIC\",\n    \"description\": \"The Stage instance is visible publicly. (deprecated)\",\n    \"const\": 1\n  },\n  \"id\": \"0\",\n  \"discoverable_disabled\": \"<boolean,null>\",\n  \"guild_scheduled_event_id\": \"<null>\"\n}",
+                  "createdAt": "2026-07-28T01:31:46.000Z",
+                  "updatedAt": "2026-07-28T01:31:46.000Z",
+                  "uid": "35240-429d9bf6-4249-419c-b6c2-b8508ddee755"
+                },
+                {
+                  "id": "fd962c84-e286-4991-b3ff-9acd43979745",
+                  "name": "Client error response",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"topic\": \"<string>\",\n  \"privacy_level\": {\n    \"title\": \"PUBLIC\",\n    \"description\": \"The Stage instance is visible publicly. (deprecated)\",\n    \"const\": 1\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/stage-instances/:channel_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "stage-instances",
+                        ":channel_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "channel_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"errors\": {\n    \"velit_f1b\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T01:31:46.000Z",
+                  "updatedAt": "2026-07-28T01:31:46.000Z",
+                  "uid": "35240-fd962c84-e286-4991-b3ff-9acd43979745"
+                }
+              ],
+              "createdAt": "2026-07-28T01:31:46.000Z",
+              "updatedAt": "2026-07-28T01:31:46.000Z",
+              "uid": "35240-0a4bd047-5e18-4615-b670-d7048a649e2b"
+            }
+          ],
+          "id": "7cb020af-5656-42b9-a487-029cb78d4ef3",
+          "createdAt": "2026-07-28T01:31:46.000Z",
+          "updatedAt": "2026-07-28T01:31:46.000Z",
+          "uid": "35240-7cb020af-5656-42b9-a487-029cb78d4ef3"
+        },
+        {
+          "name": "create stage instance",
+          "id": "7e2ecf9f-65f1-4444-8d40-9087ab280931",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"topic\": \"<string>\",\n  \"channel_id\": \"128041\",\n  \"privacy_level\": \"<null>\",\n  \"guild_scheduled_event_id\": \"<null>\",\n  \"send_start_notification\": \"<boolean,null>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/stage-instances",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "stage-instances"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "30827783-9432-47b0-a280-71413141e550",
+              "name": "200 response for create_stage_instance",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"topic\": \"<string>\",\n  \"channel_id\": \"128041\",\n  \"privacy_level\": \"<null>\",\n  \"guild_scheduled_event_id\": \"<null>\",\n  \"send_start_notification\": \"<boolean,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/stage-instances",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "stage-instances"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"guild_id\": \"4977618162\",\n  \"channel_id\": \"5791\",\n  \"topic\": \"<string>\",\n  \"privacy_level\": {\n    \"title\": \"PUBLIC\",\n    \"description\": \"The Stage instance is visible publicly. (deprecated)\",\n    \"const\": 1\n  },\n  \"id\": \"0\",\n  \"discoverable_disabled\": \"<boolean,null>\",\n  \"guild_scheduled_event_id\": \"<null>\"\n}",
+              "createdAt": "2026-07-28T01:31:46.000Z",
+              "updatedAt": "2026-07-28T01:31:46.000Z",
+              "uid": "35240-30827783-9432-47b0-a280-71413141e550"
+            },
+            {
+              "id": "bd5f3f8f-461e-4fe6-bd7e-3b71903b74d2",
+              "name": "Client error response",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"topic\": \"<string>\",\n  \"channel_id\": \"128041\",\n  \"privacy_level\": \"<null>\",\n  \"guild_scheduled_event_id\": \"<null>\",\n  \"send_start_notification\": \"<boolean,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/stage-instances",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "stage-instances"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"errors\": {\n    \"velit_f1b\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    }\n  }\n}",
+              "createdAt": "2026-07-28T01:31:46.000Z",
+              "updatedAt": "2026-07-28T01:31:46.000Z",
+              "uid": "35240-bd5f3f8f-461e-4fe6-bd7e-3b71903b74d2"
+            }
+          ],
+          "createdAt": "2026-07-28T01:31:46.000Z",
+          "updatedAt": "2026-07-28T01:31:46.000Z",
+          "uid": "35240-7e2ecf9f-65f1-4444-8d40-9087ab280931"
+        }
+      ],
+      "id": "e5bb05b4-4b4d-41c9-b81d-ae0111c7dfe7",
+      "createdAt": "2026-07-28T01:31:46.000Z",
+      "updatedAt": "2026-07-28T01:31:46.000Z",
+      "uid": "35240-e5bb05b4-4b4d-41c9-b81d-ae0111c7dfe7"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://discord.com/api/v10"
+    }
+  ]
+}

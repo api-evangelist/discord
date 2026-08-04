@@ -1,0 +1,1042 @@
+{
+  "info": {
+    "_postman_id": "1078f440-7065-42f7-9b10-85d1ea015177",
+    "name": "Discord Interactions Application Commands OAuth2 API",
+    "description": "The Discord Interactions API enables applications to create and respond to application commands (slash commands), message components, and modals. It supports both Gateway-based and webhook-based interaction handling, allowing bots to build rich, interactive user experiences within Discord.\n\nContact Support:\n Name: Discord Support\n Email: support@discord.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:31:22.000Z",
+    "updatedAt": "2026-07-28T01:31:22.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1078f440-7065-42f7-9b10-85d1ea015177"
+  },
+  "item": [
+    {
+      "name": "oauth2",
+      "item": [
+        {
+          "name": "authorize",
+          "item": [
+            {
+              "name": "Discord Authorize",
+              "id": "a667f63e-c650-4474-b53b-d53e8891401a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/oauth2/authorize?response_type=code&client_id=<string>&scope=<string>&state=<string>&redirect_uri=<uri>&prompt=consent",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "oauth2",
+                    "authorize"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) OAuth2 grant type (code or token)",
+                      "key": "response_type",
+                      "value": "code"
+                    },
+                    {
+                      "description": "(Required) Your application's client ID",
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) Space-delimited list of OAuth2 scopes",
+                      "key": "scope",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Unique string for CSRF protection",
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Registered redirect URI",
+                      "key": "redirect_uri",
+                      "value": "<uri>"
+                    },
+                    {
+                      "description": "Controls the authorization prompt behavior",
+                      "key": "prompt",
+                      "value": "consent"
+                    }
+                  ]
+                },
+                "description": "Redirect the user to this URL to begin the OAuth2 authorization flow. This is a browser-based endpoint, not a REST API call."
+              },
+              "response": [
+                {
+                  "id": "447c4523-561f-4d88-a1e7-f8987ad3ac4e",
+                  "name": "Redirect to Discord authorization page",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth2/authorize?response_type=code&client_id=<string>&scope=<string>&state=<string>&redirect_uri=<uri>&prompt=consent",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth2",
+                        "authorize"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) OAuth2 grant type (code or token)",
+                          "key": "response_type",
+                          "value": "code"
+                        },
+                        {
+                          "description": "(Required) Your application's client ID",
+                          "key": "client_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) Space-delimited list of OAuth2 scopes",
+                          "key": "scope",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Unique string for CSRF protection",
+                          "key": "state",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Registered redirect URI",
+                          "key": "redirect_uri",
+                          "value": "<uri>"
+                        },
+                        {
+                          "description": "Controls the authorization prompt behavior",
+                          "key": "prompt",
+                          "value": "consent"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Found",
+                  "code": 302,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:31:22.000Z",
+                  "updatedAt": "2026-07-28T01:31:22.000Z",
+                  "uid": "35240-447c4523-561f-4d88-a1e7-f8987ad3ac4e"
+                }
+              ],
+              "createdAt": "2026-07-28T01:31:22.000Z",
+              "updatedAt": "2026-07-28T01:31:22.000Z",
+              "uid": "35240-a667f63e-c650-4474-b53b-d53e8891401a"
+            }
+          ],
+          "id": "b3d88a2b-ee91-4d7a-a190-54412cb1816a",
+          "createdAt": "2026-07-28T01:31:22.000Z",
+          "updatedAt": "2026-07-28T01:31:22.000Z",
+          "uid": "35240-b3d88a2b-ee91-4d7a-a190-54412cb1816a"
+        },
+        {
+          "name": "token",
+          "item": [
+            {
+              "name": "revoke",
+              "item": [
+                {
+                  "name": "Discord Revoke access token",
+                  "id": "57b2c865-56e8-42c1-864a-7457408392a2",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) The access or refresh token to revoke",
+                          "key": "token",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "token_type_hint",
+                          "value": "refresh_token"
+                        },
+                        {
+                          "key": "client_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "client_secret",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth2/token/revoke",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth2",
+                        "token",
+                        "revoke"
+                      ]
+                    },
+                    "description": "Revoke an access token or refresh token."
+                  },
+                  "response": [
+                    {
+                      "id": "1e2dee77-05c9-447c-b804-038747e33025",
+                      "name": "Token revoked",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/x-www-form-urlencoded"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "urlencoded",
+                          "urlencoded": [
+                            {
+                              "description": "(Required) The access or refresh token to revoke",
+                              "key": "token",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "token_type_hint",
+                              "value": "refresh_token"
+                            },
+                            {
+                              "key": "client_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "client_secret",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/oauth2/token/revoke",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "oauth2",
+                            "token",
+                            "revoke"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:31:22.000Z",
+                      "updatedAt": "2026-07-28T01:31:22.000Z",
+                      "uid": "35240-1e2dee77-05c9-447c-b804-038747e33025"
+                    },
+                    {
+                      "id": "f7538de4-aabc-463b-b309-1d206d37b252",
+                      "name": "Client error response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/x-www-form-urlencoded"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "urlencoded",
+                          "urlencoded": [
+                            {
+                              "description": "(Required) The access or refresh token to revoke",
+                              "key": "token",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "token_type_hint",
+                              "value": "refresh_token"
+                            },
+                            {
+                              "key": "client_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "client_secret",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/oauth2/token/revoke",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "oauth2",
+                            "token",
+                            "revoke"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"error_description\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:31:22.000Z",
+                      "updatedAt": "2026-07-28T01:31:22.000Z",
+                      "uid": "35240-f7538de4-aabc-463b-b309-1d206d37b252"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:31:22.000Z",
+                  "updatedAt": "2026-07-28T01:31:22.000Z",
+                  "uid": "35240-57b2c865-56e8-42c1-864a-7457408392a2"
+                }
+              ],
+              "id": "0bffb945-fb10-4c73-b258-b683a5faf1b0",
+              "createdAt": "2026-07-28T01:31:22.000Z",
+              "updatedAt": "2026-07-28T01:31:22.000Z",
+              "uid": "35240-0bffb945-fb10-4c73-b258-b683a5faf1b0"
+            },
+            {
+              "name": "Discord Get access token",
+              "id": "7888e92b-0c22-40e4-8da1-9d67bb789c13",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) ",
+                      "key": "grant_type",
+                      "value": "refresh_token"
+                    },
+                    {
+                      "description": "(Required) Authorization code received from the authorize redirect",
+                      "key": "code",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) Same redirect_uri used in the authorize request",
+                      "key": "redirect_uri",
+                      "value": "<uri>"
+                    },
+                    {
+                      "description": "Application client ID",
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Application client secret",
+                      "key": "client_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Refresh token (for refresh_token grant)",
+                      "key": "refresh_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Space-delimited scopes (for client_credentials grant)",
+                      "key": "scope",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/oauth2/token",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "oauth2",
+                    "token"
+                  ]
+                },
+                "description": "Exchange an authorization code for an access token."
+              },
+              "response": [
+                {
+                  "id": "d483d648-5fe5-44d5-9d1e-1cad233f8fe0",
+                  "name": "Access token response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) ",
+                          "key": "grant_type",
+                          "value": "refresh_token"
+                        },
+                        {
+                          "description": "(Required) Authorization code received from the authorize redirect",
+                          "key": "code",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) Same redirect_uri used in the authorize request",
+                          "key": "redirect_uri",
+                          "value": "<uri>"
+                        },
+                        {
+                          "description": "Application client ID",
+                          "key": "client_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Application client secret",
+                          "key": "client_secret",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Refresh token (for refresh_token grant)",
+                          "key": "refresh_token",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Space-delimited scopes (for client_credentials grant)",
+                          "key": "scope",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth2/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth2",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"access_token\": \"<string>\",\n  \"token_type\": \"<string>\",\n  \"expires_in\": \"<integer>\",\n  \"scope\": \"<string>\",\n  \"refresh_token\": \"<string>\",\n  \"guild\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"icon\": \"<string>\",\n    \"owner\": \"<boolean>\",\n    \"permissions\": \"<string>\",\n    \"features\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"webhook\": {\n    \"id\": \"<string>\",\n    \"token\": \"<string>\",\n    \"channel_id\": \"<string>\",\n    \"name\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:31:22.000Z",
+                  "updatedAt": "2026-07-28T01:31:22.000Z",
+                  "uid": "35240-d483d648-5fe5-44d5-9d1e-1cad233f8fe0"
+                },
+                {
+                  "id": "83d1adcc-1d8d-4b5d-8576-45e980f62e79",
+                  "name": "Client error response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) ",
+                          "key": "grant_type",
+                          "value": "refresh_token"
+                        },
+                        {
+                          "description": "(Required) Authorization code received from the authorize redirect",
+                          "key": "code",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) Same redirect_uri used in the authorize request",
+                          "key": "redirect_uri",
+                          "value": "<uri>"
+                        },
+                        {
+                          "description": "Application client ID",
+                          "key": "client_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Application client secret",
+                          "key": "client_secret",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Refresh token (for refresh_token grant)",
+                          "key": "refresh_token",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Space-delimited scopes (for client_credentials grant)",
+                          "key": "scope",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth2/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth2",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"error_description\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:31:22.000Z",
+                  "updatedAt": "2026-07-28T01:31:22.000Z",
+                  "uid": "35240-83d1adcc-1d8d-4b5d-8576-45e980f62e79"
+                }
+              ],
+              "createdAt": "2026-07-28T01:31:22.000Z",
+              "updatedAt": "2026-07-28T01:31:22.000Z",
+              "uid": "35240-7888e92b-0c22-40e4-8da1-9d67bb789c13"
+            }
+          ],
+          "id": "1e7c7e30-1446-4f2d-8576-468fdf6151db",
+          "createdAt": "2026-07-28T01:31:22.000Z",
+          "updatedAt": "2026-07-28T01:31:22.000Z",
+          "uid": "35240-1e7c7e30-1446-4f2d-8576-468fdf6151db"
+        },
+        {
+          "name": "keys",
+          "item": [
+            {
+              "name": "Discord Get OAuth2 keys",
+              "id": "ebfc418a-bb77-442a-8368-51c341db91ff",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/oauth2/keys",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "oauth2",
+                    "keys"
+                  ]
+                },
+                "description": "Returns the list of public keys used for token verification."
+              },
+              "response": [
+                {
+                  "id": "3adbdb85-0145-4f61-9af4-e6403f308f56",
+                  "name": "JWKS key set",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth2/keys",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth2",
+                        "keys"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"keys\": [\n    {\n      \"kty\": \"<string>\",\n      \"use\": \"<string>\",\n      \"kid\": \"<string>\",\n      \"n\": \"<string>\",\n      \"e\": \"<string>\"\n    },\n    {\n      \"kty\": \"<string>\",\n      \"use\": \"<string>\",\n      \"kid\": \"<string>\",\n      \"n\": \"<string>\",\n      \"e\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:31:22.000Z",
+                  "updatedAt": "2026-07-28T01:31:22.000Z",
+                  "uid": "35240-3adbdb85-0145-4f61-9af4-e6403f308f56"
+                },
+                {
+                  "id": "c9151263-b394-4f1f-9198-0526676402b2",
+                  "name": "Client error response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth2/keys",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth2",
+                        "keys"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"error_description\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:31:22.000Z",
+                  "updatedAt": "2026-07-28T01:31:22.000Z",
+                  "uid": "35240-c9151263-b394-4f1f-9198-0526676402b2"
+                }
+              ],
+              "createdAt": "2026-07-28T01:31:22.000Z",
+              "updatedAt": "2026-07-28T01:31:22.000Z",
+              "uid": "35240-ebfc418a-bb77-442a-8368-51c341db91ff"
+            }
+          ],
+          "id": "82219666-c20e-4713-a67a-9a597f2a537a",
+          "createdAt": "2026-07-28T01:31:22.000Z",
+          "updatedAt": "2026-07-28T01:31:22.000Z",
+          "uid": "35240-82219666-c20e-4713-a67a-9a597f2a537a"
+        },
+        {
+          "name": "applications",
+          "item": [
+            {
+              "name": "@me",
+              "item": [
+                {
+                  "name": "get my oauth2 application",
+                  "id": "fe7b5683-3e55-4184-8b8d-1a0515c8a878",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth2/applications/@me",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth2",
+                        "applications",
+                        "@me"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "cd938794-864d-4f4a-9b79-67e0df3975b5",
+                      "name": "200 response for get_my_oauth2_application",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/oauth2/applications/@me",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "oauth2",
+                            "applications",
+                            "@me"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"85979814\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"verify_key\": \"<string>\",\n  \"flags\": \"<integer>\",\n  \"redirect_uris\": [\n    \"<string,null-uri>\",\n    \"<string,null-uri>\"\n  ],\n  \"owner\": {\n    \"id\": \"476331\",\n    \"username\": \"<string>\",\n    \"discriminator\": \"<string>\",\n    \"public_flags\": \"<integer>\",\n    \"flags\": \"<long>\",\n    \"avatar\": \"<string,null>\",\n    \"bot\": \"<boolean,null>\",\n    \"system\": \"<boolean,null>\",\n    \"banner\": \"<string,null>\",\n    \"accent_color\": \"<integer,null>\",\n    \"global_name\": \"<string,null>\"\n  },\n  \"icon\": \"<string,null>\",\n  \"type\": \"<null>\",\n  \"cover_image\": \"<string,null>\",\n  \"primary_sku_id\": \"<null>\",\n  \"bot\": \"<null>\",\n  \"slug\": \"<string,null>\",\n  \"guild_id\": \"<null>\",\n  \"rpc_origins\": [\n    \"<string,null>\",\n    \"<string,null>\"\n  ],\n  \"bot_public\": \"<boolean,null>\",\n  \"bot_require_code_grant\": \"<boolean,null>\",\n  \"terms_of_service_url\": \"<string,null-uri>\",\n  \"privacy_policy_url\": \"<string,null-uri>\",\n  \"custom_install_url\": \"<string,null-uri>\",\n  \"install_params\": \"<null>\",\n  \"max_participants\": \"<integer,null>\",\n  \"tags\": null,\n  \"interactions_endpoint_url\": \"<string,null-uri>\",\n  \"role_connections_verification_url\": \"<string,null-uri>\",\n  \"approximate_guild_count\": \"<integer,null>\",\n  \"team\": \"<null>\"\n}",
+                      "createdAt": "2026-07-28T01:31:22.000Z",
+                      "updatedAt": "2026-07-28T01:31:22.000Z",
+                      "uid": "35240-cd938794-864d-4f4a-9b79-67e0df3975b5"
+                    },
+                    {
+                      "id": "6013cf88-5c76-45e3-948c-6f918a6a97bb",
+                      "name": "Client error response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/oauth2/applications/@me",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "oauth2",
+                            "applications",
+                            "@me"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"errors\": {\n    \"consequat_5b6\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:31:22.000Z",
+                      "updatedAt": "2026-07-28T01:31:22.000Z",
+                      "uid": "35240-6013cf88-5c76-45e3-948c-6f918a6a97bb"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:31:22.000Z",
+                  "updatedAt": "2026-07-28T01:31:22.000Z",
+                  "uid": "35240-fe7b5683-3e55-4184-8b8d-1a0515c8a878"
+                }
+              ],
+              "id": "b1a4cd98-e4e7-48ac-9a72-02519ffe3c0a",
+              "createdAt": "2026-07-28T01:31:22.000Z",
+              "updatedAt": "2026-07-28T01:31:22.000Z",
+              "uid": "35240-b1a4cd98-e4e7-48ac-9a72-02519ffe3c0a"
+            }
+          ],
+          "id": "8a5629e9-3bc3-4191-bd6b-b6410a0f511e",
+          "createdAt": "2026-07-28T01:31:22.000Z",
+          "updatedAt": "2026-07-28T01:31:22.000Z",
+          "uid": "35240-8a5629e9-3bc3-4191-bd6b-b6410a0f511e"
+        },
+        {
+          "name": "@me",
+          "item": [
+            {
+              "name": "get my oauth2 authorization",
+              "id": "97cd2df2-752a-47fe-b778-6d88083256ae",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/oauth2/@me",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "oauth2",
+                    "@me"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "35d9d16c-ad86-4625-8647-9b9923d1118e",
+                  "name": "200 response for get_my_oauth2_authorization",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth2/@me",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth2",
+                        "@me"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"application\": {\n    \"id\": \"9\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"verify_key\": \"<string>\",\n    \"flags\": \"<integer>\",\n    \"icon\": \"<string,null>\",\n    \"type\": \"<null>\",\n    \"cover_image\": \"<string,null>\",\n    \"primary_sku_id\": \"<null>\",\n    \"bot\": \"<null>\",\n    \"slug\": \"<string,null>\",\n    \"guild_id\": \"<null>\",\n    \"rpc_origins\": [\n      \"<string,null>\",\n      \"<string,null>\"\n    ],\n    \"bot_public\": \"<boolean,null>\",\n    \"bot_require_code_grant\": \"<boolean,null>\",\n    \"terms_of_service_url\": \"<string,null-uri>\",\n    \"privacy_policy_url\": \"<string,null-uri>\",\n    \"custom_install_url\": \"<string,null-uri>\",\n    \"install_params\": \"<null>\",\n    \"max_participants\": \"<integer,null>\",\n    \"tags\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"expires\": \"<dateTime>\",\n  \"scopes\": [\n    {\n      \"title\": \"IDENTIFY\",\n      \"description\": \"allows /users/@me without email\",\n      \"const\": \"identify\"\n    },\n    {\n      \"title\": \"IDENTIFY\",\n      \"description\": \"allows /users/@me without email\",\n      \"const\": \"identify\"\n    }\n  ],\n  \"user\": \"<null>\"\n}",
+                  "createdAt": "2026-07-28T01:31:22.000Z",
+                  "updatedAt": "2026-07-28T01:31:22.000Z",
+                  "uid": "35240-35d9d16c-ad86-4625-8647-9b9923d1118e"
+                },
+                {
+                  "id": "e5e53516-3b1b-4d32-bee3-10757768a901",
+                  "name": "Client error response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth2/@me",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth2",
+                        "@me"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"errors\": {\n    \"consequat_5b6\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T01:31:22.000Z",
+                  "updatedAt": "2026-07-28T01:31:22.000Z",
+                  "uid": "35240-e5e53516-3b1b-4d32-bee3-10757768a901"
+                }
+              ],
+              "createdAt": "2026-07-28T01:31:22.000Z",
+              "updatedAt": "2026-07-28T01:31:22.000Z",
+              "uid": "35240-97cd2df2-752a-47fe-b778-6d88083256ae"
+            }
+          ],
+          "id": "80355b64-4834-4196-af3d-33fe72dc007e",
+          "createdAt": "2026-07-28T01:31:22.000Z",
+          "updatedAt": "2026-07-28T01:31:22.000Z",
+          "uid": "35240-80355b64-4834-4196-af3d-33fe72dc007e"
+        }
+      ],
+      "id": "75b1bb26-821b-4be1-8c3f-edbedac1f61f",
+      "createdAt": "2026-07-28T01:31:22.000Z",
+      "updatedAt": "2026-07-28T01:31:22.000Z",
+      "uid": "35240-75b1bb26-821b-4be1-8c3f-edbedac1f61f"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://discord.com/api/v10"
+    }
+  ]
+}

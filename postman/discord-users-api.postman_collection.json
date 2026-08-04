@@ -1,0 +1,1968 @@
+{
+  "info": {
+    "_postman_id": "068cb094-2e14-4367-85c6-1af70de844dd",
+    "name": "Discord Interactions Application Commands Users API",
+    "description": "The Discord Interactions API enables applications to create and respond to application commands (slash commands), message components, and modals. It supports both Gateway-based and webhook-based interaction handling, allowing bots to build rich, interactive user experiences within Discord.\n\nContact Support:\n Name: Discord Support\n Email: support@discord.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:32:15.000Z",
+    "updatedAt": "2026-07-28T01:32:15.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-068cb094-2e14-4367-85c6-1af70de844dd"
+  },
+  "item": [
+    {
+      "name": "users",
+      "item": [
+        {
+          "name": "@me",
+          "item": [
+            {
+              "name": "connections",
+              "item": [
+                {
+                  "name": "list my connections",
+                  "id": "d550da6f-dc8a-42eb-8907-6093fa6b8fd2",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/@me/connections",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        "@me",
+                        "connections"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "f06573b1-7ef1-4434-831b-27e6b676102a",
+                      "name": "200 response for list_my_connections",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/@me/connections",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            "@me",
+                            "connections"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "null",
+                      "createdAt": "2026-07-28T01:32:16.000Z",
+                      "updatedAt": "2026-07-28T01:32:16.000Z",
+                      "uid": "35240-f06573b1-7ef1-4434-831b-27e6b676102a"
+                    },
+                    {
+                      "id": "68707e3b-6f72-4cd9-9595-9ff7545e4831",
+                      "name": "Client error response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/@me/connections",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            "@me",
+                            "connections"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"errors\": {\n    \"magna_7b\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    },\n    \"velitbc\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    },\n    \"ipsum_ad\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    },\n    \"nostrud_4f\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:32:16.000Z",
+                      "updatedAt": "2026-07-28T01:32:16.000Z",
+                      "uid": "35240-68707e3b-6f72-4cd9-9595-9ff7545e4831"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:32:16.000Z",
+                  "updatedAt": "2026-07-28T01:32:16.000Z",
+                  "uid": "35240-d550da6f-dc8a-42eb-8907-6093fa6b8fd2"
+                }
+              ],
+              "id": "613de22c-f4de-4e3a-bb9c-01cc318beb57",
+              "createdAt": "2026-07-28T01:32:15.000Z",
+              "updatedAt": "2026-07-28T01:32:15.000Z",
+              "uid": "35240-613de22c-f4de-4e3a-bb9c-01cc318beb57"
+            },
+            {
+              "name": "channels",
+              "item": [
+                {
+                  "name": "create dm",
+                  "id": "d26d1add-3967-42b4-8f55-402823bc60dd",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"recipient_id\": \"<null>\",\n  \"access_tokens\": null,\n  \"nicks\": null\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/users/@me/channels",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        "@me",
+                        "channels"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "99edd15f-afa4-4e43-88be-c532664c9b46",
+                      "name": "200 response for create_dm",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"recipient_id\": \"<null>\",\n  \"access_tokens\": null,\n  \"nicks\": null\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/users/@me/channels",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            "@me",
+                            "channels"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"81708\",\n  \"type\": 1,\n  \"flags\": \"<integer>\",\n  \"recipients\": [\n    {\n      \"id\": \"0\",\n      \"username\": \"<string>\",\n      \"discriminator\": \"<string>\",\n      \"public_flags\": \"<integer>\",\n      \"flags\": \"<long>\",\n      \"avatar\": \"<string,null>\",\n      \"bot\": \"<boolean,null>\",\n      \"system\": \"<boolean,null>\",\n      \"banner\": \"<string,null>\",\n      \"accent_color\": \"<integer,null>\",\n      \"global_name\": \"<string,null>\"\n    },\n    {\n      \"id\": \"3261\",\n      \"username\": \"<string>\",\n      \"discriminator\": \"<string>\",\n      \"public_flags\": \"<integer>\",\n      \"flags\": \"<long>\",\n      \"avatar\": \"<string,null>\",\n      \"bot\": \"<boolean,null>\",\n      \"system\": \"<boolean,null>\",\n      \"banner\": \"<string,null>\",\n      \"accent_color\": \"<integer,null>\",\n      \"global_name\": \"<string,null>\"\n    }\n  ],\n  \"last_message_id\": \"<null>\",\n  \"last_pin_timestamp\": \"<string,null-date-time>\"\n}",
+                      "createdAt": "2026-07-28T01:32:16.000Z",
+                      "updatedAt": "2026-07-28T01:32:16.000Z",
+                      "uid": "35240-99edd15f-afa4-4e43-88be-c532664c9b46"
+                    },
+                    {
+                      "id": "dd4d2d08-9bb7-4d26-a4b0-3bc4ec83511e",
+                      "name": "Client error response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"recipient_id\": \"<null>\",\n  \"access_tokens\": null,\n  \"nicks\": null\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/users/@me/channels",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            "@me",
+                            "channels"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"errors\": {\n    \"magna_7b\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    },\n    \"velitbc\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    },\n    \"ipsum_ad\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    },\n    \"nostrud_4f\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:32:16.000Z",
+                      "updatedAt": "2026-07-28T01:32:16.000Z",
+                      "uid": "35240-dd4d2d08-9bb7-4d26-a4b0-3bc4ec83511e"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:32:16.000Z",
+                  "updatedAt": "2026-07-28T01:32:16.000Z",
+                  "uid": "35240-d26d1add-3967-42b4-8f55-402823bc60dd"
+                }
+              ],
+              "id": "a546de6a-84c6-4628-b063-724d40d2cd41",
+              "createdAt": "2026-07-28T01:32:15.000Z",
+              "updatedAt": "2026-07-28T01:32:15.000Z",
+              "uid": "35240-a546de6a-84c6-4628-b063-724d40d2cd41"
+            },
+            {
+              "name": "guilds",
+              "item": [
+                {
+                  "name": "{guild_id}",
+                  "item": [
+                    {
+                      "name": "member",
+                      "item": [
+                        {
+                          "name": "get my guild member",
+                          "id": "107f2630-f588-41f2-af34-7d49cde4668e",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/users/@me/guilds/:guild_id/member",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                "@me",
+                                "guilds",
+                                ":guild_id",
+                                "member"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "cbfbc709-dbef-46c4-9cbd-d77ddc33bcae",
+                                  "key": "guild_id",
+                                  "value": "0",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "6d8d5ee0-c9bb-4563-a41a-21af82e45b31",
+                              "name": "200 response for get_my_guild_member",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/users/@me/guilds/:guild_id/member",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "users",
+                                    "@me",
+                                    "guilds",
+                                    ":guild_id",
+                                    "member"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "guild_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"flags\": \"<integer>\",\n  \"joined_at\": \"<dateTime>\",\n  \"pending\": \"<boolean>\",\n  \"roles\": [\n    \"0\",\n    \"24\"\n  ],\n  \"user\": {\n    \"id\": \"67005129441\",\n    \"username\": \"<string>\",\n    \"discriminator\": \"<string>\",\n    \"public_flags\": \"<integer>\",\n    \"flags\": \"<long>\",\n    \"avatar\": \"<string,null>\",\n    \"bot\": \"<boolean,null>\",\n    \"system\": \"<boolean,null>\",\n    \"banner\": \"<string,null>\",\n    \"accent_color\": \"<integer,null>\",\n    \"global_name\": \"<string,null>\"\n  },\n  \"mute\": \"<boolean>\",\n  \"deaf\": \"<boolean>\",\n  \"avatar\": \"<string,null>\",\n  \"avatar_decoration_data\": \"<null>\",\n  \"communication_disabled_until\": \"<string,null-date-time>\",\n  \"nick\": \"<string,null>\",\n  \"premium_since\": \"<string,null-date-time>\",\n  \"banner\": \"<string,null>\"\n}",
+                              "createdAt": "2026-07-28T01:32:16.000Z",
+                              "updatedAt": "2026-07-28T01:32:16.000Z",
+                              "uid": "35240-6d8d5ee0-c9bb-4563-a41a-21af82e45b31"
+                            },
+                            {
+                              "id": "4698f871-3392-4189-baf9-ddc282ffdf80",
+                              "name": "Client error response",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/users/@me/guilds/:guild_id/member",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "users",
+                                    "@me",
+                                    "guilds",
+                                    ":guild_id",
+                                    "member"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "guild_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"errors\": {\n    \"magna_7b\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    },\n    \"velitbc\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    },\n    \"ipsum_ad\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    },\n    \"nostrud_4f\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T01:32:16.000Z",
+                              "updatedAt": "2026-07-28T01:32:16.000Z",
+                              "uid": "35240-4698f871-3392-4189-baf9-ddc282ffdf80"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:32:16.000Z",
+                          "updatedAt": "2026-07-28T01:32:16.000Z",
+                          "uid": "35240-107f2630-f588-41f2-af34-7d49cde4668e"
+                        }
+                      ],
+                      "id": "a8ad0f88-4f40-4374-a206-9c6220544c72",
+                      "createdAt": "2026-07-28T01:32:15.000Z",
+                      "updatedAt": "2026-07-28T01:32:15.000Z",
+                      "uid": "35240-a8ad0f88-4f40-4374-a206-9c6220544c72"
+                    },
+                    {
+                      "name": "leave guild",
+                      "id": "022db5df-cb05-4d1e-bc27-f6a5b8e6a7af",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/@me/guilds/:guild_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            "@me",
+                            "guilds",
+                            ":guild_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "0475d521-1fe0-4e4a-a90e-1854a2601b4d",
+                              "key": "guild_id",
+                              "value": "0",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "74be7a48-ab83-486f-a274-823d9bdedebc",
+                          "name": "204 response for leave_guild",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/users/@me/guilds/:guild_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                "@me",
+                                "guilds",
+                                ":guild_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "guild_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:32:16.000Z",
+                          "updatedAt": "2026-07-28T01:32:16.000Z",
+                          "uid": "35240-74be7a48-ab83-486f-a274-823d9bdedebc"
+                        },
+                        {
+                          "id": "fd6517f1-a745-438c-87bc-f380daf86e9f",
+                          "name": "Client error response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/users/@me/guilds/:guild_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                "@me",
+                                "guilds",
+                                ":guild_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "guild_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"errors\": {\n    \"magna_7b\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    },\n    \"velitbc\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    },\n    \"ipsum_ad\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    },\n    \"nostrud_4f\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:32:16.000Z",
+                          "updatedAt": "2026-07-28T01:32:16.000Z",
+                          "uid": "35240-fd6517f1-a745-438c-87bc-f380daf86e9f"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:32:16.000Z",
+                      "updatedAt": "2026-07-28T01:32:16.000Z",
+                      "uid": "35240-022db5df-cb05-4d1e-bc27-f6a5b8e6a7af"
+                    }
+                  ],
+                  "id": "c1b50eb7-c5cd-4bfd-9e78-ac2c8453b354",
+                  "createdAt": "2026-07-28T01:32:15.000Z",
+                  "updatedAt": "2026-07-28T01:32:15.000Z",
+                  "uid": "35240-c1b50eb7-c5cd-4bfd-9e78-ac2c8453b354"
+                },
+                {
+                  "name": "list my guilds",
+                  "id": "951676f9-5905-4617-b324-0f6b248d444e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/@me/guilds?before=0&after=0&limit=<integer>&with_counts=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        "@me",
+                        "guilds"
+                      ],
+                      "query": [
+                        {
+                          "key": "before",
+                          "value": "0"
+                        },
+                        {
+                          "key": "after",
+                          "value": "0"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "key": "with_counts",
+                          "value": "<boolean>"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "b6ae167c-07bd-407a-8a00-65c1fd4a2a32",
+                      "name": "200 response for list_my_guilds",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/@me/guilds?before=0&after=0&limit=<integer>&with_counts=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            "@me",
+                            "guilds"
+                          ],
+                          "query": [
+                            {
+                              "key": "before",
+                              "value": "0"
+                            },
+                            {
+                              "key": "after",
+                              "value": "0"
+                            },
+                            {
+                              "key": "limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "key": "with_counts",
+                              "value": "<boolean>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "null",
+                      "createdAt": "2026-07-28T01:32:16.000Z",
+                      "updatedAt": "2026-07-28T01:32:16.000Z",
+                      "uid": "35240-b6ae167c-07bd-407a-8a00-65c1fd4a2a32"
+                    },
+                    {
+                      "id": "f05ead43-8db3-4eff-9787-1d32121f1b27",
+                      "name": "Client error response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/@me/guilds?before=0&after=0&limit=<integer>&with_counts=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            "@me",
+                            "guilds"
+                          ],
+                          "query": [
+                            {
+                              "key": "before",
+                              "value": "0"
+                            },
+                            {
+                              "key": "after",
+                              "value": "0"
+                            },
+                            {
+                              "key": "limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "key": "with_counts",
+                              "value": "<boolean>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"errors\": {\n    \"magna_7b\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    },\n    \"velitbc\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    },\n    \"ipsum_ad\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    },\n    \"nostrud_4f\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:32:16.000Z",
+                      "updatedAt": "2026-07-28T01:32:16.000Z",
+                      "uid": "35240-f05ead43-8db3-4eff-9787-1d32121f1b27"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:32:16.000Z",
+                  "updatedAt": "2026-07-28T01:32:16.000Z",
+                  "uid": "35240-951676f9-5905-4617-b324-0f6b248d444e"
+                }
+              ],
+              "id": "0b0a97f1-f45a-439b-8c21-fe8104d3bde0",
+              "createdAt": "2026-07-28T01:32:15.000Z",
+              "updatedAt": "2026-07-28T01:32:15.000Z",
+              "uid": "35240-0b0a97f1-f45a-439b-8c21-fe8104d3bde0"
+            },
+            {
+              "name": "applications",
+              "item": [
+                {
+                  "name": "{application_id}",
+                  "item": [
+                    {
+                      "name": "role-connection",
+                      "item": [
+                        {
+                          "name": "get application user role connection",
+                          "id": "10c23753-b942-4100-ad8f-c68f89224021",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/users/@me/applications/:application_id/role-connection",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                "@me",
+                                "applications",
+                                ":application_id",
+                                "role-connection"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "5f7da827-f31e-4fbe-8b67-27f5b6b8c1e1",
+                                  "key": "application_id",
+                                  "value": "0",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "6ad4e253-2235-46c1-9d20-0143165dbea0",
+                              "name": "200 response for get_application_user_role_connection",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/users/@me/applications/:application_id/role-connection",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "users",
+                                    "@me",
+                                    "applications",
+                                    ":application_id",
+                                    "role-connection"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "application_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"platform_name\": \"<string,null>\",\n  \"platform_username\": \"<string,null>\",\n  \"metadata\": {\n    \"veniam_5b_\": \"<string>\",\n    \"ut_c\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T01:32:16.000Z",
+                              "updatedAt": "2026-07-28T01:32:16.000Z",
+                              "uid": "35240-6ad4e253-2235-46c1-9d20-0143165dbea0"
+                            },
+                            {
+                              "id": "836f6ab6-d7d9-44c1-bcb9-d41686682ce8",
+                              "name": "Client error response",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/users/@me/applications/:application_id/role-connection",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "users",
+                                    "@me",
+                                    "applications",
+                                    ":application_id",
+                                    "role-connection"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "application_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"errors\": {\n    \"magna_7b\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    },\n    \"velitbc\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    },\n    \"ipsum_ad\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    },\n    \"nostrud_4f\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T01:32:16.000Z",
+                              "updatedAt": "2026-07-28T01:32:16.000Z",
+                              "uid": "35240-836f6ab6-d7d9-44c1-bcb9-d41686682ce8"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:32:16.000Z",
+                          "updatedAt": "2026-07-28T01:32:16.000Z",
+                          "uid": "35240-10c23753-b942-4100-ad8f-c68f89224021"
+                        },
+                        {
+                          "name": "update application user role connection",
+                          "id": "9218fc92-e50a-4d4f-aff4-2330b8227017",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"platform_name\": \"<string,null>\",\n  \"platform_username\": \"<string,null>\",\n  \"metadata\": {\n    \"amet_f\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/users/@me/applications/:application_id/role-connection",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                "@me",
+                                "applications",
+                                ":application_id",
+                                "role-connection"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "de690246-26b3-4f7d-871c-e183cd29912b",
+                                  "key": "application_id",
+                                  "value": "0",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "b4d09122-5e49-4ee9-8727-5afef08bcae4",
+                              "name": "200 response for update_application_user_role_connection",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"platform_name\": \"<string,null>\",\n  \"platform_username\": \"<string,null>\",\n  \"metadata\": {\n    \"amet_f\": \"<string>\"\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/users/@me/applications/:application_id/role-connection",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "users",
+                                    "@me",
+                                    "applications",
+                                    ":application_id",
+                                    "role-connection"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "application_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"platform_name\": \"<string,null>\",\n  \"platform_username\": \"<string,null>\",\n  \"metadata\": {\n    \"veniam_5b_\": \"<string>\",\n    \"ut_c\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T01:32:16.000Z",
+                              "updatedAt": "2026-07-28T01:32:16.000Z",
+                              "uid": "35240-b4d09122-5e49-4ee9-8727-5afef08bcae4"
+                            },
+                            {
+                              "id": "34f34c59-89eb-44e8-9707-c9700bdab044",
+                              "name": "Client error response",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"platform_name\": \"<string,null>\",\n  \"platform_username\": \"<string,null>\",\n  \"metadata\": {\n    \"amet_f\": \"<string>\"\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/users/@me/applications/:application_id/role-connection",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "users",
+                                    "@me",
+                                    "applications",
+                                    ":application_id",
+                                    "role-connection"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "application_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"errors\": {\n    \"magna_7b\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    },\n    \"velitbc\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    },\n    \"ipsum_ad\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    },\n    \"nostrud_4f\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T01:32:16.000Z",
+                              "updatedAt": "2026-07-28T01:32:16.000Z",
+                              "uid": "35240-34f34c59-89eb-44e8-9707-c9700bdab044"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:32:16.000Z",
+                          "updatedAt": "2026-07-28T01:32:16.000Z",
+                          "uid": "35240-9218fc92-e50a-4d4f-aff4-2330b8227017"
+                        }
+                      ],
+                      "id": "00e0c8a3-0674-4ae6-92ca-e37147046ede",
+                      "createdAt": "2026-07-28T01:32:15.000Z",
+                      "updatedAt": "2026-07-28T01:32:15.000Z",
+                      "uid": "35240-00e0c8a3-0674-4ae6-92ca-e37147046ede"
+                    }
+                  ],
+                  "id": "77d52695-c238-4ef1-940d-60e65824edb3",
+                  "createdAt": "2026-07-28T01:32:15.000Z",
+                  "updatedAt": "2026-07-28T01:32:15.000Z",
+                  "uid": "35240-77d52695-c238-4ef1-940d-60e65824edb3"
+                }
+              ],
+              "id": "16092abe-1341-499d-baa3-b0c2c9d8c83d",
+              "createdAt": "2026-07-28T01:32:15.000Z",
+              "updatedAt": "2026-07-28T01:32:15.000Z",
+              "uid": "35240-16092abe-1341-499d-baa3-b0c2c9d8c83d"
+            },
+            {
+              "name": "get my user",
+              "id": "d4fd9793-0035-449f-b7ea-5ccd4b1f8b1c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/users/@me",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users",
+                    "@me"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "861d1ac7-059d-4b6f-ab10-3e9572b3e1eb",
+                  "name": "200 response for get_my_user",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/@me",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        "@me"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"0\",\n  \"username\": \"<string>\",\n  \"discriminator\": \"<string>\",\n  \"public_flags\": \"<integer>\",\n  \"flags\": \"<long>\",\n  \"mfa_enabled\": \"<boolean>\",\n  \"locale\": {\n    \"title\": \"ar\",\n    \"description\": \"The ar locale\",\n    \"const\": \"ar\"\n  },\n  \"avatar\": \"<string,null>\",\n  \"bot\": \"<boolean,null>\",\n  \"system\": \"<boolean,null>\",\n  \"banner\": \"<string,null>\",\n  \"accent_color\": \"<integer,null>\",\n  \"global_name\": \"<string,null>\",\n  \"premium_type\": \"<null>\",\n  \"email\": \"<string,null>\",\n  \"verified\": \"<boolean,null>\"\n}",
+                  "createdAt": "2026-07-28T01:32:16.000Z",
+                  "updatedAt": "2026-07-28T01:32:16.000Z",
+                  "uid": "35240-861d1ac7-059d-4b6f-ab10-3e9572b3e1eb"
+                },
+                {
+                  "id": "21dd488d-776f-471e-9c8d-2e9925ad8146",
+                  "name": "Client error response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/@me",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        "@me"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"errors\": {\n    \"magna_7b\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    },\n    \"velitbc\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    },\n    \"ipsum_ad\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    },\n    \"nostrud_4f\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T01:32:16.000Z",
+                  "updatedAt": "2026-07-28T01:32:16.000Z",
+                  "uid": "35240-21dd488d-776f-471e-9c8d-2e9925ad8146"
+                }
+              ],
+              "createdAt": "2026-07-28T01:32:16.000Z",
+              "updatedAt": "2026-07-28T01:32:16.000Z",
+              "uid": "35240-d4fd9793-0035-449f-b7ea-5ccd4b1f8b1c"
+            },
+            {
+              "name": "update my user",
+              "id": "b338a408-9b19-4b2f-af2b-ddfb81b9e279",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"<string>\",\n  \"avatar\": \"<string,null>\",\n  \"banner\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/users/@me",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users",
+                    "@me"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "f7f4a901-b3d0-4a1f-9acc-f511c6164464",
+                  "name": "200 response for update_my_user",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"<string>\",\n  \"avatar\": \"<string,null>\",\n  \"banner\": \"<string,null>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/users/@me",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        "@me"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"0\",\n  \"username\": \"<string>\",\n  \"discriminator\": \"<string>\",\n  \"public_flags\": \"<integer>\",\n  \"flags\": \"<long>\",\n  \"mfa_enabled\": \"<boolean>\",\n  \"locale\": {\n    \"title\": \"ar\",\n    \"description\": \"The ar locale\",\n    \"const\": \"ar\"\n  },\n  \"avatar\": \"<string,null>\",\n  \"bot\": \"<boolean,null>\",\n  \"system\": \"<boolean,null>\",\n  \"banner\": \"<string,null>\",\n  \"accent_color\": \"<integer,null>\",\n  \"global_name\": \"<string,null>\",\n  \"premium_type\": \"<null>\",\n  \"email\": \"<string,null>\",\n  \"verified\": \"<boolean,null>\"\n}",
+                  "createdAt": "2026-07-28T01:32:16.000Z",
+                  "updatedAt": "2026-07-28T01:32:16.000Z",
+                  "uid": "35240-f7f4a901-b3d0-4a1f-9acc-f511c6164464"
+                },
+                {
+                  "id": "ba2c664d-50cf-4b57-abab-b16274db9639",
+                  "name": "Client error response",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"<string>\",\n  \"avatar\": \"<string,null>\",\n  \"banner\": \"<string,null>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/users/@me",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        "@me"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"errors\": {\n    \"magna_7b\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    },\n    \"velitbc\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    },\n    \"ipsum_ad\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    },\n    \"nostrud_4f\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T01:32:16.000Z",
+                  "updatedAt": "2026-07-28T01:32:16.000Z",
+                  "uid": "35240-ba2c664d-50cf-4b57-abab-b16274db9639"
+                }
+              ],
+              "createdAt": "2026-07-28T01:32:16.000Z",
+              "updatedAt": "2026-07-28T01:32:16.000Z",
+              "uid": "35240-b338a408-9b19-4b2f-af2b-ddfb81b9e279"
+            }
+          ],
+          "id": "ea289327-967f-47f7-bb46-2e54cd486cc9",
+          "createdAt": "2026-07-28T01:32:15.000Z",
+          "updatedAt": "2026-07-28T01:32:15.000Z",
+          "uid": "35240-ea289327-967f-47f7-bb46-2e54cd486cc9"
+        },
+        {
+          "name": "{user_id}",
+          "item": [
+            {
+              "name": "get user",
+              "id": "66776c07-021e-4b20-9e68-49090802fea6",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/users/:user_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users",
+                    ":user_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "f0cf62bd-2628-42d7-8689-2299ef8c320d",
+                      "key": "user_id",
+                      "value": "0",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "1aeb0032-d41a-4f7f-b50d-bfc36321923e",
+                  "name": "200 response for get_user",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:user_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":user_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "user_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"0\",\n  \"username\": \"<string>\",\n  \"discriminator\": \"<string>\",\n  \"public_flags\": \"<integer>\",\n  \"flags\": \"<long>\",\n  \"avatar\": \"<string,null>\",\n  \"bot\": \"<boolean,null>\",\n  \"system\": \"<boolean,null>\",\n  \"banner\": \"<string,null>\",\n  \"accent_color\": \"<integer,null>\",\n  \"global_name\": \"<string,null>\"\n}",
+                  "createdAt": "2026-07-28T01:32:16.000Z",
+                  "updatedAt": "2026-07-28T01:32:16.000Z",
+                  "uid": "35240-1aeb0032-d41a-4f7f-b50d-bfc36321923e"
+                },
+                {
+                  "id": "5bf0cd93-839a-48c9-b14b-902f690f23df",
+                  "name": "Client error response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:user_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":user_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "user_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"errors\": {\n    \"magna_7b\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    },\n    \"velitbc\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    },\n    \"ipsum_ad\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    },\n    \"nostrud_4f\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T01:32:16.000Z",
+                  "updatedAt": "2026-07-28T01:32:16.000Z",
+                  "uid": "35240-5bf0cd93-839a-48c9-b14b-902f690f23df"
+                }
+              ],
+              "createdAt": "2026-07-28T01:32:16.000Z",
+              "updatedAt": "2026-07-28T01:32:16.000Z",
+              "uid": "35240-66776c07-021e-4b20-9e68-49090802fea6"
+            }
+          ],
+          "id": "b5868152-fd8f-461b-9c57-3e1f901a458f",
+          "createdAt": "2026-07-28T01:32:15.000Z",
+          "updatedAt": "2026-07-28T01:32:15.000Z",
+          "uid": "35240-b5868152-fd8f-461b-9c57-3e1f901a458f"
+        }
+      ],
+      "id": "d0bd3fb1-82d0-4892-b12e-12010d2ba7b4",
+      "createdAt": "2026-07-28T01:32:15.000Z",
+      "updatedAt": "2026-07-28T01:32:15.000Z",
+      "uid": "35240-d0bd3fb1-82d0-4892-b12e-12010d2ba7b4"
+    },
+    {
+      "name": "applications",
+      "item": [
+        {
+          "name": "@me",
+          "item": [
+            {
+              "name": "Discord Get current application",
+              "id": "e8ecb323-4fd8-494a-adce-5ee734010f3f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/applications/@me",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "applications",
+                    "@me"
+                  ]
+                },
+                "description": "Returns the application object associated with the requesting bot user."
+              },
+              "response": [
+                {
+                  "id": "c77f15e8-3e21-476b-b9c2-7a4ae20fd9a1",
+                  "name": "Application object",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/applications/@me",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "applications",
+                        "@me"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"0997928\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"verify_key\": \"<string>\",\n  \"icon\": \"<string>\",\n  \"bot_public\": \"<boolean>\",\n  \"bot_require_code_grant\": \"<boolean>\",\n  \"terms_of_service_url\": \"<uri>\",\n  \"privacy_policy_url\": \"<uri>\",\n  \"owner\": {\n    \"id\": \"85284\",\n    \"username\": \"<string>\",\n    \"discriminator\": \"<string>\",\n    \"global_name\": \"<string>\",\n    \"avatar\": \"<string>\",\n    \"bot\": \"<boolean>\",\n    \"system\": \"<boolean>\",\n    \"mfa_enabled\": \"<boolean>\",\n    \"banner\": \"<string>\",\n    \"accent_color\": \"<integer>\",\n    \"locale\": \"<string>\",\n    \"verified\": \"<boolean>\",\n    \"email\": \"<string>\",\n    \"flags\": \"<integer>\",\n    \"premium_type\": \"<integer>\",\n    \"public_flags\": \"<integer>\",\n    \"avatar_decoration_data\": {}\n  },\n  \"team\": {},\n  \"guild_id\": \"79602055052\",\n  \"custom_install_url\": \"<uri>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"flags\": \"<integer>\",\n  \"interactions_endpoint_url\": \"<uri>\",\n  \"role_connections_verification_url\": \"<uri>\"\n}",
+                  "createdAt": "2026-07-28T01:32:16.000Z",
+                  "updatedAt": "2026-07-28T01:32:16.000Z",
+                  "uid": "35240-c77f15e8-3e21-476b-b9c2-7a4ae20fd9a1"
+                },
+                {
+                  "id": "0e5a2bee-e72f-45b2-939b-6033dc4dd024",
+                  "name": "Client error response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/applications/@me",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "applications",
+                        "@me"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"errors\": {}\n}",
+                  "createdAt": "2026-07-28T01:32:16.000Z",
+                  "updatedAt": "2026-07-28T01:32:16.000Z",
+                  "uid": "35240-0e5a2bee-e72f-45b2-939b-6033dc4dd024"
+                }
+              ],
+              "createdAt": "2026-07-28T01:32:16.000Z",
+              "updatedAt": "2026-07-28T01:32:16.000Z",
+              "uid": "35240-e8ecb323-4fd8-494a-adce-5ee734010f3f"
+            },
+            {
+              "name": "Discord Edit current application",
+              "id": "b84a89fb-e470-4bbb-95ac-eea6574a2099",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"<string>\",\n  \"interactions_endpoint_url\": \"<uri>\",\n  \"role_connections_verification_url\": \"<uri>\",\n  \"custom_install_url\": \"<uri>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"icon\": \"<string>\",\n  \"cover_image\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/applications/@me",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "applications",
+                    "@me"
+                  ]
+                },
+                "description": "Edit properties of the app associated with the requesting bot user."
+              },
+              "response": [
+                {
+                  "id": "24681df4-64d3-4fff-890a-bdbc477d72cd",
+                  "name": "Updated application object",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"description\": \"<string>\",\n  \"interactions_endpoint_url\": \"<uri>\",\n  \"role_connections_verification_url\": \"<uri>\",\n  \"custom_install_url\": \"<uri>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"icon\": \"<string>\",\n  \"cover_image\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/applications/@me",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "applications",
+                        "@me"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"0997928\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"verify_key\": \"<string>\",\n  \"icon\": \"<string>\",\n  \"bot_public\": \"<boolean>\",\n  \"bot_require_code_grant\": \"<boolean>\",\n  \"terms_of_service_url\": \"<uri>\",\n  \"privacy_policy_url\": \"<uri>\",\n  \"owner\": {\n    \"id\": \"85284\",\n    \"username\": \"<string>\",\n    \"discriminator\": \"<string>\",\n    \"global_name\": \"<string>\",\n    \"avatar\": \"<string>\",\n    \"bot\": \"<boolean>\",\n    \"system\": \"<boolean>\",\n    \"mfa_enabled\": \"<boolean>\",\n    \"banner\": \"<string>\",\n    \"accent_color\": \"<integer>\",\n    \"locale\": \"<string>\",\n    \"verified\": \"<boolean>\",\n    \"email\": \"<string>\",\n    \"flags\": \"<integer>\",\n    \"premium_type\": \"<integer>\",\n    \"public_flags\": \"<integer>\",\n    \"avatar_decoration_data\": {}\n  },\n  \"team\": {},\n  \"guild_id\": \"79602055052\",\n  \"custom_install_url\": \"<uri>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"flags\": \"<integer>\",\n  \"interactions_endpoint_url\": \"<uri>\",\n  \"role_connections_verification_url\": \"<uri>\"\n}",
+                  "createdAt": "2026-07-28T01:32:16.000Z",
+                  "updatedAt": "2026-07-28T01:32:16.000Z",
+                  "uid": "35240-24681df4-64d3-4fff-890a-bdbc477d72cd"
+                },
+                {
+                  "id": "262090b0-9444-4f2b-ac0b-228b3941025e",
+                  "name": "Client error response",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"description\": \"<string>\",\n  \"interactions_endpoint_url\": \"<uri>\",\n  \"role_connections_verification_url\": \"<uri>\",\n  \"custom_install_url\": \"<uri>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"icon\": \"<string>\",\n  \"cover_image\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/applications/@me",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "applications",
+                        "@me"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"errors\": {}\n}",
+                  "createdAt": "2026-07-28T01:32:16.000Z",
+                  "updatedAt": "2026-07-28T01:32:16.000Z",
+                  "uid": "35240-262090b0-9444-4f2b-ac0b-228b3941025e"
+                }
+              ],
+              "createdAt": "2026-07-28T01:32:16.000Z",
+              "updatedAt": "2026-07-28T01:32:16.000Z",
+              "uid": "35240-b84a89fb-e470-4bbb-95ac-eea6574a2099"
+            }
+          ],
+          "id": "8202c300-7e83-4f58-aed4-ae42d9f4326b",
+          "createdAt": "2026-07-28T01:32:15.000Z",
+          "updatedAt": "2026-07-28T01:32:15.000Z",
+          "uid": "35240-8202c300-7e83-4f58-aed4-ae42d9f4326b"
+        }
+      ],
+      "id": "71dec904-ea37-4a77-b727-ee7d398aabac",
+      "createdAt": "2026-07-28T01:32:15.000Z",
+      "updatedAt": "2026-07-28T01:32:15.000Z",
+      "uid": "35240-71dec904-ea37-4a77-b727-ee7d398aabac"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://discord.com/api/v10"
+    }
+  ]
+}

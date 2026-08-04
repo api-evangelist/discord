@@ -1,0 +1,727 @@
+{
+  "info": {
+    "_postman_id": "df50bd10-ce6e-42eb-ae99-2f09bb973821",
+    "name": "Discord Interactions Application Commands Roles API",
+    "description": "The Discord Interactions API enables applications to create and respond to application commands (slash commands), message components, and modals. It supports both Gateway-based and webhook-based interaction handling, allowing bots to build rich, interactive user experiences within Discord.\n\nContact Support:\n Name: Discord Support\n Email: support@discord.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:31:41.000Z",
+    "updatedAt": "2026-07-28T01:31:42.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-df50bd10-ce6e-42eb-ae99-2f09bb973821"
+  },
+  "item": [
+    {
+      "name": "guilds",
+      "item": [
+        {
+          "name": "{guild_id}",
+          "item": [
+            {
+              "name": "roles",
+              "item": [
+                {
+                  "name": "{role_id}",
+                  "item": [
+                    {
+                      "name": "Discord Modify guild role",
+                      "id": "3ecf8199-6787-4c15-aeda-1859aa50f9d8",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"permissions\": \"<string>\",\n  \"color\": 0,\n  \"hoist\": false,\n  \"icon\": \"<string>\",\n  \"unicode_emoji\": \"<string>\",\n  \"mentionable\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/guilds/:guild_id/roles/:role_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "guilds",
+                            ":guild_id",
+                            "roles",
+                            ":role_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "c0a4bca1-3670-4cb4-8217-a9225ff77c22",
+                              "key": "guild_id",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the guild (Snowflake)"
+                            },
+                            {
+                              "id": "59b2cbab-a182-475d-af7d-263b08c453a7",
+                              "key": "role_id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Modify a guild role. Returns the updated role."
+                      },
+                      "response": [
+                        {
+                          "id": "b0fed131-88ab-47cc-bd1a-5d1e866c4b5e",
+                          "name": "Updated role",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"permissions\": \"<string>\",\n  \"color\": 0,\n  \"hoist\": false,\n  \"icon\": \"<string>\",\n  \"unicode_emoji\": \"<string>\",\n  \"mentionable\": false\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/guilds/:guild_id/roles/:role_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "guilds",
+                                ":guild_id",
+                                "roles",
+                                ":role_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "guild_id"
+                                },
+                                {
+                                  "key": "role_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"98\",\n  \"name\": \"<string>\",\n  \"color\": \"<integer>\",\n  \"hoist\": \"<boolean>\",\n  \"position\": \"<integer>\",\n  \"permissions\": \"<string>\",\n  \"managed\": \"<boolean>\",\n  \"mentionable\": \"<boolean>\",\n  \"icon\": \"<string>\",\n  \"unicode_emoji\": \"<string>\",\n  \"tags\": {\n    \"bot_id\": \"1\",\n    \"integration_id\": \"6\",\n    \"premium_subscriber\": \"<null>\",\n    \"subscription_listing_id\": \"29625\",\n    \"available_for_purchase\": \"<null>\",\n    \"guild_connections\": \"<null>\"\n  },\n  \"flags\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T01:31:42.000Z",
+                          "updatedAt": "2026-07-28T01:31:42.000Z",
+                          "uid": "35240-b0fed131-88ab-47cc-bd1a-5d1e866c4b5e"
+                        },
+                        {
+                          "id": "af6320e0-2c6f-49e8-af92-1de7bbf235b1",
+                          "name": "Client error response",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"permissions\": \"<string>\",\n  \"color\": 0,\n  \"hoist\": false,\n  \"icon\": \"<string>\",\n  \"unicode_emoji\": \"<string>\",\n  \"mentionable\": false\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/guilds/:guild_id/roles/:role_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "guilds",
+                                ":guild_id",
+                                "roles",
+                                ":role_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "guild_id"
+                                },
+                                {
+                                  "key": "role_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"errors\": {}\n}",
+                          "createdAt": "2026-07-28T01:31:42.000Z",
+                          "updatedAt": "2026-07-28T01:31:42.000Z",
+                          "uid": "35240-af6320e0-2c6f-49e8-af92-1de7bbf235b1"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:31:42.000Z",
+                      "updatedAt": "2026-07-28T01:31:42.000Z",
+                      "uid": "35240-3ecf8199-6787-4c15-aeda-1859aa50f9d8"
+                    },
+                    {
+                      "name": "Discord Delete guild role",
+                      "id": "0c97dd08-1816-485a-b301-7406d880dbb8",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/guilds/:guild_id/roles/:role_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "guilds",
+                            ":guild_id",
+                            "roles",
+                            ":role_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "87679984-7781-4a7b-aa37-fe3ff66c8121",
+                              "key": "guild_id",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the guild (Snowflake)"
+                            },
+                            {
+                              "id": "74e8aae6-0f09-4eff-a29c-305a88bcf67e",
+                              "key": "role_id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Delete a guild role."
+                      },
+                      "response": [
+                        {
+                          "id": "f5b6f854-5c2c-4d15-a300-d4c58cedc510",
+                          "name": "Role deleted",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/guilds/:guild_id/roles/:role_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "guilds",
+                                ":guild_id",
+                                "roles",
+                                ":role_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "guild_id"
+                                },
+                                {
+                                  "key": "role_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:31:42.000Z",
+                          "updatedAt": "2026-07-28T01:31:42.000Z",
+                          "uid": "35240-f5b6f854-5c2c-4d15-a300-d4c58cedc510"
+                        },
+                        {
+                          "id": "7a181020-03c3-436a-9602-0c61bc753294",
+                          "name": "Client error response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/guilds/:guild_id/roles/:role_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "guilds",
+                                ":guild_id",
+                                "roles",
+                                ":role_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "guild_id"
+                                },
+                                {
+                                  "key": "role_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"errors\": {}\n}",
+                          "createdAt": "2026-07-28T01:31:42.000Z",
+                          "updatedAt": "2026-07-28T01:31:42.000Z",
+                          "uid": "35240-7a181020-03c3-436a-9602-0c61bc753294"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:31:42.000Z",
+                      "updatedAt": "2026-07-28T01:31:42.000Z",
+                      "uid": "35240-0c97dd08-1816-485a-b301-7406d880dbb8"
+                    }
+                  ],
+                  "id": "a42262df-19ff-4016-8e7c-a2b0b2b28000",
+                  "createdAt": "2026-07-28T01:31:42.000Z",
+                  "updatedAt": "2026-07-28T01:31:42.000Z",
+                  "uid": "35240-a42262df-19ff-4016-8e7c-a2b0b2b28000"
+                },
+                {
+                  "name": "Discord List guild roles",
+                  "id": "aeacd9fa-99c0-4084-81ca-80e6783b555b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/guilds/:guild_id/roles",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "guilds",
+                        ":guild_id",
+                        "roles"
+                      ],
+                      "variable": [
+                        {
+                          "id": "29709acf-147f-4964-a1fe-5ba422771609",
+                          "key": "guild_id",
+                          "value": "<string>",
+                          "description": "(Required) The ID of the guild (Snowflake)"
+                        }
+                      ]
+                    },
+                    "description": "Returns a list of role objects for the guild."
+                  },
+                  "response": [
+                    {
+                      "id": "07bf423f-24d3-4cb4-a7fe-c67e70e07630",
+                      "name": "List of role objects",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/guilds/:guild_id/roles",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "guilds",
+                            ":guild_id",
+                            "roles"
+                          ],
+                          "variable": [
+                            {
+                              "key": "guild_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"id\": \"05694\",\n    \"name\": \"<string>\",\n    \"color\": \"<integer>\",\n    \"hoist\": \"<boolean>\",\n    \"position\": \"<integer>\",\n    \"permissions\": \"<string>\",\n    \"managed\": \"<boolean>\",\n    \"mentionable\": \"<boolean>\",\n    \"icon\": \"<string>\",\n    \"unicode_emoji\": \"<string>\",\n    \"tags\": {\n      \"bot_id\": \"26847764\",\n      \"integration_id\": \"28\",\n      \"premium_subscriber\": \"<null>\",\n      \"subscription_listing_id\": \"377356481\",\n      \"available_for_purchase\": \"<null>\",\n      \"guild_connections\": \"<null>\"\n    },\n    \"flags\": \"<integer>\"\n  },\n  {\n    \"id\": \"44410\",\n    \"name\": \"<string>\",\n    \"color\": \"<integer>\",\n    \"hoist\": \"<boolean>\",\n    \"position\": \"<integer>\",\n    \"permissions\": \"<string>\",\n    \"managed\": \"<boolean>\",\n    \"mentionable\": \"<boolean>\",\n    \"icon\": \"<string>\",\n    \"unicode_emoji\": \"<string>\",\n    \"tags\": {\n      \"bot_id\": \"0085010504\",\n      \"integration_id\": \"929010\",\n      \"premium_subscriber\": \"<null>\",\n      \"subscription_listing_id\": \"27653297\",\n      \"available_for_purchase\": \"<null>\",\n      \"guild_connections\": \"<null>\"\n    },\n    \"flags\": \"<integer>\"\n  }\n]",
+                      "createdAt": "2026-07-28T01:31:42.000Z",
+                      "updatedAt": "2026-07-28T01:31:42.000Z",
+                      "uid": "35240-07bf423f-24d3-4cb4-a7fe-c67e70e07630"
+                    },
+                    {
+                      "id": "3cc5a029-1b62-450c-907d-712e116c3134",
+                      "name": "Client error response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/guilds/:guild_id/roles",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "guilds",
+                            ":guild_id",
+                            "roles"
+                          ],
+                          "variable": [
+                            {
+                              "key": "guild_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"errors\": {}\n}",
+                      "createdAt": "2026-07-28T01:31:42.000Z",
+                      "updatedAt": "2026-07-28T01:31:42.000Z",
+                      "uid": "35240-3cc5a029-1b62-450c-907d-712e116c3134"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:31:42.000Z",
+                  "updatedAt": "2026-07-28T01:31:42.000Z",
+                  "uid": "35240-aeacd9fa-99c0-4084-81ca-80e6783b555b"
+                },
+                {
+                  "name": "Discord Create guild role",
+                  "id": "d22b3f40-2277-4189-a017-38164b50bcc9",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"permissions\": \"<string>\",\n  \"color\": 0,\n  \"hoist\": false,\n  \"icon\": \"<string>\",\n  \"unicode_emoji\": \"<string>\",\n  \"mentionable\": false\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/guilds/:guild_id/roles",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "guilds",
+                        ":guild_id",
+                        "roles"
+                      ],
+                      "variable": [
+                        {
+                          "id": "5920c582-76c5-42ab-9bd0-8c1845d00e73",
+                          "key": "guild_id",
+                          "value": "<string>",
+                          "description": "(Required) The ID of the guild (Snowflake)"
+                        }
+                      ]
+                    },
+                    "description": "Create a new role for the guild."
+                  },
+                  "response": [
+                    {
+                      "id": "b481e8cc-21ee-4d96-bb7d-c1d3a716455b",
+                      "name": "Role created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"permissions\": \"<string>\",\n  \"color\": 0,\n  \"hoist\": false,\n  \"icon\": \"<string>\",\n  \"unicode_emoji\": \"<string>\",\n  \"mentionable\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/guilds/:guild_id/roles",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "guilds",
+                            ":guild_id",
+                            "roles"
+                          ],
+                          "variable": [
+                            {
+                              "key": "guild_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"98\",\n  \"name\": \"<string>\",\n  \"color\": \"<integer>\",\n  \"hoist\": \"<boolean>\",\n  \"position\": \"<integer>\",\n  \"permissions\": \"<string>\",\n  \"managed\": \"<boolean>\",\n  \"mentionable\": \"<boolean>\",\n  \"icon\": \"<string>\",\n  \"unicode_emoji\": \"<string>\",\n  \"tags\": {\n    \"bot_id\": \"1\",\n    \"integration_id\": \"6\",\n    \"premium_subscriber\": \"<null>\",\n    \"subscription_listing_id\": \"29625\",\n    \"available_for_purchase\": \"<null>\",\n    \"guild_connections\": \"<null>\"\n  },\n  \"flags\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T01:31:42.000Z",
+                      "updatedAt": "2026-07-28T01:31:42.000Z",
+                      "uid": "35240-b481e8cc-21ee-4d96-bb7d-c1d3a716455b"
+                    },
+                    {
+                      "id": "e2c57bd2-d54b-476b-b23c-2f9ff6a582e5",
+                      "name": "Client error response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"permissions\": \"<string>\",\n  \"color\": 0,\n  \"hoist\": false,\n  \"icon\": \"<string>\",\n  \"unicode_emoji\": \"<string>\",\n  \"mentionable\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/guilds/:guild_id/roles",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "guilds",
+                            ":guild_id",
+                            "roles"
+                          ],
+                          "variable": [
+                            {
+                              "key": "guild_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"errors\": {}\n}",
+                      "createdAt": "2026-07-28T01:31:42.000Z",
+                      "updatedAt": "2026-07-28T01:31:42.000Z",
+                      "uid": "35240-e2c57bd2-d54b-476b-b23c-2f9ff6a582e5"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:31:42.000Z",
+                  "updatedAt": "2026-07-28T01:31:42.000Z",
+                  "uid": "35240-d22b3f40-2277-4189-a017-38164b50bcc9"
+                }
+              ],
+              "id": "51400889-fbfc-4161-8f80-d7688197909a",
+              "createdAt": "2026-07-28T01:31:42.000Z",
+              "updatedAt": "2026-07-28T01:31:42.000Z",
+              "uid": "35240-51400889-fbfc-4161-8f80-d7688197909a"
+            }
+          ],
+          "id": "5e3caffe-f4f0-440e-ac4d-0dd1cba6c49f",
+          "createdAt": "2026-07-28T01:31:42.000Z",
+          "updatedAt": "2026-07-28T01:31:42.000Z",
+          "uid": "35240-5e3caffe-f4f0-440e-ac4d-0dd1cba6c49f"
+        }
+      ],
+      "id": "ec60c336-98df-4d7a-912e-f1fdcde501cc",
+      "createdAt": "2026-07-28T01:31:42.000Z",
+      "updatedAt": "2026-07-28T01:31:42.000Z",
+      "uid": "35240-ec60c336-98df-4d7a-912e-f1fdcde501cc"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://discord.com/api/v10"
+    }
+  ]
+}

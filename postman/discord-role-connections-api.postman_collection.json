@@ -1,0 +1,769 @@
+{
+  "info": {
+    "_postman_id": "4adcabc1-e2fc-4a94-ab1d-394caaaccfcc",
+    "name": "Discord Interactions Application Commands Role Connections API",
+    "description": "The Discord Interactions API enables applications to create and respond to application commands (slash commands), message components, and modals. It supports both Gateway-based and webhook-based interaction handling, allowing bots to build rich, interactive user experiences within Discord.\n\nContact Support:\n Name: Discord Support\n Email: support@discord.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:31:40.000Z",
+    "updatedAt": "2026-07-28T01:31:40.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4adcabc1-e2fc-4a94-ab1d-394caaaccfcc"
+  },
+  "item": [
+    {
+      "name": "applications",
+      "item": [
+        {
+          "name": "{application_id}",
+          "item": [
+            {
+              "name": "role-connections",
+              "item": [
+                {
+                  "name": "metadata",
+                  "item": [
+                    {
+                      "name": "Discord List application role connection metadata",
+                      "id": "bc4c6400-2668-44a4-9da1-3820f2759b6e",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/applications/:application_id/role-connections/metadata",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "applications",
+                            ":application_id",
+                            "role-connections",
+                            "metadata"
+                          ],
+                          "variable": [
+                            {
+                              "id": "c3d777b2-3897-4466-87fb-eac7580bfe06",
+                              "key": "application_id",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the application"
+                            }
+                          ]
+                        },
+                        "description": "Returns a list of application role connection metadata objects for the given application."
+                      },
+                      "response": [
+                        {
+                          "id": "d8eecfbd-cec2-4422-b02c-7b5099f3d218",
+                          "name": "List of role connection metadata objects",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/applications/:application_id/role-connections/metadata",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "applications",
+                                ":application_id",
+                                "role-connections",
+                                "metadata"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "application_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"type\": \"<integer>\",\n    \"key\": \"byopa10f3\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"name_localizations\": {\n      \"ullamco_0e\": \"<string>\"\n    },\n    \"description_localizations\": {\n      \"sit9\": \"<string>\"\n    }\n  },\n  {\n    \"type\": \"<integer>\",\n    \"key\": \"u\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"name_localizations\": {\n      \"utcc\": \"<string>\",\n      \"enimb_\": \"<string>\",\n      \"sunt0\": \"<string>\"\n    },\n    \"description_localizations\": {\n      \"dolor_1\": \"<string>\",\n      \"sit49\": \"<string>\"\n    }\n  }\n]",
+                          "createdAt": "2026-07-28T01:31:41.000Z",
+                          "updatedAt": "2026-07-28T01:31:41.000Z",
+                          "uid": "35240-d8eecfbd-cec2-4422-b02c-7b5099f3d218"
+                        },
+                        {
+                          "id": "1c9da1b7-0a45-4f50-8d6e-5d49c37f7262",
+                          "name": "Client error response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/applications/:application_id/role-connections/metadata",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "applications",
+                                ":application_id",
+                                "role-connections",
+                                "metadata"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "application_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:31:41.000Z",
+                          "updatedAt": "2026-07-28T01:31:41.000Z",
+                          "uid": "35240-1c9da1b7-0a45-4f50-8d6e-5d49c37f7262"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:31:41.000Z",
+                      "updatedAt": "2026-07-28T01:31:41.000Z",
+                      "uid": "35240-bc4c6400-2668-44a4-9da1-3820f2759b6e"
+                    },
+                    {
+                      "name": "Discord Update application role connection metadata",
+                      "id": "03c54fde-9ffd-4915-bc28-b3d5f8d97550",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[\n  {\n    \"type\": \"<integer>\",\n    \"key\": \"w9dv9o\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"name_localizations\": {\n      \"dolor_af\": \"<string>\",\n      \"voluptate_4\": \"<string>\",\n      \"cupidatat_4\": \"<string>\"\n    },\n    \"description_localizations\": {\n      \"reprehenderit_920\": \"<string>\",\n      \"aliqua_4\": \"<string>\"\n    }\n  },\n  {\n    \"type\": \"<integer>\",\n    \"key\": \"n3j_l5_javh\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"name_localizations\": {\n      \"fugiat8\": \"<string>\",\n      \"irure_b\": \"<string>\",\n      \"commodo_7\": \"<string>\"\n    },\n    \"description_localizations\": {\n      \"laborum0\": \"<string>\"\n    }\n  }\n]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/applications/:application_id/role-connections/metadata",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "applications",
+                            ":application_id",
+                            "role-connections",
+                            "metadata"
+                          ],
+                          "variable": [
+                            {
+                              "id": "417835a1-796f-4d7a-be0d-4aacdcaa96e6",
+                              "key": "application_id",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the application"
+                            }
+                          ]
+                        },
+                        "description": "Updates and returns a list of application role connection metadata objects for the given application. An application can have up to 5 metadata records."
+                      },
+                      "response": [
+                        {
+                          "id": "e6360999-aa61-4b09-9823-5cda24c7ae42",
+                          "name": "Updated role connection metadata",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "[\n  {\n    \"type\": \"<integer>\",\n    \"key\": \"w9dv9o\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"name_localizations\": {\n      \"dolor_af\": \"<string>\",\n      \"voluptate_4\": \"<string>\",\n      \"cupidatat_4\": \"<string>\"\n    },\n    \"description_localizations\": {\n      \"reprehenderit_920\": \"<string>\",\n      \"aliqua_4\": \"<string>\"\n    }\n  },\n  {\n    \"type\": \"<integer>\",\n    \"key\": \"n3j_l5_javh\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"name_localizations\": {\n      \"fugiat8\": \"<string>\",\n      \"irure_b\": \"<string>\",\n      \"commodo_7\": \"<string>\"\n    },\n    \"description_localizations\": {\n      \"laborum0\": \"<string>\"\n    }\n  }\n]",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/applications/:application_id/role-connections/metadata",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "applications",
+                                ":application_id",
+                                "role-connections",
+                                "metadata"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "application_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"type\": \"<integer>\",\n    \"key\": \"byopa10f3\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"name_localizations\": {\n      \"ullamco_0e\": \"<string>\"\n    },\n    \"description_localizations\": {\n      \"sit9\": \"<string>\"\n    }\n  },\n  {\n    \"type\": \"<integer>\",\n    \"key\": \"u\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"name_localizations\": {\n      \"utcc\": \"<string>\",\n      \"enimb_\": \"<string>\",\n      \"sunt0\": \"<string>\"\n    },\n    \"description_localizations\": {\n      \"dolor_1\": \"<string>\",\n      \"sit49\": \"<string>\"\n    }\n  }\n]",
+                          "createdAt": "2026-07-28T01:31:41.000Z",
+                          "updatedAt": "2026-07-28T01:31:41.000Z",
+                          "uid": "35240-e6360999-aa61-4b09-9823-5cda24c7ae42"
+                        },
+                        {
+                          "id": "abac734a-134a-40de-ae8c-023b474e0af5",
+                          "name": "Client error response",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "[\n  {\n    \"type\": \"<integer>\",\n    \"key\": \"w9dv9o\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"name_localizations\": {\n      \"dolor_af\": \"<string>\",\n      \"voluptate_4\": \"<string>\",\n      \"cupidatat_4\": \"<string>\"\n    },\n    \"description_localizations\": {\n      \"reprehenderit_920\": \"<string>\",\n      \"aliqua_4\": \"<string>\"\n    }\n  },\n  {\n    \"type\": \"<integer>\",\n    \"key\": \"n3j_l5_javh\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"name_localizations\": {\n      \"fugiat8\": \"<string>\",\n      \"irure_b\": \"<string>\",\n      \"commodo_7\": \"<string>\"\n    },\n    \"description_localizations\": {\n      \"laborum0\": \"<string>\"\n    }\n  }\n]",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/applications/:application_id/role-connections/metadata",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "applications",
+                                ":application_id",
+                                "role-connections",
+                                "metadata"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "application_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:31:41.000Z",
+                          "updatedAt": "2026-07-28T01:31:41.000Z",
+                          "uid": "35240-abac734a-134a-40de-ae8c-023b474e0af5"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:31:41.000Z",
+                      "updatedAt": "2026-07-28T01:31:41.000Z",
+                      "uid": "35240-03c54fde-9ffd-4915-bc28-b3d5f8d97550"
+                    }
+                  ],
+                  "id": "696f983d-6807-4d01-9870-14776c00d6f1",
+                  "createdAt": "2026-07-28T01:31:41.000Z",
+                  "updatedAt": "2026-07-28T01:31:41.000Z",
+                  "uid": "35240-696f983d-6807-4d01-9870-14776c00d6f1"
+                }
+              ],
+              "id": "6e5253e5-de50-421f-b28b-4c544896408f",
+              "createdAt": "2026-07-28T01:31:41.000Z",
+              "updatedAt": "2026-07-28T01:31:41.000Z",
+              "uid": "35240-6e5253e5-de50-421f-b28b-4c544896408f"
+            }
+          ],
+          "id": "1cb2304b-1f6a-4867-ad7a-43e6089d4062",
+          "createdAt": "2026-07-28T01:31:41.000Z",
+          "updatedAt": "2026-07-28T01:31:41.000Z",
+          "uid": "35240-1cb2304b-1f6a-4867-ad7a-43e6089d4062"
+        }
+      ],
+      "id": "6ce23aa2-86ce-450a-b859-2a8bf850328c",
+      "createdAt": "2026-07-28T01:31:41.000Z",
+      "updatedAt": "2026-07-28T01:31:41.000Z",
+      "uid": "35240-6ce23aa2-86ce-450a-b859-2a8bf850328c"
+    },
+    {
+      "name": "users",
+      "item": [
+        {
+          "name": "@me",
+          "item": [
+            {
+              "name": "applications",
+              "item": [
+                {
+                  "name": "{application_id}",
+                  "item": [
+                    {
+                      "name": "role-connection",
+                      "item": [
+                        {
+                          "name": "Discord Get user application role connection",
+                          "id": "18983b1d-59d9-4c6d-9b65-063c3409aae9",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/users/@me/applications/:application_id/role-connection",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                "@me",
+                                "applications",
+                                ":application_id",
+                                "role-connection"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "93e7e1a2-1138-4367-acac-c2326a12a631",
+                                  "key": "application_id",
+                                  "value": "<string>",
+                                  "description": "(Required) The ID of the application"
+                                }
+                              ]
+                            },
+                            "description": "Returns the application role connection for the user. Requires an OAuth2 access token with role_connections.write scope."
+                          },
+                          "response": [
+                            {
+                              "id": "c4a49fa6-f2d5-4ec6-9593-0858566dc06e",
+                              "name": "Application role connection object",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/users/@me/applications/:application_id/role-connection",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "users",
+                                    "@me",
+                                    "applications",
+                                    ":application_id",
+                                    "role-connection"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "application_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"platform_name\": \"<string>\",\n  \"platform_username\": \"<string>\",\n  \"metadata\": {\n    \"cupidatat_6\": \"<string>\",\n    \"consectetur__a\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T01:31:41.000Z",
+                              "updatedAt": "2026-07-28T01:31:41.000Z",
+                              "uid": "35240-c4a49fa6-f2d5-4ec6-9593-0858566dc06e"
+                            },
+                            {
+                              "id": "157279c3-d19b-4b7e-aed6-99d02b1ed4ac",
+                              "name": "Client error response",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/users/@me/applications/:application_id/role-connection",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "users",
+                                    "@me",
+                                    "applications",
+                                    ":application_id",
+                                    "role-connection"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "application_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T01:31:41.000Z",
+                              "updatedAt": "2026-07-28T01:31:41.000Z",
+                              "uid": "35240-157279c3-d19b-4b7e-aed6-99d02b1ed4ac"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:31:41.000Z",
+                          "updatedAt": "2026-07-28T01:31:41.000Z",
+                          "uid": "35240-18983b1d-59d9-4c6d-9b65-063c3409aae9"
+                        },
+                        {
+                          "name": "Discord Update user application role connection",
+                          "id": "63ea5d2f-1735-4f1f-89a3-a6de0f972917",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"platform_name\": \"<string>\",\n  \"platform_username\": \"<string>\",\n  \"metadata\": {\n    \"consectetur_c5_\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/users/@me/applications/:application_id/role-connection",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                "@me",
+                                "applications",
+                                ":application_id",
+                                "role-connection"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "ed6c040a-26de-4630-97de-639cb585d1e7",
+                                  "key": "application_id",
+                                  "value": "<string>",
+                                  "description": "(Required) The ID of the application"
+                                }
+                              ]
+                            },
+                            "description": "Updates and returns the application role connection for the user. Requires an OAuth2 access token with role_connections.write scope."
+                          },
+                          "response": [
+                            {
+                              "id": "f9c3afc6-dc1b-4758-916e-1102a00ff0bc",
+                              "name": "Updated application role connection",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"platform_name\": \"<string>\",\n  \"platform_username\": \"<string>\",\n  \"metadata\": {\n    \"consectetur_c5_\": \"<string>\"\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/users/@me/applications/:application_id/role-connection",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "users",
+                                    "@me",
+                                    "applications",
+                                    ":application_id",
+                                    "role-connection"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "application_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"platform_name\": \"<string>\",\n  \"platform_username\": \"<string>\",\n  \"metadata\": {\n    \"cupidatat_6\": \"<string>\",\n    \"consectetur__a\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T01:31:41.000Z",
+                              "updatedAt": "2026-07-28T01:31:41.000Z",
+                              "uid": "35240-f9c3afc6-dc1b-4758-916e-1102a00ff0bc"
+                            },
+                            {
+                              "id": "aa34b0c9-ab5a-4318-a5ec-7d89dcd25cd7",
+                              "name": "Client error response",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"platform_name\": \"<string>\",\n  \"platform_username\": \"<string>\",\n  \"metadata\": {\n    \"consectetur_c5_\": \"<string>\"\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/users/@me/applications/:application_id/role-connection",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "users",
+                                    "@me",
+                                    "applications",
+                                    ":application_id",
+                                    "role-connection"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "application_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T01:31:41.000Z",
+                              "updatedAt": "2026-07-28T01:31:41.000Z",
+                              "uid": "35240-aa34b0c9-ab5a-4318-a5ec-7d89dcd25cd7"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:31:41.000Z",
+                          "updatedAt": "2026-07-28T01:31:41.000Z",
+                          "uid": "35240-63ea5d2f-1735-4f1f-89a3-a6de0f972917"
+                        }
+                      ],
+                      "id": "8b2e2928-b2ef-49e5-ae2b-3ac119ce0f15",
+                      "createdAt": "2026-07-28T01:31:41.000Z",
+                      "updatedAt": "2026-07-28T01:31:41.000Z",
+                      "uid": "35240-8b2e2928-b2ef-49e5-ae2b-3ac119ce0f15"
+                    }
+                  ],
+                  "id": "0a46157a-efc0-49e7-a65f-4476728159a2",
+                  "createdAt": "2026-07-28T01:31:41.000Z",
+                  "updatedAt": "2026-07-28T01:31:41.000Z",
+                  "uid": "35240-0a46157a-efc0-49e7-a65f-4476728159a2"
+                }
+              ],
+              "id": "f0a77751-cffd-42de-ab74-73eb017984fa",
+              "createdAt": "2026-07-28T01:31:41.000Z",
+              "updatedAt": "2026-07-28T01:31:41.000Z",
+              "uid": "35240-f0a77751-cffd-42de-ab74-73eb017984fa"
+            }
+          ],
+          "id": "ca2cf511-a124-40f0-9072-bf482309e12d",
+          "createdAt": "2026-07-28T01:31:41.000Z",
+          "updatedAt": "2026-07-28T01:31:41.000Z",
+          "uid": "35240-ca2cf511-a124-40f0-9072-bf482309e12d"
+        }
+      ],
+      "id": "df891cc1-5f4c-45f3-a783-b603a3922fde",
+      "createdAt": "2026-07-28T01:31:41.000Z",
+      "updatedAt": "2026-07-28T01:31:41.000Z",
+      "uid": "35240-df891cc1-5f4c-45f3-a783-b603a3922fde"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://discord.com/api/v10"
+    }
+  ]
+}

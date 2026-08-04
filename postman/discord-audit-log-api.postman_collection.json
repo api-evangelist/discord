@@ -1,0 +1,262 @@
+{
+  "info": {
+    "_postman_id": "3cbd7be7-1c56-41f1-99a6-2c64a661469e",
+    "name": "Discord Interactions Application Commands Audit Log API",
+    "description": "The Discord Interactions API enables applications to create and respond to application commands (slash commands), message components, and modals. It supports both Gateway-based and webhook-based interaction handling, allowing bots to build rich, interactive user experiences within Discord.\n\nContact Support:\n Name: Discord Support\n Email: support@discord.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:31:27.000Z",
+    "updatedAt": "2026-07-28T01:31:27.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3cbd7be7-1c56-41f1-99a6-2c64a661469e"
+  },
+  "item": [
+    {
+      "name": "guilds",
+      "item": [
+        {
+          "name": "{guild_id}",
+          "item": [
+            {
+              "name": "audit-logs",
+              "item": [
+                {
+                  "name": "Discord Get guild audit log",
+                  "id": "2dde0cca-b86c-4195-9f00-f2ddc5ed2f82",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/guilds/:guild_id/audit-logs?user_id=<string>&action_type=<integer>&before=<string>&after=<string>&limit=50",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "guilds",
+                        ":guild_id",
+                        "audit-logs"
+                      ],
+                      "query": [
+                        {
+                          "key": "user_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "action_type",
+                          "value": "<integer>"
+                        },
+                        {
+                          "key": "before",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "after",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "50"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "b249a8d3-7504-4cd4-8cfb-7954b5b18bb1",
+                          "key": "guild_id",
+                          "value": "<string>",
+                          "description": "(Required) The ID of the guild (Snowflake)"
+                        }
+                      ]
+                    },
+                    "description": "Returns an audit log object for the guild."
+                  },
+                  "response": [
+                    {
+                      "id": "a945e8ec-11aa-4755-b31f-a0fa8b0c1260",
+                      "name": "Audit log object",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/guilds/:guild_id/audit-logs?user_id=<string>&action_type=<integer>&before=<string>&after=<string>&limit=50",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "guilds",
+                            ":guild_id",
+                            "audit-logs"
+                          ],
+                          "query": [
+                            {
+                              "key": "user_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "action_type",
+                              "value": "<integer>"
+                            },
+                            {
+                              "key": "before",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "after",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "limit",
+                              "value": "50"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "guild_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"audit_log_entries\": [\n    {\n      \"id\": \"7257\",\n      \"target_id\": \"<string>\",\n      \"user_id\": \"8912688928\",\n      \"action_type\": \"<integer>\",\n      \"reason\": \"<string>\"\n    },\n    {\n      \"id\": \"25233689387\",\n      \"target_id\": \"<string>\",\n      \"user_id\": \"704160\",\n      \"action_type\": \"<integer>\",\n      \"reason\": \"<string>\"\n    }\n  ],\n  \"threads\": [\n    {\n      \"id\": \"2098934\",\n      \"type\": \"<integer>\",\n      \"guild_id\": \"594580845\",\n      \"position\": \"<integer>\",\n      \"permission_overwrites\": [\n        {\n          \"id\": \"90421702\",\n          \"type\": \"<integer>\",\n          \"allow\": \"<string>\",\n          \"deny\": \"<string>\"\n        },\n        {\n          \"id\": \"50209\",\n          \"type\": \"<integer>\",\n          \"allow\": \"<string>\",\n          \"deny\": \"<string>\"\n        }\n      ],\n      \"name\": \"<string>\",\n      \"topic\": \"<string>\",\n      \"nsfw\": \"<boolean>\",\n      \"last_message_id\": \"928108195\",\n      \"bitrate\": \"<integer>\",\n      \"user_limit\": \"<integer>\",\n      \"rate_limit_per_user\": \"<integer>\",\n      \"recipients\": [\n        {\n          \"id\": \"464271\",\n          \"username\": \"<string>\",\n          \"discriminator\": \"<string>\",\n          \"global_name\": \"<string>\",\n          \"avatar\": \"<string>\",\n          \"bot\": \"<boolean>\",\n          \"system\": \"<boolean>\",\n          \"mfa_enabled\": \"<boolean>\",\n          \"banner\": \"<string>\",\n          \"accent_color\": \"<integer>\",\n          \"locale\": \"<string>\",\n          \"verified\": \"<boolean>\",\n          \"email\": \"<string>\",\n          \"flags\": \"<integer>\",\n          \"premium_type\": \"<integer>\",\n          \"public_flags\": \"<integer>\",\n          \"avatar_decoration_data\": {}\n        },\n        {\n          \"id\": \"1004\",\n          \"username\": \"<string>\",\n          \"discriminator\": \"<string>\",\n          \"global_name\": \"<string>\",\n          \"avatar\": \"<string>\",\n          \"bot\": \"<boolean>\",\n          \"system\": \"<boolean>\",\n          \"mfa_enabled\": \"<boolean>\",\n          \"banner\": \"<string>\",\n          \"accent_color\": \"<integer>\",\n          \"locale\": \"<string>\",\n          \"verified\": \"<boolean>\",\n          \"email\": \"<string>\",\n          \"flags\": \"<integer>\",\n          \"premium_type\": \"<integer>\",\n          \"public_flags\": \"<integer>\",\n          \"avatar_decoration_data\": {}\n        }\n      ],\n      \"icon\": \"<string>\",\n      \"owner_id\": \"94632112248\",\n      \"parent_id\": \"007191\",\n      \"last_pin_timestamp\": \"<dateTime>\",\n      \"rtc_region\": \"<string>\",\n      \"video_quality_mode\": \"<integer>\",\n      \"message_count\": \"<integer>\",\n      \"member_count\": \"<integer>\",\n      \"thread_metadata\": {\n        \"archived\": \"<boolean>\",\n        \"auto_archive_duration\": \"<integer>\",\n        \"archive_timestamp\": \"<dateTime>\",\n        \"locked\": \"<boolean>\",\n        \"invitable\": \"<boolean>\",\n        \"create_timestamp\": \"<dateTime>\"\n      },\n      \"default_auto_archive_duration\": \"<integer>\",\n      \"flags\": \"<integer>\",\n      \"total_message_sent\": \"<integer>\"\n    },\n    {\n      \"id\": \"440\",\n      \"type\": \"<integer>\",\n      \"guild_id\": \"2788171\",\n      \"position\": \"<integer>\",\n      \"permission_overwrites\": [\n        {\n          \"id\": \"5\",\n          \"type\": \"<integer>\",\n          \"allow\": \"<string>\",\n          \"deny\": \"<string>\"\n        },\n        {\n          \"id\": \"21644\",\n          \"type\": \"<integer>\",\n          \"allow\": \"<string>\",\n          \"deny\": \"<string>\"\n        }\n      ],\n      \"name\": \"<string>\",\n      \"topic\": \"<string>\",\n      \"nsfw\": \"<boolean>\",\n      \"last_message_id\": \"00\",\n      \"bitrate\": \"<integer>\",\n      \"user_limit\": \"<integer>\",\n      \"rate_limit_per_user\": \"<integer>\",\n      \"recipients\": [\n        {\n          \"id\": \"59\",\n          \"username\": \"<string>\",\n          \"discriminator\": \"<string>\",\n          \"global_name\": \"<string>\",\n          \"avatar\": \"<string>\",\n          \"bot\": \"<boolean>\",\n          \"system\": \"<boolean>\",\n          \"mfa_enabled\": \"<boolean>\",\n          \"banner\": \"<string>\",\n          \"accent_color\": \"<integer>\",\n          \"locale\": \"<string>\",\n          \"verified\": \"<boolean>\",\n          \"email\": \"<string>\",\n          \"flags\": \"<integer>\",\n          \"premium_type\": \"<integer>\",\n          \"public_flags\": \"<integer>\",\n          \"avatar_decoration_data\": {}\n        },\n        {\n          \"id\": \"6\",\n          \"username\": \"<string>\",\n          \"discriminator\": \"<string>\",\n          \"global_name\": \"<string>\",\n          \"avatar\": \"<string>\",\n          \"bot\": \"<boolean>\",\n          \"system\": \"<boolean>\",\n          \"mfa_enabled\": \"<boolean>\",\n          \"banner\": \"<string>\",\n          \"accent_color\": \"<integer>\",\n          \"locale\": \"<string>\",\n          \"verified\": \"<boolean>\",\n          \"email\": \"<string>\",\n          \"flags\": \"<integer>\",\n          \"premium_type\": \"<integer>\",\n          \"public_flags\": \"<integer>\",\n          \"avatar_decoration_data\": {}\n        }\n      ],\n      \"icon\": \"<string>\",\n      \"owner_id\": \"9471426391\",\n      \"parent_id\": \"506657\",\n      \"last_pin_timestamp\": \"<dateTime>\",\n      \"rtc_region\": \"<string>\",\n      \"video_quality_mode\": \"<integer>\",\n      \"message_count\": \"<integer>\",\n      \"member_count\": \"<integer>\",\n      \"thread_metadata\": {\n        \"archived\": \"<boolean>\",\n        \"auto_archive_duration\": \"<integer>\",\n        \"archive_timestamp\": \"<dateTime>\",\n        \"locked\": \"<boolean>\",\n        \"invitable\": \"<boolean>\",\n        \"create_timestamp\": \"<dateTime>\"\n      },\n      \"default_auto_archive_duration\": \"<integer>\",\n      \"flags\": \"<integer>\",\n      \"total_message_sent\": \"<integer>\"\n    }\n  ],\n  \"users\": [\n    {\n      \"id\": \"3\",\n      \"username\": \"<string>\",\n      \"discriminator\": \"<string>\",\n      \"global_name\": \"<string>\",\n      \"avatar\": \"<string>\",\n      \"bot\": \"<boolean>\",\n      \"system\": \"<boolean>\",\n      \"mfa_enabled\": \"<boolean>\",\n      \"banner\": \"<string>\",\n      \"accent_color\": \"<integer>\",\n      \"locale\": \"<string>\",\n      \"verified\": \"<boolean>\",\n      \"email\": \"<string>\",\n      \"flags\": \"<integer>\",\n      \"premium_type\": \"<integer>\",\n      \"public_flags\": \"<integer>\",\n      \"avatar_decoration_data\": {}\n    },\n    {\n      \"id\": \"2963\",\n      \"username\": \"<string>\",\n      \"discriminator\": \"<string>\",\n      \"global_name\": \"<string>\",\n      \"avatar\": \"<string>\",\n      \"bot\": \"<boolean>\",\n      \"system\": \"<boolean>\",\n      \"mfa_enabled\": \"<boolean>\",\n      \"banner\": \"<string>\",\n      \"accent_color\": \"<integer>\",\n      \"locale\": \"<string>\",\n      \"verified\": \"<boolean>\",\n      \"email\": \"<string>\",\n      \"flags\": \"<integer>\",\n      \"premium_type\": \"<integer>\",\n      \"public_flags\": \"<integer>\",\n      \"avatar_decoration_data\": {}\n    }\n  ],\n  \"webhooks\": [\n    {\n      \"id\": \"1092\",\n      \"type\": \"<integer>\",\n      \"guild_id\": \"672\",\n      \"channel_id\": \"4315082\",\n      \"user\": {\n        \"id\": \"79307\",\n        \"username\": \"<string>\",\n        \"discriminator\": \"<string>\",\n        \"global_name\": \"<string>\",\n        \"avatar\": \"<string>\",\n        \"bot\": \"<boolean>\",\n        \"system\": \"<boolean>\",\n        \"mfa_enabled\": \"<boolean>\",\n        \"banner\": \"<string>\",\n        \"accent_color\": \"<integer>\",\n        \"locale\": \"<string>\",\n        \"verified\": \"<boolean>\",\n        \"email\": \"<string>\",\n        \"flags\": \"<integer>\",\n        \"premium_type\": \"<integer>\",\n        \"public_flags\": \"<integer>\",\n        \"avatar_decoration_data\": {}\n      },\n      \"name\": \"<string>\",\n      \"avatar\": \"<string>\",\n      \"token\": \"<string>\",\n      \"application_id\": \"9600704528\",\n      \"url\": \"<uri>\"\n    },\n    {\n      \"id\": \"922861\",\n      \"type\": \"<integer>\",\n      \"guild_id\": \"53\",\n      \"channel_id\": \"3453699\",\n      \"user\": {\n        \"id\": \"9865\",\n        \"username\": \"<string>\",\n        \"discriminator\": \"<string>\",\n        \"global_name\": \"<string>\",\n        \"avatar\": \"<string>\",\n        \"bot\": \"<boolean>\",\n        \"system\": \"<boolean>\",\n        \"mfa_enabled\": \"<boolean>\",\n        \"banner\": \"<string>\",\n        \"accent_color\": \"<integer>\",\n        \"locale\": \"<string>\",\n        \"verified\": \"<boolean>\",\n        \"email\": \"<string>\",\n        \"flags\": \"<integer>\",\n        \"premium_type\": \"<integer>\",\n        \"public_flags\": \"<integer>\",\n        \"avatar_decoration_data\": {}\n      },\n      \"name\": \"<string>\",\n      \"avatar\": \"<string>\",\n      \"token\": \"<string>\",\n      \"application_id\": \"9511485588\",\n      \"url\": \"<uri>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:31:28.000Z",
+                      "updatedAt": "2026-07-28T01:31:28.000Z",
+                      "uid": "35240-a945e8ec-11aa-4755-b31f-a0fa8b0c1260"
+                    },
+                    {
+                      "id": "c9a6e01a-9436-4abf-a92e-e87d55b9521a",
+                      "name": "Client error response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/guilds/:guild_id/audit-logs?user_id=<string>&action_type=<integer>&before=<string>&after=<string>&limit=50",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "guilds",
+                            ":guild_id",
+                            "audit-logs"
+                          ],
+                          "query": [
+                            {
+                              "key": "user_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "action_type",
+                              "value": "<integer>"
+                            },
+                            {
+                              "key": "before",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "after",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "limit",
+                              "value": "50"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "guild_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"errors\": {}\n}",
+                      "createdAt": "2026-07-28T01:31:28.000Z",
+                      "updatedAt": "2026-07-28T01:31:28.000Z",
+                      "uid": "35240-c9a6e01a-9436-4abf-a92e-e87d55b9521a"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:31:28.000Z",
+                  "updatedAt": "2026-07-28T01:31:28.000Z",
+                  "uid": "35240-2dde0cca-b86c-4195-9f00-f2ddc5ed2f82"
+                }
+              ],
+              "id": "2f67d1b5-ae11-489c-8062-5c15c7dcc337",
+              "createdAt": "2026-07-28T01:31:28.000Z",
+              "updatedAt": "2026-07-28T01:31:28.000Z",
+              "uid": "35240-2f67d1b5-ae11-489c-8062-5c15c7dcc337"
+            }
+          ],
+          "id": "80044357-4b1d-4e4e-a5e3-dc4a29e53d18",
+          "createdAt": "2026-07-28T01:31:28.000Z",
+          "updatedAt": "2026-07-28T01:31:28.000Z",
+          "uid": "35240-80044357-4b1d-4e4e-a5e3-dc4a29e53d18"
+        }
+      ],
+      "id": "86ab2fc9-a36f-46e3-942f-010de8b91bff",
+      "createdAt": "2026-07-28T01:31:28.000Z",
+      "updatedAt": "2026-07-28T01:31:28.000Z",
+      "uid": "35240-86ab2fc9-a36f-46e3-942f-010de8b91bff"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://discord.com/api/v10"
+    }
+  ]
+}
