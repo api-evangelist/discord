@@ -547,6 +547,13 @@ maintainers:
   twitter: discord
   email: support@discord.com
 common:
+- type: IssueTracker
+  url: https://github.com/discord/embedded-app-sdk/issues
+- type: Releases
+  url: https://github.com/discord/embedded-app-sdk/releases
+- type: License
+  name: MIT
+  url: https://github.com/discord/embedded-app-sdk/blob/main/LICENSE
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/discord/overview
 - type: AgenticAccess
