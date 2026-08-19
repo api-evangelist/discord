@@ -1,0 +1,836 @@
+{
+  "item": [
+    {
+      "id": "d3e07690-09ee-414f-b217-2a22531b1cb8",
+      "name": "Invites",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "96ff1dc4-2406-4d84-b476-baaeedb708ee",
+          "name": "invite resolve",
+          "request": {
+            "name": "invite resolve",
+            "description": {},
+            "url": {
+              "path": [
+                "invites",
+                ":code"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "with_counts",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "guild_scheduled_event_id",
+                  "value": "<snowflake>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "code",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": [
+            {
+              "id": "dc5a6326-676f-4bc8-9b4c-4e327de16e6b",
+              "name": "200 response for invite_resolve",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invites",
+                    ":code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "with_counts",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "guild_scheduled_event_id",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"type\": null,\n  \"inviter\": null,\n  \"max_age\": 4276,\n  \"created_at\": \"1994-01-10T13:45:08.062Z\",\n  \"expires_at\": \"1998-07-21T13:44:16.399Z\",\n  \"friends_count\": 4954,\n  \"channel\": null,\n  \"is_contact\": true,\n  \"uses\": 4929,\n  \"max_uses\": 3940,\n  \"flags\": 8972\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4e5f9511-d428-4f9e-9c70-1d207818098d",
+              "name": "Client error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invites",
+                    ":code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "with_counts",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "guild_scheduled_event_id",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 3272,\n  \"message\": \"string\",\n  \"errors\": {\n    \"key_0\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2796101c-dcc8-4cbb-9539-fc705e4b98f2",
+          "name": "invite revoke",
+          "request": {
+            "name": "invite revoke",
+            "description": {},
+            "url": {
+              "path": [
+                "invites",
+                ":code"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "code",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3e0c73d1-77ac-4464-86b1-b156b76fd551",
+              "name": "200 response for invite_revoke",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invites",
+                    ":code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"type\": null,\n  \"inviter\": null,\n  \"max_age\": 4276,\n  \"created_at\": \"1994-01-10T13:45:08.062Z\",\n  \"expires_at\": \"1998-07-21T13:44:16.399Z\",\n  \"friends_count\": 4954,\n  \"channel\": null,\n  \"is_contact\": true,\n  \"uses\": 4929,\n  \"max_uses\": 3940,\n  \"flags\": 8972\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dab5b54a-70de-4533-a6db-adec81b81f82",
+              "name": "Client error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invites",
+                    ":code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 3272,\n  \"message\": \"string\",\n  \"errors\": {\n    \"key_0\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ca12888b-e03b-4f27-a423-689e71b5a34c",
+          "name": "Discord List channel invites",
+          "request": {
+            "name": "Discord List channel invites",
+            "description": {
+              "content": "Returns a list of invite objects for the channel.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "channels",
+                ":channel_id",
+                "invites"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "channel_id",
+                  "description": "(Required) The ID of the channel (Snowflake)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "98456c27-049c-403f-9377-16ded0b52ef0",
+              "name": "List of invite objects",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":channel_id",
+                    "invites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channel_id",
+                      "description": "(Required) The ID of the channel (Snowflake)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"code\": \"string\",\n    \"guild\": {\n      \"id\": \"16\",\n      \"name\": \"string\",\n      \"icon\": \"string\",\n      \"icon_hash\": \"string\",\n      \"splash\": \"string\",\n      \"discovery_splash\": \"string\",\n      \"owner\": true,\n      \"owner_id\": \"210\",\n      \"permissions\": \"string\",\n      \"afk_channel_id\": \"14315238\",\n      \"afk_timeout\": 4574,\n      \"verification_level\": 4519,\n      \"default_message_notifications\": 4395,\n      \"explicit_content_filter\": 8281,\n      \"roles\": [\n        {\n          \"id\": \"141892\",\n          \"name\": \"string\",\n          \"color\": 1018,\n          \"hoist\": false,\n          \"position\": 8228,\n          \"permissions\": \"string\",\n          \"managed\": true,\n          \"mentionable\": false,\n          \"icon\": \"string\",\n          \"unicode_emoji\": \"string\",\n          \"tags\": {\n            \"bot_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"integration_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"premium_subscriber\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"subscription_listing_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"available_for_purchase\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"guild_connections\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"flags\": 6469\n        },\n        {\n          \"id\": \"7284970\",\n          \"name\": \"string\",\n          \"color\": 2508,\n          \"hoist\": false,\n          \"position\": 9820,\n          \"permissions\": \"string\",\n          \"managed\": true,\n          \"mentionable\": false,\n          \"icon\": \"string\",\n          \"unicode_emoji\": \"string\",\n          \"tags\": {\n            \"bot_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"integration_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"premium_subscriber\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"subscription_listing_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"available_for_purchase\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"guild_connections\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"flags\": 979\n        }\n      ],\n      \"emojis\": [\n        {\n          \"id\": \"955\",\n          \"name\": \"string\",\n          \"roles\": [\n            \"string\",\n            \"string\"\n          ],\n          \"user\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"username\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"discriminator\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"global_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"avatar\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bot\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"system\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mfa_enabled\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"banner\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"accent_color\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"locale\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"verified\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"email\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"flags\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"premium_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"public_flags\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"avatar_decoration_data\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"require_colons\": false,\n          \"managed\": false,\n          \"animated\": true,\n          \"available\": true\n        },\n        {\n          \"id\": \"7964171\",\n          \"name\": \"string\",\n          \"roles\": [\n            \"string\",\n            \"string\"\n          ],\n          \"user\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"username\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"discriminator\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"global_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"avatar\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bot\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"system\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mfa_enabled\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"banner\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"accent_color\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"locale\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"verified\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"email\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"flags\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"premium_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"public_flags\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"avatar_decoration_data\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"require_colons\": false,\n          \"managed\": false,\n          \"animated\": true,\n          \"available\": true\n        }\n      ],\n      \"features\": [\n        \"string\",\n        \"string\"\n      ],\n      \"mfa_level\": 4593,\n      \"system_channel_id\": \"2\",\n      \"system_channel_flags\": 2750,\n      \"rules_channel_id\": \"39149\",\n      \"max_presences\": 1328,\n      \"max_members\": 6142,\n      \"vanity_url_code\": \"string\",\n      \"description\": \"string\",\n      \"banner\": \"string\",\n      \"premium_tier\": 8627,\n      \"premium_subscription_count\": 7092,\n      \"preferred_locale\": \"string\",\n      \"public_updates_channel_id\": \"5\",\n      \"nsfw_level\": 4552,\n      \"stickers\": [\n        {\n          \"id\": \"9052\",\n          \"name\": \"string\",\n          \"type\": 3964,\n          \"format_type\": 833,\n          \"pack_id\": \"4414923\",\n          \"description\": \"string\",\n          \"tags\": \"string\",\n          \"available\": true,\n          \"guild_id\": \"283\",\n          \"user\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"username\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"discriminator\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"global_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"avatar\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bot\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"system\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mfa_enabled\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"banner\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"accent_color\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"locale\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"verified\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"email\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"flags\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"premium_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"public_flags\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"avatar_decoration_data\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"sort_value\": 1656\n        },\n        {\n          \"id\": \"45226845\",\n          \"name\": \"string\",\n          \"type\": 2757,\n          \"format_type\": 3777,\n          \"pack_id\": \"9524964566\",\n          \"description\": \"string\",\n          \"tags\": \"string\",\n          \"available\": true,\n          \"guild_id\": \"1\",\n          \"user\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"username\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"discriminator\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"global_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"avatar\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bot\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"system\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mfa_enabled\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"banner\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"accent_color\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"locale\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"verified\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"email\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"flags\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"premium_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"public_flags\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"avatar_decoration_data\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"sort_value\": 9965\n        }\n      ],\n      \"premium_progress_bar_enabled\": true,\n      \"safety_alerts_channel_id\": \"12693200481\"\n    },\n    \"channel\": {\n      \"id\": \"40\",\n      \"type\": 9436,\n      \"guild_id\": \"43\",\n      \"position\": 3193,\n      \"permission_overwrites\": [\n        {\n          \"id\": \"073\",\n          \"type\": 7279,\n          \"allow\": \"string\",\n          \"deny\": \"string\"\n        },\n        {\n          \"id\": \"8361312316\",\n          \"type\": 1138,\n          \"allow\": \"string\",\n          \"deny\": \"string\"\n        }\n      ],\n      \"name\": \"string\",\n      \"topic\": \"string\",\n      \"nsfw\": true,\n      \"last_message_id\": \"6\",\n      \"bitrate\": 2705,\n      \"user_limit\": 1323,\n      \"rate_limit_per_user\": 1120,\n      \"recipients\": [\n        {\n          \"id\": \"3831410072\",\n          \"username\": \"string\",\n          \"discriminator\": \"string\",\n          \"global_name\": \"string\",\n          \"avatar\": \"string\",\n          \"bot\": true,\n          \"system\": false,\n          \"mfa_enabled\": true,\n          \"banner\": \"string\",\n          \"accent_color\": 5859,\n          \"locale\": \"string\",\n          \"verified\": true,\n          \"email\": \"string\",\n          \"flags\": 6613,\n          \"premium_type\": 4590,\n          \"public_flags\": 4726,\n          \"avatar_decoration_data\": {}\n        },\n        {\n          \"id\": \"8721150\",\n          \"username\": \"string\",\n          \"discriminator\": \"string\",\n          \"global_name\": \"string\",\n          \"avatar\": \"string\",\n          \"bot\": false,\n          \"system\": true,\n          \"mfa_enabled\": true,\n          \"banner\": \"string\",\n          \"accent_color\": 6164,\n          \"locale\": \"string\",\n          \"verified\": true,\n          \"email\": \"string\",\n          \"flags\": 3692,\n          \"premium_type\": 8021,\n          \"public_flags\": 3485,\n          \"avatar_decoration_data\": {}\n        }\n      ],\n      \"icon\": \"string\",\n      \"owner_id\": \"228999574\",\n      \"parent_id\": \"35865\",\n      \"last_pin_timestamp\": \"1995-11-04T04:48:38.143Z\",\n      \"rtc_region\": \"string\",\n      \"video_quality_mode\": 7131,\n      \"message_count\": 8768,\n      \"member_count\": 4721,\n      \"thread_metadata\": {\n        \"archived\": true,\n        \"auto_archive_duration\": 3330,\n        \"archive_timestamp\": \"1973-12-24T22:27:58.460Z\",\n        \"locked\": true,\n        \"invitable\": false,\n        \"create_timestamp\": \"1978-08-27T10:23:16.837Z\"\n      },\n      \"default_auto_archive_duration\": 5024,\n      \"flags\": 5345,\n      \"total_message_sent\": 4847\n    },\n    \"inviter\": {\n      \"id\": \"933627\",\n      \"username\": \"string\",\n      \"discriminator\": \"string\",\n      \"global_name\": \"string\",\n      \"avatar\": \"string\",\n      \"bot\": false,\n      \"system\": false,\n      \"mfa_enabled\": true,\n      \"banner\": \"string\",\n      \"accent_color\": 5427,\n      \"locale\": \"string\",\n      \"verified\": false,\n      \"email\": \"string\",\n      \"flags\": 5809,\n      \"premium_type\": 3182,\n      \"public_flags\": 8838,\n      \"avatar_decoration_data\": {}\n    },\n    \"target_type\": 4523,\n    \"target_user\": {\n      \"id\": \"79\",\n      \"username\": \"string\",\n      \"discriminator\": \"string\",\n      \"global_name\": \"string\",\n      \"avatar\": \"string\",\n      \"bot\": false,\n      \"system\": true,\n      \"mfa_enabled\": true,\n      \"banner\": \"string\",\n      \"accent_color\": 6452,\n      \"locale\": \"string\",\n      \"verified\": true,\n      \"email\": \"string\",\n      \"flags\": 4242,\n      \"premium_type\": 7951,\n      \"public_flags\": 1685,\n      \"avatar_decoration_data\": {}\n    },\n    \"approximate_presence_count\": 3284,\n    \"approximate_member_count\": 6798,\n    \"expires_at\": \"1977-03-11T11:49:30.088Z\",\n    \"uses\": 7517,\n    \"max_uses\": 3531,\n    \"max_age\": 6617,\n    \"temporary\": true,\n    \"created_at\": \"1947-02-17T03:35:04.828Z\"\n  },\n  {\n    \"code\": \"string\",\n    \"guild\": {\n      \"id\": \"9028\",\n      \"name\": \"string\",\n      \"icon\": \"string\",\n      \"icon_hash\": \"string\",\n      \"splash\": \"string\",\n      \"discovery_splash\": \"string\",\n      \"owner\": false,\n      \"owner_id\": \"6\",\n      \"permissions\": \"string\",\n      \"afk_channel_id\": \"621683829\",\n      \"afk_timeout\": 3144,\n      \"verification_level\": 5224,\n      \"default_message_notifications\": 3503,\n      \"explicit_content_filter\": 2315,\n      \"roles\": [\n        {\n          \"id\": \"275343\",\n          \"name\": \"string\",\n          \"color\": 1582,\n          \"hoist\": true,\n          \"position\": 8737,\n          \"permissions\": \"string\",\n          \"managed\": true,\n          \"mentionable\": false,\n          \"icon\": \"string\",\n          \"unicode_emoji\": \"string\",\n          \"tags\": {\n            \"bot_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"integration_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"premium_subscriber\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"subscription_listing_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"available_for_purchase\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"guild_connections\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"flags\": 3067\n        },\n        {\n          \"id\": \"5710649\",\n          \"name\": \"string\",\n          \"color\": 2205,\n          \"hoist\": false,\n          \"position\": 4149,\n          \"permissions\": \"string\",\n          \"managed\": false,\n          \"mentionable\": false,\n          \"icon\": \"string\",\n          \"unicode_emoji\": \"string\",\n          \"tags\": {\n            \"bot_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"integration_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"premium_subscriber\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"subscription_listing_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"available_for_purchase\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"guild_connections\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"flags\": 9040\n        }\n      ],\n      \"emojis\": [\n        {\n          \"id\": \"714050771\",\n          \"name\": \"string\",\n          \"roles\": [\n            \"string\",\n            \"string\"\n          ],\n          \"user\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"username\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"discriminator\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"global_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"avatar\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bot\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"system\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mfa_enabled\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"banner\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"accent_color\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"locale\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"verified\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"email\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"flags\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"premium_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"public_flags\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"avatar_decoration_data\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"require_colons\": false,\n          \"managed\": true,\n          \"animated\": true,\n          \"available\": false\n        },\n        {\n          \"id\": \"99088\",\n          \"name\": \"string\",\n          \"roles\": [\n            \"string\",\n            \"string\"\n          ],\n          \"user\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"username\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"discriminator\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"global_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"avatar\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bot\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"system\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mfa_enabled\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"banner\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"accent_color\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"locale\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"verified\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"email\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"flags\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"premium_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"public_flags\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"avatar_decoration_data\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"require_colons\": true,\n          \"managed\": false,\n          \"animated\": false,\n          \"available\": true\n        }\n      ],\n      \"features\": [\n        \"string\",\n        \"string\"\n      ],\n      \"mfa_level\": 2043,\n      \"system_channel_id\": \"100\",\n      \"system_channel_flags\": 1768,\n      \"rules_channel_id\": \"29\",\n      \"max_presences\": 7185,\n      \"max_members\": 4192,\n      \"vanity_url_code\": \"string\",\n      \"description\": \"string\",\n      \"banner\": \"string\",\n      \"premium_tier\": 5218,\n      \"premium_subscription_count\": 2977,\n      \"preferred_locale\": \"string\",\n      \"public_updates_channel_id\": \"8042\",\n      \"nsfw_level\": 6785,\n      \"stickers\": [\n        {\n          \"id\": \"21055641\",\n          \"name\": \"string\",\n          \"type\": 4860,\n          \"format_type\": 9488,\n          \"pack_id\": \"2471931320\",\n          \"description\": \"string\",\n          \"tags\": \"string\",\n          \"available\": false,\n          \"guild_id\": \"9905\",\n          \"user\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"username\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"discriminator\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"global_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"avatar\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bot\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"system\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mfa_enabled\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"banner\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"accent_color\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"locale\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"verified\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"email\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"flags\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"premium_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"public_flags\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"avatar_decoration_data\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"sort_value\": 7647\n        },\n        {\n          \"id\": \"799\",\n          \"name\": \"string\",\n          \"type\": 6460,\n          \"format_type\": 145,\n          \"pack_id\": \"844636\",\n          \"description\": \"string\",\n          \"tags\": \"string\",\n          \"available\": false,\n          \"guild_id\": \"33999907468\",\n          \"user\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"username\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"discriminator\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"global_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"avatar\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bot\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"system\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mfa_enabled\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"banner\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"accent_color\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"locale\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"verified\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"email\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"flags\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"premium_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"public_flags\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"avatar_decoration_data\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"sort_value\": 7948\n        }\n      ],\n      \"premium_progress_bar_enabled\": false,\n      \"safety_alerts_channel_id\": \"1\"\n    },\n    \"channel\": {\n      \"id\": \"690\",\n      \"type\": 2670,\n      \"guild_id\": \"46338381722\",\n      \"position\": 5753,\n      \"permission_overwrites\": [\n        {\n          \"id\": \"09542\",\n          \"type\": 2857,\n          \"allow\": \"string\",\n          \"deny\": \"string\"\n        },\n        {\n          \"id\": \"99105236928\",\n          \"type\": 1085,\n          \"allow\": \"string\",\n          \"deny\": \"string\"\n        }\n      ],\n      \"name\": \"string\",\n      \"topic\": \"string\",\n      \"nsfw\": false,\n      \"last_message_id\": \"81508067508\",\n      \"bitrate\": 5892,\n      \"user_limit\": 6784,\n      \"rate_limit_per_user\": 690,\n      \"recipients\": [\n        {\n          \"id\": \"97907716\",\n          \"username\": \"string\",\n          \"discriminator\": \"string\",\n          \"global_name\": \"string\",\n          \"avatar\": \"string\",\n          \"bot\": true,\n          \"system\": false,\n          \"mfa_enabled\": false,\n          \"banner\": \"string\",\n          \"accent_color\": 914,\n          \"locale\": \"string\",\n          \"verified\": true,\n          \"email\": \"string\",\n          \"flags\": 9917,\n          \"premium_type\": 1170,\n          \"public_flags\": 1080,\n          \"avatar_decoration_data\": {}\n        },\n        {\n          \"id\": \"7751733\",\n          \"username\": \"string\",\n          \"discriminator\": \"string\",\n          \"global_name\": \"string\",\n          \"avatar\": \"string\",\n          \"bot\": true,\n          \"system\": true,\n          \"mfa_enabled\": true,\n          \"banner\": \"string\",\n          \"accent_color\": 7985,\n          \"locale\": \"string\",\n          \"verified\": false,\n          \"email\": \"string\",\n          \"flags\": 6813,\n          \"premium_type\": 6447,\n          \"public_flags\": 782,\n          \"avatar_decoration_data\": {}\n        }\n      ],\n      \"icon\": \"string\",\n      \"owner_id\": \"8983\",\n      \"parent_id\": \"513873\",\n      \"last_pin_timestamp\": \"1980-05-09T04:18:44.444Z\",\n      \"rtc_region\": \"string\",\n      \"video_quality_mode\": 1346,\n      \"message_count\": 2612,\n      \"member_count\": 4289,\n      \"thread_metadata\": {\n        \"archived\": true,\n        \"auto_archive_duration\": 5459,\n        \"archive_timestamp\": \"1964-11-12T02:29:54.686Z\",\n        \"locked\": false,\n        \"invitable\": true,\n        \"create_timestamp\": \"2016-03-29T05:45:11.181Z\"\n      },\n      \"default_auto_archive_duration\": 9473,\n      \"flags\": 4637,\n      \"total_message_sent\": 5365\n    },\n    \"inviter\": {\n      \"id\": \"06130023\",\n      \"username\": \"string\",\n      \"discriminator\": \"string\",\n      \"global_name\": \"string\",\n      \"avatar\": \"string\",\n      \"bot\": false,\n      \"system\": true,\n      \"mfa_enabled\": false,\n      \"banner\": \"string\",\n      \"accent_color\": 5337,\n      \"locale\": \"string\",\n      \"verified\": false,\n      \"email\": \"string\",\n      \"flags\": 512,\n      \"premium_type\": 1129,\n      \"public_flags\": 9623,\n      \"avatar_decoration_data\": {}\n    },\n    \"target_type\": 9232,\n    \"target_user\": {\n      \"id\": \"755720825\",\n      \"username\": \"string\",\n      \"discriminator\": \"string\",\n      \"global_name\": \"string\",\n      \"avatar\": \"string\",\n      \"bot\": true,\n      \"system\": true,\n      \"mfa_enabled\": false,\n      \"banner\": \"string\",\n      \"accent_color\": 4349,\n      \"locale\": \"string\",\n      \"verified\": false,\n      \"email\": \"string\",\n      \"flags\": 614,\n      \"premium_type\": 8184,\n      \"public_flags\": 792,\n      \"avatar_decoration_data\": {}\n    },\n    \"approximate_presence_count\": 8767,\n    \"approximate_member_count\": 9324,\n    \"expires_at\": \"1998-12-31T09:48:18.749Z\",\n    \"uses\": 7709,\n    \"max_uses\": 9910,\n    \"max_age\": 1809,\n    \"temporary\": false,\n    \"created_at\": \"1973-01-05T10:03:56.017Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2fb45c7f-b660-42d6-9099-f9aa961cccb2",
+              "name": "Client error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":channel_id",
+                    "invites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channel_id",
+                      "description": "(Required) The ID of the channel (Snowflake)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 7899,\n  \"message\": \"string\",\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "899d79e4-f239-4ab1-ad61-06040d31579b",
+          "name": "Discord Create channel invite",
+          "request": {
+            "name": "Discord Create channel invite",
+            "description": {
+              "content": "Create a new invite object for the channel.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "channels",
+                ":channel_id",
+                "invites"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "channel_id",
+                  "description": "(Required) The ID of the channel (Snowflake)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"max_age\": 86400,\n  \"max_uses\": 0,\n  \"temporary\": false,\n  \"unique\": false,\n  \"target_type\": \"<integer>\",\n  \"target_user_id\": \"<string>\",\n  \"target_application_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e31c9d5e-2080-4f92-a816-60a00bcff8ce",
+              "name": "Invite object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":channel_id",
+                    "invites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channel_id",
+                      "description": "(Required) The ID of the channel (Snowflake)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"max_age\": 86400,\n  \"max_uses\": 0,\n  \"temporary\": false,\n  \"unique\": false,\n  \"target_type\": \"<integer>\",\n  \"target_user_id\": \"2891\",\n  \"target_application_id\": \"2882\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"guild\": {\n    \"id\": \"126\",\n    \"name\": \"string\",\n    \"icon\": \"string\",\n    \"icon_hash\": \"string\",\n    \"splash\": \"string\",\n    \"discovery_splash\": \"string\",\n    \"owner\": true,\n    \"owner_id\": \"85\",\n    \"permissions\": \"string\",\n    \"afk_channel_id\": \"537896\",\n    \"afk_timeout\": 4210,\n    \"verification_level\": 419,\n    \"default_message_notifications\": 8591,\n    \"explicit_content_filter\": 8074,\n    \"roles\": [\n      {\n        \"id\": \"6773954487\",\n        \"name\": \"string\",\n        \"color\": 5738,\n        \"hoist\": true,\n        \"position\": 3501,\n        \"permissions\": \"string\",\n        \"managed\": true,\n        \"mentionable\": true,\n        \"icon\": \"string\",\n        \"unicode_emoji\": \"string\",\n        \"tags\": {\n          \"bot_id\": \"3\",\n          \"integration_id\": \"401788\",\n          \"premium_subscriber\": null,\n          \"subscription_listing_id\": \"4444002\",\n          \"available_for_purchase\": null,\n          \"guild_connections\": null\n        },\n        \"flags\": 2282\n      },\n      {\n        \"id\": \"3824143498\",\n        \"name\": \"string\",\n        \"color\": 5590,\n        \"hoist\": true,\n        \"position\": 6540,\n        \"permissions\": \"string\",\n        \"managed\": false,\n        \"mentionable\": true,\n        \"icon\": \"string\",\n        \"unicode_emoji\": \"string\",\n        \"tags\": {\n          \"bot_id\": \"8823968493\",\n          \"integration_id\": \"5362701368\",\n          \"premium_subscriber\": null,\n          \"subscription_listing_id\": \"079634403\",\n          \"available_for_purchase\": null,\n          \"guild_connections\": null\n        },\n        \"flags\": 1113\n      }\n    ],\n    \"emojis\": [\n      {\n        \"id\": \"592\",\n        \"name\": \"string\",\n        \"roles\": [\n          \"string\",\n          \"string\"\n        ],\n        \"user\": {\n          \"id\": \"217\",\n          \"username\": \"string\",\n          \"discriminator\": \"string\",\n          \"global_name\": \"string\",\n          \"avatar\": \"string\",\n          \"bot\": true,\n          \"system\": false,\n          \"mfa_enabled\": false,\n          \"banner\": \"string\",\n          \"accent_color\": 4251,\n          \"locale\": \"string\",\n          \"verified\": true,\n          \"email\": \"string\",\n          \"flags\": 6806,\n          \"premium_type\": 4190,\n          \"public_flags\": 4852,\n          \"avatar_decoration_data\": {}\n        },\n        \"require_colons\": false,\n        \"managed\": true,\n        \"animated\": false,\n        \"available\": true\n      },\n      {\n        \"id\": \"753\",\n        \"name\": \"string\",\n        \"roles\": [\n          \"string\",\n          \"string\"\n        ],\n        \"user\": {\n          \"id\": \"65335568\",\n          \"username\": \"string\",\n          \"discriminator\": \"string\",\n          \"global_name\": \"string\",\n          \"avatar\": \"string\",\n          \"bot\": true,\n          \"system\": true,\n          \"mfa_enabled\": true,\n          \"banner\": \"string\",\n          \"accent_color\": 8872,\n          \"locale\": \"string\",\n          \"verified\": true,\n          \"email\": \"string\",\n          \"flags\": 2260,\n          \"premium_type\": 2014,\n          \"public_flags\": 6320,\n          \"avatar_decoration_data\": {}\n        },\n        \"require_colons\": false,\n        \"managed\": true,\n        \"animated\": false,\n        \"available\": false\n      }\n    ],\n    \"features\": [\n      \"string\",\n      \"string\"\n    ],\n    \"mfa_level\": 3717,\n    \"system_channel_id\": \"949948\",\n    \"system_channel_flags\": 7395,\n    \"rules_channel_id\": \"2574676\",\n    \"max_presences\": 5505,\n    \"max_members\": 9676,\n    \"vanity_url_code\": \"string\",\n    \"description\": \"string\",\n    \"banner\": \"string\",\n    \"premium_tier\": 3319,\n    \"premium_subscription_count\": 7167,\n    \"preferred_locale\": \"string\",\n    \"public_updates_channel_id\": \"1671604\",\n    \"nsfw_level\": 4313,\n    \"stickers\": [\n      {\n        \"id\": \"4556333732\",\n        \"name\": \"string\",\n        \"type\": 8701,\n        \"format_type\": 8636,\n        \"pack_id\": \"4370555074\",\n        \"description\": \"string\",\n        \"tags\": \"string\",\n        \"available\": false,\n        \"guild_id\": \"616\",\n        \"user\": {\n          \"id\": \"337121101\",\n          \"username\": \"string\",\n          \"discriminator\": \"string\",\n          \"global_name\": \"string\",\n          \"avatar\": \"string\",\n          \"bot\": false,\n          \"system\": false,\n          \"mfa_enabled\": true,\n          \"banner\": \"string\",\n          \"accent_color\": 6647,\n          \"locale\": \"string\",\n          \"verified\": true,\n          \"email\": \"string\",\n          \"flags\": 7871,\n          \"premium_type\": 7182,\n          \"public_flags\": 1204,\n          \"avatar_decoration_data\": {}\n        },\n        \"sort_value\": 4299\n      },\n      {\n        \"id\": \"00\",\n        \"name\": \"string\",\n        \"type\": 5646,\n        \"format_type\": 4346,\n        \"pack_id\": \"81\",\n        \"description\": \"string\",\n        \"tags\": \"string\",\n        \"available\": false,\n        \"guild_id\": \"733911\",\n        \"user\": {\n          \"id\": \"80349\",\n          \"username\": \"string\",\n          \"discriminator\": \"string\",\n          \"global_name\": \"string\",\n          \"avatar\": \"string\",\n          \"bot\": true,\n          \"system\": false,\n          \"mfa_enabled\": true,\n          \"banner\": \"string\",\n          \"accent_color\": 937,\n          \"locale\": \"string\",\n          \"verified\": false,\n          \"email\": \"string\",\n          \"flags\": 3592,\n          \"premium_type\": 4705,\n          \"public_flags\": 4117,\n          \"avatar_decoration_data\": {}\n        },\n        \"sort_value\": 5272\n      }\n    ],\n    \"premium_progress_bar_enabled\": true,\n    \"safety_alerts_channel_id\": \"68660562575\"\n  },\n  \"channel\": {\n    \"id\": \"9\",\n    \"type\": 9094,\n    \"guild_id\": \"17518355\",\n    \"position\": 8979,\n    \"permission_overwrites\": [\n      {\n        \"id\": \"9\",\n        \"type\": 6513,\n        \"allow\": \"string\",\n        \"deny\": \"string\"\n      },\n      {\n        \"id\": \"206\",\n        \"type\": 4762,\n        \"allow\": \"string\",\n        \"deny\": \"string\"\n      }\n    ],\n    \"name\": \"string\",\n    \"topic\": \"string\",\n    \"nsfw\": true,\n    \"last_message_id\": \"176332\",\n    \"bitrate\": 9821,\n    \"user_limit\": 8132,\n    \"rate_limit_per_user\": 6744,\n    \"recipients\": [\n      {\n        \"id\": \"3\",\n        \"username\": \"string\",\n        \"discriminator\": \"string\",\n        \"global_name\": \"string\",\n        \"avatar\": \"string\",\n        \"bot\": true,\n        \"system\": true,\n        \"mfa_enabled\": false,\n        \"banner\": \"string\",\n        \"accent_color\": 4897,\n        \"locale\": \"string\",\n        \"verified\": true,\n        \"email\": \"string\",\n        \"flags\": 6538,\n        \"premium_type\": 268,\n        \"public_flags\": 3671,\n        \"avatar_decoration_data\": {}\n      },\n      {\n        \"id\": \"69163766\",\n        \"username\": \"string\",\n        \"discriminator\": \"string\",\n        \"global_name\": \"string\",\n        \"avatar\": \"string\",\n        \"bot\": true,\n        \"system\": false,\n        \"mfa_enabled\": false,\n        \"banner\": \"string\",\n        \"accent_color\": 1107,\n        \"locale\": \"string\",\n        \"verified\": false,\n        \"email\": \"string\",\n        \"flags\": 7186,\n        \"premium_type\": 8514,\n        \"public_flags\": 8365,\n        \"avatar_decoration_data\": {}\n      }\n    ],\n    \"icon\": \"string\",\n    \"owner_id\": \"4062024\",\n    \"parent_id\": \"85113\",\n    \"last_pin_timestamp\": \"1960-06-06T06:05:47.686Z\",\n    \"rtc_region\": \"string\",\n    \"video_quality_mode\": 2124,\n    \"message_count\": 1617,\n    \"member_count\": 1444,\n    \"thread_metadata\": {\n      \"archived\": false,\n      \"auto_archive_duration\": 933,\n      \"archive_timestamp\": \"1980-03-13T16:23:54.251Z\",\n      \"locked\": false,\n      \"invitable\": false,\n      \"create_timestamp\": \"1955-09-08T21:54:44.749Z\"\n    },\n    \"default_auto_archive_duration\": 3912,\n    \"flags\": 2694,\n    \"total_message_sent\": 9044\n  },\n  \"inviter\": {\n    \"id\": \"646441575\",\n    \"username\": \"string\",\n    \"discriminator\": \"string\",\n    \"global_name\": \"string\",\n    \"avatar\": \"string\",\n    \"bot\": false,\n    \"system\": false,\n    \"mfa_enabled\": false,\n    \"banner\": \"string\",\n    \"accent_color\": 5985,\n    \"locale\": \"string\",\n    \"verified\": false,\n    \"email\": \"string\",\n    \"flags\": 9788,\n    \"premium_type\": 2880,\n    \"public_flags\": 7377,\n    \"avatar_decoration_data\": {}\n  },\n  \"target_type\": 9601,\n  \"target_user\": {\n    \"id\": \"251\",\n    \"username\": \"string\",\n    \"discriminator\": \"string\",\n    \"global_name\": \"string\",\n    \"avatar\": \"string\",\n    \"bot\": false,\n    \"system\": false,\n    \"mfa_enabled\": false,\n    \"banner\": \"string\",\n    \"accent_color\": 6102,\n    \"locale\": \"string\",\n    \"verified\": false,\n    \"email\": \"string\",\n    \"flags\": 3104,\n    \"premium_type\": 307,\n    \"public_flags\": 3265,\n    \"avatar_decoration_data\": {}\n  },\n  \"approximate_presence_count\": 3694,\n  \"approximate_member_count\": 7397,\n  \"expires_at\": \"1984-02-07T08:01:30.887Z\",\n  \"uses\": 2733,\n  \"max_uses\": 4431,\n  \"max_age\": 2541,\n  \"temporary\": true,\n  \"created_at\": \"2000-04-21T17:33:12.999Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c833ca48-355e-4e5d-8622-bd5b8eb980ba",
+              "name": "Client error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "channels",
+                    ":channel_id",
+                    "invites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channel_id",
+                      "description": "(Required) The ID of the channel (Snowflake)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"max_age\": 86400,\n  \"max_uses\": 0,\n  \"temporary\": false,\n  \"unique\": false,\n  \"target_type\": \"<integer>\",\n  \"target_user_id\": \"2891\",\n  \"target_application_id\": \"2882\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 7899,\n  \"message\": \"string\",\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d9125abc-ab3c-4b5a-aafd-489c45b3f6dc",
+          "name": "Discord List guild invites",
+          "request": {
+            "name": "Discord List guild invites",
+            "description": {
+              "content": "Returns a list of invite objects for the guild.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "guilds",
+                ":guild_id",
+                "invites"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "guild_id",
+                  "description": "(Required) The ID of the guild (Snowflake)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "36986918-befe-4d8d-a918-a257d6c154d4",
+              "name": "List of invite objects",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "guilds",
+                    ":guild_id",
+                    "invites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "guild_id",
+                      "description": "(Required) The ID of the guild (Snowflake)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"code\": \"string\",\n    \"guild\": {\n      \"id\": \"16\",\n      \"name\": \"string\",\n      \"icon\": \"string\",\n      \"icon_hash\": \"string\",\n      \"splash\": \"string\",\n      \"discovery_splash\": \"string\",\n      \"owner\": true,\n      \"owner_id\": \"210\",\n      \"permissions\": \"string\",\n      \"afk_channel_id\": \"14315238\",\n      \"afk_timeout\": 4574,\n      \"verification_level\": 4519,\n      \"default_message_notifications\": 4395,\n      \"explicit_content_filter\": 8281,\n      \"roles\": [\n        {\n          \"id\": \"141892\",\n          \"name\": \"string\",\n          \"color\": 1018,\n          \"hoist\": false,\n          \"position\": 8228,\n          \"permissions\": \"string\",\n          \"managed\": true,\n          \"mentionable\": false,\n          \"icon\": \"string\",\n          \"unicode_emoji\": \"string\",\n          \"tags\": {\n            \"bot_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"integration_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"premium_subscriber\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"subscription_listing_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"available_for_purchase\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"guild_connections\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"flags\": 6469\n        },\n        {\n          \"id\": \"7284970\",\n          \"name\": \"string\",\n          \"color\": 2508,\n          \"hoist\": false,\n          \"position\": 9820,\n          \"permissions\": \"string\",\n          \"managed\": true,\n          \"mentionable\": false,\n          \"icon\": \"string\",\n          \"unicode_emoji\": \"string\",\n          \"tags\": {\n            \"bot_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"integration_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"premium_subscriber\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"subscription_listing_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"available_for_purchase\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"guild_connections\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"flags\": 979\n        }\n      ],\n      \"emojis\": [\n        {\n          \"id\": \"955\",\n          \"name\": \"string\",\n          \"roles\": [\n            \"string\",\n            \"string\"\n          ],\n          \"user\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"username\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"discriminator\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"global_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"avatar\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bot\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"system\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mfa_enabled\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"banner\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"accent_color\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"locale\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"verified\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"email\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"flags\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"premium_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"public_flags\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"avatar_decoration_data\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"require_colons\": false,\n          \"managed\": false,\n          \"animated\": true,\n          \"available\": true\n        },\n        {\n          \"id\": \"7964171\",\n          \"name\": \"string\",\n          \"roles\": [\n            \"string\",\n            \"string\"\n          ],\n          \"user\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"username\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"discriminator\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"global_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"avatar\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bot\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"system\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mfa_enabled\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"banner\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"accent_color\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"locale\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"verified\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"email\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"flags\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"premium_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"public_flags\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"avatar_decoration_data\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"require_colons\": false,\n          \"managed\": false,\n          \"animated\": true,\n          \"available\": true\n        }\n      ],\n      \"features\": [\n        \"string\",\n        \"string\"\n      ],\n      \"mfa_level\": 4593,\n      \"system_channel_id\": \"2\",\n      \"system_channel_flags\": 2750,\n      \"rules_channel_id\": \"39149\",\n      \"max_presences\": 1328,\n      \"max_members\": 6142,\n      \"vanity_url_code\": \"string\",\n      \"description\": \"string\",\n      \"banner\": \"string\",\n      \"premium_tier\": 8627,\n      \"premium_subscription_count\": 7092,\n      \"preferred_locale\": \"string\",\n      \"public_updates_channel_id\": \"5\",\n      \"nsfw_level\": 4552,\n      \"stickers\": [\n        {\n          \"id\": \"9052\",\n          \"name\": \"string\",\n          \"type\": 3964,\n          \"format_type\": 833,\n          \"pack_id\": \"4414923\",\n          \"description\": \"string\",\n          \"tags\": \"string\",\n          \"available\": true,\n          \"guild_id\": \"283\",\n          \"user\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"username\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"discriminator\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"global_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"avatar\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bot\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"system\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mfa_enabled\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"banner\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"accent_color\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"locale\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"verified\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"email\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"flags\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"premium_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"public_flags\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"avatar_decoration_data\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"sort_value\": 1656\n        },\n        {\n          \"id\": \"45226845\",\n          \"name\": \"string\",\n          \"type\": 2757,\n          \"format_type\": 3777,\n          \"pack_id\": \"9524964566\",\n          \"description\": \"string\",\n          \"tags\": \"string\",\n          \"available\": true,\n          \"guild_id\": \"1\",\n          \"user\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"username\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"discriminator\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"global_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"avatar\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bot\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"system\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mfa_enabled\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"banner\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"accent_color\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"locale\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"verified\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"email\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"flags\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"premium_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"public_flags\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"avatar_decoration_data\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"sort_value\": 9965\n        }\n      ],\n      \"premium_progress_bar_enabled\": true,\n      \"safety_alerts_channel_id\": \"12693200481\"\n    },\n    \"channel\": {\n      \"id\": \"40\",\n      \"type\": 9436,\n      \"guild_id\": \"43\",\n      \"position\": 3193,\n      \"permission_overwrites\": [\n        {\n          \"id\": \"073\",\n          \"type\": 7279,\n          \"allow\": \"string\",\n          \"deny\": \"string\"\n        },\n        {\n          \"id\": \"8361312316\",\n          \"type\": 1138,\n          \"allow\": \"string\",\n          \"deny\": \"string\"\n        }\n      ],\n      \"name\": \"string\",\n      \"topic\": \"string\",\n      \"nsfw\": true,\n      \"last_message_id\": \"6\",\n      \"bitrate\": 2705,\n      \"user_limit\": 1323,\n      \"rate_limit_per_user\": 1120,\n      \"recipients\": [\n        {\n          \"id\": \"3831410072\",\n          \"username\": \"string\",\n          \"discriminator\": \"string\",\n          \"global_name\": \"string\",\n          \"avatar\": \"string\",\n          \"bot\": true,\n          \"system\": false,\n          \"mfa_enabled\": true,\n          \"banner\": \"string\",\n          \"accent_color\": 5859,\n          \"locale\": \"string\",\n          \"verified\": true,\n          \"email\": \"string\",\n          \"flags\": 6613,\n          \"premium_type\": 4590,\n          \"public_flags\": 4726,\n          \"avatar_decoration_data\": {}\n        },\n        {\n          \"id\": \"8721150\",\n          \"username\": \"string\",\n          \"discriminator\": \"string\",\n          \"global_name\": \"string\",\n          \"avatar\": \"string\",\n          \"bot\": false,\n          \"system\": true,\n          \"mfa_enabled\": true,\n          \"banner\": \"string\",\n          \"accent_color\": 6164,\n          \"locale\": \"string\",\n          \"verified\": true,\n          \"email\": \"string\",\n          \"flags\": 3692,\n          \"premium_type\": 8021,\n          \"public_flags\": 3485,\n          \"avatar_decoration_data\": {}\n        }\n      ],\n      \"icon\": \"string\",\n      \"owner_id\": \"228999574\",\n      \"parent_id\": \"35865\",\n      \"last_pin_timestamp\": \"1995-11-04T04:48:38.143Z\",\n      \"rtc_region\": \"string\",\n      \"video_quality_mode\": 7131,\n      \"message_count\": 8768,\n      \"member_count\": 4721,\n      \"thread_metadata\": {\n        \"archived\": true,\n        \"auto_archive_duration\": 3330,\n        \"archive_timestamp\": \"1973-12-24T22:27:58.460Z\",\n        \"locked\": true,\n        \"invitable\": false,\n        \"create_timestamp\": \"1978-08-27T10:23:16.837Z\"\n      },\n      \"default_auto_archive_duration\": 5024,\n      \"flags\": 5345,\n      \"total_message_sent\": 4847\n    },\n    \"inviter\": {\n      \"id\": \"933627\",\n      \"username\": \"string\",\n      \"discriminator\": \"string\",\n      \"global_name\": \"string\",\n      \"avatar\": \"string\",\n      \"bot\": false,\n      \"system\": false,\n      \"mfa_enabled\": true,\n      \"banner\": \"string\",\n      \"accent_color\": 5427,\n      \"locale\": \"string\",\n      \"verified\": false,\n      \"email\": \"string\",\n      \"flags\": 5809,\n      \"premium_type\": 3182,\n      \"public_flags\": 8838,\n      \"avatar_decoration_data\": {}\n    },\n    \"target_type\": 4523,\n    \"target_user\": {\n      \"id\": \"79\",\n      \"username\": \"string\",\n      \"discriminator\": \"string\",\n      \"global_name\": \"string\",\n      \"avatar\": \"string\",\n      \"bot\": false,\n      \"system\": true,\n      \"mfa_enabled\": true,\n      \"banner\": \"string\",\n      \"accent_color\": 6452,\n      \"locale\": \"string\",\n      \"verified\": true,\n      \"email\": \"string\",\n      \"flags\": 4242,\n      \"premium_type\": 7951,\n      \"public_flags\": 1685,\n      \"avatar_decoration_data\": {}\n    },\n    \"approximate_presence_count\": 3284,\n    \"approximate_member_count\": 6798,\n    \"expires_at\": \"1977-03-11T11:49:30.088Z\",\n    \"uses\": 7517,\n    \"max_uses\": 3531,\n    \"max_age\": 6617,\n    \"temporary\": true,\n    \"created_at\": \"1947-02-17T03:35:04.828Z\"\n  },\n  {\n    \"code\": \"string\",\n    \"guild\": {\n      \"id\": \"9028\",\n      \"name\": \"string\",\n      \"icon\": \"string\",\n      \"icon_hash\": \"string\",\n      \"splash\": \"string\",\n      \"discovery_splash\": \"string\",\n      \"owner\": false,\n      \"owner_id\": \"6\",\n      \"permissions\": \"string\",\n      \"afk_channel_id\": \"621683829\",\n      \"afk_timeout\": 3144,\n      \"verification_level\": 5224,\n      \"default_message_notifications\": 3503,\n      \"explicit_content_filter\": 2315,\n      \"roles\": [\n        {\n          \"id\": \"275343\",\n          \"name\": \"string\",\n          \"color\": 1582,\n          \"hoist\": true,\n          \"position\": 8737,\n          \"permissions\": \"string\",\n          \"managed\": true,\n          \"mentionable\": false,\n          \"icon\": \"string\",\n          \"unicode_emoji\": \"string\",\n          \"tags\": {\n            \"bot_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"integration_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"premium_subscriber\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"subscription_listing_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"available_for_purchase\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"guild_connections\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"flags\": 3067\n        },\n        {\n          \"id\": \"5710649\",\n          \"name\": \"string\",\n          \"color\": 2205,\n          \"hoist\": false,\n          \"position\": 4149,\n          \"permissions\": \"string\",\n          \"managed\": false,\n          \"mentionable\": false,\n          \"icon\": \"string\",\n          \"unicode_emoji\": \"string\",\n          \"tags\": {\n            \"bot_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"integration_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"premium_subscriber\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"subscription_listing_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"available_for_purchase\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"guild_connections\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"flags\": 9040\n        }\n      ],\n      \"emojis\": [\n        {\n          \"id\": \"714050771\",\n          \"name\": \"string\",\n          \"roles\": [\n            \"string\",\n            \"string\"\n          ],\n          \"user\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"username\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"discriminator\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"global_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"avatar\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bot\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"system\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mfa_enabled\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"banner\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"accent_color\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"locale\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"verified\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"email\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"flags\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"premium_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"public_flags\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"avatar_decoration_data\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"require_colons\": false,\n          \"managed\": true,\n          \"animated\": true,\n          \"available\": false\n        },\n        {\n          \"id\": \"99088\",\n          \"name\": \"string\",\n          \"roles\": [\n            \"string\",\n            \"string\"\n          ],\n          \"user\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"username\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"discriminator\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"global_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"avatar\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bot\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"system\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mfa_enabled\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"banner\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"accent_color\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"locale\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"verified\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"email\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"flags\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"premium_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"public_flags\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"avatar_decoration_data\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"require_colons\": true,\n          \"managed\": false,\n          \"animated\": false,\n          \"available\": true\n        }\n      ],\n      \"features\": [\n        \"string\",\n        \"string\"\n      ],\n      \"mfa_level\": 2043,\n      \"system_channel_id\": \"100\",\n      \"system_channel_flags\": 1768,\n      \"rules_channel_id\": \"29\",\n      \"max_presences\": 7185,\n      \"max_members\": 4192,\n      \"vanity_url_code\": \"string\",\n      \"description\": \"string\",\n      \"banner\": \"string\",\n      \"premium_tier\": 5218,\n      \"premium_subscription_count\": 2977,\n      \"preferred_locale\": \"string\",\n      \"public_updates_channel_id\": \"8042\",\n      \"nsfw_level\": 6785,\n      \"stickers\": [\n        {\n          \"id\": \"21055641\",\n          \"name\": \"string\",\n          \"type\": 4860,\n          \"format_type\": 9488,\n          \"pack_id\": \"2471931320\",\n          \"description\": \"string\",\n          \"tags\": \"string\",\n          \"available\": false,\n          \"guild_id\": \"9905\",\n          \"user\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"username\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"discriminator\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"global_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"avatar\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bot\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"system\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mfa_enabled\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"banner\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"accent_color\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"locale\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"verified\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"email\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"flags\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"premium_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"public_flags\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"avatar_decoration_data\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"sort_value\": 7647\n        },\n        {\n          \"id\": \"799\",\n          \"name\": \"string\",\n          \"type\": 6460,\n          \"format_type\": 145,\n          \"pack_id\": \"844636\",\n          \"description\": \"string\",\n          \"tags\": \"string\",\n          \"available\": false,\n          \"guild_id\": \"33999907468\",\n          \"user\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"username\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"discriminator\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"global_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"avatar\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bot\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"system\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mfa_enabled\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"banner\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"accent_color\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"locale\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"verified\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"email\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"flags\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"premium_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"public_flags\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"avatar_decoration_data\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"sort_value\": 7948\n        }\n      ],\n      \"premium_progress_bar_enabled\": false,\n      \"safety_alerts_channel_id\": \"1\"\n    },\n    \"channel\": {\n      \"id\": \"690\",\n      \"type\": 2670,\n      \"guild_id\": \"46338381722\",\n      \"position\": 5753,\n      \"permission_overwrites\": [\n        {\n          \"id\": \"09542\",\n          \"type\": 2857,\n          \"allow\": \"string\",\n          \"deny\": \"string\"\n        },\n        {\n          \"id\": \"99105236928\",\n          \"type\": 1085,\n          \"allow\": \"string\",\n          \"deny\": \"string\"\n        }\n      ],\n      \"name\": \"string\",\n      \"topic\": \"string\",\n      \"nsfw\": false,\n      \"last_message_id\": \"81508067508\",\n      \"bitrate\": 5892,\n      \"user_limit\": 6784,\n      \"rate_limit_per_user\": 690,\n      \"recipients\": [\n        {\n          \"id\": \"97907716\",\n          \"username\": \"string\",\n          \"discriminator\": \"string\",\n          \"global_name\": \"string\",\n          \"avatar\": \"string\",\n          \"bot\": true,\n          \"system\": false,\n          \"mfa_enabled\": false,\n          \"banner\": \"string\",\n          \"accent_color\": 914,\n          \"locale\": \"string\",\n          \"verified\": true,\n          \"email\": \"string\",\n          \"flags\": 9917,\n          \"premium_type\": 1170,\n          \"public_flags\": 1080,\n          \"avatar_decoration_data\": {}\n        },\n        {\n          \"id\": \"7751733\",\n          \"username\": \"string\",\n          \"discriminator\": \"string\",\n          \"global_name\": \"string\",\n          \"avatar\": \"string\",\n          \"bot\": true,\n          \"system\": true,\n          \"mfa_enabled\": true,\n          \"banner\": \"string\",\n          \"accent_color\": 7985,\n          \"locale\": \"string\",\n          \"verified\": false,\n          \"email\": \"string\",\n          \"flags\": 6813,\n          \"premium_type\": 6447,\n          \"public_flags\": 782,\n          \"avatar_decoration_data\": {}\n        }\n      ],\n      \"icon\": \"string\",\n      \"owner_id\": \"8983\",\n      \"parent_id\": \"513873\",\n      \"last_pin_timestamp\": \"1980-05-09T04:18:44.444Z\",\n      \"rtc_region\": \"string\",\n      \"video_quality_mode\": 1346,\n      \"message_count\": 2612,\n      \"member_count\": 4289,\n      \"thread_metadata\": {\n        \"archived\": true,\n        \"auto_archive_duration\": 5459,\n        \"archive_timestamp\": \"1964-11-12T02:29:54.686Z\",\n        \"locked\": false,\n        \"invitable\": true,\n        \"create_timestamp\": \"2016-03-29T05:45:11.181Z\"\n      },\n      \"default_auto_archive_duration\": 9473,\n      \"flags\": 4637,\n      \"total_message_sent\": 5365\n    },\n    \"inviter\": {\n      \"id\": \"06130023\",\n      \"username\": \"string\",\n      \"discriminator\": \"string\",\n      \"global_name\": \"string\",\n      \"avatar\": \"string\",\n      \"bot\": false,\n      \"system\": true,\n      \"mfa_enabled\": false,\n      \"banner\": \"string\",\n      \"accent_color\": 5337,\n      \"locale\": \"string\",\n      \"verified\": false,\n      \"email\": \"string\",\n      \"flags\": 512,\n      \"premium_type\": 1129,\n      \"public_flags\": 9623,\n      \"avatar_decoration_data\": {}\n    },\n    \"target_type\": 9232,\n    \"target_user\": {\n      \"id\": \"755720825\",\n      \"username\": \"string\",\n      \"discriminator\": \"string\",\n      \"global_name\": \"string\",\n      \"avatar\": \"string\",\n      \"bot\": true,\n      \"system\": true,\n      \"mfa_enabled\": false,\n      \"banner\": \"string\",\n      \"accent_color\": 4349,\n      \"locale\": \"string\",\n      \"verified\": false,\n      \"email\": \"string\",\n      \"flags\": 614,\n      \"premium_type\": 8184,\n      \"public_flags\": 792,\n      \"avatar_decoration_data\": {}\n    },\n    \"approximate_presence_count\": 8767,\n    \"approximate_member_count\": 9324,\n    \"expires_at\": \"1998-12-31T09:48:18.749Z\",\n    \"uses\": 7709,\n    \"max_uses\": 9910,\n    \"max_age\": 1809,\n    \"temporary\": false,\n    \"created_at\": \"1973-01-05T10:03:56.017Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f21e2bf1-68a4-4b74-9dff-afa2c050d55a",
+              "name": "Client error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "guilds",
+                    ":guild_id",
+                    "invites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "guild_id",
+                      "description": "(Required) The ID of the guild (Snowflake)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 7899,\n  \"message\": \"string\",\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://discord.com/api/v10",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4beebf44-71f0-44a1-b476-1e9381afc3a9",
+    "name": "Discord Interactions Application Commands Invites API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Discord Interactions API enables applications to create and respond to application commands (slash commands), message components, and modals. It supports both Gateway-based and webhook-based interaction handling, allowing bots to build rich, interactive user experiences within Discord.\n\nContact Support:\n Name: Discord Support\n Email: support@discord.com",
+      "type": "text/plain"
+    }
+  }
+}

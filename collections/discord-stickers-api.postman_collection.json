@@ -1,0 +1,466 @@
+{
+  "item": [
+    {
+      "id": "0e62f7d8-9743-47ed-9edc-a8b750e6e7cf",
+      "name": "Stickers",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "529068f4-2632-4002-a0a3-4d6cbdf83aa8",
+          "name": "get sticker",
+          "request": {
+            "name": "get sticker",
+            "description": {},
+            "url": {
+              "path": [
+                "stickers",
+                ":sticker_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<snowflake>",
+                  "key": "sticker_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "bc6dacb5-bcb0-40e5-81a0-f5dd068bad58",
+              "name": "200 response for get_sticker",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stickers",
+                    ":sticker_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<snowflake>",
+                      "key": "sticker_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"0\",\n  \"name\": \"string\",\n  \"tags\": \"string\",\n  \"type\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  },\n  \"available\": true,\n  \"guild_id\": \"42513717291\",\n  \"format_type\": null,\n  \"description\": \"string\",\n  \"user\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5ae80794-10a3-481b-81ee-70abe141d3e5",
+              "name": "Client error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stickers",
+                    ":sticker_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<snowflake>",
+                      "key": "sticker_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5721,\n  \"message\": \"string\",\n  \"errors\": {\n    \"key_0\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    },\n    \"key_1\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    },\n    \"key_2\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dbf893af-ac9b-4bed-8447-736494c5289a",
+          "name": "Discord List guild stickers",
+          "request": {
+            "name": "Discord List guild stickers",
+            "description": {
+              "content": "Returns an array of sticker objects for the given guild.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "guilds",
+                ":guild_id",
+                "stickers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "guild_id",
+                  "description": "(Required) The ID of the guild (Snowflake)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "32ad3383-36b9-4285-a4fe-921f575cca21",
+              "name": "List of sticker objects",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "guilds",
+                    ":guild_id",
+                    "stickers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "guild_id",
+                      "description": "(Required) The ID of the guild (Snowflake)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"8\",\n    \"name\": \"string\",\n    \"type\": 2855,\n    \"format_type\": 7589,\n    \"pack_id\": \"9154014\",\n    \"description\": \"string\",\n    \"tags\": \"string\",\n    \"available\": true,\n    \"guild_id\": \"100190\",\n    \"user\": {\n      \"id\": \"42\",\n      \"username\": \"string\",\n      \"discriminator\": \"string\",\n      \"global_name\": \"string\",\n      \"avatar\": \"string\",\n      \"bot\": false,\n      \"system\": true,\n      \"mfa_enabled\": false,\n      \"banner\": \"string\",\n      \"accent_color\": 5792,\n      \"locale\": \"string\",\n      \"verified\": true,\n      \"email\": \"string\",\n      \"flags\": 2546,\n      \"premium_type\": 7742,\n      \"public_flags\": 5006,\n      \"avatar_decoration_data\": {}\n    },\n    \"sort_value\": 2405\n  },\n  {\n    \"id\": \"75287\",\n    \"name\": \"string\",\n    \"type\": 7654,\n    \"format_type\": 8193,\n    \"pack_id\": \"9\",\n    \"description\": \"string\",\n    \"tags\": \"string\",\n    \"available\": false,\n    \"guild_id\": \"39870091\",\n    \"user\": {\n      \"id\": \"42\",\n      \"username\": \"string\",\n      \"discriminator\": \"string\",\n      \"global_name\": \"string\",\n      \"avatar\": \"string\",\n      \"bot\": true,\n      \"system\": true,\n      \"mfa_enabled\": false,\n      \"banner\": \"string\",\n      \"accent_color\": 2005,\n      \"locale\": \"string\",\n      \"verified\": true,\n      \"email\": \"string\",\n      \"flags\": 5455,\n      \"premium_type\": 5747,\n      \"public_flags\": 2688,\n      \"avatar_decoration_data\": {}\n    },\n    \"sort_value\": 5624\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9d33dabd-487b-4596-84ea-b0d18a71f3d3",
+              "name": "Client error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "guilds",
+                    ":guild_id",
+                    "stickers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "guild_id",
+                      "description": "(Required) The ID of the guild (Snowflake)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 3615,\n  \"message\": \"string\",\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "320ab804-3162-44e3-9058-d5fbd91f7df9",
+          "name": "Discord List sticker packs",
+          "request": {
+            "name": "Discord List sticker packs",
+            "description": {
+              "content": "Returns the list of sticker packs available to Nitro subscribers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sticker-packs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2cabd88d-503e-4b60-8e0a-c69f272eb381",
+              "name": "List of sticker pack objects",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sticker-packs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sticker_packs\": [\n    {\n      \"id\": \"99\",\n      \"stickers\": [\n        {\n          \"id\": \"9910\",\n          \"name\": \"string\",\n          \"type\": 8911,\n          \"format_type\": 7309,\n          \"pack_id\": \"81\",\n          \"description\": \"string\",\n          \"tags\": \"string\",\n          \"available\": false,\n          \"guild_id\": \"5\",\n          \"user\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"username\": \"string\",\n            \"discriminator\": \"string\",\n            \"global_name\": \"string\",\n            \"avatar\": \"string\",\n            \"bot\": false,\n            \"system\": true,\n            \"mfa_enabled\": true,\n            \"banner\": \"string\",\n            \"accent_color\": 7638,\n            \"locale\": \"string\",\n            \"verified\": true,\n            \"email\": \"string\",\n            \"flags\": 3150,\n            \"premium_type\": 525,\n            \"public_flags\": 9446,\n            \"avatar_decoration_data\": {}\n          },\n          \"sort_value\": 340\n        },\n        {\n          \"id\": \"9720716\",\n          \"name\": \"string\",\n          \"type\": 4419,\n          \"format_type\": 661,\n          \"pack_id\": \"7679964\",\n          \"description\": \"string\",\n          \"tags\": \"string\",\n          \"available\": false,\n          \"guild_id\": \"14563943\",\n          \"user\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"username\": \"string\",\n            \"discriminator\": \"string\",\n            \"global_name\": \"string\",\n            \"avatar\": \"string\",\n            \"bot\": true,\n            \"system\": false,\n            \"mfa_enabled\": true,\n            \"banner\": \"string\",\n            \"accent_color\": 2544,\n            \"locale\": \"string\",\n            \"verified\": true,\n            \"email\": \"string\",\n            \"flags\": 7999,\n            \"premium_type\": 4087,\n            \"public_flags\": 2049,\n            \"avatar_decoration_data\": {}\n          },\n          \"sort_value\": 6697\n        }\n      ],\n      \"name\": \"string\",\n      \"sku_id\": \"0054119\",\n      \"cover_sticker_id\": \"49\",\n      \"description\": \"string\",\n      \"banner_asset_id\": \"83460433\"\n    },\n    {\n      \"id\": \"011166923\",\n      \"stickers\": [\n        {\n          \"id\": \"0\",\n          \"name\": \"string\",\n          \"type\": 9175,\n          \"format_type\": 3087,\n          \"pack_id\": \"65617495066\",\n          \"description\": \"string\",\n          \"tags\": \"string\",\n          \"available\": false,\n          \"guild_id\": \"4803\",\n          \"user\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"username\": \"string\",\n            \"discriminator\": \"string\",\n            \"global_name\": \"string\",\n            \"avatar\": \"string\",\n            \"bot\": true,\n            \"system\": true,\n            \"mfa_enabled\": false,\n            \"banner\": \"string\",\n            \"accent_color\": 294,\n            \"locale\": \"string\",\n            \"verified\": false,\n            \"email\": \"string\",\n            \"flags\": 3313,\n            \"premium_type\": 6731,\n            \"public_flags\": 2459,\n            \"avatar_decoration_data\": {}\n          },\n          \"sort_value\": 7152\n        },\n        {\n          \"id\": \"39956763719\",\n          \"name\": \"string\",\n          \"type\": 4770,\n          \"format_type\": 8754,\n          \"pack_id\": \"10893\",\n          \"description\": \"string\",\n          \"tags\": \"string\",\n          \"available\": true,\n          \"guild_id\": \"0292\",\n          \"user\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"username\": \"string\",\n            \"discriminator\": \"string\",\n            \"global_name\": \"string\",\n            \"avatar\": \"string\",\n            \"bot\": false,\n            \"system\": false,\n            \"mfa_enabled\": false,\n            \"banner\": \"string\",\n            \"accent_color\": 8996,\n            \"locale\": \"string\",\n            \"verified\": true,\n            \"email\": \"string\",\n            \"flags\": 6911,\n            \"premium_type\": 2114,\n            \"public_flags\": 7436,\n            \"avatar_decoration_data\": {}\n          },\n          \"sort_value\": 9436\n        }\n      ],\n      \"name\": \"string\",\n      \"sku_id\": \"25020580\",\n      \"cover_sticker_id\": \"843\",\n      \"description\": \"string\",\n      \"banner_asset_id\": \"221\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d748f365-2eb1-4188-90ef-e8733ed7a6f1",
+              "name": "Client error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sticker-packs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 3615,\n  \"message\": \"string\",\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://discord.com/api/v10",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b196b7e2-78dd-4d90-9bda-2544b2406e3f",
+    "name": "Discord Interactions Application Commands Stickers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Discord Interactions API enables applications to create and respond to application commands (slash commands), message components, and modals. It supports both Gateway-based and webhook-based interaction handling, allowing bots to build rich, interactive user experiences within Discord.\n\nContact Support:\n Name: Discord Support\n Email: support@discord.com",
+      "type": "text/plain"
+    }
+  }
+}

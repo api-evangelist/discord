@@ -1,0 +1,247 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Discord Interactions Application Commands Users API",
+    "version": "10"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "list_my_connections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/users/@me/connections",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "create_dm",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://discord.com/api/v10/users/@me/channels",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "list_my_guilds",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/users/@me/guilds",
+            "params": [
+              {
+                "name": "before",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "with_counts",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "get_my_user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/users/@me",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "update_my_user",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://discord.com/api/v10/users/@me",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "get_application_user_role_connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/users/@me/applications/:application_id/role-connection",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "update_application_user_role_connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://discord.com/api/v10/users/@me/applications/:application_id/role-connection",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "get_my_guild_member",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/users/@me/guilds/:guild_id/member",
+            "params": [
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "leave_guild",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://discord.com/api/v10/users/@me/guilds/:guild_id",
+            "params": [
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "get_user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/users/:user_id",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Discord Get current application",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/applications/@me"
+          },
+          "docs": "Returns the application object associated with the requesting bot user."
+        },
+        {
+          "info": {
+            "name": "Discord Edit current application",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://discord.com/api/v10/applications/@me",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Edit properties of the app associated with the requesting bot user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

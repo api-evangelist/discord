@@ -1,0 +1,342 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Discord Interactions Application Commands Messages API",
+    "version": "10"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Messages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Discord List channel messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/channels/:channel_id/messages",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the channel (Snowflake)"
+              },
+              {
+                "name": "around",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns messages for a channel. Requires READ_MESSAGE_HISTORY."
+        },
+        {
+          "info": {
+            "name": "Discord Create message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://discord.com/api/v10/channels/:channel_id/messages",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the channel (Snowflake)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Post a message to a guild text or DM channel."
+        },
+        {
+          "info": {
+            "name": "Discord Get message",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/channels/:channel_id/messages/:message_id",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the channel (Snowflake)"
+              },
+              {
+                "name": "message_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the message (Snowflake)"
+              }
+            ]
+          },
+          "docs": "Returns a specific message in a channel."
+        },
+        {
+          "info": {
+            "name": "Discord Edit message",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://discord.com/api/v10/channels/:channel_id/messages/:message_id",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the channel (Snowflake)"
+              },
+              {
+                "name": "message_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the message (Snowflake)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Edit a previously sent message."
+        },
+        {
+          "info": {
+            "name": "Discord Delete message",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://discord.com/api/v10/channels/:channel_id/messages/:message_id",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the channel (Snowflake)"
+              },
+              {
+                "name": "message_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the message (Snowflake)"
+              }
+            ]
+          },
+          "docs": "Delete a message. Requires MANAGE_MESSAGES for others' messages."
+        },
+        {
+          "info": {
+            "name": "Discord Bulk delete messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://discord.com/api/v10/channels/:channel_id/messages/bulk-delete",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the channel (Snowflake)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete multiple messages in a single request. Requires MANAGE_MESSAGES."
+        },
+        {
+          "info": {
+            "name": "Discord Create reaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://discord.com/api/v10/channels/:channel_id/messages/:message_id/reactions/:emoji_name/@me",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the channel (Snowflake)"
+              },
+              {
+                "name": "message_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the message (Snowflake)"
+              },
+              {
+                "name": "emoji_name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Create a reaction for the message."
+        },
+        {
+          "info": {
+            "name": "Discord Delete own reaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://discord.com/api/v10/channels/:channel_id/messages/:message_id/reactions/:emoji_name/@me",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the channel (Snowflake)"
+              },
+              {
+                "name": "message_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the message (Snowflake)"
+              },
+              {
+                "name": "emoji_name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a reaction the current user has made."
+        },
+        {
+          "info": {
+            "name": "Discord Crosspost message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://discord.com/api/v10/channels/:channel_id/messages/:message_id/crosspost",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the channel (Snowflake)"
+              },
+              {
+                "name": "message_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the message (Snowflake)"
+              }
+            ]
+          },
+          "docs": "Crosspost a message in an Announcement Channel to following channels."
+        },
+        {
+          "info": {
+            "name": "Discord Get pinned messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/channels/:channel_id/pins",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the channel (Snowflake)"
+              }
+            ]
+          },
+          "docs": "Returns all pinned messages in the channel."
+        },
+        {
+          "info": {
+            "name": "Discord Pin message",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://discord.com/api/v10/channels/:channel_id/pins/:message_id",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the channel (Snowflake)"
+              },
+              {
+                "name": "message_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the message (Snowflake)"
+              }
+            ]
+          },
+          "docs": "Pin a message in a channel. Max 50 pins per channel."
+        },
+        {
+          "info": {
+            "name": "Discord Unpin message",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://discord.com/api/v10/channels/:channel_id/pins/:message_id",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the channel (Snowflake)"
+              },
+              {
+                "name": "message_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the message (Snowflake)"
+              }
+            ]
+          },
+          "docs": "Unpin a message in a channel."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,34 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Discord Interactions Application Commands Sticker Packs API",
+    "version": "10"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Sticker Packs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "list_sticker_packs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/sticker-packs"
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

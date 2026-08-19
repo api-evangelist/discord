@@ -1,0 +1,747 @@
+{
+  "item": [
+    {
+      "id": "39344600-ccc4-412b-9480-ed80f606ac24",
+      "name": "Roles",
+      "description": {
+        "content": "Operations on guild roles",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b1b46fa1-1b1c-4043-aeab-bfb6d114d08a",
+          "name": "Discord List guild roles",
+          "request": {
+            "name": "Discord List guild roles",
+            "description": {
+              "content": "Returns a list of role objects for the guild.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "guilds",
+                ":guild_id",
+                "roles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "guild_id",
+                  "description": "(Required) The ID of the guild (Snowflake)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "336912b5-30bf-4b0b-9782-06792aec746a",
+              "name": "List of role objects",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "guilds",
+                    ":guild_id",
+                    "roles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "guild_id",
+                      "description": "(Required) The ID of the guild (Snowflake)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"9681870415\",\n    \"name\": \"string\",\n    \"color\": 5688,\n    \"hoist\": false,\n    \"position\": 6698,\n    \"permissions\": \"string\",\n    \"managed\": true,\n    \"mentionable\": false,\n    \"icon\": \"string\",\n    \"unicode_emoji\": \"string\",\n    \"tags\": {\n      \"bot_id\": \"505858\",\n      \"integration_id\": \"933\",\n      \"premium_subscriber\": null,\n      \"subscription_listing_id\": \"715\",\n      \"available_for_purchase\": null,\n      \"guild_connections\": null\n    },\n    \"flags\": 4957\n  },\n  {\n    \"id\": \"5535622798\",\n    \"name\": \"string\",\n    \"color\": 7434,\n    \"hoist\": true,\n    \"position\": 3835,\n    \"permissions\": \"string\",\n    \"managed\": false,\n    \"mentionable\": true,\n    \"icon\": \"string\",\n    \"unicode_emoji\": \"string\",\n    \"tags\": {\n      \"bot_id\": \"2\",\n      \"integration_id\": \"146360\",\n      \"premium_subscriber\": null,\n      \"subscription_listing_id\": \"086918905\",\n      \"available_for_purchase\": null,\n      \"guild_connections\": null\n    },\n    \"flags\": 1687\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0d6d8dbf-8356-49c8-8d0c-838fa6e8174c",
+              "name": "Client error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "guilds",
+                    ":guild_id",
+                    "roles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "guild_id",
+                      "description": "(Required) The ID of the guild (Snowflake)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2895,\n  \"message\": \"string\",\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fc88017b-bdf7-467b-b2f9-9a448215d2e7",
+          "name": "Discord Create guild role",
+          "request": {
+            "name": "Discord Create guild role",
+            "description": {
+              "content": "Create a new role for the guild.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "guilds",
+                ":guild_id",
+                "roles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "guild_id",
+                  "description": "(Required) The ID of the guild (Snowflake)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"permissions\": \"<string>\",\n  \"color\": 0,\n  \"hoist\": false,\n  \"icon\": \"<string>\",\n  \"unicode_emoji\": \"<string>\",\n  \"mentionable\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0193035b-edc8-4671-a5de-af76c84d4c44",
+              "name": "Role created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "guilds",
+                    ":guild_id",
+                    "roles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "guild_id",
+                      "description": "(Required) The ID of the guild (Snowflake)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"permissions\": \"<string>\",\n  \"color\": 0,\n  \"hoist\": false,\n  \"icon\": \"<string>\",\n  \"unicode_emoji\": \"<string>\",\n  \"mentionable\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"84927541\",\n  \"name\": \"string\",\n  \"color\": 9134,\n  \"hoist\": true,\n  \"position\": 9148,\n  \"permissions\": \"string\",\n  \"managed\": false,\n  \"mentionable\": false,\n  \"icon\": \"string\",\n  \"unicode_emoji\": \"string\",\n  \"tags\": {\n    \"bot_id\": \"8\",\n    \"integration_id\": \"6\",\n    \"premium_subscriber\": null,\n    \"subscription_listing_id\": \"61296\",\n    \"available_for_purchase\": null,\n    \"guild_connections\": null\n  },\n  \"flags\": 4111\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d73ba193-69ba-44c6-a257-7a8131f24d00",
+              "name": "Client error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "guilds",
+                    ":guild_id",
+                    "roles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "guild_id",
+                      "description": "(Required) The ID of the guild (Snowflake)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"permissions\": \"<string>\",\n  \"color\": 0,\n  \"hoist\": false,\n  \"icon\": \"<string>\",\n  \"unicode_emoji\": \"<string>\",\n  \"mentionable\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2895,\n  \"message\": \"string\",\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0e9d3bf2-4819-49df-b6be-2054ed8e1a1f",
+          "name": "Discord Modify guild role",
+          "request": {
+            "name": "Discord Modify guild role",
+            "description": {
+              "content": "Modify a guild role. Returns the updated role.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "guilds",
+                ":guild_id",
+                "roles",
+                ":role_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "guild_id",
+                  "description": "(Required) The ID of the guild (Snowflake)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "role_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"permissions\": \"<string>\",\n  \"color\": 0,\n  \"hoist\": false,\n  \"icon\": \"<string>\",\n  \"unicode_emoji\": \"<string>\",\n  \"mentionable\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "85b04e0e-531e-4617-b30d-c7eb73184ccb",
+              "name": "Updated role",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "guilds",
+                    ":guild_id",
+                    "roles",
+                    ":role_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "guild_id",
+                      "description": "(Required) The ID of the guild (Snowflake)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "role_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"permissions\": \"<string>\",\n  \"color\": 0,\n  \"hoist\": false,\n  \"icon\": \"<string>\",\n  \"unicode_emoji\": \"<string>\",\n  \"mentionable\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"84927541\",\n  \"name\": \"string\",\n  \"color\": 9134,\n  \"hoist\": true,\n  \"position\": 9148,\n  \"permissions\": \"string\",\n  \"managed\": false,\n  \"mentionable\": false,\n  \"icon\": \"string\",\n  \"unicode_emoji\": \"string\",\n  \"tags\": {\n    \"bot_id\": \"8\",\n    \"integration_id\": \"6\",\n    \"premium_subscriber\": null,\n    \"subscription_listing_id\": \"61296\",\n    \"available_for_purchase\": null,\n    \"guild_connections\": null\n  },\n  \"flags\": 4111\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "13db4d84-12cd-424a-987f-4cca84b7b475",
+              "name": "Client error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "guilds",
+                    ":guild_id",
+                    "roles",
+                    ":role_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "guild_id",
+                      "description": "(Required) The ID of the guild (Snowflake)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "role_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"permissions\": \"<string>\",\n  \"color\": 0,\n  \"hoist\": false,\n  \"icon\": \"<string>\",\n  \"unicode_emoji\": \"<string>\",\n  \"mentionable\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2895,\n  \"message\": \"string\",\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9ee7172e-a597-49ac-beaa-3064af5239f0",
+          "name": "Discord Delete guild role",
+          "request": {
+            "name": "Discord Delete guild role",
+            "description": {
+              "content": "Delete a guild role.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "guilds",
+                ":guild_id",
+                "roles",
+                ":role_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "guild_id",
+                  "description": "(Required) The ID of the guild (Snowflake)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "role_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "30bf1619-2663-4ffe-9169-82120de9f3de",
+              "name": "Role deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "guilds",
+                    ":guild_id",
+                    "roles",
+                    ":role_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "guild_id",
+                      "description": "(Required) The ID of the guild (Snowflake)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "role_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1a89119d-dca7-428b-a224-d7eed417bc14",
+              "name": "Client error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "guilds",
+                    ":guild_id",
+                    "roles",
+                    ":role_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "guild_id",
+                      "description": "(Required) The ID of the guild (Snowflake)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "role_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2895,\n  \"message\": \"string\",\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://discord.com/api/v10",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6e39f475-e05e-43f0-aa09-7bcb0514f872",
+    "name": "Discord Interactions Application Commands Roles API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Discord Interactions API enables applications to create and respond to application commands (slash commands), message components, and modals. It supports both Gateway-based and webhook-based interaction handling, allowing bots to build rich, interactive user experiences within Discord.\n\nContact Support:\n Name: Discord Support\n Email: support@discord.com",
+      "type": "text/plain"
+    }
+  }
+}

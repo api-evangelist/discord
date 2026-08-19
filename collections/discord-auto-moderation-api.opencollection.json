@@ -1,0 +1,66 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Discord Interactions Application Commands Auto Moderation API",
+    "version": "10"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Auto Moderation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Discord List auto moderation rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/guilds/:guild_id/auto-moderation/rules",
+            "params": [
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the guild (Snowflake)"
+              }
+            ]
+          },
+          "docs": "Get a list of all rules currently configured for the guild."
+        },
+        {
+          "info": {
+            "name": "Discord Create auto moderation rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://discord.com/api/v10/guilds/:guild_id/auto-moderation/rules",
+            "params": [
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the guild (Snowflake)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new rule for the guild."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

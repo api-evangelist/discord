@@ -1,0 +1,246 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Discord Interactions Application Commands Interaction Responses API",
+    "version": "10"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Interaction Responses",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Discord Create interaction response",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://discord.com/api/v10/interactions/:interaction_id/:interaction_token/callback",
+            "params": [
+              {
+                "name": "interaction_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "interaction_token",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a response to an interaction from the gateway or webhook. Takes an interaction response object."
+        },
+        {
+          "info": {
+            "name": "Discord Get original interaction response",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/webhooks/:application_id/:interaction_token/messages/@original",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the application"
+              },
+              {
+                "name": "interaction_token",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the initial Interaction response."
+        },
+        {
+          "info": {
+            "name": "Discord Edit original interaction response",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://discord.com/api/v10/webhooks/:application_id/:interaction_token/messages/@original",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the application"
+              },
+              {
+                "name": "interaction_token",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Edits the initial Interaction response."
+        },
+        {
+          "info": {
+            "name": "Discord Delete original interaction response",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://discord.com/api/v10/webhooks/:application_id/:interaction_token/messages/@original",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the application"
+              },
+              {
+                "name": "interaction_token",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes the initial Interaction response."
+        },
+        {
+          "info": {
+            "name": "Discord Create followup message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://discord.com/api/v10/webhooks/:application_id/:interaction_token",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the application"
+              },
+              {
+                "name": "interaction_token",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a followup message for an Interaction."
+        },
+        {
+          "info": {
+            "name": "Discord Get followup message",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/webhooks/:application_id/:interaction_token/messages/:message_id",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the application"
+              },
+              {
+                "name": "interaction_token",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "message_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns a followup message for an Interaction."
+        },
+        {
+          "info": {
+            "name": "Discord Edit followup message",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://discord.com/api/v10/webhooks/:application_id/:interaction_token/messages/:message_id",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the application"
+              },
+              {
+                "name": "interaction_token",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "message_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Edits a followup message for an Interaction."
+        },
+        {
+          "info": {
+            "name": "Discord Delete followup message",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://discord.com/api/v10/webhooks/:application_id/:interaction_token/messages/:message_id",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the application"
+              },
+              {
+                "name": "interaction_token",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "message_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes a followup message for an Interaction."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

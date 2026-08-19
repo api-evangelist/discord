@@ -1,0 +1,90 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Discord Interactions Application Commands Emojis API",
+    "version": "10"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Emojis",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Discord List guild emojis",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/guilds/:guild_id/emojis",
+            "params": [
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the guild (Snowflake)"
+              }
+            ]
+          },
+          "docs": "Returns a list of emoji objects for the given guild."
+        },
+        {
+          "info": {
+            "name": "Discord Create guild emoji",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://discord.com/api/v10/guilds/:guild_id/emojis",
+            "params": [
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the guild (Snowflake)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new emoji for the guild."
+        },
+        {
+          "info": {
+            "name": "Discord Get guild emoji",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/guilds/:guild_id/emojis/:emoji_id",
+            "params": [
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the guild (Snowflake)"
+              },
+              {
+                "name": "emoji_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns an emoji object for the given guild and emoji IDs."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

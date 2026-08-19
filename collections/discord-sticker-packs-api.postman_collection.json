@@ -1,0 +1,145 @@
+{
+  "item": [
+    {
+      "id": "83975e15-4709-41ff-91a3-09b1fb0c6c93",
+      "name": "Sticker Packs",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6f9b84c8-3d94-4446-9892-8e15a0ed9726",
+          "name": "list sticker packs",
+          "request": {
+            "name": "list sticker packs",
+            "description": {},
+            "url": {
+              "path": [
+                "sticker-packs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": [
+            {
+              "id": "bec523cd-7bae-4220-b23d-a28df2d08655",
+              "name": "200 response for list_sticker_packs",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sticker-packs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sticker_packs\": [\n    {\n      \"id\": \"0\",\n      \"sku_id\": \"625141354\",\n      \"name\": \"string\",\n      \"stickers\": [\n        {\n          \"id\": \"7674943240\",\n          \"name\": \"string\",\n          \"tags\": \"string\",\n          \"type\": 1,\n          \"pack_id\": \"0\",\n          \"sort_value\": 8279,\n          \"format_type\": null,\n          \"description\": \"string\"\n        },\n        {\n          \"id\": \"0\",\n          \"name\": \"string\",\n          \"tags\": \"string\",\n          \"type\": 1,\n          \"pack_id\": \"0\",\n          \"sort_value\": 1007,\n          \"format_type\": null,\n          \"description\": \"string\"\n        }\n      ],\n      \"description\": \"string\",\n      \"cover_sticker_id\": null,\n      \"banner_asset_id\": null\n    },\n    {\n      \"id\": \"0\",\n      \"sku_id\": \"57165157\",\n      \"name\": \"string\",\n      \"stickers\": [\n        {\n          \"id\": \"2\",\n          \"name\": \"string\",\n          \"tags\": \"string\",\n          \"type\": 1,\n          \"pack_id\": \"7\",\n          \"sort_value\": 4844,\n          \"format_type\": null,\n          \"description\": \"string\"\n        },\n        {\n          \"id\": \"0\",\n          \"name\": \"string\",\n          \"tags\": \"string\",\n          \"type\": 1,\n          \"pack_id\": \"0\",\n          \"sort_value\": 2085,\n          \"format_type\": null,\n          \"description\": \"string\"\n        }\n      ],\n      \"description\": \"string\",\n      \"cover_sticker_id\": null,\n      \"banner_asset_id\": null\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f6c380e0-1401-4b53-9e07-e67741e727ce",
+              "name": "Client error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sticker-packs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 7980,\n  \"message\": \"string\",\n  \"errors\": {\n    \"key_0\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    },\n    \"key_1\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    },\n    \"key_2\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    },\n    \"key_3\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://discord.com/api/v10",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2c6f72bd-f0a2-4864-81db-1a68d8657647",
+    "name": "Discord Interactions Application Commands Sticker Packs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Discord Interactions API enables applications to create and respond to application commands (slash commands), message components, and modals. It supports both Gateway-based and webhook-based interaction handling, allowing bots to build rich, interactive user experiences within Discord.\n\nContact Support:\n Name: Discord Support\n Email: support@discord.com",
+      "type": "text/plain"
+    }
+  }
+}

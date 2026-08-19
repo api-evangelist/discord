@@ -1,7 +1,7 @@
 {
   "item": [
     {
-      "id": "fc2f3d93-45de-4d68-ad8f-17fc2a25c7cd",
+      "id": "a755ca7e-083c-4870-9b2b-64b46a90a7b5",
       "name": "OAuth2",
       "description": {
         "content": "OAuth2 token and authorization operations",
@@ -9,7 +9,7 @@
       },
       "item": [
         {
-          "id": "1b551a92-41d7-4442-8b98-10e0a8359951",
+          "id": "9943280d-e76b-4d41-89da-0159d9196428",
           "name": "Discord Authorize",
           "request": {
             "name": "Discord Authorize",
@@ -70,7 +70,7 @@
           },
           "response": [
             {
-              "id": "488e2d02-9a4f-4dbc-b6c2-60e9ee8877a4",
+              "id": "69cb309a-e5e7-464a-96db-81a9e83139d0",
               "name": "Redirect to Discord authorization page",
               "originalRequest": {
                 "url": {
@@ -109,6 +109,16 @@
                   ],
                   "variable": []
                 },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
                 "method": "GET",
                 "body": {}
               },
@@ -131,7 +141,7 @@
           }
         },
         {
-          "id": "890ce400-add4-4423-b5c0-702e29fd9db7",
+          "id": "a78a1e1d-7502-4933-90f3-bdbc2c00401d",
           "name": "Discord Get access token",
           "request": {
             "name": "Discord Get access token",
@@ -212,7 +222,7 @@
           },
           "response": [
             {
-              "id": "83c4aff6-6e3c-4473-8c76-21a97d283135",
+              "id": "6b25dc87-c93f-48f7-82d4-c1de0de75388",
               "name": "Access token response",
               "originalRequest": {
                 "url": {
@@ -227,6 +237,14 @@
                   "variable": []
                 },
                 "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
@@ -310,12 +328,12 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"access_token\": \"string\",\n  \"token_type\": \"string\",\n  \"expires_in\": 6718,\n  \"scope\": \"string\",\n  \"refresh_token\": \"string\",\n  \"guild\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"icon\": \"string\",\n    \"owner\": false,\n    \"permissions\": \"string\",\n    \"features\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"webhook\": {\n    \"id\": \"string\",\n    \"token\": \"string\",\n    \"channel_id\": \"string\",\n    \"name\": \"string\"\n  }\n}",
+              "body": "{\n  \"access_token\": \"string\",\n  \"token_type\": \"string\",\n  \"expires_in\": 1376,\n  \"scope\": \"string\",\n  \"refresh_token\": \"string\",\n  \"guild\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"icon\": \"string\",\n    \"owner\": true,\n    \"permissions\": \"string\",\n    \"features\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"webhook\": {\n    \"id\": \"string\",\n    \"token\": \"string\",\n    \"channel_id\": \"string\",\n    \"name\": \"string\"\n  }\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "b8ffa743-9618-4f88-84c0-e36b03cd5300",
+              "id": "da326623-6a68-4e73-ac95-e0365c2ca7f8",
               "name": "Client error response",
               "originalRequest": {
                 "url": {
@@ -330,6 +348,14 @@
                   "variable": []
                 },
                 "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
@@ -424,7 +450,7 @@
           }
         },
         {
-          "id": "d1145ff4-b535-49c3-a749-49636789cf77",
+          "id": "c8dc3747-f5cb-4417-b1be-2e463bef8e8a",
           "name": "Discord Revoke access token",
           "request": {
             "name": "Discord Revoke access token",
@@ -485,7 +511,7 @@
           },
           "response": [
             {
-              "id": "4e03d9bf-b661-414d-a576-b3e458396d1b",
+              "id": "7a499933-e398-405a-93eb-ade6ac761471",
               "name": "Token revoked",
               "originalRequest": {
                 "url": {
@@ -500,6 +526,16 @@
                   "query": [],
                   "variable": []
                 },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
                 "method": "POST",
                 "body": {
                   "mode": "urlencoded",
@@ -544,7 +580,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "c080c315-ed6b-4bb9-a9cc-60828e624fab",
+              "id": "c57a5a4b-e1f0-4319-bc08-c0a8ba4ebc16",
               "name": "Client error response",
               "originalRequest": {
                 "url": {
@@ -560,6 +596,14 @@
                   "variable": []
                 },
                 "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
@@ -615,7 +659,7 @@
           }
         },
         {
-          "id": "ae069c9e-3846-49d0-b8d7-ea58d6f16187",
+          "id": "684d9bf0-9351-43ea-bdaf-7a2304b0f4b9",
           "name": "Discord Get OAuth2 keys",
           "request": {
             "name": "Discord Get OAuth2 keys",
@@ -645,140 +689,13 @@
           },
           "response": [
             {
-              "id": "41838bdf-f3b5-4bfd-a430-bf26a695b4e1",
+              "id": "f4da10b0-82d3-4218-9c13-016f45350735",
               "name": "JWKS key set",
               "originalRequest": {
                 "url": {
                   "path": [
                     "oauth2",
                     "keys"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"keys\": [\n    {\n      \"kty\": \"string\",\n      \"use\": \"string\",\n      \"kid\": \"string\",\n      \"n\": \"string\",\n      \"e\": \"string\"\n    },\n    {\n      \"kty\": \"string\",\n      \"use\": \"string\",\n      \"kid\": \"string\",\n      \"n\": \"string\",\n      \"e\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "0f850b2c-4286-4e1c-b9f7-a8801a697615",
-              "name": "Client error response",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "oauth2",
-                    "keys"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\",\n  \"error_description\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        }
-      ],
-      "event": []
-    },
-    {
-      "id": "39bc93bf-8c77-4508-aad6-a2059e0d9493",
-      "name": "User Identity",
-      "description": {
-        "content": "Retrieve current user information via OAuth2",
-        "type": "text/plain"
-      },
-      "item": [
-        {
-          "id": "342cc979-03e4-44b1-9501-cd623bd34dcf",
-          "name": "Discord Get current authorization information",
-          "request": {
-            "name": "Discord Get current authorization information",
-            "description": {
-              "content": "Returns info about the current authorization including the user, application, scopes, and expiration.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "oauth2",
-                "@me"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "11d67892-23f2-4d32-a6e8-a53c71580aae",
-              "name": "Current authorization information",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "oauth2",
-                    "@me"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -811,18 +728,18 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"application\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"icon\": \"string\",\n    \"bot_public\": false,\n    \"bot_require_code_grant\": false,\n    \"verify_key\": \"string\",\n    \"flags\": 5357\n  },\n  \"scopes\": [\n    \"string\",\n    \"string\"\n  ],\n  \"expires\": \"1978-05-13T12:07:11.783Z\",\n  \"user\": {\n    \"id\": \"string\",\n    \"username\": \"string\",\n    \"discriminator\": \"string\",\n    \"global_name\": \"string\",\n    \"avatar\": \"string\",\n    \"bot\": false,\n    \"mfa_enabled\": false,\n    \"locale\": \"string\",\n    \"verified\": false,\n    \"email\": \"string\",\n    \"flags\": 1587,\n    \"premium_type\": 2110,\n    \"public_flags\": 5053\n  }\n}",
+              "body": "{\n  \"keys\": [\n    {\n      \"kty\": \"string\",\n      \"use\": \"string\",\n      \"kid\": \"string\",\n      \"n\": \"string\",\n      \"e\": \"string\"\n    },\n    {\n      \"kty\": \"string\",\n      \"use\": \"string\",\n      \"kid\": \"string\",\n      \"n\": \"string\",\n      \"e\": \"string\"\n    }\n  ]\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "7d654d36-7eeb-46f0-bb36-4fca7412377d",
+              "id": "6bff0927-9a3e-46c1-be6d-fa80ed32dcc9",
               "name": "Client error response",
               "originalRequest": {
                 "url": {
                   "path": [
                     "oauth2",
-                    "@me"
+                    "keys"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -866,14 +783,11 @@
           }
         },
         {
-          "id": "791e84c8-f8f7-4c28-ac72-6c40690bcc63",
-          "name": "Discord Get current application",
+          "id": "34a0d0b8-341d-4d42-9cf5-4f7eacb2d501",
+          "name": "get my oauth2 application",
           "request": {
-            "name": "Discord Get current application",
-            "description": {
-              "content": "Returns the bot's application object.",
-              "type": "text/plain"
-            },
+            "name": "get my oauth2 application",
+            "description": {},
             "url": {
               "path": [
                 "oauth2",
@@ -905,8 +819,8 @@
           },
           "response": [
             {
-              "id": "d74c8744-5eec-43ad-8e4c-a48b90c6e972",
-              "name": "Application object",
+              "id": "b5fe7d34-089d-4f3f-96fd-f1e7a216bb31",
+              "name": "200 response for get_my_oauth2_application",
               "originalRequest": {
                 "url": {
                   "path": [
@@ -945,12 +859,12 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"icon\": \"string\",\n  \"bot_public\": false,\n  \"bot_require_code_grant\": true,\n  \"verify_key\": \"string\",\n  \"flags\": 1313\n}",
+              "body": "{\n  \"id\": \"0\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"verify_key\": \"string\",\n  \"flags\": 4685,\n  \"redirect_uris\": [\n    \"https://DKvQSdVGVxynsL.ywwQGJDMb8QzsVHG1NJrZvYUK5wuqbENFPqfHbte-0\",\n    \"https://YWzWRhoju.zew\"\n  ],\n  \"owner\": {\n    \"id\": \"0\",\n    \"username\": \"string\",\n    \"discriminator\": \"string\",\n    \"public_flags\": 8907,\n    \"flags\": -3672577286480096,\n    \"avatar\": \"string\",\n    \"bot\": true,\n    \"system\": true,\n    \"banner\": \"string\",\n    \"accent_color\": 8095,\n    \"global_name\": \"string\"\n  },\n  \"icon\": \"string\",\n  \"type\": null,\n  \"cover_image\": \"string\",\n  \"primary_sku_id\": null,\n  \"bot\": null,\n  \"slug\": \"string\",\n  \"guild_id\": null,\n  \"rpc_origins\": [\n    \"string\",\n    \"string\"\n  ],\n  \"bot_public\": true,\n  \"bot_require_code_grant\": true,\n  \"terms_of_service_url\": \"https://popOjHGoJA.zdvtrLWpbsKhH1KNMKRIWolJS8vsYuOUSH5yG1FHjM-lbhjw2+TZo9LZomzEkGB\",\n  \"privacy_policy_url\": \"http://gWfQZBVgQdAEYTtPmTYL.emrw52KMscBZSdW9LjoeJ,eYgs.6Ua4nmuwQhb.CqU8A3kPjL2BWPXAv.hHElwiJzn8\",\n  \"custom_install_url\": \"http://XVYnaRPoOMFkbGAxTE.tcniz5jS-8eII62hb\",\n  \"install_params\": null,\n  \"max_participants\": 5390,\n  \"tags\": [\n    \"string\"\n  ],\n  \"interactions_endpoint_url\": \"https://uRymnelxZX.wgznBYSXOVN6WfkDK,AqHxPY7Fk\",\n  \"role_connections_verification_url\": \"https://BJGWpIqQwupatRuCILhvAvBhjNh.igbyzCtxxX,3OWmDLZksVanThs5UmRknCDW5gPt10fH2nFHcycfYNMH-tc\",\n  \"approximate_guild_count\": 483,\n  \"team\": null\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "56b51b95-1306-48b7-99e6-bee1a6049d0d",
+              "id": "c5ce02c0-a5f3-499a-b920-9c5c46ab8fa0",
               "name": "Client error response",
               "originalRequest": {
                 "url": {
@@ -990,7 +904,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"error\": \"string\",\n  \"error_description\": \"string\"\n}",
+              "body": "{\n  \"code\": 2589,\n  \"message\": \"string\",\n  \"errors\": {\n    \"key_0\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    },\n    \"key_1\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    }\n  }\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -1001,17 +915,14 @@
           }
         },
         {
-          "id": "7e25f3c8-16fe-440c-8923-a965a43e79a2",
-          "name": "Discord Get current user",
+          "id": "eeff0a0f-bdac-4e49-863f-78b50ea79fb2",
+          "name": "get my oauth2 authorization",
           "request": {
-            "name": "Discord Get current user",
-            "description": {
-              "content": "Returns the user object of the current OAuth2 authorized user.",
-              "type": "text/plain"
-            },
+            "name": "get my oauth2 authorization",
+            "description": {},
             "url": {
               "path": [
-                "users",
+                "oauth2",
                 "@me"
               ],
               "host": [
@@ -1039,12 +950,12 @@
           },
           "response": [
             {
-              "id": "ee17df7d-d6d4-41ca-a3af-25d9f902fe21",
-              "name": "User object",
+              "id": "3bab0cb1-691c-4646-94d8-606a02e92d81",
+              "name": "200 response for get_my_oauth2_authorization",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "users",
+                    "oauth2",
                     "@me"
                   ],
                   "host": [
@@ -1078,17 +989,17 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"username\": \"string\",\n  \"discriminator\": \"string\",\n  \"global_name\": \"string\",\n  \"avatar\": \"string\",\n  \"bot\": false,\n  \"mfa_enabled\": true,\n  \"locale\": \"string\",\n  \"verified\": true,\n  \"email\": \"string\",\n  \"flags\": 4159,\n  \"premium_type\": 3627,\n  \"public_flags\": 7344\n}",
+              "body": "{\n  \"application\": {\n    \"id\": \"0\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"verify_key\": \"string\",\n    \"flags\": 9699,\n    \"icon\": \"string\",\n    \"type\": null,\n    \"cover_image\": \"string\",\n    \"primary_sku_id\": null,\n    \"bot\": null,\n    \"slug\": \"string\",\n    \"guild_id\": null,\n    \"rpc_origins\": [\n      \"string\",\n      \"string\"\n    ],\n    \"bot_public\": false,\n    \"bot_require_code_grant\": true,\n    \"terms_of_service_url\": \"http://FGzocCmlT.fuqxNploOrEE,gBIM.zoM,\",\n    \"privacy_policy_url\": \"https://Ymx.uhe320g8SGZsbJv,p1bqnWxvEGchrdKAs,XYETmo9bPG+Uwni5DV-AwPMAMxwlj7uEQxCgkp8OOu0bO3FwO\",\n    \"custom_install_url\": \"https://vByEkkGkTjWbkBqvRSOZJPYEGlzHwy.vhqbgR19DxpBdzKvJZ+FW6EZeBiGhz7Ixor\",\n    \"install_params\": null,\n    \"max_participants\": 1045,\n    \"tags\": [\n      \"string\"\n    ]\n  },\n  \"expires\": \"2015-08-06T20:09:03.335Z\",\n  \"scopes\": [],\n  \"user\": null\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "39e7c6f0-cb41-4030-95eb-76172a46850c",
+              "id": "5a94c06f-0659-419d-a1ed-2a73b1f4976d",
               "name": "Client error response",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "users",
+                    "oauth2",
                     "@me"
                   ],
                   "host": [
@@ -1122,319 +1033,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"error\": \"string\",\n  \"error_description\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "9ce65fe2-dc10-4d81-b96d-67f28d724880",
-          "name": "Discord List current user guilds",
-          "request": {
-            "name": "Discord List current user guilds",
-            "description": {
-              "content": "Returns a list of partial guild objects the current user is a member of.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "users",
-                "@me",
-                "guilds"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "before",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "after",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "200"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "6135e865-076c-4544-abb8-3fbe5e48ed1e",
-              "name": "List of partial guild objects",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    "@me",
-                    "guilds"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "before",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "after",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "200"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "[\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"icon\": \"string\",\n    \"owner\": true,\n    \"permissions\": \"string\",\n    \"features\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"icon\": \"string\",\n    \"owner\": false,\n    \"permissions\": \"string\",\n    \"features\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "00a814c2-0765-4b50-8d05-d2ed4bf68ddf",
-              "name": "Client error response",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    "@me",
-                    "guilds"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "before",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "after",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "200"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\",\n  \"error_description\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "1b18c061-5169-41b7-b24e-56018d14edc3",
-          "name": "Discord List current user connections",
-          "request": {
-            "name": "Discord List current user connections",
-            "description": {
-              "content": "Returns a list of connection objects for the user.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "users",
-                "@me",
-                "connections"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "56992976-5509-426e-b489-dfb82b7225ad",
-              "name": "List of connection objects",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    "@me",
-                    "connections"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "[\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"type\": \"string\",\n    \"revoked\": true,\n    \"verified\": false,\n    \"friend_sync\": false,\n    \"show_activity\": true,\n    \"two_way_link\": true,\n    \"visibility\": 6744\n  },\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"type\": \"string\",\n    \"revoked\": false,\n    \"verified\": false,\n    \"friend_sync\": true,\n    \"show_activity\": false,\n    \"two_way_link\": true,\n    \"visibility\": 2218\n  }\n]",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "e55bc402-a647-4acf-8f87-7fb2b89be1b9",
-              "name": "Client error response",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    "@me",
-                    "connections"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\",\n  \"error_description\": \"string\"\n}",
+              "body": "{\n  \"code\": 2589,\n  \"message\": \"string\",\n  \"errors\": {\n    \"key_0\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    },\n    \"key_1\": {\n      \"value\": \"<Circular reference to #/components/schemas/ErrorDetails detected>\"\n    }\n  }\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -1456,12 +1055,21 @@
       "key": "baseUrl"
     }
   ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
   "info": {
-    "_postman_id": "acbf16fb-a912-4634-a768-b7dde38334f2",
-    "name": "Discord OAuth2 API",
+    "_postman_id": "1467404b-755f-4248-b808-d80339cb6b9f",
+    "name": "Discord Interactions Application Commands OAuth2 API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
-      "content": "The Discord OAuth2 API enables application developers to build applications that utilize authentication and data from the Discord API. Discord supports the authorization code grant, the implicit grant, client credentials, and specialized flows for bots and webhooks, allowing third-party applications to access Discord user data with proper consent.\n\nContact Support:\n Name: Discord Support\n Email: support@discord.com",
+      "content": "The Discord Interactions API enables applications to create and respond to application commands (slash commands), message components, and modals. It supports both Gateway-based and webhook-based interaction handling, allowing bots to build rich, interactive user experiences within Discord.\n\nContact Support:\n Name: Discord Support\n Email: support@discord.com",
       "type": "text/plain"
     }
   }

@@ -1,0 +1,71 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Discord Interactions Application Commands Scheduled Events API",
+    "version": "10"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Scheduled Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Discord List guild scheduled events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/guilds/:guild_id/scheduled-events",
+            "params": [
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the guild (Snowflake)"
+              },
+              {
+                "name": "with_user_count",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of guild scheduled event objects."
+        },
+        {
+          "info": {
+            "name": "Discord Create guild scheduled event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://discord.com/api/v10/guilds/:guild_id/scheduled-events",
+            "params": [
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the guild (Snowflake)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a guild scheduled event."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

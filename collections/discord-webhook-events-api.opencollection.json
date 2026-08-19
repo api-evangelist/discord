@@ -1,8 +1,14 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Discord Webhook Events API",
+    "name": "Discord Interactions Application Commands Webhook Events API",
     "version": "10"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
   },
   "items": [
     {
@@ -18,7 +24,7 @@
           },
           "http": {
             "method": "POST",
-            "url": "https://your-app.example.com/discord-webhook",
+            "url": "https://discord.com/api/v10/discord-webhook",
             "headers": [
               {
                 "name": "X-Signature-Ed25519",

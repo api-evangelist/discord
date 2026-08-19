@@ -1,0 +1,1692 @@
+{
+  "item": [
+    {
+      "id": "a20caed2-9d77-4003-a8fc-44626b6ab95d",
+      "name": "Interaction Responses",
+      "description": {
+        "content": "Respond to interactions received from Discord",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "101c2eab-ee5d-42ba-995e-47f9a6e14157",
+          "name": "Discord Create interaction response",
+          "request": {
+            "name": "Discord Create interaction response",
+            "description": {
+              "content": "Create a response to an interaction from the gateway or webhook. Takes an interaction response object.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "interactions",
+                ":interaction_id",
+                ":interaction_token",
+                "callback"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "interaction_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "interaction_token",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<integer>\",\n  \"data\": {\n    \"tts\": \"<boolean>\",\n    \"content\": \"<string>\",\n    \"embeds\": [\n      {\n        \"title\": \"<string>\",\n        \"description\": \"<string>\",\n        \"url\": \"<uri>\",\n        \"color\": \"<integer>\",\n        \"fields\": [\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\",\n            \"inline\": \"<boolean>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\",\n            \"inline\": \"<boolean>\"\n          }\n        ]\n      },\n      {\n        \"title\": \"<string>\",\n        \"description\": \"<string>\",\n        \"url\": \"<uri>\",\n        \"color\": \"<integer>\",\n        \"fields\": [\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\",\n            \"inline\": \"<boolean>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\",\n            \"inline\": \"<boolean>\"\n          }\n        ]\n      }\n    ],\n    \"allowed_mentions\": {\n      \"parse\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"roles\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"users\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"replied_user\": \"<boolean>\"\n    },\n    \"flags\": \"<integer>\",\n    \"components\": [\n      \"<object>\",\n      \"<object>\"\n    ],\n    \"choices\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"name_localizations\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\",\n          \"key_2\": \"<string>\"\n        }\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\",\n        \"name_localizations\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\",\n          \"key_2\": \"<string>\",\n          \"key_3\": \"<string>\",\n          \"key_4\": \"<string>\"\n        }\n      }\n    ],\n    \"custom_id\": \"<string>\",\n    \"title\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9079d89c-890d-4fc7-82ef-d65b05916db1",
+              "name": "Interaction callback response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interactions",
+                    ":interaction_id",
+                    ":interaction_token",
+                    "callback"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "interaction_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "interaction_token",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<integer>\",\n  \"data\": {\n    \"tts\": true,\n    \"content\": \"string\",\n    \"embeds\": [\n      {\n        \"title\": \"string\",\n        \"description\": \"string\",\n        \"url\": \"http://KzV.lzGpD4knFnoH7UFCEobWK9pFvnL,uocIkrU3hESWJ-iwFyuIFsgcnSQ\",\n        \"color\": 983,\n        \"fields\": [\n          {\n            \"name\": \"string\",\n            \"value\": \"string\",\n            \"inline\": true\n          },\n          {\n            \"name\": \"string\",\n            \"value\": \"string\",\n            \"inline\": true\n          }\n        ]\n      },\n      {\n        \"title\": \"string\",\n        \"description\": \"string\",\n        \"url\": \"http://vwmtds.yqgMewL1-SuweVI2M,myi89LlEB6NSKco+Q7ucT\",\n        \"color\": 6573,\n        \"fields\": [\n          {\n            \"name\": \"string\",\n            \"value\": \"string\",\n            \"inline\": true\n          },\n          {\n            \"name\": \"string\",\n            \"value\": \"string\",\n            \"inline\": true\n          }\n        ]\n      }\n    ],\n    \"allowed_mentions\": {\n      \"parse\": [\n        \"string\",\n        \"string\"\n      ],\n      \"roles\": [\n        \"string\",\n        \"string\"\n      ],\n      \"users\": [\n        \"string\",\n        \"string\"\n      ],\n      \"replied_user\": false\n    },\n    \"flags\": 87,\n    \"choices\": [\n      {\n        \"name\": \"string\",\n        \"value\": \"string\",\n        \"name_localizations\": {\n          \"key_0\": \"string\"\n        }\n      },\n      {\n        \"name\": \"string\",\n        \"value\": \"string\",\n        \"name_localizations\": {\n          \"key_0\": \"string\"\n        }\n      }\n    ],\n    \"custom_id\": \"string\",\n    \"title\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"interaction\": {\n    \"id\": \"089985\",\n    \"type\": 2445,\n    \"activity_instance_id\": \"string\",\n    \"response_message_id\": \"414\",\n    \"response_message_loading\": true,\n    \"response_message_ephemeral\": true\n  },\n  \"resource\": {\n    \"type\": 2648,\n    \"message\": {\n      \"id\": \"81945\",\n      \"channel_id\": \"7827\",\n      \"content\": \"string\",\n      \"timestamp\": \"1985-06-09T01:16:50.910Z\",\n      \"flags\": 5881\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e3f9835f-fe9d-4719-b322-3c655d7df662",
+              "name": "Interaction response accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interactions",
+                    ":interaction_id",
+                    ":interaction_token",
+                    "callback"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "interaction_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "interaction_token",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<integer>\",\n  \"data\": {\n    \"tts\": true,\n    \"content\": \"string\",\n    \"embeds\": [\n      {\n        \"title\": \"string\",\n        \"description\": \"string\",\n        \"url\": \"http://KzV.lzGpD4knFnoH7UFCEobWK9pFvnL,uocIkrU3hESWJ-iwFyuIFsgcnSQ\",\n        \"color\": 983,\n        \"fields\": [\n          {\n            \"name\": \"string\",\n            \"value\": \"string\",\n            \"inline\": true\n          },\n          {\n            \"name\": \"string\",\n            \"value\": \"string\",\n            \"inline\": true\n          }\n        ]\n      },\n      {\n        \"title\": \"string\",\n        \"description\": \"string\",\n        \"url\": \"http://vwmtds.yqgMewL1-SuweVI2M,myi89LlEB6NSKco+Q7ucT\",\n        \"color\": 6573,\n        \"fields\": [\n          {\n            \"name\": \"string\",\n            \"value\": \"string\",\n            \"inline\": true\n          },\n          {\n            \"name\": \"string\",\n            \"value\": \"string\",\n            \"inline\": true\n          }\n        ]\n      }\n    ],\n    \"allowed_mentions\": {\n      \"parse\": [\n        \"string\",\n        \"string\"\n      ],\n      \"roles\": [\n        \"string\",\n        \"string\"\n      ],\n      \"users\": [\n        \"string\",\n        \"string\"\n      ],\n      \"replied_user\": false\n    },\n    \"flags\": 87,\n    \"choices\": [\n      {\n        \"name\": \"string\",\n        \"value\": \"string\",\n        \"name_localizations\": {\n          \"key_0\": \"string\"\n        }\n      },\n      {\n        \"name\": \"string\",\n        \"value\": \"string\",\n        \"name_localizations\": {\n          \"key_0\": \"string\"\n        }\n      }\n    ],\n    \"custom_id\": \"string\",\n    \"title\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fe48a576-20cd-4541-9dac-c38eb0707c4b",
+              "name": "Client error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interactions",
+                    ":interaction_id",
+                    ":interaction_token",
+                    "callback"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "interaction_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "interaction_token",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<integer>\",\n  \"data\": {\n    \"tts\": true,\n    \"content\": \"string\",\n    \"embeds\": [\n      {\n        \"title\": \"string\",\n        \"description\": \"string\",\n        \"url\": \"http://KzV.lzGpD4knFnoH7UFCEobWK9pFvnL,uocIkrU3hESWJ-iwFyuIFsgcnSQ\",\n        \"color\": 983,\n        \"fields\": [\n          {\n            \"name\": \"string\",\n            \"value\": \"string\",\n            \"inline\": true\n          },\n          {\n            \"name\": \"string\",\n            \"value\": \"string\",\n            \"inline\": true\n          }\n        ]\n      },\n      {\n        \"title\": \"string\",\n        \"description\": \"string\",\n        \"url\": \"http://vwmtds.yqgMewL1-SuweVI2M,myi89LlEB6NSKco+Q7ucT\",\n        \"color\": 6573,\n        \"fields\": [\n          {\n            \"name\": \"string\",\n            \"value\": \"string\",\n            \"inline\": true\n          },\n          {\n            \"name\": \"string\",\n            \"value\": \"string\",\n            \"inline\": true\n          }\n        ]\n      }\n    ],\n    \"allowed_mentions\": {\n      \"parse\": [\n        \"string\",\n        \"string\"\n      ],\n      \"roles\": [\n        \"string\",\n        \"string\"\n      ],\n      \"users\": [\n        \"string\",\n        \"string\"\n      ],\n      \"replied_user\": false\n    },\n    \"flags\": 87,\n    \"choices\": [\n      {\n        \"name\": \"string\",\n        \"value\": \"string\",\n        \"name_localizations\": {\n          \"key_0\": \"string\"\n        }\n      },\n      {\n        \"name\": \"string\",\n        \"value\": \"string\",\n        \"name_localizations\": {\n          \"key_0\": \"string\"\n        }\n      }\n    ],\n    \"custom_id\": \"string\",\n    \"title\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8496,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "670b1abc-2b76-4d04-a116-cbbe691e5c5d",
+          "name": "Discord Get original interaction response",
+          "request": {
+            "name": "Discord Get original interaction response",
+            "description": {
+              "content": "Returns the initial Interaction response.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "webhooks",
+                ":application_id",
+                ":interaction_token",
+                "messages",
+                "@original"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "application_id",
+                  "description": "(Required) The ID of the application"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "interaction_token",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "557e0d4e-c805-40b4-9e83-9c6a2692abbb",
+              "name": "Message object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks",
+                    ":application_id",
+                    ":interaction_token",
+                    "messages",
+                    "@original"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application_id",
+                      "description": "(Required) The ID of the application"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "interaction_token",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"5513051453\",\n  \"channel_id\": \"156838715\",\n  \"content\": \"string\",\n  \"timestamp\": \"1968-01-27T18:42:53.155Z\",\n  \"flags\": 5748\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "36be3672-fc1d-4d96-ba74-68c7442aeec1",
+              "name": "Client error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks",
+                    ":application_id",
+                    ":interaction_token",
+                    "messages",
+                    "@original"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application_id",
+                      "description": "(Required) The ID of the application"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "interaction_token",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8496,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "23c01c71-2560-4483-acee-bacfc1a9531c",
+          "name": "Discord Edit original interaction response",
+          "request": {
+            "name": "Discord Edit original interaction response",
+            "description": {
+              "content": "Edits the initial Interaction response.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "webhooks",
+                ":application_id",
+                ":interaction_token",
+                "messages",
+                "@original"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "application_id",
+                  "description": "(Required) The ID of the application"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "interaction_token",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"content\": \"<string>\",\n  \"embeds\": [\n    {\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"url\": \"<uri>\",\n      \"color\": \"<integer>\",\n      \"fields\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\",\n          \"inline\": \"<boolean>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\",\n          \"inline\": \"<boolean>\"\n        }\n      ]\n    },\n    {\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"url\": \"<uri>\",\n      \"color\": \"<integer>\",\n      \"fields\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\",\n          \"inline\": \"<boolean>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\",\n          \"inline\": \"<boolean>\"\n        }\n      ]\n    }\n  ],\n  \"components\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d0922760-f6e3-4ca9-8e6e-0635f97d94ce",
+              "name": "Updated message",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks",
+                    ":application_id",
+                    ":interaction_token",
+                    "messages",
+                    "@original"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application_id",
+                      "description": "(Required) The ID of the application"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "interaction_token",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"content\": \"<string>\",\n  \"embeds\": [\n    {\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"url\": \"https://JH.yvxgf7UE2bOV6SP2bxPZUa3IfD7X2TYOT5FInnk0E6g5NI6U\",\n      \"color\": 9952,\n      \"fields\": [\n        {\n          \"name\": \"string\",\n          \"value\": \"string\",\n          \"inline\": true\n        },\n        {\n          \"name\": \"string\",\n          \"value\": \"string\",\n          \"inline\": false\n        }\n      ]\n    },\n    {\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"url\": \"https://FSOzeSmrrE.oazcpnYDyNffdQkpNT+5wBVsdMk58Af6CicZm8\",\n      \"color\": 9970,\n      \"fields\": [\n        {\n          \"name\": \"string\",\n          \"value\": \"string\",\n          \"inline\": true\n        },\n        {\n          \"name\": \"string\",\n          \"value\": \"string\",\n          \"inline\": true\n        }\n      ]\n    }\n  ],\n  \"components\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"5513051453\",\n  \"channel_id\": \"156838715\",\n  \"content\": \"string\",\n  \"timestamp\": \"1968-01-27T18:42:53.155Z\",\n  \"flags\": 5748\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1bfb39c2-5862-4a87-9461-31ed1fd56461",
+              "name": "Client error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks",
+                    ":application_id",
+                    ":interaction_token",
+                    "messages",
+                    "@original"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application_id",
+                      "description": "(Required) The ID of the application"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "interaction_token",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"content\": \"<string>\",\n  \"embeds\": [\n    {\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"url\": \"https://JH.yvxgf7UE2bOV6SP2bxPZUa3IfD7X2TYOT5FInnk0E6g5NI6U\",\n      \"color\": 9952,\n      \"fields\": [\n        {\n          \"name\": \"string\",\n          \"value\": \"string\",\n          \"inline\": true\n        },\n        {\n          \"name\": \"string\",\n          \"value\": \"string\",\n          \"inline\": false\n        }\n      ]\n    },\n    {\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"url\": \"https://FSOzeSmrrE.oazcpnYDyNffdQkpNT+5wBVsdMk58Af6CicZm8\",\n      \"color\": 9970,\n      \"fields\": [\n        {\n          \"name\": \"string\",\n          \"value\": \"string\",\n          \"inline\": true\n        },\n        {\n          \"name\": \"string\",\n          \"value\": \"string\",\n          \"inline\": true\n        }\n      ]\n    }\n  ],\n  \"components\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8496,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3b541a13-cf1a-42b4-ab11-9588fce63471",
+          "name": "Discord Delete original interaction response",
+          "request": {
+            "name": "Discord Delete original interaction response",
+            "description": {
+              "content": "Deletes the initial Interaction response.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "webhooks",
+                ":application_id",
+                ":interaction_token",
+                "messages",
+                "@original"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "application_id",
+                  "description": "(Required) The ID of the application"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "interaction_token",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f4d6795b-a1f5-450b-840e-3b31c22bf9be",
+              "name": "Response deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks",
+                    ":application_id",
+                    ":interaction_token",
+                    "messages",
+                    "@original"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application_id",
+                      "description": "(Required) The ID of the application"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "interaction_token",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8cf237a5-dddc-49b8-a057-2ea8e592f635",
+              "name": "Client error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks",
+                    ":application_id",
+                    ":interaction_token",
+                    "messages",
+                    "@original"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application_id",
+                      "description": "(Required) The ID of the application"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "interaction_token",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8496,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4827e918-fe4d-466e-96d3-e303e37ab041",
+          "name": "Discord Create followup message",
+          "request": {
+            "name": "Discord Create followup message",
+            "description": {
+              "content": "Create a followup message for an Interaction.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "webhooks",
+                ":application_id",
+                ":interaction_token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "application_id",
+                  "description": "(Required) The ID of the application"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "interaction_token",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"content\": \"<string>\",\n  \"embeds\": [\n    {\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"url\": \"<uri>\",\n      \"color\": \"<integer>\",\n      \"fields\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\",\n          \"inline\": \"<boolean>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\",\n          \"inline\": \"<boolean>\"\n        }\n      ]\n    },\n    {\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"url\": \"<uri>\",\n      \"color\": \"<integer>\",\n      \"fields\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\",\n          \"inline\": \"<boolean>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\",\n          \"inline\": \"<boolean>\"\n        }\n      ]\n    }\n  ],\n  \"flags\": \"<integer>\",\n  \"components\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4c3677a9-5687-4dc0-8dbc-a2048b952f60",
+              "name": "Followup message",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks",
+                    ":application_id",
+                    ":interaction_token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application_id",
+                      "description": "(Required) The ID of the application"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "interaction_token",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"content\": \"<string>\",\n  \"embeds\": [\n    {\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"url\": \"http://MUKrLBSzsptPaWGtlTZCurIkvIBaX.olri4ygsCAV.h-ar,5D2vAdmoJSSRbZ4ID6wuqOXxklOPlB84E8nCK5FC\",\n      \"color\": 3332,\n      \"fields\": [\n        {\n          \"name\": \"string\",\n          \"value\": \"string\",\n          \"inline\": false\n        },\n        {\n          \"name\": \"string\",\n          \"value\": \"string\",\n          \"inline\": true\n        }\n      ]\n    },\n    {\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"url\": \"https://CgcpgOV.ztahsaKOVSHvkhSX1pmW8XFJVksSR\",\n      \"color\": 3499,\n      \"fields\": [\n        {\n          \"name\": \"string\",\n          \"value\": \"string\",\n          \"inline\": false\n        },\n        {\n          \"name\": \"string\",\n          \"value\": \"string\",\n          \"inline\": false\n        }\n      ]\n    }\n  ],\n  \"flags\": \"<integer>\",\n  \"components\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"5513051453\",\n  \"channel_id\": \"156838715\",\n  \"content\": \"string\",\n  \"timestamp\": \"1968-01-27T18:42:53.155Z\",\n  \"flags\": 5748\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b9a0bd54-18b2-41e7-8dee-fd5288c4d2e0",
+              "name": "Client error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks",
+                    ":application_id",
+                    ":interaction_token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application_id",
+                      "description": "(Required) The ID of the application"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "interaction_token",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"content\": \"<string>\",\n  \"embeds\": [\n    {\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"url\": \"http://MUKrLBSzsptPaWGtlTZCurIkvIBaX.olri4ygsCAV.h-ar,5D2vAdmoJSSRbZ4ID6wuqOXxklOPlB84E8nCK5FC\",\n      \"color\": 3332,\n      \"fields\": [\n        {\n          \"name\": \"string\",\n          \"value\": \"string\",\n          \"inline\": false\n        },\n        {\n          \"name\": \"string\",\n          \"value\": \"string\",\n          \"inline\": true\n        }\n      ]\n    },\n    {\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"url\": \"https://CgcpgOV.ztahsaKOVSHvkhSX1pmW8XFJVksSR\",\n      \"color\": 3499,\n      \"fields\": [\n        {\n          \"name\": \"string\",\n          \"value\": \"string\",\n          \"inline\": false\n        },\n        {\n          \"name\": \"string\",\n          \"value\": \"string\",\n          \"inline\": false\n        }\n      ]\n    }\n  ],\n  \"flags\": \"<integer>\",\n  \"components\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8496,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f568817e-d3ed-4169-ac65-db01978bfe1c",
+          "name": "Discord Get followup message",
+          "request": {
+            "name": "Discord Get followup message",
+            "description": {
+              "content": "Returns a followup message for an Interaction.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "webhooks",
+                ":application_id",
+                ":interaction_token",
+                "messages",
+                ":message_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "application_id",
+                  "description": "(Required) The ID of the application"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "interaction_token",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "message_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2ff23b8a-2f18-4480-a2bd-9b69f6918cf1",
+              "name": "Message object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks",
+                    ":application_id",
+                    ":interaction_token",
+                    "messages",
+                    ":message_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application_id",
+                      "description": "(Required) The ID of the application"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "interaction_token",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "message_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"5513051453\",\n  \"channel_id\": \"156838715\",\n  \"content\": \"string\",\n  \"timestamp\": \"1968-01-27T18:42:53.155Z\",\n  \"flags\": 5748\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2c59912c-40b8-4b23-a37e-eec2f1b7a646",
+              "name": "Client error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks",
+                    ":application_id",
+                    ":interaction_token",
+                    "messages",
+                    ":message_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application_id",
+                      "description": "(Required) The ID of the application"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "interaction_token",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "message_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8496,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c6bf0e14-e7d6-4a32-b8b6-4d8af18244e1",
+          "name": "Discord Edit followup message",
+          "request": {
+            "name": "Discord Edit followup message",
+            "description": {
+              "content": "Edits a followup message for an Interaction.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "webhooks",
+                ":application_id",
+                ":interaction_token",
+                "messages",
+                ":message_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "application_id",
+                  "description": "(Required) The ID of the application"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "interaction_token",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "message_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"content\": \"<string>\",\n  \"embeds\": [\n    {\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"url\": \"<uri>\",\n      \"color\": \"<integer>\",\n      \"fields\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\",\n          \"inline\": \"<boolean>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\",\n          \"inline\": \"<boolean>\"\n        }\n      ]\n    },\n    {\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"url\": \"<uri>\",\n      \"color\": \"<integer>\",\n      \"fields\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\",\n          \"inline\": \"<boolean>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\",\n          \"inline\": \"<boolean>\"\n        }\n      ]\n    }\n  ],\n  \"components\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "da9f7f77-54ec-43ce-ae5a-9a88ea60a4d2",
+              "name": "Updated message",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks",
+                    ":application_id",
+                    ":interaction_token",
+                    "messages",
+                    ":message_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application_id",
+                      "description": "(Required) The ID of the application"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "interaction_token",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "message_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"content\": \"<string>\",\n  \"embeds\": [\n    {\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"url\": \"https://JH.yvxgf7UE2bOV6SP2bxPZUa3IfD7X2TYOT5FInnk0E6g5NI6U\",\n      \"color\": 9952,\n      \"fields\": [\n        {\n          \"name\": \"string\",\n          \"value\": \"string\",\n          \"inline\": true\n        },\n        {\n          \"name\": \"string\",\n          \"value\": \"string\",\n          \"inline\": false\n        }\n      ]\n    },\n    {\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"url\": \"https://FSOzeSmrrE.oazcpnYDyNffdQkpNT+5wBVsdMk58Af6CicZm8\",\n      \"color\": 9970,\n      \"fields\": [\n        {\n          \"name\": \"string\",\n          \"value\": \"string\",\n          \"inline\": true\n        },\n        {\n          \"name\": \"string\",\n          \"value\": \"string\",\n          \"inline\": true\n        }\n      ]\n    }\n  ],\n  \"components\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"5513051453\",\n  \"channel_id\": \"156838715\",\n  \"content\": \"string\",\n  \"timestamp\": \"1968-01-27T18:42:53.155Z\",\n  \"flags\": 5748\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4ee2b9e9-f96d-47ec-9fa0-7647e3f34d8c",
+              "name": "Client error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks",
+                    ":application_id",
+                    ":interaction_token",
+                    "messages",
+                    ":message_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application_id",
+                      "description": "(Required) The ID of the application"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "interaction_token",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "message_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"content\": \"<string>\",\n  \"embeds\": [\n    {\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"url\": \"https://JH.yvxgf7UE2bOV6SP2bxPZUa3IfD7X2TYOT5FInnk0E6g5NI6U\",\n      \"color\": 9952,\n      \"fields\": [\n        {\n          \"name\": \"string\",\n          \"value\": \"string\",\n          \"inline\": true\n        },\n        {\n          \"name\": \"string\",\n          \"value\": \"string\",\n          \"inline\": false\n        }\n      ]\n    },\n    {\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"url\": \"https://FSOzeSmrrE.oazcpnYDyNffdQkpNT+5wBVsdMk58Af6CicZm8\",\n      \"color\": 9970,\n      \"fields\": [\n        {\n          \"name\": \"string\",\n          \"value\": \"string\",\n          \"inline\": true\n        },\n        {\n          \"name\": \"string\",\n          \"value\": \"string\",\n          \"inline\": true\n        }\n      ]\n    }\n  ],\n  \"components\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8496,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cc8f99e8-6c99-4b41-8be6-6f590b5b73cc",
+          "name": "Discord Delete followup message",
+          "request": {
+            "name": "Discord Delete followup message",
+            "description": {
+              "content": "Deletes a followup message for an Interaction.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "webhooks",
+                ":application_id",
+                ":interaction_token",
+                "messages",
+                ":message_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "application_id",
+                  "description": "(Required) The ID of the application"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "interaction_token",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "message_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "21be1373-d63b-44b9-bea2-d61ab534ec85",
+              "name": "Message deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks",
+                    ":application_id",
+                    ":interaction_token",
+                    "messages",
+                    ":message_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application_id",
+                      "description": "(Required) The ID of the application"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "interaction_token",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "message_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3fd373c6-28d0-4ae9-be4d-c8238db2ed45",
+              "name": "Client error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks",
+                    ":application_id",
+                    ":interaction_token",
+                    "messages",
+                    ":message_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application_id",
+                      "description": "(Required) The ID of the application"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "interaction_token",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "message_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8496,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://discord.com/api/v10",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "313da8c0-ed02-4476-b999-75a3650d333f",
+    "name": "Discord Interactions Application Commands Interaction Responses API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Discord Interactions API enables applications to create and respond to application commands (slash commands), message components, and modals. It supports both Gateway-based and webhook-based interaction handling, allowing bots to build rich, interactive user experiences within Discord.\n\nContact Support:\n Name: Discord Support\n Email: support@discord.com",
+      "type": "text/plain"
+    }
+  }
+}

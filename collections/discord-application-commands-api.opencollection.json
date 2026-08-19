@@ -1,0 +1,449 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Discord Interactions Application Commands API",
+    "version": "10"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Application Commands",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Discord List global application commands",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/applications/:application_id/commands",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the application"
+              },
+              {
+                "name": "with_localizations",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Fetch all of the global commands for your application."
+        },
+        {
+          "info": {
+            "name": "Discord Create global application command",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://discord.com/api/v10/applications/:application_id/commands",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the application"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new global command. Returns 201 if a command with the same name does not already exist, or a 200 if it does."
+        },
+        {
+          "info": {
+            "name": "Discord Bulk overwrite global application commands",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://discord.com/api/v10/applications/:application_id/commands",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the application"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Overwrites all existing global commands. Commands not in the payload will be deleted."
+        },
+        {
+          "info": {
+            "name": "Discord Get global application command",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/applications/:application_id/commands/:command_id",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the application"
+              },
+              {
+                "name": "command_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the command"
+              }
+            ]
+          },
+          "docs": "Fetch a global command for your application."
+        },
+        {
+          "info": {
+            "name": "Discord Edit global application command",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://discord.com/api/v10/applications/:application_id/commands/:command_id",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the application"
+              },
+              {
+                "name": "command_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the command"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Edit a global command. Returns the updated command object."
+        },
+        {
+          "info": {
+            "name": "Discord Delete global application command",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://discord.com/api/v10/applications/:application_id/commands/:command_id",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the application"
+              },
+              {
+                "name": "command_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the command"
+              }
+            ]
+          },
+          "docs": "Deletes a global command."
+        },
+        {
+          "info": {
+            "name": "Discord List guild application commands",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/applications/:application_id/guilds/:guild_id/commands",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the application"
+              },
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the guild"
+              },
+              {
+                "name": "with_localizations",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Fetch all of the guild commands for your application for a specific guild."
+        },
+        {
+          "info": {
+            "name": "Discord Create guild application command",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://discord.com/api/v10/applications/:application_id/guilds/:guild_id/commands",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the application"
+              },
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the guild"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new guild command."
+        },
+        {
+          "info": {
+            "name": "Discord Bulk overwrite guild application commands",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://discord.com/api/v10/applications/:application_id/guilds/:guild_id/commands",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the application"
+              },
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the guild"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Overwrites all existing guild commands for your application."
+        },
+        {
+          "info": {
+            "name": "Discord Get guild application command",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/applications/:application_id/guilds/:guild_id/commands/:command_id",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the application"
+              },
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the guild"
+              },
+              {
+                "name": "command_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the command"
+              }
+            ]
+          },
+          "docs": "Fetch a guild command for your application."
+        },
+        {
+          "info": {
+            "name": "Discord Edit guild application command",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://discord.com/api/v10/applications/:application_id/guilds/:guild_id/commands/:command_id",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the application"
+              },
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the guild"
+              },
+              {
+                "name": "command_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the command"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Edit a guild command."
+        },
+        {
+          "info": {
+            "name": "Discord Delete guild application command",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://discord.com/api/v10/applications/:application_id/guilds/:guild_id/commands/:command_id",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the application"
+              },
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the guild"
+              },
+              {
+                "name": "command_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the command"
+              }
+            ]
+          },
+          "docs": "Delete a guild command."
+        },
+        {
+          "info": {
+            "name": "Discord List guild application command permissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/applications/:application_id/guilds/:guild_id/commands/permissions",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the application"
+              },
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the guild"
+              }
+            ]
+          },
+          "docs": "Fetches permissions for all commands in a guild."
+        },
+        {
+          "info": {
+            "name": "Discord Get application command permissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/applications/:application_id/guilds/:guild_id/commands/:command_id/permissions",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the application"
+              },
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the guild"
+              },
+              {
+                "name": "command_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the command"
+              }
+            ]
+          },
+          "docs": "Fetches permissions for a specific command in a guild."
+        },
+        {
+          "info": {
+            "name": "Discord Edit application command permissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://discord.com/api/v10/applications/:application_id/guilds/:guild_id/commands/:command_id/permissions",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the application"
+              },
+              {
+                "name": "guild_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the guild"
+              },
+              {
+                "name": "command_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the command"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Edits command permissions for a specific command in a guild. Requires Bearer token with applications.commands.permissions.update scope."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

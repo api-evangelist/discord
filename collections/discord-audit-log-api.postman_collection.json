@@ -1,0 +1,260 @@
+{
+  "item": [
+    {
+      "id": "77dfb14a-608f-439e-a124-d7bfeb26b359",
+      "name": "Audit Log",
+      "description": {
+        "content": "Operations on guild audit logs",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "775a1b27-65dd-420b-a76c-41b28f4a0734",
+          "name": "Discord Get guild audit log",
+          "request": {
+            "name": "Discord Get guild audit log",
+            "description": {
+              "content": "Returns an audit log object for the guild.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "guilds",
+                ":guild_id",
+                "audit-logs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "user_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "action_type",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "before",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "guild_id",
+                  "description": "(Required) The ID of the guild (Snowflake)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0b2c46ed-d4bd-4faf-a13b-e5f2391536c9",
+              "name": "Audit log object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "guilds",
+                    ":guild_id",
+                    "audit-logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "action_type",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "guild_id",
+                      "description": "(Required) The ID of the guild (Snowflake)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"audit_log_entries\": [\n    {\n      \"id\": \"4436215814\",\n      \"target_id\": \"string\",\n      \"user_id\": \"567976\",\n      \"action_type\": 6178,\n      \"reason\": \"string\"\n    },\n    {\n      \"id\": \"602971892\",\n      \"target_id\": \"string\",\n      \"user_id\": \"180978326\",\n      \"action_type\": 1493,\n      \"reason\": \"string\"\n    }\n  ],\n  \"threads\": [\n    {\n      \"id\": \"2\",\n      \"type\": 3681,\n      \"guild_id\": \"8\",\n      \"position\": 6948,\n      \"permission_overwrites\": [\n        {\n          \"id\": \"851532674\",\n          \"type\": 5791,\n          \"allow\": \"string\",\n          \"deny\": \"string\"\n        },\n        {\n          \"id\": \"64231967302\",\n          \"type\": 9974,\n          \"allow\": \"string\",\n          \"deny\": \"string\"\n        }\n      ],\n      \"name\": \"string\",\n      \"topic\": \"string\",\n      \"nsfw\": false,\n      \"last_message_id\": \"31493031\",\n      \"bitrate\": 7258,\n      \"user_limit\": 6291,\n      \"rate_limit_per_user\": 8178,\n      \"recipients\": [\n        {\n          \"id\": \"866306\",\n          \"username\": \"string\",\n          \"discriminator\": \"string\",\n          \"global_name\": \"string\",\n          \"avatar\": \"string\",\n          \"bot\": true,\n          \"system\": false,\n          \"mfa_enabled\": true,\n          \"banner\": \"string\",\n          \"accent_color\": 5054,\n          \"locale\": \"string\",\n          \"verified\": false,\n          \"email\": \"string\",\n          \"flags\": 784,\n          \"premium_type\": 7684,\n          \"public_flags\": 9386,\n          \"avatar_decoration_data\": {}\n        },\n        {\n          \"id\": \"574864992\",\n          \"username\": \"string\",\n          \"discriminator\": \"string\",\n          \"global_name\": \"string\",\n          \"avatar\": \"string\",\n          \"bot\": true,\n          \"system\": true,\n          \"mfa_enabled\": true,\n          \"banner\": \"string\",\n          \"accent_color\": 2816,\n          \"locale\": \"string\",\n          \"verified\": false,\n          \"email\": \"string\",\n          \"flags\": 237,\n          \"premium_type\": 5847,\n          \"public_flags\": 7600,\n          \"avatar_decoration_data\": {}\n        }\n      ],\n      \"icon\": \"string\",\n      \"owner_id\": \"454187477\",\n      \"parent_id\": \"5\",\n      \"last_pin_timestamp\": \"1974-02-01T05:54:43.416Z\",\n      \"rtc_region\": \"string\",\n      \"video_quality_mode\": 9453,\n      \"message_count\": 5011,\n      \"member_count\": 8805,\n      \"thread_metadata\": {\n        \"archived\": true,\n        \"auto_archive_duration\": 2440,\n        \"archive_timestamp\": \"1974-05-19T22:42:00.225Z\",\n        \"locked\": true,\n        \"invitable\": false,\n        \"create_timestamp\": \"2007-08-16T04:31:58.548Z\"\n      },\n      \"default_auto_archive_duration\": 5507,\n      \"flags\": 1587,\n      \"total_message_sent\": 8680\n    },\n    {\n      \"id\": \"38760918\",\n      \"type\": 4979,\n      \"guild_id\": \"137149\",\n      \"position\": 5647,\n      \"permission_overwrites\": [\n        {\n          \"id\": \"7\",\n          \"type\": 956,\n          \"allow\": \"string\",\n          \"deny\": \"string\"\n        },\n        {\n          \"id\": \"18996344806\",\n          \"type\": 9654,\n          \"allow\": \"string\",\n          \"deny\": \"string\"\n        }\n      ],\n      \"name\": \"string\",\n      \"topic\": \"string\",\n      \"nsfw\": true,\n      \"last_message_id\": \"8\",\n      \"bitrate\": 2747,\n      \"user_limit\": 8133,\n      \"rate_limit_per_user\": 7613,\n      \"recipients\": [\n        {\n          \"id\": \"056318414\",\n          \"username\": \"string\",\n          \"discriminator\": \"string\",\n          \"global_name\": \"string\",\n          \"avatar\": \"string\",\n          \"bot\": true,\n          \"system\": true,\n          \"mfa_enabled\": false,\n          \"banner\": \"string\",\n          \"accent_color\": 2608,\n          \"locale\": \"string\",\n          \"verified\": true,\n          \"email\": \"string\",\n          \"flags\": 4436,\n          \"premium_type\": 8758,\n          \"public_flags\": 6889,\n          \"avatar_decoration_data\": {}\n        },\n        {\n          \"id\": \"626\",\n          \"username\": \"string\",\n          \"discriminator\": \"string\",\n          \"global_name\": \"string\",\n          \"avatar\": \"string\",\n          \"bot\": true,\n          \"system\": true,\n          \"mfa_enabled\": true,\n          \"banner\": \"string\",\n          \"accent_color\": 1248,\n          \"locale\": \"string\",\n          \"verified\": true,\n          \"email\": \"string\",\n          \"flags\": 5669,\n          \"premium_type\": 9322,\n          \"public_flags\": 783,\n          \"avatar_decoration_data\": {}\n        }\n      ],\n      \"icon\": \"string\",\n      \"owner_id\": \"81665469348\",\n      \"parent_id\": \"198760\",\n      \"last_pin_timestamp\": \"2008-12-19T18:01:53.615Z\",\n      \"rtc_region\": \"string\",\n      \"video_quality_mode\": 249,\n      \"message_count\": 8909,\n      \"member_count\": 9366,\n      \"thread_metadata\": {\n        \"archived\": false,\n        \"auto_archive_duration\": 3754,\n        \"archive_timestamp\": \"2014-06-26T20:06:57.470Z\",\n        \"locked\": true,\n        \"invitable\": true,\n        \"create_timestamp\": \"2023-10-13T17:38:38.286Z\"\n      },\n      \"default_auto_archive_duration\": 856,\n      \"flags\": 174,\n      \"total_message_sent\": 8652\n    }\n  ],\n  \"users\": [\n    {\n      \"id\": \"44289\",\n      \"username\": \"string\",\n      \"discriminator\": \"string\",\n      \"global_name\": \"string\",\n      \"avatar\": \"string\",\n      \"bot\": false,\n      \"system\": true,\n      \"mfa_enabled\": false,\n      \"banner\": \"string\",\n      \"accent_color\": 4053,\n      \"locale\": \"string\",\n      \"verified\": true,\n      \"email\": \"string\",\n      \"flags\": 4737,\n      \"premium_type\": 7540,\n      \"public_flags\": 7979,\n      \"avatar_decoration_data\": {}\n    },\n    {\n      \"id\": \"08649\",\n      \"username\": \"string\",\n      \"discriminator\": \"string\",\n      \"global_name\": \"string\",\n      \"avatar\": \"string\",\n      \"bot\": true,\n      \"system\": true,\n      \"mfa_enabled\": true,\n      \"banner\": \"string\",\n      \"accent_color\": 8999,\n      \"locale\": \"string\",\n      \"verified\": false,\n      \"email\": \"string\",\n      \"flags\": 4223,\n      \"premium_type\": 2205,\n      \"public_flags\": 4106,\n      \"avatar_decoration_data\": {}\n    }\n  ],\n  \"webhooks\": [\n    {\n      \"id\": \"12497690\",\n      \"type\": 1240,\n      \"guild_id\": \"84592\",\n      \"channel_id\": \"28306\",\n      \"user\": {\n        \"id\": \"3741\",\n        \"username\": \"string\",\n        \"discriminator\": \"string\",\n        \"global_name\": \"string\",\n        \"avatar\": \"string\",\n        \"bot\": false,\n        \"system\": true,\n        \"mfa_enabled\": true,\n        \"banner\": \"string\",\n        \"accent_color\": 3103,\n        \"locale\": \"string\",\n        \"verified\": false,\n        \"email\": \"string\",\n        \"flags\": 5434,\n        \"premium_type\": 6990,\n        \"public_flags\": 9274,\n        \"avatar_decoration_data\": {}\n      },\n      \"name\": \"string\",\n      \"avatar\": \"string\",\n      \"token\": \"string\",\n      \"application_id\": \"153079\",\n      \"url\": \"https://tmbmCdROtbcvu.xpXJVbFdB+UbiKoXM6-pCPjS7R,upqO5O7.bt6\"\n    },\n    {\n      \"id\": \"80456452\",\n      \"type\": 7286,\n      \"guild_id\": \"00102680346\",\n      \"channel_id\": \"620\",\n      \"user\": {\n        \"id\": \"31523441\",\n        \"username\": \"string\",\n        \"discriminator\": \"string\",\n        \"global_name\": \"string\",\n        \"avatar\": \"string\",\n        \"bot\": true,\n        \"system\": true,\n        \"mfa_enabled\": true,\n        \"banner\": \"string\",\n        \"accent_color\": 3447,\n        \"locale\": \"string\",\n        \"verified\": false,\n        \"email\": \"string\",\n        \"flags\": 3876,\n        \"premium_type\": 1742,\n        \"public_flags\": 2319,\n        \"avatar_decoration_data\": {}\n      },\n      \"name\": \"string\",\n      \"avatar\": \"string\",\n      \"token\": \"string\",\n      \"application_id\": \"9371813\",\n      \"url\": \"https://IMmBSbzOSYzFhbt.kplrhYF4qaIzqEPoCjm4X3rAp7TavMD1mYzNyiQHr9vwAWhBFWX6XG4h\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8bf8beaa-25b9-40a8-94cd-20da1d359a09",
+              "name": "Client error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "guilds",
+                    ":guild_id",
+                    "audit-logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "action_type",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "guild_id",
+                      "description": "(Required) The ID of the guild (Snowflake)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 7933,\n  \"message\": \"string\",\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://discord.com/api/v10",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f23f069e-a863-4a31-af3e-6dad846a5329",
+    "name": "Discord Interactions Application Commands Audit Log API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Discord Interactions API enables applications to create and respond to application commands (slash commands), message components, and modals. It supports both Gateway-based and webhook-based interaction handling, allowing bots to build rich, interactive user experiences within Discord.\n\nContact Support:\n Name: Discord Support\n Email: support@discord.com",
+      "type": "text/plain"
+    }
+  }
+}

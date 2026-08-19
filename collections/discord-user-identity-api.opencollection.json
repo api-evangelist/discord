@@ -1,0 +1,100 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Discord Interactions Application Commands User Identity API",
+    "version": "10"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User Identity",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Discord Get current authorization information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/oauth2/@me"
+          },
+          "docs": "Returns info about the current authorization including the user, application, scopes, and expiration."
+        },
+        {
+          "info": {
+            "name": "Discord Get current application",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/oauth2/applications/@me",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the bot's application object."
+        },
+        {
+          "info": {
+            "name": "Discord Get current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/users/@me"
+          },
+          "docs": "Returns the user object of the current OAuth2 authorized user."
+        },
+        {
+          "info": {
+            "name": "Discord List current user guilds",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/users/@me/guilds",
+            "params": [
+              {
+                "name": "before",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of partial guild objects the current user is a member of."
+        },
+        {
+          "info": {
+            "name": "Discord List current user connections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://discord.com/api/v10/users/@me/connections"
+          },
+          "docs": "Returns a list of connection objects for the user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
