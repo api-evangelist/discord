@@ -30,7 +30,7 @@ tags:
 - Voice
 created: '2024-04-14'
 modified: '2026-05-19'
-specificationVersion: '0.18'
+specificationVersion: '0.23'
 apis:
 - aid: discord:discord-gateway-api
   name: Discord Gateway API
