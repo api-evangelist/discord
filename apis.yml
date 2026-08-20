@@ -22,6 +22,14 @@ access: 3rd-Party
 image: https://discord.com/assets/fc0b01fe10a0b8c602fb0106d8189d9b.png
 tags:
 - Chat
+- Communications
+- Gaming
+- Messaging
+- Social
+- Video
+- Voice
+tags_raw:
+- Chat
 - Communication
 - Gaming
 - Messaging
@@ -41,6 +49,11 @@ apis:
     and voice state updates.
   humanURL: https://discord.com/developers/docs/events/gateway
   tags:
+  - Event
+  - Gateway
+  - Real-Time
+  - WebSocket
+  tags_raw:
   - Events
   - Gateway
   - Real-Time
@@ -92,6 +105,9 @@ apis:
   tags:
   - Authentication
   - Authorization
+  tags_raw:
+  - Authentication
+  - Authorization
   - OAuth2
   properties:
   - type: Documentation
@@ -110,6 +126,10 @@ apis:
     events include APPLICATION_AUTHORIZED, ENTITLEMENT_CREATE, and QUEST_USER_ENROLLMENT.
   humanURL: https://discord.com/developers/docs/events/webhook-events
   tags:
+  - Event
+  - Notification
+  - Webhook
+  tags_raw:
   - Events
   - Notifications
   - Webhooks
@@ -209,6 +229,8 @@ apis:
   humanURL: https://discord.com/developers/docs/reference
   baseURL: https://discord.com/api/v10
   tags:
+  - Application
+  tags_raw:
   - Applications
   properties:
   - type: OpenAPI
@@ -369,6 +391,8 @@ apis:
   humanURL: https://discord.com/developers/docs/reference
   baseURL: https://discord.com/api/v10
   tags:
+  - Message
+  tags_raw:
   - Messages
   properties:
   - type: OpenAPI
@@ -497,6 +521,8 @@ apis:
   humanURL: https://discord.com/developers/docs/reference
   baseURL: https://discord.com/api/v10
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
@@ -529,6 +555,8 @@ apis:
   humanURL: https://discord.com/developers/docs/reference
   baseURL: https://discord.com/api/v10
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
