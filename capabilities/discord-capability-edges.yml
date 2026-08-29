@@ -1,0 +1,25 @@
+slug: discord
+provider: Discord
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Media, Entertainment & Telecom Content
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Auto Moderation
+  spec_file: discord-auto-moderation-api-openapi.yml
+  capability_id: BC-3780.40
+  capability_id_l1: BC-3780
+  capability_name: User-Generated Content Moderation
+  confidence: 0.8
+  evidence: GET /guilds/{guild_id}/auto-moderation/rules  Discord List auto moderation rules; POST ...
+    createAutoModerationRule
+  reason: Creating and listing automated rules that filter member-posted content in a community platform
+    is automated triage of user-generated content, matching UGC moderation.

@@ -589,6 +589,9 @@ maintainers:
   twitter: discord
   email: support@discord.com
 common:
+- type: CapabilityMap
+  url: capabilities/discord-capability-edges.yml
+  name: Discord Business Capability Map
 - type: IssueTracker
   url: https://github.com/discord/embedded-app-sdk/issues
 - type: Releases
