@@ -221,22 +221,6 @@ apis:
   - FN: Discord Support
     url: https://support-dev.discord.com/hc/en-us
     email: support@discord.com
-- aid: discord:discord-application-commands-api
-  name: Discord Application Commands API
-  description: Manage global and guild application commands
-  humanURL: https://discord.com/developers/docs/reference
-  baseURL: https://discord.com/api/v10
-  tags:
-  - Application Commands
-  properties:
-  - type: OpenAPI
-    url: openapi/discord-application-commands-api-openapi.yml
-  - type: Documentation
-    url: https://discord.com/developers/docs/reference
-  - type: GraphQL
-    url: graphql/discord-graphql.md
-  - type: Documentation
-    url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
 - aid: discord:discord-applications-api
   name: Discord Applications API
   description: The Applications API from Discord — 12 operation(s) for applications.
@@ -255,38 +239,6 @@ apis:
     url: graphql/discord-graphql.md
   - type: Documentation
     url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
-- aid: discord:discord-audit-log-api
-  name: Discord Audit Log API
-  description: Operations on guild audit logs
-  humanURL: https://discord.com/developers/docs/reference
-  baseURL: https://discord.com/api/v10
-  tags:
-  - Audit Log
-  properties:
-  - type: OpenAPI
-    url: openapi/discord-audit-log-api-openapi.yml
-  - type: Documentation
-    url: https://discord.com/developers/docs/reference
-  - type: GraphQL
-    url: graphql/discord-graphql.md
-  - type: Documentation
-    url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
-- aid: discord:discord-auto-moderation-api
-  name: Discord Auto Moderation API
-  description: Operations on auto moderation rules
-  humanURL: https://discord.com/developers/docs/reference
-  baseURL: https://discord.com/api/v10
-  tags:
-  - Auto Moderation
-  properties:
-  - type: OpenAPI
-    url: openapi/discord-auto-moderation-api-openapi.yml
-  - type: Documentation
-    url: https://discord.com/developers/docs/reference
-  - type: GraphQL
-    url: graphql/discord-graphql.md
-  - type: Documentation
-    url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
 - aid: discord:discord-channels-api
   name: Discord Channels API
   description: The Channels API from Discord — 26 operation(s) for channels.
@@ -297,22 +249,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/discord-channels-api-openapi.yml
-  - type: Documentation
-    url: https://discord.com/developers/docs/reference
-  - type: GraphQL
-    url: graphql/discord-graphql.md
-  - type: Documentation
-    url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
-- aid: discord:discord-emojis-api
-  name: Discord Emojis API
-  description: Operations on guild emojis
-  humanURL: https://discord.com/developers/docs/reference
-  baseURL: https://discord.com/api/v10
-  tags:
-  - Emojis
-  properties:
-  - type: OpenAPI
-    url: openapi/discord-emojis-api-openapi.yml
   - type: Documentation
     url: https://discord.com/developers/docs/reference
   - type: GraphQL
@@ -383,88 +319,6 @@ apis:
     url: graphql/discord-graphql.md
   - type: Documentation
     url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
-- aid: discord:discord-members-api
-  name: Discord Members API
-  description: Operations on guild members
-  humanURL: https://discord.com/developers/docs/reference
-  baseURL: https://discord.com/api/v10
-  tags:
-  - Members
-  properties:
-  - type: OpenAPI
-    url: openapi/discord-members-api-openapi.yml
-  - type: Documentation
-    url: https://discord.com/developers/docs/reference
-  - type: GraphQL
-    url: graphql/discord-graphql.md
-  - type: Documentation
-    url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
-- aid: discord:discord-messages-api
-  name: Discord Messages API
-  description: Operations on messages within channels
-  humanURL: https://discord.com/developers/docs/reference
-  baseURL: https://discord.com/api/v10
-  tags:
-  - Message
-  tags_raw:
-  - Messages
-  properties:
-  - type: OpenAPI
-    url: openapi/discord-messages-api-openapi.yml
-  - type: Documentation
-    url: https://discord.com/developers/docs/reference
-  - type: GraphQL
-    url: graphql/discord-graphql.md
-  - type: Documentation
-    url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
-- aid: discord:discord-role-connections-api
-  name: Discord Role Connections API
-  description: Manage application role connection metadata
-  humanURL: https://discord.com/developers/docs/reference
-  baseURL: https://discord.com/api/v10
-  tags:
-  - Role Connections
-  properties:
-  - type: OpenAPI
-    url: openapi/discord-role-connections-api-openapi.yml
-  - type: Documentation
-    url: https://discord.com/developers/docs/reference
-  - type: GraphQL
-    url: graphql/discord-graphql.md
-  - type: Documentation
-    url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
-- aid: discord:discord-roles-api
-  name: Discord Roles API
-  description: Operations on guild roles
-  humanURL: https://discord.com/developers/docs/reference
-  baseURL: https://discord.com/api/v10
-  tags:
-  - Roles
-  properties:
-  - type: OpenAPI
-    url: openapi/discord-roles-api-openapi.yml
-  - type: Documentation
-    url: https://discord.com/developers/docs/reference
-  - type: GraphQL
-    url: graphql/discord-graphql.md
-  - type: Documentation
-    url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
-- aid: discord:discord-scheduled-events-api
-  name: Discord Scheduled Events API
-  description: Operations on guild scheduled events
-  humanURL: https://discord.com/developers/docs/reference
-  baseURL: https://discord.com/api/v10
-  tags:
-  - Scheduled Events
-  properties:
-  - type: OpenAPI
-    url: openapi/discord-scheduled-events-api-openapi.yml
-  - type: Documentation
-    url: https://discord.com/developers/docs/reference
-  - type: GraphQL
-    url: graphql/discord-graphql.md
-  - type: Documentation
-    url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
 - aid: discord:discord-stage-instances-api
   name: Discord Stage Instances API
   description: The Stage Instances API from Discord — 2 operation(s) for stage instances.
@@ -507,22 +361,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/discord-stickers-api-openapi.yml
-  - type: Documentation
-    url: https://discord.com/developers/docs/reference
-  - type: GraphQL
-    url: graphql/discord-graphql.md
-  - type: Documentation
-    url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
-- aid: discord:discord-user-identity-api
-  name: Discord User Identity API
-  description: Retrieve current user information via OAuth2
-  humanURL: https://discord.com/developers/docs/reference
-  baseURL: https://discord.com/api/v10
-  tags:
-  - User Identity
-  properties:
-  - type: OpenAPI
-    url: openapi/discord-user-identity-api-openapi.yml
   - type: Documentation
     url: https://discord.com/developers/docs/reference
   - type: GraphQL
