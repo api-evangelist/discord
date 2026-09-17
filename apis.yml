@@ -108,30 +108,6 @@ apis:
   - FN: Discord Support
     url: https://support-dev.discord.com/hc/en-us
     email: support@discord.com
-- aid: discord:discord-oauth2-api
-  name: Discord OAuth2 API
-  description: >-
-    The Discord OAuth2 API enables application developers to build applications that utilize authentication
-    and data from the Discord API. Discord supports the authorization code grant, the implicit grant,
-    client credentials, and specialized flows for bots and webhooks, allowing third-party applications
-    to access Discord user data with proper consent.
-  humanURL: https://discord.com/developers/docs/topics/oauth2
-  tags:
-  - Authentication
-  - Authorization
-  tags_raw:
-  - Authentication
-  - Authorization
-  - OAuth2
-  properties:
-  - type: Documentation
-    url: https://discord.com/developers/docs/topics/oauth2
-  - type: OpenAPI
-    url: openapi/discord-oauth2-api-openapi.yml
-  contact:
-  - FN: Discord Support
-    url: https://support-dev.discord.com/hc/en-us
-    email: support@discord.com
 - aid: discord:discord-webhook-events-api
   name: Discord Webhook Events API
   description: >-
@@ -419,6 +395,16 @@ apis:
     url: graphql/discord-graphql.md
   - type: Documentation
     url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
+- aid: discord:discord-oauth2-api
+  name: Discord Oauth2 API
+  description: The Oauth2 API from Discord — 3 operation(s) for oauth2.
+  humanURL: https://discord.com/developers/docs/events/gateway
+  baseURL: https://discord.com/api/v10
+  tags:
+  - Oauth2
+  properties:
+  - type: OpenAPI
+    url: openapi/discord-oauth2-api-openapi.yml
 maintainers:
 - FN: Kin Lane
   url: http://apievangelist.com
