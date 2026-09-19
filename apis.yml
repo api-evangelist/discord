@@ -42,8 +42,8 @@ tags:
 - Social
 - Video
 - Voice
-- Discord
 tags_raw:
+- Discord
 - Chat
 - Communication
 - Gaming
@@ -65,7 +65,7 @@ apis:
   humanURL: https://discord.com/developers/docs/events/gateway
   tags:
   - Event
-  - Gateway
+  - Gateways
   - Real-Time
   - WebSocket
   tags_raw:
@@ -238,6 +238,8 @@ apis:
   humanURL: https://discord.com/developers/docs/reference
   baseURL: https://discord.com/api/v10
   tags:
+  - Gateways
+  tags_raw:
   - Gateway
   properties:
   - type: OpenAPI
@@ -402,6 +404,8 @@ apis:
   humanURL: https://discord.com/developers/docs/events/gateway
   baseURL: https://discord.com/api/v10
   tags:
+  - Authentication
+  tags_raw:
   - Oauth2
   properties:
   - type: OpenAPI
