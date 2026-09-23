@@ -1,18 +1,14 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Discord Interactions Application Commands Gateway API
-  description: The Discord Interactions API enables applications to create and respond to application commands (slash commands), message components, and modals. It supports both Gateway-based and webhook-based interaction handling, allowing bots to build rich, interactive user experiences within Discord.
-  version: '10'
-  contact:
-    name: Discord Support
-    url: https://support-dev.discord.com/hc/en-us
-    email: support@discord.com
+  title: Discord HTTP API (Preview) Gateway API
+  description: Preview of the Discord v10 HTTP API specification. See https://discord.com/developers/docs for more details.
   termsOfService: https://discord.com/developers/docs/policies-and-agreements/developer-terms-of-service
+  license:
+    name: MIT
+    identifier: MIT
+  version: '10'
 servers:
 - url: https://discord.com/api/v10
-  description: Discord API v10
-security:
-- BotToken: []
 tags:
 - name: Gateway
 paths:
@@ -32,6 +28,8 @@ paths:
       - BotToken: []
       tags:
       - Gateway
+      summary: Get bot gateway
+      x-summary-source: derived
   /gateway:
     get:
       operationId: get_gateway
@@ -49,8 +47,48 @@ paths:
       - BotToken: []
       tags:
       - Gateway
+      summary: Get gateway
+      x-summary-source: derived
 components:
   schemas:
+    Error:
+      type: object
+      description: A single error, either for an API response or a specific field.
+      properties:
+        code:
+          type: integer
+          description: Discord internal error code. See error code reference
+        message:
+          type: string
+          description: Human-readable error message
+      required:
+      - code
+      - message
+    InnerErrors:
+      type: object
+      properties:
+        _errors:
+          type: array
+          description: The list of errors for this field
+          items:
+            $ref: '#/components/schemas/Error'
+      additionalProperties: false
+      required:
+      - _errors
+    ErrorDetails:
+      oneOf:
+      - type: object
+        additionalProperties:
+          $ref: '#/components/schemas/ErrorDetails'
+      - $ref: '#/components/schemas/InnerErrors'
+    GatewayResponse:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+      required:
+      - url
     GatewayBotResponse:
       type: object
       properties:
@@ -86,27 +124,6 @@ components:
       - remaining
       - reset_after
       - total
-    GatewayResponse:
-      type: object
-      properties:
-        url:
-          type: string
-          format: uri
-      required:
-      - url
-    Error:
-      type: object
-      description: A single error, either for an API response or a specific field.
-      properties:
-        code:
-          type: integer
-          description: Discord internal error code. See error code reference
-        message:
-          type: string
-          description: Human-readable error message
-      required:
-      - code
-      - message
     ErrorResponse:
       type: object
       description: Errors object returned by the Discord API
@@ -116,23 +133,6 @@ components:
         properties:
           errors:
             $ref: '#/components/schemas/ErrorDetails'
-    InnerErrors:
-      type: object
-      properties:
-        _errors:
-          type: array
-          description: The list of errors for this field
-          items:
-            $ref: '#/components/schemas/Error'
-      additionalProperties: false
-      required:
-      - _errors
-    ErrorDetails:
-      oneOf:
-      - type: object
-        additionalProperties:
-          $ref: '#/components/schemas/ErrorDetails'
-      - $ref: '#/components/schemas/InnerErrors'
   responses:
     ClientErrorResponse:
       description: Client error response
@@ -142,9 +142,121 @@ components:
             $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     BotToken:
-      type: http
-      scheme: bearer
-      description: Bot token authentication
+      type: apiKey
+      description: Discord bot token
+      name: Authorization
+      in: header
+    OAuth2:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: discord.com/oauth2/authorize
+          refreshUrl: https://discord.com/api/oauth2/token
+          scopes:
+            activities.read: allows your app to fetch data from a user's "Now Playing/Recently Played" list - requires Discord approval
+            activities.write: allows your app to update a user's activity - requires Discord approval (NOT REQUIRED FOR GAMESDK ACTIVITY MANAGER)
+            applications.builds.read: allows your app to read build data for a user's applications
+            applications.builds.upload: allows your app to upload/update builds for a user's applications - requires Discord approval
+            applications.commands: allows your app to use commands in a guild
+            applications.commands.permissions.update: allows your app to update permissions for its commands in a guild a user has permissions to
+            applications.entitlements: allows your app to read entitlements for a user's applications
+            applications.store.update: allows your app to read and update store data (SKUs, store listings, achievements, etc.) for a user's applications
+            bot: for oauth2 bots, this puts the bot in the user's selected guild by default
+            connections: allows /users/@me/connections to return linked third-party accounts
+            dm_channels.read: allows your app to see information about the user's DMs and group DMs - requires Discord approval
+            email: enables /users/@me to return an email
+            gdm.join: allows your app to join users to a group dm
+            guilds: allows /users/@me/guilds to return basic information about all of a user's guilds
+            guilds.join: allows /guilds/{guild.id}/members/{user.id} to be used for joining users to a guild
+            guilds.members.read: allows /users/@me/guilds/{guild.id}/member to return a user's member information in a guild
+            identify: allows /users/@me without email
+            messages.read: for local rpc server api access, this allows you to read messages from all client channels (otherwise restricted to channels/guilds your app creates)
+            openid: for OpenID Connect, this allows your app to receive user id and basic profile information
+            relationships.read: allows your app to know a user's friends and implicit relationships - requires Discord approval
+            rpc: for local rpc server access, this allows you to control a user's local Discord client - requires Discord approval
+            rpc.activities.write: for local rpc server access, this allows you to update a user's activity - requires Discord approval
+            rpc.notifications.read: for local rpc server access, this allows you to receive notifications pushed out to the user - requires Discord approval
+            rpc.screenshare.read: for local rpc server access, this allows you to read a user's screenshare status- requires Discord approval
+            rpc.screenshare.write: for local rpc server access, this allows you to update a user's screenshare settings- requires Discord approval
+            rpc.video.read: for local rpc server access, this allows you to read a user's video status - requires Discord approval
+            rpc.video.write: for local rpc server access, this allows you to update a user's video settings - requires Discord approval
+            rpc.voice.read: for local rpc server access, this allows you to read a user's voice settings and listen for voice events - requires Discord approval
+            rpc.voice.write: for local rpc server access, this allows you to update a user's voice settings - requires Discord approval
+            voice: allows your app to connect to voice on user's behalf and see all the voice members - requires Discord approval
+            webhook.incoming: this generates a webhook that is returned in the oauth token response for authorization code grants
+        clientCredentials:
+          tokenUrl: https://discord.com/api/oauth2/token
+          refreshUrl: https://discord.com/api/oauth2/token
+          scopes:
+            activities.read: allows your app to fetch data from a user's "Now Playing/Recently Played" list - requires Discord approval
+            activities.write: allows your app to update a user's activity - requires Discord approval (NOT REQUIRED FOR GAMESDK ACTIVITY MANAGER)
+            applications.builds.read: allows your app to read build data for a user's applications
+            applications.builds.upload: allows your app to upload/update builds for a user's applications - requires Discord approval
+            applications.commands: allows your app to use commands in a guild
+            applications.commands.permissions.update: allows your app to update permissions for its commands in a guild a user has permissions to
+            applications.commands.update: allows your app to update its commands using a Bearer token - client credentials grant only
+            applications.entitlements: allows your app to read entitlements for a user's applications
+            applications.store.update: allows your app to read and update store data (SKUs, store listings, achievements, etc.) for a user's applications
+            bot: for oauth2 bots, this puts the bot in the user's selected guild by default
+            connections: allows /users/@me/connections to return linked third-party accounts
+            dm_channels.read: allows your app to see information about the user's DMs and group DMs - requires Discord approval
+            email: enables /users/@me to return an email
+            gdm.join: allows your app to join users to a group dm
+            guilds: allows /users/@me/guilds to return basic information about all of a user's guilds
+            guilds.join: allows /guilds/{guild.id}/members/{user.id} to be used for joining users to a guild
+            guilds.members.read: allows /users/@me/guilds/{guild.id}/member to return a user's member information in a guild
+            identify: allows /users/@me without email
+            messages.read: for local rpc server api access, this allows you to read messages from all client channels (otherwise restricted to channels/guilds your app creates)
+            openid: for OpenID Connect, this allows your app to receive user id and basic profile information
+            relationships.read: allows your app to know a user's friends and implicit relationships - requires Discord approval
+            rpc: for local rpc server access, this allows you to control a user's local Discord client - requires Discord approval
+            rpc.activities.write: for local rpc server access, this allows you to update a user's activity - requires Discord approval
+            rpc.notifications.read: for local rpc server access, this allows you to receive notifications pushed out to the user - requires Discord approval
+            rpc.screenshare.read: for local rpc server access, this allows you to read a user's screenshare status- requires Discord approval
+            rpc.screenshare.write: for local rpc server access, this allows you to update a user's screenshare settings- requires Discord approval
+            rpc.video.read: for local rpc server access, this allows you to read a user's video status - requires Discord approval
+            rpc.video.write: for local rpc server access, this allows you to update a user's video settings - requires Discord approval
+            rpc.voice.read: for local rpc server access, this allows you to read a user's voice settings and listen for voice events - requires Discord approval
+            rpc.voice.write: for local rpc server access, this allows you to update a user's voice settings - requires Discord approval
+            voice: allows your app to connect to voice on user's behalf and see all the voice members - requires Discord approval
+            webhook.incoming: this generates a webhook that is returned in the oauth token response for authorization code grants
+        authorizationCode:
+          authorizationUrl: discord.com/oauth2/authorize
+          tokenUrl: https://discord.com/api/oauth2/token
+          refreshUrl: https://discord.com/api/oauth2/token
+          scopes:
+            activities.read: allows your app to fetch data from a user's "Now Playing/Recently Played" list - requires Discord approval
+            activities.write: allows your app to update a user's activity - requires Discord approval (NOT REQUIRED FOR GAMESDK ACTIVITY MANAGER)
+            applications.builds.read: allows your app to read build data for a user's applications
+            applications.builds.upload: allows your app to upload/update builds for a user's applications - requires Discord approval
+            applications.commands: allows your app to use commands in a guild
+            applications.commands.permissions.update: allows your app to update permissions for its commands in a guild a user has permissions to
+            applications.entitlements: allows your app to read entitlements for a user's applications
+            applications.store.update: allows your app to read and update store data (SKUs, store listings, achievements, etc.) for a user's applications
+            bot: for oauth2 bots, this puts the bot in the user's selected guild by default
+            connections: allows /users/@me/connections to return linked third-party accounts
+            dm_channels.read: allows your app to see information about the user's DMs and group DMs - requires Discord approval
+            email: enables /users/@me to return an email
+            gdm.join: allows your app to join users to a group dm
+            guilds: allows /users/@me/guilds to return basic information about all of a user's guilds
+            guilds.join: allows /guilds/{guild.id}/members/{user.id} to be used for joining users to a guild
+            guilds.members.read: allows /users/@me/guilds/{guild.id}/member to return a user's member information in a guild
+            identify: allows /users/@me without email
+            messages.read: for local rpc server api access, this allows you to read messages from all client channels (otherwise restricted to channels/guilds your app creates)
+            openid: for OpenID Connect, this allows your app to receive user id and basic profile information
+            relationships.read: allows your app to know a user's friends and implicit relationships - requires Discord approval
+            role_connections.write: allows your app to update a user's connection and metadata for the app
+            rpc: for local rpc server access, this allows you to control a user's local Discord client - requires Discord approval
+            rpc.activities.write: for local rpc server access, this allows you to update a user's activity - requires Discord approval
+            rpc.notifications.read: for local rpc server access, this allows you to receive notifications pushed out to the user - requires Discord approval
+            rpc.screenshare.read: for local rpc server access, this allows you to read a user's screenshare status- requires Discord approval
+            rpc.screenshare.write: for local rpc server access, this allows you to update a user's screenshare settings- requires Discord approval
+            rpc.video.read: for local rpc server access, this allows you to read a user's video status - requires Discord approval
+            rpc.video.write: for local rpc server access, this allows you to update a user's video settings - requires Discord approval
+            rpc.voice.read: for local rpc server access, this allows you to read a user's voice settings and listen for voice events - requires Discord approval
+            rpc.voice.write: for local rpc server access, this allows you to update a user's voice settings - requires Discord approval
+            voice: allows your app to connect to voice on user's behalf and see all the voice members - requires Discord approval
+            webhook.incoming: this generates a webhook that is returned in the oauth token response for authorization code grants
 externalDocs:
-  description: Discord Interactions Documentation
-  url: https://discord.com/developers/docs/interactions/overview
+  url: https://discord.com/developers/docs
+  description: Discord Developer Documentation

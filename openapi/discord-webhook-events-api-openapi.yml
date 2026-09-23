@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Discord Interactions Application Commands Webhook Events API
   description: The Discord Interactions API enables applications to create and respond to application commands (slash commands), message components, and modals. It supports both Gateway-based and webhook-based interaction handling, allowing bots to build rich, interactive user experiences within Discord.
@@ -51,6 +51,20 @@ paths:
           description: Invalid signature
 components:
   schemas:
+    PartialGuild:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        icon:
+          type: string
+          nullable: true
+        features:
+          type: array
+          items:
+            type: string
     WebhookEventBody:
       type: object
       properties:
@@ -73,38 +87,6 @@ components:
       required:
       - type
       - timestamp
-    WebhookEvent:
-      type: object
-      properties:
-        version:
-          type: integer
-          description: Always 1
-        application_id:
-          type: string
-          description: ID of the application receiving the event
-        type:
-          type: integer
-          description: 0=PING, 1=EVENT
-        event:
-          $ref: '#/components/schemas/WebhookEventBody'
-      required:
-      - version
-      - application_id
-      - type
-    PartialGuild:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        icon:
-          type: string
-          nullable: true
-        features:
-          type: array
-          items:
-            type: string
     QuestUserEnrollmentData:
       type: object
       description: Data for QUEST_USER_ENROLLMENT event
@@ -116,24 +98,6 @@ components:
         enrolled_at:
           type: string
           format: date-time
-    User:
-      type: object
-      properties:
-        id:
-          type: string
-        username:
-          type: string
-        discriminator:
-          type: string
-        global_name:
-          type: string
-          nullable: true
-        avatar:
-          type: string
-          nullable: true
-      required:
-      - id
-      - username
     EntitlementCreateData:
       type: object
       description: Data for ENTITLEMENT_CREATE event
@@ -174,6 +138,42 @@ components:
           description: OAuth2 scopes granted
         guild:
           $ref: '#/components/schemas/PartialGuild'
+    WebhookEvent:
+      type: object
+      properties:
+        version:
+          type: integer
+          description: Always 1
+        application_id:
+          type: string
+          description: ID of the application receiving the event
+        type:
+          type: integer
+          description: 0=PING, 1=EVENT
+        event:
+          $ref: '#/components/schemas/WebhookEventBody'
+      required:
+      - version
+      - application_id
+      - type
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        username:
+          type: string
+        discriminator:
+          type: string
+        global_name:
+          type: string
+          nullable: true
+        avatar:
+          type: string
+          nullable: true
+      required:
+      - id
+      - username
   securitySchemes:
     BotToken:
       type: http
