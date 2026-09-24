@@ -43,6 +43,7 @@ tags:
 - Social
 - Video
 - Voice
+- Real-Time
 tags_raw:
 - Discord
 - Chat
@@ -52,39 +53,11 @@ tags_raw:
 - Social
 - Video
 - Voice
+- Real-Time
 created: '2024-04-14'
 modified: '2026-05-19'
 specificationVersion: '0.23'
 apis:
-- aid: discord:discord-gateway-api
-  name: Discord Gateway API
-  description: >-
-    The Discord Gateway API provides persistent, stateful WebSocket connections between your client and
-    Discord servers. These connections are used for sending and receiving real-time events your client
-    can use to track and update local state, including message creation, guild updates, presence changes,
-    and voice state updates.
-  humanURL: https://discord.com/developers/docs/events/gateway
-  tags:
-  - Event
-  - Gateways
-  - Real-Time
-  - WebSocket
-  tags_raw:
-  - Events
-  - Gateway
-  - Real-Time
-  - WebSocket
-  properties:
-  - type: Documentation
-    url: https://discord.com/developers/docs/events/gateway
-  - type: Documentation
-    url: https://discord.com/developers/docs/events/gateway-events
-  - type: AsyncAPI
-    url: asyncapi/discord-gateway-api-asyncapi.yml
-  contact:
-  - FN: Discord Support
-    url: https://support-dev.discord.com/hc/en-us
-    email: support@discord.com
 - aid: discord:discord-interactions-api
   name: Discord Interactions API
   description: >-
@@ -155,27 +128,6 @@ apis:
   - FN: Discord Support
     url: https://support-dev.discord.com/hc/en-us
     email: support@discord.com
-- aid: discord:discord-voice-api
-  name: Discord Voice API
-  description: >-
-    The Discord Voice API provides the protocol for establishing and managing voice connections between
-    clients and Discord voice servers. It handles UDP-based voice data transmission, encryption with XSalsa20-Poly1305,
-    and supports features like speaking indicators and voice state updates.
-  humanURL: https://discord.com/developers/docs/topics/voice-connections
-  tags:
-  - Real-Time
-  - UDP
-  - Voice
-  - WebSocket
-  properties:
-  - type: Documentation
-    url: https://discord.com/developers/docs/topics/voice-connections
-  - type: AsyncAPI
-    url: asyncapi/discord-voice-api-asyncapi.yml
-  contact:
-  - FN: Discord Support
-    url: https://support-dev.discord.com/hc/en-us
-    email: support@discord.com
 - aid: discord:discord-social-sdk
   name: Discord Social SDK
   description: >-
@@ -213,8 +165,6 @@ apis:
     url: openapi/discord-applications-api-openapi.yml
   - type: Documentation
     url: https://discord.com/developers/docs/reference
-  - type: GraphQL
-    url: graphql/discord-graphql.md
   - type: Documentation
     url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
 - aid: discord:discord-channels-api
@@ -229,28 +179,43 @@ apis:
     url: openapi/discord-channels-api-openapi.yml
   - type: Documentation
     url: https://discord.com/developers/docs/reference
-  - type: GraphQL
-    url: graphql/discord-graphql.md
   - type: Documentation
     url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
 - aid: discord:discord-gateway-api
   name: Discord Gateway API
-  description: The Gateway API from Discord — 2 operation(s) for gateway.
-  humanURL: https://discord.com/developers/docs/reference
+  description: The Discord Gateway API provides persistent, stateful WebSocket connections between your
+    client and Discord servers. These connections are used for sending and receiving real-time events your
+    client can use to track and update local state, including message creation, guild updates, presence
+    changes, and voice state updates.
+  humanURL: https://discord.com/developers/docs/events/gateway
   baseURL: https://discord.com/api/v10
   tags:
   - Gateways
+  - Event
+  - Real-Time
+  - WebSocket
   tags_raw:
   - Gateway
+  - Events
+  - Real-Time
+  - WebSocket
   properties:
   - type: OpenAPI
     url: openapi/discord-gateway-api-openapi.yml
   - type: Documentation
     url: https://discord.com/developers/docs/reference
-  - type: GraphQL
-    url: graphql/discord-graphql.md
   - type: Documentation
     url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
+  - type: Documentation
+    url: https://discord.com/developers/docs/events/gateway
+  - type: Documentation
+    url: https://discord.com/developers/docs/events/gateway-events
+  - type: AsyncAPI
+    url: asyncapi/discord-gateway-api-asyncapi.yml
+  contact:
+  - FN: Discord Support
+    url: https://support-dev.discord.com/hc/en-us
+    email: support@discord.com
 - aid: discord:discord-guilds-api
   name: Discord Guilds API
   description: The Guilds API from Discord — 45 operation(s) for guilds.
@@ -263,8 +228,6 @@ apis:
     url: openapi/discord-guilds-api-openapi.yml
   - type: Documentation
     url: https://discord.com/developers/docs/reference
-  - type: GraphQL
-    url: graphql/discord-graphql.md
   - type: Documentation
     url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
 - aid: discord:discord-interaction-responses-api
@@ -279,8 +242,6 @@ apis:
     url: openapi/discord-interaction-responses-api-openapi.yml
   - type: Documentation
     url: https://discord.com/developers/docs/reference
-  - type: GraphQL
-    url: graphql/discord-graphql.md
   - type: Documentation
     url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
 - aid: discord:discord-invites-api
@@ -295,8 +256,6 @@ apis:
     url: openapi/discord-invites-api-openapi.yml
   - type: Documentation
     url: https://discord.com/developers/docs/reference
-  - type: GraphQL
-    url: graphql/discord-graphql.md
   - type: Documentation
     url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
 - aid: discord:discord-stage-instances-api
@@ -311,8 +270,6 @@ apis:
     url: openapi/discord-stage-instances-api-openapi.yml
   - type: Documentation
     url: https://discord.com/developers/docs/reference
-  - type: GraphQL
-    url: graphql/discord-graphql.md
   - type: Documentation
     url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
 - aid: discord:discord-sticker-packs-api
@@ -327,8 +284,6 @@ apis:
     url: openapi/discord-sticker-packs-api-openapi.yml
   - type: Documentation
     url: https://discord.com/developers/docs/reference
-  - type: GraphQL
-    url: graphql/discord-graphql.md
   - type: Documentation
     url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
 - aid: discord:discord-stickers-api
@@ -343,8 +298,6 @@ apis:
     url: openapi/discord-stickers-api-openapi.yml
   - type: Documentation
     url: https://discord.com/developers/docs/reference
-  - type: GraphQL
-    url: graphql/discord-graphql.md
   - type: Documentation
     url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
 - aid: discord:discord-users-api
@@ -361,26 +314,35 @@ apis:
     url: openapi/discord-users-api-openapi.yml
   - type: Documentation
     url: https://discord.com/developers/docs/reference
-  - type: GraphQL
-    url: graphql/discord-graphql.md
   - type: Documentation
     url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
 - aid: discord:discord-voice-api
   name: Discord Voice API
-  description: The Voice API from Discord — 1 operation(s) for voice.
-  humanURL: https://discord.com/developers/docs/reference
+  description: The Discord Voice API provides the protocol for establishing and managing voice connections
+    between clients and Discord voice servers. It handles UDP-based voice data transmission, encryption
+    with XSalsa20-Poly1305, and supports features like speaking indicators and voice state updates.
+  humanURL: https://discord.com/developers/docs/topics/voice-connections
   baseURL: https://discord.com/api/v10
   tags:
   - Voice
+  - Real-Time
+  - UDP
+  - WebSocket
   properties:
   - type: OpenAPI
     url: openapi/discord-voice-api-openapi.yml
   - type: Documentation
     url: https://discord.com/developers/docs/reference
-  - type: GraphQL
-    url: graphql/discord-graphql.md
   - type: Documentation
     url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
+  - type: Documentation
+    url: https://discord.com/developers/docs/topics/voice-connections
+  - type: AsyncAPI
+    url: asyncapi/discord-voice-api-asyncapi.yml
+  contact:
+  - FN: Discord Support
+    url: https://support-dev.discord.com/hc/en-us
+    email: support@discord.com
 - aid: discord:discord-webhooks-api
   name: Discord Webhooks API
   description: The Webhooks API from Discord — 8 operation(s) for webhooks.
@@ -395,8 +357,6 @@ apis:
     url: openapi/discord-webhooks-api-openapi.yml
   - type: Documentation
     url: https://discord.com/developers/docs/reference
-  - type: GraphQL
-    url: graphql/discord-graphql.md
   - type: Documentation
     url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
 - aid: discord:discord-oauth2-api
