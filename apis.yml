@@ -379,6 +379,8 @@ maintainers:
   twitter: discord
   email: support@discord.com
 common:
+- type: VendorFacets
+  url: vendor-facets/discord-vendor-facets.yml
 - type: Website
   url: https://www.discord.com/
 - type: CapabilityMap
