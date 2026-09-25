@@ -19,11 +19,11 @@ artifacts:
     method: unknown
     evidence: no authorship recorded
   collections/discord-application-commands-api.opencollection.json:
-    method: derived
-    evidence: openapi/discord-application-commands-api
+    method: unknown
+    evidence: no authorship recorded
   collections/discord-application-commands-api.postman_collection.json:
-    method: derived
-    evidence: openapi/discord-application-commands-api
+    method: unknown
+    evidence: no authorship recorded
   collections/discord-applications-api.opencollection.json:
     method: derived
     evidence: openapi/discord-applications-api
@@ -31,17 +31,17 @@ artifacts:
     method: derived
     evidence: openapi/discord-applications-api
   collections/discord-audit-log-api.opencollection.json:
-    method: derived
-    evidence: openapi/discord-audit-log-api
+    method: unknown
+    evidence: no authorship recorded
   collections/discord-audit-log-api.postman_collection.json:
-    method: derived
-    evidence: openapi/discord-audit-log-api
+    method: unknown
+    evidence: no authorship recorded
   collections/discord-auto-moderation-api.opencollection.json:
-    method: derived
-    evidence: openapi/discord-auto-moderation-api
+    method: unknown
+    evidence: no authorship recorded
   collections/discord-auto-moderation-api.postman_collection.json:
-    method: derived
-    evidence: openapi/discord-auto-moderation-api
+    method: unknown
+    evidence: no authorship recorded
   collections/discord-channels-api.opencollection.json:
     method: derived
     evidence: openapi/discord-channels-api
@@ -49,11 +49,11 @@ artifacts:
     method: derived
     evidence: openapi/discord-channels-api
   collections/discord-emojis-api.opencollection.json:
-    method: derived
-    evidence: openapi/discord-emojis-api
+    method: unknown
+    evidence: no authorship recorded
   collections/discord-emojis-api.postman_collection.json:
-    method: derived
-    evidence: openapi/discord-emojis-api
+    method: unknown
+    evidence: no authorship recorded
   collections/discord-gateway-api.opencollection.json:
     method: derived
     evidence: openapi/discord-gateway-api
@@ -91,17 +91,17 @@ artifacts:
     method: unknown
     evidence: no authorship recorded
   collections/discord-members-api.opencollection.json:
-    method: derived
-    evidence: openapi/discord-members-api
+    method: unknown
+    evidence: no authorship recorded
   collections/discord-members-api.postman_collection.json:
-    method: derived
-    evidence: openapi/discord-members-api
+    method: unknown
+    evidence: no authorship recorded
   collections/discord-messages-api.opencollection.json:
-    method: derived
-    evidence: openapi/discord-messages-api
+    method: unknown
+    evidence: no authorship recorded
   collections/discord-messages-api.postman_collection.json:
-    method: derived
-    evidence: openapi/discord-messages-api
+    method: unknown
+    evidence: no authorship recorded
   collections/discord-oauth2-api.opencollection.json:
     method: derived
     evidence: openapi/discord-oauth2-api
@@ -115,23 +115,23 @@ artifacts:
     method: unknown
     evidence: no authorship recorded
   collections/discord-role-connections-api.opencollection.json:
-    method: derived
-    evidence: openapi/discord-role-connections-api
+    method: unknown
+    evidence: no authorship recorded
   collections/discord-role-connections-api.postman_collection.json:
-    method: derived
-    evidence: openapi/discord-role-connections-api
+    method: unknown
+    evidence: no authorship recorded
   collections/discord-roles-api.opencollection.json:
-    method: derived
-    evidence: openapi/discord-roles-api
+    method: unknown
+    evidence: no authorship recorded
   collections/discord-roles-api.postman_collection.json:
-    method: derived
-    evidence: openapi/discord-roles-api
+    method: unknown
+    evidence: no authorship recorded
   collections/discord-scheduled-events-api.opencollection.json:
-    method: derived
-    evidence: openapi/discord-scheduled-events-api
+    method: unknown
+    evidence: no authorship recorded
   collections/discord-scheduled-events-api.postman_collection.json:
-    method: derived
-    evidence: openapi/discord-scheduled-events-api
+    method: unknown
+    evidence: no authorship recorded
   collections/discord-stage-instances-api.opencollection.json:
     method: derived
     evidence: openapi/discord-stage-instances-api
@@ -151,11 +151,11 @@ artifacts:
     method: derived
     evidence: openapi/discord-stickers-api
   collections/discord-user-identity-api.opencollection.json:
-    method: derived
-    evidence: openapi/discord-user-identity-api
+    method: unknown
+    evidence: no authorship recorded
   collections/discord-user-identity-api.postman_collection.json:
-    method: derived
-    evidence: openapi/discord-user-identity-api
+    method: unknown
+    evidence: no authorship recorded
   collections/discord-users-api.opencollection.json:
     method: derived
     evidence: openapi/discord-users-api
@@ -183,10 +183,7 @@ artifacts:
   finops/discord-finops.yml:
     method: generated
     evidence: declared in the artifact
-  graphql/discord-graphql.md:
-    method: unknown
-    evidence: no authorship recorded
-  graphql/discord-schema.graphql:
+  front-door-ai/2026-09-17.yml:
     method: unknown
     evidence: no authorship recorded
   json-ld/discord-context.jsonld:
@@ -1506,55 +1503,7 @@ artifacts:
   json-structure/discord-structure.json:
     method: unknown
     evidence: no authorship recorded
-  kin/checks-2026-09-05T072335.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-06T210741.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-07T135032.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-10T093022.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-10T111628.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-11T211707.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-12T193225.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-17T064519.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-19T080027.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-19T082702.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-19T114122.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-20T165047.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-20T191845.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-20T205517.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-21T110057.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-24T064859.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-24T171257.yml:
+  kin/checks-2026-09-24T161608.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-08-25T125852.yml:
@@ -1641,34 +1590,142 @@ artifacts:
   kin/score-2026-09-05T072335.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-05T144739.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-05T195450.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-05T211839.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-06T011047.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-06T211804.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-06T224210.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-07T200636.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-07T213054.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-08T214843.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-08T232836.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-10T204815.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-10T222408.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-12T062655.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-12T080032.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-12T204651.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-12T221936.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-13T214537.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-14T064754.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-14T210656.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-14T225847.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-15T211329.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-15T230249.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-16T210549.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-16T225339.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-17T211151.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-17T233623.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-18T205255.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-18T231945.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-19T165737.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-19T193153.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-20T205903.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-20T232958.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-21T211425.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-21T233935.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-22T213221.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-23T000603.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-24T064009.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-24T090406.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-24T161608.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
   onboarding/discord-api-auth.mjs:
     method: unknown
     evidence: no authorship recorded
   openapi/_original/discord-linked-roles-api-openapi.yml:
     method: harvested
-    evidence: fetched from the provider as-is; byte-identical to the source
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
   openapi/_original/discord-openapi-original.yml:
     method: harvested
-    evidence: fetched from the provider as-is; byte-identical to the source
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
   openapi/_original/discord-rest-api-openapi.yml:
     method: harvested
-    evidence: fetched from the provider as-is; byte-identical to the source
-  openapi/discord-application-commands-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
   openapi/discord-applications-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/discord-audit-log-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/discord-auto-moderation-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/discord-channels-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/discord-emojis-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/discord-gateway-api-openapi.yml:
@@ -1686,24 +1743,9 @@ artifacts:
   openapi/discord-invites-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/discord-members-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/discord-messages-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/discord-oauth2-api-openapi.yml:
     method: unknown
     evidence: no authorship recorded
-  openapi/discord-role-connections-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/discord-roles-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/discord-scheduled-events-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/discord-stage-instances-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
@@ -1711,9 +1753,6 @@ artifacts:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/discord-stickers-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/discord-user-identity-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/discord-users-api-openapi.yml:
@@ -1732,23 +1771,23 @@ artifacts:
     method: generated
     evidence: declared in the artifact
   postman/discord-application-commands-api.postman_collection.json:
-    method: derived
-    evidence: openapi/discord-application-commands-api
+    method: unknown
+    evidence: no authorship recorded
   postman/discord-applications-api.postman_collection.json:
     method: derived
     evidence: openapi/discord-applications-api
   postman/discord-audit-log-api.postman_collection.json:
-    method: derived
-    evidence: openapi/discord-audit-log-api
+    method: unknown
+    evidence: no authorship recorded
   postman/discord-auto-moderation-api.postman_collection.json:
-    method: derived
-    evidence: openapi/discord-auto-moderation-api
+    method: unknown
+    evidence: no authorship recorded
   postman/discord-channels-api.postman_collection.json:
     method: derived
     evidence: openapi/discord-channels-api
   postman/discord-emojis-api.postman_collection.json:
-    method: derived
-    evidence: openapi/discord-emojis-api
+    method: unknown
+    evidence: no authorship recorded
   postman/discord-gateway-api.postman_collection.json:
     method: derived
     evidence: openapi/discord-gateway-api
@@ -1765,23 +1804,23 @@ artifacts:
     method: derived
     evidence: openapi/discord-invites-api
   postman/discord-members-api.postman_collection.json:
-    method: derived
-    evidence: openapi/discord-members-api
+    method: unknown
+    evidence: no authorship recorded
   postman/discord-messages-api.postman_collection.json:
-    method: derived
-    evidence: openapi/discord-messages-api
+    method: unknown
+    evidence: no authorship recorded
   postman/discord-oauth2-api.postman_collection.json:
     method: derived
     evidence: openapi/discord-oauth2-api
   postman/discord-role-connections-api.postman_collection.json:
-    method: derived
-    evidence: openapi/discord-role-connections-api
+    method: unknown
+    evidence: no authorship recorded
   postman/discord-roles-api.postman_collection.json:
-    method: derived
-    evidence: openapi/discord-roles-api
+    method: unknown
+    evidence: no authorship recorded
   postman/discord-scheduled-events-api.postman_collection.json:
-    method: derived
-    evidence: openapi/discord-scheduled-events-api
+    method: unknown
+    evidence: no authorship recorded
   postman/discord-stage-instances-api.postman_collection.json:
     method: derived
     evidence: openapi/discord-stage-instances-api
@@ -1792,8 +1831,8 @@ artifacts:
     method: derived
     evidence: openapi/discord-stickers-api
   postman/discord-user-identity-api.postman_collection.json:
-    method: derived
-    evidence: openapi/discord-user-identity-api
+    method: unknown
+    evidence: no authorship recorded
   postman/discord-users-api.postman_collection.json:
     method: derived
     evidence: openapi/discord-users-api
@@ -1822,6 +1861,9 @@ artifacts:
     method: unknown
     evidence: no authorship recorded
   security/discord-vulnerability-disclosure.yml:
+    method: searched
+    evidence: declared in the artifact
+  vendor-facets/discord-vendor-facets.yml:
     method: searched
     evidence: declared in the artifact
   vocabulary/discord-vocabulary.yml:
