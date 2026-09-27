@@ -51,20 +51,6 @@ paths:
           description: Invalid signature
 components:
   schemas:
-    PartialGuild:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        icon:
-          type: string
-          nullable: true
-        features:
-          type: array
-          items:
-            type: string
     WebhookEventBody:
       type: object
       properties:
@@ -87,6 +73,22 @@ components:
       required:
       - type
       - timestamp
+    ApplicationAuthorizedData:
+      type: object
+      description: Data for APPLICATION_AUTHORIZED event
+      properties:
+        integration_type:
+          type: integer
+          description: 0=GUILD_INSTALL, 1=USER_INSTALL
+        user:
+          $ref: '#/components/schemas/User'
+        scopes:
+          type: array
+          items:
+            type: string
+          description: OAuth2 scopes granted
+        guild:
+          $ref: '#/components/schemas/PartialGuild'
     QuestUserEnrollmentData:
       type: object
       description: Data for QUEST_USER_ENROLLMENT event
@@ -122,22 +124,6 @@ components:
           format: date-time
         guild_id:
           type: string
-    ApplicationAuthorizedData:
-      type: object
-      description: Data for APPLICATION_AUTHORIZED event
-      properties:
-        integration_type:
-          type: integer
-          description: 0=GUILD_INSTALL, 1=USER_INSTALL
-        user:
-          $ref: '#/components/schemas/User'
-        scopes:
-          type: array
-          items:
-            type: string
-          description: OAuth2 scopes granted
-        guild:
-          $ref: '#/components/schemas/PartialGuild'
     WebhookEvent:
       type: object
       properties:
@@ -174,6 +160,20 @@ components:
       required:
       - id
       - username
+    PartialGuild:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        icon:
+          type: string
+          nullable: true
+        features:
+          type: array
+          items:
+            type: string
   securitySchemes:
     BotToken:
       type: http

@@ -51,59 +51,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Error:
-      type: object
-      description: A single error, either for an API response or a specific field.
-      properties:
-        code:
-          type: integer
-          description: Discord internal error code. See error code reference
-        message:
-          type: string
-          description: Human-readable error message
-      required:
-      - code
-      - message
-    InnerErrors:
-      type: object
-      properties:
-        _errors:
-          type: array
-          description: The list of errors for this field
-          items:
-            $ref: '#/components/schemas/Error'
-      additionalProperties: false
-      required:
-      - _errors
-    ErrorDetails:
-      oneOf:
-      - type: object
-        additionalProperties:
-          $ref: '#/components/schemas/ErrorDetails'
-      - $ref: '#/components/schemas/InnerErrors'
-    GatewayResponse:
-      type: object
-      properties:
-        url:
-          type: string
-          format: uri
-      required:
-      - url
-    GatewayBotResponse:
-      type: object
-      properties:
-        url:
-          type: string
-          format: uri
-        session_start_limit:
-          $ref: '#/components/schemas/GatewayBotSessionStartLimitResponse'
-        shards:
-          type: integer
-          format: int32
-      required:
-      - url
-      - session_start_limit
-      - shards
     GatewayBotSessionStartLimitResponse:
       type: object
       properties:
@@ -124,6 +71,59 @@ components:
       - remaining
       - reset_after
       - total
+    GatewayResponse:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+      required:
+      - url
+    ErrorDetails:
+      oneOf:
+      - type: object
+        additionalProperties:
+          $ref: '#/components/schemas/ErrorDetails'
+      - $ref: '#/components/schemas/InnerErrors'
+    InnerErrors:
+      type: object
+      properties:
+        _errors:
+          type: array
+          description: The list of errors for this field
+          items:
+            $ref: '#/components/schemas/Error'
+      additionalProperties: false
+      required:
+      - _errors
+    GatewayBotResponse:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+        session_start_limit:
+          $ref: '#/components/schemas/GatewayBotSessionStartLimitResponse'
+        shards:
+          type: integer
+          format: int32
+      required:
+      - url
+      - session_start_limit
+      - shards
+    Error:
+      type: object
+      description: A single error, either for an API response or a specific field.
+      properties:
+        code:
+          type: integer
+          description: Discord internal error code. See error code reference
+        message:
+          type: string
+          description: Human-readable error message
+      required:
+      - code
+      - message
     ErrorResponse:
       type: object
       description: Errors object returned by the Discord API

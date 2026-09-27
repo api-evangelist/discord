@@ -33,19 +33,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Error:
-      type: object
-      description: A single error, either for an API response or a specific field.
-      properties:
-        code:
-          type: integer
-          description: Discord internal error code. See error code reference
-        message:
-          type: string
-          description: Human-readable error message
-      required:
-      - code
-      - message
     StickerPackCollectionResponse:
       type: object
       properties:
@@ -55,39 +42,6 @@ components:
             $ref: '#/components/schemas/StickerPackResponse'
       required:
       - sticker_packs
-    InnerErrors:
-      type: object
-      properties:
-        _errors:
-          type: array
-          description: The list of errors for this field
-          items:
-            $ref: '#/components/schemas/Error'
-      additionalProperties: false
-      required:
-      - _errors
-    ErrorDetails:
-      oneOf:
-      - type: object
-        additionalProperties:
-          $ref: '#/components/schemas/ErrorDetails'
-      - $ref: '#/components/schemas/InnerErrors'
-    StickerFormatTypes:
-      type: integer
-      oneOf:
-      - title: PNG
-        const: 1
-      - title: APNG
-        const: 2
-      - title: LOTTIE
-        const: 3
-      - title: GIF
-        const: 4
-      format: int32
-    SnowflakeType:
-      type: string
-      pattern: ^(0|[1-9][0-9]*)$
-      format: snowflake
     StandardStickerResponse:
       type: object
       properties:
@@ -124,6 +78,15 @@ components:
       - type
       - pack_id
       - sort_value
+    ErrorResponse:
+      type: object
+      description: Errors object returned by the Discord API
+      allOf:
+      - $ref: '#/components/schemas/Error'
+      - type: object
+        properties:
+          errors:
+            $ref: '#/components/schemas/ErrorDetails'
     StickerTypes:
       type: integer
       oneOf:
@@ -134,15 +97,6 @@ components:
         description: a sticker uploaded to a guild for the guild's members
         const: 2
       format: int32
-    ErrorResponse:
-      type: object
-      description: Errors object returned by the Discord API
-      allOf:
-      - $ref: '#/components/schemas/Error'
-      - type: object
-        properties:
-          errors:
-            $ref: '#/components/schemas/ErrorDetails'
     StickerPackResponse:
       type: object
       properties:
@@ -173,6 +127,52 @@ components:
       - sku_id
       - name
       - stickers
+    SnowflakeType:
+      type: string
+      pattern: ^(0|[1-9][0-9]*)$
+      format: snowflake
+    InnerErrors:
+      type: object
+      properties:
+        _errors:
+          type: array
+          description: The list of errors for this field
+          items:
+            $ref: '#/components/schemas/Error'
+      additionalProperties: false
+      required:
+      - _errors
+    ErrorDetails:
+      oneOf:
+      - type: object
+        additionalProperties:
+          $ref: '#/components/schemas/ErrorDetails'
+      - $ref: '#/components/schemas/InnerErrors'
+    Error:
+      type: object
+      description: A single error, either for an API response or a specific field.
+      properties:
+        code:
+          type: integer
+          description: Discord internal error code. See error code reference
+        message:
+          type: string
+          description: Human-readable error message
+      required:
+      - code
+      - message
+    StickerFormatTypes:
+      type: integer
+      oneOf:
+      - title: PNG
+        const: 1
+      - title: APNG
+        const: 2
+      - title: LOTTIE
+        const: 3
+      - title: GIF
+        const: 4
+      format: int32
   responses:
     ClientErrorResponse:
       description: Client error response

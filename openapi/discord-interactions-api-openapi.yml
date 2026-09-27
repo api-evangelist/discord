@@ -71,79 +71,130 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ButtonStyleTypes:
-      type: integer
-      oneOf:
-      - title: PRIMARY
-        const: 1
-      - title: SECONDARY
-        const: 2
-      - title: SUCCESS
-        const: 3
-      - title: DANGER
-        const: 4
-      - title: LINK
-        const: 5
-      - title: PREMIUM
-        const: 6
-      format: int32
-    IncomingWebhookInteractionRequest:
+    ModalInteractionCallbackData:
       type: object
       properties:
-        content:
+        custom_id:
+          type: string
+          maxLength: 100
+        title:
+          type: string
+          maxLength: 45
+        components:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/ActionRow'
+            - $ref: '#/components/schemas/InputText'
+          minItems: 1
+          maxItems: 5
+      required:
+      - custom_id
+      - title
+      - components
+    ChannelSelect:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 8
+          allOf:
+          - $ref: '#/components/schemas/MessageComponentTypes'
+          format: int32
+        custom_id:
+          type: string
+          maxLength: 100
+        placeholder:
           type:
           - string
           - 'null'
-          maxLength: 2000
-        embeds:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/RichEmbed'
-          maxItems: 10
-        allowed_mentions:
-          oneOf:
-          - type: 'null'
-          - $ref: '#/components/schemas/MessageAllowedMentionsRequest'
-        components:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ActionRow'
-          maxItems: 5
-        attachments:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/MessageAttachmentRequest'
-          maxItems: 10
-        tts:
-          type:
-          - boolean
-          - 'null'
-        flags:
+          maxLength: 150
+        min_values:
           type:
           - integer
           - 'null'
-    Emoji:
-      type: object
-      properties:
-        id:
-          oneOf:
-          - type: 'null'
-          - $ref: '#/components/schemas/SnowflakeType'
-        name:
-          type: string
-          maxLength: 32
-        animated:
+          minimum: 0
+          maximum: 25
+        max_values:
+          type:
+          - integer
+          - 'null'
+          minimum: 1
+          maximum: 25
+        disabled:
           type:
           - boolean
           - 'null'
+        default_values:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ChannelSelectDefaultValue'
+          maxItems: 25
+        channel_types:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ChannelTypes'
+          uniqueItems: true
       required:
-      - name
+      - type
+      - custom_id
+    InteractionApplicationCommandAutocompleteCallbackStringData:
+      type: object
+      properties:
+        choices:
+          type:
+          - array
+          - 'null'
+          items:
+            oneOf:
+            - type: 'null'
+            - $ref: '#/components/schemas/ApplicationCommandOptionStringChoice'
+          maxItems: 25
+    RichEmbedAuthor:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          maxLength: 256
+        url:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+          format: uri
+        icon_url:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+          format: uri
+    ErrorDetails:
+      oneOf:
+      - type: object
+        additionalProperties:
+          $ref: '#/components/schemas/ErrorDetails'
+      - $ref: '#/components/schemas/InnerErrors'
+    SnowflakeSelectDefaultValueTypes:
+      type: string
+      oneOf:
+      - title: USER
+        const: user
+      - title: ROLE
+        const: role
+      - title: CHANNEL
+        const: channel
+    Int53Type:
+      type: integer
+      minimum: -9007199254740991
+      maximum: 9007199254740991
+      format: int64
     Button:
       type: object
       properties:
@@ -187,10 +238,557 @@ components:
       required:
       - type
       - style
-    SnowflakeType:
+    UserSelectDefaultValue:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - user
+          allOf:
+          - $ref: '#/components/schemas/SnowflakeSelectDefaultValueTypes'
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+      required:
+      - type
+      - id
+    PongInteractionCallbackRequest:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 1
+          allOf:
+          - $ref: '#/components/schemas/InteractionCallbackTypes'
+          format: int32
+      required:
+      - type
+    RoleSelect:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 6
+          allOf:
+          - $ref: '#/components/schemas/MessageComponentTypes'
+          format: int32
+        custom_id:
+          type: string
+          maxLength: 100
+        placeholder:
+          type:
+          - string
+          - 'null'
+          maxLength: 150
+        min_values:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          maximum: 25
+        max_values:
+          type:
+          - integer
+          - 'null'
+          minimum: 1
+          maximum: 25
+        disabled:
+          type:
+          - boolean
+          - 'null'
+        default_values:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/RoleSelectDefaultValue'
+          maxItems: 25
+      required:
+      - type
+      - custom_id
+    ErrorResponse:
+      type: object
+      description: Errors object returned by the Discord API
+      allOf:
+      - $ref: '#/components/schemas/Error'
+      - type: object
+        properties:
+          errors:
+            $ref: '#/components/schemas/ErrorDetails'
+    IncomingWebhookUpdateForInteractionCallbackRequestPartial:
+      type: object
+      properties:
+        content:
+          type:
+          - string
+          - 'null'
+          maxLength: 2000
+        embeds:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/RichEmbed'
+          maxItems: 10
+        allowed_mentions:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/MessageAllowedMentionsRequest'
+        components:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ActionRow'
+          maxItems: 5
+        attachments:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/MessageAttachmentRequest'
+          maxItems: 10
+        flags:
+          type:
+          - integer
+          - 'null'
+    ApplicationCommandOptionNumberChoice:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 100
+        name_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+            minLength: 1
+            maxLength: 100
+          maxProperties: 34
+        value:
+          type: number
+          format: double
+      required:
+      - name
+      - value
+    InputText:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 4
+          allOf:
+          - $ref: '#/components/schemas/MessageComponentTypes'
+          format: int32
+        custom_id:
+          type: string
+          maxLength: 100
+        style:
+          $ref: '#/components/schemas/TextStyleTypes'
+        label:
+          type: string
+          maxLength: 45
+        value:
+          type:
+          - string
+          - 'null'
+          maxLength: 4000
+        placeholder:
+          type:
+          - string
+          - 'null'
+          maxLength: 100
+        required:
+          type:
+          - boolean
+          - 'null'
+        min_length:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          maximum: 4000
+        max_length:
+          type:
+          - integer
+          - 'null'
+          minimum: 1
+          maximum: 4000
+      required:
+      - type
+      - custom_id
+      - style
+      - label
+    ApplicationCommandOptionStringChoice:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 100
+        name_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+            minLength: 1
+            maxLength: 100
+          maxProperties: 34
+        value:
+          type: string
+          maxLength: 6000
+      required:
+      - name
+      - value
+    SelectOption:
+      type: object
+      properties:
+        label:
+          type: string
+          minLength: 1
+          maxLength: 100
+        value:
+          type: string
+          minLength: 1
+          maxLength: 100
+        description:
+          type:
+          - string
+          - 'null'
+          maxLength: 100
+        emoji:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/Emoji'
+        default:
+          type:
+          - boolean
+          - 'null'
+      required:
+      - label
+      - value
+    InteractionCallbackTypes:
+      type: integer
+      oneOf:
+      - title: PONG
+        const: 1
+      - title: CHANNEL_MESSAGE_WITH_SOURCE
+        const: 4
+      - title: DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE
+        const: 5
+      - title: DEFERRED_UPDATE_MESSAGE
+        const: 6
+      - title: UPDATE_MESSAGE
+        const: 7
+      - title: APPLICATION_COMMAND_AUTOCOMPLETE_RESULT
+        const: 8
+      - title: MODAL
+        const: 9
+      format: int32
+    AllowedMentionTypes:
       type: string
-      pattern: ^(0|[1-9][0-9]*)$
-      format: snowflake
+      oneOf:
+      - title: USERS
+        description: Controls role mentions
+        const: users
+      - title: ROLES
+        description: Controls user mentions
+        const: roles
+      - title: EVERYONE
+        description: Controls @everyone and @here mentions
+        const: everyone
+    ChannelTypes:
+      type: integer
+      oneOf:
+      - title: DM
+        description: A direct message between users
+        const: 1
+      - title: GROUP_DM
+        description: A direct message between multiple users
+        const: 3
+      - title: GUILD_TEXT
+        description: A text channel within a server
+        const: 0
+      - title: GUILD_VOICE
+        description: A voice channel within a server
+        const: 2
+      - title: GUILD_CATEGORY
+        description: An organizational category that contains up to 50 channels
+        const: 4
+      - title: GUILD_ANNOUNCEMENT
+        description: A channel that users can follow and crosspost into their own server (formerly news channels)
+        const: 5
+      - title: ANNOUNCEMENT_THREAD
+        description: A temporary sub-channel within a GUILD_ANNOUNCEMENT channel
+        const: 10
+      - title: PUBLIC_THREAD
+        description: A temporary sub-channel within a GUILD_TEXT or GUILD_THREADS_ONLY channel type set
+        const: 11
+      - title: PRIVATE_THREAD
+        description: A temporary sub-channel within a GUILD_TEXT channel that is only viewable by those invited and those with the MANAGE_THREADS permission
+        const: 12
+      - title: GUILD_STAGE_VOICE
+        description: A voice channel for hosting events with an audience
+        const: 13
+      - title: GUILD_DIRECTORY
+        description: The channel in a hub containing the listed servers
+        const: 14
+      - title: GUILD_FORUM
+        description: Channel that can only contain threads
+        const: 15
+      format: int32
+    MessageAllowedMentionsRequest:
+      type: object
+      properties:
+        parse:
+          type:
+          - array
+          - 'null'
+          items:
+            oneOf:
+            - type: 'null'
+            - $ref: '#/components/schemas/AllowedMentionTypes'
+          maxItems: 1521
+          uniqueItems: true
+        users:
+          type:
+          - array
+          - 'null'
+          items:
+            oneOf:
+            - type: 'null'
+            - $ref: '#/components/schemas/SnowflakeType'
+          maxItems: 100
+          uniqueItems: true
+        roles:
+          type:
+          - array
+          - 'null'
+          items:
+            oneOf:
+            - type: 'null'
+            - $ref: '#/components/schemas/SnowflakeType'
+          maxItems: 100
+          uniqueItems: true
+        replied_user:
+          type:
+          - boolean
+          - 'null'
+    ButtonStyleTypes:
+      type: integer
+      oneOf:
+      - title: PRIMARY
+        const: 1
+      - title: SECONDARY
+        const: 2
+      - title: SUCCESS
+        const: 3
+      - title: DANGER
+        const: 4
+      - title: LINK
+        const: 5
+      - title: PREMIUM
+        const: 6
+      format: int32
+    InteractionApplicationCommandAutocompleteCallbackNumberData:
+      type: object
+      properties:
+        choices:
+          type:
+          - array
+          - 'null'
+          items:
+            oneOf:
+            - type: 'null'
+            - $ref: '#/components/schemas/ApplicationCommandOptionNumberChoice'
+          maxItems: 25
+    ApplicationCommandAutocompleteCallbackRequest:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 8
+          allOf:
+          - $ref: '#/components/schemas/InteractionCallbackTypes'
+          format: int32
+        data:
+          anyOf:
+          - $ref: '#/components/schemas/InteractionApplicationCommandAutocompleteCallbackIntegerData'
+          - $ref: '#/components/schemas/InteractionApplicationCommandAutocompleteCallbackNumberData'
+          - $ref: '#/components/schemas/InteractionApplicationCommandAutocompleteCallbackStringData'
+          x-discord-union: oneOf
+      required:
+      - type
+      - data
+    IncomingWebhookInteractionRequest:
+      type: object
+      properties:
+        content:
+          type:
+          - string
+          - 'null'
+          maxLength: 2000
+        embeds:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/RichEmbed'
+          maxItems: 10
+        allowed_mentions:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/MessageAllowedMentionsRequest'
+        components:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ActionRow'
+          maxItems: 5
+        attachments:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/MessageAttachmentRequest'
+          maxItems: 10
+        tts:
+          type:
+          - boolean
+          - 'null'
+        flags:
+          type:
+          - integer
+          - 'null'
+    UserSelect:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 5
+          allOf:
+          - $ref: '#/components/schemas/MessageComponentTypes'
+          format: int32
+        custom_id:
+          type: string
+          maxLength: 100
+        placeholder:
+          type:
+          - string
+          - 'null'
+          maxLength: 150
+        min_values:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          maximum: 25
+        max_values:
+          type:
+          - integer
+          - 'null'
+          minimum: 1
+          maximum: 25
+        disabled:
+          type:
+          - boolean
+          - 'null'
+        default_values:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/UserSelectDefaultValue'
+          maxItems: 25
+      required:
+      - type
+      - custom_id
+    ActionRow:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 1
+          allOf:
+          - $ref: '#/components/schemas/MessageComponentTypes'
+          format: int32
+        components:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/Button'
+            - $ref: '#/components/schemas/ChannelSelect'
+            - $ref: '#/components/schemas/InputText'
+            - $ref: '#/components/schemas/MentionableSelect'
+            - $ref: '#/components/schemas/RoleSelect'
+            - $ref: '#/components/schemas/StringSelect'
+            - $ref: '#/components/schemas/UserSelect'
+          minItems: 1
+          maxItems: 5
+      required:
+      - type
+      - components
+    UpdateMessageInteractionCallbackRequest:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 6
+          - 7
+          allOf:
+          - $ref: '#/components/schemas/InteractionCallbackTypes'
+          format: int32
+        data:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/IncomingWebhookUpdateForInteractionCallbackRequestPartial'
+      required:
+      - type
+    InteractionApplicationCommandAutocompleteCallbackIntegerData:
+      type: object
+      properties:
+        choices:
+          type:
+          - array
+          - 'null'
+          items:
+            oneOf:
+            - type: 'null'
+            - $ref: '#/components/schemas/ApplicationCommandOptionIntegerChoice'
+          maxItems: 25
+    MessageAttachmentRequest:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        filename:
+          type:
+          - string
+          - 'null'
+          maxLength: 1024
+        description:
+          type:
+          - string
+          - 'null'
+          maxLength: 1024
+        is_remix:
+          type:
+          - boolean
+          - 'null'
+      required:
+      - id
     RichEmbedField:
       type: object
       properties:
@@ -207,46 +805,22 @@ components:
       required:
       - name
       - value
-    InteractionApplicationCommandAutocompleteCallbackStringData:
+    Emoji:
       type: object
       properties:
-        choices:
+        id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        name:
+          type: string
+          maxLength: 32
+        animated:
           type:
-          - array
+          - boolean
           - 'null'
-          items:
-            oneOf:
-            - type: 'null'
-            - $ref: '#/components/schemas/ApplicationCommandOptionStringChoice'
-          maxItems: 25
-    MessageComponentTypes:
-      type: integer
-      oneOf:
-      - title: ACTION_ROW
-        description: Container for other components
-        const: 1
-      - title: BUTTON
-        description: Button object
-        const: 2
-      - title: STRING_SELECT
-        description: Select menu for picking from defined text options
-        const: 3
-      - title: INPUT_TEXT
-        description: Text input object
-        const: 4
-      - title: USER_SELECT
-        description: Select menu for users
-        const: 5
-      - title: ROLE_SELECT
-        description: Select menu for roles
-        const: 6
-      - title: MENTIONABLE_SELECT
-        description: Select menu for mentionables (users and roles)
-        const: 7
-      - title: CHANNEL_SELECT
-        description: Select menu for channels
-        const: 8
-      format: int32
+      required:
+      - name
     MentionableSelect:
       type: object
       properties:
@@ -293,6 +867,194 @@ components:
       required:
       - type
       - custom_id
+    ApplicationCommandOptionIntegerChoice:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 100
+        name_localizations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+            minLength: 1
+            maxLength: 100
+          maxProperties: 34
+        value:
+          $ref: '#/components/schemas/Int53Type'
+      required:
+      - name
+      - value
+    SnowflakeType:
+      type: string
+      pattern: ^(0|[1-9][0-9]*)$
+      format: snowflake
+    StringSelect:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 3
+          allOf:
+          - $ref: '#/components/schemas/MessageComponentTypes'
+          format: int32
+        custom_id:
+          type: string
+          maxLength: 100
+        placeholder:
+          type:
+          - string
+          - 'null'
+          maxLength: 150
+        min_values:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          maximum: 25
+        max_values:
+          type:
+          - integer
+          - 'null'
+          minimum: 1
+          maximum: 25
+        disabled:
+          type:
+          - boolean
+          - 'null'
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/SelectOption'
+          minItems: 1
+          maxItems: 25
+      required:
+      - type
+      - custom_id
+      - options
+    TextStyleTypes:
+      type: integer
+      oneOf:
+      - title: SHORT
+        description: Single-line input
+        const: 1
+      - title: PARAGRAPH
+        description: Multi-line input
+        const: 2
+      format: int32
+    InnerErrors:
+      type: object
+      properties:
+        _errors:
+          type: array
+          description: The list of errors for this field
+          items:
+            $ref: '#/components/schemas/Error'
+      additionalProperties: false
+      required:
+      - _errors
+    RichEmbedThumbnail:
+      type: object
+      properties:
+        url:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+          format: uri
+        width:
+          type:
+          - integer
+          - 'null'
+        height:
+          type:
+          - integer
+          - 'null'
+        placeholder:
+          type:
+          - string
+          - 'null'
+          maxLength: 64
+        placeholder_version:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          maximum: 2147483647
+    RichEmbedProvider:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          maxLength: 256
+        url:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+          format: uri
+    MessageComponentTypes:
+      type: integer
+      oneOf:
+      - title: ACTION_ROW
+        description: Container for other components
+        const: 1
+      - title: BUTTON
+        description: Button object
+        const: 2
+      - title: STRING_SELECT
+        description: Select menu for picking from defined text options
+        const: 3
+      - title: INPUT_TEXT
+        description: Text input object
+        const: 4
+      - title: USER_SELECT
+        description: Select menu for users
+        const: 5
+      - title: ROLE_SELECT
+        description: Select menu for roles
+        const: 6
+      - title: MENTIONABLE_SELECT
+        description: Select menu for mentionables (users and roles)
+        const: 7
+      - title: CHANNEL_SELECT
+        description: Select menu for channels
+        const: 8
+      format: int32
+    RichEmbedVideo:
+      type: object
+      properties:
+        url:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+          format: uri
+        width:
+          type:
+          - integer
+          - 'null'
+        height:
+          type:
+          - integer
+          - 'null'
+        placeholder:
+          type:
+          - string
+          - 'null'
+          maxLength: 64
+        placeholder_version:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          maximum: 2147483647
     ChannelSelectDefaultValue:
       type: object
       properties:
@@ -307,66 +1069,6 @@ components:
       required:
       - type
       - id
-    UserSelectDefaultValue:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - user
-          allOf:
-          - $ref: '#/components/schemas/SnowflakeSelectDefaultValueTypes'
-        id:
-          $ref: '#/components/schemas/SnowflakeType'
-      required:
-      - type
-      - id
-    ErrorResponse:
-      type: object
-      description: Errors object returned by the Discord API
-      allOf:
-      - $ref: '#/components/schemas/Error'
-      - type: object
-        properties:
-          errors:
-            $ref: '#/components/schemas/ErrorDetails'
-    MessageAllowedMentionsRequest:
-      type: object
-      properties:
-        parse:
-          type:
-          - array
-          - 'null'
-          items:
-            oneOf:
-            - type: 'null'
-            - $ref: '#/components/schemas/AllowedMentionTypes'
-          maxItems: 1521
-          uniqueItems: true
-        users:
-          type:
-          - array
-          - 'null'
-          items:
-            oneOf:
-            - type: 'null'
-            - $ref: '#/components/schemas/SnowflakeType'
-          maxItems: 100
-          uniqueItems: true
-        roles:
-          type:
-          - array
-          - 'null'
-          items:
-            oneOf:
-            - type: 'null'
-            - $ref: '#/components/schemas/SnowflakeType'
-          maxItems: 100
-          uniqueItems: true
-        replied_user:
-          type:
-          - boolean
-          - 'null'
     ModalInteractionCallbackRequest:
       type: object
       properties:
@@ -382,217 +1084,20 @@ components:
       required:
       - type
       - data
-    IncomingWebhookUpdateForInteractionCallbackRequestPartial:
-      type: object
-      properties:
-        content:
-          type:
-          - string
-          - 'null'
-          maxLength: 2000
-        embeds:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/RichEmbed'
-          maxItems: 10
-        allowed_mentions:
-          oneOf:
-          - type: 'null'
-          - $ref: '#/components/schemas/MessageAllowedMentionsRequest'
-        components:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ActionRow'
-          maxItems: 5
-        attachments:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/MessageAttachmentRequest'
-          maxItems: 10
-        flags:
-          type:
-          - integer
-          - 'null'
-    TextStyleTypes:
-      type: integer
-      oneOf:
-      - title: SHORT
-        description: Single-line input
-        const: 1
-      - title: PARAGRAPH
-        description: Multi-line input
-        const: 2
-      format: int32
-    RichEmbedAuthor:
-      type: object
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-          maxLength: 256
-        url:
-          type:
-          - string
-          - 'null'
-          maxLength: 2048
-          format: uri
-        icon_url:
-          type:
-          - string
-          - 'null'
-          maxLength: 2048
-          format: uri
-    UserSelect:
+    RoleSelectDefaultValue:
       type: object
       properties:
         type:
-          type: integer
-          enum:
-          - 5
-          allOf:
-          - $ref: '#/components/schemas/MessageComponentTypes'
-          format: int32
-        custom_id:
           type: string
-          maxLength: 100
-        placeholder:
-          type:
-          - string
-          - 'null'
-          maxLength: 150
-        min_values:
-          type:
-          - integer
-          - 'null'
-          minimum: 0
-          maximum: 25
-        max_values:
-          type:
-          - integer
-          - 'null'
-          minimum: 1
-          maximum: 25
-        disabled:
-          type:
-          - boolean
-          - 'null'
-        default_values:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/UserSelectDefaultValue'
-          maxItems: 25
-      required:
-      - type
-      - custom_id
-    RoleSelect:
-      type: object
-      properties:
-        type:
-          type: integer
           enum:
-          - 6
+          - role
           allOf:
-          - $ref: '#/components/schemas/MessageComponentTypes'
-          format: int32
-        custom_id:
-          type: string
-          maxLength: 100
-        placeholder:
-          type:
-          - string
-          - 'null'
-          maxLength: 150
-        min_values:
-          type:
-          - integer
-          - 'null'
-          minimum: 0
-          maximum: 25
-        max_values:
-          type:
-          - integer
-          - 'null'
-          minimum: 1
-          maximum: 25
-        disabled:
-          type:
-          - boolean
-          - 'null'
-        default_values:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/RoleSelectDefaultValue'
-          maxItems: 25
+          - $ref: '#/components/schemas/SnowflakeSelectDefaultValueTypes'
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
       required:
       - type
-      - custom_id
-    PongInteractionCallbackRequest:
-      type: object
-      properties:
-        type:
-          type: integer
-          enum:
-          - 1
-          allOf:
-          - $ref: '#/components/schemas/InteractionCallbackTypes'
-          format: int32
-      required:
-      - type
-    InteractionCallbackTypes:
-      type: integer
-      oneOf:
-      - title: PONG
-        const: 1
-      - title: CHANNEL_MESSAGE_WITH_SOURCE
-        const: 4
-      - title: DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE
-        const: 5
-      - title: DEFERRED_UPDATE_MESSAGE
-        const: 6
-      - title: UPDATE_MESSAGE
-        const: 7
-      - title: APPLICATION_COMMAND_AUTOCOMPLETE_RESULT
-        const: 8
-      - title: MODAL
-        const: 9
-      format: int32
-    ActionRow:
-      type: object
-      properties:
-        type:
-          type: integer
-          enum:
-          - 1
-          allOf:
-          - $ref: '#/components/schemas/MessageComponentTypes'
-          format: int32
-        components:
-          type: array
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/Button'
-            - $ref: '#/components/schemas/ChannelSelect'
-            - $ref: '#/components/schemas/InputText'
-            - $ref: '#/components/schemas/MentionableSelect'
-            - $ref: '#/components/schemas/RoleSelect'
-            - $ref: '#/components/schemas/StringSelect'
-            - $ref: '#/components/schemas/UserSelect'
-          minItems: 1
-          maxItems: 5
-      required:
-      - type
-      - components
+      - id
     CreateMessageInteractionCallbackRequest:
       type: object
       properties:
@@ -610,6 +1115,48 @@ components:
           - $ref: '#/components/schemas/IncomingWebhookInteractionRequest'
       required:
       - type
+    RichEmbedFooter:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+        icon_url:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+          format: uri
+    RichEmbedImage:
+      type: object
+      properties:
+        url:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+          format: uri
+        width:
+          type:
+          - integer
+          - 'null'
+        height:
+          type:
+          - integer
+          - 'null'
+        placeholder:
+          type:
+          - string
+          - 'null'
+          maxLength: 64
+        placeholder_version:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          maximum: 2147483647
     RichEmbed:
       type: object
       properties:
@@ -676,352 +1223,6 @@ components:
           oneOf:
           - type: 'null'
           - $ref: '#/components/schemas/RichEmbedVideo'
-    RoleSelectDefaultValue:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - role
-          allOf:
-          - $ref: '#/components/schemas/SnowflakeSelectDefaultValueTypes'
-        id:
-          $ref: '#/components/schemas/SnowflakeType'
-      required:
-      - type
-      - id
-    RichEmbedImage:
-      type: object
-      properties:
-        url:
-          type:
-          - string
-          - 'null'
-          maxLength: 2048
-          format: uri
-        width:
-          type:
-          - integer
-          - 'null'
-        height:
-          type:
-          - integer
-          - 'null'
-        placeholder:
-          type:
-          - string
-          - 'null'
-          maxLength: 64
-        placeholder_version:
-          type:
-          - integer
-          - 'null'
-          minimum: 0
-          maximum: 2147483647
-    SnowflakeSelectDefaultValueTypes:
-      type: string
-      oneOf:
-      - title: USER
-        const: user
-      - title: ROLE
-        const: role
-      - title: CHANNEL
-        const: channel
-    RichEmbedVideo:
-      type: object
-      properties:
-        url:
-          type:
-          - string
-          - 'null'
-          maxLength: 2048
-          format: uri
-        width:
-          type:
-          - integer
-          - 'null'
-        height:
-          type:
-          - integer
-          - 'null'
-        placeholder:
-          type:
-          - string
-          - 'null'
-          maxLength: 64
-        placeholder_version:
-          type:
-          - integer
-          - 'null'
-          minimum: 0
-          maximum: 2147483647
-    RichEmbedProvider:
-      type: object
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-          maxLength: 256
-        url:
-          type:
-          - string
-          - 'null'
-          maxLength: 2048
-          format: uri
-    ApplicationCommandOptionStringChoice:
-      type: object
-      properties:
-        name:
-          type: string
-          minLength: 1
-          maxLength: 100
-        name_localizations:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            type: string
-            minLength: 1
-            maxLength: 100
-          maxProperties: 34
-        value:
-          type: string
-          maxLength: 6000
-      required:
-      - name
-      - value
-    InteractionApplicationCommandAutocompleteCallbackNumberData:
-      type: object
-      properties:
-        choices:
-          type:
-          - array
-          - 'null'
-          items:
-            oneOf:
-            - type: 'null'
-            - $ref: '#/components/schemas/ApplicationCommandOptionNumberChoice'
-          maxItems: 25
-    ApplicationCommandOptionIntegerChoice:
-      type: object
-      properties:
-        name:
-          type: string
-          minLength: 1
-          maxLength: 100
-        name_localizations:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            type: string
-            minLength: 1
-            maxLength: 100
-          maxProperties: 34
-        value:
-          $ref: '#/components/schemas/Int53Type'
-      required:
-      - name
-      - value
-    StringSelect:
-      type: object
-      properties:
-        type:
-          type: integer
-          enum:
-          - 3
-          allOf:
-          - $ref: '#/components/schemas/MessageComponentTypes'
-          format: int32
-        custom_id:
-          type: string
-          maxLength: 100
-        placeholder:
-          type:
-          - string
-          - 'null'
-          maxLength: 150
-        min_values:
-          type:
-          - integer
-          - 'null'
-          minimum: 0
-          maximum: 25
-        max_values:
-          type:
-          - integer
-          - 'null'
-          minimum: 1
-          maximum: 25
-        disabled:
-          type:
-          - boolean
-          - 'null'
-        options:
-          type: array
-          items:
-            $ref: '#/components/schemas/SelectOption'
-          minItems: 1
-          maxItems: 25
-      required:
-      - type
-      - custom_id
-      - options
-    InteractionApplicationCommandAutocompleteCallbackIntegerData:
-      type: object
-      properties:
-        choices:
-          type:
-          - array
-          - 'null'
-          items:
-            oneOf:
-            - type: 'null'
-            - $ref: '#/components/schemas/ApplicationCommandOptionIntegerChoice'
-          maxItems: 25
-    InputText:
-      type: object
-      properties:
-        type:
-          type: integer
-          enum:
-          - 4
-          allOf:
-          - $ref: '#/components/schemas/MessageComponentTypes'
-          format: int32
-        custom_id:
-          type: string
-          maxLength: 100
-        style:
-          $ref: '#/components/schemas/TextStyleTypes'
-        label:
-          type: string
-          maxLength: 45
-        value:
-          type:
-          - string
-          - 'null'
-          maxLength: 4000
-        placeholder:
-          type:
-          - string
-          - 'null'
-          maxLength: 100
-        required:
-          type:
-          - boolean
-          - 'null'
-        min_length:
-          type:
-          - integer
-          - 'null'
-          minimum: 0
-          maximum: 4000
-        max_length:
-          type:
-          - integer
-          - 'null'
-          minimum: 1
-          maximum: 4000
-      required:
-      - type
-      - custom_id
-      - style
-      - label
-    RichEmbedThumbnail:
-      type: object
-      properties:
-        url:
-          type:
-          - string
-          - 'null'
-          maxLength: 2048
-          format: uri
-        width:
-          type:
-          - integer
-          - 'null'
-        height:
-          type:
-          - integer
-          - 'null'
-        placeholder:
-          type:
-          - string
-          - 'null'
-          maxLength: 64
-        placeholder_version:
-          type:
-          - integer
-          - 'null'
-          minimum: 0
-          maximum: 2147483647
-    RichEmbedFooter:
-      type: object
-      properties:
-        text:
-          type:
-          - string
-          - 'null'
-          maxLength: 2048
-        icon_url:
-          type:
-          - string
-          - 'null'
-          maxLength: 2048
-          format: uri
-    ChannelSelect:
-      type: object
-      properties:
-        type:
-          type: integer
-          enum:
-          - 8
-          allOf:
-          - $ref: '#/components/schemas/MessageComponentTypes'
-          format: int32
-        custom_id:
-          type: string
-          maxLength: 100
-        placeholder:
-          type:
-          - string
-          - 'null'
-          maxLength: 150
-        min_values:
-          type:
-          - integer
-          - 'null'
-          minimum: 0
-          maximum: 25
-        max_values:
-          type:
-          - integer
-          - 'null'
-          minimum: 1
-          maximum: 25
-        disabled:
-          type:
-          - boolean
-          - 'null'
-        default_values:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ChannelSelectDefaultValue'
-          maxItems: 25
-        channel_types:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ChannelTypes'
-          uniqueItems: true
-      required:
-      - type
-      - custom_id
     Error:
       type: object
       description: A single error, either for an API response or a specific field.
@@ -1035,207 +1236,6 @@ components:
       required:
       - code
       - message
-    InnerErrors:
-      type: object
-      properties:
-        _errors:
-          type: array
-          description: The list of errors for this field
-          items:
-            $ref: '#/components/schemas/Error'
-      additionalProperties: false
-      required:
-      - _errors
-    ErrorDetails:
-      oneOf:
-      - type: object
-        additionalProperties:
-          $ref: '#/components/schemas/ErrorDetails'
-      - $ref: '#/components/schemas/InnerErrors'
-    Int53Type:
-      type: integer
-      minimum: -9007199254740991
-      maximum: 9007199254740991
-      format: int64
-    MessageAttachmentRequest:
-      type: object
-      properties:
-        id:
-          $ref: '#/components/schemas/SnowflakeType'
-        filename:
-          type:
-          - string
-          - 'null'
-          maxLength: 1024
-        description:
-          type:
-          - string
-          - 'null'
-          maxLength: 1024
-        is_remix:
-          type:
-          - boolean
-          - 'null'
-      required:
-      - id
-    UpdateMessageInteractionCallbackRequest:
-      type: object
-      properties:
-        type:
-          type: integer
-          enum:
-          - 6
-          - 7
-          allOf:
-          - $ref: '#/components/schemas/InteractionCallbackTypes'
-          format: int32
-        data:
-          oneOf:
-          - type: 'null'
-          - $ref: '#/components/schemas/IncomingWebhookUpdateForInteractionCallbackRequestPartial'
-      required:
-      - type
-    ModalInteractionCallbackData:
-      type: object
-      properties:
-        custom_id:
-          type: string
-          maxLength: 100
-        title:
-          type: string
-          maxLength: 45
-        components:
-          type: array
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/ActionRow'
-            - $ref: '#/components/schemas/InputText'
-          minItems: 1
-          maxItems: 5
-      required:
-      - custom_id
-      - title
-      - components
-    AllowedMentionTypes:
-      type: string
-      oneOf:
-      - title: USERS
-        description: Controls role mentions
-        const: users
-      - title: ROLES
-        description: Controls user mentions
-        const: roles
-      - title: EVERYONE
-        description: Controls @everyone and @here mentions
-        const: everyone
-    ChannelTypes:
-      type: integer
-      oneOf:
-      - title: DM
-        description: A direct message between users
-        const: 1
-      - title: GROUP_DM
-        description: A direct message between multiple users
-        const: 3
-      - title: GUILD_TEXT
-        description: A text channel within a server
-        const: 0
-      - title: GUILD_VOICE
-        description: A voice channel within a server
-        const: 2
-      - title: GUILD_CATEGORY
-        description: An organizational category that contains up to 50 channels
-        const: 4
-      - title: GUILD_ANNOUNCEMENT
-        description: A channel that users can follow and crosspost into their own server (formerly news channels)
-        const: 5
-      - title: ANNOUNCEMENT_THREAD
-        description: A temporary sub-channel within a GUILD_ANNOUNCEMENT channel
-        const: 10
-      - title: PUBLIC_THREAD
-        description: A temporary sub-channel within a GUILD_TEXT or GUILD_THREADS_ONLY channel type set
-        const: 11
-      - title: PRIVATE_THREAD
-        description: A temporary sub-channel within a GUILD_TEXT channel that is only viewable by those invited and those with the MANAGE_THREADS permission
-        const: 12
-      - title: GUILD_STAGE_VOICE
-        description: A voice channel for hosting events with an audience
-        const: 13
-      - title: GUILD_DIRECTORY
-        description: The channel in a hub containing the listed servers
-        const: 14
-      - title: GUILD_FORUM
-        description: Channel that can only contain threads
-        const: 15
-      format: int32
-    ApplicationCommandOptionNumberChoice:
-      type: object
-      properties:
-        name:
-          type: string
-          minLength: 1
-          maxLength: 100
-        name_localizations:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            type: string
-            minLength: 1
-            maxLength: 100
-          maxProperties: 34
-        value:
-          type: number
-          format: double
-      required:
-      - name
-      - value
-    SelectOption:
-      type: object
-      properties:
-        label:
-          type: string
-          minLength: 1
-          maxLength: 100
-        value:
-          type: string
-          minLength: 1
-          maxLength: 100
-        description:
-          type:
-          - string
-          - 'null'
-          maxLength: 100
-        emoji:
-          oneOf:
-          - type: 'null'
-          - $ref: '#/components/schemas/Emoji'
-        default:
-          type:
-          - boolean
-          - 'null'
-      required:
-      - label
-      - value
-    ApplicationCommandAutocompleteCallbackRequest:
-      type: object
-      properties:
-        type:
-          type: integer
-          enum:
-          - 8
-          allOf:
-          - $ref: '#/components/schemas/InteractionCallbackTypes'
-          format: int32
-        data:
-          anyOf:
-          - $ref: '#/components/schemas/InteractionApplicationCommandAutocompleteCallbackIntegerData'
-          - $ref: '#/components/schemas/InteractionApplicationCommandAutocompleteCallbackNumberData'
-          - $ref: '#/components/schemas/InteractionApplicationCommandAutocompleteCallbackStringData'
-          x-discord-union: oneOf
-      required:
-      - type
-      - data
   responses:
     ClientErrorResponse:
       description: Client error response
