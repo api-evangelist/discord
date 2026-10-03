@@ -131,6 +131,36 @@ components:
       type: string
       pattern: ^(0|[1-9][0-9]*)$
       format: snowflake
+    StageInstancesPrivacyLevels:
+      type: integer
+      oneOf:
+      - title: PUBLIC
+        description: The Stage instance is visible publicly. (deprecated)
+        const: 1
+      - title: GUILD_ONLY
+        description: The Stage instance is visible publicly. (deprecated)
+        const: 2
+      format: int32
+    InnerErrors:
+      type: object
+      properties:
+        _errors:
+          type: array
+          description: The list of errors for this field
+          items:
+            $ref: '#/components/schemas/Error'
+      additionalProperties: false
+      required:
+      - _errors
+    ErrorResponse:
+      type: object
+      description: Errors object returned by the Discord API
+      allOf:
+      - $ref: '#/components/schemas/Error'
+      - type: object
+        properties:
+          errors:
+            $ref: '#/components/schemas/ErrorDetails'
     StageInstanceResponse:
       type: object
       properties:
@@ -164,17 +194,6 @@ components:
         additionalProperties:
           $ref: '#/components/schemas/ErrorDetails'
       - $ref: '#/components/schemas/InnerErrors'
-    InnerErrors:
-      type: object
-      properties:
-        _errors:
-          type: array
-          description: The list of errors for this field
-          items:
-            $ref: '#/components/schemas/Error'
-      additionalProperties: false
-      required:
-      - _errors
     Error:
       type: object
       description: A single error, either for an API response or a specific field.
@@ -188,25 +207,6 @@ components:
       required:
       - code
       - message
-    StageInstancesPrivacyLevels:
-      type: integer
-      oneOf:
-      - title: PUBLIC
-        description: The Stage instance is visible publicly. (deprecated)
-        const: 1
-      - title: GUILD_ONLY
-        description: The Stage instance is visible publicly. (deprecated)
-        const: 2
-      format: int32
-    ErrorResponse:
-      type: object
-      description: Errors object returned by the Discord API
-      allOf:
-      - $ref: '#/components/schemas/Error'
-      - type: object
-        properties:
-          errors:
-            $ref: '#/components/schemas/ErrorDetails'
   responses:
     ClientErrorResponse:
       description: Client error response

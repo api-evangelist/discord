@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Discord Interactions Application Commands Interaction………
+  title: Discord Interactions Application Commands Interaction…………
   description: The Discord Interactions API enables applications to create and respond to application commands (slash commands), message components, and modals. It supports both Gateway-based and webhook-based interaction handling, allowing bots to build rich, interactive user experiences within Discord.
   version: '10'
   contact:
@@ -208,40 +208,6 @@ paths:
           $ref: '#/components/responses/ClientError'
 components:
   schemas:
-    Message:
-      type: object
-      properties:
-        id:
-          $ref: '#/components/schemas/Snowflake'
-        channel_id:
-          $ref: '#/components/schemas/Snowflake'
-        content:
-          type: string
-        timestamp:
-          type: string
-          format: date-time
-        flags:
-          type: integer
-    Snowflake:
-      type: string
-      pattern: ^[0-9]+$
-    CreateMessageRequest:
-      type: object
-      properties:
-        content:
-          type: string
-          maxLength: 2000
-        embeds:
-          type: array
-          items:
-            $ref: '#/components/schemas/Embed'
-          maxItems: 10
-        flags:
-          type: integer
-        components:
-          type: array
-          items:
-            type: object
     Embed:
       type: object
       properties:
@@ -268,6 +234,23 @@ components:
                 type: string
               inline:
                 type: boolean
+    CreateMessageRequest:
+      type: object
+      properties:
+        content:
+          type: string
+          maxLength: 2000
+        embeds:
+          type: array
+          items:
+            $ref: '#/components/schemas/Embed'
+          maxItems: 10
+        flags:
+          type: integer
+        components:
+          type: array
+          items:
+            type: object
     EditMessageRequest:
       type: object
       properties:
@@ -286,14 +269,23 @@ components:
           nullable: true
           items:
             type: object
-  parameters:
-    applicationId:
-      name: application_id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The ID of the application
+    Snowflake:
+      type: string
+      pattern: ^[0-9]+$
+    Message:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Snowflake'
+        channel_id:
+          $ref: '#/components/schemas/Snowflake'
+        content:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        flags:
+          type: integer
   responses:
     ClientError:
       description: Client error response
@@ -306,6 +298,14 @@ components:
                 type: integer
               message:
                 type: string
+  parameters:
+    applicationId:
+      name: application_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the application
   securitySchemes:
     BotToken:
       type: http

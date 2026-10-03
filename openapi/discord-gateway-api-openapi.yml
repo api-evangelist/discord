@@ -51,6 +51,21 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    GatewayBotResponse:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+        session_start_limit:
+          $ref: '#/components/schemas/GatewayBotSessionStartLimitResponse'
+        shards:
+          type: integer
+          format: int32
+      required:
+      - url
+      - session_start_limit
+      - shards
     GatewayBotSessionStartLimitResponse:
       type: object
       properties:
@@ -71,20 +86,6 @@ components:
       - remaining
       - reset_after
       - total
-    GatewayResponse:
-      type: object
-      properties:
-        url:
-          type: string
-          format: uri
-      required:
-      - url
-    ErrorDetails:
-      oneOf:
-      - type: object
-        additionalProperties:
-          $ref: '#/components/schemas/ErrorDetails'
-      - $ref: '#/components/schemas/InnerErrors'
     InnerErrors:
       type: object
       properties:
@@ -96,21 +97,29 @@ components:
       additionalProperties: false
       required:
       - _errors
-    GatewayBotResponse:
+    ErrorResponse:
+      type: object
+      description: Errors object returned by the Discord API
+      allOf:
+      - $ref: '#/components/schemas/Error'
+      - type: object
+        properties:
+          errors:
+            $ref: '#/components/schemas/ErrorDetails'
+    ErrorDetails:
+      oneOf:
+      - type: object
+        additionalProperties:
+          $ref: '#/components/schemas/ErrorDetails'
+      - $ref: '#/components/schemas/InnerErrors'
+    GatewayResponse:
       type: object
       properties:
         url:
           type: string
           format: uri
-        session_start_limit:
-          $ref: '#/components/schemas/GatewayBotSessionStartLimitResponse'
-        shards:
-          type: integer
-          format: int32
       required:
       - url
-      - session_start_limit
-      - shards
     Error:
       type: object
       description: A single error, either for an API response or a specific field.
@@ -124,15 +133,6 @@ components:
       required:
       - code
       - message
-    ErrorResponse:
-      type: object
-      description: Errors object returned by the Discord API
-      allOf:
-      - $ref: '#/components/schemas/Error'
-      - type: object
-        properties:
-          errors:
-            $ref: '#/components/schemas/ErrorDetails'
   responses:
     ClientErrorResponse:
       description: Client error response

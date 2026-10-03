@@ -40,15 +40,16 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      description: Errors object returned by the Discord API
-      allOf:
-      - $ref: '#/components/schemas/Error'
-      - type: object
-        properties:
-          errors:
-            $ref: '#/components/schemas/ErrorDetails'
+    StickerTypes:
+      type: integer
+      oneOf:
+      - title: STANDARD
+        description: an official sticker in a pack, part of Nitro or in a removed purchasable pack
+        const: 1
+      - title: GUILD
+        description: a sticker uploaded to a guild for the guild's members
+        const: 2
+      format: int32
     StandardStickerResponse:
       type: object
       properties:
@@ -85,81 +86,6 @@ components:
       - type
       - pack_id
       - sort_value
-    StickerTypes:
-      type: integer
-      oneOf:
-      - title: STANDARD
-        description: an official sticker in a pack, part of Nitro or in a removed purchasable pack
-        const: 1
-      - title: GUILD
-        description: a sticker uploaded to a guild for the guild's members
-        const: 2
-      format: int32
-    SnowflakeType:
-      type: string
-      pattern: ^(0|[1-9][0-9]*)$
-      format: snowflake
-    GuildStickerResponse:
-      type: object
-      properties:
-        id:
-          $ref: '#/components/schemas/SnowflakeType'
-        name:
-          type: string
-        tags:
-          type: string
-        type:
-          type: integer
-          enum:
-          - 2
-          allOf:
-          - $ref: '#/components/schemas/StickerTypes'
-          format: int32
-        format_type:
-          oneOf:
-          - type: 'null'
-          - $ref: '#/components/schemas/StickerFormatTypes'
-        description:
-          type:
-          - string
-          - 'null'
-        available:
-          type: boolean
-        guild_id:
-          $ref: '#/components/schemas/SnowflakeType'
-        user:
-          oneOf:
-          - type: 'null'
-          - $ref: '#/components/schemas/UserResponse'
-      required:
-      - id
-      - name
-      - tags
-      - type
-      - available
-      - guild_id
-    InnerErrors:
-      type: object
-      properties:
-        _errors:
-          type: array
-          description: The list of errors for this field
-          items:
-            $ref: '#/components/schemas/Error'
-      additionalProperties: false
-      required:
-      - _errors
-    Int53Type:
-      type: integer
-      minimum: -9007199254740991
-      maximum: 9007199254740991
-      format: int64
-    ErrorDetails:
-      oneOf:
-      - type: object
-        additionalProperties:
-          $ref: '#/components/schemas/ErrorDetails'
-      - $ref: '#/components/schemas/InnerErrors'
     UserResponse:
       type: object
       properties:
@@ -205,6 +131,92 @@ components:
       - discriminator
       - public_flags
       - flags
+    StickerFormatTypes:
+      type: integer
+      oneOf:
+      - title: PNG
+        const: 1
+      - title: APNG
+        const: 2
+      - title: LOTTIE
+        const: 3
+      - title: GIF
+        const: 4
+      format: int32
+    SnowflakeType:
+      type: string
+      pattern: ^(0|[1-9][0-9]*)$
+      format: snowflake
+    Int53Type:
+      type: integer
+      minimum: -9007199254740991
+      maximum: 9007199254740991
+      format: int64
+    InnerErrors:
+      type: object
+      properties:
+        _errors:
+          type: array
+          description: The list of errors for this field
+          items:
+            $ref: '#/components/schemas/Error'
+      additionalProperties: false
+      required:
+      - _errors
+    ErrorResponse:
+      type: object
+      description: Errors object returned by the Discord API
+      allOf:
+      - $ref: '#/components/schemas/Error'
+      - type: object
+        properties:
+          errors:
+            $ref: '#/components/schemas/ErrorDetails'
+    GuildStickerResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        name:
+          type: string
+        tags:
+          type: string
+        type:
+          type: integer
+          enum:
+          - 2
+          allOf:
+          - $ref: '#/components/schemas/StickerTypes'
+          format: int32
+        format_type:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/StickerFormatTypes'
+        description:
+          type:
+          - string
+          - 'null'
+        available:
+          type: boolean
+        guild_id:
+          $ref: '#/components/schemas/SnowflakeType'
+        user:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/UserResponse'
+      required:
+      - id
+      - name
+      - tags
+      - type
+      - available
+      - guild_id
+    ErrorDetails:
+      oneOf:
+      - type: object
+        additionalProperties:
+          $ref: '#/components/schemas/ErrorDetails'
+      - $ref: '#/components/schemas/InnerErrors'
     Error:
       type: object
       description: A single error, either for an API response or a specific field.
@@ -218,18 +230,6 @@ components:
       required:
       - code
       - message
-    StickerFormatTypes:
-      type: integer
-      oneOf:
-      - title: PNG
-        const: 1
-      - title: APNG
-        const: 2
-      - title: LOTTIE
-        const: 3
-      - title: GIF
-        const: 4
-      format: int32
   responses:
     ClientErrorResponse:
       description: Client error response

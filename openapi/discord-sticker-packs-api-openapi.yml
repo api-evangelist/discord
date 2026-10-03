@@ -33,15 +33,36 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    StickerPackCollectionResponse:
+    StickerPackResponse:
       type: object
       properties:
-        sticker_packs:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        sku_id:
+          $ref: '#/components/schemas/SnowflakeType'
+        name:
+          type: string
+        description:
+          type:
+          - string
+          - 'null'
+        stickers:
           type: array
           items:
-            $ref: '#/components/schemas/StickerPackResponse'
+            $ref: '#/components/schemas/StandardStickerResponse'
+        cover_sticker_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        banner_asset_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
       required:
-      - sticker_packs
+      - id
+      - sku_id
+      - name
+      - stickers
     StandardStickerResponse:
       type: object
       properties:
@@ -78,15 +99,6 @@ components:
       - type
       - pack_id
       - sort_value
-    ErrorResponse:
-      type: object
-      description: Errors object returned by the Discord API
-      allOf:
-      - $ref: '#/components/schemas/Error'
-      - type: object
-        properties:
-          errors:
-            $ref: '#/components/schemas/ErrorDetails'
     StickerTypes:
       type: integer
       oneOf:
@@ -97,40 +109,31 @@ components:
         description: a sticker uploaded to a guild for the guild's members
         const: 2
       format: int32
-    StickerPackResponse:
-      type: object
-      properties:
-        id:
-          $ref: '#/components/schemas/SnowflakeType'
-        sku_id:
-          $ref: '#/components/schemas/SnowflakeType'
-        name:
-          type: string
-        description:
-          type:
-          - string
-          - 'null'
-        stickers:
-          type: array
-          items:
-            $ref: '#/components/schemas/StandardStickerResponse'
-        cover_sticker_id:
-          oneOf:
-          - type: 'null'
-          - $ref: '#/components/schemas/SnowflakeType'
-        banner_asset_id:
-          oneOf:
-          - type: 'null'
-          - $ref: '#/components/schemas/SnowflakeType'
-      required:
-      - id
-      - sku_id
-      - name
-      - stickers
+    StickerFormatTypes:
+      type: integer
+      oneOf:
+      - title: PNG
+        const: 1
+      - title: APNG
+        const: 2
+      - title: LOTTIE
+        const: 3
+      - title: GIF
+        const: 4
+      format: int32
     SnowflakeType:
       type: string
       pattern: ^(0|[1-9][0-9]*)$
       format: snowflake
+    StickerPackCollectionResponse:
+      type: object
+      properties:
+        sticker_packs:
+          type: array
+          items:
+            $ref: '#/components/schemas/StickerPackResponse'
+      required:
+      - sticker_packs
     InnerErrors:
       type: object
       properties:
@@ -142,6 +145,15 @@ components:
       additionalProperties: false
       required:
       - _errors
+    ErrorResponse:
+      type: object
+      description: Errors object returned by the Discord API
+      allOf:
+      - $ref: '#/components/schemas/Error'
+      - type: object
+        properties:
+          errors:
+            $ref: '#/components/schemas/ErrorDetails'
     ErrorDetails:
       oneOf:
       - type: object
@@ -161,18 +173,6 @@ components:
       required:
       - code
       - message
-    StickerFormatTypes:
-      type: integer
-      oneOf:
-      - title: PNG
-        const: 1
-      - title: APNG
-        const: 2
-      - title: LOTTIE
-        const: 3
-      - title: GIF
-        const: 4
-      format: int32
   responses:
     ClientErrorResponse:
       description: Client error response
