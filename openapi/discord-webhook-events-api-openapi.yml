@@ -75,6 +75,54 @@ components:
           format: date-time
         guild_id:
           type: string
+    PartialGuild:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        icon:
+          type: string
+          nullable: true
+        features:
+          type: array
+          items:
+            type: string
+    ApplicationAuthorizedData:
+      type: object
+      description: Data for APPLICATION_AUTHORIZED event
+      properties:
+        integration_type:
+          type: integer
+          description: 0=GUILD_INSTALL, 1=USER_INSTALL
+        user:
+          $ref: '#/components/schemas/User'
+        scopes:
+          type: array
+          items:
+            type: string
+          description: OAuth2 scopes granted
+        guild:
+          $ref: '#/components/schemas/PartialGuild'
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        username:
+          type: string
+        discriminator:
+          type: string
+        global_name:
+          type: string
+          nullable: true
+        avatar:
+          type: string
+          nullable: true
+      required:
+      - id
+      - username
     WebhookEvent:
       type: object
       properties:
@@ -93,33 +141,6 @@ components:
       - version
       - application_id
       - type
-    ApplicationAuthorizedData:
-      type: object
-      description: Data for APPLICATION_AUTHORIZED event
-      properties:
-        integration_type:
-          type: integer
-          description: 0=GUILD_INSTALL, 1=USER_INSTALL
-        user:
-          $ref: '#/components/schemas/User'
-        scopes:
-          type: array
-          items:
-            type: string
-          description: OAuth2 scopes granted
-        guild:
-          $ref: '#/components/schemas/PartialGuild'
-    QuestUserEnrollmentData:
-      type: object
-      description: Data for QUEST_USER_ENROLLMENT event
-      properties:
-        user_id:
-          type: string
-        quest_id:
-          type: string
-        enrolled_at:
-          type: string
-          format: date-time
     WebhookEventBody:
       type: object
       properties:
@@ -142,38 +163,17 @@ components:
       required:
       - type
       - timestamp
-    User:
+    QuestUserEnrollmentData:
       type: object
+      description: Data for QUEST_USER_ENROLLMENT event
       properties:
-        id:
+        user_id:
           type: string
-        username:
+        quest_id:
           type: string
-        discriminator:
+        enrolled_at:
           type: string
-        global_name:
-          type: string
-          nullable: true
-        avatar:
-          type: string
-          nullable: true
-      required:
-      - id
-      - username
-    PartialGuild:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        icon:
-          type: string
-          nullable: true
-        features:
-          type: array
-          items:
-            type: string
+          format: date-time
   securitySchemes:
     BotToken:
       type: http

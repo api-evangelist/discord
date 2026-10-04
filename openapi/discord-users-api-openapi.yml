@@ -288,6 +288,69 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    Error:
+      type: object
+      description: A single error, either for an API response or a specific field.
+      properties:
+        code:
+          type: integer
+          description: Discord internal error code. See error code reference
+        message:
+          type: string
+          description: Human-readable error message
+      required:
+      - code
+      - message
+    IntegrationTypes:
+      type: string
+      oneOf:
+      - title: DISCORD
+        const: discord
+      - title: TWITCH
+        const: twitch
+      - title: YOUTUBE
+        const: youtube
+      - title: GUILD_SUBSCRIPTION
+        const: guild_subscription
+    ConnectedAccountResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type:
+          - string
+          - 'null'
+        type:
+          $ref: '#/components/schemas/ConnectedAccountProviders'
+        friend_sync:
+          type: boolean
+        integrations:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ConnectedAccountIntegrationResponse'
+        show_activity:
+          type: boolean
+        two_way_link:
+          type: boolean
+        verified:
+          type: boolean
+        visibility:
+          $ref: '#/components/schemas/ConnectedAccountVisibility'
+        revoked:
+          type:
+          - boolean
+          - 'null'
+      required:
+      - id
+      - type
+      - friend_sync
+      - show_activity
+      - two_way_link
+      - verified
+      - visibility
     BotAccountPatchRequest:
       type: object
       properties:
@@ -307,170 +370,22 @@ components:
           contentEncoding: base64
       required:
       - username
-    UserPIIResponse:
+    ConnectedAccountIntegrationResponse:
       type: object
       properties:
         id:
-          $ref: '#/components/schemas/SnowflakeType'
-        username:
           type: string
-        avatar:
-          type:
-          - string
-          - 'null'
-        discriminator:
-          type: string
-        public_flags:
-          type: integer
-          format: int32
-        flags:
-          $ref: '#/components/schemas/Int53Type'
-        bot:
-          type:
-          - boolean
-          - 'null'
-        system:
-          type:
-          - boolean
-          - 'null'
-        banner:
-          type:
-          - string
-          - 'null'
-        accent_color:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        global_name:
-          type:
-          - string
-          - 'null'
-        mfa_enabled:
-          type: boolean
-        locale:
-          $ref: '#/components/schemas/AvailableLocalesEnum'
-        premium_type:
-          oneOf:
-          - type: 'null'
-          - $ref: '#/components/schemas/PremiumTypes'
-        email:
-          type:
-          - string
-          - 'null'
-        verified:
-          type:
-          - boolean
-          - 'null'
+        type:
+          $ref: '#/components/schemas/IntegrationTypes'
+        account:
+          $ref: '#/components/schemas/AccountResponse'
+        guild:
+          $ref: '#/components/schemas/ConnectedAccountGuildResponse'
       required:
       - id
-      - username
-      - discriminator
-      - public_flags
-      - flags
-      - mfa_enabled
-      - locale
-    MyGuildResponse:
-      type: object
-      properties:
-        id:
-          $ref: '#/components/schemas/SnowflakeType'
-        name:
-          type: string
-        icon:
-          type:
-          - string
-          - 'null'
-        owner:
-          type: boolean
-        permissions:
-          type: string
-        features:
-          type: array
-          items:
-            $ref: '#/components/schemas/GuildFeatures'
-          uniqueItems: true
-        approximate_member_count:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        approximate_presence_count:
-          type:
-          - integer
-          - 'null'
-          format: int32
-      required:
-      - id
-      - name
-      - owner
-      - permissions
-      - features
-    SnowflakeType:
-      type: string
-      pattern: ^(0|[1-9][0-9]*)$
-      format: snowflake
-    Int53Type:
-      type: integer
-      minimum: -9007199254740991
-      maximum: 9007199254740991
-      format: int64
-    PrivateGuildMemberResponse:
-      type: object
-      properties:
-        avatar:
-          type:
-          - string
-          - 'null'
-        avatar_decoration_data:
-          oneOf:
-          - type: 'null'
-          - $ref: '#/components/schemas/UserAvatarDecorationResponse'
-        communication_disabled_until:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        flags:
-          type: integer
-          format: int32
-        joined_at:
-          type: string
-          format: date-time
-        nick:
-          type:
-          - string
-          - 'null'
-        pending:
-          type: boolean
-        premium_since:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        roles:
-          type: array
-          items:
-            $ref: '#/components/schemas/SnowflakeType'
-          uniqueItems: true
-        user:
-          $ref: '#/components/schemas/UserResponse'
-        mute:
-          type: boolean
-        deaf:
-          type: boolean
-        banner:
-          type:
-          - string
-          - 'null'
-      required:
-      - flags
-      - joined_at
-      - pending
-      - roles
-      - user
-      - mute
-      - deaf
+      - type
+      - account
+      - guild
     InnerErrors:
       type: object
       properties:
@@ -482,20 +397,44 @@ components:
       additionalProperties: false
       required:
       - _errors
-    ConnectedAccountGuildResponse:
+    Int53Type:
+      type: integer
+      minimum: -9007199254740991
+      maximum: 9007199254740991
+      format: int64
+    SnowflakeType:
+      type: string
+      pattern: ^(0|[1-9][0-9]*)$
+      format: snowflake
+    UserAvatarDecorationResponse:
+      type: object
+      properties: {}
+    CreatePrivateChannelRequest:
       type: object
       properties:
-        id:
-          $ref: '#/components/schemas/SnowflakeType'
-        name:
-          type: string
-        icon:
+        recipient_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        access_tokens:
           type:
-          - string
+          - array
           - 'null'
-      required:
-      - id
-      - name
+          items:
+            type: string
+            maxLength: 152133
+          maxItems: 1521
+          uniqueItems: true
+        nicks:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type:
+            - string
+            - 'null'
+            maxLength: 152133
+          maxProperties: 1521
     ErrorResponse:
       type: object
       description: Errors object returned by the Discord API
@@ -505,49 +444,23 @@ components:
         properties:
           errors:
             $ref: '#/components/schemas/ErrorDetails'
-    UserAvatarDecorationResponse:
+    ApplicationUserRoleConnectionResponse:
       type: object
-      properties: {}
-    ChannelTypes:
-      type: integer
-      oneOf:
-      - title: DM
-        description: A direct message between users
-        const: 1
-      - title: GROUP_DM
-        description: A direct message between multiple users
-        const: 3
-      - title: GUILD_TEXT
-        description: A text channel within a server
-        const: 0
-      - title: GUILD_VOICE
-        description: A voice channel within a server
-        const: 2
-      - title: GUILD_CATEGORY
-        description: An organizational category that contains up to 50 channels
-        const: 4
-      - title: GUILD_ANNOUNCEMENT
-        description: A channel that users can follow and crosspost into their own server (formerly news channels)
-        const: 5
-      - title: ANNOUNCEMENT_THREAD
-        description: A temporary sub-channel within a GUILD_ANNOUNCEMENT channel
-        const: 10
-      - title: PUBLIC_THREAD
-        description: A temporary sub-channel within a GUILD_TEXT or GUILD_THREADS_ONLY channel type set
-        const: 11
-      - title: PRIVATE_THREAD
-        description: A temporary sub-channel within a GUILD_TEXT channel that is only viewable by those invited and those with the MANAGE_THREADS permission
-        const: 12
-      - title: GUILD_STAGE_VOICE
-        description: A voice channel for hosting events with an audience
-        const: 13
-      - title: GUILD_DIRECTORY
-        description: The channel in a hub containing the listed servers
-        const: 14
-      - title: GUILD_FORUM
-        description: Channel that can only contain threads
-        const: 15
-      format: int32
+      properties:
+        platform_name:
+          type:
+          - string
+          - 'null'
+        platform_username:
+          type:
+          - string
+          - 'null'
+        metadata:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
     PrivateGroupChannelResponse:
       type: object
       properties:
@@ -601,23 +514,109 @@ components:
       - type
       - flags
       - recipients
-    AccountResponse:
+    PrivateChannelResponse:
       type: object
       properties:
         id:
-          type: string
-        name:
+          $ref: '#/components/schemas/SnowflakeType'
+        type:
+          type: integer
+          enum:
+          - 1
+          allOf:
+          - $ref: '#/components/schemas/ChannelTypes'
+          format: int32
+        last_message_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        flags:
+          type: integer
+          format: int32
+        last_pin_timestamp:
           type:
           - string
           - 'null'
+          format: date-time
+        recipients:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserResponse'
       required:
       - id
+      - type
+      - flags
+      - recipients
+    ChannelTypes:
+      type: integer
+      oneOf:
+      - title: DM
+        description: A direct message between users
+        const: 1
+      - title: GROUP_DM
+        description: A direct message between multiple users
+        const: 3
+      - title: GUILD_TEXT
+        description: A text channel within a server
+        const: 0
+      - title: GUILD_VOICE
+        description: A voice channel within a server
+        const: 2
+      - title: GUILD_CATEGORY
+        description: An organizational category that contains up to 50 channels
+        const: 4
+      - title: GUILD_ANNOUNCEMENT
+        description: A channel that users can follow and crosspost into their own server (formerly news channels)
+        const: 5
+      - title: ANNOUNCEMENT_THREAD
+        description: A temporary sub-channel within a GUILD_ANNOUNCEMENT channel
+        const: 10
+      - title: PUBLIC_THREAD
+        description: A temporary sub-channel within a GUILD_TEXT or GUILD_THREADS_ONLY channel type set
+        const: 11
+      - title: PRIVATE_THREAD
+        description: A temporary sub-channel within a GUILD_TEXT channel that is only viewable by those invited and those with the MANAGE_THREADS permission
+        const: 12
+      - title: GUILD_STAGE_VOICE
+        description: A voice channel for hosting events with an audience
+        const: 13
+      - title: GUILD_DIRECTORY
+        description: The channel in a hub containing the listed servers
+        const: 14
+      - title: GUILD_FORUM
+        description: Channel that can only contain threads
+        const: 15
+      format: int32
+    PremiumTypes:
+      type: integer
+      oneOf:
+      - title: NONE
+        description: None
+        const: 0
+      - title: TIER_1
+        description: Nitro Classic
+        const: 1
+      - title: TIER_2
+        description: Nitro Standard
+        const: 2
+      - title: TIER_0
+        description: Nitro Basic
+        const: 3
+      format: int32
     ErrorDetails:
       oneOf:
       - type: object
         additionalProperties:
           $ref: '#/components/schemas/ErrorDetails'
       - $ref: '#/components/schemas/InnerErrors'
+    ConnectedAccountVisibility:
+      type: integer
+      oneOf:
+      - title: NONE
+        const: 0
+      - title: EVERYONE
+        const: 1
+      format: int32
     AvailableLocalesEnum:
       type: string
       oneOf:
@@ -723,6 +722,125 @@ components:
       - title: zh-TW
         description: The zh-TW locale
         const: zh-TW
+    UserPIIResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        username:
+          type: string
+        avatar:
+          type:
+          - string
+          - 'null'
+        discriminator:
+          type: string
+        public_flags:
+          type: integer
+          format: int32
+        flags:
+          $ref: '#/components/schemas/Int53Type'
+        bot:
+          type:
+          - boolean
+          - 'null'
+        system:
+          type:
+          - boolean
+          - 'null'
+        banner:
+          type:
+          - string
+          - 'null'
+        accent_color:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        global_name:
+          type:
+          - string
+          - 'null'
+        mfa_enabled:
+          type: boolean
+        locale:
+          $ref: '#/components/schemas/AvailableLocalesEnum'
+        premium_type:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/PremiumTypes'
+        email:
+          type:
+          - string
+          - 'null'
+        verified:
+          type:
+          - boolean
+          - 'null'
+      required:
+      - id
+      - username
+      - discriminator
+      - public_flags
+      - flags
+      - mfa_enabled
+      - locale
+    PrivateGuildMemberResponse:
+      type: object
+      properties:
+        avatar:
+          type:
+          - string
+          - 'null'
+        avatar_decoration_data:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/UserAvatarDecorationResponse'
+        communication_disabled_until:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        flags:
+          type: integer
+          format: int32
+        joined_at:
+          type: string
+          format: date-time
+        nick:
+          type:
+          - string
+          - 'null'
+        pending:
+          type: boolean
+        premium_since:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/SnowflakeType'
+          uniqueItems: true
+        user:
+          $ref: '#/components/schemas/UserResponse'
+        mute:
+          type: boolean
+        deaf:
+          type: boolean
+        banner:
+          type:
+          - string
+          - 'null'
+      required:
+      - flags
+      - joined_at
+      - pending
+      - roles
+      - user
+      - mute
+      - deaf
     UserResponse:
       type: object
       properties:
@@ -768,126 +886,7 @@ components:
       - discriminator
       - public_flags
       - flags
-    ConnectedAccountIntegrationResponse:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          $ref: '#/components/schemas/IntegrationTypes'
-        account:
-          $ref: '#/components/schemas/AccountResponse'
-        guild:
-          $ref: '#/components/schemas/ConnectedAccountGuildResponse'
-      required:
-      - id
-      - type
-      - account
-      - guild
-    ConnectedAccountProviders:
-      type: string
-      oneOf:
-      - title: BATTLENET
-        const: battlenet
-      - title: BUNGIE
-        const: bungie
-      - title: EBAY
-        const: ebay
-      - title: EPIC_GAMES
-        const: epicgames
-      - title: FACEBOOK
-        const: facebook
-      - title: GITHUB
-        const: github
-      - title: INSTAGRAM
-        const: instagram
-      - title: LEAGUE_OF_LEGENDS
-        const: leagueoflegends
-      - title: PAYPAL
-        const: paypal
-      - title: PLAYSTATION
-        const: playstation
-      - title: REDDIT
-        const: reddit
-      - title: RIOT_GAMES
-        const: riotgames
-      - title: ROBLOX
-        const: roblox
-      - title: SKYPE
-        const: skype
-      - title: SPOTIFY
-        const: spotify
-      - title: STEAM
-        const: steam
-      - title: TIKTOK
-        const: tiktok
-      - title: TWITCH
-        const: twitch
-      - title: TWITTER
-        const: twitter
-      - title: XBOX
-        const: xbox
-      - title: YOUTUBE
-        const: youtube
-      - title: DOMAIN
-        const: domain
-    CreatePrivateChannelRequest:
-      type: object
-      properties:
-        recipient_id:
-          oneOf:
-          - type: 'null'
-          - $ref: '#/components/schemas/SnowflakeType'
-        access_tokens:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-            maxLength: 152133
-          maxItems: 1521
-          uniqueItems: true
-        nicks:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            type:
-            - string
-            - 'null'
-            maxLength: 152133
-          maxProperties: 1521
-    ApplicationUserRoleConnectionResponse:
-      type: object
-      properties:
-        platform_name:
-          type:
-          - string
-          - 'null'
-        platform_username:
-          type:
-          - string
-          - 'null'
-        metadata:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            type: string
-    Error:
-      type: object
-      description: A single error, either for an API response or a specific field.
-      properties:
-        code:
-          type: integer
-          description: Discord internal error code. See error code reference
-        message:
-          type: string
-          description: Human-readable error message
-      required:
-      - code
-      - message
-    ConnectedAccountResponse:
+    AccountResponse:
       type: object
       properties:
         id:
@@ -896,93 +895,44 @@ components:
           type:
           - string
           - 'null'
-        type:
-          $ref: '#/components/schemas/ConnectedAccountProviders'
-        friend_sync:
-          type: boolean
-        integrations:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ConnectedAccountIntegrationResponse'
-        show_activity:
-          type: boolean
-        two_way_link:
-          type: boolean
-        verified:
-          type: boolean
-        visibility:
-          $ref: '#/components/schemas/ConnectedAccountVisibility'
-        revoked:
-          type:
-          - boolean
-          - 'null'
       required:
       - id
-      - type
-      - friend_sync
-      - show_activity
-      - two_way_link
-      - verified
-      - visibility
-    PremiumTypes:
-      type: integer
-      oneOf:
-      - title: NONE
-        description: None
-        const: 0
-      - title: TIER_1
-        description: Nitro Classic
-        const: 1
-      - title: TIER_2
-        description: Nitro Standard
-        const: 2
-      - title: TIER_0
-        description: Nitro Basic
-        const: 3
-      format: int32
-    ConnectedAccountVisibility:
-      type: integer
-      oneOf:
-      - title: NONE
-        const: 0
-      - title: EVERYONE
-        const: 1
-      format: int32
-    PrivateChannelResponse:
+    MyGuildResponse:
       type: object
       properties:
         id:
           $ref: '#/components/schemas/SnowflakeType'
-        type:
-          type: integer
-          enum:
-          - 1
-          allOf:
-          - $ref: '#/components/schemas/ChannelTypes'
-          format: int32
-        last_message_id:
-          oneOf:
-          - type: 'null'
-          - $ref: '#/components/schemas/SnowflakeType'
-        flags:
-          type: integer
-          format: int32
-        last_pin_timestamp:
+        name:
+          type: string
+        icon:
           type:
           - string
           - 'null'
-          format: date-time
-        recipients:
+        owner:
+          type: boolean
+        permissions:
+          type: string
+        features:
           type: array
           items:
-            $ref: '#/components/schemas/UserResponse'
+            $ref: '#/components/schemas/GuildFeatures'
+          uniqueItems: true
+        approximate_member_count:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        approximate_presence_count:
+          type:
+          - integer
+          - 'null'
+          format: int32
       required:
       - id
-      - type
-      - flags
-      - recipients
+      - name
+      - owner
+      - permissions
+      - features
     GuildFeatures:
       type: string
       oneOf:
@@ -1067,17 +1017,67 @@ components:
       - title: WELCOME_SCREEN_ENABLED
         description: guild has enabled the welcome screen
         const: WELCOME_SCREEN_ENABLED
-    IntegrationTypes:
+    ConnectedAccountProviders:
       type: string
       oneOf:
-      - title: DISCORD
-        const: discord
+      - title: BATTLENET
+        const: battlenet
+      - title: BUNGIE
+        const: bungie
+      - title: EBAY
+        const: ebay
+      - title: EPIC_GAMES
+        const: epicgames
+      - title: FACEBOOK
+        const: facebook
+      - title: GITHUB
+        const: github
+      - title: INSTAGRAM
+        const: instagram
+      - title: LEAGUE_OF_LEGENDS
+        const: leagueoflegends
+      - title: PAYPAL
+        const: paypal
+      - title: PLAYSTATION
+        const: playstation
+      - title: REDDIT
+        const: reddit
+      - title: RIOT_GAMES
+        const: riotgames
+      - title: ROBLOX
+        const: roblox
+      - title: SKYPE
+        const: skype
+      - title: SPOTIFY
+        const: spotify
+      - title: STEAM
+        const: steam
+      - title: TIKTOK
+        const: tiktok
       - title: TWITCH
         const: twitch
+      - title: TWITTER
+        const: twitter
+      - title: XBOX
+        const: xbox
       - title: YOUTUBE
         const: youtube
-      - title: GUILD_SUBSCRIPTION
-        const: guild_subscription
+      - title: DOMAIN
+        const: domain
+    ConnectedAccountGuildResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        name:
+          type: string
+        icon:
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - name
   responses:
     ClientErrorResponse:
       description: Client error response

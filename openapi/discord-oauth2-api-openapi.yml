@@ -254,15 +254,19 @@ paths:
           $ref: '#/components/responses/ClientError'
 components:
   schemas:
-    SnowflakeType:
-      type: string
-      pattern: ^(0|[1-9][0-9]*)$
-      format: snowflake
-    Int53Type:
-      type: integer
-      minimum: -9007199254740991
-      maximum: 9007199254740991
-      format: int64
+    Error:
+      type: object
+      description: A single error, either for an API response or a specific field.
+      properties:
+        code:
+          type: integer
+          description: Discord internal error code. See error code reference
+        message:
+          type: string
+          description: Human-readable error message
+      required:
+      - code
+      - message
     InnerErrors:
       type: object
       properties:
@@ -274,24 +278,28 @@ components:
       additionalProperties: false
       required:
       - _errors
-    ErrorResponse:
-      type: object
-      description: Errors object returned by the Discord API
-      allOf:
-      - $ref: '#/components/schemas/Error'
-      - type: object
-        properties:
-          errors:
-            $ref: '#/components/schemas/ErrorDetails'
-    OAuth2GetKeys:
+    SnowflakeType:
+      type: string
+      pattern: ^(0|[1-9][0-9]*)$
+      format: snowflake
+    Int53Type:
+      type: integer
+      minimum: -9007199254740991
+      maximum: 9007199254740991
+      format: int64
+    TeamMemberResponse:
       type: object
       properties:
-        keys:
-          type: array
-          items:
-            $ref: '#/components/schemas/OAuth2Key'
+        user:
+          $ref: '#/components/schemas/UserResponse'
+        team_id:
+          $ref: '#/components/schemas/SnowflakeType'
+        membership_state:
+          $ref: '#/components/schemas/TeamMembershipStates'
       required:
-      - keys
+      - user
+      - team_id
+      - membership_state
     OAuth2Key:
       type: object
       properties:
@@ -314,24 +322,21 @@ components:
       - n
       - e
       - alg
-    ApplicationOAuth2InstallParamsResponse:
+    ErrorResponse:
       type: object
-      properties:
-        scopes:
-          type: array
-          items:
-            type: string
-            enum:
-            - applications.commands
-            - bot
-            allOf:
-            - $ref: '#/components/schemas/OAuth2Scopes'
-          uniqueItems: true
-        permissions:
-          type: string
-      required:
-      - scopes
-      - permissions
+      description: Errors object returned by the Discord API
+      allOf:
+      - $ref: '#/components/schemas/Error'
+      - type: object
+        properties:
+          errors:
+            $ref: '#/components/schemas/ErrorDetails'
+    ErrorDetails:
+      oneOf:
+      - type: object
+        additionalProperties:
+          $ref: '#/components/schemas/ErrorDetails'
+      - $ref: '#/components/schemas/InnerErrors'
     PrivateApplicationResponse:
       type: object
       properties:
@@ -457,121 +462,6 @@ components:
       - flags
       - redirect_uris
       - owner
-    ErrorDetails:
-      oneOf:
-      - type: object
-        additionalProperties:
-          $ref: '#/components/schemas/ErrorDetails'
-      - $ref: '#/components/schemas/InnerErrors'
-    UserResponse:
-      type: object
-      properties:
-        id:
-          $ref: '#/components/schemas/SnowflakeType'
-        username:
-          type: string
-        avatar:
-          type:
-          - string
-          - 'null'
-        discriminator:
-          type: string
-        public_flags:
-          type: integer
-          format: int32
-        flags:
-          $ref: '#/components/schemas/Int53Type'
-        bot:
-          type:
-          - boolean
-          - 'null'
-        system:
-          type:
-          - boolean
-          - 'null'
-        banner:
-          type:
-          - string
-          - 'null'
-        accent_color:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        global_name:
-          type:
-          - string
-          - 'null'
-      required:
-      - id
-      - username
-      - discriminator
-      - public_flags
-      - flags
-    TeamResponse:
-      type: object
-      properties:
-        id:
-          $ref: '#/components/schemas/SnowflakeType'
-        icon:
-          type:
-          - string
-          - 'null'
-        name:
-          type: string
-        owner_user_id:
-          $ref: '#/components/schemas/SnowflakeType'
-        members:
-          type: array
-          items:
-            $ref: '#/components/schemas/TeamMemberResponse'
-      required:
-      - id
-      - name
-      - owner_user_id
-      - members
-    ApplicationTypes:
-      type: integer
-      oneOf:
-      - title: GUILD_ROLE_SUBSCRIPTIONS
-        const: 4
-      format: int32
-    TeamMembershipStates:
-      type: integer
-      oneOf:
-      - title: INVITED
-        description: User has been invited to the team.
-        const: 1
-      - title: ACCEPTED
-        description: User has accepted the team invitation.
-        const: 2
-      format: int32
-    Error:
-      type: object
-      description: A single error, either for an API response or a specific field.
-      properties:
-        code:
-          type: integer
-          description: Discord internal error code. See error code reference
-        message:
-          type: string
-          description: Human-readable error message
-      required:
-      - code
-      - message
-    TeamMemberResponse:
-      type: object
-      properties:
-        user:
-          $ref: '#/components/schemas/UserResponse'
-        team_id:
-          $ref: '#/components/schemas/SnowflakeType'
-        membership_state:
-          $ref: '#/components/schemas/TeamMembershipStates'
-      required:
-      - user
-      - team_id
-      - membership_state
     ApplicationResponse:
       type: object
       properties:
@@ -667,27 +557,82 @@ components:
       - description
       - verify_key
       - flags
-    OAuth2GetAuthorizationResponse:
+    TeamResponse:
       type: object
       properties:
-        application:
-          $ref: '#/components/schemas/ApplicationResponse'
-        expires:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        icon:
+          type:
+          - string
+          - 'null'
+        name:
           type: string
-          format: date-time
-        scopes:
+        owner_user_id:
+          $ref: '#/components/schemas/SnowflakeType'
+        members:
           type: array
           items:
-            $ref: '#/components/schemas/OAuth2Scopes'
-          uniqueItems: true
-        user:
-          oneOf:
-          - type: 'null'
-          - $ref: '#/components/schemas/UserResponse'
+            $ref: '#/components/schemas/TeamMemberResponse'
       required:
-      - application
-      - expires
-      - scopes
+      - id
+      - name
+      - owner_user_id
+      - members
+    OAuth2GetKeys:
+      type: object
+      properties:
+        keys:
+          type: array
+          items:
+            $ref: '#/components/schemas/OAuth2Key'
+      required:
+      - keys
+    UserResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        username:
+          type: string
+        avatar:
+          type:
+          - string
+          - 'null'
+        discriminator:
+          type: string
+        public_flags:
+          type: integer
+          format: int32
+        flags:
+          $ref: '#/components/schemas/Int53Type'
+        bot:
+          type:
+          - boolean
+          - 'null'
+        system:
+          type:
+          - boolean
+          - 'null'
+        banner:
+          type:
+          - string
+          - 'null'
+        accent_color:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        global_name:
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - username
+      - discriminator
+      - public_flags
+      - flags
     OAuth2Scopes:
       type: string
       oneOf:
@@ -790,6 +735,61 @@ components:
       - title: OPENID
         description: for OpenID Connect, this allows your app to receive user id and basic profile information
         const: openid
+    ApplicationOAuth2InstallParamsResponse:
+      type: object
+      properties:
+        scopes:
+          type: array
+          items:
+            type: string
+            enum:
+            - applications.commands
+            - bot
+            allOf:
+            - $ref: '#/components/schemas/OAuth2Scopes'
+          uniqueItems: true
+        permissions:
+          type: string
+      required:
+      - scopes
+      - permissions
+    TeamMembershipStates:
+      type: integer
+      oneOf:
+      - title: INVITED
+        description: User has been invited to the team.
+        const: 1
+      - title: ACCEPTED
+        description: User has accepted the team invitation.
+        const: 2
+      format: int32
+    OAuth2GetAuthorizationResponse:
+      type: object
+      properties:
+        application:
+          $ref: '#/components/schemas/ApplicationResponse'
+        expires:
+          type: string
+          format: date-time
+        scopes:
+          type: array
+          items:
+            $ref: '#/components/schemas/OAuth2Scopes'
+          uniqueItems: true
+        user:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/UserResponse'
+      required:
+      - application
+      - expires
+      - scopes
+    ApplicationTypes:
+      type: integer
+      oneOf:
+      - title: GUILD_ROLE_SUBSCRIPTIONS
+        const: 4
+      format: int32
     AccessTokenResponse:
       type: object
       properties:

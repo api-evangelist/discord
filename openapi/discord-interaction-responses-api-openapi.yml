@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Discord Interactions Application Commands Interaction…………
+  title: Discord Interactions Application Commands Interaction……………
   description: The Discord Interactions API enables applications to create and respond to application commands (slash commands), message components, and modals. It supports both Gateway-based and webhook-based interaction handling, allowing bots to build rich, interactive user experiences within Discord.
   version: '10'
   contact:
@@ -208,6 +208,20 @@ paths:
           $ref: '#/components/responses/ClientError'
 components:
   schemas:
+    Message:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Snowflake'
+        channel_id:
+          $ref: '#/components/schemas/Snowflake'
+        content:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        flags:
+          type: integer
     Embed:
       type: object
       properties:
@@ -272,20 +286,6 @@ components:
     Snowflake:
       type: string
       pattern: ^[0-9]+$
-    Message:
-      type: object
-      properties:
-        id:
-          $ref: '#/components/schemas/Snowflake'
-        channel_id:
-          $ref: '#/components/schemas/Snowflake'
-        content:
-          type: string
-        timestamp:
-          type: string
-          format: date-time
-        flags:
-          type: integer
   responses:
     ClientError:
       description: Client error response
