@@ -138,3 +138,44 @@ plans:
       - name: 30% off additional boosts ($3.49)
       - name: HD streaming
       - name: Custom video backgrounds
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - seat
+  - subscription
+  units:
+  - data
+  - period
+  - seat
+  plans:
+  - name: Free
+    access: freemium
+    model: seat
+    model_how: derived
+    units:
+    - data
+    - seat
+    periods:
+    - month
+  - name: Nitro Basic
+    access: paid
+    model: subscription
+    model_how: derived
+    units:
+    - data
+    - period
+    periods:
+    - month
+    - year
+  - name: Nitro
+    access: paid
+    model: subscription
+    model_how: derived
+    units:
+    - data
+    - other
+    - period
+    periods:
+    - month
+    - year
