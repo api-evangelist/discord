@@ -5,6 +5,8 @@ source:
 - https://composio.dev/toolkits/discord
 checked:
 - https://composio.dev/toolkits/discord
+- https://github.com/rudderlabs/rudder-integrations-config/tree/main/src/configurations/destinations/discord
+- https://hightouch.com/docs/destinations/discord
 - https://monid.ai/tools/discord
 - https://n8n.io/integrations/discord/
 - https://zapier.com/apps/discord/integrations
@@ -633,5 +635,50 @@ marketplace_apps:
   - key: DISCORD_MODIFY_CURRENT_USER
   - key: DISCORD_NEW_MESSAGE_TRIGGER
   - key: DISCORD_UPDATE_USER_APPLICATION_ROLE_CONNECTION
-edges: []
+edges:
+- partner_name: RudderStack
+  partner: rudderstack
+  partner_match: aggregator
+  marketplace: coverage
+  channel: partner-built
+  direction: partner-built
+  type: coverage
+  relationship: connector-coverage
+  evidence: https://github.com/rudderlabs/rudder-integrations-config/tree/main/src/configurations/destinations/discord
+  coverage_role:
+  - destination
+  cdp_signals:
+    destination:
+      catalog_entries:
+      - discord
+      connection_modes:
+      - cloud
+      cloud_event_types:
+      - identify
+      - track
+      source_types: 13
+  detected_by: sweep-cdp.py
+  first_seen: '2026-10-14'
+- partner_name: Hightouch
+  partner: hightouch
+  partner_match: aggregator
+  marketplace: coverage
+  channel: partner-built
+  direction: partner-built
+  type: coverage
+  relationship: connector-coverage
+  evidence: https://hightouch.com/docs/destinations/discord
+  coverage_role:
+  - destination
+  cdp_signals:
+    destination:
+      catalog_entries:
+      - discord
+      status: released
+      sync_types:
+      - Events
+      sync_modes:
+      - insert
+  detected_by: sweep-cdp.py
+  first_seen: '2026-10-14'
 templates: []
