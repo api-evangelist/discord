@@ -33,47 +33,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    InnerErrors:
-      type: object
-      properties:
-        _errors:
-          type: array
-          description: The list of errors for this field
-          items:
-            $ref: '#/components/schemas/Error'
-      additionalProperties: false
-      required:
-      - _errors
-    StickerPackResponse:
-      type: object
-      properties:
-        id:
-          $ref: '#/components/schemas/SnowflakeType'
-        sku_id:
-          $ref: '#/components/schemas/SnowflakeType'
-        name:
-          type: string
-        description:
-          type:
-          - string
-          - 'null'
-        stickers:
-          type: array
-          items:
-            $ref: '#/components/schemas/StandardStickerResponse'
-        cover_sticker_id:
-          oneOf:
-          - type: 'null'
-          - $ref: '#/components/schemas/SnowflakeType'
-        banner_asset_id:
-          oneOf:
-          - type: 'null'
-          - $ref: '#/components/schemas/SnowflakeType'
-      required:
-      - id
-      - sku_id
-      - name
-      - stickers
     StandardStickerResponse:
       type: object
       properties:
@@ -110,16 +69,15 @@ components:
       - type
       - pack_id
       - sort_value
-    SnowflakeType:
-      type: string
-      pattern: ^(0|[1-9][0-9]*)$
-      format: snowflake
-    ErrorDetails:
-      oneOf:
+    ErrorResponse:
+      type: object
+      description: Errors object returned by the Discord API
+      allOf:
+      - $ref: '#/components/schemas/Error'
       - type: object
-        additionalProperties:
-          $ref: '#/components/schemas/ErrorDetails'
-      - $ref: '#/components/schemas/InnerErrors'
+        properties:
+          errors:
+            $ref: '#/components/schemas/ErrorDetails'
     Error:
       type: object
       description: A single error, either for an API response or a specific field.
@@ -133,15 +91,67 @@ components:
       required:
       - code
       - message
-    StickerPackCollectionResponse:
+    ErrorDetails:
+      oneOf:
+      - type: object
+        additionalProperties:
+          $ref: '#/components/schemas/ErrorDetails'
+      - $ref: '#/components/schemas/InnerErrors'
+    InnerErrors:
       type: object
       properties:
-        sticker_packs:
+        _errors:
+          type: array
+          description: The list of errors for this field
+          items:
+            $ref: '#/components/schemas/Error'
+      additionalProperties: false
+      required:
+      - _errors
+    SnowflakeType:
+      type: string
+      pattern: ^(0|[1-9][0-9]*)$
+      format: snowflake
+    StickerTypes:
+      type: integer
+      oneOf:
+      - title: STANDARD
+        description: an official sticker in a pack, part of Nitro or in a removed purchasable pack
+        const: 1
+      - title: GUILD
+        description: a sticker uploaded to a guild for the guild's members
+        const: 2
+      format: int32
+    StickerPackResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        sku_id:
+          $ref: '#/components/schemas/SnowflakeType'
+        name:
+          type: string
+        description:
+          type:
+          - string
+          - 'null'
+        stickers:
           type: array
           items:
-            $ref: '#/components/schemas/StickerPackResponse'
+            $ref: '#/components/schemas/StandardStickerResponse'
+        cover_sticker_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        banner_asset_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
       required:
-      - sticker_packs
+      - id
+      - sku_id
+      - name
+      - stickers
     StickerFormatTypes:
       type: integer
       oneOf:
@@ -154,25 +164,15 @@ components:
       - title: GIF
         const: 4
       format: int32
-    StickerTypes:
-      type: integer
-      oneOf:
-      - title: STANDARD
-        description: an official sticker in a pack, part of Nitro or in a removed purchasable pack
-        const: 1
-      - title: GUILD
-        description: a sticker uploaded to a guild for the guild's members
-        const: 2
-      format: int32
-    ErrorResponse:
+    StickerPackCollectionResponse:
       type: object
-      description: Errors object returned by the Discord API
-      allOf:
-      - $ref: '#/components/schemas/Error'
-      - type: object
-        properties:
-          errors:
-            $ref: '#/components/schemas/ErrorDetails'
+      properties:
+        sticker_packs:
+          type: array
+          items:
+            $ref: '#/components/schemas/StickerPackResponse'
+      required:
+      - sticker_packs
   responses:
     ClientErrorResponse:
       description: Client error response

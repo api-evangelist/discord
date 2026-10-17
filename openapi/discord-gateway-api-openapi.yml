@@ -51,51 +51,15 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    InnerErrors:
+    ErrorResponse:
       type: object
-      properties:
-        _errors:
-          type: array
-          description: The list of errors for this field
-          items:
-            $ref: '#/components/schemas/Error'
-      additionalProperties: false
-      required:
-      - _errors
-    GatewayResponse:
-      type: object
-      properties:
-        url:
-          type: string
-          format: uri
-      required:
-      - url
-    GatewayBotSessionStartLimitResponse:
-      type: object
-      properties:
-        max_concurrency:
-          type: integer
-          format: int32
-        remaining:
-          type: integer
-          format: int32
-        reset_after:
-          type: integer
-          format: int32
-        total:
-          type: integer
-          format: int32
-      required:
-      - max_concurrency
-      - remaining
-      - reset_after
-      - total
-    ErrorDetails:
-      oneOf:
+      description: Errors object returned by the Discord API
+      allOf:
+      - $ref: '#/components/schemas/Error'
       - type: object
-        additionalProperties:
-          $ref: '#/components/schemas/ErrorDetails'
-      - $ref: '#/components/schemas/InnerErrors'
+        properties:
+          errors:
+            $ref: '#/components/schemas/ErrorDetails'
     Error:
       type: object
       description: A single error, either for an API response or a specific field.
@@ -124,15 +88,51 @@ components:
       - url
       - session_start_limit
       - shards
-    ErrorResponse:
+    GatewayBotSessionStartLimitResponse:
       type: object
-      description: Errors object returned by the Discord API
-      allOf:
-      - $ref: '#/components/schemas/Error'
+      properties:
+        max_concurrency:
+          type: integer
+          format: int32
+        remaining:
+          type: integer
+          format: int32
+        reset_after:
+          type: integer
+          format: int32
+        total:
+          type: integer
+          format: int32
+      required:
+      - max_concurrency
+      - remaining
+      - reset_after
+      - total
+    ErrorDetails:
+      oneOf:
       - type: object
-        properties:
-          errors:
-            $ref: '#/components/schemas/ErrorDetails'
+        additionalProperties:
+          $ref: '#/components/schemas/ErrorDetails'
+      - $ref: '#/components/schemas/InnerErrors'
+    GatewayResponse:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+      required:
+      - url
+    InnerErrors:
+      type: object
+      properties:
+        _errors:
+          type: array
+          description: The list of errors for this field
+          items:
+            $ref: '#/components/schemas/Error'
+      additionalProperties: false
+      required:
+      - _errors
   responses:
     ClientErrorResponse:
       description: Client error response

@@ -40,21 +40,15 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    InnerErrors:
+    ErrorResponse:
       type: object
-      properties:
-        _errors:
-          type: array
-          description: The list of errors for this field
-          items:
-            $ref: '#/components/schemas/Error'
-      additionalProperties: false
-      required:
-      - _errors
-    SnowflakeType:
-      type: string
-      pattern: ^(0|[1-9][0-9]*)$
-      format: snowflake
+      description: Errors object returned by the Discord API
+      allOf:
+      - $ref: '#/components/schemas/Error'
+      - type: object
+        properties:
+          errors:
+            $ref: '#/components/schemas/ErrorDetails'
     StandardStickerResponse:
       type: object
       properties:
@@ -96,24 +90,6 @@ components:
       minimum: -9007199254740991
       maximum: 9007199254740991
       format: int64
-    ErrorDetails:
-      oneOf:
-      - type: object
-        additionalProperties:
-          $ref: '#/components/schemas/ErrorDetails'
-      - $ref: '#/components/schemas/InnerErrors'
-    StickerFormatTypes:
-      type: integer
-      oneOf:
-      - title: PNG
-        const: 1
-      - title: APNG
-        const: 2
-      - title: LOTTIE
-        const: 3
-      - title: GIF
-        const: 4
-      format: int32
     Error:
       type: object
       description: A single error, either for an API response or a specific field.
@@ -172,16 +148,6 @@ components:
       - discriminator
       - public_flags
       - flags
-    StickerTypes:
-      type: integer
-      oneOf:
-      - title: STANDARD
-        description: an official sticker in a pack, part of Nitro or in a removed purchasable pack
-        const: 1
-      - title: GUILD
-        description: a sticker uploaded to a guild for the guild's members
-        const: 2
-      format: int32
     GuildStickerResponse:
       type: object
       properties:
@@ -221,15 +187,49 @@ components:
       - type
       - available
       - guild_id
-    ErrorResponse:
-      type: object
-      description: Errors object returned by the Discord API
-      allOf:
-      - $ref: '#/components/schemas/Error'
+    ErrorDetails:
+      oneOf:
       - type: object
-        properties:
-          errors:
-            $ref: '#/components/schemas/ErrorDetails'
+        additionalProperties:
+          $ref: '#/components/schemas/ErrorDetails'
+      - $ref: '#/components/schemas/InnerErrors'
+    SnowflakeType:
+      type: string
+      pattern: ^(0|[1-9][0-9]*)$
+      format: snowflake
+    StickerTypes:
+      type: integer
+      oneOf:
+      - title: STANDARD
+        description: an official sticker in a pack, part of Nitro or in a removed purchasable pack
+        const: 1
+      - title: GUILD
+        description: a sticker uploaded to a guild for the guild's members
+        const: 2
+      format: int32
+    StickerFormatTypes:
+      type: integer
+      oneOf:
+      - title: PNG
+        const: 1
+      - title: APNG
+        const: 2
+      - title: LOTTIE
+        const: 3
+      - title: GIF
+        const: 4
+      format: int32
+    InnerErrors:
+      type: object
+      properties:
+        _errors:
+          type: array
+          description: The list of errors for this field
+          items:
+            $ref: '#/components/schemas/Error'
+      additionalProperties: false
+      required:
+      - _errors
   responses:
     ClientErrorResponse:
       description: Client error response

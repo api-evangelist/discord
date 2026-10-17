@@ -51,6 +51,38 @@ paths:
           description: Invalid signature
 components:
   schemas:
+    WebhookEvent:
+      type: object
+      properties:
+        version:
+          type: integer
+          description: Always 1
+        application_id:
+          type: string
+          description: ID of the application receiving the event
+        type:
+          type: integer
+          description: 0=PING, 1=EVENT
+        event:
+          $ref: '#/components/schemas/WebhookEventBody'
+      required:
+      - version
+      - application_id
+      - type
+    PartialGuild:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        icon:
+          type: string
+          nullable: true
+        features:
+          type: array
+          items:
+            type: string
     EntitlementCreateData:
       type: object
       description: Data for ENTITLEMENT_CREATE event
@@ -75,72 +107,17 @@ components:
           format: date-time
         guild_id:
           type: string
-    PartialGuild:
+    QuestUserEnrollmentData:
       type: object
+      description: Data for QUEST_USER_ENROLLMENT event
       properties:
-        id:
+        user_id:
           type: string
-        name:
+        quest_id:
           type: string
-        icon:
+        enrolled_at:
           type: string
-          nullable: true
-        features:
-          type: array
-          items:
-            type: string
-    ApplicationAuthorizedData:
-      type: object
-      description: Data for APPLICATION_AUTHORIZED event
-      properties:
-        integration_type:
-          type: integer
-          description: 0=GUILD_INSTALL, 1=USER_INSTALL
-        user:
-          $ref: '#/components/schemas/User'
-        scopes:
-          type: array
-          items:
-            type: string
-          description: OAuth2 scopes granted
-        guild:
-          $ref: '#/components/schemas/PartialGuild'
-    User:
-      type: object
-      properties:
-        id:
-          type: string
-        username:
-          type: string
-        discriminator:
-          type: string
-        global_name:
-          type: string
-          nullable: true
-        avatar:
-          type: string
-          nullable: true
-      required:
-      - id
-      - username
-    WebhookEvent:
-      type: object
-      properties:
-        version:
-          type: integer
-          description: Always 1
-        application_id:
-          type: string
-          description: ID of the application receiving the event
-        type:
-          type: integer
-          description: 0=PING, 1=EVENT
-        event:
-          $ref: '#/components/schemas/WebhookEventBody'
-      required:
-      - version
-      - application_id
-      - type
+          format: date-time
     WebhookEventBody:
       type: object
       properties:
@@ -163,17 +140,40 @@ components:
       required:
       - type
       - timestamp
-    QuestUserEnrollmentData:
+    User:
       type: object
-      description: Data for QUEST_USER_ENROLLMENT event
       properties:
-        user_id:
+        id:
           type: string
-        quest_id:
+        username:
           type: string
-        enrolled_at:
+        discriminator:
           type: string
-          format: date-time
+        global_name:
+          type: string
+          nullable: true
+        avatar:
+          type: string
+          nullable: true
+      required:
+      - id
+      - username
+    ApplicationAuthorizedData:
+      type: object
+      description: Data for APPLICATION_AUTHORIZED event
+      properties:
+        integration_type:
+          type: integer
+          description: 0=GUILD_INSTALL, 1=USER_INSTALL
+        user:
+          $ref: '#/components/schemas/User'
+        scopes:
+          type: array
+          items:
+            type: string
+          description: OAuth2 scopes granted
+        guild:
+          $ref: '#/components/schemas/PartialGuild'
   securitySchemes:
     BotToken:
       type: http
