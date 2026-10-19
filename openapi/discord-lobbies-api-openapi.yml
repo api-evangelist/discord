@@ -1,0 +1,3122 @@
+openapi: 3.2.0
+info:
+  title: Discord HTTP API (Preview) Lobbies API
+  description: Preview of the Discord v10 HTTP API specification. See https://discord.com/developers/docs for more details.
+  termsOfService: https://discord.com/developers/docs/policies-and-agreements/developer-terms-of-service
+  license:
+    name: MIT
+    identifier: MIT
+  version: '10'
+servers:
+- url: https://discord.com/api/v10
+tags:
+- name: Lobbies
+paths:
+  /lobbies:
+    put:
+      operationId: create_or_join_lobby
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                idle_timeout_seconds:
+                  type:
+                  - integer
+                  - 'null'
+                  minimum: 5
+                  maximum: 604800
+                  format: int32
+                lobby_metadata:
+                  type:
+                  - object
+                  - 'null'
+                  additionalProperties:
+                    type: string
+                    maxLength: 1024
+                  maxProperties: 25
+                member_metadata:
+                  type:
+                  - object
+                  - 'null'
+                  additionalProperties:
+                    type: string
+                    maxLength: 1024
+                  maxProperties: 25
+                secret:
+                  type: string
+                  maxLength: 250
+                flags:
+                  oneOf:
+                  - type: 'null'
+                  - type: integer
+                    enum:
+                    - 1
+              required:
+              - secret
+        required: true
+      responses:
+        '200':
+          description: 200 response for create_or_join_lobby
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+            X-RateLimit-Reset-After:
+              $ref: '#/components/headers/X-RateLimit-Reset-After'
+            X-RateLimit-Bucket:
+              $ref: '#/components/headers/X-RateLimit-Bucket'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LobbyResponse'
+        '429':
+          $ref: '#/components/responses/ClientRatelimitedResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      - OAuth2: []
+      tags:
+      - Lobbies
+      summary: Create or join lobby
+      x-summary-source: derived
+    post:
+      operationId: create_lobby
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                idle_timeout_seconds:
+                  type:
+                  - integer
+                  - 'null'
+                  minimum: 5
+                  maximum: 604800
+                  format: int32
+                members:
+                  type:
+                  - array
+                  - 'null'
+                  items:
+                    $ref: '#/components/schemas/LobbyMemberRequest'
+                  maxItems: 25
+                metadata:
+                  type:
+                  - object
+                  - 'null'
+                  additionalProperties:
+                    type: string
+                    maxLength: 1024
+                  maxProperties: 25
+                flags:
+                  oneOf:
+                  - type: 'null'
+                  - type: integer
+                    enum:
+                    - 1
+                override_event_webhooks_url:
+                  type:
+                  - string
+                  - 'null'
+                  maxLength: 512
+                  format: uri
+        required: true
+      responses:
+        '201':
+          description: 201 response for create_lobby
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+            X-RateLimit-Reset-After:
+              $ref: '#/components/headers/X-RateLimit-Reset-After'
+            X-RateLimit-Bucket:
+              $ref: '#/components/headers/X-RateLimit-Bucket'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LobbyResponse'
+        '429':
+          $ref: '#/components/responses/ClientRatelimitedResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      tags:
+      - Lobbies
+      summary: Create lobby
+      x-summary-source: derived
+  /lobbies/{lobby_id}:
+    parameters:
+    - name: lobby_id
+      in: path
+      schema:
+        $ref: '#/components/schemas/SnowflakeType'
+      required: true
+    get:
+      operationId: get_lobby
+      responses:
+        '200':
+          description: 200 response for get_lobby
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+            X-RateLimit-Reset-After:
+              $ref: '#/components/headers/X-RateLimit-Reset-After'
+            X-RateLimit-Bucket:
+              $ref: '#/components/headers/X-RateLimit-Bucket'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LobbyResponse'
+        '429':
+          $ref: '#/components/responses/ClientRatelimitedResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      tags:
+      - Lobbies
+      summary: Get lobby
+      x-summary-source: derived
+    delete:
+      description: Deletes the specified lobby if it exists. It is safe to call even if the lobby is already deleted.
+      operationId: delete_lobby
+      responses:
+        '204':
+          description: 204 response for delete_lobby
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+            X-RateLimit-Reset-After:
+              $ref: '#/components/headers/X-RateLimit-Reset-After'
+            X-RateLimit-Bucket:
+              $ref: '#/components/headers/X-RateLimit-Bucket'
+        '429':
+          $ref: '#/components/responses/ClientRatelimitedResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      tags:
+      - Lobbies
+      summary: Delete lobby
+      x-summary-source: derived
+    patch:
+      operationId: edit_lobby
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                idle_timeout_seconds:
+                  type:
+                  - integer
+                  - 'null'
+                  minimum: 5
+                  maximum: 604800
+                  format: int32
+                metadata:
+                  type:
+                  - object
+                  - 'null'
+                  additionalProperties:
+                    type: string
+                    maxLength: 1024
+                  maxProperties: 25
+                members:
+                  type:
+                  - array
+                  - 'null'
+                  items:
+                    $ref: '#/components/schemas/LobbyMemberRequest'
+                  maxItems: 25
+                flags:
+                  oneOf:
+                  - type: 'null'
+                  - type: integer
+                    enum:
+                    - 1
+                override_event_webhooks_url:
+                  type:
+                  - string
+                  - 'null'
+                  maxLength: 512
+                  format: uri
+        required: true
+      responses:
+        '200':
+          description: 200 response for edit_lobby
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+            X-RateLimit-Reset-After:
+              $ref: '#/components/headers/X-RateLimit-Reset-After'
+            X-RateLimit-Bucket:
+              $ref: '#/components/headers/X-RateLimit-Bucket'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LobbyResponse'
+        '429':
+          $ref: '#/components/responses/ClientRatelimitedResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      tags:
+      - Lobbies
+      summary: Edit lobby
+      x-summary-source: derived
+  /lobbies/{lobby_id}/channel-linking:
+    parameters:
+    - name: lobby_id
+      in: path
+      schema:
+        $ref: '#/components/schemas/SnowflakeType'
+      required: true
+    patch:
+      operationId: edit_lobby_channel_link
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                channel_id:
+                  oneOf:
+                  - type: 'null'
+                  - $ref: '#/components/schemas/SnowflakeType'
+        required: true
+      responses:
+        '200':
+          description: 200 response for edit_lobby_channel_link
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+            X-RateLimit-Reset-After:
+              $ref: '#/components/headers/X-RateLimit-Reset-After'
+            X-RateLimit-Bucket:
+              $ref: '#/components/headers/X-RateLimit-Bucket'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LobbyResponse'
+        '429':
+          $ref: '#/components/responses/ClientRatelimitedResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      - OAuth2: []
+      tags:
+      - Lobbies
+      summary: Edit lobby channel link
+      x-summary-source: derived
+  /lobbies/{lobby_id}/members/@me:
+    parameters:
+    - name: lobby_id
+      in: path
+      schema:
+        $ref: '#/components/schemas/SnowflakeType'
+      required: true
+    delete:
+      operationId: leave_lobby
+      responses:
+        '204':
+          description: 204 response for leave_lobby
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+            X-RateLimit-Reset-After:
+              $ref: '#/components/headers/X-RateLimit-Reset-After'
+            X-RateLimit-Bucket:
+              $ref: '#/components/headers/X-RateLimit-Bucket'
+        '429':
+          $ref: '#/components/responses/ClientRatelimitedResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      - OAuth2: []
+      tags:
+      - Lobbies
+      summary: Leave lobby
+      x-summary-source: derived
+  /lobbies/{lobby_id}/members/@me/invites:
+    parameters:
+    - name: lobby_id
+      in: path
+      schema:
+        $ref: '#/components/schemas/SnowflakeType'
+      required: true
+    post:
+      operationId: create_linked_lobby_guild_invite_for_self
+      responses:
+        '200':
+          description: 200 response for create_linked_lobby_guild_invite_for_self
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+            X-RateLimit-Reset-After:
+              $ref: '#/components/headers/X-RateLimit-Reset-After'
+            X-RateLimit-Bucket:
+              $ref: '#/components/headers/X-RateLimit-Bucket'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LobbyGuildInviteResponse'
+        '429':
+          $ref: '#/components/responses/ClientRatelimitedResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      - OAuth2: []
+      tags:
+      - Lobbies
+      summary: Create linked lobby guild invite for self
+      x-summary-source: derived
+  /lobbies/{lobby_id}/members/bulk:
+    parameters:
+    - name: lobby_id
+      in: path
+      schema:
+        $ref: '#/components/schemas/SnowflakeType'
+      required: true
+    post:
+      operationId: bulk_update_lobby_members
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type:
+              - array
+              - 'null'
+              items:
+                $ref: '#/components/schemas/BulkLobbyMemberRequest'
+              minItems: 1
+              maxItems: 25
+        required: true
+      responses:
+        '200':
+          description: 200 response for bulk_update_lobby_members
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+            X-RateLimit-Reset-After:
+              $ref: '#/components/headers/X-RateLimit-Reset-After'
+            X-RateLimit-Bucket:
+              $ref: '#/components/headers/X-RateLimit-Bucket'
+          content:
+            application/json:
+              schema:
+                type:
+                - array
+                - 'null'
+                items:
+                  $ref: '#/components/schemas/LobbyMemberResponse'
+        '429':
+          $ref: '#/components/responses/ClientRatelimitedResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      tags:
+      - Lobbies
+      summary: Bulk update lobby members
+      x-summary-source: derived
+  /lobbies/{lobby_id}/members/{user_id}:
+    parameters:
+    - name: lobby_id
+      in: path
+      schema:
+        $ref: '#/components/schemas/SnowflakeType'
+      required: true
+    - name: user_id
+      in: path
+      schema:
+        $ref: '#/components/schemas/SnowflakeType'
+      required: true
+    put:
+      operationId: add_lobby_member
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                metadata:
+                  type:
+                  - object
+                  - 'null'
+                  additionalProperties:
+                    type: string
+                    maxLength: 1024
+                  maxProperties: 25
+                flags:
+                  oneOf:
+                  - type: 'null'
+                  - type: integer
+                    enum:
+                    - 1
+                additional_name:
+                  type:
+                  - string
+                  - 'null'
+                  minLength: 1
+                  maxLength: 80
+        required: true
+      responses:
+        '200':
+          description: 200 response for add_lobby_member
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+            X-RateLimit-Reset-After:
+              $ref: '#/components/headers/X-RateLimit-Reset-After'
+            X-RateLimit-Bucket:
+              $ref: '#/components/headers/X-RateLimit-Bucket'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LobbyMemberResponse'
+        '429':
+          $ref: '#/components/responses/ClientRatelimitedResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      tags:
+      - Lobbies
+      summary: Add lobby member
+      x-summary-source: derived
+    delete:
+      operationId: delete_lobby_member
+      responses:
+        '204':
+          description: 204 response for delete_lobby_member
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+            X-RateLimit-Reset-After:
+              $ref: '#/components/headers/X-RateLimit-Reset-After'
+            X-RateLimit-Bucket:
+              $ref: '#/components/headers/X-RateLimit-Bucket'
+        '429':
+          $ref: '#/components/responses/ClientRatelimitedResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      tags:
+      - Lobbies
+      summary: Delete lobby member
+      x-summary-source: derived
+  /lobbies/{lobby_id}/members/{user_id}/invites:
+    parameters:
+    - name: lobby_id
+      in: path
+      schema:
+        $ref: '#/components/schemas/SnowflakeType'
+      required: true
+    - name: user_id
+      in: path
+      schema:
+        $ref: '#/components/schemas/SnowflakeType'
+      required: true
+    post:
+      operationId: create_linked_lobby_guild_invite_for_user
+      responses:
+        '200':
+          description: 200 response for create_linked_lobby_guild_invite_for_user
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+            X-RateLimit-Reset-After:
+              $ref: '#/components/headers/X-RateLimit-Reset-After'
+            X-RateLimit-Bucket:
+              $ref: '#/components/headers/X-RateLimit-Bucket'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LobbyGuildInviteResponse'
+        '429':
+          $ref: '#/components/responses/ClientRatelimitedResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      tags:
+      - Lobbies
+      summary: Create linked lobby guild invite for user
+      x-summary-source: derived
+  /lobbies/{lobby_id}/messages:
+    parameters:
+    - name: lobby_id
+      in: path
+      schema:
+        $ref: '#/components/schemas/SnowflakeType'
+      required: true
+    get:
+      operationId: get_lobby_messages
+      parameters:
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 200
+      responses:
+        '200':
+          description: 200 response for get_lobby_messages
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+            X-RateLimit-Reset-After:
+              $ref: '#/components/headers/X-RateLimit-Reset-After'
+            X-RateLimit-Bucket:
+              $ref: '#/components/headers/X-RateLimit-Bucket'
+          content:
+            application/json:
+              schema:
+                type:
+                - array
+                - 'null'
+                items:
+                  $ref: '#/components/schemas/LobbyMessageResponse'
+        '429':
+          $ref: '#/components/responses/ClientRatelimitedResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      - OAuth2: []
+      tags:
+      - Lobbies
+      summary: Get lobby messages
+      x-summary-source: derived
+    post:
+      operationId: create_lobby_message
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SDKMessageRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SDKMessageRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SDKMessageRequest'
+        required: true
+      responses:
+        '201':
+          description: 201 response for create_lobby_message
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+            X-RateLimit-Reset-After:
+              $ref: '#/components/headers/X-RateLimit-Reset-After'
+            X-RateLimit-Bucket:
+              $ref: '#/components/headers/X-RateLimit-Bucket'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LobbyMessageResponse'
+        '429':
+          $ref: '#/components/responses/ClientRatelimitedResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      - OAuth2: []
+      tags:
+      - Lobbies
+      summary: Create lobby message
+      x-summary-source: derived
+  /lobbies/{lobby_id}/messages/{message_id}/moderation-metadata:
+    parameters:
+    - name: lobby_id
+      in: path
+      schema:
+        $ref: '#/components/schemas/SnowflakeType'
+      required: true
+    - name: message_id
+      in: path
+      schema:
+        $ref: '#/components/schemas/SnowflakeType'
+      required: true
+    put:
+      description: Update the external moderation metadata for a lobby message.
+      operationId: update_lobby_message_external_moderation_metadata
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: The moderation metadata attached to the message
+              additionalProperties:
+                type: string
+                maxLength: 2000
+              maxProperties: 5
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              description: The moderation metadata attached to the message
+              additionalProperties:
+                type: string
+                maxLength: 2000
+              maxProperties: 5
+          multipart/form-data:
+            schema:
+              type: object
+              description: The moderation metadata attached to the message
+              additionalProperties:
+                type: string
+                maxLength: 2000
+              maxProperties: 5
+        required: true
+      responses:
+        '204':
+          description: 204 response for update_lobby_message_external_moderation_metadata
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+            X-RateLimit-Reset-After:
+              $ref: '#/components/headers/X-RateLimit-Reset-After'
+            X-RateLimit-Bucket:
+              $ref: '#/components/headers/X-RateLimit-Bucket'
+        '429':
+          $ref: '#/components/responses/ClientRatelimitedResponse'
+        4XX:
+          $ref: '#/components/responses/ClientErrorResponse'
+      security:
+      - BotToken: []
+      tags:
+      - Lobbies
+      summary: Update lobby message external moderation metadata
+      x-summary-source: derived
+components:
+  schemas:
+    LobbyMemberResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        metadata:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+        flags:
+          type: integer
+          format: int32
+        additional_name:
+          type: string
+      required:
+      - id
+      - metadata
+      - flags
+    BulkLobbyMemberRequest:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        metadata:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+            maxLength: 1024
+          maxProperties: 25
+        flags:
+          oneOf:
+          - type: 'null'
+          - type: integer
+            enum:
+            - 1
+        additional_name:
+          type:
+          - string
+          - 'null'
+          minLength: 1
+          maxLength: 80
+        remove_member:
+          type:
+          - boolean
+          - 'null'
+      required:
+      - id
+    RoleSelectComponentForMessageRequest:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 6
+          allOf:
+          - $ref: '#/components/schemas/MessageComponentTypes'
+          format: int32
+        id:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          format: int32
+        custom_id:
+          type: string
+          minLength: 1
+          maxLength: 100
+        placeholder:
+          type:
+          - string
+          - 'null'
+          maxLength: 150
+        min_values:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          maximum: 25
+        max_values:
+          type:
+          - integer
+          - 'null'
+          minimum: 1
+          maximum: 25
+        disabled:
+          type:
+          - boolean
+          - 'null'
+        required:
+          type:
+          - boolean
+          - 'null'
+        default_values:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/RoleSelectDefaultValue'
+          maxItems: 25
+      required:
+      - type
+      - custom_id
+    MentionableSelectComponentForMessageRequest:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 7
+          allOf:
+          - $ref: '#/components/schemas/MessageComponentTypes'
+          format: int32
+        id:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          format: int32
+        custom_id:
+          type: string
+          minLength: 1
+          maxLength: 100
+        placeholder:
+          type:
+          - string
+          - 'null'
+          maxLength: 150
+        min_values:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          maximum: 25
+        max_values:
+          type:
+          - integer
+          - 'null'
+          minimum: 1
+          maximum: 25
+        disabled:
+          type:
+          - boolean
+          - 'null'
+        required:
+          type:
+          - boolean
+          - 'null'
+        default_values:
+          type:
+          - array
+          - 'null'
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/RoleSelectDefaultValue'
+            - $ref: '#/components/schemas/UserSelectDefaultValue'
+          maxItems: 25
+      required:
+      - type
+      - custom_id
+    UserPrimaryGuildResponse:
+      type: object
+      properties:
+        identity_guild_id:
+          description: the id of the user's primary guild
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        identity_enabled:
+          type:
+          - boolean
+          - 'null'
+          description: whether the user is displaying the primary guild's server tag
+        tag:
+          type:
+          - string
+          - 'null'
+          description: the text of the user's server tag, limited to 4 characters
+        badge:
+          type:
+          - string
+          - 'null'
+          description: the server tag badge hash
+      required:
+      - identity_guild_id
+      - identity_enabled
+      - tag
+      - badge
+    UserResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+          description: the user's id
+        username:
+          type: string
+          description: the user's username, not unique across the platform
+        avatar:
+          type:
+          - string
+          - 'null'
+          description: the user's avatar hash
+        discriminator:
+          type: string
+          description: the user's Discord-tag
+        public_flags:
+          type: integer
+          description: the public flags on a user's account
+          format: int32
+        flags:
+          $ref: '#/components/schemas/Int53Type'
+          description: the flags on a user's account
+        bot:
+          type: boolean
+          description: whether the user belongs to an OAuth2 application
+        system:
+          type: boolean
+          description: whether the user is an Official Discord System user (part of the urgent message system)
+        banner:
+          type:
+          - string
+          - 'null'
+          description: the user's banner hash
+        accent_color:
+          type:
+          - integer
+          - 'null'
+          description: the user's banner color encoded as an integer representation of hexadecimal color code
+          format: int32
+        global_name:
+          type:
+          - string
+          - 'null'
+          description: the user's display name, if it is set
+        avatar_decoration_data:
+          description: data for the user's avatar decoration
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/UserAvatarDecorationResponse'
+        collectibles:
+          description: data for the user's collectibles
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/UserCollectiblesResponse'
+        primary_guild:
+          description: the user's primary guild
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/UserPrimaryGuildResponse'
+      required:
+      - id
+      - username
+      - avatar
+      - discriminator
+      - public_flags
+      - flags
+      - global_name
+      - primary_guild
+    DefaultReactionEmojiResponse:
+      type: object
+      properties:
+        emoji_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        emoji_name:
+          type:
+          - string
+          - 'null'
+      required:
+      - emoji_id
+      - emoji_name
+    AllowedMentionTypes:
+      type: string
+      oneOf:
+      - title: USERS
+        description: Controls role mentions
+        const: users
+      - title: ROLES
+        description: Controls user mentions
+        const: roles
+      - title: EVERYONE
+        description: Controls @everyone and @here mentions
+        const: everyone
+    RichEmbedFooter:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+        icon_url:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+          format: uri
+    RichEmbedField:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 256
+        value:
+          type: string
+          maxLength: 1024
+        inline:
+          type:
+          - boolean
+          - 'null'
+      required:
+      - name
+      - value
+    ActionRowComponentForMessageRequest:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 1
+          allOf:
+          - $ref: '#/components/schemas/MessageComponentTypes'
+          format: int32
+        id:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          format: int32
+        components:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/ButtonComponentForMessageRequest'
+            - $ref: '#/components/schemas/ChannelSelectComponentForMessageRequest'
+            - $ref: '#/components/schemas/MentionableSelectComponentForMessageRequest'
+            - $ref: '#/components/schemas/RoleSelectComponentForMessageRequest'
+            - $ref: '#/components/schemas/StringSelectComponentForMessageRequest'
+            - $ref: '#/components/schemas/UserSelectComponentForMessageRequest'
+          minItems: 1
+          maxItems: 5
+      required:
+      - type
+      - components
+    UserCollectiblesResponse:
+      type: object
+      properties:
+        nameplate:
+          description: Object mapping of nameplate data
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/UserNameplateResponse'
+      required:
+      - nameplate
+    MessageAttachmentRequest:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        filename:
+          type:
+          - string
+          - 'null'
+          minLength: 1
+          maxLength: 1024
+        description:
+          type:
+          - string
+          - 'null'
+          maxLength: 1024
+        duration_secs:
+          type:
+          - number
+          - 'null'
+          minimum: 0
+          maximum: 2147483647
+          format: double
+        waveform:
+          type:
+          - string
+          - 'null'
+          maxLength: 400
+        title:
+          type:
+          - string
+          - 'null'
+          maxLength: 1024
+        is_thumbnail:
+          type:
+          - boolean
+          - 'null'
+        is_spoiler:
+          type:
+          - boolean
+          - 'null'
+      required:
+      - id
+    ForumLayout:
+      type: integer
+      oneOf:
+      - title: DEFAULT
+        description: No default has been set for forum channel
+        const: 0
+      - title: LIST
+        description: Display posts as a list
+        const: 1
+      - title: GRID
+        description: Display posts as a collection of tiles
+        const: 2
+      format: int32
+    RichEmbedImage:
+      type: object
+      properties:
+        url:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+          format: uri
+        width:
+          type:
+          - integer
+          - 'null'
+        height:
+          type:
+          - integer
+          - 'null'
+        placeholder:
+          type:
+          - string
+          - 'null'
+          maxLength: 64
+        placeholder_version:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          maximum: 2147483647
+        is_animated:
+          type:
+          - boolean
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+          maxLength: 4096
+    UserNameplateResponse:
+      type: object
+      properties:
+        sku_id:
+          description: ID of the nameplate SKU
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        asset:
+          type: string
+          description: Path to the nameplate asset
+        label:
+          type: string
+          description: The label of this nameplate. Currently unused
+        palette:
+          $ref: '#/components/schemas/NameplatePalette'
+          description: Background color of the nameplate
+      required:
+      - sku_id
+      - asset
+      - label
+      - palette
+    StringSelectOptionForRequest:
+      type: object
+      properties:
+        label:
+          type: string
+          minLength: 1
+          maxLength: 100
+        value:
+          type: string
+          minLength: 1
+          maxLength: 100
+        description:
+          type:
+          - string
+          - 'null'
+          maxLength: 100
+        default:
+          type:
+          - boolean
+          - 'null'
+        emoji:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/ComponentEmojiForRequest'
+      required:
+      - label
+      - value
+    TextDisplayComponentForMessageRequest:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 10
+          allOf:
+          - $ref: '#/components/schemas/MessageComponentTypes'
+          format: int32
+        id:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          format: int32
+        content:
+          type: string
+          minLength: 1
+          maxLength: 4000
+      required:
+      - type
+      - content
+    UserSelectDefaultValue:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - user
+          allOf:
+          - $ref: '#/components/schemas/SnowflakeSelectDefaultValueTypes'
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+      required:
+      - type
+      - id
+    SectionComponentForMessageRequest:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 9
+          allOf:
+          - $ref: '#/components/schemas/MessageComponentTypes'
+          format: int32
+        id:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          format: int32
+        components:
+          type: array
+          items:
+            $ref: '#/components/schemas/TextDisplayComponentForMessageRequest'
+          minItems: 1
+          maxItems: 3
+        accessory:
+          oneOf:
+          - $ref: '#/components/schemas/ButtonComponentForMessageRequest'
+          - $ref: '#/components/schemas/ThumbnailComponentForMessageRequest'
+      required:
+      - type
+      - components
+      - accessory
+    ButtonStyleTypes:
+      type: integer
+      oneOf:
+      - title: PRIMARY
+        const: 1
+      - title: SECONDARY
+        const: 2
+      - title: SUCCESS
+        const: 3
+      - title: DANGER
+        const: 4
+      - title: LINK
+        const: 5
+      - title: PREMIUM
+        const: 6
+      format: int32
+    Int53Type:
+      type: integer
+      minimum: -9007199254740991
+      maximum: 9007199254740991
+      format: int64
+    ChannelTypes:
+      type: integer
+      oneOf:
+      - title: DM
+        description: A direct message between users
+        const: 1
+      - title: GROUP_DM
+        description: A direct message between multiple users
+        const: 3
+      - title: GUILD_TEXT
+        description: A text channel within a server
+        const: 0
+      - title: GUILD_VOICE
+        description: A voice channel within a server
+        const: 2
+      - title: GUILD_CATEGORY
+        description: An organizational category that contains up to 50 channels
+        const: 4
+      - title: GUILD_ANNOUNCEMENT
+        description: A channel that users can follow and crosspost into their own server (formerly news channels)
+        const: 5
+      - title: ANNOUNCEMENT_THREAD
+        description: A temporary sub-channel within a GUILD_ANNOUNCEMENT channel
+        const: 10
+      - title: PUBLIC_THREAD
+        description: A temporary sub-channel within a GUILD_TEXT or GUILD_THREADS_ONLY channel type set
+        const: 11
+      - title: PRIVATE_THREAD
+        description: A temporary sub-channel within a GUILD_TEXT channel that is only viewable by those invited and those with the MANAGE_THREADS permission
+        const: 12
+      - title: GUILD_STAGE_VOICE
+        description: A voice channel for hosting events with an audience
+        const: 13
+      - title: GUILD_DIRECTORY
+        description: The channel in a hub containing the listed servers
+        const: 14
+      - title: GUILD_FORUM
+        description: Channel that can only contain threads
+        const: 15
+      - title: GUILD_MEDIA
+        description: Channel that can only contain media threads
+        const: 16
+      format: int32
+    UnfurledMediaRequestWithAttachmentReferenceRequired:
+      type: object
+      properties:
+        url:
+          type: string
+          maxLength: 2048
+          format: uri
+      required:
+      - url
+    RichEmbedProvider:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          maxLength: 256
+        url:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+          format: uri
+    GuildChannelResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        type:
+          type: integer
+          enum:
+          - 0
+          - 2
+          - 4
+          - 5
+          - 13
+          - 14
+          - 15
+          - 16
+          allOf:
+          - $ref: '#/components/schemas/ChannelTypes'
+          format: int32
+        last_message_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        flags:
+          type: integer
+          format: int32
+        last_pin_timestamp:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        guild_id:
+          $ref: '#/components/schemas/SnowflakeType'
+        name:
+          type: string
+        parent_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        rate_limit_per_user:
+          type: integer
+          format: int32
+        bitrate:
+          type: integer
+          format: int32
+        user_limit:
+          type: integer
+          format: int32
+        rtc_region:
+          type:
+          - string
+          - 'null'
+        video_quality_mode:
+          $ref: '#/components/schemas/VideoQualityModes'
+        permissions:
+          type: string
+        topic:
+          type:
+          - string
+          - 'null'
+        default_auto_archive_duration:
+          $ref: '#/components/schemas/ThreadAutoArchiveDuration'
+        default_thread_rate_limit_per_user:
+          type: integer
+          format: int32
+        position:
+          type: integer
+          format: int32
+        permission_overwrites:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChannelPermissionOverwriteResponse'
+        nsfw:
+          type: boolean
+        available_tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/ForumTagResponse'
+        default_reaction_emoji:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/DefaultReactionEmojiResponse'
+        default_sort_order:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/ThreadSortOrder'
+        default_forum_layout:
+          $ref: '#/components/schemas/ForumLayout'
+        default_tag_setting:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/ThreadSearchTagSetting'
+      required:
+      - id
+      - type
+      - flags
+      - guild_id
+      - name
+      - position
+    LobbyMessageResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        type:
+          $ref: '#/components/schemas/MessageType'
+        content:
+          type: string
+        lobby_id:
+          $ref: '#/components/schemas/SnowflakeType'
+        channel_id:
+          $ref: '#/components/schemas/SnowflakeType'
+        author:
+          $ref: '#/components/schemas/UserResponse'
+        lobby_member:
+          $ref: '#/components/schemas/MessageLobbyMemberResponse'
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+        moderation_metadata:
+          type: object
+          additionalProperties:
+            type: string
+        flags:
+          type: integer
+          format: int32
+        application_id:
+          $ref: '#/components/schemas/SnowflakeType'
+      required:
+      - id
+      - type
+      - content
+      - lobby_id
+      - channel_id
+      - author
+      - flags
+    ChannelPermissionOverwriteResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        type:
+          $ref: '#/components/schemas/ChannelPermissionOverwrites'
+        allow:
+          type: string
+        deny:
+          type: string
+      required:
+      - id
+      - type
+      - allow
+      - deny
+    UserAvatarDecorationResponse:
+      type: object
+      properties:
+        asset:
+          type: string
+          description: the avatar decoration hash
+        sku_id:
+          description: id of the avatar decoration's SKU
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+      required:
+      - asset
+      - sku_id
+    VideoQualityModes:
+      type: integer
+      oneOf:
+      - title: AUTO
+        description: Discord chooses the quality for optimal performance
+        const: 1
+      - title: FULL
+        description: 720p
+        const: 2
+      format: int32
+    RichEmbed:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+          maxLength: 152133
+        url:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+          format: uri
+        title:
+          type:
+          - string
+          - 'null'
+          maxLength: 256
+        color:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          maximum: 16777215
+        timestamp:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        description:
+          type:
+          - string
+          - 'null'
+          maxLength: 4096
+        author:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/RichEmbedAuthor'
+        image:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/RichEmbedImage'
+        thumbnail:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/RichEmbedThumbnail'
+        footer:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/RichEmbedFooter'
+        fields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/RichEmbedField'
+          maxItems: 25
+        provider:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/RichEmbedProvider'
+        video:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/RichEmbedVideo'
+    MessageAllowedMentionsRequest:
+      type: object
+      properties:
+        parse:
+          type:
+          - array
+          - 'null'
+          items:
+            oneOf:
+            - type: 'null'
+            - $ref: '#/components/schemas/AllowedMentionTypes'
+          maxItems: 1521
+          uniqueItems: true
+        users:
+          type:
+          - array
+          - 'null'
+          items:
+            oneOf:
+            - type: 'null'
+            - $ref: '#/components/schemas/SnowflakeType'
+          maxItems: 100
+          uniqueItems: true
+        roles:
+          type:
+          - array
+          - 'null'
+          items:
+            oneOf:
+            - type: 'null'
+            - $ref: '#/components/schemas/SnowflakeType'
+          maxItems: 100
+          uniqueItems: true
+        replied_user:
+          type:
+          - boolean
+          - 'null'
+    MessageLobbyMemberResponse:
+      type: object
+      properties:
+        additional_name:
+          type: string
+      required:
+      - additional_name
+    MessageComponentSeparatorSpacingSize:
+      type: integer
+      oneOf:
+      - title: SMALL
+        description: Small spacing
+        const: 1
+      - title: LARGE
+        description: Large spacing
+        const: 2
+      format: int32
+    ErrorResponse:
+      type: object
+      description: Errors object returned by the Discord API
+      allOf:
+      - $ref: '#/components/schemas/Error'
+      - type: object
+        properties:
+          errors:
+            $ref: '#/components/schemas/ErrorDetails'
+    PollCreateRequest:
+      type: object
+      properties:
+        question:
+          $ref: '#/components/schemas/PollMedia'
+          description: The question of the poll. Only `text` is supported.
+        answers:
+          type: array
+          description: Each of the answers available in the poll, up to 10
+          items:
+            $ref: '#/components/schemas/PollAnswerCreateRequest'
+          minItems: 1
+          maxItems: 10
+        allow_multiselect:
+          type:
+          - boolean
+          - 'null'
+          description: Whether a user can select multiple answers
+        layout_type:
+          description: The layout type of the poll. Defaults to... DEFAULT!
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/PollLayoutTypes'
+        duration:
+          type:
+          - integer
+          - 'null'
+          description: Number of hours the poll should be open for, up to 32 days. Defaults to 24
+          minimum: 1
+          maximum: 768
+          format: int32
+      required:
+      - question
+      - answers
+    NameplatePalette:
+      type: string
+      oneOf:
+      - title: CRIMSON
+        description: Crimson color palette
+        const: crimson
+      - title: BERRY
+        description: Berry color palette
+        const: berry
+      - title: SKY
+        description: Sky color palette
+        const: sky
+      - title: TEAL
+        description: Teal color palette
+        const: teal
+      - title: FOREST
+        description: Forest color palette
+        const: forest
+      - title: BUBBLE_GUM
+        description: Bubble gum color palette
+        const: bubble_gum
+      - title: VIOLET
+        description: Violet color palette
+        const: violet
+      - title: COBALT
+        description: Cobalt color palette
+        const: cobalt
+      - title: CLOVER
+        description: Clover color palette
+        const: clover
+      - title: LEMON
+        description: Lemon color palette
+        const: lemon
+      - title: WHITE
+        description: White color palette
+        const: white
+      - title: BLACK
+        description: Black color palette
+        const: black
+    LobbyGuildInviteResponse:
+      type: object
+      properties:
+        code:
+          type: string
+      required:
+      - code
+    ErrorDetails:
+      oneOf:
+      - type: object
+        additionalProperties:
+          $ref: '#/components/schemas/ErrorDetails'
+      - $ref: '#/components/schemas/InnerErrors'
+    RatelimitedResponse:
+      type: object
+      description: Ratelimit error object returned by the Discord API
+      allOf:
+      - $ref: '#/components/schemas/Error'
+      - type: object
+        properties:
+          retry_after:
+            type: number
+            description: The number of seconds to wait before retrying your request
+          global:
+            type: boolean
+            description: Whether you are being ratelimited by the global ratelimit or a per-endpoint ratelimit
+        required:
+        - retry_after
+        - global
+    MessageReferenceRequest:
+      type: object
+      properties:
+        guild_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        channel_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        message_id:
+          $ref: '#/components/schemas/SnowflakeType'
+        fail_if_not_exists:
+          type:
+          - boolean
+          - 'null'
+        type:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/MessageReferenceType'
+      required:
+      - message_id
+    UnfurledMediaRequest:
+      type: object
+      properties:
+        url:
+          type: string
+          maxLength: 2048
+          format: uri
+      required:
+      - url
+    ContainerComponentForMessageRequest:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 17
+          allOf:
+          - $ref: '#/components/schemas/MessageComponentTypes'
+          format: int32
+        id:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          format: int32
+        accent_color:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          maximum: 16777215
+        components:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/ActionRowComponentForMessageRequest'
+            - $ref: '#/components/schemas/FileComponentForMessageRequest'
+            - $ref: '#/components/schemas/MediaGalleryComponentForMessageRequest'
+            - $ref: '#/components/schemas/SectionComponentForMessageRequest'
+            - $ref: '#/components/schemas/SeparatorComponentForMessageRequest'
+            - $ref: '#/components/schemas/TextDisplayComponentForMessageRequest'
+          minItems: 1
+          maxItems: 40
+        spoiler:
+          type:
+          - boolean
+          - 'null'
+      required:
+      - type
+      - components
+    MessageReferenceType:
+      type: integer
+      oneOf:
+      - title: DEFAULT
+        description: Reference to a message
+        const: 0
+      format: int32
+    CustomClientThemeShareRequest:
+      type: object
+      properties:
+        colors:
+          type: array
+          items:
+            type: string
+            minLength: 6
+            maxLength: 6
+          minItems: 1
+          maxItems: 5
+        gradient_angle:
+          type: integer
+          minimum: 0
+          maximum: 360
+          format: int32
+        base_mix:
+          type: integer
+          minimum: 0
+          maximum: 100
+          format: int32
+        base_theme:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/MessageShareCustomUserThemeBaseTheme'
+      required:
+      - colors
+      - gradient_angle
+      - base_mix
+    SnowflakeSelectDefaultValueTypes:
+      type: string
+      oneOf:
+      - title: USER
+        const: user
+      - title: ROLE
+        const: role
+      - title: CHANNEL
+        const: channel
+    RoleSelectDefaultValue:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - role
+          allOf:
+          - $ref: '#/components/schemas/SnowflakeSelectDefaultValueTypes'
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+      required:
+      - type
+      - id
+    MessageType:
+      type: integer
+      oneOf:
+      - title: DEFAULT
+        description: ''
+        const: 0
+      - title: RECIPIENT_ADD
+        description: ''
+        const: 1
+      - title: RECIPIENT_REMOVE
+        description: ''
+        const: 2
+      - title: CALL
+        description: ''
+        const: 3
+      - title: CHANNEL_NAME_CHANGE
+        description: ''
+        const: 4
+      - title: CHANNEL_ICON_CHANGE
+        description: ''
+        const: 5
+      - title: CHANNEL_PINNED_MESSAGE
+        description: ''
+        const: 6
+      - title: USER_JOIN
+        description: ''
+        const: 7
+      - title: GUILD_BOOST
+        description: ''
+        const: 8
+      - title: GUILD_BOOST_TIER_1
+        description: ''
+        const: 9
+      - title: GUILD_BOOST_TIER_2
+        description: ''
+        const: 10
+      - title: GUILD_BOOST_TIER_3
+        description: ''
+        const: 11
+      - title: CHANNEL_FOLLOW_ADD
+        description: ''
+        const: 12
+      - title: GUILD_DISCOVERY_DISQUALIFIED
+        description: ''
+        const: 14
+      - title: GUILD_DISCOVERY_REQUALIFIED
+        description: ''
+        const: 15
+      - title: GUILD_DISCOVERY_GRACE_PERIOD_INITIAL_WARNING
+        description: ''
+        const: 16
+      - title: GUILD_DISCOVERY_GRACE_PERIOD_FINAL_WARNING
+        description: ''
+        const: 17
+      - title: THREAD_CREATED
+        description: ''
+        const: 18
+      - title: REPLY
+        description: ''
+        const: 19
+      - title: CHAT_INPUT_COMMAND
+        description: ''
+        const: 20
+      - title: THREAD_STARTER_MESSAGE
+        description: ''
+        const: 21
+      - title: GUILD_INVITE_REMINDER
+        description: ''
+        const: 22
+      - title: CONTEXT_MENU_COMMAND
+        description: ''
+        const: 23
+      - title: AUTO_MODERATION_ACTION
+        description: ''
+        const: 24
+      - title: ROLE_SUBSCRIPTION_PURCHASE
+        description: ''
+        const: 25
+      - title: INTERACTION_PREMIUM_UPSELL
+        description: ''
+        const: 26
+      - title: STAGE_START
+        description: ''
+        const: 27
+      - title: STAGE_END
+        description: ''
+        const: 28
+      - title: STAGE_SPEAKER
+        description: ''
+        const: 29
+      - title: STAGE_TOPIC
+        description: ''
+        const: 31
+      - title: GUILD_APPLICATION_PREMIUM_SUBSCRIPTION
+        description: ''
+        const: 32
+      - title: GUILD_INCIDENT_ALERT_MODE_ENABLED
+        description: ''
+        const: 36
+      - title: GUILD_INCIDENT_ALERT_MODE_DISABLED
+        description: ''
+        const: 37
+      - title: GUILD_INCIDENT_REPORT_RAID
+        description: ''
+        const: 38
+      - title: GUILD_INCIDENT_REPORT_FALSE_ALARM
+        description: ''
+        const: 39
+      - title: POLL_RESULT
+        description: ''
+        const: 46
+      - title: HD_STREAMING_UPGRADED
+        description: ''
+        const: 55
+      format: int32
+    Error:
+      type: object
+      description: A single error, either for an API response or a specific field.
+      properties:
+        code:
+          type: integer
+          description: Discord internal error code. See error code reference
+        message:
+          type: string
+          description: Human-readable error message
+      required:
+      - code
+      - message
+    ChannelSelectComponentForMessageRequest:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 8
+          allOf:
+          - $ref: '#/components/schemas/MessageComponentTypes'
+          format: int32
+        id:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          format: int32
+        custom_id:
+          type: string
+          minLength: 1
+          maxLength: 100
+        placeholder:
+          type:
+          - string
+          - 'null'
+          maxLength: 150
+        min_values:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          maximum: 25
+        max_values:
+          type:
+          - integer
+          - 'null'
+          minimum: 1
+          maximum: 25
+        disabled:
+          type:
+          - boolean
+          - 'null'
+        required:
+          type:
+          - boolean
+          - 'null'
+        default_values:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ChannelSelectDefaultValue'
+          maxItems: 25
+        channel_types:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ChannelTypes'
+          uniqueItems: true
+      required:
+      - type
+      - custom_id
+    LobbyResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        application_id:
+          $ref: '#/components/schemas/SnowflakeType'
+        metadata:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+        members:
+          type: array
+          items:
+            $ref: '#/components/schemas/LobbyMemberResponse'
+        linked_channel:
+          $ref: '#/components/schemas/GuildChannelResponse'
+        flags:
+          $ref: '#/components/schemas/UInt32Type'
+        override_event_webhooks_url:
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - application_id
+      - metadata
+      - members
+      - flags
+    UInt32Type:
+      type: integer
+      minimum: 0
+      maximum: 4294967295
+      format: int64
+    StringSelectComponentForMessageRequest:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 3
+          allOf:
+          - $ref: '#/components/schemas/MessageComponentTypes'
+          format: int32
+        id:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          format: int32
+        custom_id:
+          type: string
+          minLength: 1
+          maxLength: 100
+        placeholder:
+          type:
+          - string
+          - 'null'
+          maxLength: 150
+        min_values:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          maximum: 25
+        max_values:
+          type:
+          - integer
+          - 'null'
+          minimum: 1
+          maximum: 25
+        disabled:
+          type:
+          - boolean
+          - 'null'
+        required:
+          type:
+          - boolean
+          - 'null'
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/StringSelectOptionForRequest'
+          minItems: 1
+          maxItems: 25
+      required:
+      - type
+      - custom_id
+      - options
+    RichEmbedAuthor:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          maxLength: 256
+        url:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+          format: uri
+        icon_url:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+          format: uri
+    ComponentEmojiForRequest:
+      type: object
+      properties:
+        id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        name:
+          type: string
+          maxLength: 32
+      required:
+      - name
+    PollMediaCreateRequest:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+          description: The text of the field
+          minLength: 1
+          maxLength: 300
+        emoji:
+          description: The emoji of the field
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/PollEmojiCreateRequest'
+    UserSelectComponentForMessageRequest:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 5
+          allOf:
+          - $ref: '#/components/schemas/MessageComponentTypes'
+          format: int32
+        id:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          format: int32
+        custom_id:
+          type: string
+          minLength: 1
+          maxLength: 100
+        placeholder:
+          type:
+          - string
+          - 'null'
+          maxLength: 150
+        min_values:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          maximum: 25
+        max_values:
+          type:
+          - integer
+          - 'null'
+          minimum: 1
+          maximum: 25
+        disabled:
+          type:
+          - boolean
+          - 'null'
+        required:
+          type:
+          - boolean
+          - 'null'
+        default_values:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/UserSelectDefaultValue'
+          maxItems: 25
+      required:
+      - type
+      - custom_id
+    ThreadSortOrder:
+      type: integer
+      oneOf:
+      - title: LATEST_ACTIVITY
+        description: Sort forum posts by activity
+        const: 0
+      - title: CREATION_DATE
+        description: Sort forum posts by creation time (from most recent to oldest)
+        const: 1
+      format: int32
+    PollMedia:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+          description: The text of the field
+          minLength: 1
+          maxLength: 300
+        emoji:
+          description: The emoji of the field
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/PollEmoji'
+    MediaGalleryItemForMessageRequest:
+      type: object
+      properties:
+        description:
+          type:
+          - string
+          - 'null'
+          minLength: 1
+          maxLength: 1024
+        spoiler:
+          type:
+          - boolean
+          - 'null'
+        media:
+          $ref: '#/components/schemas/UnfurledMediaRequest'
+      required:
+      - media
+    FileComponentForMessageRequest:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 13
+          allOf:
+          - $ref: '#/components/schemas/MessageComponentTypes'
+          format: int32
+        id:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          format: int32
+        spoiler:
+          type:
+          - boolean
+          - 'null'
+        file:
+          $ref: '#/components/schemas/UnfurledMediaRequestWithAttachmentReferenceRequired'
+      required:
+      - type
+      - file
+    ThumbnailComponentForMessageRequest:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 11
+          allOf:
+          - $ref: '#/components/schemas/MessageComponentTypes'
+          format: int32
+        id:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          format: int32
+        description:
+          type:
+          - string
+          - 'null'
+          minLength: 1
+          maxLength: 1024
+        spoiler:
+          type:
+          - boolean
+          - 'null'
+        media:
+          $ref: '#/components/schemas/UnfurledMediaRequest'
+      required:
+      - type
+      - media
+    RichEmbedThumbnail:
+      type: object
+      properties:
+        url:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+          format: uri
+        width:
+          type:
+          - integer
+          - 'null'
+        height:
+          type:
+          - integer
+          - 'null'
+        placeholder:
+          type:
+          - string
+          - 'null'
+          maxLength: 64
+        placeholder_version:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          maximum: 2147483647
+        is_animated:
+          type:
+          - boolean
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+          maxLength: 4096
+    ThreadSearchTagSetting:
+      type: string
+      oneOf:
+      - title: MATCH_ALL
+        description: The thread tags must contain all tags in the search query
+        const: match_all
+      - title: MATCH_SOME
+        description: The thread tags must contain at least one of tags in the search query
+        const: match_some
+    ButtonComponentForMessageRequest:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 2
+          allOf:
+          - $ref: '#/components/schemas/MessageComponentTypes'
+          format: int32
+        id:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          format: int32
+        custom_id:
+          type:
+          - string
+          - 'null'
+          minLength: 1
+          maxLength: 100
+        style:
+          $ref: '#/components/schemas/ButtonStyleTypes'
+        label:
+          type:
+          - string
+          - 'null'
+          maxLength: 80
+        disabled:
+          type:
+          - boolean
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+          maxLength: 512
+          format: uri
+        sku_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        emoji:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/ComponentEmojiForRequest'
+      required:
+      - type
+      - style
+    ChannelPermissionOverwrites:
+      type: integer
+      oneOf:
+      - title: ROLE
+        const: 0
+      - title: MEMBER
+        const: 1
+      format: int32
+    PollEmojiCreateRequest:
+      type: object
+      properties:
+        id:
+          description: The ID of the custom emoji
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        name:
+          type:
+          - string
+          - 'null'
+          description: The name of the emoji, or the unicode emoji character
+          maxLength: 32
+        animated:
+          type:
+          - boolean
+          - 'null'
+          description: Whether the emoji is animated
+    LobbyMemberRequest:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        metadata:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+            maxLength: 1024
+          maxProperties: 25
+        flags:
+          oneOf:
+          - type: 'null'
+          - type: integer
+            enum:
+            - 1
+        additional_name:
+          type:
+          - string
+          - 'null'
+          minLength: 1
+          maxLength: 80
+      required:
+      - id
+    ThreadAutoArchiveDuration:
+      type: integer
+      oneOf:
+      - title: ONE_HOUR
+        description: One hour
+        const: 60
+      - title: ONE_DAY
+        description: One day
+        const: 1440
+      - title: THREE_DAY
+        description: Three days
+        const: 4320
+      - title: SEVEN_DAY
+        description: Seven days
+        const: 10080
+      format: int32
+    SDKMessageRequest:
+      type: object
+      properties:
+        content:
+          type:
+          - string
+          - 'null'
+          maxLength: 4000
+        embeds:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/RichEmbed'
+          maxItems: 10
+        allowed_mentions:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/MessageAllowedMentionsRequest'
+        sticker_ids:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SnowflakeType'
+          maxItems: 3
+        components:
+          type:
+          - array
+          - 'null'
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/ActionRowComponentForMessageRequest'
+            - $ref: '#/components/schemas/ContainerComponentForMessageRequest'
+            - $ref: '#/components/schemas/FileComponentForMessageRequest'
+            - $ref: '#/components/schemas/MediaGalleryComponentForMessageRequest'
+            - $ref: '#/components/schemas/SectionComponentForMessageRequest'
+            - $ref: '#/components/schemas/SeparatorComponentForMessageRequest'
+            - $ref: '#/components/schemas/TextDisplayComponentForMessageRequest'
+          maxItems: 40
+        flags:
+          type:
+          - integer
+          - 'null'
+        attachments:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/MessageAttachmentRequest'
+          maxItems: 10
+        poll:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/PollCreateRequest'
+        shared_client_theme:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/CustomClientThemeShareRequest'
+        message_reference:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/MessageReferenceRequest'
+        nonce:
+          oneOf:
+          - type: integer
+            minimum: -9223372036854775808
+            maximum: 9223372036854775807
+            format: int64
+          - type: string
+            maxLength: 25
+            format: nonce
+          - type: 'null'
+        enforce_nonce:
+          type:
+          - boolean
+          - 'null'
+        tts:
+          type:
+          - boolean
+          - 'null'
+    MessageComponentTypes:
+      type: integer
+      oneOf:
+      - title: ACTION_ROW
+        description: Container for other components
+        const: 1
+      - title: BUTTON
+        description: Button object
+        const: 2
+      - title: STRING_SELECT
+        description: Select menu for picking from defined text options
+        const: 3
+      - title: TEXT_INPUT
+        description: Text input object
+        const: 4
+      - title: USER_SELECT
+        description: Select menu for users
+        const: 5
+      - title: ROLE_SELECT
+        description: Select menu for roles
+        const: 6
+      - title: MENTIONABLE_SELECT
+        description: Select menu for mentionables (users and roles)
+        const: 7
+      - title: CHANNEL_SELECT
+        description: Select menu for channels
+        const: 8
+      - title: SECTION
+        description: Section component
+        const: 9
+      - title: TEXT_DISPLAY
+        description: Text component
+        const: 10
+      - title: THUMBNAIL
+        description: Thumbnail component
+        const: 11
+      - title: MEDIA_GALLERY
+        description: Media gallery component
+        const: 12
+      - title: FILE
+        description: File component
+        const: 13
+      - title: SEPARATOR
+        description: Separator component
+        const: 14
+      - title: CONTAINER
+        description: Container component
+        const: 17
+      - title: LABEL
+        description: Label component
+        const: 18
+      - title: FILE_UPLOAD
+        description: File upload component
+        const: 19
+      - title: RADIO_GROUP
+        description: Radio group component
+        const: 21
+      - title: CHECKBOX_GROUP
+        description: Checkbox group component
+        const: 22
+      - title: CHECKBOX
+        description: Checkbox component
+        const: 23
+      format: int32
+    MediaGalleryComponentForMessageRequest:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 12
+          allOf:
+          - $ref: '#/components/schemas/MessageComponentTypes'
+          format: int32
+        id:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/MediaGalleryItemForMessageRequest'
+          minItems: 1
+          maxItems: 10
+      required:
+      - type
+      - items
+    MessageShareCustomUserThemeBaseTheme:
+      type: integer
+      oneOf:
+      - title: UNSET
+        description: No base theme
+        const: 0
+      - title: DARK
+        description: Dark base theme
+        const: 1
+      - title: LIGHT
+        description: Light base theme
+        const: 2
+      - title: DARKER
+        description: Darker base theme
+        const: 3
+      - title: MIDNIGHT
+        description: Midnight base theme
+        const: 4
+      format: int32
+    InnerErrors:
+      type: object
+      properties:
+        _errors:
+          type: array
+          description: The list of errors for this field
+          items:
+            $ref: '#/components/schemas/Error'
+      additionalProperties: false
+      required:
+      - _errors
+    SnowflakeType:
+      type: string
+      pattern: ^(0|[1-9][0-9]*)$
+      format: snowflake
+    ChannelSelectDefaultValue:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - channel
+          allOf:
+          - $ref: '#/components/schemas/SnowflakeSelectDefaultValueTypes'
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+      required:
+      - type
+      - id
+    PollLayoutTypes:
+      type: integer
+      oneOf:
+      - title: DEFAULT
+        description: The, uhm, default layout type.
+        const: 1
+      format: int32
+    PollAnswerCreateRequest:
+      type: object
+      properties:
+        poll_media:
+          $ref: '#/components/schemas/PollMediaCreateRequest'
+          description: The data of the answer
+      required:
+      - poll_media
+    PollEmoji:
+      type: object
+      properties:
+        id:
+          description: The ID of the custom emoji
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        name:
+          type:
+          - string
+          - 'null'
+          description: The name of the emoji, or the unicode emoji character
+          maxLength: 32
+        animated:
+          type:
+          - boolean
+          - 'null'
+          description: Whether the emoji is animated
+    RichEmbedVideo:
+      type: object
+      properties:
+        url:
+          type:
+          - string
+          - 'null'
+          maxLength: 2048
+          format: uri
+        width:
+          type:
+          - integer
+          - 'null'
+        height:
+          type:
+          - integer
+          - 'null'
+        placeholder:
+          type:
+          - string
+          - 'null'
+          maxLength: 64
+        placeholder_version:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          maximum: 2147483647
+        is_animated:
+          type:
+          - boolean
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+          maxLength: 4096
+    ForumTagResponse:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/SnowflakeType'
+        name:
+          type: string
+        moderated:
+          type: boolean
+        emoji_id:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/SnowflakeType'
+        emoji_name:
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - name
+      - moderated
+      - emoji_id
+      - emoji_name
+    SeparatorComponentForMessageRequest:
+      type: object
+      properties:
+        type:
+          type: integer
+          enum:
+          - 14
+          allOf:
+          - $ref: '#/components/schemas/MessageComponentTypes'
+          format: int32
+        id:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+          format: int32
+        spacing:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/MessageComponentSeparatorSpacingSize'
+        divider:
+          type:
+          - boolean
+          - 'null'
+      required:
+      - type
+  headers:
+    X-RateLimit-Bucket:
+      schema:
+        type: string
+      description: The bucket that the request belongs to
+    X-RateLimit-Reset-After:
+      schema:
+        type: number
+      description: The duration in seconds until the current ratelimit window resets
+    X-RateLimit-Limit:
+      schema:
+        type: integer
+      description: The maximum number of requests that can be made in the current ratelimit window
+    X-RateLimit-Reset:
+      schema:
+        type: number
+      description: A unix timestamp in seconds at which the current ratelimit window resets
+    X-RateLimit-Remaining:
+      schema:
+        type: integer
+      description: The number of requests remaining in the current ratelimit window
+  responses:
+    ClientRatelimitedResponse:
+      description: Client ratelimited response
+      headers:
+        X-RateLimit-Limit:
+          $ref: '#/components/headers/X-RateLimit-Limit'
+        X-RateLimit-Remaining:
+          $ref: '#/components/headers/X-RateLimit-Remaining'
+        X-RateLimit-Reset:
+          $ref: '#/components/headers/X-RateLimit-Reset'
+        X-RateLimit-Reset-After:
+          $ref: '#/components/headers/X-RateLimit-Reset-After'
+        X-RateLimit-Bucket:
+          $ref: '#/components/headers/X-RateLimit-Bucket'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RatelimitedResponse'
+    ClientErrorResponse:
+      description: Client error response
+      headers:
+        X-RateLimit-Limit:
+          $ref: '#/components/headers/X-RateLimit-Limit'
+        X-RateLimit-Remaining:
+          $ref: '#/components/headers/X-RateLimit-Remaining'
+        X-RateLimit-Reset:
+          $ref: '#/components/headers/X-RateLimit-Reset'
+        X-RateLimit-Reset-After:
+          $ref: '#/components/headers/X-RateLimit-Reset-After'
+        X-RateLimit-Bucket:
+          $ref: '#/components/headers/X-RateLimit-Bucket'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    BotToken:
+      type: apiKey
+      description: Discord bot token
+      name: Authorization
+      in: header
+    OAuth2:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: https://discord.com/api/oauth2/authorize
+          refreshUrl: https://discord.com/api/oauth2/token
+          scopes:
+            activities.invites.write: allows your app to send activity invites - requires Discord approval (NOT REQUIRED FOR GAMESDK ACTIVITY MANAGER)
+            activities.read: allows your app to fetch data from a user's "Now Playing/Recently Played" list - requires Discord approval
+            activities.write: allows your app to update a user's activity - requires Discord approval (NOT REQUIRED FOR GAMESDK ACTIVITY MANAGER)
+            applications.builds.read: allows your app to read build data for a user's applications
+            applications.builds.upload: allows your app to upload/update builds for a user's applications - requires Discord approval
+            applications.commands: allows your app to use commands in a guild
+            applications.commands.permissions.update: allows your app to update permissions for its commands in a guild a user has permissions to
+            applications.entitlements: allows your app to read entitlements for a user's applications
+            applications.store.update: allows your app to read and update store data (SKUs, store listings, achievements, etc.) for a user's applications
+            bot: for oauth2 bots, this puts the bot in the user's selected guild by default
+            connections: allows /users/@me/connections to return linked third-party accounts
+            dm_channels.read: allows your app to see information about the user's DMs and group DMs - requires Discord approval
+            email: enables /users/@me to return an email
+            gdm.join: allows your app to join users to a group dm
+            guilds: allows /users/@me/guilds to return basic information about all of a user's guilds
+            guilds.join: allows /guilds/{guild.id}/members/{user.id} to be used for joining users to a guild
+            guilds.members.read: allows /users/@me/guilds/{guild.id}/member to return a user's member information in a guild
+            identify: allows /users/@me without email
+            messages.read: for local rpc server api access, this allows you to read messages from all client channels (otherwise restricted to channels/guilds your app creates)
+            openid: for OpenID Connect, this allows your app to receive user id and basic profile information
+            relationships.read: allows your app to know a user's friends and implicit relationships - requires Discord approval
+            rpc: for local rpc server access, this allows you to control a user's local Discord client - requires Discord approval
+            rpc.activities.write: for local rpc server access, this allows you to update a user's activity - requires Discord approval
+            rpc.notifications.read: for local rpc server access, this allows you to receive notifications pushed out to the user - requires Discord approval
+            rpc.screenshare.read: for local rpc server access, this allows you to read a user's screenshare status- requires Discord approval
+            rpc.screenshare.write: for local rpc server access, this allows you to update a user's screenshare settings- requires Discord approval
+            rpc.video.read: for local rpc server access, this allows you to read a user's video status - requires Discord approval
+            rpc.video.write: for local rpc server access, this allows you to update a user's video settings - requires Discord approval
+            rpc.voice.read: for local rpc server access, this allows you to read a user's voice settings and listen for voice events - requires Discord approval
+            rpc.voice.write: for local rpc server access, this allows you to update a user's voice settings - requires Discord approval
+            voice: allows your app to connect to voice on user's behalf and see all the voice members - requires Discord approval
+            webhook.incoming: this generates a webhook that is returned in the oauth token response for authorization code grants
+        clientCredentials:
+          tokenUrl: https://discord.com/api/oauth2/token
+          refreshUrl: https://discord.com/api/oauth2/token
+          scopes:
+            activities.invites.write: allows your app to send activity invites - requires Discord approval (NOT REQUIRED FOR GAMESDK ACTIVITY MANAGER)
+            activities.read: allows your app to fetch data from a user's "Now Playing/Recently Played" list - requires Discord approval
+            activities.write: allows your app to update a user's activity - requires Discord approval (NOT REQUIRED FOR GAMESDK ACTIVITY MANAGER)
+            applications.builds.read: allows your app to read build data for a user's applications
+            applications.builds.upload: allows your app to upload/update builds for a user's applications - requires Discord approval
+            applications.commands: allows your app to use commands in a guild
+            applications.commands.permissions.update: allows your app to update permissions for its commands in a guild a user has permissions to
+            applications.commands.update: allows your app to update its commands using a Bearer token - client credentials grant only
+            applications.entitlements: allows your app to read entitlements for a user's applications
+            applications.store.update: allows your app to read and update store data (SKUs, store listings, achievements, etc.) for a user's applications
+            bot: for oauth2 bots, this puts the bot in the user's selected guild by default
+            connections: allows /users/@me/connections to return linked third-party accounts
+            dm_channels.read: allows your app to see information about the user's DMs and group DMs - requires Discord approval
+            email: enables /users/@me to return an email
+            gdm.join: allows your app to join users to a group dm
+            guilds: allows /users/@me/guilds to return basic information about all of a user's guilds
+            guilds.join: allows /guilds/{guild.id}/members/{user.id} to be used for joining users to a guild
+            guilds.members.read: allows /users/@me/guilds/{guild.id}/member to return a user's member information in a guild
+            identify: allows /users/@me without email
+            messages.read: for local rpc server api access, this allows you to read messages from all client channels (otherwise restricted to channels/guilds your app creates)
+            openid: for OpenID Connect, this allows your app to receive user id and basic profile information
+            relationships.read: allows your app to know a user's friends and implicit relationships - requires Discord approval
+            rpc: for local rpc server access, this allows you to control a user's local Discord client - requires Discord approval
+            rpc.activities.write: for local rpc server access, this allows you to update a user's activity - requires Discord approval
+            rpc.notifications.read: for local rpc server access, this allows you to receive notifications pushed out to the user - requires Discord approval
+            rpc.screenshare.read: for local rpc server access, this allows you to read a user's screenshare status- requires Discord approval
+            rpc.screenshare.write: for local rpc server access, this allows you to update a user's screenshare settings- requires Discord approval
+            rpc.video.read: for local rpc server access, this allows you to read a user's video status - requires Discord approval
+            rpc.video.write: for local rpc server access, this allows you to update a user's video settings - requires Discord approval
+            rpc.voice.read: for local rpc server access, this allows you to read a user's voice settings and listen for voice events - requires Discord approval
+            rpc.voice.write: for local rpc server access, this allows you to update a user's voice settings - requires Discord approval
+            voice: allows your app to connect to voice on user's behalf and see all the voice members - requires Discord approval
+            webhook.incoming: this generates a webhook that is returned in the oauth token response for authorization code grants
+        authorizationCode:
+          authorizationUrl: https://discord.com/api/oauth2/authorize
+          tokenUrl: https://discord.com/api/oauth2/token
+          refreshUrl: https://discord.com/api/oauth2/token
+          scopes:
+            activities.invites.write: allows your app to send activity invites - requires Discord approval (NOT REQUIRED FOR GAMESDK ACTIVITY MANAGER)
+            activities.read: allows your app to fetch data from a user's "Now Playing/Recently Played" list - requires Discord approval
+            activities.write: allows your app to update a user's activity - requires Discord approval (NOT REQUIRED FOR GAMESDK ACTIVITY MANAGER)
+            applications.builds.read: allows your app to read build data for a user's applications
+            applications.builds.upload: allows your app to upload/update builds for a user's applications - requires Discord approval
+            applications.commands: allows your app to use commands in a guild
+            applications.commands.permissions.update: allows your app to update permissions for its commands in a guild a user has permissions to
+            applications.entitlements: allows your app to read entitlements for a user's applications
+            applications.store.update: allows your app to read and update store data (SKUs, store listings, achievements, etc.) for a user's applications
+            bot: for oauth2 bots, this puts the bot in the user's selected guild by default
+            connections: allows /users/@me/connections to return linked third-party accounts
+            dm_channels.read: allows your app to see information about the user's DMs and group DMs - requires Discord approval
+            email: enables /users/@me to return an email
+            gdm.join: allows your app to join users to a group dm
+            guilds: allows /users/@me/guilds to return basic information about all of a user's guilds
+            guilds.join: allows /guilds/{guild.id}/members/{user.id} to be used for joining users to a guild
+            guilds.members.read: allows /users/@me/guilds/{guild.id}/member to return a user's member information in a guild
+            identify: allows /users/@me without email
+            messages.read: for local rpc server api access, this allows you to read messages from all client channels (otherwise restricted to channels/guilds your app creates)
+            openid: for OpenID Connect, this allows your app to receive user id and basic profile information
+            relationships.read: allows your app to know a user's friends and implicit relationships - requires Discord approval
+            role_connections.write: allows your app to update a user's connection and metadata for the app
+            rpc: for local rpc server access, this allows you to control a user's local Discord client - requires Discord approval
+            rpc.activities.write: for local rpc server access, this allows you to update a user's activity - requires Discord approval
+            rpc.notifications.read: for local rpc server access, this allows you to receive notifications pushed out to the user - requires Discord approval
+            rpc.screenshare.read: for local rpc server access, this allows you to read a user's screenshare status- requires Discord approval
+            rpc.screenshare.write: for local rpc server access, this allows you to update a user's screenshare settings- requires Discord approval
+            rpc.video.read: for local rpc server access, this allows you to read a user's video status - requires Discord approval
+            rpc.video.write: for local rpc server access, this allows you to update a user's video settings - requires Discord approval
+            rpc.voice.read: for local rpc server access, this allows you to read a user's voice settings and listen for voice events - requires Discord approval
+            rpc.voice.write: for local rpc server access, this allows you to update a user's voice settings - requires Discord approval
+            voice: allows your app to connect to voice on user's behalf and see all the voice members - requires Discord approval
+            webhook.incoming: this generates a webhook that is returned in the oauth token response for authorization code grants
+externalDocs:
+  url: https://discord.com/developers/docs
+  description: Discord Developer Documentation

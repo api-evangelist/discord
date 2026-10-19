@@ -183,10 +183,11 @@ apis:
     url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
 - aid: discord:discord-gateway-api
   name: Discord Gateway API
-  description: The Discord Gateway API provides persistent, stateful WebSocket connections between your
-    client and Discord servers. These connections are used for sending and receiving real-time events your
-    client can use to track and update local state, including message creation, guild updates, presence
-    changes, and voice state updates.
+  description: >-
+    The Discord Gateway API provides persistent, stateful WebSocket connections between your client and
+    Discord servers. These connections are used for sending and receiving real-time events your client
+    can use to track and update local state, including message creation, guild updates, presence changes,
+    and voice state updates.
   humanURL: https://discord.com/developers/docs/events/gateway
   baseURL: https://discord.com/api/v10
   tags:
@@ -226,20 +227,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/discord-guilds-api-openapi.yml
-  - type: Documentation
-    url: https://discord.com/developers/docs/reference
-  - type: Documentation
-    url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
-- aid: discord:discord-interaction-responses-api
-  name: Discord Interaction Responses API
-  description: Respond to interactions received from Discord
-  humanURL: https://discord.com/developers/docs/reference
-  baseURL: https://discord.com/api/v10
-  tags:
-  - Interaction Responses
-  properties:
-  - type: OpenAPI
-    url: openapi/discord-interaction-responses-api-openapi.yml
   - type: Documentation
     url: https://discord.com/developers/docs/reference
   - type: Documentation
@@ -318,9 +305,10 @@ apis:
     url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
 - aid: discord:discord-voice-api
   name: Discord Voice API
-  description: The Discord Voice API provides the protocol for establishing and managing voice connections
-    between clients and Discord voice servers. It handles UDP-based voice data transmission, encryption
-    with XSalsa20-Poly1305, and supports features like speaking indicators and voice state updates.
+  description: >-
+    The Discord Voice API provides the protocol for establishing and managing voice connections between
+    clients and Discord voice servers. It handles UDP-based voice data transmission, encryption with XSalsa20-Poly1305,
+    and supports features like speaking indicators and voice state updates.
   humanURL: https://discord.com/developers/docs/topics/voice-connections
   baseURL: https://discord.com/api/v10
   tags:
@@ -371,6 +359,63 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/discord-oauth2-api-openapi.yml
+- aid: discord:discord-lobbies-api
+  name: Discord Lobbies API
+  description: The Lobbies API from Discord — 10 operation(s) for lobbies.
+  humanURL: https://discord.com/developers/docs/interactions/overview
+  baseURL: https://discord.com/api/v10
+  tags:
+  - Lobbies
+  properties:
+  - type: OpenAPI
+    url: openapi/discord-lobbies-api-openapi.yml
+  - type: Documentation
+    url: https://discord.com/developers/docs/reference
+  - type: Documentation
+    url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
+- aid: discord:discord-partner-sdk-api
+  name: Discord Partner Sdk API
+  description: The Partner Sdk API from Discord — 5 operation(s) for partner sdk.
+  humanURL: https://discord.com/developers/docs/interactions/overview
+  baseURL: https://discord.com/api/v10
+  tags:
+  - Partner Sdk
+  properties:
+  - type: OpenAPI
+    url: openapi/discord-partner-sdk-api-openapi.yml
+  - type: Documentation
+    url: https://discord.com/developers/docs/reference
+  - type: Documentation
+    url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
+- aid: discord:discord-skus-api
+  name: Discord Skus API
+  description: The Skus API from Discord — 2 operation(s) for skus.
+  humanURL: https://discord.com/developers/docs/interactions/overview
+  baseURL: https://discord.com/api/v10
+  tags:
+  - Skus
+  properties:
+  - type: OpenAPI
+    url: openapi/discord-skus-api-openapi.yml
+  - type: Documentation
+    url: https://discord.com/developers/docs/reference
+  - type: Documentation
+    url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
+- aid: discord:discord-soundboard-default-sounds-api
+  name: Discord Soundboard Default Sounds API
+  description: >-
+    The Soundboard Default Sounds API from Discord — 1 operation(s) for soundboard default sounds.
+  humanURL: https://discord.com/developers/docs/interactions/overview
+  baseURL: https://discord.com/api/v10
+  tags:
+  - Soundboard Default Sounds
+  properties:
+  - type: OpenAPI
+    url: openapi/discord-soundboard-default-sounds-api-openapi.yml
+  - type: Documentation
+    url: https://discord.com/developers/docs/reference
+  - type: Documentation
+    url: https://discord.com/developers/docs/tutorials/configuring-app-metadata-for-linked-roles
 maintainers:
 - FN: Kin Lane
   url: http://apievangelist.com

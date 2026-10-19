@@ -46,10 +46,23 @@ paths:
       responses:
         '200':
           description: 200 response for create_stage_instance
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+            X-RateLimit-Reset-After:
+              $ref: '#/components/headers/X-RateLimit-Reset-After'
+            X-RateLimit-Bucket:
+              $ref: '#/components/headers/X-RateLimit-Bucket'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/StageInstanceResponse'
+        '429':
+          $ref: '#/components/responses/ClientRatelimitedResponse'
         4XX:
           $ref: '#/components/responses/ClientErrorResponse'
       security:
@@ -70,10 +83,23 @@ paths:
       responses:
         '200':
           description: 200 response for get_stage_instance
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+            X-RateLimit-Reset-After:
+              $ref: '#/components/headers/X-RateLimit-Reset-After'
+            X-RateLimit-Bucket:
+              $ref: '#/components/headers/X-RateLimit-Bucket'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/StageInstanceResponse'
+        '429':
+          $ref: '#/components/responses/ClientRatelimitedResponse'
         4XX:
           $ref: '#/components/responses/ClientErrorResponse'
       security:
@@ -87,6 +113,19 @@ paths:
       responses:
         '204':
           description: 204 response for delete_stage_instance
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+            X-RateLimit-Reset-After:
+              $ref: '#/components/headers/X-RateLimit-Reset-After'
+            X-RateLimit-Bucket:
+              $ref: '#/components/headers/X-RateLimit-Bucket'
+        '429':
+          $ref: '#/components/responses/ClientRatelimitedResponse'
         4XX:
           $ref: '#/components/responses/ClientErrorResponse'
       security:
@@ -113,10 +152,23 @@ paths:
       responses:
         '200':
           description: 200 response for update_stage_instance
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+            X-RateLimit-Reset-After:
+              $ref: '#/components/headers/X-RateLimit-Reset-After'
+            X-RateLimit-Bucket:
+              $ref: '#/components/headers/X-RateLimit-Bucket'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/StageInstanceResponse'
+        '429':
+          $ref: '#/components/responses/ClientRatelimitedResponse'
         4XX:
           $ref: '#/components/responses/ClientErrorResponse'
       security:
@@ -126,16 +178,49 @@ paths:
       summary: Update stage instance
       x-summary-source: derived
 components:
+  headers:
+    X-RateLimit-Reset-After:
+      schema:
+        type: number
+      description: The duration in seconds until the current ratelimit window resets
+    X-RateLimit-Limit:
+      schema:
+        type: integer
+      description: The maximum number of requests that can be made in the current ratelimit window
+    X-RateLimit-Remaining:
+      schema:
+        type: integer
+      description: The number of requests remaining in the current ratelimit window
+    X-RateLimit-Bucket:
+      schema:
+        type: string
+      description: The bucket that the request belongs to
+    X-RateLimit-Reset:
+      schema:
+        type: number
+      description: A unix timestamp in seconds at which the current ratelimit window resets
   schemas:
-    ErrorResponse:
+    StageInstancesPrivacyLevels:
+      type: integer
+      oneOf:
+      - title: PUBLIC
+        description: The Stage instance is visible publicly. (deprecated)
+        const: 1
+      - title: GUILD_ONLY
+        description: The Stage instance is visible to only guild members.
+        const: 2
+      format: int32
+    InnerErrors:
       type: object
-      description: Errors object returned by the Discord API
-      allOf:
-      - $ref: '#/components/schemas/Error'
-      - type: object
-        properties:
-          errors:
-            $ref: '#/components/schemas/ErrorDetails'
+      properties:
+        _errors:
+          type: array
+          description: The list of errors for this field
+          items:
+            $ref: '#/components/schemas/Error'
+      additionalProperties: false
+      required:
+      - _errors
     StageInstanceResponse:
       type: object
       properties:
@@ -150,9 +235,7 @@ components:
         id:
           $ref: '#/components/schemas/SnowflakeType'
         discoverable_disabled:
-          type:
-          - boolean
-          - 'null'
+          type: boolean
         guild_scheduled_event_id:
           oneOf:
           - type: 'null'
@@ -163,16 +246,43 @@ components:
       - topic
       - privacy_level
       - id
-    StageInstancesPrivacyLevels:
-      type: integer
+      - discoverable_disabled
+      - guild_scheduled_event_id
+    ErrorResponse:
+      type: object
+      description: Errors object returned by the Discord API
+      allOf:
+      - $ref: '#/components/schemas/Error'
+      - type: object
+        properties:
+          errors:
+            $ref: '#/components/schemas/ErrorDetails'
+    ErrorDetails:
       oneOf:
-      - title: PUBLIC
-        description: The Stage instance is visible publicly. (deprecated)
-        const: 1
-      - title: GUILD_ONLY
-        description: The Stage instance is visible publicly. (deprecated)
-        const: 2
-      format: int32
+      - type: object
+        additionalProperties:
+          $ref: '#/components/schemas/ErrorDetails'
+      - $ref: '#/components/schemas/InnerErrors'
+    SnowflakeType:
+      type: string
+      pattern: ^(0|[1-9][0-9]*)$
+      format: snowflake
+    RatelimitedResponse:
+      type: object
+      description: Ratelimit error object returned by the Discord API
+      allOf:
+      - $ref: '#/components/schemas/Error'
+      - type: object
+        properties:
+          retry_after:
+            type: number
+            description: The number of seconds to wait before retrying your request
+          global:
+            type: boolean
+            description: Whether you are being ratelimited by the global ratelimit or a per-endpoint ratelimit
+        required:
+        - retry_after
+        - global
     Error:
       type: object
       description: A single error, either for an API response or a specific field.
@@ -186,30 +296,37 @@ components:
       required:
       - code
       - message
-    ErrorDetails:
-      oneOf:
-      - type: object
-        additionalProperties:
-          $ref: '#/components/schemas/ErrorDetails'
-      - $ref: '#/components/schemas/InnerErrors'
-    SnowflakeType:
-      type: string
-      pattern: ^(0|[1-9][0-9]*)$
-      format: snowflake
-    InnerErrors:
-      type: object
-      properties:
-        _errors:
-          type: array
-          description: The list of errors for this field
-          items:
-            $ref: '#/components/schemas/Error'
-      additionalProperties: false
-      required:
-      - _errors
   responses:
+    ClientRatelimitedResponse:
+      description: Client ratelimited response
+      headers:
+        X-RateLimit-Limit:
+          $ref: '#/components/headers/X-RateLimit-Limit'
+        X-RateLimit-Remaining:
+          $ref: '#/components/headers/X-RateLimit-Remaining'
+        X-RateLimit-Reset:
+          $ref: '#/components/headers/X-RateLimit-Reset'
+        X-RateLimit-Reset-After:
+          $ref: '#/components/headers/X-RateLimit-Reset-After'
+        X-RateLimit-Bucket:
+          $ref: '#/components/headers/X-RateLimit-Bucket'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RatelimitedResponse'
     ClientErrorResponse:
       description: Client error response
+      headers:
+        X-RateLimit-Limit:
+          $ref: '#/components/headers/X-RateLimit-Limit'
+        X-RateLimit-Remaining:
+          $ref: '#/components/headers/X-RateLimit-Remaining'
+        X-RateLimit-Reset:
+          $ref: '#/components/headers/X-RateLimit-Reset'
+        X-RateLimit-Reset-After:
+          $ref: '#/components/headers/X-RateLimit-Reset-After'
+        X-RateLimit-Bucket:
+          $ref: '#/components/headers/X-RateLimit-Bucket'
       content:
         application/json:
           schema:
@@ -224,9 +341,10 @@ components:
       type: oauth2
       flows:
         implicit:
-          authorizationUrl: discord.com/oauth2/authorize
+          authorizationUrl: https://discord.com/api/oauth2/authorize
           refreshUrl: https://discord.com/api/oauth2/token
           scopes:
+            activities.invites.write: allows your app to send activity invites - requires Discord approval (NOT REQUIRED FOR GAMESDK ACTIVITY MANAGER)
             activities.read: allows your app to fetch data from a user's "Now Playing/Recently Played" list - requires Discord approval
             activities.write: allows your app to update a user's activity - requires Discord approval (NOT REQUIRED FOR GAMESDK ACTIVITY MANAGER)
             applications.builds.read: allows your app to read build data for a user's applications
@@ -262,6 +380,7 @@ components:
           tokenUrl: https://discord.com/api/oauth2/token
           refreshUrl: https://discord.com/api/oauth2/token
           scopes:
+            activities.invites.write: allows your app to send activity invites - requires Discord approval (NOT REQUIRED FOR GAMESDK ACTIVITY MANAGER)
             activities.read: allows your app to fetch data from a user's "Now Playing/Recently Played" list - requires Discord approval
             activities.write: allows your app to update a user's activity - requires Discord approval (NOT REQUIRED FOR GAMESDK ACTIVITY MANAGER)
             applications.builds.read: allows your app to read build data for a user's applications
@@ -295,10 +414,11 @@ components:
             voice: allows your app to connect to voice on user's behalf and see all the voice members - requires Discord approval
             webhook.incoming: this generates a webhook that is returned in the oauth token response for authorization code grants
         authorizationCode:
-          authorizationUrl: discord.com/oauth2/authorize
+          authorizationUrl: https://discord.com/api/oauth2/authorize
           tokenUrl: https://discord.com/api/oauth2/token
           refreshUrl: https://discord.com/api/oauth2/token
           scopes:
+            activities.invites.write: allows your app to send activity invites - requires Discord approval (NOT REQUIRED FOR GAMESDK ACTIVITY MANAGER)
             activities.read: allows your app to fetch data from a user's "Now Playing/Recently Played" list - requires Discord approval
             activities.write: allows your app to update a user's activity - requires Discord approval (NOT REQUIRED FOR GAMESDK ACTIVITY MANAGER)
             applications.builds.read: allows your app to read build data for a user's applications

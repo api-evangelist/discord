@@ -18,6 +18,17 @@ paths:
       responses:
         '200':
           description: 200 response for list_voice_regions
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+            X-RateLimit-Reset-After:
+              $ref: '#/components/headers/X-RateLimit-Reset-After'
+            X-RateLimit-Bucket:
+              $ref: '#/components/headers/X-RateLimit-Bucket'
           content:
             application/json:
               schema:
@@ -26,6 +37,8 @@ paths:
                 - 'null'
                 items:
                   $ref: '#/components/schemas/VoiceRegionResponse'
+        '429':
+          $ref: '#/components/responses/ClientRatelimitedResponse'
         4XX:
           $ref: '#/components/responses/ClientErrorResponse'
       security:
@@ -35,29 +48,28 @@ paths:
       summary: List voice regions
       x-summary-source: derived
 components:
+  headers:
+    X-RateLimit-Reset-After:
+      schema:
+        type: number
+      description: The duration in seconds until the current ratelimit window resets
+    X-RateLimit-Limit:
+      schema:
+        type: integer
+      description: The maximum number of requests that can be made in the current ratelimit window
+    X-RateLimit-Remaining:
+      schema:
+        type: integer
+      description: The number of requests remaining in the current ratelimit window
+    X-RateLimit-Bucket:
+      schema:
+        type: string
+      description: The bucket that the request belongs to
+    X-RateLimit-Reset:
+      schema:
+        type: number
+      description: A unix timestamp in seconds at which the current ratelimit window resets
   schemas:
-    ErrorResponse:
-      type: object
-      description: Errors object returned by the Discord API
-      allOf:
-      - $ref: '#/components/schemas/Error'
-      - type: object
-        properties:
-          errors:
-            $ref: '#/components/schemas/ErrorDetails'
-    Error:
-      type: object
-      description: A single error, either for an API response or a specific field.
-      properties:
-        code:
-          type: integer
-          description: Discord internal error code. See error code reference
-        message:
-          type: string
-          description: Human-readable error message
-      required:
-      - code
-      - message
     VoiceRegionResponse:
       type: object
       properties:
@@ -77,12 +89,6 @@ components:
       - custom
       - deprecated
       - optimal
-    ErrorDetails:
-      oneOf:
-      - type: object
-        additionalProperties:
-          $ref: '#/components/schemas/ErrorDetails'
-      - $ref: '#/components/schemas/InnerErrors'
     InnerErrors:
       type: object
       properties:
@@ -94,9 +100,81 @@ components:
       additionalProperties: false
       required:
       - _errors
+    ErrorResponse:
+      type: object
+      description: Errors object returned by the Discord API
+      allOf:
+      - $ref: '#/components/schemas/Error'
+      - type: object
+        properties:
+          errors:
+            $ref: '#/components/schemas/ErrorDetails'
+    ErrorDetails:
+      oneOf:
+      - type: object
+        additionalProperties:
+          $ref: '#/components/schemas/ErrorDetails'
+      - $ref: '#/components/schemas/InnerErrors'
+    RatelimitedResponse:
+      type: object
+      description: Ratelimit error object returned by the Discord API
+      allOf:
+      - $ref: '#/components/schemas/Error'
+      - type: object
+        properties:
+          retry_after:
+            type: number
+            description: The number of seconds to wait before retrying your request
+          global:
+            type: boolean
+            description: Whether you are being ratelimited by the global ratelimit or a per-endpoint ratelimit
+        required:
+        - retry_after
+        - global
+    Error:
+      type: object
+      description: A single error, either for an API response or a specific field.
+      properties:
+        code:
+          type: integer
+          description: Discord internal error code. See error code reference
+        message:
+          type: string
+          description: Human-readable error message
+      required:
+      - code
+      - message
   responses:
+    ClientRatelimitedResponse:
+      description: Client ratelimited response
+      headers:
+        X-RateLimit-Limit:
+          $ref: '#/components/headers/X-RateLimit-Limit'
+        X-RateLimit-Remaining:
+          $ref: '#/components/headers/X-RateLimit-Remaining'
+        X-RateLimit-Reset:
+          $ref: '#/components/headers/X-RateLimit-Reset'
+        X-RateLimit-Reset-After:
+          $ref: '#/components/headers/X-RateLimit-Reset-After'
+        X-RateLimit-Bucket:
+          $ref: '#/components/headers/X-RateLimit-Bucket'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RatelimitedResponse'
     ClientErrorResponse:
       description: Client error response
+      headers:
+        X-RateLimit-Limit:
+          $ref: '#/components/headers/X-RateLimit-Limit'
+        X-RateLimit-Remaining:
+          $ref: '#/components/headers/X-RateLimit-Remaining'
+        X-RateLimit-Reset:
+          $ref: '#/components/headers/X-RateLimit-Reset'
+        X-RateLimit-Reset-After:
+          $ref: '#/components/headers/X-RateLimit-Reset-After'
+        X-RateLimit-Bucket:
+          $ref: '#/components/headers/X-RateLimit-Bucket'
       content:
         application/json:
           schema:
@@ -111,9 +189,10 @@ components:
       type: oauth2
       flows:
         implicit:
-          authorizationUrl: discord.com/oauth2/authorize
+          authorizationUrl: https://discord.com/api/oauth2/authorize
           refreshUrl: https://discord.com/api/oauth2/token
           scopes:
+            activities.invites.write: allows your app to send activity invites - requires Discord approval (NOT REQUIRED FOR GAMESDK ACTIVITY MANAGER)
             activities.read: allows your app to fetch data from a user's "Now Playing/Recently Played" list - requires Discord approval
             activities.write: allows your app to update a user's activity - requires Discord approval (NOT REQUIRED FOR GAMESDK ACTIVITY MANAGER)
             applications.builds.read: allows your app to read build data for a user's applications
@@ -149,6 +228,7 @@ components:
           tokenUrl: https://discord.com/api/oauth2/token
           refreshUrl: https://discord.com/api/oauth2/token
           scopes:
+            activities.invites.write: allows your app to send activity invites - requires Discord approval (NOT REQUIRED FOR GAMESDK ACTIVITY MANAGER)
             activities.read: allows your app to fetch data from a user's "Now Playing/Recently Played" list - requires Discord approval
             activities.write: allows your app to update a user's activity - requires Discord approval (NOT REQUIRED FOR GAMESDK ACTIVITY MANAGER)
             applications.builds.read: allows your app to read build data for a user's applications
@@ -182,10 +262,11 @@ components:
             voice: allows your app to connect to voice on user's behalf and see all the voice members - requires Discord approval
             webhook.incoming: this generates a webhook that is returned in the oauth token response for authorization code grants
         authorizationCode:
-          authorizationUrl: discord.com/oauth2/authorize
+          authorizationUrl: https://discord.com/api/oauth2/authorize
           tokenUrl: https://discord.com/api/oauth2/token
           refreshUrl: https://discord.com/api/oauth2/token
           scopes:
+            activities.invites.write: allows your app to send activity invites - requires Discord approval (NOT REQUIRED FOR GAMESDK ACTIVITY MANAGER)
             activities.read: allows your app to fetch data from a user's "Now Playing/Recently Played" list - requires Discord approval
             activities.write: allows your app to update a user's activity - requires Discord approval (NOT REQUIRED FOR GAMESDK ACTIVITY MANAGER)
             applications.builds.read: allows your app to read build data for a user's applications
