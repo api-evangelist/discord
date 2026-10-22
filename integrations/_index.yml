@@ -110,3 +110,52 @@
     builder: Pipedream repo (component)
   status: not-a-workflow
   arazzo: null
+- slug: discord-raycast
+  label: Raycast
+  partner: raycast
+  partner_name: Raycast
+  category: Raycast Store extension (community wrapper)
+  type: marketplace
+  marketplace: raycast-store
+  channel: connector-listing
+  evidence: https://www.raycast.com/Aayush9029/discord
+  source: edge
+  relationship: connector-coverage
+  contract_reference:
+    register: Raycast Store (raycast/extensions monorepo + store_listings JSON)
+    spec_file: null
+    role: raycast-community-wrapper
+    builder: community
+    authors:
+    - Aayush9029
+    - theshadowdev
+    matched_domain: discord.com
+    matched_by: domain
+    monorepo_commit: 84f9ac51336a8c69f70974a75bc067c0feae3658
+    listings:
+    - title: Discord
+      store_url: https://www.raycast.com/Aayush9029/discord
+      installs: 8893
+      categories:
+      - Communication
+      source: https://github.com/raycast/extensions/tree/84f9ac51336a8c69f70974a75bc067c0feae3658/extensions/discord/
+      author: Aayush9029
+    - title: Discord Timestamps
+      store_url: https://www.raycast.com/theshadowdev/discord-timestamps
+      installs: 1802
+      categories:
+      - Communication
+      - Developer Tools
+      source: https://github.com/raycast/extensions/tree/84f9ac51336a8c69f70974a75bc067c0feae3658/extensions/discord-timestamps/
+      author: theshadowdev
+    categories:
+    - Communication
+    - Developer Tools
+    identity_note: the extension's own source calls a host on the product's domain AND its title / package name
+      passes partner_link's name check; built by Raycast community developers, not the vendor
+    signal_note: 'coverage: Raycast''s store reaches the product through community-built extensions; one edge per
+      (product, store); install / listing counts are context, never counted'
+    detected_by: sweep-raycast-store-extensions.py
+    detected: '2026-10-22'
+  status: not-a-workflow
+  arazzo: null
