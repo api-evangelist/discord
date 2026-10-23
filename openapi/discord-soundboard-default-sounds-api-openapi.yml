@@ -504,3 +504,9 @@ components:
 externalDocs:
   url: https://discord.com/developers/docs
   description: Discord Developer Documentation
+x-provenance:
+  method: harvested
+  publisher: Discord
+  source: https://raw.githubusercontent.com/discord/discord-api-spec/HEAD/specs/openapi_preview.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
