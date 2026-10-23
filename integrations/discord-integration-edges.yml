@@ -18,6 +18,10 @@ checked:
 - https://zapier.com/apps/discord/integrations
 - https://github.com/raycast/extensions/tree/84f9ac51336a8c69f70974a75bc067c0feae3658/extensions
 - https://www.raycast.com/api/v1/store_listings
+- https://discord.com/api/v9/application-directory-static/categories
+- https://discord.com/api/v9/application-directory-static/search
+- https://discord.com/application-directory
+- https://discord.com/discovery/applications
 summary: null
 marketplace_apps:
 - marketplace: n8n
@@ -827,4 +831,755 @@ edges:
   - Discord
   - Discord Timestamps
   direction: partner-built
+- partner_name: Amplitude
+  app: Amplitude
+  partner: amplitude
+  partner_match: domain
+  type: marketplace
+  marketplace: discord-app-directory
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://discord.com/discovery/applications/1520218286057324726
+  category: Utilities, Moderation and Tools
+  contract_reference:
+    register: Discord App Directory (discord.com/discovery/applications; public application-directory-static search
+      JSON)
+    spec_file: null
+    role: discord-app
+    registered_name: Amplitude
+    matched_domain: amplitude.com
+    matched_by: domain
+    listings: 2
+    sample_apps:
+    - Amplitude
+    - Amplitude - EU
+    signal_note: one edge per (builder, platform); listings, guild counts and Discord's verified-app badge are context,
+      never read
+    detected_by: sweep-discord-app-directory.py
+    detected: '2026-10-23'
+  detected_by: sweep-discord-app-directory.py
+  detected: '2026-10-23'
+  publisher_verified:
+  - discord-verified-app
+- partner_name: AudD
+  app: AudD
+  partner: audd
+  partner_match: domain
+  type: marketplace
+  marketplace: discord-app-directory
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://discord.com/discovery/applications/704782697754525711
+  category: Utilities
+  contract_reference:
+    register: Discord App Directory (discord.com/discovery/applications; public application-directory-static search
+      JSON)
+    spec_file: null
+    role: discord-app
+    registered_name: AudD
+    matched_domain: audd.io
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - AudD
+    signal_note: one edge per (builder, platform); listings, guild counts and Discord's verified-app badge are context,
+      never read
+    detected_by: sweep-discord-app-directory.py
+    detected: '2026-10-23'
+  detected_by: sweep-discord-app-directory.py
+  detected: '2026-10-23'
+  publisher_verified:
+  - discord-verified-app
+- partner_name: Composio
+  app: Composio
+  partner: composio
+  partner_match: domain
+  type: marketplace
+  marketplace: discord-app-directory
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://discord.com/discovery/applications/1501160137694642207
+  category: Utilities, Moderation and Tools
+  contract_reference:
+    register: Discord App Directory (discord.com/discovery/applications; public application-directory-static search
+      JSON)
+    spec_file: null
+    role: discord-app
+    registered_name: Composio
+    matched_domain: composio.dev
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Composio
+    signal_note: one edge per (builder, platform); listings, guild counts and Discord's verified-app badge are context,
+      never read
+    detected_by: sweep-discord-app-directory.py
+    detected: '2026-10-23'
+  detected_by: sweep-discord-app-directory.py
+  detected: '2026-10-23'
+  publisher_verified:
+  - discord-verified-app
+- partner_name: Cymbal Bot
+  app: Cymbal Bot
+  partner: cymbal
+  partner_match: domain
+  type: marketplace
+  marketplace: discord-app-directory
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://discord.com/discovery/applications/949346754309001266
+  category: null
+  contract_reference:
+    register: Discord App Directory (discord.com/discovery/applications; public application-directory-static search
+      JSON)
+    spec_file: null
+    role: discord-app
+    registered_name: Cymbal Bot
+    matched_domain: cymbal.xyz
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Cymbal Bot
+    signal_note: one edge per (builder, platform); listings, guild counts and Discord's verified-app badge are context,
+      never read
+    detected_by: sweep-discord-app-directory.py
+    detected: '2026-10-23'
+  detected_by: sweep-discord-app-directory.py
+  detected: '2026-10-23'
+  publisher_verified:
+  - discord-verified-app
+- partner_name: ePal Finder
+  app: ePal Finder
+  partner: e-pal
+  partner_match: domain
+  type: marketplace
+  marketplace: discord-app-directory
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://discord.com/discovery/applications/1098516182404968458
+  category: Social, Games
+  contract_reference:
+    register: Discord App Directory (discord.com/discovery/applications; public application-directory-static search
+      JSON)
+    spec_file: null
+    role: discord-app
+    registered_name: ePal Finder
+    matched_domain: epal.gg
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - ePal Finder
+    signal_note: one edge per (builder, platform); listings, guild counts and Discord's verified-app badge are context,
+      never read
+    detected_by: sweep-discord-app-directory.py
+    detected: '2026-10-23'
+  detected_by: sweep-discord-app-directory.py
+  detected: '2026-10-23'
+- partner_name: Krunker Strike FRVR
+  app: Krunker Strike FRVR
+  partner: frvr
+  partner_match: domain
+  type: marketplace
+  marketplace: discord-app-directory
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://discord.com/discovery/applications/1011683823555199066
+  category: Games, Social
+  contract_reference:
+    register: Discord App Directory (discord.com/discovery/applications; public application-directory-static search
+      JSON)
+    spec_file: null
+    role: discord-app
+    registered_name: Krunker Strike FRVR
+    matched_domain: frvr.com
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Krunker Strike FRVR
+    signal_note: one edge per (builder, platform); listings, guild counts and Discord's verified-app badge are context,
+      never read
+    detected_by: sweep-discord-app-directory.py
+    detected: '2026-10-23'
+  detected_by: sweep-discord-app-directory.py
+  detected: '2026-10-23'
+  publisher_verified:
+  - discord-verified-app
+- partner_name: GamerPower Bot
+  app: GamerPower Bot
+  partner: gamerpower
+  partner_match: domain
+  type: marketplace
+  marketplace: discord-app-directory
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://discord.com/discovery/applications/1337483452634763355
+  category: Games, Moderation and Tools, Social
+  contract_reference:
+    register: Discord App Directory (discord.com/discovery/applications; public application-directory-static search
+      JSON)
+    spec_file: null
+    role: discord-app
+    registered_name: GamerPower Bot
+    matched_domain: gamerpower.com
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - GamerPower Bot
+    signal_note: one edge per (builder, platform); listings, guild counts and Discord's verified-app badge are context,
+      never read
+    detected_by: sweep-discord-app-directory.py
+    detected: '2026-10-23'
+  detected_by: sweep-discord-app-directory.py
+  detected: '2026-10-23'
+  publisher_verified:
+  - discord-verified-app
+- partner_name: LDDA by KaBuM!
+  app: LDDA by KaBuM!
+  partner: kabum
+  partner_match: domain
+  type: marketplace
+  marketplace: discord-app-directory
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://discord.com/discovery/applications/1409424266155266208
+  category: Games, Entertainment, Social
+  contract_reference:
+    register: Discord App Directory (discord.com/discovery/applications; public application-directory-static search
+      JSON)
+    spec_file: null
+    role: discord-app
+    registered_name: LDDA by KaBuM!
+    matched_domain: kabum.com.br
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - LDDA by KaBuM!
+    signal_note: one edge per (builder, platform); listings, guild counts and Discord's verified-app badge are context,
+      never read
+    detected_by: sweep-discord-app-directory.py
+    detected: '2026-10-23'
+  detected_by: sweep-discord-app-directory.py
+  detected: '2026-10-23'
+  publisher_verified:
+  - discord-verified-app
+- partner_name: Magooshy
+  app: Magooshy
+  partner: magoosh
+  partner_match: domain
+  type: marketplace
+  marketplace: discord-app-directory
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://discord.com/discovery/applications/1008844563798040698
+  category: Utilities
+  contract_reference:
+    register: Discord App Directory (discord.com/discovery/applications; public application-directory-static search
+      JSON)
+    spec_file: null
+    role: discord-app
+    registered_name: Magooshy
+    matched_domain: magoosh.com
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Magooshy
+    signal_note: one edge per (builder, platform); listings, guild counts and Discord's verified-app badge are context,
+      never read
+    detected_by: sweep-discord-app-directory.py
+    detected: '2026-10-23'
+  detected_by: sweep-discord-app-directory.py
+  detected: '2026-10-23'
+  publisher_verified:
+  - discord-verified-app
+- partner_name: Memrise
+  app: Memrise
+  partner: memrise
+  partner_match: domain
+  type: marketplace
+  marketplace: discord-app-directory
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://discord.com/discovery/applications/1085553058823557180
+  category: null
+  contract_reference:
+    register: Discord App Directory (discord.com/discovery/applications; public application-directory-static search
+      JSON)
+    spec_file: null
+    role: discord-app
+    registered_name: Memrise
+    matched_domain: memrise.com
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Memrise
+    signal_note: one edge per (builder, platform); listings, guild counts and Discord's verified-app badge are context,
+      never read
+    detected_by: sweep-discord-app-directory.py
+    detected: '2026-10-23'
+  detected_by: sweep-discord-app-directory.py
+  detected: '2026-10-23'
+  publisher_verified:
+  - discord-verified-app
+- partner_name: Midjourney Bot
+  app: Midjourney Bot
+  partner: midjourney
+  partner_match: domain
+  type: marketplace
+  marketplace: discord-app-directory
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://discord.com/discovery/applications/936929561302675456
+  category: null
+  contract_reference:
+    register: Discord App Directory (discord.com/discovery/applications; public application-directory-static search
+      JSON)
+    spec_file: null
+    role: discord-app
+    registered_name: Midjourney Bot
+    matched_domain: midjourney.com
+    matched_by: domain
+    listings: 2
+    sample_apps:
+    - Midjourney Bot
+    - Midjourney Prompt Battle
+    signal_note: one edge per (builder, platform); listings, guild counts and Discord's verified-app badge are context,
+      never read
+    detected_by: sweep-discord-app-directory.py
+    detected: '2026-10-23'
+  detected_by: sweep-discord-app-directory.py
+  detected: '2026-10-23'
+  publisher_verified:
+  - discord-verified-app
+- partner_name: OP.GG
+  app: OP.GG
+  partner: opgg
+  partner_match: domain
+  type: marketplace
+  marketplace: discord-app-directory
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://discord.com/discovery/applications/589065324834324500
+  category: Games, Entertainment
+  contract_reference:
+    register: Discord App Directory (discord.com/discovery/applications; public application-directory-static search
+      JSON)
+    spec_file: null
+    role: discord-app
+    registered_name: OP.GG
+    matched_domain: op.gg
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - OP.GG
+    signal_note: one edge per (builder, platform); listings, guild counts and Discord's verified-app badge are context,
+      never read
+    detected_by: sweep-discord-app-directory.py
+    detected: '2026-10-23'
+  detected_by: sweep-discord-app-directory.py
+  detected: '2026-10-23'
+  publisher_verified:
+  - discord-verified-app
+- partner_name: Perplexity
+  app: Perplexity
+  partner: perplexity
+  partner_match: domain+name-among-holders
+  type: marketplace
+  marketplace: discord-app-directory
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://discord.com/discovery/applications/1354536426045440072
+  category: Utilities
+  contract_reference:
+    register: Discord App Directory (discord.com/discovery/applications; public application-directory-static search
+      JSON)
+    spec_file: null
+    role: discord-app
+    registered_name: Perplexity
+    matched_domain: perplexity.ai
+    matched_by: domain+name-among-holders
+    listings: 2
+    sample_apps:
+    - Perplexity
+    - PerplexityAI
+    signal_note: one edge per (builder, platform); listings, guild counts and Discord's verified-app badge are context,
+      never read
+    detected_by: sweep-discord-app-directory.py
+    detected: '2026-10-23'
+  detected_by: sweep-discord-app-directory.py
+  detected: '2026-10-23'
+  publisher_verified:
+  - discord-verified-app
+- partner_name: Phare
+  app: Phare
+  partner: phare
+  partner_match: domain
+  type: marketplace
+  marketplace: discord-app-directory
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://discord.com/discovery/applications/1073653767829987458
+  category: Moderation and Tools, Utilities
+  contract_reference:
+    register: Discord App Directory (discord.com/discovery/applications; public application-directory-static search
+      JSON)
+    spec_file: null
+    role: discord-app
+    registered_name: Phare
+    matched_domain: phare.io
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Phare
+    signal_note: one edge per (builder, platform); listings, guild counts and Discord's verified-app badge are context,
+      never read
+    detected_by: sweep-discord-app-directory.py
+    detected: '2026-10-23'
+  detected_by: sweep-discord-app-directory.py
+  detected: '2026-10-23'
+  publisher_verified:
+  - discord-verified-app
+- partner_name: Picsart
+  app: Picsart
+  partner: picsart-socialin
+  partner_match: domain
+  type: marketplace
+  marketplace: discord-app-directory
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://discord.com/discovery/applications/1012419466031792188
+  category: Entertainment, Social
+  contract_reference:
+    register: Discord App Directory (discord.com/discovery/applications; public application-directory-static search
+      JSON)
+    spec_file: null
+    role: discord-app
+    registered_name: Picsart
+    matched_domain: picsart.com
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Picsart
+    signal_note: one edge per (builder, platform); listings, guild counts and Discord's verified-app badge are context,
+      never read
+    detected_by: sweep-discord-app-directory.py
+    detected: '2026-10-23'
+  detected_by: sweep-discord-app-directory.py
+  detected: '2026-10-23'
+  publisher_verified:
+  - discord-verified-app
+- partner_name: Pipedream
+  app: Pipedream
+  partner: pipedream
+  partner_match: domain+name-among-holders
+  type: marketplace
+  marketplace: discord-app-directory
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://discord.com/discovery/applications/626152052963147787
+  category: Utilities, Moderation and Tools
+  contract_reference:
+    register: Discord App Directory (discord.com/discovery/applications; public application-directory-static search
+      JSON)
+    spec_file: null
+    role: discord-app
+    registered_name: Pipedream
+    matched_domain: pipedream.com
+    matched_by: domain+name-among-holders
+    listings: 1
+    sample_apps:
+    - Pipedream
+    signal_note: one edge per (builder, platform); listings, guild counts and Discord's verified-app badge are context,
+      never read
+    detected_by: sweep-discord-app-directory.py
+    detected: '2026-10-23'
+  detected_by: sweep-discord-app-directory.py
+  detected: '2026-10-23'
+  publisher_verified:
+  - discord-verified-app
+- partner_name: Quizlet
+  app: Quizlet
+  partner: quizlet
+  partner_match: domain
+  type: marketplace
+  marketplace: discord-app-directory
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://discord.com/discovery/applications/1498359156095324211
+  category: Utilities
+  contract_reference:
+    register: Discord App Directory (discord.com/discovery/applications; public application-directory-static search
+      JSON)
+    spec_file: null
+    role: discord-app
+    registered_name: Quizlet
+    matched_domain: quizlet.com
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Quizlet
+    signal_note: one edge per (builder, platform); listings, guild counts and Discord's verified-app badge are context,
+      never read
+    detected_by: sweep-discord-app-directory.py
+    detected: '2026-10-23'
+  detected_by: sweep-discord-app-directory.py
+  detected: '2026-10-23'
+  publisher_verified:
+  - discord-verified-app
+- partner_name: Sentry
+  app: Sentry
+  partner: sentry-system
+  partner_match: domain
+  type: marketplace
+  marketplace: discord-app-directory
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://discord.com/discovery/applications/1120837946019422300
+  category: Moderation and Tools
+  contract_reference:
+    register: Discord App Directory (discord.com/discovery/applications; public application-directory-static search
+      JSON)
+    spec_file: null
+    role: discord-app
+    registered_name: Sentry
+    matched_domain: sentry.io
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Sentry
+    signal_note: one edge per (builder, platform); listings, guild counts and Discord's verified-app badge are context,
+      never read
+    detected_by: sweep-discord-app-directory.py
+    detected: '2026-10-23'
+  detected_by: sweep-discord-app-directory.py
+  detected: '2026-10-23'
+  publisher_verified:
+  - discord-verified-app
+- partner_name: SoundCloud
+  app: SoundCloud
+  partner: soundcloud
+  partner_match: domain
+  type: marketplace
+  marketplace: discord-app-directory
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://discord.com/discovery/applications/890343617762304070
+  category: Social, Utilities
+  contract_reference:
+    register: Discord App Directory (discord.com/discovery/applications; public application-directory-static search
+      JSON)
+    spec_file: null
+    role: discord-app
+    registered_name: SoundCloud
+    matched_domain: soundcloud.com
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - SoundCloud
+    signal_note: one edge per (builder, platform); listings, guild counts and Discord's verified-app badge are context,
+      never read
+    detected_by: sweep-discord-app-directory.py
+    detected: '2026-10-23'
+  detected_by: sweep-discord-app-directory.py
+  detected: '2026-10-23'
+  publisher_verified:
+  - discord-verified-app
+- partner_name: Simba from Speechify
+  app: Simba from Speechify
+  partner: speechify
+  partner_match: domain
+  type: marketplace
+  marketplace: discord-app-directory
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://discord.com/discovery/applications/1234873756988477541
+  category: Social, Moderation and Tools, Utilities
+  contract_reference:
+    register: Discord App Directory (discord.com/discovery/applications; public application-directory-static search
+      JSON)
+    spec_file: null
+    role: discord-app
+    registered_name: Simba from Speechify
+    matched_domain: speechify.com
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Simba from Speechify
+    signal_note: one edge per (builder, platform); listings, guild counts and Discord's verified-app badge are context,
+      never read
+    detected_by: sweep-discord-app-directory.py
+    detected: '2026-10-23'
+  detected_by: sweep-discord-app-directory.py
+  detected: '2026-10-23'
+  publisher_verified:
+  - discord-verified-app
+- partner_name: TCGdex
+  app: TCGdex
+  partner: tcgdex
+  partner_match: domain
+  type: marketplace
+  marketplace: discord-app-directory
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://discord.com/discovery/applications/465978667022024704
+  category: Games, Entertainment
+  contract_reference:
+    register: Discord App Directory (discord.com/discovery/applications; public application-directory-static search
+      JSON)
+    spec_file: null
+    role: discord-app
+    registered_name: TCGdex
+    matched_domain: tcgdex.net
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - TCGdex
+    signal_note: one edge per (builder, platform); listings, guild counts and Discord's verified-app badge are context,
+      never read
+    detected_by: sweep-discord-app-directory.py
+    detected: '2026-10-23'
+  detected_by: sweep-discord-app-directory.py
+  detected: '2026-10-23'
+  publisher_verified:
+  - discord-verified-app
+- partner_name: TREBEL Music
+  app: TREBEL Music
+  partner: trebel-music
+  partner_match: domain
+  type: marketplace
+  marketplace: discord-app-directory
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://discord.com/discovery/applications/1119539298128105484
+  category: Social
+  contract_reference:
+    register: Discord App Directory (discord.com/discovery/applications; public application-directory-static search
+      JSON)
+    spec_file: null
+    role: discord-app
+    registered_name: TREBEL Music
+    matched_domain: trebel.io
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - TREBEL Music
+    signal_note: one edge per (builder, platform); listings, guild counts and Discord's verified-app badge are context,
+      never read
+    detected_by: sweep-discord-app-directory.py
+    detected: '2026-10-23'
+  detected_by: sweep-discord-app-directory.py
+  detected: '2026-10-23'
+  publisher_verified:
+  - discord-verified-app
+- partner_name: TuneIn Radio & Podcasts
+  app: TuneIn Radio & Podcasts
+  partner: tunein
+  partner_match: domain
+  type: marketplace
+  marketplace: discord-app-directory
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://discord.com/discovery/applications/1196535986226745437
+  category: null
+  contract_reference:
+    register: Discord App Directory (discord.com/discovery/applications; public application-directory-static search
+      JSON)
+    spec_file: null
+    role: discord-app
+    registered_name: TuneIn Radio & Podcasts
+    matched_domain: tunein.com
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - TuneIn Radio & Podcasts
+    signal_note: one edge per (builder, platform); listings, guild counts and Discord's verified-app badge are context,
+      never read
+    detected_by: sweep-discord-app-directory.py
+    detected: '2026-10-23'
+  detected_by: sweep-discord-app-directory.py
+  detected: '2026-10-23'
+  publisher_verified:
+  - discord-verified-app
+- partner_name: Vettly Shield – Moderation
+  app: Vettly Shield – Moderation
+  partner: vettly
+  partner_match: domain
+  type: marketplace
+  marketplace: discord-app-directory
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://discord.com/discovery/applications/1444018885434278012
+  category: Moderation and Tools
+  contract_reference:
+    register: Discord App Directory (discord.com/discovery/applications; public application-directory-static search
+      JSON)
+    spec_file: null
+    role: discord-app
+    registered_name: Vettly Shield – Moderation
+    matched_domain: vettly.dev
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Vettly Shield – Moderation
+    signal_note: one edge per (builder, platform); listings, guild counts and Discord's verified-app badge are context,
+      never read
+    detected_by: sweep-discord-app-directory.py
+    detected: '2026-10-23'
+  detected_by: sweep-discord-app-directory.py
+  detected: '2026-10-23'
+  publisher_verified:
+  - discord-verified-app
+- partner_name: WOMBOT
+  app: WOMBOT
+  partner: wombo
+  partner_match: domain
+  type: marketplace
+  marketplace: discord-app-directory
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://discord.com/discovery/applications/996534605828083824
+  category: Social
+  contract_reference:
+    register: Discord App Directory (discord.com/discovery/applications; public application-directory-static search
+      JSON)
+    spec_file: null
+    role: discord-app
+    registered_name: WOMBOT
+    matched_domain: w.ai
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - WOMBOT
+    signal_note: one edge per (builder, platform); listings, guild counts and Discord's verified-app badge are context,
+      never read
+    detected_by: sweep-discord-app-directory.py
+    detected: '2026-10-23'
+  detected_by: sweep-discord-app-directory.py
+  detected: '2026-10-23'
+  publisher_verified:
+  - discord-verified-app
 templates: []

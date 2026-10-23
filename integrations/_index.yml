@@ -159,3 +159,674 @@
     detected: '2026-10-22'
   status: not-a-workflow
   arazzo: null
+- slug: discord-amplitude
+  label: Amplitude
+  partner: amplitude
+  partner_name: Amplitude
+  category: Utilities, Moderation and Tools
+  type: marketplace
+  marketplace: discord-app-directory
+  channel: partner-built
+  evidence: https://discord.com/discovery/applications/1520218286057324726
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Discord App Directory (discord.com/discovery/applications; public application-directory-static search
+      JSON)
+    spec_file: null
+    role: discord-app
+    registered_name: Amplitude
+    matched_domain: amplitude.com
+    matched_by: domain
+    listings: 2
+    sample_apps:
+    - Amplitude
+    - Amplitude - EU
+    signal_note: one edge per (builder, platform); listings, guild counts and Discord's verified-app badge are context,
+      never read
+    detected_by: sweep-discord-app-directory.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: discord-audd
+  label: AudD
+  partner: audd
+  partner_name: AudD
+  category: Utilities
+  type: marketplace
+  marketplace: discord-app-directory
+  channel: partner-built
+  evidence: https://discord.com/discovery/applications/704782697754525711
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Discord App Directory (discord.com/discovery/applications; public application-directory-static search
+      JSON)
+    spec_file: null
+    role: discord-app
+    registered_name: AudD
+    matched_domain: audd.io
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - AudD
+    signal_note: one edge per (builder, platform); listings, guild counts and Discord's verified-app badge are context,
+      never read
+    detected_by: sweep-discord-app-directory.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: discord-composio
+  label: Composio
+  partner: composio
+  partner_name: Composio
+  category: Utilities, Moderation and Tools
+  type: marketplace
+  marketplace: discord-app-directory
+  channel: partner-built
+  evidence: https://discord.com/discovery/applications/1501160137694642207
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Discord App Directory (discord.com/discovery/applications; public application-directory-static search
+      JSON)
+    spec_file: null
+    role: discord-app
+    registered_name: Composio
+    matched_domain: composio.dev
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Composio
+    signal_note: one edge per (builder, platform); listings, guild counts and Discord's verified-app badge are context,
+      never read
+    detected_by: sweep-discord-app-directory.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: discord-cymbal-bot
+  label: Cymbal Bot
+  partner: cymbal
+  partner_name: Cymbal Bot
+  type: marketplace
+  marketplace: discord-app-directory
+  channel: partner-built
+  evidence: https://discord.com/discovery/applications/949346754309001266
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Discord App Directory (discord.com/discovery/applications; public application-directory-static search
+      JSON)
+    spec_file: null
+    role: discord-app
+    registered_name: Cymbal Bot
+    matched_domain: cymbal.xyz
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Cymbal Bot
+    signal_note: one edge per (builder, platform); listings, guild counts and Discord's verified-app badge are context,
+      never read
+    detected_by: sweep-discord-app-directory.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: discord-epal-finder
+  label: ePal Finder
+  partner: e-pal
+  partner_name: ePal Finder
+  category: Social, Games
+  type: marketplace
+  marketplace: discord-app-directory
+  channel: partner-built
+  evidence: https://discord.com/discovery/applications/1098516182404968458
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Discord App Directory (discord.com/discovery/applications; public application-directory-static search
+      JSON)
+    spec_file: null
+    role: discord-app
+    registered_name: ePal Finder
+    matched_domain: epal.gg
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - ePal Finder
+    signal_note: one edge per (builder, platform); listings, guild counts and Discord's verified-app badge are context,
+      never read
+    detected_by: sweep-discord-app-directory.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: discord-krunker-strike-frvr
+  label: Krunker Strike FRVR
+  partner: frvr
+  partner_name: Krunker Strike FRVR
+  category: Games, Social
+  type: marketplace
+  marketplace: discord-app-directory
+  channel: partner-built
+  evidence: https://discord.com/discovery/applications/1011683823555199066
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Discord App Directory (discord.com/discovery/applications; public application-directory-static search
+      JSON)
+    spec_file: null
+    role: discord-app
+    registered_name: Krunker Strike FRVR
+    matched_domain: frvr.com
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Krunker Strike FRVR
+    signal_note: one edge per (builder, platform); listings, guild counts and Discord's verified-app badge are context,
+      never read
+    detected_by: sweep-discord-app-directory.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: discord-gamerpower-bot
+  label: GamerPower Bot
+  partner: gamerpower
+  partner_name: GamerPower Bot
+  category: Games, Moderation and Tools, Social
+  type: marketplace
+  marketplace: discord-app-directory
+  channel: partner-built
+  evidence: https://discord.com/discovery/applications/1337483452634763355
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Discord App Directory (discord.com/discovery/applications; public application-directory-static search
+      JSON)
+    spec_file: null
+    role: discord-app
+    registered_name: GamerPower Bot
+    matched_domain: gamerpower.com
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - GamerPower Bot
+    signal_note: one edge per (builder, platform); listings, guild counts and Discord's verified-app badge are context,
+      never read
+    detected_by: sweep-discord-app-directory.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: discord-ldda-by-kabum
+  label: LDDA by KaBuM!
+  partner: kabum
+  partner_name: LDDA by KaBuM!
+  category: Games, Entertainment, Social
+  type: marketplace
+  marketplace: discord-app-directory
+  channel: partner-built
+  evidence: https://discord.com/discovery/applications/1409424266155266208
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Discord App Directory (discord.com/discovery/applications; public application-directory-static search
+      JSON)
+    spec_file: null
+    role: discord-app
+    registered_name: LDDA by KaBuM!
+    matched_domain: kabum.com.br
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - LDDA by KaBuM!
+    signal_note: one edge per (builder, platform); listings, guild counts and Discord's verified-app badge are context,
+      never read
+    detected_by: sweep-discord-app-directory.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: discord-magooshy
+  label: Magooshy
+  partner: magoosh
+  partner_name: Magooshy
+  category: Utilities
+  type: marketplace
+  marketplace: discord-app-directory
+  channel: partner-built
+  evidence: https://discord.com/discovery/applications/1008844563798040698
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Discord App Directory (discord.com/discovery/applications; public application-directory-static search
+      JSON)
+    spec_file: null
+    role: discord-app
+    registered_name: Magooshy
+    matched_domain: magoosh.com
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Magooshy
+    signal_note: one edge per (builder, platform); listings, guild counts and Discord's verified-app badge are context,
+      never read
+    detected_by: sweep-discord-app-directory.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: discord-memrise
+  label: Memrise
+  partner: memrise
+  partner_name: Memrise
+  type: marketplace
+  marketplace: discord-app-directory
+  channel: partner-built
+  evidence: https://discord.com/discovery/applications/1085553058823557180
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Discord App Directory (discord.com/discovery/applications; public application-directory-static search
+      JSON)
+    spec_file: null
+    role: discord-app
+    registered_name: Memrise
+    matched_domain: memrise.com
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Memrise
+    signal_note: one edge per (builder, platform); listings, guild counts and Discord's verified-app badge are context,
+      never read
+    detected_by: sweep-discord-app-directory.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: discord-midjourney-bot
+  label: Midjourney Bot
+  partner: midjourney
+  partner_name: Midjourney Bot
+  type: marketplace
+  marketplace: discord-app-directory
+  channel: partner-built
+  evidence: https://discord.com/discovery/applications/936929561302675456
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Discord App Directory (discord.com/discovery/applications; public application-directory-static search
+      JSON)
+    spec_file: null
+    role: discord-app
+    registered_name: Midjourney Bot
+    matched_domain: midjourney.com
+    matched_by: domain
+    listings: 2
+    sample_apps:
+    - Midjourney Bot
+    - Midjourney Prompt Battle
+    signal_note: one edge per (builder, platform); listings, guild counts and Discord's verified-app badge are context,
+      never read
+    detected_by: sweep-discord-app-directory.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: discord-op-gg
+  label: OP.GG
+  partner: opgg
+  partner_name: OP.GG
+  category: Games, Entertainment
+  type: marketplace
+  marketplace: discord-app-directory
+  channel: partner-built
+  evidence: https://discord.com/discovery/applications/589065324834324500
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Discord App Directory (discord.com/discovery/applications; public application-directory-static search
+      JSON)
+    spec_file: null
+    role: discord-app
+    registered_name: OP.GG
+    matched_domain: op.gg
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - OP.GG
+    signal_note: one edge per (builder, platform); listings, guild counts and Discord's verified-app badge are context,
+      never read
+    detected_by: sweep-discord-app-directory.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: discord-perplexity
+  label: Perplexity
+  partner: perplexity
+  partner_name: Perplexity
+  category: Utilities
+  type: marketplace
+  marketplace: discord-app-directory
+  channel: partner-built
+  evidence: https://discord.com/discovery/applications/1354536426045440072
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Discord App Directory (discord.com/discovery/applications; public application-directory-static search
+      JSON)
+    spec_file: null
+    role: discord-app
+    registered_name: Perplexity
+    matched_domain: perplexity.ai
+    matched_by: domain+name-among-holders
+    listings: 2
+    sample_apps:
+    - Perplexity
+    - PerplexityAI
+    signal_note: one edge per (builder, platform); listings, guild counts and Discord's verified-app badge are context,
+      never read
+    detected_by: sweep-discord-app-directory.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: discord-phare
+  label: Phare
+  partner: phare
+  partner_name: Phare
+  category: Moderation and Tools, Utilities
+  type: marketplace
+  marketplace: discord-app-directory
+  channel: partner-built
+  evidence: https://discord.com/discovery/applications/1073653767829987458
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Discord App Directory (discord.com/discovery/applications; public application-directory-static search
+      JSON)
+    spec_file: null
+    role: discord-app
+    registered_name: Phare
+    matched_domain: phare.io
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Phare
+    signal_note: one edge per (builder, platform); listings, guild counts and Discord's verified-app badge are context,
+      never read
+    detected_by: sweep-discord-app-directory.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: discord-picsart
+  label: Picsart
+  partner: picsart-socialin
+  partner_name: Picsart
+  category: Entertainment, Social
+  type: marketplace
+  marketplace: discord-app-directory
+  channel: partner-built
+  evidence: https://discord.com/discovery/applications/1012419466031792188
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Discord App Directory (discord.com/discovery/applications; public application-directory-static search
+      JSON)
+    spec_file: null
+    role: discord-app
+    registered_name: Picsart
+    matched_domain: picsart.com
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Picsart
+    signal_note: one edge per (builder, platform); listings, guild counts and Discord's verified-app badge are context,
+      never read
+    detected_by: sweep-discord-app-directory.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: discord-quizlet
+  label: Quizlet
+  partner: quizlet
+  partner_name: Quizlet
+  category: Utilities
+  type: marketplace
+  marketplace: discord-app-directory
+  channel: partner-built
+  evidence: https://discord.com/discovery/applications/1498359156095324211
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Discord App Directory (discord.com/discovery/applications; public application-directory-static search
+      JSON)
+    spec_file: null
+    role: discord-app
+    registered_name: Quizlet
+    matched_domain: quizlet.com
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Quizlet
+    signal_note: one edge per (builder, platform); listings, guild counts and Discord's verified-app badge are context,
+      never read
+    detected_by: sweep-discord-app-directory.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: discord-sentry
+  label: Sentry
+  partner: sentry-system
+  partner_name: Sentry
+  category: Moderation and Tools
+  type: marketplace
+  marketplace: discord-app-directory
+  channel: partner-built
+  evidence: https://discord.com/discovery/applications/1120837946019422300
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Discord App Directory (discord.com/discovery/applications; public application-directory-static search
+      JSON)
+    spec_file: null
+    role: discord-app
+    registered_name: Sentry
+    matched_domain: sentry.io
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Sentry
+    signal_note: one edge per (builder, platform); listings, guild counts and Discord's verified-app badge are context,
+      never read
+    detected_by: sweep-discord-app-directory.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: discord-soundcloud
+  label: SoundCloud
+  partner: soundcloud
+  partner_name: SoundCloud
+  category: Social, Utilities
+  type: marketplace
+  marketplace: discord-app-directory
+  channel: partner-built
+  evidence: https://discord.com/discovery/applications/890343617762304070
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Discord App Directory (discord.com/discovery/applications; public application-directory-static search
+      JSON)
+    spec_file: null
+    role: discord-app
+    registered_name: SoundCloud
+    matched_domain: soundcloud.com
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - SoundCloud
+    signal_note: one edge per (builder, platform); listings, guild counts and Discord's verified-app badge are context,
+      never read
+    detected_by: sweep-discord-app-directory.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: discord-simba-from-speechify
+  label: Simba from Speechify
+  partner: speechify
+  partner_name: Simba from Speechify
+  category: Social, Moderation and Tools, Utilities
+  type: marketplace
+  marketplace: discord-app-directory
+  channel: partner-built
+  evidence: https://discord.com/discovery/applications/1234873756988477541
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Discord App Directory (discord.com/discovery/applications; public application-directory-static search
+      JSON)
+    spec_file: null
+    role: discord-app
+    registered_name: Simba from Speechify
+    matched_domain: speechify.com
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Simba from Speechify
+    signal_note: one edge per (builder, platform); listings, guild counts and Discord's verified-app badge are context,
+      never read
+    detected_by: sweep-discord-app-directory.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: discord-tcgdex
+  label: TCGdex
+  partner: tcgdex
+  partner_name: TCGdex
+  category: Games, Entertainment
+  type: marketplace
+  marketplace: discord-app-directory
+  channel: partner-built
+  evidence: https://discord.com/discovery/applications/465978667022024704
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Discord App Directory (discord.com/discovery/applications; public application-directory-static search
+      JSON)
+    spec_file: null
+    role: discord-app
+    registered_name: TCGdex
+    matched_domain: tcgdex.net
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - TCGdex
+    signal_note: one edge per (builder, platform); listings, guild counts and Discord's verified-app badge are context,
+      never read
+    detected_by: sweep-discord-app-directory.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: discord-trebel-music
+  label: TREBEL Music
+  partner: trebel-music
+  partner_name: TREBEL Music
+  category: Social
+  type: marketplace
+  marketplace: discord-app-directory
+  channel: partner-built
+  evidence: https://discord.com/discovery/applications/1119539298128105484
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Discord App Directory (discord.com/discovery/applications; public application-directory-static search
+      JSON)
+    spec_file: null
+    role: discord-app
+    registered_name: TREBEL Music
+    matched_domain: trebel.io
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - TREBEL Music
+    signal_note: one edge per (builder, platform); listings, guild counts and Discord's verified-app badge are context,
+      never read
+    detected_by: sweep-discord-app-directory.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: discord-tunein-radio-podcasts
+  label: TuneIn Radio & Podcasts
+  partner: tunein
+  partner_name: TuneIn Radio & Podcasts
+  type: marketplace
+  marketplace: discord-app-directory
+  channel: partner-built
+  evidence: https://discord.com/discovery/applications/1196535986226745437
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Discord App Directory (discord.com/discovery/applications; public application-directory-static search
+      JSON)
+    spec_file: null
+    role: discord-app
+    registered_name: TuneIn Radio & Podcasts
+    matched_domain: tunein.com
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - TuneIn Radio & Podcasts
+    signal_note: one edge per (builder, platform); listings, guild counts and Discord's verified-app badge are context,
+      never read
+    detected_by: sweep-discord-app-directory.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: discord-vettly-shield-moderation
+  label: Vettly Shield – Moderation
+  partner: vettly
+  partner_name: Vettly Shield – Moderation
+  category: Moderation and Tools
+  type: marketplace
+  marketplace: discord-app-directory
+  channel: partner-built
+  evidence: https://discord.com/discovery/applications/1444018885434278012
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Discord App Directory (discord.com/discovery/applications; public application-directory-static search
+      JSON)
+    spec_file: null
+    role: discord-app
+    registered_name: Vettly Shield – Moderation
+    matched_domain: vettly.dev
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Vettly Shield – Moderation
+    signal_note: one edge per (builder, platform); listings, guild counts and Discord's verified-app badge are context,
+      never read
+    detected_by: sweep-discord-app-directory.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
+- slug: discord-wombot
+  label: WOMBOT
+  partner: wombo
+  partner_name: WOMBOT
+  category: Social
+  type: marketplace
+  marketplace: discord-app-directory
+  channel: partner-built
+  evidence: https://discord.com/discovery/applications/996534605828083824
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: Discord App Directory (discord.com/discovery/applications; public application-directory-static search
+      JSON)
+    spec_file: null
+    role: discord-app
+    registered_name: WOMBOT
+    matched_domain: w.ai
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - WOMBOT
+    signal_note: one edge per (builder, platform); listings, guild counts and Discord's verified-app badge are context,
+      never read
+    detected_by: sweep-discord-app-directory.py
+    detected: '2026-10-23'
+  status: not-a-workflow
+  arazzo: null
